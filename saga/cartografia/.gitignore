@@ -1,0 +1,8 @@
+# cache delle query OSM/DEM: pesante e rigenerabile, NON canone
+geo/cache/
+cache_zones/
+*.bundle
+
+# NB: i geojson per-zona (zones/*.geojson) SONO canone e si committano:
+# sono la fonte deterministica da cui mappe e immagini si rigenerano in modo
+# riproducibile (l'OSM cambia nel tempo; il geojson congelato no).

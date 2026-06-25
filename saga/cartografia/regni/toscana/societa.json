@@ -1,0 +1,208 @@
+{
+ "regno": "toscana",
+ "principio_calviniano": {
+  "nome": "il regno delle gare",
+  "idea": "Qui (quasi) tutto si decide con gare bellissime. Le città non si fanno guerra: gareggiano — in arte, in corse, in opere, in eloquenza. La gloria è il vero potere. Ma la rivalità può degenerare in fazione, e allora la bellezza si fa sangue.",
+  "regole_dolci": [
+   "una contesa si scioglie con una sfida pubblica",
+   "ha ragione chi fa la cosa più bella",
+   "ogni città ha un colore e un'insegna",
+   "perdere con onore vale più che vincere con inganno"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "Cittadini del Leone",
+   "ruolo_sociale": "il popolo di Firenze: artigiani, artisti, banditori",
+   "rango": "alto, civico",
+   "come_vivono": "leoni, lepri, istrici, upupe: orgogliosi e geniali",
+   "animali": [
+    "leone",
+    "lepre",
+    "istrice",
+    "upupa"
+   ],
+   "voce": {
+    "modello": "Dante e il fiorentino civile (con punte machiavelliche)",
+    "tipo_modello": "figura storica/tradizione",
+    "registro": "alto, fiero, tagliente, capace di terzina",
+    "tratti": [
+     "eloquenza civica",
+     "orgoglio d'arte",
+     "può parlare in terza rima"
+    ],
+    "in_rima": "terza rima (facoltativa)",
+    "esempio_in_voce": "Firenze parla e l'arte le risponde: / chi fa più bello tiene la ragione, / e ride di chi al merito s'asconde.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "la Lupa e i suoi",
+   "ruolo_sociale": "i fieri rivali del sud (Siena)",
+   "rango": "alto, rivale",
+   "come_vivono": "lupi: antichi, orgogliosi, 'più antichi di Roma'",
+   "animali": [
+    "lupo"
+   ],
+   "voce": {
+    "modello": "Cecco Angiolieri (senese, comico-realista)",
+    "tipo_modello": "figura storica",
+    "registro": "brontolone, sardonico, orgoglioso-amaro",
+    "tratti": [
+     "lamento spavaldo",
+     "vanto per dispetto"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Firenze ride? Rida pure: Siena è più antica, e l'orgoglio non si compra al mercato.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "la Pantera libera",
+   "ruolo_sociale": "i gelosi della libertà (Lucca)",
+   "rango": "alto, appartato",
+   "come_vivono": "pantere: chiusi nelle loro mura, liberissimi",
+   "animali": [
+    "pantera"
+   ],
+   "voce": {
+    "modello": "discrezione mercantile lucchese (la libertà che non si vanta)",
+    "tipo_modello": "tradizione",
+    "registro": "riservato, fiero, sobrio, 'di seta'",
+    "tratti": [
+     "dice poco",
+     "conta invece di gridare"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Lucca non grida la sua libertà: la conta, in seta e in silenzio.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Gente del Mare",
+   "ruolo_sociale": "marinai e mercanti (Pisa)",
+   "rango": "medio, aperto al mondo",
+   "come_vivono": "gabbiani, cormorani, granchi: la porta sul mare",
+   "animali": [],
+   "voce": {
+    "modello": "parlata marinaresca + nitidezza 'galileiana' (Pisa)",
+    "tipo_modello": "tradizione/figura",
+    "registro": "salato, pratico, preciso",
+    "tratti": [
+     "misura e prova",
+     "il mare non perdona"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Il mare non mente e non perdona: misura due volte, salpa una.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "le Arti",
+   "mestiere": "gilde di artigiani-artisti che gareggiano nelle opere",
+   "specie_tipiche": [
+    "leone",
+    "istrice"
+   ],
+   "specialita_locale": "ogni Arte custodisce un segreto di bottega",
+   "commercia_con": [
+    "vendono bellezza e manufatti a tutti i regni"
+   ]
+  },
+  {
+   "nome": "i Fantini",
+   "mestiere": "corrono i palii tra le città",
+   "specie_tipiche": [
+    "lepre"
+   ],
+   "specialita_locale": "velocità e nervi saldi",
+   "commercia_con": [
+    "le città rivali, che li contendono"
+   ]
+  },
+  {
+   "nome": "i Marinai-mercanti",
+   "mestiere": "l'unico sbocco sul mare del mondo conosciuto",
+   "specie_tipiche": [
+    "gabbiano",
+    "cormorano"
+   ],
+   "specialita_locale": "portano sale, stoffe e notizie d'oltremare",
+   "commercia_con": [
+    "ogni regno: dal mare arriva ciò che la terra non ha"
+   ]
+  }
+ ],
+ "mobilita_sociale": "per merito nelle gare e nelle Arti (un artigiano geniale sale); ma le fazioni cittadine pesano",
+ "rapporti_tra_classi": "Firenze (Leone) vs Siena (Lupa) vs Lucca (Pantera), rivali fierissimi; Pisa (Mare) guarda fuori; alleanze che cambiano a ogni gara",
+ "tensione_viva": "la repubblica gloriosa rischia di spaccarsi nelle fazioni: la meta del viaggio è anche un nido di rivalità e intrighi",
+ "estrazione_personaggio": "es. una giovane lepre Fantino di Firenze, o un lupo orgoglioso di Siena",
+ "esempi_di_estrazione": [
+  {
+   "chi": "(libero)",
+   "classe": "Cittadini del Leone / la Lupa",
+   "nota": "le città offrono a Rocco e Zara alleanze e inganni, alla fine del viaggio"
+  }
+ ],
+ "zone": [
+  {
+   "tipo": "Cuore",
+   "luogo": "Firenze — il Leone, la Repubblica",
+   "coord": [
+    11.26,
+    43.77
+   ]
+  },
+  {
+   "tipo": "Spina",
+   "luogo": "le colline coltivate e le città d'arte",
+   "coord": [
+    11.1,
+    43.55
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "le selve toscane interne, verso l'Appennino",
+   "coord": [
+    11.5,
+    43.92
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "la costa e il mare aperto: Pisa",
+   "coord": [
+    10.4,
+    43.71
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "i confini con le rivali Siena e Lucca",
+   "coord": [
+    11.33,
+    43.32
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "le strade tra le città-repubbliche, percorse dai palii",
+   "coord": [
+    10.95,
+    43.62
+   ]
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: classi/mestieri animali come specchio sociale, caldo per bambini",
+  "calvino": "voce: realismo magico leggero, originale ma coerente"
+ },
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}

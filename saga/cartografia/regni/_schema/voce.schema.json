@@ -1,0 +1,13 @@
+{
+ "$descrizione": "Voce di un gruppo: stile-modello ispirato a una figura/maschera/tradizione storica italiana. Non citazioni; battute originali. Consumato dagli script per dare voce in scrittura.",
+ "modello": "figura storica | maschera | tradizione | regola",
+ "tipo_modello": "str",
+ "registro": "come parla",
+ "tratti": [
+  "vezzi e marche di stile"
+ ],
+ "in_rima": "false | 'ottava rima' | 'terza rima' | 'filastrocca'",
+ "esempio_in_voce": "battuta ORIGINALE dell'animale nello stile",
+ "intensita": "molto caratterizzata | media | meccanica",
+ "nota": "avvertenza stile-modello"
+}

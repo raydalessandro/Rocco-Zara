@@ -1,0 +1,50 @@
+{
+ "$descrizione": "Blocco SOCIETÀ di un regno (si aggiunge a regno.json). Metodo Orwell (classi/mestieri animali) + un principio_calviniano per regno. Consumato dagli script di estrazione personaggi.",
+ "regno": "slug del regno",
+ "principio_calviniano": {
+  "nome": "str",
+  "idea": "il conceit magico-realista che organizza la società",
+  "regole_dolci": [
+   "usanze fiabesche ma coerenti"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "str",
+   "ruolo_sociale": "str",
+   "animali": [
+    "..."
+   ],
+   "rango": "alto|medio|basso|fuori",
+   "come_vivono": "str"
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "str",
+   "mestiere": "str",
+   "specie_tipiche": [
+    "..."
+   ],
+   "specialita_locale": "ciò che differenzia questa zona dalle altre",
+   "commercia_con": [
+    "regni/corporazioni — genera i rapporti tra regni"
+   ]
+  }
+ ],
+ "mobilita_sociale": "come si sale/scende (o non si può)",
+ "rapporti_tra_classi": "tensioni e alleanze interne",
+ "tensione_viva": "il conflitto motore del regno",
+ "estrazione_personaggio": "regola: regno → classe → corporazione/comunità → individuo",
+ "esempi_di_estrazione": [
+  {
+   "chi": "str",
+   "classe": "str",
+   "nota": "str"
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo",
+  "calvino": "voce"
+ }
+}

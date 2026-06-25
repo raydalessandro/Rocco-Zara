@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1",
+  "graph_version": "0.0.0",
+  "status": "stub — si popola in M1 (dopo la chat geografia)",
+  "saga": "rocco_e_zara",
+  "_note": "Schema del nodo-episodio: vedi schema_episodio.md. Ep01 (l'origine, 'Due mondi') sara' il primo nodo, ancorato al luogo reale e al centro trovati nella chat geografia.",
+  "arcs": {},
+  "episodes": {},
+  "seeds": {},
+  "callbacks": {},
+  "debts": {},
+  "creatures": {},
+  "world_state_baselines": {}
+}

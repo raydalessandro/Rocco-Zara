@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isola dei Tre Venti — Mappa Navigabile v0.5</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="header">
+    <div id="header-left">
+      <h1>Isola dei Tre Venti</h1>
+      <span id="subtitle">Cartografia Tecnica · v0.5</span>
+    </div>
+    <div id="search-container">
+      <input type="text" id="search-input" placeholder="Cerca luogo (nome o ID)..." autocomplete="off" />
+      <div id="search-results"></div>
+    </div>
+    <div id="status">Caricamento...</div>
+  </div>
+
+  <div id="main">
+    <div id="sidebar">
+      <div class="sidebar-section">
+        <h2>Categorie</h2>
+        <div class="category-toggle">
+          <h3>Acqua</h3>
+          <label><input type="checkbox" class="cat-filter" data-types="river,river_source,river_fork,river_mouth,ford,stream,seasonal_streambed,river_system" checked> Corsi d'acqua</label>
+        </div>
+        <div class="category-toggle">
+          <h3>Strade</h3>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="via_principale" checked> Vie principali</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="via_secondaria" checked> Via Scuola</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_interno_quartiere,sentiero_interno" checked> Sentieri interni quartiere</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_inter_quartiere" checked> Tangenziali inter-quartiere</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_costiero,sentiero_costeggiante" checked> Sentieri costieri</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_montano" checked> Sentieri montani</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_foresta" checked> Sentieri Foresta</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="viottolo" checked> Viottoli Piazza</label>
+          <label><input type="checkbox" class="cat-filter-path" data-cat="sentiero_secondario" checked> Altri</label>
+        </div>
+        <div class="category-toggle">
+          <h3>Edifici e luoghi</h3>
+          <label><input type="checkbox" class="cat-filter" data-types="building,burrow,cave,pier" checked> Edifici, tane, grotte</label>
+          <label><input type="checkbox" class="cat-filter" data-types="landmark,water_pool" checked> Landmark</label>
+          <label><input type="checkbox" class="cat-filter" data-types="mountain_peak,cliff,valley,mountain_system" checked> Rilievi</label>
+          <label><input type="checkbox" class="cat-filter" data-types="quarter,square,inner_land,coastal_belt" checked> Aree</label>
+          <label><input type="checkbox" class="cat-filter" data-types="fields,forest,beach,work_area" checked> Vegetazione/Spiagge</label>
+          <label><input type="checkbox" class="cat-filter" data-types="island_outline" checked> Contorno isola</label>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Quartiere</h2>
+        <label><input type="checkbox" class="quarter-filter" value="centro" checked> Villaggio</label>
+        <label><input type="checkbox" class="quarter-filter" value="fuoco" checked> Q. Fuoco (est)</label>
+        <label><input type="checkbox" class="quarter-filter" value="acqua" checked> Q. Acqua (sud)</label>
+        <label><input type="checkbox" class="quarter-filter" value="terra" checked> Q. Terra (ovest)</label>
+        <label><input type="checkbox" class="quarter-filter" value="aria" checked> Q. Aria (nord)</label>
+        <label><input type="checkbox" class="quarter-filter" value="perimetro" checked> Perimetro</label>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Stato</h2>
+        <label><input type="checkbox" class="status-filter" value="canonico" checked> Canonico</label>
+        <label><input type="checkbox" class="status-filter" value="provvisorio" checked> Provvisorio</label>
+        <label><input type="checkbox" class="status-filter" value="stub" checked> Stub</label>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Azioni</h2>
+        <button id="btn-fit" class="sidebar-btn">Adatta vista</button>
+        <button id="btn-reset-filters" class="sidebar-btn">Ripristina filtri</button>
+        <button id="btn-toggle-labels" class="sidebar-btn">Etichette on/off</button>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Info</h2>
+        <div class="info-row"><span id="feature-count">-</span> feature totali</div>
+        <div class="info-row"><span id="feature-visible">-</span> visibili</div>
+        <div class="info-row" id="current-hover" style="min-height:2em">
+          <em style="color:#888">Passa il mouse su un luogo</em>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Guida</h2>
+        <div class="guida">
+          <p><b>Click</b> su un luogo: dettaglio.</p>
+          <p><b>Hover</b>: nome rapido.</p>
+          <p><b>Cerca</b> (in alto): nome o ID.</p>
+          <p><b>Scroll</b>: zoom. <b>Drag</b>: pan.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="detail-panel">
+      <button id="detail-close">×</button>
+      <div id="detail-content"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+  const ISLAND_CENTER = [34.5, 18.0];
+  const INITIAL_ZOOM = 14;
+  const STATUS_COLORS = {canonico: '#2a8a5a', provvisorio: '#d48a2a', stub: '#888'};
+
+  const map = L.map('map', {
+    center: ISLAND_CENTER, zoom: INITIAL_ZOOM,
+    zoomControl: true, attributionControl: false
+  });
+  L.control.attribution({prefix: 'Cartografia Tecnica · Leaflet'}).addTo(map);
+
+  // Sfondo mare
+  L.rectangle([[33.5, 16.5], [35.5, 19.5]], {
+    color: '#a8c8d8', fillColor: '#b5d5e2', fillOpacity: 1, weight: 0
+  }).addTo(map);
+
+  let allFeatures = [];
+  let renderedLayer = null;
+  let labelLayer = null;
+  let labelsVisible = true;
+  let featureIndex = {};
+  let aliasIndex = {};
+
+  function pathStyleByCategory(cat) {
+    if (cat === 'via_principale')     return {color:'#8a6a3a', weight:3, dashArray:'8 3', opacity:0.9};
+    if (cat === 'via_secondaria')     return {color:'#9a7a4a', weight:2.5, dashArray:'6 3', opacity:0.9};
+    if (cat === 'sentiero_inter_quartiere') return {color:'#7a3a8a', weight:2.2, dashArray:'5 2', opacity:0.85};
+    if (cat === 'sentiero_costiero' || cat === 'sentiero_costeggiante') return {color:'#6ba8c4', weight:1.8, dashArray:'4 3', opacity:0.85};
+    if (cat === 'sentiero_montano')   return {color:'#5a8a5a', weight:2, dashArray:'3 2', opacity:0.85};
+    if (cat === 'sentiero_foresta')   return {color:'#4a6a3a', weight:2, dashArray:'3 2', opacity:0.85};
+    if (cat === 'viottolo')           return {color:'#a06a4a', weight:1.5, dashArray:'2 2', opacity:0.85};
+    return {color:'#b89868', weight:1.5, dashArray:'4 2', opacity:0.8};
+  }
+
+  function riverStyle(feature) {
+    const fid = feature.properties.id;
+    const widths = {
+      fiume_capo:3, fiume_braccio_ovest_alto:4,
+      fiume_stretta_due_massi:2.2, fiume_braccio_ovest_medio:4.2,
+      fiume_braccio_ovest_basso:4.5, fiume_braccio_est:6.5
+    };
+    const colors = {fiume_stretta_due_massi:'#c75555'};
+    return {color: colors[fid] || '#2b7a9c', weight: widths[fid] || 3.5, opacity: 0.92};
+  }
+
+  function featureStyle(feature) {
+    const p = feature.properties;
+    const type = p.type;
+    const gtype = feature.geometry.type;
+
+    if (gtype === 'Polygon' || gtype === 'MultiPolygon') {
+      if (type === 'island_outline') {
+        if (p.id === 'island_outline') return {color:'#8a7456', weight:2, fillColor:'#f4eed8', fillOpacity:0.95};
+        return {color:'#8a7456', weight:1, fillColor:'#c5b58a', fillOpacity:0.5};
+      }
+      if (type === 'inner_land')  return {color:'transparent', weight:0, fillColor:'#ece1b8', fillOpacity:0.5};
+      if (type === 'coastal_belt') return {color:'transparent', weight:0, fillColor:'#f5e5c0', fillOpacity:0};
+      if (type === 'quarter') {
+        const qcolors = {fuoco:'#f5c8a0', acqua:'#b8d4e0', terra:'#c5d0a0', aria:'#d5d5dd', centro:'#e8dcb8'};
+        return {color:'#5c4a28', weight:1, dashArray:'6 4', fillColor: qcolors[p.quarter] || '#ddd', fillOpacity:0.35};
+      }
+      if (type === 'square') return {color:'#6a4a18', weight:1.5, fillColor:'#c8a868', fillOpacity:0.85};
+      if (type === 'fields') {
+        const fc = {herbs_vegetables:'#a8c87a', grains_legumes:'#d8c878', orchards:'#b5a858', pasture:'#b8c89a'};
+        return {color:'#7a6a38', weight:0.8, fillColor: fc[p.category] || '#c8c896', fillOpacity:0.7};
+      }
+      if (type === 'forest') return {color:'#3a5828', weight:1, fillColor:'#5a7840', fillOpacity:0.65};
+      if (type === 'beach')  return {color:'#a89452', weight:0.8, fillColor:'#e8d89a', fillOpacity:0.85};
+      if (type === 'work_area') return {color:'#7a6a38', weight:1, fillColor:'#b0a868', fillOpacity:0.7};
+    }
+    if (gtype === 'LineString' || gtype === 'MultiLineString') {
+      if (type === 'river') return riverStyle(feature);
+      if (type === 'river_system') return {color:'transparent', weight:0};
+      if (type === 'stream') return {color:'#4aa0c4', weight:2, opacity:0.85};
+      if (type === 'seasonal_streambed') return {color:'#9a8868', weight:1.5, dashArray:'3 3', opacity:0.7};
+      if (type === 'valley') return {color:'#555', weight:2.5, opacity:0.5};
+      if (type === 'pier') return {color:'#6a4a28', weight:5};
+      if (type === 'path') return pathStyleByCategory(p.category);
+    }
+    return {color: STATUS_COLORS[p.status] || '#888', weight:2};
+  }
+
+  function pointToLayer(feature, latlng) {
+    const p = feature.properties;
+    if (p.aggregate) return null;
+    const icons = {
+      landmark:{html:'◉', size:16, col:'#5c4033'},
+      mountain_peak:{html:'▲', size:20, col:'#555'},
+      river_source:{html:'✦', size:22, col:'#2b6a9a'},
+      river_fork:{html:'⋏', size:16, col:'#3a7ba8'},
+      river_mouth:{html:'▽', size:16, col:'#2a7a9a'},
+      ford:{html:'◆', size:14, col:'#3a7ba8'},
+      building:{html:'▣', size:14, col:'#844'},
+      burrow:{html:'⬭', size:12, col:'#644'},
+      cave:{html:'◖', size:16, col:'#333'},
+      quarter:{html:'◯', size:14, col:'#333'},
+      water_pool:{html:'◎', size:13, col:'#4aa0c4'},
+      cliff:{html:'▶', size:13, col:'#666'}
+    };
+    const ic = icons[p.type] || {html:'•', size:10, col:'#555'};
+    const borderCol = STATUS_COLORS[p.status || 'provvisorio'];
+    return L.marker(latlng, {
+      icon: L.divIcon({
+        html: `<div class="point-icon" style="color:${ic.col};border-color:${borderCol};font-size:${ic.size}px">${ic.html}</div>`,
+        iconSize: [ic.size+8, ic.size+8],
+        iconAnchor: [(ic.size+8)/2, (ic.size+8)/2],
+        className: 'custom-point-marker'
+      })
+    });
+  }
+
+  function onEachFeature(feature, layer) {
+    const p = feature.properties;
+    if (p.aggregate) return;
+    const name = p.name || p.id;
+    layer.bindTooltip(name, {direction:'top', offset:[0,-5], className:'custom-tooltip'});
+    layer.on('mouseover', () => {
+      document.getElementById('current-hover').innerHTML =
+        `<strong>${name}</strong> <code>${p.id}</code><br>` +
+        `<span style="color:#777">${p.type}${p.quarter ? ' · '+p.quarter : ''}</span>`;
+    });
+    layer.on('click', () => showDetail(feature));
+  }
+
+  function showDetail(feature) {
+    const p = feature.properties;
+    const content = document.getElementById('detail-content');
+    let html = `<h2>${p.name || p.id}</h2>
+      <div class="detail-id"><code>${p.id}</code></div>
+      <div class="detail-status">
+        <span class="status-badge" style="background:${STATUS_COLORS[p.status] || '#888'}">${p.status || 'n/a'}</span>
+        <span class="type-badge">${p.type}</span>
+        ${p.quarter ? `<span class="quarter-badge">${p.quarter}</span>` : ''}
+      </div>`;
+    if (p.note) html += `<div class="detail-section"><h4>Note canoniche</h4><p>${p.note}</p></div>`;
+    if (p.aliases && p.aliases.length) {
+      html += `<div class="detail-section"><h4>Alias</h4><ul>${p.aliases.map(a=>`<li><code>${a}</code></li>`).join('')}</ul></div>`;
+    }
+    if (p.parent) html += `<div class="detail-section"><h4>Parent</h4><p><a href="#" class="link-feature" data-id="${p.parent}">${p.parent}</a></p></div>`;
+    if (p.children && p.children.length) {
+      html += `<div class="detail-section"><h4>Children</h4><ul>${p.children.map(c=>`<li><a href="#" class="link-feature" data-id="${c}">${c}</a></li>`).join('')}</ul></div>`;
+    }
+    const keys = ['category','elevation_m','inhabitant','width_m','speed','depth','flow_direction','seasonal','water_origin','role_saga','seasonal_feature'];
+    const extras = keys.filter(k => p[k] !== undefined);
+    if (extras.length) {
+      html += `<div class="detail-section"><h4>Proprietà</h4><table class="prop-table">`;
+      for (const k of extras) {
+        const v = Array.isArray(p[k]) ? p[k].join(', ') : p[k];
+        html += `<tr><td><code>${k}</code></td><td>${v}</td></tr>`;
+      }
+      html += `</table></div>`;
+    }
+    html += `<div class="detail-section"><h4>Geometria</h4><p>Tipo: <code>${feature.geometry.type}</code>`;
+    if (feature.geometry.type === 'Point') {
+      const [lon, lat] = feature.geometry.coordinates;
+      html += `<br>Coord: <code>${lon.toFixed(5)}, ${lat.toFixed(5)}</code>`;
+    }
+    html += `</p></div>`;
+    content.innerHTML = html;
+    document.getElementById('detail-panel').classList.add('open');
+    content.querySelectorAll('.link-feature').forEach(l => {
+      l.addEventListener('click', e => { e.preventDefault(); goToFeature(l.dataset.id); });
+    });
+  }
+
+  document.getElementById('detail-close').onclick = () =>
+    document.getElementById('detail-panel').classList.remove('open');
+
+  function goToFeature(id) {
+    const f = featureIndex[id] || featureIndex[aliasIndex[id]];
+    if (!f) { alert(`'${id}' non trovato`); return; }
+    showDetail(f);
+    const g = f.geometry;
+    if (g.type === 'Point') map.setView([g.coordinates[1], g.coordinates[0]], 16);
+    else {
+      const tmp = L.geoJSON(f);
+      try { map.fitBounds(tmp.getBounds(), {padding:[80,80], maxZoom:16}); } catch(e){}
+    }
+  }
+
+  // Search
+  const si = document.getElementById('search-input');
+  const sr = document.getElementById('search-results');
+  si.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q || q.length < 2) { sr.style.display = 'none'; return; }
+    const matches = [];
+    for (const f of allFeatures) {
+      const p = f.properties;
+      const s = (p.name||'').toLowerCase() + ' ' + p.id.toLowerCase() + ' ' + (p.aliases||[]).join(' ').toLowerCase();
+      if (s.includes(q)) { matches.push(f); if (matches.length > 15) break; }
+    }
+    sr.innerHTML = matches.length === 0 ? '<div class="search-empty">Nessun risultato</div>' :
+      matches.map(f => `<div class="search-result" data-id="${f.properties.id}">
+        <div class="sr-name">${f.properties.name || f.properties.id}</div>
+        <div class="sr-meta"><code>${f.properties.id}</code> · ${f.properties.type}${f.properties.quarter ? ' · '+f.properties.quarter:''}</div>
+      </div>`).join('');
+    sr.querySelectorAll('.search-result').forEach(el => el.addEventListener('click', () => {
+      goToFeature(el.dataset.id); si.value=''; sr.style.display = 'none';
+    }));
+    sr.style.display = 'block';
+  });
+  si.addEventListener('blur', () => setTimeout(()=>sr.style.display='none', 200));
+  si.addEventListener('focus', () => { if (si.value.trim()) sr.style.display='block'; });
+
+  function currentFilters() {
+    const enabledTypes = new Set();
+    document.querySelectorAll('.cat-filter:checked').forEach(el =>
+      el.dataset.types.split(',').forEach(t => enabledTypes.add(t.trim())));
+    const enabledPathCats = new Set();
+    document.querySelectorAll('.cat-filter-path:checked').forEach(el =>
+      el.dataset.cat.split(',').forEach(c => enabledPathCats.add(c.trim())));
+    enabledTypes.add('path');
+    const getValues = sel => Array.from(document.querySelectorAll(sel+':checked')).map(e=>e.value);
+    return {
+      types: enabledTypes, pathCats: enabledPathCats,
+      statuses: new Set(getValues('.status-filter')),
+      quarters: new Set(getValues('.quarter-filter'))
+    };
+  }
+
+  function passesFilter(f) {
+    const fl = currentFilters();
+    const p = f.properties;
+    if (!fl.types.has(p.type)) return false;
+    if (p.type === 'path' && !fl.pathCats.has(p.category)) return false;
+    if (!fl.statuses.has(p.status || 'provvisorio')) return false;
+    if (p.quarter && !fl.quarters.has(p.quarter)) return false;
+    return true;
+  }
+
+  function renderFeatures() {
+    if (renderedLayer) map.removeLayer(renderedLayer);
+    if (labelLayer) map.removeLayer(labelLayer);
+    const filtered = allFeatures.filter(passesFilter);
+    document.getElementById('feature-visible').textContent = filtered.length;
+    renderedLayer = L.geoJSON({type:'FeatureCollection', features: filtered}, {
+      style: featureStyle, pointToLayer, onEachFeature,
+      filter: f => !f.properties.aggregate
+    }).addTo(map);
+
+    if (labelsVisible) {
+      const important = new Set([
+        'albero_vecchio','forno','pontile_bocca','grotta_grunto','scuola_stria',
+        'tana_rovo','casa_salvia','casa_amo','casa_zolla','bocca','sorgente',
+        'guado_di_pietre_piatte','due_massi','roccia_alta','orti_del_cerchio',
+        'foresta_intrecciata','pascoli_alti','spiaggia_conchiglie','pozza_dei_pascoli',
+        'quartiere_fuoco','quartiere_acqua','quartiere_terra','quartiere_aria',
+        'noce_della_scuola','bottega_nodo','casa_memolo'
+      ]);
+      const labels = filtered.filter(f => important.has(f.properties.id) && f.geometry.type === 'Point');
+      labelLayer = L.layerGroup();
+      labels.forEach(f => {
+        const [lon, lat] = f.geometry.coordinates;
+        L.marker([lat, lon], {
+          icon: L.divIcon({
+            html: `<div class="place-label">${f.properties.name}</div>`,
+            className: 'label-container', iconSize:[1,1], iconAnchor:[0,0]
+          }),
+          interactive: false
+        }).addTo(labelLayer);
+      });
+      labelLayer.addTo(map);
+    }
+  }
+
+  document.querySelectorAll('.cat-filter, .cat-filter-path, .status-filter, .quarter-filter')
+    .forEach(el => el.addEventListener('change', renderFeatures));
+
+  document.getElementById('btn-fit').onclick = () => {
+    if (renderedLayer) { try { map.fitBounds(renderedLayer.getBounds(), {padding:[30,30]}); } catch(e){} }
+  };
+  document.getElementById('btn-reset-filters').onclick = () => {
+    document.querySelectorAll('.cat-filter, .cat-filter-path, .status-filter, .quarter-filter')
+      .forEach(el => el.checked = true);
+    renderFeatures();
+  };
+  document.getElementById('btn-toggle-labels').onclick = () => {
+    labelsVisible = !labelsVisible;
+    renderFeatures();
+  };
+
+  fetch('../island.geojson')
+    .then(r => { if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(data => {
+      allFeatures = data.features;
+      featureIndex = {}; aliasIndex = {};
+      for (const f of allFeatures) {
+        featureIndex[f.properties.id] = f;
+        for (const a of (f.properties.aliases || [])) aliasIndex[a] = f.properties.id;
+      }
+      document.getElementById('feature-count').textContent = allFeatures.length;
+      document.getElementById('status').textContent =
+        `v${data.metadata?.version || '?'} · ${Object.keys(aliasIndex).length} alias · ${allFeatures.length} feature`;
+      renderFeatures();
+      setTimeout(() => {
+        if (renderedLayer) { try { map.fitBounds(renderedLayer.getBounds(), {padding:[30,30]}); } catch(e){} }
+      }, 100);
+    })
+    .catch(err => {
+      document.getElementById('status').textContent = 'Errore: ' + err.message;
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

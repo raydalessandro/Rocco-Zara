@@ -1,0 +1,212 @@
+{
+ "regno": "laghi_oriente",
+ "principio_calviniano": {
+  "nome": "il regno dei giuramenti",
+  "idea": "Ogni patto è un cordone che si porta addosso. La forza della città è la somma delle promesse mantenute; chi rompe un giuramento perde il suo cordone, e con esso l'onore.",
+  "regole_dolci": [
+   "un giuramento si fa intrecciando due cordoni",
+   "la città conta la sua forza in cordoni intrecciati",
+   "chi non ha mai giurato è 'uno sciolto'",
+   "il coraggio si misura, non si vanta"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "i Protettori",
+   "ruolo_sociale": "capi eletti solo in tempo di pericolo",
+   "rango": "alto per fiducia, non per sangue",
+   "come_vivono": "leonesse; guidano la difesa, poi rendono il potere",
+   "animali": [
+    "leonessa"
+   ],
+   "voce": {
+    "modello": "oratoria civica del libero comune (l'arringa del capitano del popolo)",
+    "tipo_modello": "tradizione",
+    "registro": "solenne, fermo, collettivo ('noi')",
+    "tratti": [
+     "parla a nome di tutti",
+     "cadenza da giuramento"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Giuro; e nel giuro non sono sola: chi tocca uno, ci tocca tutti.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "i Giurati",
+   "ruolo_sociale": "cittadini liberi e guardiani di confine",
+   "rango": "medio-alto",
+   "come_vivono": "duri, leali, legati dal giuramento reciproco",
+   "animali": [
+    "orso bruno",
+    "cane da pastore"
+   ],
+   "voce": {
+    "modello": "parlata schietta del soldato-contadino di confine",
+    "tipo_modello": "tradizione",
+    "registro": "ruvido, breve, di parola data",
+    "tratti": [
+     "'detto è detto'",
+     "niente fronzoli"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Detto è detto. Il cordone tiene.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Gente delle Conche",
+   "ruolo_sociale": "vignaioli e coltivatori delle conche tra i laghi",
+   "rango": "medio",
+   "come_vivono": "miti, operosi, fanno il vino che tutti vogliono",
+   "animali": [
+    "capriolo",
+    "riccio",
+    "tasso"
+   ],
+   "voce": {
+    "modello": "Arlecchino e Brighella (maschere bergamasche)",
+    "tipo_modello": "maschera",
+    "registro": "terragno, svelto, comico, furbo-bonario",
+    "tratti": [
+     "battuta pronta",
+     "si finge sciocco ed è furbo",
+     "sapore bergamasco leggero"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Io? Io zappo e taccio — ma il mio vino, quello sì che chiacchiera per me.",
+    "intensita": "molto caratterizzata (comica)",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Montanari del Garda",
+   "ruolo_sociale": "vedette e staffette delle creste",
+   "rango": "medio, isolato",
+   "come_vivono": "fieri, parlano poco, conoscono ogni passo",
+   "animali": [
+    "stambecco",
+    "gracchio alpino",
+    "ermellino"
+   ],
+   "voce": {
+    "modello": "laconismo d'altura (variante del Garda)",
+    "tipo_modello": "tradizione",
+    "registro": "secco, meteorologico, sentenzioso",
+    "tratti": [
+     "legge il tempo",
+     "frasi corte come fischi"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Nuvola bassa, lingua corta.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "i Cordai",
+   "mestiere": "intrecciano i cordoni dei giuramenti (mestiere quasi sacro)",
+   "specie_tipiche": [
+    "cane da pastore"
+   ],
+   "specialita_locale": "ogni nodo dice chi giura e a chi",
+   "commercia_con": [
+    "chi, in ogni regno, vuole un patto 'che si porta addosso'"
+   ]
+  },
+  {
+   "nome": "i Cantinieri",
+   "mestiere": "vino delle conche",
+   "specie_tipiche": [
+    "capriolo",
+    "tasso"
+   ],
+   "specialita_locale": "vino di conca, scuro e forte",
+   "commercia_con": [
+    "la pianura della Serpe e la Dotta lo comprano"
+   ]
+  },
+  {
+   "nome": "le Vedette del Garda",
+   "mestiere": "segnali tra le creste",
+   "specie_tipiche": [
+    "gracchio alpino",
+    "ermellino"
+   ],
+   "specialita_locale": "fuochi e fischi che corrono di cima in cima",
+   "commercia_con": [
+    "le Sentinelle dei Laghi d'Occidente per le notizie d'altura"
+   ]
+  }
+ ],
+ "mobilita_sociale": "per giuramenti mantenuti: più cordoni hai, più sei rispettato; si precipita rompendo un patto",
+ "rapporti_tra_classi": "Protettori e Giurati legati dal giuramento; le Conche più miti; i Montanari fieri e a parte",
+ "tensione_viva": "stretta tra la Serpe (ovest) e l'Aquila (est): entrambe vorrebbero comprarne i giuramenti; la Leonessa non si vende",
+ "estrazione_personaggio": "es. un giovane orso Giurato iscritto ai Cordai, che custodisce i cordoni del suo villaggio",
+ "esempi_di_estrazione": [
+  {
+   "chi": "(libero)",
+   "classe": "Giurati",
+   "nota": "un giovane orso che fa il suo primo giuramento alla Festa"
+  }
+ ],
+ "zone": [
+  {
+   "tipo": "Cuore",
+   "luogo": "Brescia e Bergamo — le città fiere",
+   "coord": [
+    10.22,
+    45.54
+   ]
+  },
+  {
+   "tipo": "Spina",
+   "luogo": "le conche e le vigne tra Iseo e Garda",
+   "coord": [
+    10.15,
+    45.66
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "le pendici boscose delle Prealpi",
+   "coord": [
+    9.95,
+    45.85
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "le creste sopra il Garda",
+   "coord": [
+    10.55,
+    45.8
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "i confini verso la Serpe e l'Aquila",
+   "coord": [
+    10.85,
+    45.52
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "la pedemontana e le rive del Garda",
+   "coord": [
+    10.45,
+    45.58
+   ]
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: classi/mestieri animali come specchio sociale, caldo per bambini",
+  "calvino": "voce: realismo magico leggero, originale ma coerente"
+ },
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}

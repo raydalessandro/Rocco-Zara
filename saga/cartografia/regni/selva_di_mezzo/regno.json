@@ -1,0 +1,195 @@
+{
+ "id": "selva_di_mezzo",
+ "nome": "Selva di Mezzo",
+ "bbox": [
+  9.3,
+  44.0,
+  11.95,
+  44.32
+ ],
+ "area_km2": 8275,
+ "capitale": {
+  "nome": "Città-rovina della Selva",
+  "coord": [
+   10.806262296523613,
+   44.1587910883362
+  ]
+ },
+ "leader": {
+  "archetipo": "gli Antichi del Bosco",
+  "tratti": [
+   "antichissimi",
+   "memori",
+   "silenziosi",
+   "nessun trono"
+  ],
+  "titolo": "gli Antichi (il Cervo antico, i vecchi orsi, i gufi del rovere)"
+ },
+ "governo": {
+  "forma": "nessuna: comanda l'antica usanza",
+  "tipo": "senza governo (la selva non ha padroni)",
+  "come_si_decide": "non si decide a tavolino: vale la vecchia usanza del bosco e la forza della natura; chi entra si adatta o si perde",
+  "spiegazione_bambini": "Qui non comanda nessuno. Vale solo l'antica regola del bosco: rispetta la foresta, o ti perderai.",
+  "tensione": "libertà e pericolo insieme: rifugio per gli esuli di ogni regno, ma anche per i banditi; nessuno ti protegge"
+ },
+ "fazione": "neutrale — rifugio degli esuli",
+ "popolazione": {
+  "gruppi": [
+   {
+    "nome": "gli Antichi",
+    "ruolo": "i memori del bosco",
+    "animali": [
+     "cervo antico",
+     "orso vecchio",
+     "gufo del rovere"
+    ]
+   },
+   {
+    "nome": "gli Esuli",
+    "ruolo": "fuggiti da ogni regno",
+    "animali": [
+     "ribelli della Serpe",
+     "sbandati",
+     "viandanti"
+    ]
+   },
+   {
+    "nome": "i Solitari del Bosco profondo",
+    "ruolo": "creature schive",
+    "animali": [
+     "lupo solitario",
+     "lince",
+     "gatto selvatico"
+    ]
+   },
+   {
+    "nome": "le Creature della Rovina",
+    "ruolo": "abitanti della città inghiottita dal bosco",
+    "animali": [
+     "pipistrello",
+     "corvo",
+     "rospo",
+     "talpa"
+    ]
+   }
+  ],
+  "valori": [
+   "libertà assoluta",
+   "memoria antica",
+   "rispetto della foresta",
+   "niente padroni"
+  ]
+ },
+ "centri": [
+  {
+   "nome": "Città-rovina della Selva (capitale)",
+   "coord": [
+    10.806262296523613,
+    44.1587910883362
+   ],
+   "ruolo": "nessuna: comanda l'antica usanza"
+  },
+  {
+   "nome": "centro 1",
+   "coord": [
+    9.3958627,
+    44.2714526
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 2",
+   "coord": [
+    10.0977529,
+    44.0796519
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 3",
+   "coord": [
+    11.2383808,
+    44.0005414
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 4",
+   "coord": [
+    9.8217022,
+    44.1033871
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 5",
+   "coord": [
+    10.12599,
+    44.23835
+   ],
+   "ruolo": "comunità del regno"
+  }
+ ],
+ "rete_interna": [
+  [
+   0,
+   2
+  ],
+  [
+   0,
+   3
+  ],
+  [
+   0,
+   5
+  ],
+  [
+   1,
+   4
+  ],
+  [
+   2,
+   4
+  ],
+  [
+   2,
+   5
+  ]
+ ],
+ "cultura": {
+  "motto": "Il bosco ricorda",
+  "tradizioni": [
+   "il Patto del Rovere: chi vuole restare giura solo alla foresta",
+   "nessuna festa fissa: ci si raduna quando la luna è piena"
+  ],
+  "feste": [
+   {
+    "nome": "il Raduno della Luna Piena",
+    "quando": "a ogni plenilunio",
+    "cosa": "gli abitanti del bosco si trovano presso la città-rovina",
+    "morale": "la vera libertà non ha padroni, ma nemmeno protezione: è bella e dura"
+   }
+  ]
+ },
+ "morale_bambini": "un posto senza nessun capo è libero ma pericoloso: nessuno ti comanda, ma nessuno ti protegge",
+ "estetica": {
+  "palette": [
+   "verde profondo",
+   "muschio",
+   "bruno e ombra",
+   "raggi a chiazze",
+   "pietra delle rovine"
+  ],
+  "atmosfera": "foresta fittissima, ruderi coperti d'edera, nebbie, raggi tra le fronde, un poco di mistero",
+  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Selva di Mezzo: foresta fittissima, ruderi coperti d'edera, nebbie, raggi tra le fronde, un poco di mistero. Animali antropomorfizzati ma riconoscibili come animali; leader: gli Antichi del Bosco. Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: verde profondo, muschio, bruno e ombra, raggi a chiazze, pietra delle rovine."
+ },
+ "prompt_scrittura_base": "Selva di Mezzo — governo: nessuna: comanda l'antica usanza (senza governo (la selva non ha padroni)). Qui non comanda nessuno. Vale solo l'antica regola del bosco: rispetta la foresta, o ti perderai. Carattere: il cuore selvaggio da attraversare: rifugio, prova e mistero — la foresta profonda della storia. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
+ "ruolo_nel_viaggio": "il cuore selvaggio da attraversare: rifugio, prova e mistero — la foresta profonda della storia",
+ "personaggi_legati": [
+  {
+   "nome": "(libero)",
+   "specie": "esule misterioso",
+   "note": "un abitante della Selva che mette alla prova Rocco e Zara e poi li aiuta"
+  }
+ ]
+}

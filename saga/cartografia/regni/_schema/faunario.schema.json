@@ -1,0 +1,35 @@
+{
+ "$descrizione": "Faunario: specie esclusive per regno + zone universali. Fonte di verità per le specie; gli script di personaggi/immagini pescano da qui.",
+ "zone_universali": "dizionario tipo->descrizione (uguale per tutti i regni)",
+ "regola_punta_il_dito": "procedura punto->regno->zona->specie/classe->usanze->seme di storia",
+ "forestieri": [
+  {
+   "nome": "str",
+   "specie": "esotica",
+   "stato": "protagonista"
+  }
+ ],
+ "regni": {
+  "<id>": {
+   "nome": "str",
+   "leader": "specie",
+   "specie": [
+    {
+     "specie": "str",
+     "zona": "Cuore|Spina|Bosco|Orlo|Soglia|Vie|Rovina",
+     "classe": "str",
+     "ruolo": "str",
+     "canone_visivo": "placeholder",
+     "variazione_individuale": "placeholder"
+    }
+   ],
+   "zone_geografiche": [
+    {
+     "tipo": "str",
+     "luogo": "str",
+     "coord": "[lon,lat]"
+    }
+   ]
+  }
+ }
+}

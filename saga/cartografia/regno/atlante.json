@@ -1,0 +1,858 @@
+{
+ "griglia": {
+  "bbox": [
+   8.8,
+   43.1,
+   11.7,
+   46.25
+  ],
+  "cols": 5,
+  "rows": 5,
+  "colnames": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E"
+  ]
+ },
+ "terre": [
+  {
+   "code": "A1",
+   "bbox": [
+    8.8,
+    45.62,
+    9.38,
+    46.25
+   ],
+   "centro": [
+    9.09,
+    45.935
+   ],
+   "terreno": "lago",
+   "ambito": "regno",
+   "quota": {
+    "mn": 153,
+    "me": 663,
+    "mx": 2448
+   },
+   "laghi": [
+    "Lago Maggiore",
+    "Lago di Como",
+    "Lago di Lugano"
+   ],
+   "fiumi": [
+    "Ticino"
+   ],
+   "citta_rovina": [
+    "Varese",
+    "Lugano",
+    "Como"
+   ],
+   "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
+   "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
+   "tradizioni": "feste del lago, lanterne sull'acqua, il patto delle due rive",
+   "palette": "blu lago, argento, verde umido, roccia"
+  },
+  {
+   "code": "B1",
+   "bbox": [
+    9.38,
+    45.62,
+    9.96,
+    46.25
+   ],
+   "centro": [
+    9.67,
+    45.935
+   ],
+   "terreno": "media-montagna",
+   "ambito": "regno",
+   "quota": {
+    "mn": 145,
+    "me": 1014,
+    "mx": 2976
+   },
+   "laghi": [
+    "Lago di Como"
+   ],
+   "fiumi": [
+    "Adda",
+    "Oglio",
+    "Serio"
+   ],
+   "citta_rovina": [
+    "Lecco",
+    "Bergamo",
+    "Treviolo"
+   ],
+   "popolo": "solitari d'altura: felini, camosci, rapaci (i monti di Zara)",
+   "potere": "clan delle vette, territori d'altura difesi a vista",
+   "tradizioni": "riti delle cime, richiami ed echi, la prova del crinale",
+   "palette": "grigio roccia, neve, bosco scuro, cielo teso"
+  },
+  {
+   "code": "C1",
+   "bbox": [
+    9.96,
+    45.62,
+    10.54,
+    46.25
+   ],
+   "centro": [
+    10.25,
+    45.935
+   ],
+   "terreno": "lago",
+   "ambito": "regno",
+   "quota": {
+    "mn": 141,
+    "me": 1278,
+    "mx": 3412
+   },
+   "laghi": [
+    "Lago d'Idro",
+    "Lago d'Iseo"
+   ],
+   "fiumi": [
+    "Adda",
+    "Serio"
+   ],
+   "citta_rovina": [
+    "Villa Carcina",
+    "Tirano",
+    "Sarezzo"
+   ],
+   "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
+   "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
+   "tradizioni": "feste del lago, lanterne sull'acqua, il patto delle due rive",
+   "palette": "blu lago, argento, verde umido, roccia"
+  },
+  {
+   "code": "D1",
+   "bbox": [
+    10.54,
+    45.62,
+    11.12,
+    46.25
+   ],
+   "centro": [
+    10.83,
+    45.935
+   ],
+   "terreno": "lago",
+   "ambito": "regno",
+   "quota": {
+    "mn": 12,
+    "me": 1151,
+    "mx": 3433
+   },
+   "laghi": [
+    "Lago di Garda"
+   ],
+   "fiumi": [
+    "Adige"
+   ],
+   "citta_rovina": [
+    "Rovereto",
+    "Riva del Garda",
+    "Mori"
+   ],
+   "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
+   "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
+   "tradizioni": "feste del lago, lanterne sull'acqua, il patto delle due rive",
+   "palette": "blu lago, argento, verde umido, roccia"
+  },
+  {
+   "code": "E1",
+   "bbox": [
+    11.12,
+    45.62,
+    11.7,
+    46.25
+   ],
+   "centro": [
+    11.41,
+    45.935
+   ],
+   "terreno": "media-montagna",
+   "ambito": "marche-est",
+   "quota": {
+    "mn": 42,
+    "me": 1022,
+    "mx": 2706
+   },
+   "laghi": [],
+   "fiumi": [
+    "Adige"
+   ],
+   "citta_rovina": [
+    "Trento",
+    "Valdagno",
+    "Thiene"
+   ],
+   "popolo": "—",
+   "potere": "—",
+   "tradizioni": "le Marche dell'Est — oltre il Garda",
+   "palette": "—",
+   "confine": "le Marche dell'Est — oltre il Garda"
+  },
+  {
+   "code": "A2",
+   "bbox": [
+    8.8,
+    44.99,
+    9.38,
+    45.62
+   ],
+   "centro": [
+    9.09,
+    45.305
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": 45,
+    "me": 109,
+    "mx": 377
+   },
+   "laghi": [],
+   "fiumi": [
+    "Po"
+   ],
+   "citta_rovina": [
+    "Pavia",
+    "Monza",
+    "Milano"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "B2",
+   "bbox": [
+    9.38,
+    44.99,
+    9.96,
+    45.62
+   ],
+   "centro": [
+    9.67,
+    45.305
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": 29,
+    "me": 84,
+    "mx": 399
+   },
+   "laghi": [],
+   "fiumi": [
+    "Adda",
+    "Oglio",
+    "Po",
+    "Serio"
+   ],
+   "citta_rovina": [
+    "Piacenza",
+    "Lodi",
+    "Trezzo sull'Adda"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "C2",
+   "bbox": [
+    9.96,
+    44.99,
+    10.54,
+    45.62
+   ],
+   "centro": [
+    10.25,
+    45.305
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": 16,
+    "me": 94,
+    "mx": 1114
+   },
+   "laghi": [
+    "Lago di Garda"
+   ],
+   "fiumi": [
+    "Oglio",
+    "Po"
+   ],
+   "citta_rovina": [
+    "Cremona",
+    "Brescia",
+    "Travagliato"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "D2",
+   "bbox": [
+    10.54,
+    44.99,
+    11.12,
+    45.62
+   ],
+   "centro": [
+    10.83,
+    45.305
+   ],
+   "terreno": "lago",
+   "ambito": "regno",
+   "quota": {
+    "mn": 7,
+    "me": 99,
+    "mx": 1208
+   },
+   "laghi": [
+    "Lago di Garda"
+   ],
+   "fiumi": [
+    "Adige",
+    "Mincio",
+    "Oglio",
+    "Po",
+    "Secchia"
+   ],
+   "citta_rovina": [
+    "Verona",
+    "Mantova",
+    "Villafranca di Verona"
+   ],
+   "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
+   "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
+   "tradizioni": "feste del lago, lanterne sull'acqua, il patto delle due rive",
+   "palette": "blu lago, argento, verde umido, roccia"
+  },
+  {
+   "code": "E2",
+   "bbox": [
+    11.12,
+    44.99,
+    11.7,
+    45.62
+   ],
+   "centro": [
+    11.41,
+    45.305
+   ],
+   "terreno": "pianura",
+   "ambito": "marche-est",
+   "quota": {
+    "mn": -5,
+    "me": 74,
+    "mx": 1094
+   },
+   "laghi": [],
+   "fiumi": [
+    "Adige",
+    "Po"
+   ],
+   "citta_rovina": [
+    "Vicenza",
+    "Zevio",
+    "Torri di Quartesolo"
+   ],
+   "popolo": "—",
+   "potere": "—",
+   "tradizioni": "le Marche dell'Est — oltre il Garda",
+   "palette": "—",
+   "confine": "le Marche dell'Est — oltre il Garda"
+  },
+  {
+   "code": "A3",
+   "bbox": [
+    8.8,
+    44.36,
+    9.38,
+    44.99
+   ],
+   "centro": [
+    9.09,
+    44.675
+   ],
+   "terreno": "colli-piede",
+   "ambito": "confine-ovest",
+   "quota": {
+    "mn": -49,
+    "me": 537,
+    "mx": 1660
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Genova",
+    "Varzi",
+    "Tortona"
+   ],
+   "popolo": "—",
+   "potere": "—",
+   "tradizioni": "le Terre Liguri — frontiera ovest",
+   "palette": "—",
+   "confine": "le Terre Liguri — frontiera ovest"
+  },
+  {
+   "code": "B3",
+   "bbox": [
+    9.38,
+    44.36,
+    9.96,
+    44.99
+   ],
+   "centro": [
+    9.67,
+    44.675
+   ],
+   "terreno": "colli-piede",
+   "ambito": "regno",
+   "quota": {
+    "mn": 47,
+    "me": 624,
+    "mx": 1739
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Pontremoli",
+    "Fiorenzuola d'Arda",
+    "Borgo Val di Taro"
+   ],
+   "popolo": "popoli misti di confine: sentinelle e mercanti tra monte e piano",
+   "potere": "chi controlla i valichi e le colline morainiche detta lo scambio",
+   "tradizioni": "fuochi sulle alture all'equinozio; fiere del passaggio",
+   "palette": "verde colle, pietra chiara, vigna e bruno"
+  },
+  {
+   "code": "C3",
+   "bbox": [
+    9.96,
+    44.36,
+    10.54,
+    44.99
+   ],
+   "centro": [
+    10.25,
+    44.675
+   ],
+   "terreno": "colli-piede",
+   "ambito": "regno",
+   "quota": {
+    "mn": 18,
+    "me": 362,
+    "mx": 1829
+   },
+   "laghi": [],
+   "fiumi": [
+    "Po",
+    "Secchia"
+   ],
+   "citta_rovina": [
+    "Parma",
+    "Viadana",
+    "Traversetolo"
+   ],
+   "popolo": "popoli misti di confine: sentinelle e mercanti tra monte e piano",
+   "potere": "chi controlla i valichi e le colline morainiche detta lo scambio",
+   "tradizioni": "fuochi sulle alture all'equinozio; fiere del passaggio",
+   "palette": "verde colle, pietra chiara, vigna e bruno"
+  },
+  {
+   "code": "D3",
+   "bbox": [
+    10.54,
+    44.36,
+    11.12,
+    44.99
+   ],
+   "centro": [
+    10.83,
+    44.675
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": 7,
+    "me": 138,
+    "mx": 1021
+   },
+   "laghi": [],
+   "fiumi": [
+    "Panaro",
+    "Po",
+    "Secchia"
+   ],
+   "citta_rovina": [
+    "Reggio Emilia",
+    "Modena",
+    "Vignola"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "E3",
+   "bbox": [
+    11.12,
+    44.36,
+    11.7,
+    44.99
+   ],
+   "centro": [
+    11.41,
+    44.675
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": -1,
+    "me": 43,
+    "mx": 740
+   },
+   "laghi": [],
+   "fiumi": [
+    "Panaro",
+    "Po",
+    "Reno"
+   ],
+   "citta_rovina": [
+    "Ferrara",
+    "Bologna",
+    "Zola Predosa"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "A4",
+   "bbox": [
+    8.8,
+    43.73,
+    9.38,
+    44.36
+   ],
+   "centro": [
+    9.09,
+    44.045
+   ],
+   "terreno": "pianura",
+   "ambito": "confine-ovest",
+   "quota": {
+    "mn": -49,
+    "me": 101,
+    "mx": 581
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Santa Margherita Ligure",
+    "Rapallo",
+    "Lavagna"
+   ],
+   "popolo": "—",
+   "potere": "—",
+   "tradizioni": "le Terre Liguri — frontiera ovest",
+   "palette": "—",
+   "confine": "le Terre Liguri — frontiera ovest"
+  },
+  {
+   "code": "B4",
+   "bbox": [
+    9.38,
+    43.73,
+    9.96,
+    44.36
+   ],
+   "centro": [
+    9.67,
+    44.045
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": -49,
+    "me": 295,
+    "mx": 1504
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "La Spezia",
+    "Sestri Levante",
+    "Sarzana"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "C4",
+   "bbox": [
+    9.96,
+    43.73,
+    10.54,
+    44.36
+   ],
+   "centro": [
+    10.25,
+    44.045
+   ],
+   "terreno": "appennino-bosco",
+   "ambito": "regno",
+   "quota": {
+    "mn": -49,
+    "me": 471,
+    "mx": 2033
+   },
+   "laghi": [],
+   "fiumi": [
+    "Secchia"
+   ],
+   "citta_rovina": [
+    "Massa",
+    "Lucca",
+    "Viareggio"
+   ],
+   "popolo": "creature della foresta fitta, schive e antiche",
+   "potere": "comanda la foresta: gli Antichi del bosco, sentieri segreti",
+   "tradizioni": "feste della folta, l'ombra che protegge, i passi nascosti",
+   "palette": "verde profondo, muschio, bruno, luce a chiazze"
+  },
+  {
+   "code": "D4",
+   "bbox": [
+    10.54,
+    43.73,
+    11.12,
+    44.36
+   ],
+   "centro": [
+    10.83,
+    44.045
+   ],
+   "terreno": "appennino-bosco",
+   "ambito": "regno",
+   "quota": {
+    "mn": -1,
+    "me": 576,
+    "mx": 2102
+   },
+   "laghi": [],
+   "fiumi": [
+    "Panaro",
+    "Reno"
+   ],
+   "citta_rovina": [
+    "Prato",
+    "Pistoia",
+    "Vinci"
+   ],
+   "popolo": "creature della foresta fitta, schive e antiche",
+   "potere": "comanda la foresta: gli Antichi del bosco, sentieri segreti",
+   "tradizioni": "feste della folta, l'ombra che protegge, i passi nascosti",
+   "palette": "verde profondo, muschio, bruno, luce a chiazze"
+  },
+  {
+   "code": "E4",
+   "bbox": [
+    11.12,
+    43.73,
+    11.7,
+    44.36
+   ],
+   "centro": [
+    11.41,
+    44.045
+   ],
+   "terreno": "appennino-bosco",
+   "ambito": "regno",
+   "quota": {
+    "mn": 32,
+    "me": 490,
+    "mx": 1589
+   },
+   "laghi": [],
+   "fiumi": [
+    "Reno"
+   ],
+   "citta_rovina": [
+    "Firenze",
+    "Vaiano",
+    "Sesto Fiorentino"
+   ],
+   "popolo": "creature della foresta fitta, schive e antiche",
+   "potere": "comanda la foresta: gli Antichi del bosco, sentieri segreti",
+   "tradizioni": "feste della folta, l'ombra che protegge, i passi nascosti",
+   "palette": "verde profondo, muschio, bruno, luce a chiazze"
+  },
+  {
+   "code": "A5",
+   "bbox": [
+    8.8,
+    43.1,
+    9.38,
+    43.73
+   ],
+   "centro": [
+    9.09,
+    43.415
+   ],
+   "terreno": "pianura",
+   "ambito": "mare",
+   "quota": {
+    "mn": 0,
+    "me": 0,
+    "mx": 0
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [],
+   "popolo": "—",
+   "potere": "—",
+   "tradizioni": "il Mare — bordo sud-ovest del mondo",
+   "palette": "—",
+   "confine": "il Mare — bordo sud-ovest del mondo"
+  },
+  {
+   "code": "B5",
+   "bbox": [
+    9.38,
+    43.1,
+    9.96,
+    43.73
+   ],
+   "centro": [
+    9.67,
+    43.415
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": -49,
+    "me": 10,
+    "mx": 206
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "C5",
+   "bbox": [
+    9.96,
+    43.1,
+    10.54,
+    43.73
+   ],
+   "centro": [
+    10.25,
+    43.415
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": -49,
+    "me": 11,
+    "mx": 460
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Pisa",
+    "Livorno",
+    "Rosignano Solvay"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "D5",
+   "bbox": [
+    10.54,
+    43.1,
+    11.12,
+    43.73
+   ],
+   "centro": [
+    10.83,
+    43.415
+   ],
+   "terreno": "pianura",
+   "ambito": "regno",
+   "quota": {
+    "mn": -6,
+    "me": 214,
+    "mx": 1026
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Volterra",
+    "Santa Maria a Monte",
+    "Santa Croce sull'Arno"
+   ],
+   "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
+   "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "palette": "oro, ocra, verde secco, azzurro dei fiumi"
+  },
+  {
+   "code": "E5",
+   "bbox": [
+    11.12,
+    43.1,
+    11.7,
+    43.73
+   ],
+   "centro": [
+    11.41,
+    43.415
+   ],
+   "terreno": "appennino-bosco",
+   "ambito": "regno",
+   "quota": {
+    "mn": 66,
+    "me": 342,
+    "mx": 1572
+   },
+   "laghi": [],
+   "fiumi": [],
+   "citta_rovina": [
+    "Siena",
+    "Terranuova Bracciolini",
+    "San Giovanni Valdarno"
+   ],
+   "popolo": "creature della foresta fitta, schive e antiche",
+   "potere": "comanda la foresta: gli Antichi del bosco, sentieri segreti",
+   "tradizioni": "feste della folta, l'ombra che protegge, i passi nascosti",
+   "palette": "verde profondo, muschio, bruno, luce a chiazze"
+  }
+ ]
+}
