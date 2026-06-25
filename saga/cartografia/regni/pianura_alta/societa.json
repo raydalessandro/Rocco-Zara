@@ -1,0 +1,208 @@
+{
+ "regno": "pianura_alta",
+ "principio_calviniano": {
+  "nome": "il regno delle pelli",
+  "idea": "Il rango è una pelle. Per salire si 'cambia pelle' davanti al Signore; la pianura è una piramide di pelli, e ogni cosa è mappata da chi versa tributo a chi. La Serpe in cima ha la pelle più lucida.",
+  "regole_dolci": [
+   "ognuno porta il colore della propria pelle-rango",
+   "salire significa mutare davanti al Signore",
+   "la mappa del potere è 'chi versa a chi'",
+   "le voci corrono più veloci dei corrieri"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "il Signore e la Corte",
+   "ruolo_sociale": "il vertice della piramide",
+   "rango": "altissimo",
+   "come_vivono": "la Serpe e i serpenti di corte; decidono tutto",
+   "animali": [
+    "biscia (serpe)"
+   ],
+   "voce": {
+    "modello": "registro machiavellico di corte",
+    "tipo_modello": "tradizione/figura",
+    "registro": "liscio, freddo, aforistico, mai una parola di troppo",
+    "tratti": [
+     "aforismi sul potere",
+     "cortesia che minaccia"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Chi sale cambia pelle; chi resta, la perde. Scegliete con calma.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "i Vassalli",
+   "ruolo_sociale": "signori minori ed esattori",
+   "rango": "alto",
+   "come_vivono": "cani e rapaci che eseguono e raccolgono il tributo",
+   "animali": [
+    "mastino",
+    "falco"
+   ],
+   "voce": {
+    "modello": "Catullo (veronese) e la boria cavalleresca scaligera",
+    "tipo_modello": "figura storica/tradizione",
+    "registro": "passionale, sprezzante, fiero (da Mastino)",
+    "tratti": [
+     "orgoglio che ringhia",
+     "minacce esatte e brevi"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Mordo una volta sola, ma non lascio.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Popolo dell'Aperto",
+   "ruolo_sociale": "la forza-lavoro della grande pianura",
+   "rango": "basso ma numerosissimo",
+   "come_vivono": "mandrie e aratori; in basso, qualcuno sogna la libertà e fugge alla Selva",
+   "animali": [
+    "bufalo",
+    "cavallo",
+    "bue",
+    "cicogna"
+   ],
+   "voce": {
+    "modello": "Bonvesin de la Riva (volgare milanese, didascalico) + proverbio bracciante",
+    "tipo_modello": "figura storica/tradizione",
+    "registro": "piano, paziente, un po' brontolone",
+    "tratti": [
+     "fatica e buon senso",
+     "mezza protesta sottovoce"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Tiriamo l'aratro e la lingua corta: tanto, in cima, comanda la Serpe.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Mercanti delle Vie",
+   "ruolo_sociale": "commerci e voci lungo le strade",
+   "rango": "medio, mobile",
+   "come_vivono": "stanno con chi vince; vendono merci e segreti",
+   "animali": [],
+   "voce": {
+    "modello": "pratica di mercatura + parlantina da fiera",
+    "tipo_modello": "tradizione",
+    "registro": "rapido, transattivo, pettegolo",
+    "tratti": [
+     "tutto ha un prezzo",
+     "baratta notizie"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Notizia fresca, prezzo giusto: la verità si paga con un'altra verità.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "gli Esattori",
+   "mestiere": "raccolgono il tributo per la Serpe",
+   "specie_tipiche": [
+    "falco"
+   ],
+   "specialita_locale": "sanno a memoria chi deve cosa",
+   "commercia_con": [
+    "la Serpe; temuti in ogni terra soggetta"
+   ]
+  },
+  {
+   "nome": "i Carradori",
+   "mestiere": "muovono merci, aratri e mandrie",
+   "specie_tipiche": [
+    "cavallo",
+    "bue"
+   ],
+   "specialita_locale": "le grandi strade dritte e i carri pesanti",
+   "commercia_con": [
+    "portano grano e forza-lavoro a tutti i regni"
+   ]
+  },
+  {
+   "nome": "i Banditori e i Sussurri",
+   "mestiere": "le voci, ufficiali e non",
+   "specie_tipiche": [
+    "gazza",
+    "ratto"
+   ],
+   "specialita_locale": "una notizia vera vale più dell'oro",
+   "commercia_con": [
+    "chi compra informazioni: anche i Traghettatori dei laghi"
+   ]
+  }
+ ],
+ "mobilita_sociale": "la Muta: si sale 'cambiando pelle' per favore del Signore, si precipita per una disgrazia; ferocemente verticale",
+ "rapporti_tra_classi": "il Popolo dell'Aperto è tanto e in basso e scontento; i Vassalli si temono a vicenda; i Mercanti seguono il potere",
+ "tensione_viva": "la Serpe vuole inghiottire i vicini; dentro, l'ambizione divora e i piccoli non contano — da qui partono gli esuli verso la Selva",
+ "estrazione_personaggio": "es. un giovane bufalo del Popolo dell'Aperto, stanco dell'ordine della Serpe (come Rocco, che però è Forestiero)",
+ "esempi_di_estrazione": [
+  {
+   "chi": "Rocco",
+   "classe": "Popolo dell'Aperto (da Forestiero)",
+   "nota": "rinoceronte: in basso nella piramide, parte per vedere oltre"
+  }
+ ],
+ "zone": [
+  {
+   "tipo": "Cuore",
+   "luogo": "Milano — la corte della Serpe",
+   "coord": [
+    9.19,
+    45.46
+   ]
+  },
+  {
+   "tipo": "Spina",
+   "luogo": "la grande pianura coltivata, campi e mandrie",
+   "coord": [
+    9.55,
+    45.22
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "i boschi planiziali e le garzaie (radi)",
+   "coord": [
+    8.95,
+    45.3
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "i margini prealpini a nord, occhi degli esattori",
+   "coord": [
+    9.85,
+    45.5
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "il fronte verso il Po a sud e i laghi a nord",
+   "coord": [
+    10.05,
+    45.08
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "le strade dritte e i canali dei mercanti",
+   "coord": [
+    9.62,
+    45.34
+   ]
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: classi/mestieri animali come specchio sociale, caldo per bambini",
+  "calvino": "voce: realismo magico leggero, originale ma coerente"
+ },
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}

@@ -1,0 +1,714 @@
+{
+ "regni": {
+  "1": {
+   "nome": "Laghi d'Occidente",
+   "cap": "Como",
+   "animale": "la Lince dei laghi",
+   "governo": "libero comune di lago",
+   "fazione": "conteso",
+   "col": "#2f7d77",
+   "nota": "rive e monti dell'ovest: cacciatori agili, gente di lago e di bosco — il mondo di Zara",
+   "area_km2": 14918,
+   "capitale": {
+    "nome": "Como",
+    "ll": [
+     9.0830353,
+     45.8115623
+    ]
+   },
+   "n_centri": 10,
+   "centri": [
+    [
+     9.0830353,
+     45.8115623
+    ],
+    [
+     9.5214907,
+     45.5263333
+    ],
+    [
+     9.0205888,
+     46.1920538
+    ],
+    [
+     8.941541,
+     45.50507
+    ],
+    [
+     9.4239921,
+     45.8960629
+    ],
+    [
+     9.3738195,
+     46.1363111
+    ],
+    [
+     9.2271378,
+     45.5931952
+    ],
+    [
+     8.9512275,
+     46.0038007
+    ],
+    [
+     8.8255843,
+     45.6752214
+    ],
+    [
+     8.839608,
+     45.8524484
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     4
+    ],
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     7
+    ],
+    [
+     0,
+     8
+    ],
+    [
+     0,
+     9
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     6
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     7
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     3,
+     8
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     7,
+     9
+    ],
+    [
+     8,
+     9
+    ]
+   ]
+  },
+  "2": {
+   "nome": "Laghi d'Oriente",
+   "cap": "Brescia",
+   "animale": "la Leonessa",
+   "governo": "libero comune",
+   "fazione": "guelfo / fieramente libero",
+   "col": "#6a4c93",
+   "nota": "la Leonessa e Bergamo: città fiere, contese tra il Biscione e l'Aquila",
+   "area_km2": 24067,
+   "capitale": {
+    "nome": "Brescia",
+    "ll": [
+     10.2200214,
+     45.5398022
+    ]
+   },
+   "n_centri": 10,
+   "centri": [
+    [
+     10.2200214,
+     45.5398022
+    ],
+    [
+     11.3017774,
+     46.0091259
+    ],
+    [
+     9.5696759,
+     46.1313095
+    ],
+    [
+     10.3332567,
+     46.1806346
+    ],
+    [
+     11.0161587,
+     45.5185311
+    ],
+    [
+     9.589053,
+     45.616078
+    ],
+    [
+     9.949656,
+     45.887088
+    ],
+    [
+     10.8396942,
+     45.8847708
+    ],
+    [
+     10.6067422,
+     45.6405622
+    ],
+    [
+     11.3434053,
+     45.6111057
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     5
+    ],
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     8
+    ],
+    [
+     1,
+     7
+    ],
+    [
+     1,
+     9
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     7,
+     8
+    ],
+    [
+     7,
+     9
+    ]
+   ]
+  },
+  "3": {
+   "nome": "Pianura Alta",
+   "cap": "Milano",
+   "animale": "il Biscione (la grande Serpe)",
+   "governo": "Signoria",
+   "fazione": "ghibellino",
+   "col": "#d9a83a",
+   "nota": "la potenza dell'aperto: la Serpe domina la pianura e tiene più città-rovina — il mondo di Rocco",
+   "area_km2": 15746,
+   "capitale": {
+    "nome": "Milano",
+    "ll": [
+     9.1896346,
+     45.4641943
+    ]
+   },
+   "n_centri": 10,
+   "centri": [
+    [
+     9.1896346,
+     45.4641943
+    ],
+    [
+     11.3111274,
+     45.192498
+    ],
+    [
+     10.29831,
+     45.4715763
+    ],
+    [
+     10.520223,
+     44.9267857
+    ],
+    [
+     9.70437,
+     45.1600664
+    ],
+    [
+     10.8691009,
+     45.4833716
+    ],
+    [
+     8.9514237,
+     45.1548467
+    ],
+    [
+     9.6437404,
+     45.4972605
+    ],
+    [
+     10.7917191,
+     45.1566683
+    ],
+    [
+     10.4130654,
+     45.2211195
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     7
+    ],
+    [
+     1,
+     5
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     7
+    ],
+    [
+     2,
+     9
+    ],
+    [
+     3,
+     8
+    ],
+    [
+     3,
+     9
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     8,
+     9
+    ]
+   ]
+  },
+  "4": {
+   "nome": "Pianura Bassa",
+   "cap": "Bologna",
+   "animale": "la Dotta (il Gufo)",
+   "governo": "comune dei saggi + Signoria dell'Aquila",
+   "fazione": "guelfo vs Aquila",
+   "col": "#d97a32",
+   "nota": "oltre il Po: la città dotta e la casa dell'Aquila d'Este (Ferrara, Modena, Reggio)",
+   "area_km2": 26229,
+   "capitale": {
+    "nome": "Bologna",
+    "ll": [
+     11.3426327,
+     44.4938203
+    ]
+   },
+   "n_centri": 10,
+   "centri": [
+    [
+     11.3426327,
+     44.4938203
+    ],
+    [
+     8.8641282,
+     44.89666
+    ],
+    [
+     9.8829911,
+     44.3771813
+    ],
+    [
+     10.74309,
+     44.991873
+    ],
+    [
+     9.6947461,
+     45.0534751
+    ],
+    [
+     10.2166909,
+     44.7520202
+    ],
+    [
+     10.7286395,
+     44.5102806
+    ],
+    [
+     9.3244561,
+     44.3175701
+    ],
+    [
+     11.6186451,
+     44.8372737
+    ],
+    [
+     9.3862814,
+     44.769273
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     8
+    ],
+    [
+     1,
+     9
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     2,
+     7
+    ],
+    [
+     2,
+     9
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     3,
+     8
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ]
+  },
+  "5": {
+   "nome": "Selva di Mezzo",
+   "cap": null,
+   "animale": "gli Antichi del Bosco",
+   "governo": "nessuno: comanda la foresta",
+   "fazione": "neutrale — rifugio degli esuli",
+   "col": "#3f7d3f",
+   "nota": "il cuore selvaggio: nessuna città-stato, solo una città-rovina inghiottita dal bosco",
+   "area_km2": 8275,
+   "capitale": {
+    "nome": "Città-rovina della Selva",
+    "ll": [
+     10.806262296523613,
+     44.1587910883362
+    ]
+   },
+   "n_centri": 6,
+   "centri": [
+    [
+     10.806262296523613,
+     44.1587910883362
+    ],
+    [
+     9.3958627,
+     44.2714526
+    ],
+    [
+     10.0977529,
+     44.0796519
+    ],
+    [
+     11.2383808,
+     44.0005414
+    ],
+    [
+     9.8217022,
+     44.1033871
+    ],
+    [
+     10.12599,
+     44.23835
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     5
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ]
+   ]
+  },
+  "6": {
+   "nome": "Toscana",
+   "cap": "Firenze",
+   "animale": "il Marzocco (il Leone)",
+   "governo": "Repubblica",
+   "fazione": "guelfo (con rivali ghibellini)",
+   "col": "#7d8a3a",
+   "nota": "terra delle grandi rivalità: il Leone contro la Lupa (Siena) e la Pantera (Lucca), e Pisa del mare",
+   "area_km2": 17144,
+   "capitale": {
+    "nome": "Firenze",
+    "ll": [
+     11.2556404,
+     43.7697955
+    ]
+   },
+   "n_centri": 10,
+   "centri": [
+    [
+     11.2556404,
+     43.7697955
+    ],
+    [
+     10.2257715,
+     43.994721
+    ],
+    [
+     10.5173443,
+     43.3113449
+    ],
+    [
+     11.4214524,
+     43.2310941
+    ],
+    [
+     10.6929976,
+     43.6980639
+    ],
+    [
+     11.5858271,
+     43.551208
+    ],
+    [
+     11.148762,
+     43.4677215
+    ],
+    [
+     10.9174238,
+     43.9336213
+    ],
+    [
+     10.3091256,
+     43.5507317
+    ],
+    [
+     10.860019,
+     43.400337
+    ]
+   ],
+   "rete_interna": [
+    [
+     0,
+     4
+    ],
+    [
+     0,
+     5
+    ],
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     7
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     7
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     8
+    ],
+    [
+     2,
+     9
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     9
+    ]
+   ]
+  }
+ },
+ "emblemi": {
+  "Firenze": "il Leone",
+  "Siena": "la Lupa",
+  "Lucca": "la Pantera",
+  "Pisa": "città del mare",
+  "Brescia": "la Leonessa",
+  "Milano": "il Biscione",
+  "Verona": "il Mastino",
+  "Ferrara": "l'Aquila",
+  "Modena": "l'Aquila",
+  "Bologna": "la Dotta",
+  "Como": "la Lince",
+  "Mantova": "la Corte"
+ },
+ "fazioni": {
+  "guelfi": "partito papale",
+  "ghibellini": "partito imperiale"
+ }
+}

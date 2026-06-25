@@ -1,0 +1,80 @@
+{
+ "$descrizione": "Modello standard di un REGNO. Ogni regno segue questo schema. Campi consumati da script per generare prompt di SCRITTURA e di IMMAGINI. Il cascade parte da leader.archetipo.",
+ "id": "slug",
+ "nome": "str",
+ "bbox": "[W,S,E,N]",
+ "area_km2": "int",
+ "capitale": {
+  "nome": "str",
+  "coord": "[lon,lat]",
+  "nota": "str"
+ },
+ "leader": {
+  "archetipo": "animale",
+  "tratti": [
+   "..."
+  ],
+  "titolo": "come viene chiamato chi guida"
+ },
+ "governo": {
+  "forma": "str",
+  "tipo": "piramidale | aristocrazia | democrazia | confederazione | repubblica | nessuno",
+  "come_si_decide": "str",
+  "spiegazione_bambini": "1 frase semplice",
+  "tensione": "il conflitto interno/esterno"
+ },
+ "fazione": "guelfo | ghibellino | conteso | neutrale",
+ "popolazione": {
+  "gruppi": [
+   {
+    "nome": "str",
+    "ruolo": "str",
+    "animali": [
+     "..."
+    ]
+   }
+  ],
+  "valori": [
+   "..."
+  ]
+ },
+ "centri": [
+  {
+   "nome": "str",
+   "coord": "[lon,lat]",
+   "ruolo": "str"
+  }
+ ],
+ "rete_interna": "[[i,j], ...] indici nei centri",
+ "cultura": {
+  "motto": "str",
+  "tradizioni": [
+   "..."
+  ],
+  "feste": [
+   {
+    "nome": "str",
+    "quando": "str",
+    "cosa": "str",
+    "morale": "str"
+   }
+  ]
+ },
+ "morale_bambini": "la lezione semplice del regno (1 frase)",
+ "estetica": {
+  "palette": [
+   "..."
+  ],
+  "atmosfera": "str",
+  "prompt_immagine_base": "prompt pronto per generatore immagini"
+ },
+ "prompt_scrittura_base": "prompt pronto per generare testo coerente col canone",
+ "ruolo_nel_viaggio": "str",
+ "personaggi_legati": [
+  {
+   "nome": "str",
+   "specie": "str",
+   "note": "str"
+  }
+ ]
+}

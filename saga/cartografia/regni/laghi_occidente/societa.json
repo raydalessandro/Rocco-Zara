@@ -1,0 +1,271 @@
+{
+ "regno": "laghi_occidente",
+ "principio_calviniano": {
+  "nome": "il regno dei riflessi",
+  "idea": "Una cosa è vera due volte: una sulla riva, una nell'acqua. Qui non si scrive: si annoda e si rispecchia. La memoria, le leggi e i debiti del regno stanno nelle reti annodate dei Custodi e in ciò che il lago, all'alba, ricorda.",
+  "regole_dolci": [
+   "una parola data sull'acqua ferma all'alba è un patto: il lago l'ha sentita",
+   "ogni comunità è conosciuta dal colore del suo fuoco sulla riva",
+   "la nebbia del mattino si legge come un calendario",
+   "chi non ha ancora un riflesso nel regno è un Ospite: il lago non lo conosce... per ora"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "i Custodi",
+   "ruolo_sociale": "memoria, testimonianza, giudizio (non comando)",
+   "animali": [
+    "lince"
+   ],
+   "rango": "alto per servizio, non per sangue",
+   "come_vivono": "pochi, solitari; annodano nelle reti la storia del regno e 'vedono nel buio' le verità; siedono al Consiglio del Lago",
+   "voce": {
+    "modello": "Plinio il Vecchio (naturalista, figlio di Como)",
+    "tipo_modello": "figura storica",
+    "registro": "osservativo, enciclopedico, pacato, un filo latineggiante",
+    "tratti": [
+     "cataloga ciò che vede",
+     "'ho osservato che…'",
+     "trae sentenze dalla natura"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Ho osservato che il lago, all'alba, rende ciò che la notte gli affida: anche la memoria fa così.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "la Gente delle Rive",
+   "ruolo_sociale": "spina dorsale: acqua, pesca, passaggi",
+   "animali": [
+    "lontra",
+    "airone cenerino",
+    "martin pescatore",
+    "rana"
+   ],
+   "rango": "medio",
+   "come_vivono": "vivono di lago e di scambio; tessono reti, traghettano, leggono la nebbia",
+   "voce": {
+    "modello": "proverbio dei pescatori (tradizione popolare)",
+    "tipo_modello": "tradizione",
+    "registro": "concreto, proverbiale, caldo",
+    "tratti": [
+     "parla per proverbi",
+     "immagini d'acqua e di rete"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Rete annodata stretta, pesce sicuro; parola annodata stretta, patto sicuro.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "il Popolo del Bosco",
+   "ruolo_sociale": "boschi, sentieri, caccia e legna",
+   "animali": [
+    "volpe",
+    "scoiattolo rosso",
+    "ghiro",
+    "picchio"
+   ],
+   "rango": "medio",
+   "come_vivono": "tra gli alberi; custodi dei sentieri segreti e del carbone; un po' diffidenti verso chi sta nell'acqua",
+   "voce": {
+    "modello": "parlata venatoria (cacciatori e sentieristi)",
+    "tipo_modello": "tradizione",
+    "registro": "asciutto, terragno, pratico",
+    "tratti": [
+     "poche parole",
+     "sa di legna e di traccia"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Il sentiero giusto non si grida: si segue.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "le Sentinelle d'Altura",
+   "ruolo_sociale": "vedetta dei valichi verso il Muro delle Alpi",
+   "animali": [
+    "camoscio",
+    "marmotta",
+    "gipeto"
+   ],
+   "rango": "medio, isolato e fiero",
+   "come_vivono": "in alto, messaggeri e guardiani dei passi; parlano poco, vedono lontano",
+   "voce": {
+    "modello": "laconismo montano",
+    "tipo_modello": "tradizione",
+    "registro": "scarno, essenziale, da vedetta",
+    "tratti": [
+     "frasi minime",
+     "rapporti, non discorsi"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Vista una colonna di fumo a nord. Riferisco. Resto.",
+    "intensita": "media (per sottrazione)",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "gli Ospiti e i Senza-riflesso",
+   "ruolo_sociale": "forestieri, viandanti, esuli in ingresso",
+   "animali": [
+    "forestieri d'ogni specie",
+    "tigre (Zara)"
+   ],
+   "rango": "fuori → in ingresso",
+   "come_vivono": "accolti per diritto d'asilo, ma 'il lago non li conosce ancora': devono fare qualcosa di memorabile per essere annodati nella rete e diventare cittadini",
+   "voce": {
+    "modello": "voce forestiera (ereditata dal luogo d'origine)",
+    "tipo_modello": "regola",
+    "registro": "varia: ognuno porta la voce di dove viene",
+    "tratti": [
+     "accento d'altrove",
+     "non conosce i proverbi del lago"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "(Zara) Da noi non si annoda niente: si corre, e si ricorda con le zampe.",
+    "intensita": "variabile",
+    "nota": "i Forestieri non hanno una voce del regno: portano quella d'origine — utile per farli sentire 'fuori posto'"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "i Tessitori di Reti",
+   "mestiere": "reti da pesca e reti della memoria (i nodi sono una scrittura)",
+   "specie_tipiche": [
+    "lontra"
+   ],
+   "specialita_locale": "ogni villaggio ha un nodo-firma diverso",
+   "commercia_con": [
+    "chi, negli altri regni, vuole 'registrare' un patto senza fidarsi della legge scritta della Serpe"
+   ]
+  },
+  {
+   "nome": "i Traghettatori",
+   "mestiere": "passaggi del lago (l'unica via che non sia il lungo giro)",
+   "specie_tipiche": [
+    "airone cenerino",
+    "rana"
+   ],
+   "specialita_locale": "tariffe in storie, non in oro: paghi con una notizia vera",
+   "commercia_con": [
+    "i mercanti della Serpe che devono attraversare",
+    "le Sentinelle per le notizie d'altura"
+   ]
+  },
+  {
+   "nome": "i Lettori di Nebbia",
+   "mestiere": "leggere meteo e presagi nella foschia dell'alba",
+   "specie_tipiche": [
+    "martin pescatore"
+   ],
+   "specialita_locale": "consultati prima di ogni viaggio e di ogni Consiglio",
+   "commercia_con": [
+    "chiunque parta per un viaggio incerto"
+   ]
+  },
+  {
+   "nome": "i Custodi del Fuoco",
+   "mestiere": "il fuoco-segnale di ogni comunità e la ricetta segreta del suo colore",
+   "specie_tipiche": [
+    "volpe"
+   ],
+   "specialita_locale": "pigmenti minerali raccolti nei monti: verde-rame, rosso-ferro, blu-ardesia",
+   "commercia_con": [
+    "tutte le comunità per la Notte dei Fuochi sulle Rive"
+   ]
+  },
+  {
+   "nome": "i Carbonai e Sentieristi",
+   "mestiere": "carbone, legna e i sentieri segreti del bosco",
+   "specie_tipiche": [
+    "scoiattolo rosso",
+    "ghiro",
+    "picchio"
+   ],
+   "specialita_locale": "conoscono passaggi che nessuna mappa segna, fino ai margini della Selva",
+   "commercia_con": [
+    "la Selva di Mezzo",
+    "il Popolo del Bosco degli altri regni"
+   ]
+  }
+ ],
+ "mobilita_sociale": "non per sangue ma per riconoscimento: chi compie un atto memorabile viene 'annodato nella rete' del regno e sale; un Ospite diventa cittadino quando il Consiglio registra ciò che ha fatto",
+ "rapporti_tra_classi": "Custodi e Rive si rispettano per servizio reciproco; il Bosco diffida un po' delle Rive (alberi contro acqua); le Sentinelle sono isolate e fiere; gli Ospiti guardati con sospetto, perché la Serpe manda spie travestite",
+ "tensione_viva": "la Serpe (Milano) vorrebbe imporre la sua scrittura e i suoi tributi; il regno difende il proprio modo 'annodato' di ricordare — chi controlla la memoria controlla il regno",
+ "estrazione_personaggio": "un personaggio = regno (Laghi d'Occidente) → classe (es. Popolo del Bosco) → corporazione/comunità (es. i Sentieristi del villaggio dal fuoco verde-rame) → poi individualità. L'individuo eredita valori, mestiere ed estetica del gruppo, e li piega col suo carattere.",
+ "esempi_di_estrazione": [
+  {
+   "chi": "Zara",
+   "classe": "Ospiti e Senza-riflesso",
+   "vive_con": "il Popolo del Bosco",
+   "nota": "tigre forestiera, giovane: il lago non la conosce ancora, vuole fare qualcosa di memorabile"
+  },
+  {
+   "chi": "Rocco",
+   "classe": "Ospiti e Senza-riflesso",
+   "provenienza": "Pianura Alta (la Serpe)",
+   "nota": "arriva dalla pianura; doppiamente estraneo, ma onesto"
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: le classi/mestieri animali come specchio dei rapporti sociali — senza la satira politica, tono caldo per bambini con profondità adulta",
+  "calvino": "voce: realismo magico leggero (i riflessi, le reti-memoria, la nebbia-calendario, i fuochi-colore) — originale ma coerente, 'temperatura bassa'"
+ },
+ "zone": [
+  {
+   "tipo": "Cuore",
+   "luogo": "Como — il Consiglio del Lago",
+   "coord": [
+    9.08,
+    45.81
+   ]
+  },
+  {
+   "tipo": "Spina",
+   "luogo": "le Rive dei laghi (Lario, Verbano, Ceresio)",
+   "coord": [
+    8.95,
+    45.98
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "i boschi delle montagne occidentali",
+   "coord": [
+    8.72,
+    45.92
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "l'Altura dei valichi, verso il Muro delle Alpi",
+   "coord": [
+    9.3,
+    46.4
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "il confine sud verso la Serpe — la collina dell'incontro",
+   "coord": [
+    9.32,
+    45.62
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "i passaggi del lago e i sentieri dei traghettatori",
+   "coord": [
+    9.22,
+    46.05
+   ]
+  }
+ ],
+ "nota_faunario": "specie allineate al faunario canonico (esclusive del regno); vedi _faunario.json",
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}

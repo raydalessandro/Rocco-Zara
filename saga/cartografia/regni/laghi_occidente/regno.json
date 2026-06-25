@@ -1,0 +1,267 @@
+{
+ "id": "laghi_occidente",
+ "nome": "Laghi d'Occidente",
+ "bbox": [
+  8.44,
+  45.5,
+  9.55,
+  46.56
+ ],
+ "area_km2": 14918,
+ "capitale": {
+  "nome": "Como",
+  "coord": [
+   9.0830353,
+   45.8115623
+  ]
+ },
+ "leader": {
+  "archetipo": "la Lince",
+  "tratti": [
+   "solitaria",
+   "vigile",
+   "agile",
+   "indipendente",
+   "vede nel buio"
+  ],
+  "titolo": "i Custodi (linci che vegliano su ogni comunità)"
+ },
+ "governo": {
+  "forma": "confederazione di comunità libere",
+  "tipo": "non-piramidale (consiglio di pari)",
+  "come_si_decide": "ogni comunità manda il suo Custode al Consiglio del Lago; si decide insieme, a voce uguale",
+  "spiegazione_bambini": "Qui non c'è un re. I villaggi mandano una guida al Consiglio e decidono tutti insieme.",
+  "tensione": "confederazione fragile: la Serpe della pianura preme da sud e la vorrebbe inghiottire"
+ },
+ "fazione": "conteso — resiste alla Serpe",
+ "popolazione": {
+  "gruppi": [
+   {
+    "nome": "i Custodi",
+    "ruolo": "guardiani e consiglieri",
+    "animali": [
+     "lince"
+    ]
+   },
+   {
+    "nome": "la Gente delle Rive",
+    "ruolo": "pescatori, traghettatori, mercanti dei laghi",
+    "animali": [
+     "lontra",
+     "airone",
+     "martin pescatore"
+    ]
+   },
+   {
+    "nome": "il Popolo del Bosco",
+    "ruolo": "cacciatori e custodi degli alberi",
+    "animali": [
+     "cervo",
+     "volpe",
+     "tasso",
+     "tigre (rara, forestiera)"
+    ]
+   },
+   {
+    "nome": "le Sentinelle d'Altura",
+    "ruolo": "vedette dei valichi verso il Muro delle Alpi",
+    "animali": [
+     "camoscio",
+     "stambecco",
+     "aquila"
+    ]
+   }
+  ],
+  "valori": [
+   "libertà",
+   "autosufficienza",
+   "ospitalità prudente",
+   "diffidenza verso i grandi poteri"
+  ]
+ },
+ "centri": [
+  {
+   "nome": "Como (capitale)",
+   "coord": [
+    9.0830353,
+    45.8115623
+   ],
+   "ruolo": "confederazione di comunità libere"
+  },
+  {
+   "nome": "centro 1",
+   "coord": [
+    9.5214907,
+    45.5263333
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 2",
+   "coord": [
+    9.0205888,
+    46.1920538
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 3",
+   "coord": [
+    8.941541,
+    45.50507
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 4",
+   "coord": [
+    9.4239921,
+    45.8960629
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 5",
+   "coord": [
+    9.3738195,
+    46.1363111
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 6",
+   "coord": [
+    9.2271378,
+    45.5931952
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 7",
+   "coord": [
+    8.9512275,
+    46.0038007
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 8",
+   "coord": [
+    8.8255843,
+    45.6752214
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 9",
+   "coord": [
+    8.839608,
+    45.8524484
+   ],
+   "ruolo": "comunità del regno"
+  }
+ ],
+ "rete_interna": [
+  [
+   0,
+   4
+  ],
+  [
+   0,
+   6
+  ],
+  [
+   0,
+   7
+  ],
+  [
+   0,
+   8
+  ],
+  [
+   0,
+   9
+  ],
+  [
+   1,
+   4
+  ],
+  [
+   1,
+   6
+  ],
+  [
+   2,
+   5
+  ],
+  [
+   2,
+   7
+  ],
+  [
+   3,
+   6
+  ],
+  [
+   3,
+   8
+  ],
+  [
+   4,
+   5
+  ],
+  [
+   4,
+   6
+  ],
+  [
+   7,
+   9
+  ],
+  [
+   8,
+   9
+  ]
+ ],
+ "cultura": {
+  "motto": "Liberi come le rive",
+  "tradizioni": [
+   "il Passaggio del Custode: un giovane diventa guida superando la prova del crinale",
+   "diritto d'asilo: chi arriva in pace trova riparo, ma dice il suo nome al Consiglio"
+  ],
+  "feste": [
+   {
+    "nome": "la Notte dei Fuochi sulle Rive",
+    "quando": "al voltare dell'autunno",
+    "cosa": "ogni comunità accende un fuoco sulla sponda; un anello di fuochi attorno al lago",
+    "morale": "uniti si resta liberi"
+   }
+  ]
+ },
+ "morale_bambini": "una comunità può governarsi da sola, decidendo insieme — e resta libera se sta unita",
+ "estetica": {
+  "palette": [
+   "blu lago",
+   "verde bosco",
+   "grigio roccia",
+   "fulvo maculato",
+   "oro del fuoco"
+  ],
+  "atmosfera": "mattine di nebbia sui laghi, boschi fitti, valichi alti; di sera fuochi sulle sponde",
+  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Laghi d'Occidente: mattine di nebbia sui laghi, boschi fitti, valichi alti; di sera fuochi sulle sponde. Animali antropomorfizzati ma riconoscibili come animali; leader: la Lince. Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: blu lago, verde bosco, grigio roccia, fulvo maculato, oro del fuoco."
+ },
+ "prompt_scrittura_base": "Laghi d'Occidente — governo: confederazione di comunità libere (non-piramidale (consiglio di pari)). Qui non c'è un re. I villaggi mandano una guida al Consiglio e decidono tutti insieme. Carattere: partenza della saga: i monti-lago dove vive Zara e dove incontra Rocco. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
+ "ruolo_nel_viaggio": "partenza della saga: i monti-lago dove vive Zara e dove incontra Rocco",
+ "personaggi_legati": [
+  {
+   "nome": "Zara",
+   "specie": "tigre giovane forestiera",
+   "note": "del Popolo del Bosco; piccola e giovane, vuole correre e dimostrare il proprio valore"
+  },
+  {
+   "nome": "Rocco",
+   "specie": "rinoceronte",
+   "note": "viene dalla Pianura della Serpe; arriva al confine dei laghi"
+  }
+ ]
+}

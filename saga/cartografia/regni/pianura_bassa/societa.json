@@ -1,0 +1,189 @@
+{
+ "regno": "pianura_bassa",
+ "principio_calviniano": {
+  "nome": "inchiostro contro sangue",
+  "idea": "Due modi di ricordare, vicini e nemici. Nella Dotta la legge vive nei libri e vale solo se letta ad alta voce; nelle terre dell'Aquila conta solo il sangue. E sopra entrambi, il Po che ogni anno esonda e ridisegna i confini.",
+  "regole_dolci": [
+   "una regola non letta ad alta voce non esiste",
+   "un dubbio si scioglie con una Disputa pubblica",
+   "il nome della stirpe apre ogni porta",
+   "il Po decide i confini, non gli uomini"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "i Dotti",
+   "ruolo_sociale": "sapienti e giudici della città dotta",
+   "rango": "alto per sapere",
+   "come_vivono": "gufi e civette; decidono con la legge e la parola",
+   "animali": [
+    "gufo",
+    "civetta"
+   ],
+   "voce": {
+    "modello": "il Dottor Balanzone (maschera bolognese)",
+    "tipo_modello": "maschera",
+    "registro": "pomposo, pseudo-dotto, infarcito di latino",
+    "tratti": [
+     "'ergo', 'ut ita dicam'",
+     "cita per non concludere",
+     "si ascolta parlare"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Ergo, ut ita dicam: la cosa è chiara a chi sa leggere — dunque taccia chi non ha letto.",
+    "intensita": "molto caratterizzata (comica; all'occorrenza seria)",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "la Casa dell'Aquila",
+   "ruolo_sociale": "la nobiltà che governa per sangue",
+   "rango": "alto per nascita",
+   "come_vivono": "aquile e nibbi; comandano Ferrara e Modena per lignaggio",
+   "animali": [
+    "aquila",
+    "nibbio"
+   ],
+   "voce": {
+    "modello": "ottava rima ariostesca/tassiana (corte estense di Ferrara)",
+    "tipo_modello": "tradizione/figura",
+    "registro": "epico-cavalleresco, alto, in rima",
+    "tratti": [
+     "parla in ottava rima",
+     "nobiltà e volo"
+    ],
+    "in_rima": "ottava rima",
+    "esempio_in_voce": "Di nobil sangue è l'ala che vi parla, / e dove posa l'occhio il cielo cede; / chi nasce in alto impara a non piegarla: / l'Aquila non domanda — l'Aquila vede.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Contadini del Po",
+   "ruolo_sociale": "gente d'acqua e di golena",
+   "rango": "basso",
+   "come_vivono": "tengono gli argini e subiscono le piene",
+   "animali": [
+    "anatra",
+    "oca",
+    "talpa",
+    "garzetta"
+   ],
+   "voce": {
+    "modello": "parlata di golena (proverbio d'acqua e d'argine)",
+    "tipo_modello": "tradizione",
+    "registro": "umido, paziente, fatalista-bonario",
+    "tratti": [
+     "il fiume comanda",
+     "umorismo basso e saggio"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Quando il Po vuole, il Po prende: noi s'alza l'argine e s'abbassa la testa.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "i Copisti",
+   "mestiere": "copiano e leggono ad alta voce le leggi",
+   "specie_tipiche": [
+    "civetta"
+   ],
+   "specialita_locale": "una legge senza voce è muta: la danno loro",
+   "commercia_con": [
+    "tutti i regni che vogliono 'registrare' qualcosa — perfino i Tessitori dei laghi, per confronto"
+   ]
+  },
+  {
+   "nome": "i Disputanti",
+   "mestiere": "risolvono le liti a parole, in pubblico",
+   "specie_tipiche": [
+    "gufo"
+   ],
+   "specialita_locale": "vince chi convince, non chi grida",
+   "commercia_con": [
+    "chiunque abbia una contesa da sciogliere senza spargere sangue"
+   ]
+  },
+  {
+   "nome": "gli Argini-mastri",
+   "mestiere": "domano il Po",
+   "specie_tipiche": [
+    "talpa",
+    "garzetta"
+   ],
+   "specialita_locale": "conoscono dove l'acqua salirà prima che salga",
+   "commercia_con": [
+    "i regni a valle, che temono le sue piene"
+   ]
+  }
+ ],
+ "mobilita_sociale": "nella Dotta si sale col sapere (uno studente diventa Dotto); nelle terre dell'Aquila quasi nulla: si nasce nobili o no",
+ "rapporti_tra_classi": "Dotta e Aquila si contendono la pianura bassa; gli Studenti (anche Forestieri) portano idee nuove; i Contadini stanno nel mezzo",
+ "tensione_viva": "legge contro sangue; e il grande fiume che, esondando, si fa beffe di entrambi e ridisegna tutto",
+ "estrazione_personaggio": "es. una giovane civetta Copista che impara a leggere le leggi, o un nibbio della Casa dell'Aquila",
+ "esempi_di_estrazione": [
+  {
+   "chi": "(libero)",
+   "classe": "i Dotti",
+   "nota": "un vecchio gufo Disputante che potrebbe fare da maestro lungo il cammino"
+  }
+ ],
+ "zone": [
+  {
+   "tipo": "Cuore",
+   "luogo": "Bologna — la Dotta, portici e libri",
+   "coord": [
+    11.34,
+    44.49
+   ]
+  },
+  {
+   "tipo": "Spina",
+   "luogo": "le campagne e la golena del Po",
+   "coord": [
+    11.0,
+    44.86
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "i boschi golenali e i pioppeti",
+   "coord": [
+    10.55,
+    44.95
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "i primi colli dell'Appennino a sud",
+   "coord": [
+    11.05,
+    44.38
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "le terre dell'Aquila (Ferrara, Modena) e il grande guado del Po",
+   "coord": [
+    11.62,
+    44.84
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "le strade e il Po stesso, il guado",
+   "coord": [
+    11.25,
+    44.92
+   ]
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: classi/mestieri animali come specchio sociale, caldo per bambini",
+  "calvino": "voce: realismo magico leggero, originale ma coerente"
+ },
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}

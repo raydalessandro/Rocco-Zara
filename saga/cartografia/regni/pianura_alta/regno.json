@@ -1,0 +1,266 @@
+{
+ "id": "pianura_alta",
+ "nome": "Pianura Alta",
+ "bbox": [
+  8.55,
+  45.0,
+  11.35,
+  45.55
+ ],
+ "area_km2": 15746,
+ "capitale": {
+  "nome": "Milano",
+  "coord": [
+   9.1896346,
+   45.4641943
+  ]
+ },
+ "leader": {
+  "archetipo": "il Biscione (la grande Serpe)",
+  "tratti": [
+   "astuta",
+   "paziente",
+   "ipnotica",
+   "fredda",
+   "inghiotte i rivali"
+  ],
+  "titolo": "il Signore Serpe e la sua Corte"
+ },
+ "governo": {
+  "forma": "Signoria",
+  "tipo": "piramidale (un solo Signore al vertice)",
+  "come_si_decide": "decide il Signore Serpe; sotto, una piramide di vassalli che eseguono e raccolgono tributi",
+  "spiegazione_bambini": "Qui comanda uno solo, il Signore Serpe, e tutti gli altri stanno sotto di lui come in una piramide.",
+  "tensione": "la Serpe vuole inghiottire i regni vicini; dentro, chi sta in basso sogna di salire — e qualcuno fugge nella Selva"
+ },
+ "fazione": "ghibellino",
+ "popolazione": {
+  "gruppi": [
+   {
+    "nome": "il Signore e la Corte",
+    "ruolo": "chi sta al vertice",
+    "animali": [
+     "serpente",
+     "biscia"
+    ]
+   },
+   {
+    "nome": "i Vassalli",
+    "ruolo": "esecutori e signori minori delle città soggette",
+    "animali": [
+     "mastino (Verona)",
+     "falco",
+     "cane da guardia"
+    ]
+   },
+   {
+    "nome": "il Popolo dell'Aperto",
+    "ruolo": "i tanti che lavorano la grande pianura",
+    "animali": [
+     "bufalo",
+     "cavallo",
+     "cervo",
+     "bue"
+    ]
+   },
+   {
+    "nome": "i Mercanti delle Vie",
+    "ruolo": "commerci e voci lungo le strade",
+    "animali": [
+     "volpe",
+     "ratto astuto",
+     "gazza"
+    ]
+   }
+  ],
+  "valori": [
+   "ordine",
+   "obbedienza",
+   "ambizione",
+   "efficienza (e, nascosto, il desiderio di libertà)"
+  ]
+ },
+ "centri": [
+  {
+   "nome": "Milano (capitale)",
+   "coord": [
+    9.1896346,
+    45.4641943
+   ],
+   "ruolo": "Signoria"
+  },
+  {
+   "nome": "centro 1",
+   "coord": [
+    11.3111274,
+    45.192498
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 2",
+   "coord": [
+    10.29831,
+    45.4715763
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 3",
+   "coord": [
+    10.520223,
+    44.9267857
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 4",
+   "coord": [
+    9.70437,
+    45.1600664
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 5",
+   "coord": [
+    10.8691009,
+    45.4833716
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 6",
+   "coord": [
+    8.9514237,
+    45.1548467
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 7",
+   "coord": [
+    9.6437404,
+    45.4972605
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 8",
+   "coord": [
+    10.7917191,
+    45.1566683
+   ],
+   "ruolo": "comunità del regno"
+  },
+  {
+   "nome": "centro 9",
+   "coord": [
+    10.4130654,
+    45.2211195
+   ],
+   "ruolo": "comunità del regno"
+  }
+ ],
+ "rete_interna": [
+  [
+   0,
+   6
+  ],
+  [
+   0,
+   7
+  ],
+  [
+   1,
+   5
+  ],
+  [
+   1,
+   8
+  ],
+  [
+   2,
+   4
+  ],
+  [
+   2,
+   5
+  ],
+  [
+   2,
+   7
+  ],
+  [
+   2,
+   9
+  ],
+  [
+   3,
+   8
+  ],
+  [
+   3,
+   9
+  ],
+  [
+   4,
+   6
+  ],
+  [
+   4,
+   7
+  ],
+  [
+   4,
+   9
+  ],
+  [
+   5,
+   8
+  ],
+  [
+   5,
+   9
+  ],
+  [
+   8,
+   9
+  ]
+ ],
+ "cultura": {
+  "motto": "Tutto scorre verso il vertice",
+  "tradizioni": [
+   "il Tributo: ogni terra soggetta porta doni alla Serpe",
+   "la Muta: chi sale di rango 'cambia pelle'"
+  ],
+  "feste": [
+   {
+    "nome": "la Grande Muta",
+    "quando": "a fine inverno",
+    "cosa": "la festa del potere: i ranghi salgono e scendono davanti al Signore",
+    "morale": "quando comanda uno solo, tutto dipende da lui"
+   }
+  ]
+ },
+ "morale_bambini": "se comanda uno solo è potente e ordinato, ma tutti dipendono da lui e i piccoli non contano",
+ "estetica": {
+  "palette": [
+   "verde serpe e oro",
+   "nero",
+   "rosso imperiale",
+   "oro dei campi"
+  ],
+  "atmosfera": "la grande pianura dorata e ordinata, canali dritti, una corte fastosa e fredda",
+  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Pianura Alta: la grande pianura dorata e ordinata, canali dritti, una corte fastosa e fredda. Animali antropomorfizzati ma riconoscibili come animali; leader: il Biscione (la grande Serpe). Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: verde serpe e oro, nero, rosso imperiale, oro dei campi."
+ },
+ "prompt_scrittura_base": "Pianura Alta — governo: Signoria (piramidale (un solo Signore al vertice)). Qui comanda uno solo, il Signore Serpe, e tutti gli altri stanno sotto di lui come in una piramide. Carattere: il grande aperto sotto la Serpe: la patria di Rocco e la potenza che incombe sul viaggio. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
+ "ruolo_nel_viaggio": "il grande aperto sotto la Serpe: la patria di Rocco e la potenza che incombe sul viaggio",
+ "personaggi_legati": [
+  {
+   "nome": "Rocco",
+   "specie": "rinoceronte",
+   "note": "del Popolo dell'Aperto; goffo e fuori posto nell'ordine della Serpe, parte per vedere oltre"
+  }
+ ]
+}

@@ -1,0 +1,752 @@
+{
+ "nodi": [
+  {
+   "name": "Firenze",
+   "lon": 11.2556404,
+   "lat": 43.7697955,
+   "cell": "E4",
+   "realm": true
+  },
+  {
+   "name": "Massa",
+   "lon": 10.1395519,
+   "lat": 44.0359323,
+   "cell": "C4",
+   "realm": true
+  },
+  {
+   "name": "Pistoia",
+   "lon": 10.9174238,
+   "lat": 43.9336213,
+   "cell": "D4",
+   "realm": true
+  },
+  {
+   "name": "Prato",
+   "lon": 11.0969262,
+   "lat": 43.880598,
+   "cell": "D4",
+   "realm": true
+  },
+  {
+   "name": "Siena",
+   "lon": 11.3316533,
+   "lat": 43.3185536,
+   "cell": "E5",
+   "realm": true
+  },
+  {
+   "name": "Milano",
+   "lon": 9.1896346,
+   "lat": 45.4641943,
+   "cell": "A2",
+   "realm": true
+  },
+  {
+   "name": "Brescia",
+   "lon": 10.2200214,
+   "lat": 45.5398022,
+   "cell": "C2",
+   "realm": true
+  },
+  {
+   "name": "Cremona",
+   "lon": 10.0248716,
+   "lat": 45.1334796,
+   "cell": "C2",
+   "realm": true
+  },
+  {
+   "name": "Lecco",
+   "lon": 9.389605,
+   "lat": 45.8553764,
+   "cell": "B1",
+   "realm": true
+  },
+  {
+   "name": "Lodi",
+   "lon": 9.5023941,
+   "lat": 45.3138248,
+   "cell": "B2",
+   "realm": true
+  },
+  {
+   "name": "Mantova",
+   "lon": 10.7917191,
+   "lat": 45.1566683,
+   "cell": "D2",
+   "realm": true
+  },
+  {
+   "name": "Pavia",
+   "lon": 9.1546375,
+   "lat": 45.1860043,
+   "cell": "A2",
+   "realm": true
+  },
+  {
+   "name": "Varese",
+   "lon": 8.8263532,
+   "lat": 45.817549,
+   "cell": "A1",
+   "realm": true
+  },
+  {
+   "name": "Monza",
+   "lon": 9.2749057,
+   "lat": 45.5844865,
+   "cell": "A2",
+   "realm": true
+  },
+  {
+   "name": "Busto Arsizio",
+   "lon": 8.8518269,
+   "lat": 45.611932,
+   "cell": "A2",
+   "realm": true
+  },
+  {
+   "name": "Trento",
+   "lon": 11.1257601,
+   "lat": 46.0664228,
+   "cell": "E1",
+   "realm": false
+  },
+  {
+   "name": "Verona",
+   "lon": 10.9924122,
+   "lat": 45.4384958,
+   "cell": "D2",
+   "realm": true
+  },
+  {
+   "name": "Vicenza",
+   "lon": 11.5478825,
+   "lat": 45.5488306,
+   "cell": "E2",
+   "realm": false
+  },
+  {
+   "name": "Genova",
+   "lon": 8.9338624,
+   "lat": 44.40726,
+   "cell": "A3",
+   "realm": false
+  },
+  {
+   "name": "La Spezia",
+   "lon": 9.8217022,
+   "lat": 44.1033871,
+   "cell": "B4",
+   "realm": true
+  },
+  {
+   "name": "Modena",
+   "lon": 10.9255707,
+   "lat": 44.6458885,
+   "cell": "D3",
+   "realm": true
+  },
+  {
+   "name": "Parma",
+   "lon": 10.3279843,
+   "lat": 44.80153,
+   "cell": "C3",
+   "realm": true
+  },
+  {
+   "name": "Reggio Emilia",
+   "lon": 10.6304971,
+   "lat": 44.6978389,
+   "cell": "D3",
+   "realm": true
+  },
+  {
+   "name": "Ferrara",
+   "lon": 11.6186451,
+   "lat": 44.8372737,
+   "cell": "E3",
+   "realm": true
+  },
+  {
+   "name": "Bologna",
+   "lon": 11.3426327,
+   "lat": 44.4938203,
+   "cell": "E3",
+   "realm": true
+  },
+  {
+   "name": "Lugano",
+   "lon": 8.9512275,
+   "lat": 46.0038007,
+   "cell": "A1",
+   "realm": true
+  },
+  {
+   "name": "Pisa",
+   "lon": 10.4018624,
+   "lat": 43.7159395,
+   "cell": "C5",
+   "realm": true
+  },
+  {
+   "name": "Livorno",
+   "lon": 10.3091256,
+   "lat": 43.5507317,
+   "cell": "C5",
+   "realm": true
+  },
+  {
+   "name": "Lucca",
+   "lon": 10.502876,
+   "lat": 43.8428381,
+   "cell": "C4",
+   "realm": true
+  },
+  {
+   "name": "Piacenza",
+   "lon": 9.6947461,
+   "lat": 45.0534751,
+   "cell": "B2",
+   "realm": true
+  },
+  {
+   "name": "Bergamo",
+   "lon": 9.6698727,
+   "lat": 45.6944947,
+   "cell": "B1",
+   "realm": true
+  },
+  {
+   "name": "Como",
+   "lon": 9.0830353,
+   "lat": 45.8115623,
+   "cell": "A1",
+   "realm": true
+  }
+ ],
+ "vie": [
+  {
+   "a": "Massa",
+   "b": "Lucca",
+   "i": 1,
+   "j": 28,
+   "km": 36.2,
+   "emax": 615,
+   "tipo": "collina"
+  },
+  {
+   "a": "Monza",
+   "b": "Bergamo",
+   "i": 13,
+   "j": 30,
+   "km": 33.1,
+   "emax": 251,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Trento",
+   "i": 6,
+   "j": 15,
+   "km": 91.4,
+   "emax": 1999,
+   "tipo": "valico"
+  },
+  {
+   "a": "Pisa",
+   "b": "Livorno",
+   "i": 26,
+   "j": 27,
+   "km": 19.8,
+   "emax": 12,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Bergamo",
+   "i": 6,
+   "j": 30,
+   "km": 46.1,
+   "emax": 297,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Verona",
+   "b": "Vicenza",
+   "i": 16,
+   "j": 17,
+   "km": 45.0,
+   "emax": 468,
+   "tipo": "collina"
+  },
+  {
+   "a": "Cremona",
+   "b": "Piacenza",
+   "i": 7,
+   "j": 29,
+   "km": 27.4,
+   "emax": 64,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Genova",
+   "b": "Piacenza",
+   "i": 18,
+   "j": 29,
+   "km": 93.7,
+   "emax": 1527,
+   "tipo": "valico"
+  },
+  {
+   "a": "Parma",
+   "b": "Reggio Emilia",
+   "i": 21,
+   "j": 22,
+   "km": 26.5,
+   "emax": 66,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Milano",
+   "b": "Monza",
+   "i": 5,
+   "j": 13,
+   "km": 14.9,
+   "emax": 171,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Varese",
+   "b": "Lugano",
+   "i": 12,
+   "j": 25,
+   "km": 22.9,
+   "emax": 621,
+   "tipo": "collina"
+  },
+  {
+   "a": "Varese",
+   "b": "Como",
+   "i": 12,
+   "j": 31,
+   "km": 19.9,
+   "emax": 440,
+   "tipo": "collina"
+  },
+  {
+   "a": "Siena",
+   "b": "Livorno",
+   "i": 4,
+   "j": 27,
+   "km": 86.5,
+   "emax": 566,
+   "tipo": "collina"
+  },
+  {
+   "a": "Lodi",
+   "b": "Pavia",
+   "i": 9,
+   "j": 11,
+   "km": 30.7,
+   "emax": 89,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Busto Arsizio",
+   "b": "Como",
+   "i": 14,
+   "j": 31,
+   "km": 28.5,
+   "emax": 364,
+   "tipo": "pianura"
+  },
+  {
+   "a": "La Spezia",
+   "b": "Parma",
+   "i": 19,
+   "j": 21,
+   "km": 87.4,
+   "emax": 1644,
+   "tipo": "valico"
+  },
+  {
+   "a": "Lecco",
+   "b": "Bergamo",
+   "i": 8,
+   "j": 30,
+   "km": 28.2,
+   "emax": 1323,
+   "tipo": "valico"
+  },
+  {
+   "a": "Mantova",
+   "b": "Parma",
+   "i": 10,
+   "j": 21,
+   "km": 53.8,
+   "emax": 66,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Lodi",
+   "b": "Piacenza",
+   "i": 9,
+   "j": 29,
+   "km": 32.6,
+   "emax": 82,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Monza",
+   "b": "Busto Arsizio",
+   "i": 13,
+   "j": 14,
+   "km": 33.1,
+   "emax": 229,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Massa",
+   "b": "Parma",
+   "i": 1,
+   "j": 21,
+   "km": 86.4,
+   "emax": 1715,
+   "tipo": "valico"
+  },
+  {
+   "a": "Mantova",
+   "b": "Reggio Emilia",
+   "i": 10,
+   "j": 22,
+   "km": 52.6,
+   "emax": 66,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Pistoia",
+   "b": "Modena",
+   "i": 2,
+   "j": 20,
+   "km": 79.2,
+   "emax": 1377,
+   "tipo": "valico"
+  },
+  {
+   "a": "Cremona",
+   "b": "Mantova",
+   "i": 7,
+   "j": 10,
+   "km": 60.2,
+   "emax": 52,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Trento",
+   "b": "Vicenza",
+   "i": 15,
+   "j": 17,
+   "km": 66.2,
+   "emax": 1722,
+   "tipo": "valico"
+  },
+  {
+   "a": "Lugano",
+   "b": "Como",
+   "i": 25,
+   "j": 31,
+   "km": 23.7,
+   "emax": 1191,
+   "tipo": "valico"
+  },
+  {
+   "a": "Genova",
+   "b": "La Spezia",
+   "i": 18,
+   "j": 19,
+   "km": 78.4,
+   "emax": 677,
+   "tipo": "collina"
+  },
+  {
+   "a": "Lodi",
+   "b": "Bergamo",
+   "i": 9,
+   "j": 30,
+   "km": 44.3,
+   "emax": 251,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Modena",
+   "b": "Reggio Emilia",
+   "i": 20,
+   "j": 22,
+   "km": 24.0,
+   "emax": 66,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Milano",
+   "b": "Lodi",
+   "i": 5,
+   "j": 9,
+   "km": 29.6,
+   "emax": 135,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Ferrara",
+   "b": "Bologna",
+   "i": 23,
+   "j": 24,
+   "km": 44.0,
+   "emax": 76,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Prato",
+   "b": "Bologna",
+   "i": 3,
+   "j": 24,
+   "km": 70.9,
+   "emax": 1136,
+   "tipo": "valico"
+  },
+  {
+   "a": "Vicenza",
+   "b": "Ferrara",
+   "i": 17,
+   "j": 23,
+   "km": 79.3,
+   "emax": 362,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Firenze",
+   "b": "Siena",
+   "i": 0,
+   "j": 4,
+   "km": 50.5,
+   "emax": 573,
+   "tipo": "collina"
+  },
+  {
+   "a": "Mantova",
+   "b": "Ferrara",
+   "i": 10,
+   "j": 23,
+   "km": 74.1,
+   "emax": 27,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Mantova",
+   "b": "Modena",
+   "i": 10,
+   "j": 20,
+   "km": 57.8,
+   "emax": 45,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Cremona",
+   "i": 6,
+   "j": 7,
+   "km": 47.7,
+   "emax": 153,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Trento",
+   "b": "Verona",
+   "i": 15,
+   "j": 16,
+   "km": 70.6,
+   "emax": 1682,
+   "tipo": "valico"
+  },
+  {
+   "a": "Pistoia",
+   "b": "Lucca",
+   "i": 2,
+   "j": 28,
+   "km": 34.7,
+   "emax": 252,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Mantova",
+   "i": 6,
+   "j": 10,
+   "km": 61.7,
+   "emax": 153,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Verona",
+   "i": 6,
+   "j": 16,
+   "km": 61.3,
+   "emax": 443,
+   "tipo": "collina"
+  },
+  {
+   "a": "Cremona",
+   "b": "Parma",
+   "i": 7,
+   "j": 21,
+   "km": 43.9,
+   "emax": 66,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Monza",
+   "b": "Como",
+   "i": 13,
+   "j": 31,
+   "km": 29.3,
+   "emax": 420,
+   "tipo": "collina"
+  },
+  {
+   "a": "Pisa",
+   "b": "Lucca",
+   "i": 26,
+   "j": 28,
+   "km": 16.3,
+   "emax": 281,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Varese",
+   "b": "Busto Arsizio",
+   "i": 12,
+   "j": 14,
+   "km": 22.9,
+   "emax": 427,
+   "tipo": "collina"
+  },
+  {
+   "a": "Modena",
+   "b": "Bologna",
+   "i": 20,
+   "j": 24,
+   "km": 37.1,
+   "emax": 76,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Milano",
+   "b": "Pavia",
+   "i": 5,
+   "j": 11,
+   "km": 31.1,
+   "emax": 135,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Milano",
+   "b": "Busto Arsizio",
+   "i": 5,
+   "j": 14,
+   "km": 31.0,
+   "emax": 229,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Firenze",
+   "b": "Prato",
+   "i": 0,
+   "j": 3,
+   "km": 17.7,
+   "emax": 67,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Pistoia",
+   "b": "Prato",
+   "i": 2,
+   "j": 3,
+   "km": 15.5,
+   "emax": 75,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Lecco",
+   "b": "Monza",
+   "i": 8,
+   "j": 13,
+   "km": 31.4,
+   "emax": 776,
+   "tipo": "collina"
+  },
+  {
+   "a": "Mantova",
+   "b": "Verona",
+   "i": 10,
+   "j": 16,
+   "km": 35.0,
+   "emax": 65,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Pavia",
+   "b": "Genova",
+   "i": 11,
+   "j": 18,
+   "km": 88.3,
+   "emax": 748,
+   "tipo": "collina"
+  },
+  {
+   "a": "Lecco",
+   "b": "Como",
+   "i": 8,
+   "j": 31,
+   "km": 24.2,
+   "emax": 1057,
+   "tipo": "valico"
+  },
+  {
+   "a": "Massa",
+   "b": "La Spezia",
+   "i": 1,
+   "j": 19,
+   "km": 26.5,
+   "emax": 341,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Brescia",
+   "b": "Lodi",
+   "i": 6,
+   "j": 9,
+   "km": 61.4,
+   "emax": 153,
+   "tipo": "pianura"
+  },
+  {
+   "a": "Pistoia",
+   "b": "Bologna",
+   "i": 2,
+   "j": 24,
+   "km": 70.9,
+   "emax": 1239,
+   "tipo": "valico"
+  },
+  {
+   "a": "Massa",
+   "b": "Reggio Emilia",
+   "i": 1,
+   "j": 22,
+   "km": 83.3,
+   "emax": 1656,
+   "tipo": "valico"
+  }
+ ]
+}

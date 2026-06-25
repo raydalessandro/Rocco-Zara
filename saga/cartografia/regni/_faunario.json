@@ -1,0 +1,579 @@
+{
+  "zone_universali": {
+    "Cuore": "la sede del potere / capitale: dove si decide (consiglio, corte, repubblica...)",
+    "Spina": "il cuore produttivo: la classe-lavoratrice principale del regno",
+    "Bosco": "il bosco/selva del regno: caccia, legna, sentieri, gente schiva",
+    "Orlo": "la frontiera alta o estrema: vedette, messaggeri, gente isolata e fiera",
+    "Soglia": "i confini coi regni vicini: dove i regni si toccano e arrivano i Forestieri",
+    "Vie": "le strade, i guadi, i mercati che collegano tutto: qui si muovono le corporazioni",
+    "Rovina": "(dove c'è) le rovine antiche coperte di bosco: misteriose, ai margini del canone"
+  },
+  "regola_punta_il_dito": "Regola universale 'punta il dito sul km²': dato un punto → 1) il regno (dal taglio); 2) il tipo di zona (vicino alla capitale=Cuore; su una riva/campagna produttiva=Spina; bosco fitto=Bosco; alta quota/estremo=Orlo; vicino a un confine=Soglia; su una via/guado=Vie; tra ruderi=Rovina); 3) le specie e la classe di quella zona (dal faunario); 4) il principio e le usanze del regno; 5) un seme di tensione (chi c'è, cosa teme, cosa commercia). Stessa regola in tutti i regni: cambia solo il reskin.",
+  "forestieri": [
+    {
+      "nome": "Rocco",
+      "specie": "rinoceronte",
+      "stato": "protagonista — Forestiero",
+      "note": "specie esotica, non di nessun regno; viene dalla Pianura Alta. Sempre 'fuori posto': è il senso del personaggio."
+    },
+    {
+      "nome": "Zara",
+      "specie": "tigre",
+      "stato": "protagonista — Forestiera",
+      "note": "specie esotica, non di nessun regno; ospite nei Laghi d'Occidente. La sua estraneità è il motore del viaggio."
+    },
+    {
+      "nome": "Toraki",
+      "specie": "tigre bianca",
+      "ruolo": "fratello di Zara, precursore del Cordone (nome di lavoro)",
+      "forestiero": true
+    }
+  ],
+  "eccezioni": [
+    "leone (Toscana) e leonessa (Laghi d'Oriente): stessa specie in due regni, ammessa perché stemma; arte canonica DISTINTA — leonessa fulva senza criniera vs leone dalla criniera dorata."
+  ],
+  "regni": {
+    "1": {
+      "nome": "Laghi d'Occidente",
+      "leader": "lince",
+      "specie": [
+        {
+          "specie": "lince",
+          "zona": "Cuore",
+          "classe": "i Custodi",
+          "ruolo": "memoria e giudizio",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "lontra",
+          "zona": "Spina",
+          "classe": "Gente delle Rive",
+          "ruolo": "tessitori di reti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "airone cenerino",
+          "zona": "Spina",
+          "classe": "Gente delle Rive",
+          "ruolo": "traghettatori",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "martin pescatore",
+          "zona": "Spina",
+          "classe": "Gente delle Rive",
+          "ruolo": "lettori di nebbia",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "rana",
+          "zona": "Spina",
+          "classe": "Gente delle Rive",
+          "ruolo": "voci e messaggi d'acqua",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "volpe",
+          "zona": "Bosco",
+          "classe": "Popolo del Bosco",
+          "ruolo": "custodi del fuoco e dei sentieri",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "scoiattolo rosso",
+          "zona": "Bosco",
+          "classe": "Popolo del Bosco",
+          "ruolo": "raccoglitori",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "ghiro",
+          "zona": "Bosco",
+          "classe": "Popolo del Bosco",
+          "ruolo": "memorie del bosco (dormono e ricordano)",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "picchio",
+          "zona": "Bosco",
+          "classe": "Popolo del Bosco",
+          "ruolo": "battitori di segnali sugli alberi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "camoscio",
+          "zona": "Orlo",
+          "classe": "Sentinelle d'Altura",
+          "ruolo": "vedette dei valichi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "marmotta",
+          "zona": "Orlo",
+          "classe": "Sentinelle d'Altura",
+          "ruolo": "sentinelle che fischiano l'allarme",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "gipeto",
+          "zona": "Orlo",
+          "classe": "Sentinelle d'Altura",
+          "ruolo": "messaggeri d'altura",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ],
+      "zone_geografiche": [
+        {
+          "tipo": "Cuore",
+          "luogo": "Como — il Consiglio del Lago",
+          "coord": [
+            9.08,
+            45.81
+          ]
+        },
+        {
+          "tipo": "Spina",
+          "luogo": "le Rive dei laghi (Lario, Verbano, Ceresio)",
+          "coord": [
+            8.95,
+            45.98
+          ]
+        },
+        {
+          "tipo": "Bosco",
+          "luogo": "i boschi delle montagne occidentali",
+          "coord": [
+            8.72,
+            45.92
+          ]
+        },
+        {
+          "tipo": "Orlo",
+          "luogo": "l'Altura dei valichi, verso il Muro delle Alpi",
+          "coord": [
+            9.3,
+            46.4
+          ]
+        },
+        {
+          "tipo": "Soglia",
+          "luogo": "il confine sud verso la Serpe — la collina dell'incontro",
+          "coord": [
+            9.32,
+            45.62
+          ]
+        },
+        {
+          "tipo": "Vie",
+          "luogo": "i passaggi del lago e i sentieri dei traghettatori",
+          "coord": [
+            9.22,
+            46.05
+          ]
+        }
+      ]
+    },
+    "2": {
+      "nome": "Laghi d'Oriente",
+      "leader": "leonessa",
+      "specie": [
+        {
+          "specie": "leonessa",
+          "zona": "Cuore",
+          "classe": "i Protettori",
+          "ruolo": "capi eletti della difesa",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "orso bruno",
+          "zona": "Soglia",
+          "classe": "i Giurati",
+          "ruolo": "guardiani di confine",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "cane da pastore",
+          "zona": "Soglia",
+          "classe": "i Giurati",
+          "ruolo": "custodi delle greggi e dei patti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "capriolo",
+          "zona": "Spina",
+          "classe": "Gente delle Conche",
+          "ruolo": "vignaioli e coltivatori",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "riccio",
+          "zona": "Spina",
+          "classe": "Gente delle Conche",
+          "ruolo": "ortolani prudenti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "tasso",
+          "zona": "Spina",
+          "classe": "Gente delle Conche",
+          "ruolo": "scavatori e cantinieri",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "stambecco",
+          "zona": "Orlo",
+          "classe": "Montanari del Garda",
+          "ruolo": "gente delle creste",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "gracchio alpino",
+          "zona": "Orlo",
+          "classe": "Montanari del Garda",
+          "ruolo": "messaggeri delle vette",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "ermellino",
+          "zona": "Orlo",
+          "classe": "Montanari del Garda",
+          "ruolo": "staffette tra i passi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ]
+    },
+    "3": {
+      "nome": "Pianura Alta",
+      "leader": "biscione",
+      "specie": [
+        {
+          "specie": "biscia (serpe)",
+          "zona": "Cuore",
+          "classe": "il Signore e la Corte",
+          "ruolo": "il vertice della piramide",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "mastino",
+          "zona": "Cuore",
+          "classe": "i Vassalli",
+          "ruolo": "signori delle città soggette (Verona)",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "falco",
+          "zona": "Orlo",
+          "classe": "i Vassalli",
+          "ruolo": "esattori e occhi del Signore",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "bufalo",
+          "zona": "Spina",
+          "classe": "Popolo dell'Aperto",
+          "ruolo": "forza del lavoro della pianura",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "cavallo",
+          "zona": "Spina",
+          "classe": "Popolo dell'Aperto",
+          "ruolo": "corrieri e aratori",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "bue",
+          "zona": "Spina",
+          "classe": "Popolo dell'Aperto",
+          "ruolo": "mandrie e campi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "cicogna",
+          "zona": "Spina",
+          "classe": "Popolo dell'Aperto",
+          "ruolo": "gente d'argine e di nido alto",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "gazza",
+          "zona": "Vie",
+          "classe": "i Mercanti delle Vie",
+          "ruolo": "commerci e voci",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "ratto",
+          "zona": "Vie",
+          "classe": "i Mercanti delle Vie",
+          "ruolo": "spie e contrabbando",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ]
+    },
+    "4": {
+      "nome": "Pianura Bassa",
+      "leader": "gufo + aquila",
+      "specie": [
+        {
+          "specie": "gufo",
+          "zona": "Cuore",
+          "classe": "i Dotti",
+          "ruolo": "sapienti e giudici della Dotta",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "civetta",
+          "zona": "Cuore",
+          "classe": "i Dotti",
+          "ruolo": "maestri e archivisti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "aquila",
+          "zona": "Soglia",
+          "classe": "la Casa dell'Aquila",
+          "ruolo": "la stirpe nobile (Ferrara)",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "nibbio",
+          "zona": "Soglia",
+          "classe": "la Casa dell'Aquila",
+          "ruolo": "nobili minori e falconieri",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "anatra",
+          "zona": "Spina",
+          "classe": "Contadini del Po",
+          "ruolo": "gente di golena",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "oca",
+          "zona": "Spina",
+          "classe": "Contadini del Po",
+          "ruolo": "sentinelle starnazzanti degli argini",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "talpa",
+          "zona": "Spina",
+          "classe": "Contadini del Po",
+          "ruolo": "scavatori e canalisti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "garzetta",
+          "zona": "Spina",
+          "classe": "Contadini del Po",
+          "ruolo": "pescatori di risaia",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ]
+    },
+    "5": {
+      "nome": "Selva di Mezzo",
+      "leader": "gli Antichi",
+      "specie": [
+        {
+          "specie": "cervo",
+          "zona": "Cuore",
+          "classe": "gli Antichi",
+          "ruolo": "il Cervo antico, memoria del bosco",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "corvo",
+          "zona": "Cuore",
+          "classe": "gli Antichi",
+          "ruolo": "custodi dei nomi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "gatto selvatico",
+          "zona": "Bosco",
+          "classe": "i Solitari",
+          "ruolo": "schivi e indipendenti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "martora",
+          "zona": "Bosco",
+          "classe": "i Solitari",
+          "ruolo": "ladri d'ombra",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "cinghiale",
+          "zona": "Bosco",
+          "classe": "i Solitari",
+          "ruolo": "forza brada del sottobosco",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "pipistrello",
+          "zona": "Rovina",
+          "classe": "Creature della Rovina",
+          "ruolo": "abitanti dei ruderi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "rospo",
+          "zona": "Rovina",
+          "classe": "Creature della Rovina",
+          "ruolo": "guardiani delle soglie umide",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "ramarro",
+          "zona": "Rovina",
+          "classe": "Creature della Rovina",
+          "ruolo": "verdi tra le pietre",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "lucciola",
+          "zona": "Rovina",
+          "classe": "Creature della Rovina",
+          "ruolo": "le luci del bosco di notte",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ]
+    },
+    "6": {
+      "nome": "Toscana",
+      "leader": "leone (Marzocco)",
+      "specie": [
+        {
+          "specie": "leone",
+          "zona": "Cuore",
+          "classe": "Cittadini del Leone",
+          "ruolo": "il popolo di Firenze: artigiani e artisti",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "lepre",
+          "zona": "Spina",
+          "classe": "Cittadini del Leone",
+          "ruolo": "corrieri e gente di mercato",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "istrice",
+          "zona": "Spina",
+          "classe": "Cittadini del Leone",
+          "ruolo": "artigiani spinosi e orgogliosi",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "upupa",
+          "zona": "Spina",
+          "classe": "Cittadini del Leone",
+          "ruolo": "banditori e messaggeri",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "lupo",
+          "zona": "Soglia",
+          "classe": "la Lupa e i suoi",
+          "ruolo": "i fieri di Siena",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "pantera",
+          "zona": "Soglia",
+          "classe": "la Pantera libera",
+          "ruolo": "i gelosi di Lucca",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "gabbiano",
+          "zona": "Orlo",
+          "classe": "la Gente del Mare",
+          "ruolo": "marinai di Pisa",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "cormorano",
+          "zona": "Orlo",
+          "classe": "la Gente del Mare",
+          "ruolo": "pescatori d'altura",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "granchio",
+          "zona": "Orlo",
+          "classe": "la Gente del Mare",
+          "ruolo": "gente di porto e scoglio",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        },
+        {
+          "specie": "tartaruga marina",
+          "zona": "Orlo",
+          "classe": "la Gente del Mare",
+          "ruolo": "viaggiatrici lente del mare",
+          "canone_visivo": "da definire in fase personaggi",
+          "variazione_individuale": "da definire in fase personaggi"
+        }
+      ]
+    }
+  }
+}

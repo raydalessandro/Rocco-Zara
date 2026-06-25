@@ -1,0 +1,191 @@
+{
+ "regno": "selva_di_mezzo",
+ "principio_calviniano": {
+  "nome": "il bosco ricorda al posto tuo",
+  "idea": "Qui non si annoda, non si scrive, non si giura: il bosco stesso tiene memoria. Gli alberi ricordano i nomi; chi entra può perdersi — cioè essere dimenticato — o farsi ricordare dalla foresta. Nessuna legge, solo l'antica usanza.",
+  "regole_dolci": [
+   "dici il tuo nome a un albero antico e il bosco lo tiene",
+   "chi rispetta la foresta trova la via, chi la offende si perde",
+   "di notte le lucciole disegnano i sentieri",
+   "la città-rovina appare solo a chi il bosco vuole"
+  ]
+ },
+ "classi": [
+  {
+   "nome": "gli Antichi",
+   "ruolo_sociale": "i memori del bosco",
+   "rango": "rispettati da tutti",
+   "come_vivono": "il Cervo antico e i corvi: custodiscono i nomi e l'usanza",
+   "animali": [
+    "cervo",
+    "corvo"
+   ],
+   "voce": {
+    "modello": "voce oracolare e arcaica (gli anziani delle fiabe, la sentenza del bosco)",
+    "tipo_modello": "tradizione",
+    "registro": "lento, gnomico, a indovinello",
+    "tratti": [
+     "parla per enigmi e per nomi",
+     "sa più di quanto dice"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Dì il tuo nome, piccolo: il bosco lo terrà più a lungo di te.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "i Solitari",
+   "ruolo_sociale": "creature schive del bosco profondo",
+   "rango": "a parte",
+   "come_vivono": "gatti selvatici, martore, cinghiali: nessun padrone",
+   "animali": [
+    "gatto selvatico",
+    "martora",
+    "cinghiale"
+   ],
+   "voce": {
+    "modello": "laconismo schivo e diffidente",
+    "tipo_modello": "tradizione",
+    "registro": "monosillabico, guardingo",
+    "tratti": [
+     "mezze frasi",
+     "mai gli occhi negli occhi"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "Passa. E non guardarmi negli occhi.",
+    "intensita": "media",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "Creature della Rovina",
+   "ruolo_sociale": "abitanti dei ruderi inghiottiti",
+   "rango": "misteriosi",
+   "come_vivono": "pipistrelli, rospi, ramarri, lucciole: la vita strana tra le pietre",
+   "animali": [
+    "pipistrello",
+    "rospo",
+    "ramarro",
+    "lucciola"
+   ],
+   "voce": {
+    "modello": "filastrocca notturna (cantilena delle rovine)",
+    "tipo_modello": "tradizione",
+    "registro": "cantilenante, in rima, un po' inquietante e infantile",
+    "tratti": [
+     "parla in filastrocca",
+     "gioca con le parole"
+    ],
+    "in_rima": "filastrocca",
+    "esempio_in_voce": "Pietra che dorme non la svegliare, / chi dice il nome si fa scordare.",
+    "intensita": "molto caratterizzata",
+    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+   }
+  },
+  {
+   "nome": "gli Esuli",
+   "ruolo_sociale": "fuggiti da ogni regno",
+   "rango": "fuori, in cerca di posto",
+   "come_vivono": "ribelli della Serpe, sbandati: il bosco li accoglie se lo rispettano",
+   "animali": [],
+   "voce": {
+    "modello": "voce ereditata dal regno d'origine",
+    "tipo_modello": "regola",
+    "registro": "ognuno conserva la parlata di dove è fuggito",
+    "tratti": [
+     "accento d'altrove",
+     "tradisce la provenienza"
+    ],
+    "in_rima": false,
+    "esempio_in_voce": "(un esule della Serpe) Là cambiavo pelle per salire; qui non c'è pelle che tenga — e va bene così.",
+    "intensita": "variabile",
+    "nota": "ottimo per far capire da dove viene un esule dal solo modo di parlare"
+   }
+  }
+ ],
+ "corporazioni": [
+  {
+   "nome": "i Sentieri-viventi",
+   "mestiere": "guidano chi merita, per favori (non per oro)",
+   "specie_tipiche": [
+    "martora",
+    "gatto selvatico"
+   ],
+   "specialita_locale": "conoscono vie che nessuna mappa segna",
+   "commercia_con": [
+    "i Carbonai-Sentieristi dei Laghi d'Occidente che vengono ai margini"
+   ]
+  },
+  {
+   "nome": "i Guardiani della Rovina",
+   "mestiere": "custodiscono ciò che resta della città inghiottita",
+   "specie_tipiche": [
+    "corvo",
+    "pipistrello"
+   ],
+   "specialita_locale": "sanno quali pietre non si toccano",
+   "commercia_con": [
+    "nessuno: non vendono, scambiano segreti"
+   ]
+  }
+ ],
+ "mobilita_sociale": "non c'è scala: conta solo quanto il bosco ti ricorda; un esule diventa 'del bosco' se la foresta lo accetta",
+ "rapporti_tra_classi": "gli Antichi rispettati, i Solitari diffidenti, le Creature della Rovina misteriose, gli Esuli tollerati: nessun padrone su nessuno",
+ "tensione_viva": "libertà assoluta = nessuna protezione: rifugio e pericolo insieme; tutti i regni temono e desiderano la Selva (per i segreti e gli esuli)",
+ "estrazione_personaggio": "es. un esule (ex Popolo dell'Aperto della Serpe) diventato Solitario; o una giovane martora dei Sentieri-viventi",
+ "esempi_di_estrazione": [
+  {
+   "chi": "(libero)",
+   "classe": "gli Esuli",
+   "nota": "un esule misterioso che mette alla prova Rocco e Zara e poi li guida"
+  }
+ ],
+ "zone": [
+  {
+   "tipo": "Rovina",
+   "luogo": "la città-rovina inghiottita dal bosco (il 'cuore' senza potere)",
+   "coord": [
+    10.6,
+    44.15
+   ]
+  },
+  {
+   "tipo": "Bosco",
+   "luogo": "il fitto della Selva: è quasi tutto bosco",
+   "coord": [
+    10.2,
+    44.14
+   ]
+  },
+  {
+   "tipo": "Orlo",
+   "luogo": "i crinali dell'Appennino",
+   "coord": [
+    10.9,
+    44.05
+   ]
+  },
+  {
+   "tipo": "Soglia",
+   "luogo": "i margini: a nord la pianura, a sud la Toscana — dove arrivano gli esuli",
+   "coord": [
+    10.45,
+    44.27
+   ]
+  },
+  {
+   "tipo": "Vie",
+   "luogo": "i sentieri che il bosco mostra o nasconde (non si mappano)",
+   "coord": [
+    10.7,
+    44.12
+   ]
+  }
+ ],
+ "ispirazione": {
+  "orwell": "metodo: classi/mestieri animali come specchio sociale, caldo per bambini",
+  "calvino": "voce: realismo magico leggero, originale ma coerente"
+ },
+ "voci_nota": "ogni classe ha un blocco 'voce' (stile-modello). I personaggi ricorrenti si rifiniscono dopo."
+}
