@@ -12,16 +12,20 @@
 - Missione in `saga_config.yaml` + campi nello `schema_episodio`; Toraki nel faunario; bible Rocco deduplicata.
 - **Luogo Antico Toscana = Volterra** (dentro il regno, no tocchi alla geometria).
 - Subtesto "i primi" → tenere **vago** (mai esplicitamente umano).
+- **Motore anti-cliché** fissato: rotture (Cècca+Sòrcio "Mister Bean", Dotti, Mastino,
+  specchio, ribaltamento forte/debole) + spirale (3 assi + "apri un filo, chiudine uno") +
+  macchina di variazione → `trama/rotture_e_spirale.md`.
+- **4 Ritornelli** fissati (confermati per ora): Cordone (memoria tattile), pietra tiepida +
+  segni, ombra di Rocco, tracce di Toraki → `bible/ritornelli.md`.
+- **A1 — stile di saga come canone** + principi di **camera/movimento** → `bible/STILE_VISIVO.md`.
 
 ---
 
 ## Da fare — ordine consigliato
 
 ### Fase A — Visivo dei protagonisti  → *sblocca le immagini di reference*
-- [ ] **A1. Stile di saga come canone.** Dichiarare come canone R&Z lo stile di Scrivia
-      `WORLD_STYLE.animali_del_bosco` (Beatrix Potter/Brian Wildsmith, naturalistico, mai
-      cartoon-flat) + palette stagionale earthy. Oggi vive solo in `lib/stylesheet.ts`:
-      va scritto in un file nostro (es. `saga/bible/STILE_VISIVO.md`).
+- [x] **A1. Stile di saga come canone.** ✅ fatto → `bible/STILE_VISIVO.md` (stile
+      `animali_del_bosco` + palette stagionale + **camera/movimento** vincolanti).
 - [ ] **A2. Marcatore individuale** di Rocco e Zara (+ Toraki) — l'ancora anti-drift
       visiva n°1 (il faunario rinviava il "foulard di colore diverso per individuo").
 - [ ] **A3. Palette esatta** di Rocco (e conferma colori Zara/Toraki).
