@@ -86,7 +86,7 @@
   },
   {
    "nome": "le Sentinelle d'Altura",
-   "ruolo_sociale": "vedetta dei valichi verso il Muro delle Alpi",
+   "ruolo_sociale": "vedetta dei valichi verso il Muro del Nord",
    "animali": [
     "camoscio",
     "marmotta",
@@ -243,7 +243,7 @@
   },
   {
    "tipo": "Orlo",
-   "luogo": "l'Altura dei valichi, verso il Muro delle Alpi",
+   "luogo": "l'Altura dei valichi, verso il Muro del Nord",
    "coord": [
     9.3,
     46.4

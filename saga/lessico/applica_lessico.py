@@ -28,6 +28,8 @@ M["Prato"]="Pratoleone"; M["Livorno"]="Marlonga"
 # luoghi antichi (siti)
 M["Valcamonica"]="le Pietre Incise"; M["Marzabotto"]="le Rovine Ordinate"; M["Felsina"]="le Rovine Ordinate"
 M["Bismantova"]="l'Altare di Roccia"; M["Volterra"]="le Pietre del Leone"; M["Monte Amiata"]="le Pietre del Leone"; M["Amiata"]="le Pietre del Leone"
+# citta secondarie — residui atlante (toscane non ancora mappate; stile del reame del Leone)
+M["Massa"]="Marpietra"; M["Viareggio"]="Marsabbia"; M["Vinci"]="Collerocca"
 # araldica/politica (genere)
 M["il Biscione"]="la Serpe"; M["del Biscione"]="della Serpe"; M["al Biscione"]="alla Serpe"; M["Biscione"]="Serpe"
 M["Visconti"]="Anguini"; M["il Marzocco"]="il Leone di Pietra"; M["Marzocco"]="Leone di Pietra"
@@ -36,6 +38,7 @@ M["Guelfi"]="Turchini"; M["guelfi"]="turchini"; M["Guelfo"]="Turchino"; M["guelf
 M["Ghibellini"]="Vermigli"; M["ghibellini"]="vermigli"; M["Ghibellino"]="Vermiglio"; M["ghibellino"]="vermiglio"; M["ghibellina"]="vermiglia"
 # geografia
 M["Po"]="Gran Fiume"; M["Garda"]="Mare di Dentro"; M["Prealpi"]="Muro del Nord"
+M["Muro delle Alpi"]="Muro del Nord"; M["delle Alpi"]="del Nord"; M["prealpi"]="Muro del Nord"
 M["Appennino"]="Gobbe del Sud"; M["Appennini"]="Gobbe del Sud"; M["Emilia"]="Piana dei Savi"
 M["Lago Maggiore"]="Lago Grande"; M["Maggiore"]="Lago Grande"; M["Lugano"]="Lago Cupo"
 M["Iseo"]="Lago Stretto"; M["Lario"]="Lago del Vespro"; M["Idro"]="Lago Alto"

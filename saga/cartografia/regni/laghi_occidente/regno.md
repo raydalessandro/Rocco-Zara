@@ -13,7 +13,7 @@ Tensione: confederazione fragile: la Serpe della pianura preme da sud e la vorre
 - **i Custodi** — guardiani e consiglieri (lince)
 - **la Gente delle Rive** — pescatori, traghettatori, mercanti dei laghi (lontra, airone, martin pescatore)
 - **il Popolo del Bosco** — cacciatori e custodi degli alberi (cervo, volpe, tasso, tigre (rara, forestiera))
-- **le Sentinelle d'Altura** — vedette dei valichi verso il Muro delle Alpi (camoscio, stambecco, aquila)
+- **le Sentinelle d'Altura** — vedette dei valichi verso il Muro del Nord (camoscio, stambecco, aquila)
 
 Valori: libertà, autosufficienza, ospitalità prudente, diffidenza verso i grandi poteri.
 

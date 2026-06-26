@@ -10,7 +10,7 @@
 
 | regno | sito reale (ancora) | cosa si vede | coord ≈ (da pinnare) | dentro il bbox del regno? |
 |---|---|---|---|---|
-| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/prealpi) | coppelle scavate nella roccia | 45.88, 9.40 | ✅ sì |
+| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/Muro del Nord) | coppelle scavate nella roccia | 45.88, 9.40 | ✅ sì |
 | Conca Ruggente (Leonessa) | **le Pietre Incise** — incisioni rupestri (Capo di Ponte) | figure incise da mani che non erano zampe | 46.02, 10.34 | ✅ sì |
 | Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (città etrusca di Kainua) | rovine ordinate nella pianura | 44.34, 11.20 | ✅ sì |
 | Selva di Mezzo | **Pietra di l'Altare di Roccia** (rupe appenninica) | un altare di roccia in mezzo al bosco | 44.43, 10.41 | ✅ sì |

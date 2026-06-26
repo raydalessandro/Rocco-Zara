@@ -8,7 +8,7 @@ Griglia **5×5**, colonne A–E (ovest→est), righe 1–5 (nord→sud). Dettagl
 La **fascia abitata** è la diagonale NW→SE; l'origine (incontro Rocco & Zara) è in **B1** (monti del lago).
 
 ## Confini naturali
-- **Muro delle Alpi** (nord) — il rilievo oltre N 46.25.
+- **Muro del Nord** (nord) — il rilievo oltre N 46.25.
 - **Mare** (sud-ovest) — quota 0.
 - **Terre Liguri** (ovest/sud) — fuori dal regno.
 - **Marche dell'Est** (oltre il Mare di Dentro) — Veneto/Trentino.

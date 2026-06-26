@@ -59,6 +59,6 @@ Ogni specie vive in **un solo regno** (come le regioni Pokémon). Specie esotich
 - **Cuore** → Rivalba — il Consiglio del Lago
 - **Spina** → le Rive dei laghi (Lago del Vespro, Verbano, Ceresio)
 - **Bosco** → i boschi delle montagne occidentali
-- **Orlo** → l'Altura dei valichi, verso il Muro delle Alpi
+- **Orlo** → l'Altura dei valichi, verso il Muro del Nord
 - **Soglia** → il confine sud verso la Serpe — la collina dell'incontro
 - **Vie** → i passaggi del lago e i sentieri dei traghettatori

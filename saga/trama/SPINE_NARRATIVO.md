@@ -24,7 +24,7 @@ Ancore autentiche (per noi autori, non in-storia):
 ## 1. I Luoghi Antichi (concreti, reali — un perno per regno)
 | regno | Luogo Antico (reale) | cosa si vede |
 |---|---|---|
-| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/prealpi) | coppelle scavate nella roccia |
+| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/Muro del Nord) | coppelle scavate nella roccia |
 | Conca Ruggente (Leonessa) | **le Pietre Incise** (incisioni rupestri) | figure incise da mani che non erano zampe |
 | Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (etrusco) | rovine ordinate nella pianura |
 | Selva di Mezzo | **Pietra di l'Altare di Roccia** / massi appenninici | un altare di roccia in mezzo al bosco |

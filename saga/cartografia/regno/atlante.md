@@ -140,7 +140,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 ## C4 — appennino-bosco  (471 m; -49–2033 m)
 - bbox: `[9.96, 43.73, 10.54, 44.36]`  ·  centro: `[10.25, 44.045]`
 - fiumi: Secchia
-- città→rovina: Massa, Muralba, Viareggio
+- città→rovina: Marpietra, Muralba, Marsabbia
 - **popolo**: creature della foresta fitta, schive e antiche
 - **potere**: comanda la foresta: gli Antichi del bosco, sentieri segreti
 - **tradizioni**: feste della folta, l'ombra che protegge, i passi nascosti
@@ -149,7 +149,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 ## D4 — appennino-bosco  (576 m; -1–2102 m)
 - bbox: `[10.54, 43.73, 11.12, 44.36]`  ·  centro: `[10.83, 44.045]`
 - fiumi: Panaro, Dottàrio
-- città→rovina: Pratoleone, Pietrigna, Vinci
+- città→rovina: Pratoleone, Pietrigna, Collerocca
 - **popolo**: creature della foresta fitta, schive e antiche
 - **potere**: comanda la foresta: gli Antichi del bosco, sentieri segreti
 - **tradizioni**: feste della folta, l'ombra che protegge, i passi nascosti
