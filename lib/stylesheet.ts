@@ -4,7 +4,7 @@
 // in testa a ogni prompt dà coerenza + cache. Portate 1:1 da Isola (to_manus_prompts.py).
 
 export const WORLD_STYLE: Record<string, string> = {
-  animali_del_bosco: "Anthropomorphic woodland animals in the British picture-book tradition (Beatrix Potter, Brian Wildsmith), contemporary warmth; naturalistic animal anatomy, gently stylized, never cartoon-flat.",
+  animali_del_bosco: "Naturalistic woodland animals with true animal anatomy and posture, gently stylized, never cartoon-flat and never dressed or in costume; a Watership Down spirit with warm Brian Wildsmith colour — cultural, not sartorial, anthropomorphism, at most a small carried object.",
   casa: "Naturalistic children and everyday lived-in settings, gently stylized for warmth, never cartoon-flat.",
   citta: "Naturalistic children in a warm everyday town, gently stylized, never cartoon-flat.",
   spazio: "A gentle near-future space setting, soft and wondrous, naturalistic figures, never glossy sci-fi.",
