@@ -6,12 +6,23 @@
 > stessa distanza e angolo — qui il **movimento** va portato anche nel *come* si
 > rappresenta, non solo in *cosa*. Lo stile va scelto perché **sappia rendere il moto**.
 
-## 1. Lo stile-casa
-Adottiamo come canone lo stile di Scrivia **`WORLD_STYLE.animali_del_bosco`**:
-*animali antropomorfi nella tradizione del picture-book inglese (Beatrix Potter, Brian
-Wildsmith), calore contemporaneo; anatomia animale naturalistica, gentilmente
-stilizzata, **mai cartoon-flat***. Palette: **terrosa/stagionale** (le `SEASON_PALETTE`
-di Scrivia seguono il viaggio nelle stagioni).
+## 1. Lo stile-casa — animali **naturalistici**, niente vestiti
+Canone: **animali fisicamente naturalistici**, gentilmente stilizzati, **mai
+cartoon-flat** e **mai vestiti/in costume**. Distinzione che regge tutto il mondo:
+- ❌ antropomorfismo **sartoriale** (vestiti, postura bipede, oggetti umani) → **no**;
+- ✅ antropomorfismo **culturale/comportamentale** (lingua, società, miti, politica) → **sì**.
+
+Il modello è **Watership Down**: conigli che sono conigli, ma con lingua, cultura, mito,
+politica. Registro grafico vicino a **Brian Wildsmith** (colore caldo, gesto) — **non**
+Beatrix Potter, che invece *veste* gli animali. La base tecnica resta lo stile di Scrivia
+`WORLD_STYLE.animali_del_bosco` (anatomia animale, naturalistica), **riletto senza
+vestiti**. Palette: **terrosa/stagionale** (le `SEASON_PALETTE` di Scrivia seguono il
+viaggio nelle stagioni).
+
+**Maneggio di oggetti:** niente mani-da-umano, ma **un minimo di maneggio dove serve alla
+storia** — annodare il Cordone, portare un pegno — come fanno *davvero* corvidi, lontre,
+elefanti. Mai un indumento; al massimo un piccolo oggetto **portato**.
+
 → **Variazione rispetto a isola:** linea **più gestuale**, capace di **diagonali** e di
 rendere la **corsa**; non la posa statica e centrata.
 
