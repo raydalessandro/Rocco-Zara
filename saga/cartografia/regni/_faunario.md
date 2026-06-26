@@ -1,6 +1,6 @@
 # Faunario canonico — specie esclusive per regno
 
-Ogni specie vive in **un solo regno** (come le regioni Pokémon). Specie esotiche dei protagonisti a parte. `canone_visivo` e `variazione_individuale` si definiscono in fase personaggi (es. il 'foulard di colore diverso' per ogni individuo).
+Ogni specie vive in **un solo regno** (come le regioni Pokémon). Specie esotiche dei protagonisti a parte. **Animali naturalistici, senza vestiti** (vedi `../../bible/STILE_VISIVO.md`). Gli abitanti generici di una specie si somigliano: per **identificare un personaggio che ricorre** si usa un **segno naturale distintivo** — una cicatrice, un orecchio intagliato, una macchia nel manto, un occhio di colore diverso — e solo di rado un piccolo **pegno portato**; **mai un indumento**. `canone_visivo` e `variazione_individuale` (il segno) si fissano in fase personaggi.
 
 ## Forestieri (protagonisti, fuori roster)
 - **Rocco** — rinoceronte: specie esotica, non di nessun regno; viene dalla Pianura Alta. Sempre 'fuori posto': è il senso del personaggio.

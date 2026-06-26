@@ -50,8 +50,12 @@
   Già canonico ("tracce di Toraki"; campo `toraki_trace` nello schema episodio).
 - **Come accumula:** è vivo? dov'è? → le tracce si fanno **più fresche** (sei più vicino)
   → ricongiungimento. E spinge il viaggio **avanti** = movimento (obiettivo-azione).
-- **Reference:** il **nodo-segno di Toraki** (riconoscibile, diverso dai nodi di Zara) +
-  la tigre bianca intravista.
+- **Toraki in parallelo (cutaway):** lo mostriamo nel suo viaggio *davanti* — **non spunta
+  solo alla fine**. Prima vediamo **lui che annoda il segno**, poi R&Z che lo trovano: il
+  ritornello si arricchisce (la sua storia parallela corre accanto alla loro) e il
+  ricongiungimento finale è preparato, non improvviso.
+- **Reference:** il **nodo-segno di Toraki** (riconoscibile, diverso dai nodi di Zara) + la
+  **tigre bianca** (reference piena, costruita insieme a Rocco e Zara).
 
 ---
 

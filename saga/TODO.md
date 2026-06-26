@@ -26,8 +26,10 @@
 ### Fase A — Visivo dei protagonisti  → *sblocca le immagini di reference*
 - [x] **A1. Stile di saga come canone.** ✅ fatto → `bible/STILE_VISIVO.md` (stile
       `animali_del_bosco` + palette stagionale + **camera/movimento** vincolanti).
-- [ ] **A2. Marcatore individuale** di Rocco e Zara (+ Toraki) — l'ancora anti-drift
-      visiva n°1 (il faunario rinviava il "foulard di colore diverso per individuo").
+- [ ] **A2. Sistema di segni distintivi** per i personaggi **ricorrenti** (NON per gli
+      abitanti generici): un segno **naturale** — cicatrice, orecchio intagliato, macchia
+      nel manto, occhio di colore diverso — di rado un piccolo **pegno portato**, **mai
+      vestiti**. (I protagonisti sono già unici: Forestieri.) È l'ancora anti-drift visiva.
 - [ ] **A3. Palette esatta** di Rocco (e conferma colori Zara/Toraki).
 - → *esito: descrittori "Passo 0" pronti per i due protagonisti → si generano le reference.*
 

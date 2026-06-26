@@ -136,4 +136,7 @@ saga_quotas:
 # --- vincoli globali (presenza umana, ecc.) ---
 world_rules:
   human_presence: only_past             # umani solo come rovine abbandonate; mai in scena
-  animals_anthropomorphism: light       # antropomorfismo leggero (strutture-animali, ritrovi)
+  animals_form: naturalistic            # animali fisicamente naturalistici, MAI vestiti/costume
+  anthropomorphism: cultural_only       # solo lingua/società/miti/politica; no sartoriale (vedi bible/STILE_VISIVO.md)
+  object_handling: minimal              # maneggio minimo dove serve (annodare il Cordone, portare un pegno) — come corvidi/lontre/elefanti
+  recurring_character_marker: natural_sign  # segno naturale (cicatrice/orecchio/macchia/occhio) o raro pegno portato; mai indumento

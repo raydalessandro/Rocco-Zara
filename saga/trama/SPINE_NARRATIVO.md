@@ -50,6 +50,10 @@ alla pietra e la comunità giura (si salda ai *giuramenti* della Leonessa).
 - ha lasciato a Zara il **cordone incompiuto** e il compito; lei è giovane e spaventata.
 - tensione viva: la Serpe punta agli stessi centri; Zara non sa se arriverà in tempo,
   né se lui sarà ancora lì. (Per i bambini: ricongiungimento possibile.)
+- **Storia parallela (cutaway):** Toraki **si vede durante** il viaggio, non solo alla
+  fine — brevi stacchi sul suo cammino *davanti* (lui che annoda il segno, lui inseguito
+  dalla Serpe). Corre accanto alla storia di R&Z e prepara il ricongiungimento. (Si lega
+  al ritornello *tracce di Toraki*, vedi `../bible/ritornelli.md`.)
 
 ## 4. Innesco (l'Ep01 che già abbiamo, ricontestualizzato)
 Zara, schiacciata dal compito, **scappa** → incontra **Rocco** alla Soglia (collina di
