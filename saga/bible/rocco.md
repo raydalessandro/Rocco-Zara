@@ -60,7 +60,7 @@ dettagli del passato, evoluzione precisa dell'arco lungo (si fissa con gli archi
 ---
 
 ### Nel mondo (canone cartografo) + aggancio alla missione
-- **Regno d'origine**: **Pianura Alta** — il regno della **Serpe**/Biscione (corte,
+- **Regno d'origine**: **Gran Ducato** — il regno della **Serpe**/Serpe (corte,
   legge scritta, tributi), classe **Popolo dell'Aperto**: in fondo alla piramide del
   tributo. **Forestiero** (rinoceronte, fuori roster); arrivando ai Laghi è **doppiamente
   estraneo** — la sua estraneità è il motore. Villaggio d'origine: da fissare nella
@@ -71,5 +71,5 @@ dettagli del passato, evoluzione precisa dell'arco lungo (si fissa con gli archi
   la **speranza del suo popolo**, oppresso dalla Serpe — movente personale, non solo
   amicizia. Il suo villaggio è sotto il tributo di **Artiglio** (vedi
   `cartografia/regni/pianura_alta/la_serpe.md`).
-- **Origine del viaggio**: arriva alla **soglia** dei Laghi d'Occidente — la **collina
-  dell'incontro** (B1, Lecco; vedi `cartografia/ORIGINE.md`).
+- **Origine del viaggio**: arriva alla **soglia** dei Laghi del Vespro — la **collina
+  dell'incontro** (B1, Spondalta; vedi `cartografia/ORIGINE.md`).

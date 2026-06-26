@@ -30,7 +30,7 @@
     "in_rima": false,
     "esempio_in_voce": "Giuro; e nel giuro non sono sola: chi tocca uno, ci tocca tutti.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -53,7 +53,7 @@
     "in_rima": false,
     "esempio_in_voce": "Detto è detto. Il cordone tiene.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -67,8 +67,8 @@
     "tasso"
    ],
    "voce": {
-    "modello": "Arlecchino e Brighella (maschere bergamasche)",
-    "tipo_modello": "maschera",
+    "modello": "maschere comiche (servi svelti, furbi-bonari)",
+    "tipo_modello": "registro comico",
     "registro": "terragno, svelto, comico, furbo-bonario",
     "tratti": [
      "battuta pronta",
@@ -78,11 +78,11 @@
     "in_rima": false,
     "esempio_in_voce": "Io? Io zappo e taccio — ma il mio vino, quello sì che chiacchiera per me.",
     "intensita": "molto caratterizzata (comica)",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
-   "nome": "Montanari del Garda",
+   "nome": "Montanari del Mare di Dentro",
    "ruolo_sociale": "vedette e staffette delle creste",
    "rango": "medio, isolato",
    "come_vivono": "fieri, parlano poco, conoscono ogni passo",
@@ -92,7 +92,7 @@
     "ermellino"
    ],
    "voce": {
-    "modello": "laconismo d'altura (variante del Garda)",
+    "modello": "laconismo d'altura (variante del Mare di Dentro)",
     "tipo_modello": "tradizione",
     "registro": "secco, meteorologico, sentenzioso",
     "tratti": [
@@ -102,7 +102,7 @@
     "in_rima": false,
     "esempio_in_voce": "Nuvola bassa, lingua corta.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   }
  ],
@@ -131,7 +131,7 @@
    ]
   },
   {
-   "nome": "le Vedette del Garda",
+   "nome": "le Vedette del Mare di Dentro",
    "mestiere": "segnali tra le creste",
    "specie_tipiche": [
     "gracchio alpino",
@@ -139,7 +139,7 @@
    ],
    "specialita_locale": "fuochi e fischi che corrono di cima in cima",
    "commercia_con": [
-    "le Sentinelle dei Laghi d'Occidente per le notizie d'altura"
+    "le Sentinelle dei Laghi del Vespro per le notizie d'altura"
    ]
   }
  ],
@@ -157,7 +157,7 @@
  "zone": [
   {
    "tipo": "Cuore",
-   "luogo": "Brescia e Bergamo — le città fiere",
+   "luogo": "Forterocca e Saldarocca — le città fiere",
    "coord": [
     10.22,
     45.54
@@ -165,7 +165,7 @@
   },
   {
    "tipo": "Spina",
-   "luogo": "le conche e le vigne tra Iseo e Garda",
+   "luogo": "le conche e le vigne tra Lago Stretto e Mare di Dentro",
    "coord": [
     10.15,
     45.66
@@ -173,7 +173,7 @@
   },
   {
    "tipo": "Bosco",
-   "luogo": "le pendici boscose delle Prealpi",
+   "luogo": "le pendici boscose delle Muro del Nord",
    "coord": [
     9.95,
     45.85
@@ -181,7 +181,7 @@
   },
   {
    "tipo": "Orlo",
-   "luogo": "le creste sopra il Garda",
+   "luogo": "le creste sopra il Mare di Dentro",
    "coord": [
     10.55,
     45.8
@@ -197,7 +197,7 @@
   },
   {
    "tipo": "Vie",
-   "luogo": "la pedemontana e le rive del Garda",
+   "luogo": "la pedemontana e le rive del Mare di Dentro",
    "coord": [
     10.45,
     45.58

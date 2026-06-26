@@ -19,17 +19,17 @@ Ancore autentiche (per noi autori, non in-storia):
 - il fratello = la **Tigre Bianca** dei miti dell'est — *Baihu/Byakko*: guardiano
   dell'ovest, virtù della giustizia, signore del vento. Nome di lavoro: **Toraki**.
 - il Cordone come rete di nodi che si rispecchiano = la **Rete di Indra** (ogni nodo
-  riflette tutti gli altri) → si salda col *regno dei riflessi* dei Laghi d'Occidente.
+  riflette tutti gli altri) → si salda col *regno dei riflessi* dei Laghi del Vespro.
 
 ## 1. I Luoghi Antichi (concreti, reali — un perno per regno)
 | regno | Luogo Antico (reale) | cosa si vede |
 |---|---|---|
-| Laghi d'Occidente | massi coppellati dei monti del lago (Lecco/prealpi) | coppelle scavate nella roccia |
-| Laghi d'Oriente (Leonessa) | **Valcamonica** (incisioni rupestri) | figure incise da mani che non erano zampe |
-| Pianura Bassa (la Dotta) | **Felsina / Marzabotto** (etrusco) | rovine ordinate nella pianura |
-| Selva di Mezzo | **Pietra di Bismantova** / massi appenninici | un altare di roccia in mezzo al bosco |
-| Toscana | **cuore etrusco** → **Volterra** (acropoli etrusca, dentro il regno) | le pietre più antiche di tutte |
-| Pianura Alta (la **Serpe**) | il suo Luogo è **sepolto / pavimentato** sotto la corte | il dominio ha cancellato la memoria |
+| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/prealpi) | coppelle scavate nella roccia |
+| Conca Ruggente (Leonessa) | **le Pietre Incise** (incisioni rupestri) | figure incise da mani che non erano zampe |
+| Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (etrusco) | rovine ordinate nella pianura |
+| Selva di Mezzo | **Pietra di l'Altare di Roccia** / massi appenninici | un altare di roccia in mezzo al bosco |
+| Terre del Leone di Pietra | **cuore etrusco** → **le Pietre del Leone** (acropoli etrusca, dentro il regno) | le pietre più antiche di tutte |
+| Gran Ducato (la **Serpe**) | il suo Luogo è **sepolto / pavimentato** sotto la corte | il dominio ha cancellato la memoria |
 
 > In-storia gli animali li sentono solo come *posti più vecchi di ogni regno, dove la
 > pietra ricorda* (si lega a "il bosco ricorda" e ai riflessi). Nessuna spiegazione.
@@ -57,12 +57,12 @@ alla pietra e la comunità giura (si salda ai *giuramenti* della Leonessa).
 
 ## 4. Innesco (l'Ep01 che già abbiamo, ricontestualizzato)
 Zara, schiacciata dal compito, **scappa** → incontra **Rocco** alla Soglia (collina di
-Lecco, B1) → la **tempesta** li lega → lei trova il coraggio di partire; **Rocco si
+Spondalta, B1) → la **tempesta** li lega → lei trova il coraggio di partire; **Rocco si
 unisce** perché la causa di Toraki è la speranza del suo popolo (il Popolo dell'Aperto,
 in fondo alla piramide della Serpe). L'amicizia resta il cuore; la missione è il seme
 sotto. (Rinominare "Collina dei Baobab" → la collina dell'incontro: `cartografia/ORIGINE.md`.)
 
-## 5. Antagonista — la Serpe (Pianura Alta)
+## 5. Antagonista — la Serpe (Gran Ducato)
 Principio "pelli / tributo": **dominio verticale**, tutto scende al vertice — l'opposto
 del **legare orizzontale** dei liberi. La Serpe vuole i Luoghi per sé (potere, non
 connessione) o impedire che si leghino; ha sepolto il proprio sotto la corte. Ombra
@@ -81,13 +81,13 @@ L'ultima pagina **sfiora** — senza dirlo — che da quella rete nascerà qualc
 4. I *primi* mai mostrati, mai nominati, mai animali.
 
 ## 8. Rotta (logica; il dettaglio fine dopo)
-Soglia (Lecco) → **Laghi d'Occidente** (primo nodo, casa) → **Laghi d'Oriente/Leonessa**
-(Valcamonica) → oltre il **Po** → **la Dotta** (Felsina) → **la Selva** (Bismantova,
-tracce di Toraki) → **Toscana** (Volterra, cuore etrusco, ultimo nodo / Toraki).
-La **Serpe** (Pianura Alta) è l'ombra da evitare e infine affrontare lungo tutto.
-- **Terminus (dove Toraki aspetta)** — *default*: **Volterra** (acropoli etrusca della Toscana, le
+Soglia (Spondalta) → **Laghi del Vespro** (primo nodo, casa) → **Conca Ruggente/Leonessa**
+(le Pietre Incise) → oltre il **Gran Fiume** → **la Dotta** (le Rovine Ordinate) → **la Selva** (l'Altare di Roccia,
+tracce di Toraki) → **Terre del Leone di Pietra** (le Pietre del Leone, cuore etrusco, ultimo nodo / Toraki).
+La **Serpe** (Gran Ducato) è l'ombra da evitare e infine affrontare lungo tutto.
+- **Terminus (dove Toraki aspetta)** — *default*: **le Pietre del Leone** (acropoli etrusca delle Terre del Leone di Pietra, le
   pietre più antiche, dentro il regno). Alternativa: **anello** che torna
-  all'origine (Lecco). → da confermare.
+  all'origine (Spondalta). → da confermare.
 
 ---
 *Stato: spine di lavoro, coerente con cartografia/regni/società/voci. Aperti: terminus

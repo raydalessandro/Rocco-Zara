@@ -20,8 +20,8 @@
    "rango": "alto per servizio, non per sangue",
    "come_vivono": "pochi, solitari; annodano nelle reti la storia del regno e 'vedono nel buio' le verità; siedono al Consiglio del Lago",
    "voce": {
-    "modello": "Plinio il Vecchio (naturalista, figlio di Como)",
-    "tipo_modello": "figura storica",
+    "modello": "naturalista-anziano (osservativo, enciclopedico, latineggiante)",
+    "tipo_modello": "registro",
     "registro": "osservativo, enciclopedico, pacato, un filo latineggiante",
     "tratti": [
      "cataloga ciò che vede",
@@ -31,7 +31,7 @@
     "in_rima": false,
     "esempio_in_voce": "Ho osservato che il lago, all'alba, rende ciò che la notte gli affida: anche la memoria fa così.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -56,7 +56,7 @@
     "in_rima": false,
     "esempio_in_voce": "Rete annodata stretta, pesce sicuro; parola annodata stretta, patto sicuro.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -81,7 +81,7 @@
     "in_rima": false,
     "esempio_in_voce": "Il sentiero giusto non si grida: si segue.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -105,7 +105,7 @@
     "in_rima": false,
     "esempio_in_voce": "Vista una colonna di fumo a nord. Riferisco. Resto.",
     "intensita": "media (per sottrazione)",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -196,8 +196,8 @@
  ],
  "mobilita_sociale": "non per sangue ma per riconoscimento: chi compie un atto memorabile viene 'annodato nella rete' del regno e sale; un Ospite diventa cittadino quando il Consiglio registra ciò che ha fatto",
  "rapporti_tra_classi": "Custodi e Rive si rispettano per servizio reciproco; il Bosco diffida un po' delle Rive (alberi contro acqua); le Sentinelle sono isolate e fiere; gli Ospiti guardati con sospetto, perché la Serpe manda spie travestite",
- "tensione_viva": "la Serpe (Milano) vorrebbe imporre la sua scrittura e i suoi tributi; il regno difende il proprio modo 'annodato' di ricordare — chi controlla la memoria controlla il regno",
- "estrazione_personaggio": "un personaggio = regno (Laghi d'Occidente) → classe (es. Popolo del Bosco) → corporazione/comunità (es. i Sentieristi del villaggio dal fuoco verde-rame) → poi individualità. L'individuo eredita valori, mestiere ed estetica del gruppo, e li piega col suo carattere.",
+ "tensione_viva": "la Serpe (Anguicorte) vorrebbe imporre la sua scrittura e i suoi tributi; il regno difende il proprio modo 'annodato' di ricordare — chi controlla la memoria controlla il regno",
+ "estrazione_personaggio": "un personaggio = regno (Laghi del Vespro) → classe (es. Popolo del Bosco) → corporazione/comunità (es. i Sentieristi del villaggio dal fuoco verde-rame) → poi individualità. L'individuo eredita valori, mestiere ed estetica del gruppo, e li piega col suo carattere.",
  "esempi_di_estrazione": [
   {
    "chi": "Zara",
@@ -208,7 +208,7 @@
   {
    "chi": "Rocco",
    "classe": "Ospiti e Senza-riflesso",
-   "provenienza": "Pianura Alta (la Serpe)",
+   "provenienza": "Gran Ducato (la Serpe)",
    "nota": "arriva dalla pianura; doppiamente estraneo, ma onesto"
   }
  ],
@@ -219,7 +219,7 @@
  "zone": [
   {
    "tipo": "Cuore",
-   "luogo": "Como — il Consiglio del Lago",
+   "luogo": "Rivalba — il Consiglio del Lago",
    "coord": [
     9.08,
     45.81
@@ -227,7 +227,7 @@
   },
   {
    "tipo": "Spina",
-   "luogo": "le Rive dei laghi (Lario, Verbano, Ceresio)",
+   "luogo": "le Rive dei laghi (Lago del Vespro, Verbano, Ceresio)",
    "coord": [
     8.95,
     45.98

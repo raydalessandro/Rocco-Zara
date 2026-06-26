@@ -7,11 +7,11 @@
   ],
   "regni": {
     "1": {
-      "nome": "Laghi d'Occidente",
+      "nome": "Laghi del Vespro",
       "col": "#2f7d77",
       "area_km2": 12588,
       "capitale": {
-        "nome": "Como",
+        "nome": "Rivalba",
         "ll": [
           9.0832,
           45.8081
@@ -79,7 +79,7 @@
       "n_centri": 9,
       "centri": [
         {
-          "nome": "Varese",
+          "nome": "Vespraviva",
           "ll": [
             8.8263532,
             45.817549
@@ -192,11 +192,11 @@
       ]
     },
     "2": {
-      "nome": "Laghi d'Oriente",
+      "nome": "Conca Ruggente",
       "col": "#6a4c93",
       "area_km2": 18529,
       "capitale": {
-        "nome": "Brescia",
+        "nome": "Forterocca",
         "ll": [
           10.2118,
           45.5416
@@ -204,7 +204,7 @@
       },
       "centri_principali": [
         {
-          "nome": "Brescia",
+          "nome": "Forterocca",
           "ll": [
             10.2118,
             45.5416
@@ -251,7 +251,7 @@
       "n_centri": 6,
       "centri": [
         {
-          "nome": "Pergine Valsugana",
+          "nome": "Cimalbe Valsugana",
           "ll": [
             11.2406747,
             46.0605291
@@ -327,11 +327,11 @@
       ]
     },
     "3": {
-      "nome": "Pianura Alta",
+      "nome": "Gran Ducato",
       "col": "#e0b040",
       "area_km2": 24579,
       "capitale": {
-        "nome": "Milano",
+        "nome": "Anguicorte",
         "ll": [
           9.1896346,
           45.4641943
@@ -339,7 +339,7 @@
       },
       "centri_principali": [
         {
-          "nome": "Verona",
+          "nome": "Mastignana",
           "ll": [
             10.9924122,
             45.4384958
@@ -348,7 +348,7 @@
       ],
       "centri_minori": [
         {
-          "nome": "Trento",
+          "nome": "Cimalta",
           "ll": [
             11.1257601,
             46.0664228
@@ -414,21 +414,21 @@
       "n_centri": 12,
       "centri": [
         {
-          "nome": "Milano",
+          "nome": "Anguicorte",
           "ll": [
             9.1896346,
             45.4641943
           ]
         },
         {
-          "nome": "Verona",
+          "nome": "Mastignana",
           "ll": [
             10.9924122,
             45.4384958
           ]
         },
         {
-          "nome": "Trento",
+          "nome": "Cimalta",
           "ll": [
             11.1257601,
             46.0664228
@@ -581,11 +581,11 @@
       ]
     },
     "4": {
-      "nome": "Pianura Bassa",
+      "nome": "Piana dei Savi",
       "col": "#d97a32",
       "area_km2": 29346,
       "capitale": {
-        "nome": "Bologna",
+        "nome": "Savenza",
         "ll": [
           11.3426327,
           44.4938203
@@ -593,14 +593,14 @@
       },
       "centri_principali": [
         {
-          "nome": "Firenze",
+          "nome": "Leonalba",
           "ll": [
             11.2556404,
             43.7697955
           ]
         },
         {
-          "nome": "Parma",
+          "nome": "Savialba",
           "ll": [
             10.3279843,
             44.80153
@@ -675,21 +675,21 @@
       "n_centri": 12,
       "centri": [
         {
-          "nome": "Bologna",
+          "nome": "Savenza",
           "ll": [
             11.3426327,
             44.4938203
           ]
         },
         {
-          "nome": "Firenze",
+          "nome": "Leonalba",
           "ll": [
             11.2556404,
             43.7697955
           ]
         },
         {
-          "nome": "Parma",
+          "nome": "Savialba",
           "ll": [
             10.3279843,
             44.80153
@@ -868,7 +868,7 @@
       "n_centri": 3,
       "centri": [
         {
-          "nome": "Pavullo nel Frignano",
+          "nome": "Selvalta nel Frignano",
           "ll": [
             10.8341135,
             44.339694
@@ -907,11 +907,11 @@
       ]
     },
     "6": {
-      "nome": "Toscana",
+      "nome": "Terre del Leone di Pietra",
       "col": "#7d8a3a",
       "area_km2": 5911,
       "capitale": {
-        "nome": "Firenze",
+        "nome": "Leonalba",
         "ll": [
           11.2558,
           43.7696
@@ -919,7 +919,7 @@
       },
       "centri_principali": [
         {
-          "nome": "Volterra",
+          "nome": "le Pietre del Leone",
           "ll": [
             10.860019,
             43.400337
@@ -930,14 +930,14 @@
       "n_centri": 2,
       "centri": [
         {
-          "nome": "Reggello",
+          "nome": "Pietralta",
           "ll": [
             11.5368965,
             43.6830877
           ]
         },
         {
-          "nome": "Volterra",
+          "nome": "le Pietre del Leone",
           "ll": [
             10.860019,
             43.400337

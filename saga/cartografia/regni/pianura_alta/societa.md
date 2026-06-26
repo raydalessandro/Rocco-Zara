@@ -1,4 +1,4 @@
-# Società di Pianura Alta — *il regno delle pelli*
+# Società di Gran Ducato — *il regno delle pelli*
 
 > Il rango è una pelle. Per salire si 'cambia pelle' davanti al Signore; la pianura è una piramide di pelli, e ogni cosa è mappata da chi versa tributo a chi. La Serpe in cima ha la pelle più lucida.
 
@@ -30,9 +30,9 @@ es. un giovane bufalo del Popolo dell'Aperto, stanco dell'ordine della Serpe (co
 - **Rocco** → *Popolo dell'Aperto (da Forestiero)*: rinoceronte: in basso nella piramide, parte per vedere oltre
 
 ## Zone del regno
-- **Cuore** → Milano — la corte della Serpe
+- **Cuore** → Anguicorte — la corte della Serpe
 - **Spina** → la grande pianura coltivata, campi e mandrie
 - **Bosco** → i boschi planiziali e le garzaie (radi)
 - **Orlo** → i margini prealpini a nord, occhi degli esattori
-- **Soglia** → il fronte verso il Po a sud e i laghi a nord
+- **Soglia** → il fronte verso il Gran Fiume a sud e i laghi a nord
 - **Vie** → le strade dritte e i canali dei mercanti

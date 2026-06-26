@@ -13,8 +13,8 @@ saga/
   ontologia/              kernel EAR + COME_SI_APPLICA (la lente che genera tutto)
   bible/                  Rocco & Zara (canone duro) — ora col layer-regno
   cartografia/            IL MONDO (canone del cartografo, fa fede)
-    CANONE_GEOGRAFICO.md  corridoio Prealpi→Toscana (DEM+OSM), griglia 5x5
-    ORIGINE.md            l'incontro pinnato: Lecco / B1 (ancora dell'Ep01)
+    CANONE_GEOGRAFICO.md  corridoio Muro del Nord→Terre del Leone di Pietra (DEM+OSM), griglia 5x5
+    ORIGINE.md            l'incontro pinnato: Spondalta / B1 (ancora dell'Ep01)
     regni/                6 regni-comuni: regno+società+faunario+voci+schemi
     regno/               atlante, atlante_politico, rete urbana (Vie Antiche)
     zones/               geojson reali per-zona (CANONE) + render png
@@ -27,11 +27,11 @@ saga/
 ## Allineamenti fatti in questo giro (il canone del cartografo fa fede)
 1. **Incoerenza risolta** — l'unico file fuori sincrono era il master geografico
    auto-generato `cartografia/regno/regni.json`. Allineato al canone narrativo:
-   - nomi: R5 `Appennino Emiliano`→**Selva di Mezzo**, R6 `Appennino Toscano`→**Toscana**;
-   - capitali: R1 Varese→**Como**, R2 Pergine→**Brescia** (la *Leonessa* — scelta voluta),
-     R5→**Città-rovina della Selva**, R6 Reggello→**Firenze**;
-   - **Brescia** spostata da Pianura Alta a Laghi d'Oriente nei centri (coerenza).
-   - *Nota geo da ratificare:* Brescia cade ~1 km a sud del bbox auto di R2 (sta sulla
+   - nomi: R5 `Gobbe del Sud Emiliano`→**Selva di Mezzo**, R6 `Gobbe del Sud Toscano`→**Terre del Leone di Pietra**;
+   - capitali: R1 Vespraviva→**Rivalba**, R2 Cimalbe→**Forterocca** (la *Leonessa* — scelta voluta),
+     R5→**Città-rovina della Selva**, R6 Pietralta→**Leonalba**;
+   - **Forterocca** spostata da Gran Ducato a Conca Ruggente nei centri (coerenza).
+   - *Nota geo da ratificare:* Forterocca cade ~1 km a sud del bbox auto di R2 (sta sulla
      **soglia** verso la Serpe — narrativamente perfetto: il libero comune di confine).
      Il bbox NON è stato ritoccato (geometria DEFINITIVA). Se vuoi, si rigenera col pipeline.
    - Tutto il resto del canone (atlante politico, indice, faunario, società, voci) era
@@ -43,11 +43,11 @@ saga/
 3. **Scaffold ↔ canone** (solo rinomine d'allineamento):
    - `saga_config.yaml` ora parla il vocabolario del cartografo (regni, 7-zone, faunario,
      classi/corporazioni/voci) e usa il **bioma reale** (foresta/savana/acqua/roccia/rovina/umido).
-   - `bible/rocco.md` e `zara.md`: aggiunto il **layer-regno** (Rocco← Pianura Alta/Serpe,
-     Zara← Laghi d'Occidente/Popolo del Bosco; entrambi **Forestieri**, voce forestiera).
+   - `bible/rocco.md` e `zara.md`: aggiunto il **layer-regno** (Rocco← Gran Ducato/Serpe,
+     Zara← Laghi del Vespro/Popolo del Bosco; entrambi **Forestieri**, voce forestiera).
    - `trama/schema_episodio.md`: l'episodio si ancora a **regno + zona (7-zone) + bioma**;
      la creatura dell'episodio pesca dal **faunario** del regno.
-   - `ORIGINE.md`: l'origine pinnata (B1/Lecco) riconcilia "monti del lago" e "soglia
+   - `ORIGINE.md`: l'origine pinnata (B1/Spondalta) riconcilia "monti del lago" e "soglia
      verso la Serpe" — è la stessa altura.
    - README aggiornati: la geografia è **fatta**, niente più "DOPO-GEO"/"pronto per la chat".
 
@@ -75,7 +75,7 @@ e la CI restano verdi.
 | Parte | Agente | Cosa |
 |---|---|---|
 | Personaggi + reference visiva | bible + Passo 0 di Scrivia | estrarre i personaggi (regno→classe→corporazione→individuo) e **bloccare le reference** di Rocco & Zara (consistenza "da serie") |
-| `saga_graph.json` + 1° arco | trama + backend | modellare **Ep01** (l'origine, ancorata a B1/Lecco) e abbozzare l'arco dei Laghi d'Occidente |
+| `saga_graph.json` + 1° arco | trama + backend | modellare **Ep01** (l'origine, ancorata a B1/Spondalta) e abbozzare l'arco dei Laghi del Vespro |
 | Quote di saga | backend | tarare `saga_quotas` (anti-ripetizione) col procedere delle storie |
 | Serializzatore | ai/backend | implementare il ponte `saga→Seed` + audit di continuità (M2) |
 

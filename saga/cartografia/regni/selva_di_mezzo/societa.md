@@ -15,7 +15,7 @@ Usanze:
 - **gli Esuli** () — *fuggiti da ogni regno*; ribelli della Serpe, sbandati: il bosco li accoglie se lo rispettano
 
 ## Le corporazioni (commerciano fuori → nascono i rapporti tra regni)
-- **i Sentieri-viventi** — guidano chi merita, per favori (non per oro). Specialità: conoscono vie che nessuna mappa segna. Commercia con: i Carbonai-Sentieristi dei Laghi d'Occidente che vengono ai margini.
+- **i Sentieri-viventi** — guidano chi merita, per favori (non per oro). Specialità: conoscono vie che nessuna mappa segna. Commercia con: i Carbonai-Sentieristi dei Laghi del Vespro che vengono ai margini.
 - **i Guardiani della Rovina** — custodiscono ciò che resta della città inghiottita. Specialità: sanno quali pietre non si toccano. Commercia con: nessuno: non vendono, scambiano segreti.
 
 **Mobilità sociale:** non c'è scala: conta solo quanto il bosco ti ricorda; un esule diventa 'del bosco' se la foresta lo accetta.
@@ -31,6 +31,6 @@ es. un esule (ex Popolo dell'Aperto della Serpe) diventato Solitario; o una giov
 ## Zone del regno
 - **Rovina** → la città-rovina inghiottita dal bosco (il 'cuore' senza potere)
 - **Bosco** → il fitto della Selva: è quasi tutto bosco
-- **Orlo** → i crinali dell'Appennino
-- **Soglia** → i margini: a nord la pianura, a sud la Toscana — dove arrivano gli esuli
+- **Orlo** → i crinali dell'Gobbe del Sud
+- **Soglia** → i margini: a nord la pianura, a sud le Terre del Leone di Pietra — dove arrivano gli esuli
 - **Vie** → i sentieri che il bosco mostra o nasconde (non si mappano)

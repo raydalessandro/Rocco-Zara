@@ -1,15 +1,15 @@
 {
- "organizzazione": "la Casa del Biscione",
+ "organizzazione": "la Casa della Serpe",
  "regno": "pianura_alta",
  "regola_anti_simbolico": "la Serpe non appare mai come forza/ombra: sempre come uno di questi personaggi concreti",
  "modello_autoriale": "struttura della signoria viscontea; personaggi animali inventati (non figure storiche reali)",
  "vertice": [
-  {"nome": "Viscardo", "ruolo": "il Gran Biscione (Signore)", "specie": "serpente", "tratti": "vecchio, paziente, gelido; inghiotte i rivali", "voce": "registro machiavellico"},
+  {"nome": "Viscardo", "ruolo": "il Gran Serpe (Signore)", "specie": "serpente", "tratti": "vecchio, paziente, gelido; inghiotte i rivali", "voce": "registro freddo di corte"},
   {"nome": "Bissa", "ruolo": "erede (la giovane Vipera)", "specie": "vipera", "tratti": "ambiziosa, impaziente; vuole schiacciare il Cordone", "gancio": "tensione di successione"},
   {"nome": "Aspide", "ruolo": "consigliere di corte", "specie": "vipera", "tratti": "il veleno che sussurra e tiene i fili"}
  ],
  "vassalli": [
-  {"nome": "il Mastino", "ruolo": "signore di Verona-reskin", "specie": "mastino", "funzione": "tiene i valichi orientali (Mincio/Adige)", "uso": "muro di passaggio", "voce": "Catullo/scaligera"}
+  {"nome": "il Mastino", "ruolo": "signore di Mastignana", "specie": "mastino", "funzione": "tiene i valichi orientali (Serpàna/Cimàrio)", "uso": "muro di passaggio", "voce": "vassallo altero (boria cavalleresca)"}
  ],
  "braccio": [
   {"nome": "Artiglio", "ruolo": "Falco esattore (capo esattori)", "specie": "falco", "funzione": "insegue i protagonisti col pretesto del tributo/contrabbando (il Cordone)", "uso": "antagonista ricorrente diretto", "legame": "ha gravato sul villaggio di Rocco"},

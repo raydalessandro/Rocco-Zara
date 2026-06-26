@@ -1,6 +1,6 @@
-# Laghi d'Occidente — la Lince
+# Laghi del Vespro — la Lince
 
-*Liberi come le rive* · capitale **Como** · ~14,918 km² · fazione: conteso — resiste alla Serpe
+*Liberi come le rive* · capitale **Rivalba** · ~14,918 km² · fazione: conteso — resiste alla Serpe
 
 ## Leader → governo
 confederazione di comunità libere (non-piramidale (consiglio di pari)). Ogni comunità manda il suo custode al consiglio del lago; si decide insieme, a voce uguale.

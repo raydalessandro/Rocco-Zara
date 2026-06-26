@@ -31,7 +31,7 @@
     "in_rima": false,
     "esempio_in_voce": "Dì il tuo nome, piccolo: il bosco lo terrà più a lungo di te.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -55,7 +55,7 @@
     "in_rima": false,
     "esempio_in_voce": "Passa. E non guardarmi negli occhi.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -80,7 +80,7 @@
     "in_rima": "filastrocca",
     "esempio_in_voce": "Pietra che dorme non la svegliare, / chi dice il nome si fa scordare.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -114,7 +114,7 @@
    ],
    "specialita_locale": "conoscono vie che nessuna mappa segna",
    "commercia_con": [
-    "i Carbonai-Sentieristi dei Laghi d'Occidente che vengono ai margini"
+    "i Carbonai-Sentieristi dei Laghi del Vespro che vengono ai margini"
    ]
   },
   {
@@ -160,7 +160,7 @@
   },
   {
    "tipo": "Orlo",
-   "luogo": "i crinali dell'Appennino",
+   "luogo": "i crinali dell'Gobbe del Sud",
    "coord": [
     10.9,
     44.05
@@ -168,7 +168,7 @@
   },
   {
    "tipo": "Soglia",
-   "luogo": "i margini: a nord la pianura, a sud la Toscana — dove arrivano gli esuli",
+   "luogo": "i margini: a nord la pianura, a sud le Terre del Leone di Pietra — dove arrivano gli esuli",
    "coord": [
     10.45,
     44.27

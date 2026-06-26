@@ -1,6 +1,6 @@
 {
  "id": "pianura_bassa",
- "nome": "Pianura Bassa",
+ "nome": "Piana dei Savi",
  "bbox": [
   9.2,
   44.3,
@@ -9,7 +9,7 @@
  ],
  "area_km2": 26229,
  "capitale": {
-  "nome": "Bologna",
+  "nome": "Savenza",
   "coord": [
    11.3426327,
    44.4938203
@@ -24,13 +24,13 @@
   "titolo": "i Dotti e i giudici · la Casa dell'Aquila"
  },
  "governo": {
-  "forma": "doppio: Repubblica della Legge (il Gufo) e Signoria dell'Aquila",
+  "forma": "doppio: Repubblica della Legge (il Gufo) e Gran Ducato dell'Aquila",
   "tipo": "repubblica dei saggi vs aristocrazia di sangue",
   "come_si_decide": "nella Dotta decidono i saggi seguendo la legge scritta; nelle terre dell'Aquila comanda la stirpe nobile, per sangue",
   "spiegazione_bambini": "Due modi vicini: in una città decidono i più saggi con regole scritte; nell'altra comanda una famiglia nobile perché è nata nobile.",
   "tensione": "la legge contro il sangue: Dotta e Aquila si contendono la pianura bassa"
  },
- "fazione": "guelfo (Dotta) vs Aquila",
+ "fazione": "turchino (Dotta) vs Aquila",
  "popolazione": {
   "gruppi": [
    {
@@ -58,7 +58,7 @@
     ]
    },
    {
-    "nome": "i Contadini del Po",
+    "nome": "i Contadini del Gran Fiume",
     "ruolo": "gente d'acqua e di golena",
     "animali": [
      "anatra",
@@ -75,12 +75,12 @@
  },
  "centri": [
   {
-   "nome": "Bologna (capitale)",
+   "nome": "Savenza (capitale)",
    "coord": [
     11.3426327,
     44.4938203
    ],
-   "ruolo": "doppio: Repubblica della Legge (il Gufo) e Signoria dell'Aquila"
+   "ruolo": "doppio: Repubblica della Legge (il Gufo) e Gran Ducato dell'Aquila"
   },
   {
    "nome": "centro 1",
@@ -238,13 +238,13 @@
    "bruno gufo e pergamena",
    "rosso mattone",
    "oro e nero dell'aquila",
-   "verde golena del Po"
+   "verde golena del Gran Fiume"
   ],
   "atmosfera": "una città di mattoni, portici e libri; oltre, castelli dell'Aquila sul grande fiume",
-  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Pianura Bassa: una città di mattoni, portici e libri; oltre, castelli dell'Aquila sul grande fiume. Animali antropomorfizzati ma riconoscibili come animali; leader: il Gufo (la Dotta) e l'Aquila (la stirpe). Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: bruno gufo e pergamena, rosso mattone, oro e nero dell'aquila, verde golena del Po."
+  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Piana dei Savi: una città di mattoni, portici e libri; oltre, castelli dell'Aquila sul grande fiume. Animali antropomorfizzati ma riconoscibili come animali; leader: il Gufo (la Dotta) e l'Aquila (la stirpe). Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: bruno gufo e pergamena, rosso mattone, oro e nero dell'aquila, verde golena del Gran Fiume."
  },
- "prompt_scrittura_base": "Pianura Bassa — governo: doppio: Repubblica della Legge (il Gufo) e Signoria dell'Aquila (repubblica dei saggi vs aristocrazia di sangue). Due modi vicini: in una città decidono i più saggi con regole scritte; nell'altra comanda una famiglia nobile perché è nata nobile. Carattere: oltre il Po (il grande guado): la città dotta e la casa dell'Aquila, un regno diviso tra legge e sangue. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
- "ruolo_nel_viaggio": "oltre il Po (il grande guado): la città dotta e la casa dell'Aquila, un regno diviso tra legge e sangue",
+ "prompt_scrittura_base": "Piana dei Savi — governo: doppio: Repubblica della Legge (il Gufo) e Gran Ducato dell'Aquila (repubblica dei saggi vs aristocrazia di sangue). Due modi vicini: in una città decidono i più saggi con regole scritte; nell'altra comanda una famiglia nobile perché è nata nobile. Carattere: oltre il Gran Fiume (il grande guado): la città dotta e la casa dell'Aquila, un regno diviso tra legge e sangue. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
+ "ruolo_nel_viaggio": "oltre il Gran Fiume (il grande guado): la città dotta e la casa dell'Aquila, un regno diviso tra legge e sangue",
  "personaggi_legati": [
   {
    "nome": "(libero)",

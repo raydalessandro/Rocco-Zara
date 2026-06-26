@@ -37,17 +37,17 @@
     "mx": 2448
    },
    "laghi": [
-    "Lago Maggiore",
-    "Lago di Como",
-    "Lago di Lugano"
+    "Lago Grande",
+    "Lago di Rivalba",
+    "Lago di Lago Cupo"
    ],
    "fiumi": [
-    "Ticino"
+    "Vesprino"
    ],
    "citta_rovina": [
-    "Varese",
-    "Lugano",
-    "Como"
+    "Vespraviva",
+    "Lago Cupo",
+    "Rivalba"
    ],
    "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
    "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
@@ -74,16 +74,16 @@
     "mx": 2976
    },
    "laghi": [
-    "Lago di Como"
+    "Lago di Rivalba"
    ],
    "fiumi": [
-    "Adda",
-    "Oglio",
+    "Vespràna",
+    "Concàrio",
     "Serio"
    ],
    "citta_rovina": [
-    "Lecco",
-    "Bergamo",
+    "Spondalta",
+    "Saldarocca",
     "Treviolo"
    ],
    "popolo": "solitari d'altura: felini, camosci, rapaci (i monti di Zara)",
@@ -111,11 +111,11 @@
     "mx": 3412
    },
    "laghi": [
-    "Lago d'Idro",
-    "Lago d'Iseo"
+    "Lago d'Lago Alto",
+    "Lago d'Lago Stretto"
    ],
    "fiumi": [
-    "Adda",
+    "Vespràna",
     "Serio"
    ],
    "citta_rovina": [
@@ -148,14 +148,14 @@
     "mx": 3433
    },
    "laghi": [
-    "Lago di Garda"
+    "Lago di Mare di Dentro"
    ],
    "fiumi": [
-    "Adige"
+    "Cimàrio"
    ],
    "citta_rovina": [
     "Rovereto",
-    "Riva del Garda",
+    "Riva del Mare di Dentro",
     "Mori"
    ],
    "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
@@ -184,18 +184,18 @@
    },
    "laghi": [],
    "fiumi": [
-    "Adige"
+    "Cimàrio"
    ],
    "citta_rovina": [
-    "Trento",
+    "Cimalta",
     "Valdagno",
     "Thiene"
    ],
    "popolo": "—",
    "potere": "—",
-   "tradizioni": "le Marche dell'Est — oltre il Garda",
+   "tradizioni": "le Marche dell'Est — oltre il Mare di Dentro",
    "palette": "—",
-   "confine": "le Marche dell'Est — oltre il Garda"
+   "confine": "le Marche dell'Est — oltre il Mare di Dentro"
   },
   {
    "code": "A2",
@@ -218,16 +218,16 @@
    },
    "laghi": [],
    "fiumi": [
-    "Po"
+    "Gran Fiume"
    ],
    "citta_rovina": [
-    "Pavia",
+    "Bassacorte",
     "Monza",
-    "Milano"
+    "Anguicorte"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -251,19 +251,19 @@
    },
    "laghi": [],
    "fiumi": [
-    "Adda",
-    "Oglio",
-    "Po",
+    "Vespràna",
+    "Concàrio",
+    "Gran Fiume",
     "Serio"
    ],
    "citta_rovina": [
-    "Piacenza",
+    "Guadserpe",
     "Lodi",
-    "Trezzo sull'Adda"
+    "Trezzo sull'Vespràna"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -286,20 +286,20 @@
     "mx": 1114
    },
    "laghi": [
-    "Lago di Garda"
+    "Lago di Mare di Dentro"
    ],
    "fiumi": [
-    "Oglio",
-    "Po"
+    "Concàrio",
+    "Gran Fiume"
    ],
    "citta_rovina": [
-    "Cremona",
-    "Brescia",
+    "Spiranova",
+    "Forterocca",
     "Travagliato"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -322,19 +322,19 @@
     "mx": 1208
    },
    "laghi": [
-    "Lago di Garda"
+    "Lago di Mare di Dentro"
    ],
    "fiumi": [
-    "Adige",
-    "Mincio",
-    "Oglio",
-    "Po",
+    "Cimàrio",
+    "Serpàna",
+    "Concàrio",
+    "Gran Fiume",
     "Secchia"
    ],
    "citta_rovina": [
-    "Verona",
-    "Mantova",
-    "Villafranca di Verona"
+    "Mastignana",
+    "Cortacqua",
+    "Villafranca di Mastignana"
    ],
    "popolo": "genti di riva: pescatori, traghettatori, uccelli d'acqua",
    "potere": "equilibrio fragile tra le sponde; il lago e' frontiera e ponte",
@@ -362,19 +362,19 @@
    },
    "laghi": [],
    "fiumi": [
-    "Adige",
-    "Po"
+    "Cimàrio",
+    "Gran Fiume"
    ],
    "citta_rovina": [
-    "Vicenza",
+    "Bassalba",
     "Zevio",
     "Torri di Quartesolo"
    ],
    "popolo": "—",
    "potere": "—",
-   "tradizioni": "le Marche dell'Est — oltre il Garda",
+   "tradizioni": "le Marche dell'Est — oltre il Mare di Dentro",
    "palette": "—",
-   "confine": "le Marche dell'Est — oltre il Garda"
+   "confine": "le Marche dell'Est — oltre il Mare di Dentro"
   },
   {
    "code": "A3",
@@ -460,11 +460,11 @@
    },
    "laghi": [],
    "fiumi": [
-    "Po",
+    "Gran Fiume",
     "Secchia"
    ],
    "citta_rovina": [
-    "Parma",
+    "Savialba",
     "Viadana",
     "Traversetolo"
    ],
@@ -495,17 +495,17 @@
    "laghi": [],
    "fiumi": [
     "Panaro",
-    "Po",
+    "Gran Fiume",
     "Secchia"
    ],
    "citta_rovina": [
-    "Reggio Emilia",
-    "Modena",
+    "Savina Piana dei Savi",
+    "Cartèa",
     "Vignola"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -530,17 +530,17 @@
    "laghi": [],
    "fiumi": [
     "Panaro",
-    "Po",
-    "Reno"
+    "Gran Fiume",
+    "Dottàrio"
    ],
    "citta_rovina": [
-    "Ferrara",
-    "Bologna",
+    "Aquilara",
+    "Savenza",
     "Zola Predosa"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -603,7 +603,7 @@
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -631,7 +631,7 @@
    ],
    "citta_rovina": [
     "Massa",
-    "Lucca",
+    "Muralba",
     "Viareggio"
    ],
    "popolo": "creature della foresta fitta, schive e antiche",
@@ -661,11 +661,11 @@
    "laghi": [],
    "fiumi": [
     "Panaro",
-    "Reno"
+    "Dottàrio"
    ],
    "citta_rovina": [
-    "Prato",
-    "Pistoia",
+    "Pratoleone",
+    "Pietrigna",
     "Vinci"
    ],
    "popolo": "creature della foresta fitta, schive e antiche",
@@ -694,10 +694,10 @@
    },
    "laghi": [],
    "fiumi": [
-    "Reno"
+    "Dottàrio"
    ],
    "citta_rovina": [
-    "Firenze",
+    "Leonalba",
     "Vaiano",
     "Sesto Fiorentino"
    ],
@@ -758,7 +758,7 @@
    "citta_rovina": [],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -783,13 +783,13 @@
    "laghi": [],
    "fiumi": [],
    "citta_rovina": [
-    "Pisa",
-    "Livorno",
+    "Marleone",
+    "Marlonga",
     "Rosignano Solvay"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -814,13 +814,13 @@
    "laghi": [],
    "fiumi": [],
    "citta_rovina": [
-    "Volterra",
+    "le Pietre del Leone",
     "Santa Maria a Monte",
-    "Santa Croce sull'Arno"
+    "Santa Croce sull'Leonàrio"
    ],
    "popolo": "grandi pascolatori e branchi di pianura (l'aperto di Rocco)",
    "potere": "le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi",
-   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Po",
+   "tradizioni": "la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume",
    "palette": "oro, ocra, verde secco, azzurro dei fiumi"
   },
   {
@@ -845,7 +845,7 @@
    "laghi": [],
    "fiumi": [],
    "citta_rovina": [
-    "Siena",
+    "Pietralupa",
     "Terranuova Bracciolini",
     "San Giovanni Valdarno"
    ],

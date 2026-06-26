@@ -12,7 +12,7 @@ La **geometria/canone non cambia**: cambiano solo i nomi.
 | Luogo Antico | la pietra che ricorda, più vecchia dei regni | — |
 | i primi | coscienza addormentata (mai nominata) | — *(forse senza nome)* |
 | il regno dei riflessi / pelli / gare … | i principi calviniani dei regni | — |
-| Como, Milano, Brescia, Bologna, Firenze… | le città-rovina / capitali | — |
+| Rivalba, Anguicorte, Forterocca, Savenza, Leonalba… | le città-rovina / capitali | — |
 | Toraki | il fratello, tigre bianca (Baihu/Byakko) | — |
 
 > Regola: ogni nome nostro deve essere **concreto e sensoriale** (pietra, nodo, riva,
@@ -21,10 +21,10 @@ La **geometria/canone non cambia**: cambiano solo i nomi.
 ## Nomi di lavoro della Serpe (da rifinire nel lessico)
 | etichetta di lavoro | chi è | nome nostro |
 |---|---|---|
-| Viscardo, il Gran Biscione | il Signore della Serpe | — |
+| Viscardo, il Gran Serpe | il Signore della Serpe | — |
 | Bissa, la giovane Vipera | l'erede | — |
 | Aspide | consigliere di corte | — |
-| il Mastino | vassallo dei valichi (Verona) | — |
+| il Mastino | vassallo dei valichi (Mastignana) | — |
 | Artiglio (Falco esattore) | inseguitore ricorrente | — |
 | Cècca (Gazza) | la spia | — |
 | Sòrcio (Ratto) | contrabbando/voci, ambiguo | — |

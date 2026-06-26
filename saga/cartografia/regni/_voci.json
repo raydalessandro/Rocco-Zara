@@ -1,12 +1,12 @@
 {
- "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali",
+ "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali",
  "regni": {
   "1": {
    "nome": "laghi_occidente",
    "voci": {
     "i Custodi": {
-     "modello": "Plinio il Vecchio (naturalista, figlio di Como)",
-     "tipo_modello": "figura storica",
+     "modello": "naturalista-anziano (osservativo, enciclopedico, latineggiante)",
+     "tipo_modello": "registro",
      "registro": "osservativo, enciclopedico, pacato, un filo latineggiante",
      "tratti": [
       "cataloga ciò che vede",
@@ -16,7 +16,7 @@
      "in_rima": false,
      "esempio_in_voce": "Ho osservato che il lago, all'alba, rende ciò che la notte gli affida: anche la memoria fa così.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "la Gente delle Rive": {
      "modello": "proverbio dei pescatori (tradizione popolare)",
@@ -29,7 +29,7 @@
      "in_rima": false,
      "esempio_in_voce": "Rete annodata stretta, pesce sicuro; parola annodata stretta, patto sicuro.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "il Popolo del Bosco": {
      "modello": "parlata venatoria (cacciatori e sentieristi)",
@@ -42,7 +42,7 @@
      "in_rima": false,
      "esempio_in_voce": "Il sentiero giusto non si grida: si segue.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "le Sentinelle d'Altura": {
      "modello": "laconismo montano",
@@ -55,7 +55,7 @@
      "in_rima": false,
      "esempio_in_voce": "Vista una colonna di fumo a nord. Riferisco. Resto.",
      "intensita": "media (per sottrazione)",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "gli Ospiti e i Senza-riflesso": {
      "modello": "voce forestiera (ereditata dal luogo d'origine)",
@@ -86,7 +86,7 @@
      "in_rima": false,
      "esempio_in_voce": "Giuro; e nel giuro non sono sola: chi tocca uno, ci tocca tutti.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "i Giurati": {
      "modello": "parlata schietta del soldato-contadino di confine",
@@ -99,11 +99,11 @@
      "in_rima": false,
      "esempio_in_voce": "Detto è detto. Il cordone tiene.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "Gente delle Conche": {
-     "modello": "Arlecchino e Brighella (maschere bergamasche)",
-     "tipo_modello": "maschera",
+     "modello": "maschere comiche (servi svelti, furbi-bonari)",
+     "tipo_modello": "registro comico",
      "registro": "terragno, svelto, comico, furbo-bonario",
      "tratti": [
       "battuta pronta",
@@ -113,10 +113,10 @@
      "in_rima": false,
      "esempio_in_voce": "Io? Io zappo e taccio — ma il mio vino, quello sì che chiacchiera per me.",
      "intensita": "molto caratterizzata (comica)",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
-    "Montanari del Garda": {
-     "modello": "laconismo d'altura (variante del Garda)",
+    "Montanari del Mare di Dentro": {
+     "modello": "laconismo d'altura (variante del Mare di Dentro)",
      "tipo_modello": "tradizione",
      "registro": "secco, meteorologico, sentenzioso",
      "tratti": [
@@ -126,7 +126,7 @@
      "in_rima": false,
      "esempio_in_voce": "Nuvola bassa, lingua corta.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     }
    }
   },
@@ -134,7 +134,7 @@
    "nome": "pianura_alta",
    "voci": {
     "il Signore e la Corte": {
-     "modello": "registro machiavellico di corte",
+     "modello": "registro freddo di corte (calcolatore, aforistico)",
      "tipo_modello": "tradizione/figura",
      "registro": "liscio, freddo, aforistico, mai una parola di troppo",
      "tratti": [
@@ -144,10 +144,10 @@
      "in_rima": false,
      "esempio_in_voce": "Chi sale cambia pelle; chi resta, la perde. Scegliete con calma.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "i Vassalli": {
-     "modello": "Catullo (veronese) e la boria cavalleresca scaligera",
+     "modello": "vassallo altero e passionale (boria cavalleresca)",
      "tipo_modello": "figura storica/tradizione",
      "registro": "passionale, sprezzante, fiero (da Mastino)",
      "tratti": [
@@ -157,10 +157,10 @@
      "in_rima": false,
      "esempio_in_voce": "Mordo una volta sola, ma non lascio.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "Popolo dell'Aperto": {
-     "modello": "Bonvesin de la Riva (volgare milanese, didascalico) + proverbio bracciante",
+     "modello": "bracciante piano e didascalico (+ proverbio)",
      "tipo_modello": "figura storica/tradizione",
      "registro": "piano, paziente, un po' brontolone",
      "tratti": [
@@ -170,7 +170,7 @@
      "in_rima": false,
      "esempio_in_voce": "Tiriamo l'aratro e la lingua corta: tanto, in cima, comanda la Serpe.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "Mercanti delle Vie": {
      "modello": "pratica di mercatura + parlantina da fiera",
@@ -183,7 +183,7 @@
      "in_rima": false,
      "esempio_in_voce": "Notizia fresca, prezzo giusto: la verità si paga con un'altra verità.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     }
    }
   },
@@ -191,8 +191,8 @@
    "nome": "pianura_bassa",
    "voci": {
     "i Dotti": {
-     "modello": "il Dottor Balanzone (maschera bolognese)",
-     "tipo_modello": "maschera",
+     "modello": "dottore pomposo (pseudo-dotto, latineggiante)",
+     "tipo_modello": "registro comico",
      "registro": "pomposo, pseudo-dotto, infarcito di latino",
      "tratti": [
       "'ergo', 'ut ita dicam'",
@@ -202,10 +202,10 @@
      "in_rima": false,
      "esempio_in_voce": "Ergo, ut ita dicam: la cosa è chiara a chi sa leggere — dunque taccia chi non ha letto.",
      "intensita": "molto caratterizzata (comica; all'occorrenza seria)",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "la Casa dell'Aquila": {
-     "modello": "ottava rima ariostesca/tassiana (corte estense di Ferrara)",
+     "modello": "epica cavalleresca in ottava rima (corte dell'Aquila)",
      "tipo_modello": "tradizione/figura",
      "registro": "epico-cavalleresco, alto, in rima",
      "tratti": [
@@ -215,9 +215,9 @@
      "in_rima": "ottava rima",
      "esempio_in_voce": "Di nobil sangue è l'ala che vi parla, / e dove posa l'occhio il cielo cede; / chi nasce in alto impara a non piegarla: / l'Aquila non domanda — l'Aquila vede.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
-    "Contadini del Po": {
+    "Contadini del Gran Fiume": {
      "modello": "parlata di golena (proverbio d'acqua e d'argine)",
      "tipo_modello": "tradizione",
      "registro": "umido, paziente, fatalista-bonario",
@@ -226,9 +226,9 @@
       "umorismo basso e saggio"
      ],
      "in_rima": false,
-     "esempio_in_voce": "Quando il Po vuole, il Po prende: noi s'alza l'argine e s'abbassa la testa.",
+     "esempio_in_voce": "Quando il Gran Fiume vuole, il Gran Fiume prende: noi s'alza l'argine e s'abbassa la testa.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     }
    }
   },
@@ -246,7 +246,7 @@
      "in_rima": false,
      "esempio_in_voce": "Dì il tuo nome, piccolo: il bosco lo terrà più a lungo di te.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "i Solitari": {
      "modello": "laconismo schivo e diffidente",
@@ -259,7 +259,7 @@
      "in_rima": false,
      "esempio_in_voce": "Passa. E non guardarmi negli occhi.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "Creature della Rovina": {
      "modello": "filastrocca notturna (cantilena delle rovine)",
@@ -272,7 +272,7 @@
      "in_rima": "filastrocca",
      "esempio_in_voce": "Pietra che dorme non la svegliare, / chi dice il nome si fa scordare.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "gli Esuli": {
      "modello": "voce ereditata dal regno d'origine",
@@ -293,7 +293,7 @@
    "nome": "toscana",
    "voci": {
     "Cittadini del Leone": {
-     "modello": "Dante e il fiorentino civile (con punte machiavelliche)",
+     "modello": "voce civile alta (fiera, tagliente, in terzina)",
      "tipo_modello": "figura storica/tradizione",
      "registro": "alto, fiero, tagliente, capace di terzina",
      "tratti": [
@@ -302,22 +302,22 @@
       "può parlare in terza rima"
      ],
      "in_rima": "terza rima (facoltativa)",
-     "esempio_in_voce": "Firenze parla e l'arte le risponde: / chi fa più bello tiene la ragione, / e ride di chi al merito s'asconde.",
+     "esempio_in_voce": "Leonalba parla e l'arte le risponde: / chi fa più bello tiene la ragione, / e ride di chi al merito s'asconde.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "la Lupa e i suoi": {
-     "modello": "Cecco Angiolieri (senese, comico-realista)",
-     "tipo_modello": "figura storica",
+     "modello": "beffardo-amaro (comico-realista, orgoglioso)",
+     "tipo_modello": "registro",
      "registro": "brontolone, sardonico, orgoglioso-amaro",
      "tratti": [
       "lamento spavaldo",
       "vanto per dispetto"
      ],
      "in_rima": false,
-     "esempio_in_voce": "Firenze ride? Rida pure: Siena è più antica, e l'orgoglio non si compra al mercato.",
+     "esempio_in_voce": "Leonalba ride? Rida pure: Pietralupa è più antica, e l'orgoglio non si compra al mercato.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "la Pantera libera": {
      "modello": "discrezione mercantile lucchese (la libertà che non si vanta)",
@@ -328,12 +328,12 @@
       "conta invece di gridare"
      ],
      "in_rima": false,
-     "esempio_in_voce": "Lucca non grida la sua libertà: la conta, in seta e in silenzio.",
+     "esempio_in_voce": "Muralba non grida la sua libertà: la conta, in seta e in silenzio.",
      "intensita": "media",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
     "Gente del Mare": {
-     "modello": "parlata marinaresca + nitidezza 'galileiana' (Pisa)",
+     "modello": "parlata marinaresca + nitidezza misurata (Marleone)",
      "tipo_modello": "tradizione/figura",
      "registro": "salato, pratico, preciso",
      "tratti": [
@@ -343,7 +343,7 @@
      "in_rima": false,
      "esempio_in_voce": "Il mare non mente e non perdona: misura due volte, salpa una.",
      "intensita": "molto caratterizzata",
-     "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     }
    }
   }

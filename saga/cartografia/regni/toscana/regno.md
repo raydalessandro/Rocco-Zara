@@ -1,6 +1,6 @@
-# Toscana — il Marzocco (il Leone)
+# Terre del Leone di Pietra — il Leone di Pietra (il Leone)
 
-*Libertà e gloria — e: più antica di Roma* · capitale **Firenze** · ~17,144 km² · fazione: guelfo (Leone) con rivali ghibellini (Lupa, Mare)
+*Libertà e gloria — e: più antica di Roma* · capitale **Leonalba** · ~17,144 km² · fazione: turchino (Leone) con rivali vermigli (Lupa, Mare)
 
 ## Leader → governo
 Repubblica (con città-repubbliche rivali) (democrazia cittadina + rivalità tra città). I cittadini si riuniscono, discutono ed eleggono i loro reggitori; ma le città rivali (lupa, pantera, mare) fanno lo stesso e si contendono il primato.
@@ -10,10 +10,10 @@ Repubblica (con città-repubbliche rivali) (democrazia cittadina + rivalità tra
 Tensione: repubblica gloriosa ma divisa da fazioni e rivalità tra città: la libertà rischia di mangiarsi da sola.
 
 ## Popolazione (a cascata)
-- **i Cittadini del Leone** — artigiani, artisti, mercanti orgogliosi (Firenze) (leone)
-- **la Lupa e i suoi** — fieri rivali del sud (Siena) (lupo, lupa)
-- **la Pantera libera** — gelosi della propria libertà (Lucca) (pantera)
-- **la Gente del Mare** — marinai e pescatori d'occidente (Pisa) (gabbiano, lontra di mare, cormorano)
+- **i Cittadini del Leone** — artigiani, artisti, mercanti orgogliosi (Leonalba) (leone)
+- **la Lupa e i suoi** — fieri rivali del sud (Pietralupa) (lupo, lupa)
+- **la Pantera libera** — gelosi della propria libertà (Muralba) (pantera)
+- **la Gente del Mare** — marinai e pescatori d'occidente (Marleone) (gabbiano, lontra di mare, cormorano)
 
 Valori: gloria civica, bellezza e arte, libertà, (e l'ombra: orgoglio e fazione).
 

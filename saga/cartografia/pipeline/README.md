@@ -1,7 +1,7 @@
 # cartografia / pipeline — zonegen
 
 Generatore (quasi)automatico di mappe + geojson per zone del mondo di Rocco & Zara.
-Base reale: corridoio **Prealpi → Toscana** (Como/Maggiore → Garda → Appennino tosco-emiliano).
+Base reale: corridoio **Muro del Nord → Terre del Leone di Pietra** (Rivalba/Lago Grande → Mare di Dentro → Gobbe del Sud tosco-emiliano).
 
 ## Uso
     python3 pipeline/zonegen.py NOME  W S E N

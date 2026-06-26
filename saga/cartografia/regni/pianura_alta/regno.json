@@ -1,6 +1,6 @@
 {
  "id": "pianura_alta",
- "nome": "Pianura Alta",
+ "nome": "Gran Ducato",
  "bbox": [
   8.55,
   45.0,
@@ -9,14 +9,14 @@
  ],
  "area_km2": 15746,
  "capitale": {
-  "nome": "Milano",
+  "nome": "Anguicorte",
   "coord": [
    9.1896346,
    45.4641943
   ]
  },
  "leader": {
-  "archetipo": "il Biscione (la grande Serpe)",
+  "archetipo": "la Serpe (la grande Serpe)",
   "tratti": [
    "astuta",
    "paziente",
@@ -27,13 +27,13 @@
   "titolo": "il Signore Serpe e la sua Corte"
  },
  "governo": {
-  "forma": "Signoria",
+  "forma": "Gran Ducato",
   "tipo": "piramidale (un solo Signore al vertice)",
   "come_si_decide": "decide il Signore Serpe; sotto, una piramide di vassalli che eseguono e raccolgono tributi",
   "spiegazione_bambini": "Qui comanda uno solo, il Signore Serpe, e tutti gli altri stanno sotto di lui come in una piramide.",
   "tensione": "la Serpe vuole inghiottire i regni vicini; dentro, chi sta in basso sogna di salire — e qualcuno fugge nella Selva"
  },
- "fazione": "ghibellino",
+ "fazione": "vermiglio",
  "popolazione": {
   "gruppi": [
    {
@@ -48,7 +48,7 @@
     "nome": "i Vassalli",
     "ruolo": "esecutori e signori minori delle città soggette",
     "animali": [
-     "mastino (Verona)",
+     "mastino (Mastignana)",
      "falco",
      "cane da guardia"
     ]
@@ -82,12 +82,12 @@
  },
  "centri": [
   {
-   "nome": "Milano (capitale)",
+   "nome": "Anguicorte (capitale)",
    "coord": [
     9.1896346,
     45.4641943
    ],
-   "ruolo": "Signoria"
+   "ruolo": "Gran Ducato"
   },
   {
    "nome": "centro 1",
@@ -252,9 +252,9 @@
    "oro dei campi"
   ],
   "atmosfera": "la grande pianura dorata e ordinata, canali dritti, una corte fastosa e fredda",
-  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Pianura Alta: la grande pianura dorata e ordinata, canali dritti, una corte fastosa e fredda. Animali antropomorfizzati ma riconoscibili come animali; leader: il Biscione (la grande Serpe). Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: verde serpe e oro, nero, rosso imperiale, oro dei campi."
+  "prompt_immagine_base": "Illustrazione per libro per bambini, acquerello caldo. Gran Ducato: la grande pianura dorata e ordinata, canali dritti, una corte fastosa e fredda. Animali antropomorfizzati ma riconoscibili come animali; leader: la Serpe (la grande Serpe). Niente esseri umani; eventuali rovine antiche coperte di muschio. Palette: verde serpe e oro, nero, rosso imperiale, oro dei campi."
  },
- "prompt_scrittura_base": "Pianura Alta — governo: Signoria (piramidale (un solo Signore al vertice)). Qui comanda uno solo, il Signore Serpe, e tutti gli altri stanno sotto di lui come in una piramide. Carattere: il grande aperto sotto la Serpe: la patria di Rocco e la potenza che incombe sul viaggio. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
+ "prompt_scrittura_base": "Gran Ducato — governo: Gran Ducato (piramidale (un solo Signore al vertice)). Qui comanda uno solo, il Signore Serpe, e tutti gli altri stanno sotto di lui come in una piramide. Carattere: il grande aperto sotto la Serpe: la patria di Rocco e la potenza che incombe sul viaggio. Tono adatto a un bambino di 5 anni letto col genitore, ma con dinamiche di potere reali leggibili anche da adulti.",
  "ruolo_nel_viaggio": "il grande aperto sotto la Serpe: la patria di Rocco e la potenza che incombe sul viaggio",
  "personaggi_legati": [
   {

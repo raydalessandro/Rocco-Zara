@@ -24,7 +24,7 @@
 - **Cliché schivato:** le rune magiche che brillano, la pietra mistica.
 - **Versione nostra:** regola anti-New-Age già fissata — niente energia, solo **fisico**:
   una pietra **tiepida quando tutto attorno è freddo**, segnata da mani che non erano
-  zampe (coppelle di Lecco, incisioni di Valcamonica — reali). La svolta: ogni Luogo
+  zampe (coppelle di Spondalta, incisioni di le Pietre Incise — reali). La svolta: ogni Luogo
   Antico ha un segno **diverso**, e solo a fine viaggio i segni si rivelano **pezzi di un
   unico disegno** — la **Rete di Indra** resa *letterale*.
 - **Come accumula:** «perché è tiepida?» → «sono tutte tiepide, e i segni si somigliano»
