@@ -1,22 +1,22 @@
-# Società di Pianura Bassa — *inchiostro contro sangue*
+# Società di Piana dei Savi — *inchiostro contro sangue*
 
-> Due modi di ricordare, vicini e nemici. Nella Dotta la legge vive nei libri e vale solo se letta ad alta voce; nelle terre dell'Aquila conta solo il sangue. E sopra entrambi, il Po che ogni anno esonda e ridisegna i confini.
+> Due modi di ricordare, vicini e nemici. Nella Dotta la legge vive nei libri e vale solo se letta ad alta voce; nelle terre dell'Aquila conta solo il sangue. E sopra entrambi, il Gran Fiume che ogni anno esonda e ridisegna i confini.
 
 Usanze:
 - una regola non letta ad alta voce non esiste
 - un dubbio si scioglie con una Disputa pubblica
 - il nome della stirpe apre ogni porta
-- il Po decide i confini, non gli uomini
+- il Gran Fiume decide i confini, non gli uomini
 
 ## Le classi (animali come ceti, metodo Orwell)
 - **i Dotti** (gufo, civetta) — *sapienti e giudici della città dotta*; gufi e civette; decidono con la legge e la parola
-- **la Casa dell'Aquila** (aquila, nibbio) — *la nobiltà che governa per sangue*; aquile e nibbi; comandano Ferrara e Modena per lignaggio
-- **Contadini del Po** (anatra, oca, talpa, garzetta) — *gente d'acqua e di golena*; tengono gli argini e subiscono le piene
+- **la Casa dell'Aquila** (aquila, nibbio) — *la nobiltà che governa per sangue*; aquile e nibbi; comandano Aquilara e Cartèa per lignaggio
+- **Contadini del Gran Fiume** (anatra, oca, talpa, garzetta) — *gente d'acqua e di golena*; tengono gli argini e subiscono le piene
 
 ## Le corporazioni (commerciano fuori → nascono i rapporti tra regni)
 - **i Copisti** — copiano e leggono ad alta voce le leggi. Specialità: una legge senza voce è muta: la danno loro. Commercia con: tutti i regni che vogliono 'registrare' qualcosa — perfino i Tessitori dei laghi, per confronto.
 - **i Disputanti** — risolvono le liti a parole, in pubblico. Specialità: vince chi convince, non chi grida. Commercia con: chiunque abbia una contesa da sciogliere senza spargere sangue.
-- **gli Argini-mastri** — domano il Po. Specialità: conoscono dove l'acqua salirà prima che salga. Commercia con: i regni a valle, che temono le sue piene.
+- **gli Argini-mastri** — domano il Gran Fiume. Specialità: conoscono dove l'acqua salirà prima che salga. Commercia con: i regni a valle, che temono le sue piene.
 
 **Mobilità sociale:** nella Dotta si sale col sapere (uno studente diventa Dotto); nelle terre dell'Aquila quasi nulla: si nasce nobili o no.
 
@@ -29,9 +29,9 @@ es. una giovane civetta Copista che impara a leggere le leggi, o un nibbio della
 - **(libero)** → *i Dotti*: un vecchio gufo Disputante che potrebbe fare da maestro lungo il cammino
 
 ## Zone del regno
-- **Cuore** → Bologna — la Dotta, portici e libri
-- **Spina** → le campagne e la golena del Po
+- **Cuore** → Savenza — la Dotta, portici e libri
+- **Spina** → le campagne e la golena del Gran Fiume
 - **Bosco** → i boschi golenali e i pioppeti
-- **Orlo** → i primi colli dell'Appennino a sud
-- **Soglia** → le terre dell'Aquila (Ferrara, Modena) e il grande guado del Po
-- **Vie** → le strade e il Po stesso, il guado
+- **Orlo** → i primi colli dell'Gobbe del Sud a sud
+- **Soglia** → le terre dell'Aquila (Aquilara, Cartèa) e il grande guado del Gran Fiume
+- **Vie** → le strade e il Gran Fiume stesso, il guado

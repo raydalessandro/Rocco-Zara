@@ -14,13 +14,13 @@
       "nome": "Rocco",
       "specie": "rinoceronte",
       "stato": "protagonista — Forestiero",
-      "note": "specie esotica, non di nessun regno; viene dalla Pianura Alta. Sempre 'fuori posto': è il senso del personaggio."
+      "note": "specie esotica, non di nessun regno; viene dal Gran Ducato. Sempre 'fuori posto': è il senso del personaggio."
     },
     {
       "nome": "Zara",
       "specie": "tigre",
       "stato": "protagonista — Forestiera",
-      "note": "specie esotica, non di nessun regno; ospite nei Laghi d'Occidente. La sua estraneità è il motore del viaggio."
+      "note": "specie esotica, non di nessun regno; ospite nei Laghi del Vespro. La sua estraneità è il motore del viaggio."
     },
     {
       "nome": "Toraki",
@@ -30,11 +30,11 @@
     }
   ],
   "eccezioni": [
-    "leone (Toscana) e leonessa (Laghi d'Oriente): stessa specie in due regni, ammessa perché stemma; arte canonica DISTINTA — leonessa fulva senza criniera vs leone dalla criniera dorata."
+    "leone (Terre del Leone di Pietra) e leonessa (Conca Ruggente): stessa specie in due regni, ammessa perché stemma; arte canonica DISTINTA — leonessa fulva senza criniera vs leone dalla criniera dorata."
   ],
   "regni": {
     "1": {
-      "nome": "Laghi d'Occidente",
+      "nome": "Laghi del Vespro",
       "leader": "lince",
       "specie": [
         {
@@ -137,7 +137,7 @@
       "zone_geografiche": [
         {
           "tipo": "Cuore",
-          "luogo": "Como — il Consiglio del Lago",
+          "luogo": "Rivalba — il Consiglio del Lago",
           "coord": [
             9.08,
             45.81
@@ -145,7 +145,7 @@
         },
         {
           "tipo": "Spina",
-          "luogo": "le Rive dei laghi (Lario, Verbano, Ceresio)",
+          "luogo": "le Rive dei laghi (Lago del Vespro, Verbano, Ceresio)",
           "coord": [
             8.95,
             45.98
@@ -186,7 +186,7 @@
       ]
     },
     "2": {
-      "nome": "Laghi d'Oriente",
+      "nome": "Conca Ruggente",
       "leader": "leonessa",
       "specie": [
         {
@@ -240,7 +240,7 @@
         {
           "specie": "stambecco",
           "zona": "Orlo",
-          "classe": "Montanari del Garda",
+          "classe": "Montanari del Mare di Dentro",
           "ruolo": "gente delle creste",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -248,7 +248,7 @@
         {
           "specie": "gracchio alpino",
           "zona": "Orlo",
-          "classe": "Montanari del Garda",
+          "classe": "Montanari del Mare di Dentro",
           "ruolo": "messaggeri delle vette",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -256,7 +256,7 @@
         {
           "specie": "ermellino",
           "zona": "Orlo",
-          "classe": "Montanari del Garda",
+          "classe": "Montanari del Mare di Dentro",
           "ruolo": "staffette tra i passi",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -264,7 +264,7 @@
       ]
     },
     "3": {
-      "nome": "Pianura Alta",
+      "nome": "Gran Ducato",
       "leader": "biscione",
       "specie": [
         {
@@ -279,7 +279,7 @@
           "specie": "mastino",
           "zona": "Cuore",
           "classe": "i Vassalli",
-          "ruolo": "signori delle città soggette (Verona)",
+          "ruolo": "signori delle città soggette (Mastignana)",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },
@@ -342,7 +342,7 @@
       ]
     },
     "4": {
-      "nome": "Pianura Bassa",
+      "nome": "Piana dei Savi",
       "leader": "gufo + aquila",
       "specie": [
         {
@@ -365,7 +365,7 @@
           "specie": "aquila",
           "zona": "Soglia",
           "classe": "la Casa dell'Aquila",
-          "ruolo": "la stirpe nobile (Ferrara)",
+          "ruolo": "la stirpe nobile (Aquilara)",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },
@@ -380,7 +380,7 @@
         {
           "specie": "anatra",
           "zona": "Spina",
-          "classe": "Contadini del Po",
+          "classe": "Contadini del Gran Fiume",
           "ruolo": "gente di golena",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -388,7 +388,7 @@
         {
           "specie": "oca",
           "zona": "Spina",
-          "classe": "Contadini del Po",
+          "classe": "Contadini del Gran Fiume",
           "ruolo": "sentinelle starnazzanti degli argini",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -396,7 +396,7 @@
         {
           "specie": "talpa",
           "zona": "Spina",
-          "classe": "Contadini del Po",
+          "classe": "Contadini del Gran Fiume",
           "ruolo": "scavatori e canalisti",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -404,7 +404,7 @@
         {
           "specie": "garzetta",
           "zona": "Spina",
-          "classe": "Contadini del Po",
+          "classe": "Contadini del Gran Fiume",
           "ruolo": "pescatori di risaia",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
@@ -490,14 +490,14 @@
       ]
     },
     "6": {
-      "nome": "Toscana",
-      "leader": "leone (Marzocco)",
+      "nome": "Terre del Leone di Pietra",
+      "leader": "leone (Leone di Pietra)",
       "specie": [
         {
           "specie": "leone",
           "zona": "Cuore",
           "classe": "Cittadini del Leone",
-          "ruolo": "il popolo di Firenze: artigiani e artisti",
+          "ruolo": "il popolo di Leonalba: artigiani e artisti",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },
@@ -529,7 +529,7 @@
           "specie": "lupo",
           "zona": "Soglia",
           "classe": "la Lupa e i suoi",
-          "ruolo": "i fieri di Siena",
+          "ruolo": "i fieri di Pietralupa",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },
@@ -537,7 +537,7 @@
           "specie": "pantera",
           "zona": "Soglia",
           "classe": "la Pantera libera",
-          "ruolo": "i gelosi di Lucca",
+          "ruolo": "i gelosi di Muralba",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },
@@ -545,7 +545,7 @@
           "specie": "gabbiano",
           "zona": "Orlo",
           "classe": "la Gente del Mare",
-          "ruolo": "marinai di Pisa",
+          "ruolo": "marinai di Marleone",
           "canone_visivo": "da definire in fase personaggi",
           "variazione_individuale": "da definire in fase personaggi"
         },

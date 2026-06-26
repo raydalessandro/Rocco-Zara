@@ -21,17 +21,17 @@ respira senza che la tensione crolli.
   protagonisti, lo creano lo stesso** — solo per vie ridicole.
 
 **A2. I cliché dei regni, ribaltati** (già *impliciti* nel canone, li formalizziamo):
-- **Pianura Bassa — i Dotti (gufi sapienti):** non il "vecchio gufo saggio". I Dotti
+- **Piana dei Savi — i Dotti (gufi sapienti):** non il "vecchio gufo saggio". I Dotti
   **sanno tutto e non capiscono niente**: hanno trascritto il segreto dei Luoghi Antichi
   ma hanno perso la capacità di *agire*, e litigano all'infinito. Ostacolo **non fisico**:
   attraversare l'assurdità accademica per estrarre la conoscenza. Molto Calvino.
-- **Laghi d'Oriente — la Gente delle Conche (maniera Arlecchino/Brighella):** l'aiuto NON
+- **Conca Ruggente — la Gente delle Conche (maniera delle maschere comiche):** l'aiuto NON
   arriva dal saggio mentore, ma da **servi-imbroglioni e furbi-fortunati** che risolvono
   di sghembo. Comico e intelligente insieme.
 - **Il Mastino (blocca i valichi):** non un bruto, ma **leale fino al tragico** a un
   padrone che non lo merita. "Fa solo il suo dovere": un ostacolo che fa **pena, non
   paura** — e che un giorno potrebbe cedere.
-- **Laghi d'Occidente — "il regno dei riflessi" (lo specchio):** un animale del Bosco che
+- **Laghi del Vespro — "il regno dei riflessi" (lo specchio):** un animale del Bosco che
   è tutto ciò che Zara *finge* di essere (sicuro, a casa, appartenente) → uno specchio che
   la costringe a guardarsi. Il motivo dello specchio è già nel canone: rendiamolo un
   personaggio.

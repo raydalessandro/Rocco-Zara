@@ -64,7 +64,7 @@ dettagli del passato, evoluzione precisa dell'arco lungo.*
 ---
 
 ### Nel mondo (canone cartografo)
-- **Regno ospite**: **Laghi d'Occidente** (la **Lince**, confederazione libera) —
+- **Regno ospite**: **Laghi del Vespro** (la **Lince**, confederazione libera) —
   vive col **Popolo del Bosco**.
 - **Classe**: **Ospiti e Senza-riflesso** — *"il lago non la conosce ancora"*: deve
   fare qualcosa di memorabile per essere **annodata nella rete** e diventare cittadina
@@ -73,7 +73,7 @@ dettagli del passato, evoluzione precisa dell'arco lungo.*
 - **Bioma d'origine**: **foresta** (il bosco di montagna, reskin OSM).
 - **Voce**: *forestiera* — es. «Da noi non si annoda niente: si corre, e si ricorda con
   le zampe.» (`cartografia/regni/_voci.md`).
-- **Origine del viaggio**: la **collina dell'incontro** (B1, Lecco; `cartografia/ORIGINE.md`).
+- **Origine del viaggio**: la **collina dell'incontro** (B1, Spondalta; `cartografia/ORIGINE.md`).
 
 ---
 

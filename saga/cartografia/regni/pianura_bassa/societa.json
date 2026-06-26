@@ -2,12 +2,12 @@
  "regno": "pianura_bassa",
  "principio_calviniano": {
   "nome": "inchiostro contro sangue",
-  "idea": "Due modi di ricordare, vicini e nemici. Nella Dotta la legge vive nei libri e vale solo se letta ad alta voce; nelle terre dell'Aquila conta solo il sangue. E sopra entrambi, il Po che ogni anno esonda e ridisegna i confini.",
+  "idea": "Due modi di ricordare, vicini e nemici. Nella Dotta la legge vive nei libri e vale solo se letta ad alta voce; nelle terre dell'Aquila conta solo il sangue. E sopra entrambi, il Gran Fiume che ogni anno esonda e ridisegna i confini.",
   "regole_dolci": [
    "una regola non letta ad alta voce non esiste",
    "un dubbio si scioglie con una Disputa pubblica",
    "il nome della stirpe apre ogni porta",
-   "il Po decide i confini, non gli uomini"
+   "il Gran Fiume decide i confini, non gli uomini"
   ]
  },
  "classi": [
@@ -21,8 +21,8 @@
     "civetta"
    ],
    "voce": {
-    "modello": "il Dottor Balanzone (maschera bolognese)",
-    "tipo_modello": "maschera",
+    "modello": "dottore pomposo (pseudo-dotto, latineggiante)",
+    "tipo_modello": "registro comico",
     "registro": "pomposo, pseudo-dotto, infarcito di latino",
     "tratti": [
      "'ergo', 'ut ita dicam'",
@@ -32,20 +32,20 @@
     "in_rima": false,
     "esempio_in_voce": "Ergo, ut ita dicam: la cosa è chiara a chi sa leggere — dunque taccia chi non ha letto.",
     "intensita": "molto caratterizzata (comica; all'occorrenza seria)",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
    "nome": "la Casa dell'Aquila",
    "ruolo_sociale": "la nobiltà che governa per sangue",
    "rango": "alto per nascita",
-   "come_vivono": "aquile e nibbi; comandano Ferrara e Modena per lignaggio",
+   "come_vivono": "aquile e nibbi; comandano Aquilara e Cartèa per lignaggio",
    "animali": [
     "aquila",
     "nibbio"
    ],
    "voce": {
-    "modello": "ottava rima ariostesca/tassiana (corte estense di Ferrara)",
+    "modello": "epica cavalleresca in ottava rima (corte dell'Aquila)",
     "tipo_modello": "tradizione/figura",
     "registro": "epico-cavalleresco, alto, in rima",
     "tratti": [
@@ -55,11 +55,11 @@
     "in_rima": "ottava rima",
     "esempio_in_voce": "Di nobil sangue è l'ala che vi parla, / e dove posa l'occhio il cielo cede; / chi nasce in alto impara a non piegarla: / l'Aquila non domanda — l'Aquila vede.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
-   "nome": "Contadini del Po",
+   "nome": "Contadini del Gran Fiume",
    "ruolo_sociale": "gente d'acqua e di golena",
    "rango": "basso",
    "come_vivono": "tengono gli argini e subiscono le piene",
@@ -78,9 +78,9 @@
      "umorismo basso e saggio"
     ],
     "in_rima": false,
-    "esempio_in_voce": "Quando il Po vuole, il Po prende: noi s'alza l'argine e s'abbassa la testa.",
+    "esempio_in_voce": "Quando il Gran Fiume vuole, il Gran Fiume prende: noi s'alza l'argine e s'abbassa la testa.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   }
  ],
@@ -109,7 +109,7 @@
   },
   {
    "nome": "gli Argini-mastri",
-   "mestiere": "domano il Po",
+   "mestiere": "domano il Gran Fiume",
    "specie_tipiche": [
     "talpa",
     "garzetta"
@@ -134,7 +134,7 @@
  "zone": [
   {
    "tipo": "Cuore",
-   "luogo": "Bologna — la Dotta, portici e libri",
+   "luogo": "Savenza — la Dotta, portici e libri",
    "coord": [
     11.34,
     44.49
@@ -142,7 +142,7 @@
   },
   {
    "tipo": "Spina",
-   "luogo": "le campagne e la golena del Po",
+   "luogo": "le campagne e la golena del Gran Fiume",
    "coord": [
     11.0,
     44.86
@@ -158,7 +158,7 @@
   },
   {
    "tipo": "Orlo",
-   "luogo": "i primi colli dell'Appennino a sud",
+   "luogo": "i primi colli dell'Gobbe del Sud a sud",
    "coord": [
     11.05,
     44.38
@@ -166,7 +166,7 @@
   },
   {
    "tipo": "Soglia",
-   "luogo": "le terre dell'Aquila (Ferrara, Modena) e il grande guado del Po",
+   "luogo": "le terre dell'Aquila (Aquilara, Cartèa) e il grande guado del Gran Fiume",
    "coord": [
     11.62,
     44.84
@@ -174,7 +174,7 @@
   },
   {
    "tipo": "Vie",
-   "luogo": "le strade e il Po stesso, il guado",
+   "luogo": "le strade e il Gran Fiume stesso, il guado",
    "coord": [
     11.25,
     44.92

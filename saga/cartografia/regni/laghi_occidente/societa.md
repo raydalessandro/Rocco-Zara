@@ -1,4 +1,4 @@
-# Società dei Laghi d'Occidente — *il regno dei riflessi*
+# Società dei Laghi del Vespro — *il regno dei riflessi*
 
 > Una cosa è vera due volte: una sulla riva, una nell'acqua. Qui non si scrive: si annoda e si rispecchia. La memoria, le leggi e i debiti del regno stanno nelle reti annodate dei Custodi e in ciò che il lago, all'alba, ricorda.
 
@@ -26,10 +26,10 @@ Usanze del regno:
 
 **Rapporti tra classi:** Custodi e Rive si rispettano per servizio reciproco; il Bosco diffida un po' delle Rive (alberi contro acqua); le Sentinelle sono isolate e fiere; gli Ospiti guardati con sospetto, perché la Serpe manda spie travestite.
 
-**Tensione viva:** la Serpe (Milano) vorrebbe imporre la sua scrittura e i suoi tributi; il regno difende il proprio modo 'annodato' di ricordare — chi controlla la memoria controlla il regno.
+**Tensione viva:** la Serpe (Anguicorte) vorrebbe imporre la sua scrittura e i suoi tributi; il regno difende il proprio modo 'annodato' di ricordare — chi controlla la memoria controlla il regno.
 
 ## Come si estrae un personaggio
-un personaggio = regno (Laghi d'Occidente) → classe (es. Popolo del Bosco) → corporazione/comunità (es. i Sentieristi del villaggio dal fuoco verde-rame) → poi individualità. L'individuo eredita valori, mestiere ed estetica del gruppo, e li piega col suo carattere.
+un personaggio = regno (Laghi del Vespro) → classe (es. Popolo del Bosco) → corporazione/comunità (es. i Sentieristi del villaggio dal fuoco verde-rame) → poi individualità. L'individuo eredita valori, mestiere ed estetica del gruppo, e li piega col suo carattere.
 
 - **Zara** → classe *Ospiti e Senza-riflesso*, vive con il Popolo del Bosco. tigre forestiera, giovane: il lago non la conosce ancora, vuole fare qualcosa di memorabile
 - **Rocco** → classe *Ospiti e Senza-riflesso*. arriva dalla pianura; doppiamente estraneo, ma onesto

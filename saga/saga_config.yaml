@@ -17,6 +17,7 @@ config_version: 1
 
 saga:
   id: rocco_e_zara
+  nome_mondo: "le Terre Annodate"
   title: "Rocco & Zara"
   language: it
   format: serie_viaggio        # puntate autoconclusive su trama di fondo, lette come viaggio
@@ -67,15 +68,15 @@ missione:
   meccanica: "un nodo per regno libero, annodato al suo Luogo Antico (rito concreto, EAR a scala episodio)"
   nodi_totali: 5                 # i 5 regni liberi (la Serpe non ha nodo: il suo Luogo è sepolto)
   precursore: toraki             # tigre bianca, fratello di Zara (nome di lavoro; bible/zara.md)
-  antagonista: la_serpe          # Pianura Alta (cartografia/regni/pianura_alta/la_serpe.md)
+  antagonista: la_serpe          # Gran Ducato (cartografia/regni/pianura_alta/la_serpe.md)
   luoghi_antichi: cartografia/luoghi_antichi.md   # i perni reali (uno per regno)
-  terminus: toscana              # dove Toraki aspetta (DEFAULT) — DA CONFERMARE (alt: anello a Lecco)
+  terminus: toscana              # dove Toraki aspetta (DEFAULT) — DA CONFERMARE (alt: anello a Spondalta)
   finale: chiuso                 # la rete si completa; l'ultima pagina sfiora "qualcosa di nuovo", senza dirlo
   rotta:                         # ordine dei nodi lungo il corridoio (= ordine degli archi)
     - laghi_occidente            # 1° nodo (casa)
-    - laghi_oriente              # Valcamonica
-    - pianura_bassa              # Felsina (oltre il Po)
-    - selva_di_mezzo             # Bismantova (tracce di Toraki)
+    - laghi_oriente              # le Pietre Incise
+    - pianura_bassa              # le Rovine Ordinate (oltre il Gran Fiume)
+    - selva_di_mezzo             # l'Altare di Roccia (tracce di Toraki)
     - toscana                    # cuore etrusco (ultimo nodo / Toraki)
   regole_anti_newage:
     - "niente energia/vibrazione/risveglio/connessione cosmica"
@@ -83,12 +84,12 @@ missione:
     - "i primi: mai nominati, mai mostrati, mai animali"
 
 # --- IL MONDO (canone del cartografo; fonte di verità: cartografia/CANONE_GEOGRAFICO.md) ---
-# Base reale: corridoio Prealpi -> Toscana (DEM Terrarium 30m + OSM, riproducibile).
+# Base reale: corridoio Muro del Nord -> Terre del Leone di Pietra (DEM Terrarium 30m + OSM, riproducibile).
 cartografia:
   fonte_verita: cartografia/CANONE_GEOGRAFICO.md
   griglia: "5x5 (colonne A-E ovest->est, righe 1-5 nord->sud)"
-  origine: { id: collina_incontro, terra: B1, place: "monti del lago (Lecco)", ll: [9.415, 45.85],
-             nota: "la collina dell'incontro Rocco&Zara — soglia tra Laghi d'Occidente e Pianura Alta (Serpe)" }
+  origine: { id: collina_incontro, terra: B1, place: "monti del lago (Spondalta)", ll: [9.415, 45.85],
+             nota: "la collina dell'incontro Rocco&Zara — soglia tra Laghi del Vespro e Gran Ducato (Serpe)" }
   # biomi = reskin OSM -> mondo (enum reale usato nei zones/*.geojson)
   biomes: [foresta, savana, acqua, roccia, rovina, umido]
   reskin:                       # OSM -> bioma della saga
@@ -99,12 +100,12 @@ cartografia:
     vetta: roccia               # peak
   # i 6 regni-comuni (specie-stemma + capitale); dettaglio in cartografia/regni/
   regni:
-    - { id: laghi_occidente, nome: "Laghi d'Occidente", stemma: lince,         capitale: Como }
-    - { id: laghi_oriente,   nome: "Laghi d'Oriente",   stemma: leonessa,      capitale: Brescia }
-    - { id: pianura_alta,    nome: "Pianura Alta",       stemma: biscione,      capitale: Milano }
-    - { id: pianura_bassa,   nome: "Pianura Bassa",      stemma: "gufo+aquila", capitale: Bologna }
+    - { id: laghi_occidente, nome: "Laghi del Vespro", stemma: lince,         capitale: Rivalba }
+    - { id: laghi_oriente,   nome: "Conca Ruggente",   stemma: leonessa,      capitale: Forterocca }
+    - { id: pianura_alta,    nome: "Gran Ducato",       stemma: biscione,      capitale: Anguicorte }
+    - { id: pianura_bassa,   nome: "Piana dei Savi",      stemma: "gufo+aquila", capitale: Savenza }
     - { id: selva_di_mezzo,  nome: "Selva di Mezzo",     stemma: cervo,         capitale: "Città-rovina della Selva" }
-    - { id: toscana,         nome: "Toscana",            stemma: leone,         capitale: Firenze }
+    - { id: toscana,         nome: "Terre del Leone di Pietra",            stemma: leone,         capitale: Leonalba }
   # grammatica universale delle 7 zone (regola "punta il dito sul km²")
   zone_grammar: [cuore, spina, bosco, orlo, soglia, vie, rovina]
 

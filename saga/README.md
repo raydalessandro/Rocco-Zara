@@ -15,7 +15,7 @@ ogni episodio riprende dove si era fermato il precedente.
 |---|---|---|
 | `ontologia/` | **Il kernel EAR** — la spina dorsale che *genera* il ragionamento (non un JSON: un'ontologia applicata a tutto). | ✅ posato |
 | `bible/` | Il **canone** di Rocco & Zara: i due protagonisti con i loro archi di saga, le frasi e gli oggetti ricorrenti. | 🟡 seme |
-| `cartografia/` | **Il mondo**: corridoio reale Prealpi→Toscana (DEM+OSM) → **6 regni-comuni** (faunario, società, voci) + **città-rovina**. Origine pinnata a Lecco (B1). | ✅ canone (cartografo) |
+| `cartografia/` | **Il mondo**: corridoio reale Muro del Nord→Terre del Leone di Pietra (DEM+OSM) → **6 regni-comuni** (faunario, società, voci) + **città-rovina**. Origine pinnata a Spondalta (B1). | ✅ canone (cartografo) |
 | `trama/` | La **macchina della trama di fondo**: il grafo degli episodi, gli **archi/nodi** del viaggio lungo, l'**anti-drift**. | 🟡 schema + design |
 | `serializzatore/` | Il **collante** `saga → Seed`: come un nodo-episodio diventa un Seed per il motore Scrivia + l'audit di continuità. | ⬜ spec (M2) |
 | `saga_config.yaml` | Il **canone normativo machine-readable** della saga (enum, vincoli, quote). | 🟡 da completare con il luogo |
@@ -23,8 +23,8 @@ ogni episodio riprende dove si era fermato il precedente.
 ## Ordine di lavoro (deciso con l'autore)
 
 1. **(qui) Impostazione** — kernel portato avanti, struttura pronta, brief scritti.
-2. **Geografia** — ✅ **fatta** (sessione cartografo): corridoio reale Prealpi→Toscana,
-   6 regni-comuni con faunario/società/voci, città-rovina, origine pinnata a **Lecco/B1**.
+2. **Geografia** — ✅ **fatta** (sessione cartografo): corridoio reale Muro del Nord→Terre del Leone di Pietra,
+   6 regni-comuni con faunario/società/voci, città-rovina, origine pinnata a **Spondalta/B1**.
    Fonte di verità: **`cartografia/CANONE_GEOGRAFICO.md`** (+ `cartografia/regni/`,
    `cartografia/ORIGINE.md`). Il geojson per-zona è canone e si committa.
 3. **M1 — Saga config + grafo**: `saga_config.yaml` completo + `trama/saga_graph.json`

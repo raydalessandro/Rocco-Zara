@@ -3,23 +3,23 @@
 > **Regola madre anti‑simbolico:** la Serpe non appare *mai* come "forza", "ombra" o
 > allegoria. Appare sempre come **una di queste facce**. Se in una scena serve "la
 > Serpe", scegli *chi* la incarna lì. Nomi = etichette di lavoro (→ `saga/lessico/`).
-> Modello (per noi autori): la struttura della **signoria viscontea** del Biscione;
+> Modello (per noi autori): la struttura della **signoria viscontea** della Serpe;
 > i personaggi sono animali **inventati**, non figure storiche reali.
 
-## La Casa del Biscione — la signoria della Pianura Alta
+## La Casa della Serpe — la signoria del Gran Ducato
 Una piramide del tributo: tutto scende al vertice (principio *"il regno delle pelli"*).
 
 ### Il vertice (si vedono di rado, decidono tutto)
-- **Viscardo, il Gran Biscione** — il Signore: vecchio, paziente, gelido; "inghiotte i
-  rivali"; muove gli altri e resta nell'ombra della corte. *(voce: registro machiavellico)*
+- **Viscardo, il Gran Serpe** — il Signore: vecchio, paziente, gelido; "inghiotte i
+  rivali"; muove gli altri e resta nell'ombra della corte. *(voce: registro freddo di corte)*
 - **Bissa, la giovane Vipera** — l'erede: ambiziosa, impaziente; vuole provare il proprio
   morso **schiacciando il Cordone**. → tensione di successione = gancio di trama.
 - **Aspide** — il consigliere di corte (vipera): il veleno che sussurra al Signore e tiene
   i fili della rete.
 
 ### I vassalli (signori delle città soggette — i "muri" sul cammino)
-- **il Mastino** (signore di Verona‑reskin, cane mastino): condottiero fiero, tiene i
-  **valichi orientali** (Mincio/Adige); orgoglio che ringhia *(voce alla Catullo/scaligera)*.
+- **il Mastino** (signore di Mastignana‑reskin, cane mastino): condottiero fiero, tiene i
+  **valichi orientali** (Serpàna/Cimàrio); orgoglio che ringhia *(voce alla vassallo altero (boria cavalleresca))*.
   Un blocco da aggirare o piegare, non un simbolo.
 - falchi vassalli minori nelle altre città soggette.
 

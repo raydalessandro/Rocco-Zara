@@ -20,7 +20,7 @@
     "biscia (serpe)"
    ],
    "voce": {
-    "modello": "registro machiavellico di corte",
+    "modello": "registro freddo di corte (calcolatore, aforistico)",
     "tipo_modello": "tradizione/figura",
     "registro": "liscio, freddo, aforistico, mai una parola di troppo",
     "tratti": [
@@ -30,7 +30,7 @@
     "in_rima": false,
     "esempio_in_voce": "Chi sale cambia pelle; chi resta, la perde. Scegliete con calma.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -43,7 +43,7 @@
     "falco"
    ],
    "voce": {
-    "modello": "Catullo (veronese) e la boria cavalleresca scaligera",
+    "modello": "vassallo altero e passionale (boria cavalleresca)",
     "tipo_modello": "figura storica/tradizione",
     "registro": "passionale, sprezzante, fiero (da Mastino)",
     "tratti": [
@@ -53,7 +53,7 @@
     "in_rima": false,
     "esempio_in_voce": "Mordo una volta sola, ma non lascio.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -68,7 +68,7 @@
     "cicogna"
    ],
    "voce": {
-    "modello": "Bonvesin de la Riva (volgare milanese, didascalico) + proverbio bracciante",
+    "modello": "bracciante piano e didascalico (+ proverbio)",
     "tipo_modello": "figura storica/tradizione",
     "registro": "piano, paziente, un po' brontolone",
     "tratti": [
@@ -78,7 +78,7 @@
     "in_rima": false,
     "esempio_in_voce": "Tiriamo l'aratro e la lingua corta: tanto, in cima, comanda la Serpe.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
@@ -98,7 +98,7 @@
     "in_rima": false,
     "esempio_in_voce": "Notizia fresca, prezzo giusto: la verità si paga con un'altra verità.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   }
  ],
@@ -153,7 +153,7 @@
  "zone": [
   {
    "tipo": "Cuore",
-   "luogo": "Milano — la corte della Serpe",
+   "luogo": "Anguicorte — la corte della Serpe",
    "coord": [
     9.19,
     45.46
@@ -185,7 +185,7 @@
   },
   {
    "tipo": "Soglia",
-   "luogo": "il fronte verso il Po a sud e i laghi a nord",
+   "luogo": "il fronte verso il Gran Fiume a sud e i laghi a nord",
    "coord": [
     10.05,
     45.08

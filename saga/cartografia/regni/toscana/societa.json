@@ -13,7 +13,7 @@
  "classi": [
   {
    "nome": "Cittadini del Leone",
-   "ruolo_sociale": "il popolo di Firenze: artigiani, artisti, banditori",
+   "ruolo_sociale": "il popolo di Leonalba: artigiani, artisti, banditori",
    "rango": "alto, civico",
    "come_vivono": "leoni, lepri, istrici, upupe: orgogliosi e geniali",
    "animali": [
@@ -23,7 +23,7 @@
     "upupa"
    ],
    "voce": {
-    "modello": "Dante e il fiorentino civile (con punte machiavelliche)",
+    "modello": "voce civile alta (fiera, tagliente, in terzina)",
     "tipo_modello": "figura storica/tradizione",
     "registro": "alto, fiero, tagliente, capace di terzina",
     "tratti": [
@@ -32,36 +32,36 @@
      "può parlare in terza rima"
     ],
     "in_rima": "terza rima (facoltativa)",
-    "esempio_in_voce": "Firenze parla e l'arte le risponde: / chi fa più bello tiene la ragione, / e ride di chi al merito s'asconde.",
+    "esempio_in_voce": "Leonalba parla e l'arte le risponde: / chi fa più bello tiene la ragione, / e ride di chi al merito s'asconde.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
    "nome": "la Lupa e i suoi",
-   "ruolo_sociale": "i fieri rivali del sud (Siena)",
+   "ruolo_sociale": "i fieri rivali del sud (Pietralupa)",
    "rango": "alto, rivale",
    "come_vivono": "lupi: antichi, orgogliosi, 'più antichi di Roma'",
    "animali": [
     "lupo"
    ],
    "voce": {
-    "modello": "Cecco Angiolieri (senese, comico-realista)",
-    "tipo_modello": "figura storica",
+    "modello": "beffardo-amaro (comico-realista, orgoglioso)",
+    "tipo_modello": "registro",
     "registro": "brontolone, sardonico, orgoglioso-amaro",
     "tratti": [
      "lamento spavaldo",
      "vanto per dispetto"
     ],
     "in_rima": false,
-    "esempio_in_voce": "Firenze ride? Rida pure: Siena è più antica, e l'orgoglio non si compra al mercato.",
+    "esempio_in_voce": "Leonalba ride? Rida pure: Pietralupa è più antica, e l'orgoglio non si compra al mercato.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
    "nome": "la Pantera libera",
-   "ruolo_sociale": "i gelosi della libertà (Lucca)",
+   "ruolo_sociale": "i gelosi della libertà (Muralba)",
    "rango": "alto, appartato",
    "come_vivono": "pantere: chiusi nelle loro mura, liberissimi",
    "animali": [
@@ -76,19 +76,19 @@
      "conta invece di gridare"
     ],
     "in_rima": false,
-    "esempio_in_voce": "Lucca non grida la sua libertà: la conta, in seta e in silenzio.",
+    "esempio_in_voce": "Muralba non grida la sua libertà: la conta, in seta e in silenzio.",
     "intensita": "media",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   },
   {
    "nome": "Gente del Mare",
-   "ruolo_sociale": "marinai e mercanti (Pisa)",
+   "ruolo_sociale": "marinai e mercanti (Marleone)",
    "rango": "medio, aperto al mondo",
    "come_vivono": "gabbiani, cormorani, granchi: la porta sul mare",
    "animali": [],
    "voce": {
-    "modello": "parlata marinaresca + nitidezza 'galileiana' (Pisa)",
+    "modello": "parlata marinaresca + nitidezza misurata (Marleone)",
     "tipo_modello": "tradizione/figura",
     "registro": "salato, pratico, preciso",
     "tratti": [
@@ -98,7 +98,7 @@
     "in_rima": false,
     "esempio_in_voce": "Il mare non mente e non perdona: misura due volte, salpa una.",
     "intensita": "molto caratterizzata",
-    "nota": "stile-modello (la maniera), non citazioni del personaggio storico; le battute sono originali e dette dagli animali"
+    "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
    }
   }
  ],
@@ -140,9 +140,9 @@
   }
  ],
  "mobilita_sociale": "per merito nelle gare e nelle Arti (un artigiano geniale sale); ma le fazioni cittadine pesano",
- "rapporti_tra_classi": "Firenze (Leone) vs Siena (Lupa) vs Lucca (Pantera), rivali fierissimi; Pisa (Mare) guarda fuori; alleanze che cambiano a ogni gara",
+ "rapporti_tra_classi": "Leonalba (Leone) vs Pietralupa (Lupa) vs Muralba (Pantera), rivali fierissimi; Marleone (Mare) guarda fuori; alleanze che cambiano a ogni gara",
  "tensione_viva": "la repubblica gloriosa rischia di spaccarsi nelle fazioni: la meta del viaggio è anche un nido di rivalità e intrighi",
- "estrazione_personaggio": "es. una giovane lepre Fantino di Firenze, o un lupo orgoglioso di Siena",
+ "estrazione_personaggio": "es. una giovane lepre Fantino di Leonalba, o un lupo orgoglioso di Pietralupa",
  "esempi_di_estrazione": [
   {
    "chi": "(libero)",
@@ -153,7 +153,7 @@
  "zone": [
   {
    "tipo": "Cuore",
-   "luogo": "Firenze — il Leone, la Repubblica",
+   "luogo": "Leonalba — il Leone, la Repubblica",
    "coord": [
     11.26,
     43.77
@@ -169,7 +169,7 @@
   },
   {
    "tipo": "Bosco",
-   "luogo": "le selve toscane interne, verso l'Appennino",
+   "luogo": "le selve toscane interne, verso l'Gobbe del Sud",
    "coord": [
     11.5,
     43.92
@@ -177,7 +177,7 @@
   },
   {
    "tipo": "Orlo",
-   "luogo": "la costa e il mare aperto: Pisa",
+   "luogo": "la costa e il mare aperto: Marleone",
    "coord": [
     10.4,
     43.71
@@ -185,7 +185,7 @@
   },
   {
    "tipo": "Soglia",
-   "luogo": "i confini con le rivali Siena e Lucca",
+   "luogo": "i confini con le rivali Pietralupa e Muralba",
    "coord": [
     11.33,
     43.32

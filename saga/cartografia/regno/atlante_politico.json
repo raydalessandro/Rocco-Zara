@@ -1,8 +1,8 @@
 {
  "regni": {
   "1": {
-   "nome": "Laghi d'Occidente",
-   "cap": "Como",
+   "nome": "Laghi del Vespro",
+   "cap": "Rivalba",
    "animale": "la Lince dei laghi",
    "governo": "libero comune di lago",
    "fazione": "conteso",
@@ -10,7 +10,7 @@
    "nota": "rive e monti dell'ovest: cacciatori agili, gente di lago e di bosco — il mondo di Zara",
    "area_km2": 14918,
    "capitale": {
-    "nome": "Como",
+    "nome": "Rivalba",
     "ll": [
      9.0830353,
      45.8115623
@@ -123,16 +123,16 @@
    ]
   },
   "2": {
-   "nome": "Laghi d'Oriente",
-   "cap": "Brescia",
+   "nome": "Conca Ruggente",
+   "cap": "Forterocca",
    "animale": "la Leonessa",
    "governo": "libero comune",
-   "fazione": "guelfo / fieramente libero",
+   "fazione": "turchino / fieramente libero",
    "col": "#6a4c93",
-   "nota": "la Leonessa e Bergamo: città fiere, contese tra il Biscione e l'Aquila",
+   "nota": "la Leonessa e Saldarocca: città fiere, contese tra la Serpe e l'Aquila",
    "area_km2": 24067,
    "capitale": {
-    "nome": "Brescia",
+    "nome": "Forterocca",
     "ll": [
      10.2200214,
      45.5398022
@@ -245,16 +245,16 @@
    ]
   },
   "3": {
-   "nome": "Pianura Alta",
-   "cap": "Milano",
-   "animale": "il Biscione (la grande Serpe)",
-   "governo": "Signoria",
-   "fazione": "ghibellino",
+   "nome": "Gran Ducato",
+   "cap": "Anguicorte",
+   "animale": "la Serpe (la grande Serpe)",
+   "governo": "Gran Ducato",
+   "fazione": "vermiglio",
    "col": "#d9a83a",
    "nota": "la potenza dell'aperto: la Serpe domina la pianura e tiene più città-rovina — il mondo di Rocco",
    "area_km2": 15746,
    "capitale": {
-    "nome": "Milano",
+    "nome": "Anguicorte",
     "ll": [
      9.1896346,
      45.4641943
@@ -371,16 +371,16 @@
    ]
   },
   "4": {
-   "nome": "Pianura Bassa",
-   "cap": "Bologna",
+   "nome": "Piana dei Savi",
+   "cap": "Savenza",
    "animale": "la Dotta (il Gufo)",
-   "governo": "comune dei saggi + Signoria dell'Aquila",
-   "fazione": "guelfo vs Aquila",
+   "governo": "comune dei saggi + Gran Ducato dell'Aquila",
+   "fazione": "turchino vs Aquila",
    "col": "#d97a32",
-   "nota": "oltre il Po: la città dotta e la casa dell'Aquila d'Este (Ferrara, Modena, Reggio)",
+   "nota": "oltre il Gran Fiume: la città dotta e la casa dell'Aquila d'Este (Aquilara, Cartèa, Savina)",
    "area_km2": 26229,
    "capitale": {
-    "nome": "Bologna",
+    "nome": "Savenza",
     "ll": [
      11.3426327,
      44.4938203
@@ -563,16 +563,16 @@
    ]
   },
   "6": {
-   "nome": "Toscana",
-   "cap": "Firenze",
-   "animale": "il Marzocco (il Leone)",
+   "nome": "Terre del Leone di Pietra",
+   "cap": "Leonalba",
+   "animale": "il Leone di Pietra (il Leone)",
    "governo": "Repubblica",
-   "fazione": "guelfo (con rivali ghibellini)",
+   "fazione": "turchino (con rivali vermigli)",
    "col": "#7d8a3a",
-   "nota": "terra delle grandi rivalità: il Leone contro la Lupa (Siena) e la Pantera (Lucca), e Pisa del mare",
+   "nota": "terra delle grandi rivalità: il Leone contro la Lupa (Pietralupa) e la Pantera (Muralba), e Marleone del mare",
    "area_km2": 17144,
    "capitale": {
-    "nome": "Firenze",
+    "nome": "Leonalba",
     "ll": [
      11.2556404,
      43.7697955
@@ -694,21 +694,21 @@
   }
  },
  "emblemi": {
-  "Firenze": "il Leone",
-  "Siena": "la Lupa",
-  "Lucca": "la Pantera",
-  "Pisa": "città del mare",
-  "Brescia": "la Leonessa",
-  "Milano": "il Biscione",
-  "Verona": "il Mastino",
-  "Ferrara": "l'Aquila",
-  "Modena": "l'Aquila",
-  "Bologna": "la Dotta",
-  "Como": "la Lince",
-  "Mantova": "la Corte"
+  "Leonalba": "il Leone",
+  "Pietralupa": "la Lupa",
+  "Muralba": "la Pantera",
+  "Marleone": "città del mare",
+  "Forterocca": "la Leonessa",
+  "Anguicorte": "la Serpe",
+  "Mastignana": "il Mastino",
+  "Aquilara": "l'Aquila",
+  "Cartèa": "l'Aquila",
+  "Savenza": "la Dotta",
+  "Rivalba": "la Lince",
+  "Cortacqua": "la Corte"
  },
  "fazioni": {
-  "guelfi": "partito papale",
-  "ghibellini": "partito imperiale"
+  "turchini": "partito papale",
+  "vermigli": "partito imperiale"
  }
 }

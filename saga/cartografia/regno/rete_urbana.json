@@ -1,7 +1,7 @@
 {
  "nodi": [
   {
-   "name": "Firenze",
+   "name": "Leonalba",
    "lon": 11.2556404,
    "lat": 43.7697955,
    "cell": "E4",
@@ -15,49 +15,49 @@
    "realm": true
   },
   {
-   "name": "Pistoia",
+   "name": "Pietrigna",
    "lon": 10.9174238,
    "lat": 43.9336213,
    "cell": "D4",
    "realm": true
   },
   {
-   "name": "Prato",
+   "name": "Pratoleone",
    "lon": 11.0969262,
    "lat": 43.880598,
    "cell": "D4",
    "realm": true
   },
   {
-   "name": "Siena",
+   "name": "Pietralupa",
    "lon": 11.3316533,
    "lat": 43.3185536,
    "cell": "E5",
    "realm": true
   },
   {
-   "name": "Milano",
+   "name": "Anguicorte",
    "lon": 9.1896346,
    "lat": 45.4641943,
    "cell": "A2",
    "realm": true
   },
   {
-   "name": "Brescia",
+   "name": "Forterocca",
    "lon": 10.2200214,
    "lat": 45.5398022,
    "cell": "C2",
    "realm": true
   },
   {
-   "name": "Cremona",
+   "name": "Spiranova",
    "lon": 10.0248716,
    "lat": 45.1334796,
    "cell": "C2",
    "realm": true
   },
   {
-   "name": "Lecco",
+   "name": "Spondalta",
    "lon": 9.389605,
    "lat": 45.8553764,
    "cell": "B1",
@@ -71,21 +71,21 @@
    "realm": true
   },
   {
-   "name": "Mantova",
+   "name": "Cortacqua",
    "lon": 10.7917191,
    "lat": 45.1566683,
    "cell": "D2",
    "realm": true
   },
   {
-   "name": "Pavia",
+   "name": "Bassacorte",
    "lon": 9.1546375,
    "lat": 45.1860043,
    "cell": "A2",
    "realm": true
   },
   {
-   "name": "Varese",
+   "name": "Vespraviva",
    "lon": 8.8263532,
    "lat": 45.817549,
    "cell": "A1",
@@ -106,21 +106,21 @@
    "realm": true
   },
   {
-   "name": "Trento",
+   "name": "Cimalta",
    "lon": 11.1257601,
    "lat": 46.0664228,
    "cell": "E1",
    "realm": false
   },
   {
-   "name": "Verona",
+   "name": "Mastignana",
    "lon": 10.9924122,
    "lat": 45.4384958,
    "cell": "D2",
    "realm": true
   },
   {
-   "name": "Vicenza",
+   "name": "Bassalba",
    "lon": 11.5478825,
    "lat": 45.5488306,
    "cell": "E2",
@@ -141,84 +141,84 @@
    "realm": true
   },
   {
-   "name": "Modena",
+   "name": "Cartèa",
    "lon": 10.9255707,
    "lat": 44.6458885,
    "cell": "D3",
    "realm": true
   },
   {
-   "name": "Parma",
+   "name": "Savialba",
    "lon": 10.3279843,
    "lat": 44.80153,
    "cell": "C3",
    "realm": true
   },
   {
-   "name": "Reggio Emilia",
+   "name": "Savina Piana dei Savi",
    "lon": 10.6304971,
    "lat": 44.6978389,
    "cell": "D3",
    "realm": true
   },
   {
-   "name": "Ferrara",
+   "name": "Aquilara",
    "lon": 11.6186451,
    "lat": 44.8372737,
    "cell": "E3",
    "realm": true
   },
   {
-   "name": "Bologna",
+   "name": "Savenza",
    "lon": 11.3426327,
    "lat": 44.4938203,
    "cell": "E3",
    "realm": true
   },
   {
-   "name": "Lugano",
+   "name": "Lago Cupo",
    "lon": 8.9512275,
    "lat": 46.0038007,
    "cell": "A1",
    "realm": true
   },
   {
-   "name": "Pisa",
+   "name": "Marleone",
    "lon": 10.4018624,
    "lat": 43.7159395,
    "cell": "C5",
    "realm": true
   },
   {
-   "name": "Livorno",
+   "name": "Marlonga",
    "lon": 10.3091256,
    "lat": 43.5507317,
    "cell": "C5",
    "realm": true
   },
   {
-   "name": "Lucca",
+   "name": "Muralba",
    "lon": 10.502876,
    "lat": 43.8428381,
    "cell": "C4",
    "realm": true
   },
   {
-   "name": "Piacenza",
+   "name": "Guadserpe",
    "lon": 9.6947461,
    "lat": 45.0534751,
    "cell": "B2",
    "realm": true
   },
   {
-   "name": "Bergamo",
+   "name": "Saldarocca",
    "lon": 9.6698727,
    "lat": 45.6944947,
    "cell": "B1",
    "realm": true
   },
   {
-   "name": "Como",
+   "name": "Rivalba",
    "lon": 9.0830353,
    "lat": 45.8115623,
    "cell": "A1",
@@ -228,7 +228,7 @@
  "vie": [
   {
    "a": "Massa",
-   "b": "Lucca",
+   "b": "Muralba",
    "i": 1,
    "j": 28,
    "km": 36.2,
@@ -237,7 +237,7 @@
   },
   {
    "a": "Monza",
-   "b": "Bergamo",
+   "b": "Saldarocca",
    "i": 13,
    "j": 30,
    "km": 33.1,
@@ -245,8 +245,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
-   "b": "Trento",
+   "a": "Forterocca",
+   "b": "Cimalta",
    "i": 6,
    "j": 15,
    "km": 91.4,
@@ -254,8 +254,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Pisa",
-   "b": "Livorno",
+   "a": "Marleone",
+   "b": "Marlonga",
    "i": 26,
    "j": 27,
    "km": 19.8,
@@ -263,8 +263,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
-   "b": "Bergamo",
+   "a": "Forterocca",
+   "b": "Saldarocca",
    "i": 6,
    "j": 30,
    "km": 46.1,
@@ -272,8 +272,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Verona",
-   "b": "Vicenza",
+   "a": "Mastignana",
+   "b": "Bassalba",
    "i": 16,
    "j": 17,
    "km": 45.0,
@@ -281,8 +281,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Cremona",
-   "b": "Piacenza",
+   "a": "Spiranova",
+   "b": "Guadserpe",
    "i": 7,
    "j": 29,
    "km": 27.4,
@@ -291,7 +291,7 @@
   },
   {
    "a": "Genova",
-   "b": "Piacenza",
+   "b": "Guadserpe",
    "i": 18,
    "j": 29,
    "km": 93.7,
@@ -299,8 +299,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Parma",
-   "b": "Reggio Emilia",
+   "a": "Savialba",
+   "b": "Savina Piana dei Savi",
    "i": 21,
    "j": 22,
    "km": 26.5,
@@ -308,7 +308,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Milano",
+   "a": "Anguicorte",
    "b": "Monza",
    "i": 5,
    "j": 13,
@@ -317,8 +317,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Varese",
-   "b": "Lugano",
+   "a": "Vespraviva",
+   "b": "Lago Cupo",
    "i": 12,
    "j": 25,
    "km": 22.9,
@@ -326,8 +326,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Varese",
-   "b": "Como",
+   "a": "Vespraviva",
+   "b": "Rivalba",
    "i": 12,
    "j": 31,
    "km": 19.9,
@@ -335,8 +335,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Siena",
-   "b": "Livorno",
+   "a": "Pietralupa",
+   "b": "Marlonga",
    "i": 4,
    "j": 27,
    "km": 86.5,
@@ -345,7 +345,7 @@
   },
   {
    "a": "Lodi",
-   "b": "Pavia",
+   "b": "Bassacorte",
    "i": 9,
    "j": 11,
    "km": 30.7,
@@ -354,7 +354,7 @@
   },
   {
    "a": "Busto Arsizio",
-   "b": "Como",
+   "b": "Rivalba",
    "i": 14,
    "j": 31,
    "km": 28.5,
@@ -363,7 +363,7 @@
   },
   {
    "a": "La Spezia",
-   "b": "Parma",
+   "b": "Savialba",
    "i": 19,
    "j": 21,
    "km": 87.4,
@@ -371,8 +371,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Lecco",
-   "b": "Bergamo",
+   "a": "Spondalta",
+   "b": "Saldarocca",
    "i": 8,
    "j": 30,
    "km": 28.2,
@@ -380,8 +380,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Mantova",
-   "b": "Parma",
+   "a": "Cortacqua",
+   "b": "Savialba",
    "i": 10,
    "j": 21,
    "km": 53.8,
@@ -390,7 +390,7 @@
   },
   {
    "a": "Lodi",
-   "b": "Piacenza",
+   "b": "Guadserpe",
    "i": 9,
    "j": 29,
    "km": 32.6,
@@ -408,7 +408,7 @@
   },
   {
    "a": "Massa",
-   "b": "Parma",
+   "b": "Savialba",
    "i": 1,
    "j": 21,
    "km": 86.4,
@@ -416,8 +416,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Mantova",
-   "b": "Reggio Emilia",
+   "a": "Cortacqua",
+   "b": "Savina Piana dei Savi",
    "i": 10,
    "j": 22,
    "km": 52.6,
@@ -425,8 +425,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Pistoia",
-   "b": "Modena",
+   "a": "Pietrigna",
+   "b": "Cartèa",
    "i": 2,
    "j": 20,
    "km": 79.2,
@@ -434,8 +434,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Cremona",
-   "b": "Mantova",
+   "a": "Spiranova",
+   "b": "Cortacqua",
    "i": 7,
    "j": 10,
    "km": 60.2,
@@ -443,8 +443,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Trento",
-   "b": "Vicenza",
+   "a": "Cimalta",
+   "b": "Bassalba",
    "i": 15,
    "j": 17,
    "km": 66.2,
@@ -452,8 +452,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Lugano",
-   "b": "Como",
+   "a": "Lago Cupo",
+   "b": "Rivalba",
    "i": 25,
    "j": 31,
    "km": 23.7,
@@ -471,7 +471,7 @@
   },
   {
    "a": "Lodi",
-   "b": "Bergamo",
+   "b": "Saldarocca",
    "i": 9,
    "j": 30,
    "km": 44.3,
@@ -479,8 +479,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Modena",
-   "b": "Reggio Emilia",
+   "a": "Cartèa",
+   "b": "Savina Piana dei Savi",
    "i": 20,
    "j": 22,
    "km": 24.0,
@@ -488,7 +488,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Milano",
+   "a": "Anguicorte",
    "b": "Lodi",
    "i": 5,
    "j": 9,
@@ -497,8 +497,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Ferrara",
-   "b": "Bologna",
+   "a": "Aquilara",
+   "b": "Savenza",
    "i": 23,
    "j": 24,
    "km": 44.0,
@@ -506,8 +506,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Prato",
-   "b": "Bologna",
+   "a": "Pratoleone",
+   "b": "Savenza",
    "i": 3,
    "j": 24,
    "km": 70.9,
@@ -515,8 +515,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Vicenza",
-   "b": "Ferrara",
+   "a": "Bassalba",
+   "b": "Aquilara",
    "i": 17,
    "j": 23,
    "km": 79.3,
@@ -524,8 +524,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Firenze",
-   "b": "Siena",
+   "a": "Leonalba",
+   "b": "Pietralupa",
    "i": 0,
    "j": 4,
    "km": 50.5,
@@ -533,8 +533,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Mantova",
-   "b": "Ferrara",
+   "a": "Cortacqua",
+   "b": "Aquilara",
    "i": 10,
    "j": 23,
    "km": 74.1,
@@ -542,8 +542,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Mantova",
-   "b": "Modena",
+   "a": "Cortacqua",
+   "b": "Cartèa",
    "i": 10,
    "j": 20,
    "km": 57.8,
@@ -551,8 +551,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
-   "b": "Cremona",
+   "a": "Forterocca",
+   "b": "Spiranova",
    "i": 6,
    "j": 7,
    "km": 47.7,
@@ -560,8 +560,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Trento",
-   "b": "Verona",
+   "a": "Cimalta",
+   "b": "Mastignana",
    "i": 15,
    "j": 16,
    "km": 70.6,
@@ -569,8 +569,8 @@
    "tipo": "valico"
   },
   {
-   "a": "Pistoia",
-   "b": "Lucca",
+   "a": "Pietrigna",
+   "b": "Muralba",
    "i": 2,
    "j": 28,
    "km": 34.7,
@@ -578,8 +578,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
-   "b": "Mantova",
+   "a": "Forterocca",
+   "b": "Cortacqua",
    "i": 6,
    "j": 10,
    "km": 61.7,
@@ -587,8 +587,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
-   "b": "Verona",
+   "a": "Forterocca",
+   "b": "Mastignana",
    "i": 6,
    "j": 16,
    "km": 61.3,
@@ -596,8 +596,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Cremona",
-   "b": "Parma",
+   "a": "Spiranova",
+   "b": "Savialba",
    "i": 7,
    "j": 21,
    "km": 43.9,
@@ -606,7 +606,7 @@
   },
   {
    "a": "Monza",
-   "b": "Como",
+   "b": "Rivalba",
    "i": 13,
    "j": 31,
    "km": 29.3,
@@ -614,8 +614,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Pisa",
-   "b": "Lucca",
+   "a": "Marleone",
+   "b": "Muralba",
    "i": 26,
    "j": 28,
    "km": 16.3,
@@ -623,7 +623,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Varese",
+   "a": "Vespraviva",
    "b": "Busto Arsizio",
    "i": 12,
    "j": 14,
@@ -632,8 +632,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Modena",
-   "b": "Bologna",
+   "a": "Cartèa",
+   "b": "Savenza",
    "i": 20,
    "j": 24,
    "km": 37.1,
@@ -641,8 +641,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Milano",
-   "b": "Pavia",
+   "a": "Anguicorte",
+   "b": "Bassacorte",
    "i": 5,
    "j": 11,
    "km": 31.1,
@@ -650,7 +650,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Milano",
+   "a": "Anguicorte",
    "b": "Busto Arsizio",
    "i": 5,
    "j": 14,
@@ -659,8 +659,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Firenze",
-   "b": "Prato",
+   "a": "Leonalba",
+   "b": "Pratoleone",
    "i": 0,
    "j": 3,
    "km": 17.7,
@@ -668,8 +668,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Pistoia",
-   "b": "Prato",
+   "a": "Pietrigna",
+   "b": "Pratoleone",
    "i": 2,
    "j": 3,
    "km": 15.5,
@@ -677,7 +677,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Lecco",
+   "a": "Spondalta",
    "b": "Monza",
    "i": 8,
    "j": 13,
@@ -686,8 +686,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Mantova",
-   "b": "Verona",
+   "a": "Cortacqua",
+   "b": "Mastignana",
    "i": 10,
    "j": 16,
    "km": 35.0,
@@ -695,7 +695,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Pavia",
+   "a": "Bassacorte",
    "b": "Genova",
    "i": 11,
    "j": 18,
@@ -704,8 +704,8 @@
    "tipo": "collina"
   },
   {
-   "a": "Lecco",
-   "b": "Como",
+   "a": "Spondalta",
+   "b": "Rivalba",
    "i": 8,
    "j": 31,
    "km": 24.2,
@@ -722,7 +722,7 @@
    "tipo": "pianura"
   },
   {
-   "a": "Brescia",
+   "a": "Forterocca",
    "b": "Lodi",
    "i": 6,
    "j": 9,
@@ -731,8 +731,8 @@
    "tipo": "pianura"
   },
   {
-   "a": "Pistoia",
-   "b": "Bologna",
+   "a": "Pietrigna",
+   "b": "Savenza",
    "i": 2,
    "j": 24,
    "km": 70.9,
@@ -741,7 +741,7 @@
   },
   {
    "a": "Massa",
-   "b": "Reggio Emilia",
+   "b": "Savina Piana dei Savi",
    "i": 1,
    "j": 22,
    "km": 83.3,
