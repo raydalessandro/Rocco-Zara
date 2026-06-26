@@ -26,7 +26,7 @@ popolo che sta in fondo a tutto. Una tempesta li costringe a stare insieme una n
 le fa **ombra**, lei gli fa strada. Quando smette di piovere, nessuno dei due ha più
 voglia di tornare solo. Rocco parte con lei — perché la causa di Toraki, scopre, è la
 **speranza del suo popolo** schiacciato. Così comincia il viaggio: dalla soglia di Spondalta
-giù per il corridoio, regno dopo regno, fino al cuore etrusco delle Terre del Leone di Pietra.
+giù per il corridoio, regno dopo regno, fino al cuore dei primi delle Terre del Leone di Pietra.
 
 A ogni regno la stessa cosa, ma mai uguale: arrivano stranieri, conoscono una gente
 fatta a modo suo (i confederati prudenti dei laghi, la leonessa fieramente libera, i
@@ -47,7 +47,7 @@ proprio lì trovano una **traccia freschissima** di Toraki — appena passato, v
 Serpe più vicina che mai. Da quel momento non è più solo "completare la corda": è
 **arrivare a Toraki prima della Serpe**. L'orologio parte.
 
-E si chiude dove deve: a **le Pietre del Leone**, sulle pietre etrusche più antiche, Zara annoda
+E si chiude dove deve: a **le Pietre del Leone**, sulle pietre dei primi più antiche, Zara annoda
 l'**ultimo nodo** accanto a Toraki, finalmente raggiunto. Per la prima volta i cinque
 regni liberi sono legati — non *sotto* qualcuno, ma *tra pari*. Zara non è più troppo
 piccola: è quella che ha legato il mondo. Rocco non è più fuori posto: la sua mole è stata
@@ -144,7 +144,7 @@ valico — il **muro** da superare. *Tentpole:* quarto nodo + superare il Mastin
 *Ritornello in luce:* le **tracce / il nodo-segno di Toraki**, al massimo.
 
 **5 · Terre del Leone di Pietra — FINALE** (Leonalba il **Leone di Pietra/Leone** · città-stato rivali · **le Pietre del Leone**,
-il cuore etrusco). *Rottura:* i liberi **non** sono idealizzati — le città litigano tra
+il cuore dei primi). *Rottura:* i liberi **non** sono idealizzati — le città litigano tra
 loro proprio sull'orlo del finale. L'**ultima corsa**: R&Z + **Viscardo** che incalza,
 verso le Pietre del Leone dove **Toraki aspetta**. *Tentpole = il finale:* ultimo nodo,
 ricongiungimento, rete completa, il **disegno** che si compie, l'**accenno** (mai detto).

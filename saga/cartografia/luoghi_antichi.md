@@ -12,13 +12,13 @@
 |---|---|---|---|---|
 | Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/Muro del Nord) | coppelle scavate nella roccia | 45.88, 9.40 | ✅ sì |
 | Conca Ruggente (Leonessa) | **le Pietre Incise** — incisioni rupestri (Capo di Ponte) | figure incise da mani che non erano zampe | 46.02, 10.34 | ✅ sì |
-| Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (città etrusca di Kainua) | rovine ordinate nella pianura | 44.34, 11.20 | ✅ sì |
+| Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (città dei primi) | rovine ordinate nella pianura | 44.34, 11.20 | ✅ sì |
 | Selva di Mezzo | **Pietra di l'Altare di Roccia** (rupe appenninica) | un altare di roccia in mezzo al bosco | 44.43, 10.41 | ✅ sì |
-| Terre del Leone di Pietra | **le Pietre del Leone** (acropoli etrusca) | le pietre più antiche di tutte | 43.40, 10.86 | ✅ sì |
+| Terre del Leone di Pietra | **le Pietre del Leone** (acropoli dei primi) | le pietre più antiche di tutte | 43.40, 10.86 | ✅ sì |
 | Gran Ducato (la **Serpe**) | il Luogo è **sepolto / pavimentato** sotto la corte (Anguicorte) | niente: il dominio ha cancellato la memoria | 45.46, 9.19 | ✅ (invisibile, nessun nodo) |
 
 ## ✅ Risolto — il Luogo Antico delle Terre del Leone di Pietra è **le Pietre del Leone**
-Scelto **le Pietre del Leone** (≈43.40, 10.86): acropoli etrusca, **dentro** il bbox del regno
+Scelto **le Pietre del Leone** (≈43.40, 10.86): acropoli dei primi, **dentro** il bbox del regno
 Terre del Leone di Pietra (`[10.76, 43.3, 11.637, 43.783]`) — "le pietre più antiche" restano coerenti
 *senza* toccare la geometria DEFINITIVA. (Scartato le Pietre del Leone, ~45 km a sud, fuori regno.)
 

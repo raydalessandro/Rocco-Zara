@@ -77,7 +77,7 @@ missione:
     - laghi_oriente              # le Pietre Incise
     - pianura_bassa              # le Rovine Ordinate (oltre il Gran Fiume)
     - selva_di_mezzo             # l'Altare di Roccia (tracce di Toraki)
-    - toscana                    # cuore etrusco (ultimo nodo / Toraki)
+    - toscana                    # cuore dei primi (ultimo nodo / Toraki)
   regole_anti_newage:
     - "niente energia/vibrazione/risveglio/connessione cosmica"
     - "il Cordone è un oggetto; i Luoghi sono pietra vera"
