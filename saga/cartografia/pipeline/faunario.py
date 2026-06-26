@@ -131,7 +131,7 @@ json.dump(fauna, open("out_regni/_faunario.json","w"), ensure_ascii=False, inden
 with open("out_regni/_faunario.md","w") as f:
     f.write("# Faunario canonico — specie esclusive per regno\n\n")
     f.write("Ogni specie vive in **un solo regno** (come le regioni Pokémon). Specie esotiche dei protagonisti a parte. ")
-    f.write("`canone_visivo` e `variazione_individuale` si definiscono in fase personaggi (es. il 'foulard di colore diverso' per ogni individuo).\n\n")
+    f.write("**Animali naturalistici, senza vestiti** (vedi `../../bible/STILE_VISIVO.md`). Gli abitanti generici di una specie si somigliano: per **identificare un personaggio che ricorre** si usa un **segno naturale distintivo** — una cicatrice, un orecchio intagliato, una macchia nel manto, un occhio di colore diverso — e solo di rado un piccolo **pegno portato**; **mai un indumento**. `canone_visivo` e `variazione_individuale` (il segno) si fissano in fase personaggi.\n\n")
     f.write("## Forestieri (protagonisti, fuori roster)\n")
     for x in FORESTIERI: f.write(f"- **{x['nome']}** — {x['specie']}: {x['note']}\n")
     f.write("\n## Eccezione ammessa\n")
