@@ -30,7 +30,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ *(da aggiungere se serve — l'arco è già coperto)*.
 
 ## Arco 2 — la Conca Ruggente
-*Brescia «la Leonessa» / Bergamo · libero comune · **turchino** · mette alla prova **Rocco** (la forza che serve, non rompe).*
+*Brescia «la Leonessa» / Bergamo · libero comune · **turchino** · mette alla prova **Rocco** (la forza che serve, non rompe).* ✅ **fatto**
+> Schede: `la-leonessa-civica.md` · `il-montanaro-delle-incisioni.md` · `l-aiutante-arlecchino.md` · `il-quinto-colonna.md` · `il-giurato.md`
 - ① **la giovane Leonessa civica** — *i Protettori (oratoria del libero comune)* — fiera che nella Conca *tutti contribuiscono*; vede Rocco «grande e basta». Lo sprona: la tua forza può **servire**. Specchio del suo «rompo soltanto».
 - ② **il Montanaro delle incisioni** — *Montanari del Mare di Dentro (laconismo d'altura)* — custode schivo delle Pietre Incise; dice poco, sa quali segni sono antichi → le Pietre Incise.
 - ③ **l'aiutante di Bergamo** — *Gente delle Conche (Arlecchino/Brighella)* — l'aiuto-commedia che va di traverso e per sbaglio funziona; seme: un equivoco che rotola.

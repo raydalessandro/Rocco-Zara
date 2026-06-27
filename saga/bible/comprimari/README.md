@@ -30,6 +30,7 @@ la stranezza è fisica, il sottotesto non si nomina).
 - **`_TEMPLATE.md`** — formato ufficiale (macchina-estraibile: blocco YAML `registro_gruppo` Tier 1 + `voce_personaggio` Tier 2 = `lib/types.ts → CharacterVoice`).
 - `esattore-pentito.md` · `cacciatore.md` · `guardiano-del-guado.md` — la prima costellazione (buono ex-Serpe · cattivo mobile · neutro), agganciata tra sé e al cast.
 - `specchio-di-zara.md` · `custode-anziano.md` · `traghettatrice-delle-rive.md` — il **tessuto locale dell'Arco 1** (i Laghi del Vespro): la rottura interiore, la porta al primo nodo, il passaggio + il seme del furto.
+- `la-leonessa-civica.md` · `il-montanaro-delle-incisioni.md` · `l-aiutante-arlecchino.md` · `il-quinto-colonna.md` · `il-giurato.md` — il **tessuto locale dell'Arco 2** (la Conca Ruggente, il libero comune): lo specchio interiore di **Rocco** (la forza che *serve*), la porta al nodo (le Pietre Incise), l'aiuto-Arlecchino + il seme, il quinto colonna (il libero comune tradito da dentro), il Giurato vincolato (sottotrama d'onore). L'arco prova **Rocco**.
 - `voce-che-torna.md` — **trasversale, di tutta la saga**: la *coscienza che torna* (sul Grillo di Collodi). Personaggio-cardine del tema, col tabù più stretto (la cosmologia non si nomina **mai**).
 
 ## La mappa
