@@ -108,6 +108,11 @@ TRASVERSALI = {
    ["la voce è del posto da cui viene","non si modella sul regno ospite"],
    "Da dove vengo si dice in un altro modo; qui sono di passaggio.","media",
    nota="regola TRASVERSALE, non legata a un regno: vale per chi non appartiene ai regni (o non a quello in cui si trova)"),
+ "antica": V("voce antica e gnomica (la sentenza semplice di chi ha visto molte estati)","tradizione",
+   "lenta, semplice, gnomica; dice poco, e ciò che dice è più vecchio di chi lo dice",
+   ["parla per piccole sentenze e domande","non spiega mai","la sua voce sa di tempo"],
+   "Tante estati ho cantato su questa pietra. È tiepida anche stanotte: qualcosa la scalda.","molto caratterizzata",
+   nota="regola TRASVERSALE (non di un regno): la voce di chi torna e ricorda; usata con parsimonia, mai per spiegare"),
 }
 
 # attacca 'voce' a ogni classe in societa.json + raccogli consolidato
