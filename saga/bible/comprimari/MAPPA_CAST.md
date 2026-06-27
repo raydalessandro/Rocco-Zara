@@ -66,7 +66,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il tentatore** — *un Esule/Solitario* — affascinante, tenta Rocco o Zara a **restare** liberi nel bosco e mollare il Cordone *(pattern Lucignolo: il bivio fatto persona)*.
 
 ## Arco 6 — le Terre del Leone di Pietra
-*Firenze (il Leone/Dante) · Siena (la Lupa/Cecco) · Lucca (la Pantera) · Pisa (il Mare/Galileo) · città rivali, «il regno delle gare» · conteso · **FINALE**: le Pietre del Leone, Toraki, la consegna.*
+*Firenze (il Leone/Dante) · Siena (la Lupa/Cecco) · Lucca (la Pantera) · Pisa (il Mare/Galileo) · città rivali, «il regno delle gare» · conteso · **FINALE**: le Pietre del Leone, Toraki, la consegna.* ✅ **fatto**
+> Schede: `il-cittadino-del-leone.md` · `il-custode-delle-pietre-del-leone.md` · `la-lupa.md` · `la-pantera.md` · `il-marinaio-del-mare.md` — (② ospita **Toraki**, già scritto; ④ ingloba il redde rationem del **Cacciatore** e l'ultima mano della **Serpe**, esistenti)
 - ① **il Cittadino del Leone** — *Cittadini del Leone (Dante, civile, in terzina)* — «la gloria è il vero potere»: specchio della tentazione finale (gloria) contro la **consegna** silenziosa.
 - ② **le Pietre del Leone** — **Toraki** aspetta qui (+ un vecchio che cura le pietre più antiche) → l'ultimo nodo.
 - ③ **la Lupa e i suoi** — *la Lupa (Cecco Angiolieri, beffardo-amaro)* — Siena che aiuta sì ma sghemba: la rivalità con Leonalba (Firenze) da attraversare.
