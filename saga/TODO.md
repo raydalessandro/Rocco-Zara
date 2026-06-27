@@ -15,8 +15,9 @@
 - **Motore anti-cliché** fissato: rotture (Cècca+Sòrcio "Mister Bean", Dotti, Mastino,
   specchio, ribaltamento forte/debole) + spirale (3 assi + "apri un filo, chiudine uno") +
   macchina di variazione → `trama/rotture_e_spirale.md`.
-- **4 Ritornelli** fissati (confermati per ora): Cordone (memoria tattile), pietra tiepida +
-  segni, ombra di Rocco, tracce di Toraki → `bible/ritornelli.md`.
+- **5 Ritornelli** fissati (confermati per ora): Cordone (memoria tattile), pietra tiepida +
+  segni, ombra di Rocco, tracce di Toraki, la pietra che si lascia tiepida (la consegna /
+  finale) → `bible/ritornelli.md`.
 - **A1 — stile di saga come canone** + principi di **camera/movimento** → `bible/STILE_VISIVO.md`.
 
 ---
