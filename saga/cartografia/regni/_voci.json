@@ -347,5 +347,34 @@
     }
    }
   }
+ },
+ "trasversali": {
+  "forestiera": {
+   "modello": "voce forestiera (ereditata dal luogo d'origine)",
+   "tipo_modello": "regola",
+   "registro": "porta la parlata del luogo d'origine; nel regno in cui si trova è di passaggio, non vi appartiene",
+   "tratti": [
+    "la voce è del posto da cui viene",
+    "non si modella sul regno ospite"
+   ],
+   "in_rima": false,
+   "esempio_in_voce": "Da dove vengo si dice in un altro modo; qui sono di passaggio.",
+   "intensita": "media",
+   "nota": "regola TRASVERSALE, non legata a un regno: vale per chi non appartiene ai regni (o non a quello in cui si trova)"
+  },
+  "antica": {
+   "modello": "voce antica e gnomica (la sentenza semplice di chi ha visto molte estati)",
+   "tipo_modello": "tradizione",
+   "registro": "lenta, semplice, gnomica; dice poco, e ciò che dice è più vecchio di chi lo dice",
+   "tratti": [
+    "parla per piccole sentenze e domande",
+    "non spiega mai",
+    "la sua voce sa di tempo"
+   ],
+   "in_rima": false,
+   "esempio_in_voce": "Tante estati ho cantato su questa pietra. È tiepida anche stanotte: qualcosa la scalda.",
+   "intensita": "molto caratterizzata",
+   "nota": "regola TRASVERSALE (non di un regno): la voce di chi torna e ricorda; usata con parsimonia, mai per spiegare"
+  }
  }
 }

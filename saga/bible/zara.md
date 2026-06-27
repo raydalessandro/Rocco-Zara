@@ -78,6 +78,7 @@ dettagli del passato, evoluzione precisa dell'arco lungo.*
 ---
 
 ### Il fratello — Toraki (nome di lavoro)
+> **Scheda propria:** `toraki.md` (questa sezione resta il seme; il dettaglio è lì).
 - **specie**: tigre **bianca** (Forestiera, "marcata"); fratello maggiore di Zara.
 - **ancora autoriale**: la **Tigre Bianca** dei miti dell'est (*Baihu/Byakko*) — guardiano
   dell'ovest, virtù della giustizia, signore del vento. *Non* citato in-storia.

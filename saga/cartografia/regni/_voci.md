@@ -88,3 +88,7 @@ Così ogni animale parla già in modo diverso e coerente con la sua zona e il su
   - registro: salato, pratico, preciso
   - esempio (originale, in voce): «Il mare non mente e non perdona: misura due volte, salpa una.»
 
+## Trasversali (fuori-regni)
+- **forestiera** → *voce forestiera (ereditata dal luogo d'origine)* (regola)
+  - registro: porta la parlata del luogo d'origine; nel regno in cui si trova è di passaggio, non vi appartiene
+  - esempio (originale, in voce): «Da dove vengo si dice in un altro modo; qui sono di passaggio.»
