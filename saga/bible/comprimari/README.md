@@ -25,3 +25,4 @@ la stranezza è fisica, il sottotesto non si nomina).
 ## Formato e schede attuali
 - **`_TEMPLATE.md`** — formato ufficiale (macchina-estraibile: blocco YAML `registro_gruppo` Tier 1 + `voce_personaggio` Tier 2 = `lib/types.ts → CharacterVoice`).
 - `esattore-pentito.md` · `cacciatore.md` · `guardiano-del-guado.md` — la prima costellazione (buono ex-Serpe · cattivo mobile · neutro), agganciata tra sé e al cast.
+- `specchio-di-zara.md` · `custode-anziano.md` · `traghettatrice-delle-rive.md` — il **tessuto locale dell'Arco 1** (i Laghi del Vespro): la rottura interiore, la porta al primo nodo, il passaggio + il seme del furto.
