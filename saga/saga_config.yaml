@@ -136,7 +136,7 @@ saga_quotas:
 
 # --- vincoli globali (presenza umana, ecc.) ---
 world_rules:
-  cosmologia: saga/bible/COSMOLOGIA.md   # solo-autore: il ciclo, mai mostrato
+  cosmologia: bible/COSMOLOGIA.md       # solo-autore: il ciclo, mai mostrato
   human_presence: only_past             # umani solo come rovine abbandonate; mai in scena
   animals_form: naturalistic            # animali fisicamente naturalistici, MAI vestiti/costume
   anthropomorphism: cultural_only       # solo lingua/società/miti/politica; no sartoriale (vedi bible/STILE_VISIVO.md)
