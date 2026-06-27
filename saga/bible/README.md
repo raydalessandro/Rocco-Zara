@@ -11,6 +11,8 @@ la cosmologia nascosta. È **canone duro** dove marcato "bloccato": il motore di
 |---|---|---|
 | `rocco.md` | protagonista — aspetto/voce/dono/paura/arco | bloccato |
 | `zara.md` | co-protagonista — idem | bloccato |
+- `toraki.md` — il **precursore**, fratello di Zara (tigre bianca): canone promosso a scheda propria.
+- `comprimari/` — il **cast ricorrente** (secondari che tornano): ogni scheda è un *seme di trama* (gancio + connessioni); template in `comprimari/_TEMPLATE.md`.
 | `_template_personaggio.md` | struttura per nuove schede (creature ricorrenti, comprimari) | strumento |
 | `STILE_VISIVO.md` | canone visivo: animali naturalistici, camera/movimento, palette | bloccato |
 | `ritornelli.md` | i **5 leitmotiv** (Cordone · pietra tiepida · ombra di Rocco · tracce di Toraki · la consegna) | bloccato |
