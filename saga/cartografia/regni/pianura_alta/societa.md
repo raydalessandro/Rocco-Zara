@@ -33,6 +33,6 @@ es. un giovane bufalo del Popolo dell'Aperto, stanco dell'ordine della Serpe (co
 - **Cuore** → Anguicorte — la corte della Serpe
 - **Spina** → la grande pianura coltivata, campi e mandrie
 - **Bosco** → i boschi planiziali e le garzaie (radi)
-- **Orlo** → i margini prealpini a nord, occhi degli esattori
+- **Orlo** → i margini ai piedi del Muro del Nord, occhi degli esattori
 - **Soglia** → il fronte verso il Gran Fiume a sud e i laghi a nord
 - **Vie** → le strade dritte e i canali dei mercanti

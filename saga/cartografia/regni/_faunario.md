@@ -33,7 +33,7 @@ Ogni specie vive in **un solo regno** (come le regioni Pokémon). Specie esotich
 - **Orlo**: stambecco (Montanari del Mare di Dentro), gracchio alpino (Montanari del Mare di Dentro), ermellino (Montanari del Mare di Dentro)
 - **Soglia**: orso bruno (i Giurati), cane da pastore (i Giurati)
 
-## 3 · Gran Ducato — biscione
+## 3 · Gran Ducato — serpe
 - **Cuore**: biscia (serpe) (il Signore e la Corte), mastino (i Vassalli)
 - **Spina**: bufalo (Popolo dell'Aperto), cavallo (Popolo dell'Aperto), bue (Popolo dell'Aperto), cicogna (Popolo dell'Aperto)
 - **Orlo**: falco (i Vassalli)

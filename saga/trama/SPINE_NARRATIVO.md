@@ -27,7 +27,7 @@ Ancore autentiche (per noi autori, non in-storia):
 | Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/Muro del Nord) | coppelle scavate nella roccia |
 | Conca Ruggente (Leonessa) | **le Pietre Incise** (incisioni rupestri) | figure incise da mani che non erano zampe |
 | Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (dei primi) | rovine ordinate nella pianura |
-| Selva di Mezzo | **Pietra di l'Altare di Roccia** / massi appenninici | un altare di roccia in mezzo al bosco |
+| Selva di Mezzo | **l'Altare di Roccia** / massi delle Gobbe del Sud | un altare di roccia in mezzo al bosco |
 | Terre del Leone di Pietra | **cuore dei primi** → **le Pietre del Leone** (acropoli dei primi, dentro il regno) | le pietre più antiche di tutte |
 | Gran Ducato (la **Serpe**) | il suo Luogo è **sepolto / pavimentato** sotto la corte | il dominio ha cancellato la memoria |
 
