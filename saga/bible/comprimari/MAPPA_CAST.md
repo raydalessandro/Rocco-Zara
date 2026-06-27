@@ -1,5 +1,10 @@
 # MAPPA DEL CAST — i sei archi
 
+> ⚠️ **Sottotesto d'autore — mai nella prosa.** I nomi reali (città, figure storiche come
+> modello di registro) qui servono solo a *costruire* il cast: la voce di canone è in
+> `../../cartografia/regni/_voci.json` (de-nominata). Nella scrittura valgono solo i nomi
+> nostri (vedi `../../lessico/MAPPATURA.md`); i riferimenti reali non compaiono mai nel testo.
+
 > **Blueprint** di tutto il cast secondario, arco per arco. Non personaggi *costruiti per la
 > trama*: **abitanti** che si trovano in quel luogo (= un comune reale dell'Italia) e in quel
 > momento, e che quindi parlano e agiscono di conseguenza. La **voce-classe** di ognuno è già

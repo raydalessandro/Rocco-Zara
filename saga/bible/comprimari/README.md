@@ -4,6 +4,10 @@ Schede **leggere** dei personaggi secondari che **ricorrono** (viaggiano con o c
 Zara). Il cast legato a un solo regno sta nei doc del regno (es. la Serpe in
 `../../cartografia/regni/pianura_alta/la_serpe.md`); qui stanno quelli che **tornano**.
 
+> ⚠️ **Sottotesto d'autore — mai nella prosa.** I "modello" di registro (figure storiche) e i
+> nomi reali nelle schede e in `MAPPA_CAST.md` servono solo a *costruire*: non compaiono mai
+> nel testo. I nomi di canone sono in `../../lessico/MAPPATURA.md`.
+
 ## Regola di progettazione: il personaggio è un seme di trama
 Non si crea un comprimario "a canone e basta". Ogni scheda ha due campi che **portano il peso**:
 - **il gancio** — il seme di trama incorporato (un debito, una diserzione, una leva, un
