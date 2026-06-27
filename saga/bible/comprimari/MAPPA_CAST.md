@@ -39,7 +39,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il Giurato della parola data** — *i Giurati (soldato-contadino di confine)* — legato da un **giuramento** che lo trascina; «detto è detto» che cozza con la missione *(pattern Salgari: l'uomo d'onore vincolato)*.
 
 ## Arco 3 — il Gran Ducato
-*Milano della Biscia / Verona scaligera · Signoria/autocrazia · **vermiglio** · **casa di Rocco**: il tributo, Artiglio, il **Luogo sepolto** (nessun nodo).*
+*Milano della Biscia / Verona scaligera · Signoria/autocrazia · **vermiglio** · **casa di Rocco**: il tributo, Artiglio, il **Luogo sepolto** (nessun nodo).* ✅ **fatto**
+> Schede: `quello-che-e-rimasto.md` · `la-memoria-sepolta.md` · `il-mercante-delle-vie.md` · `artiglio.md` · `bissa.md` — (④⑤ = Serpe promossa a scheda-voce; costellazione in `../../cartografia/regni/pianura_alta/la_serpe.md`)
 - ① **quello che è rimasto** — *Popolo dell'Aperto (piano, brontolone)* — un pari di Rocco che ha **chinato la testa** e subìto: specchio della scelta/colpa di Rocco (lui è partito).
 - ② **la memoria sepolta** — *un vecchio del Popolo / un Vassallo* — ricorda che **c'era** un Luogo, ora pavimentato sotto Anguicorte: la porta che **non si può** annodare → la svolta amara dell'arco.
 - ③ **il Mercante delle Vie** — *Mercanti delle Vie (rapido, pettegolo)* — vende ciò che ti serve (e dove sei) + **l'Esattore pentito** (trasversale) **paga qui** il suo arco, a casa.

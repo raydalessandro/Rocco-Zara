@@ -14,6 +14,7 @@ Una piramide del tributo: tutto scende al vertice (principio *"il regno delle pe
   rivali"; muove gli altri e resta nell'ombra della corte. *(voce: registro freddo di corte)*
 - **Bissa, la giovane Vipera** — l'erede: ambiziosa, impaziente; vuole provare il proprio
   morso **schiacciando il Cordone**. → tensione di successione = gancio di trama.
+  *(scheda-voce: `../../../bible/comprimari/bissa.md` — Tier 2 + la sua linea propria)*
 - **Aspide** — il consigliere di corte (vipera): il veleno che sussurra al Signore e tiene
   i fili della rete.
 
@@ -27,6 +28,7 @@ Una piramide del tributo: tutto scende al vertice (principio *"il regno delle pe
 - **Artiglio, il Falco esattore** — capo degli esattori: insegue Rocco e Zara col pretesto
   del **tributo** o del "contrabbando" (cioè il Cordone). **L'antagonista ricorrente più
   diretto** della saga.
+  *(scheda-voce: `../../../bible/comprimari/artiglio.md` — Tier 2; arco di casa = Arco 3)*
 - **Cècca, la Gazza** — la spia: la **prima** a notare i due Forestieri e il Cordone, e a
   riferire su. Gli occhi della Serpe; compare prima ancora che i protagonisti sappiano
   di essere visti.
