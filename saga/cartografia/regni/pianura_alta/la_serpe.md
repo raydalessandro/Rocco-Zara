@@ -17,11 +17,13 @@ Una piramide del tributo: tutto scende al vertice (principio *"il regno delle pe
   *(scheda-voce: `../../../bible/comprimari/bissa.md` — Tier 2 + la sua linea propria)*
 - **Aspide** — il consigliere di corte (vipera): il veleno che sussurra al Signore e tiene
   i fili della rete.
+  *(scheda-voce: `../../../bible/comprimari/aspide.md` — il veleno impersonale, leale alla rete non alla testa)*
 
 ### I vassalli (signori delle città soggette — i "muri" sul cammino)
 - **il Mastino** (signore di Mastignana‑reskin, cane mastino): condottiero fiero, tiene i
   **valichi orientali** (Serpàna/Cimàrio); orgoglio che ringhia *(voce alla vassallo altero (boria cavalleresca))*.
   Un blocco da aggirare o piegare, non un simbolo.
+  *(scheda-voce: `../../../bible/comprimari/il-mastino.md` — onore feudale = la leva per piegarlo)*
 - falchi vassalli minori nelle altre città soggette.
 
 ### Il braccio (gli agenti che i protagonisti incontrano DAVVERO nelle puntate)

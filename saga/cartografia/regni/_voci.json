@@ -204,6 +204,20 @@
      "intensita": "molto caratterizzata (comica; all'occorrenza seria)",
      "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
     },
+    "i Disputanti": {
+     "modello": "il disputante delle scuole (retore agonistico)",
+     "tipo_modello": "registro/tradizione",
+     "registro": "agonistico, brillante, ribalta la tesi: «vince chi convince»",
+     "tratti": [
+      "argomenta ogni tesi",
+      "botta e risposta serrato",
+      "ama il duello dialettico"
+     ],
+     "in_rima": false,
+     "esempio_in_voce": "Concedimi solo questo — e allora ne segue il contrario: chi convince, vince.",
+     "intensita": "molto caratterizzata",
+     "nota": "indicazione di registro (la maniera di parlare), non mostrata nel testo; le battute sono originali e dette dagli animali"
+    },
     "la Casa dell'Aquila": {
      "modello": "epica cavalleresca in ottava rima (corte dell'Aquila)",
      "tipo_modello": "tradizione/figura",

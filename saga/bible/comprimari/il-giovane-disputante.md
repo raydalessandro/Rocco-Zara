@@ -5,9 +5,8 @@
 > **contraltare** del Dotto — dove ① **smonta** il senso, lui potrebbe **rimontarne la causa**: convinto ad
 > arringare **a favore** del Cordone, la sua eloquenza può ribaltare il fondo di Zara.
 >
-> *Nota lessico:* «i Disputanti» **non** è una classe in `_voci.json`; è la faccia agonistica dei **Dotti**
-> (Bologna = la disputa). Tier 1 = «i Dotti»; la firma sta nel Tier 2. *(Se si vorrà una classe a sé, è una
-> modifica a `voci_build.py` — giro finale.)*
+> *Nota lessico:* «i Disputanti» è ora **classe ufficiale** in `_voci.json` (`pianura_bassa`) — la faccia
+> agonistica dei **Dotti** (*"vince chi convince"*). Tier 1 = «i Disputanti»; la firma sta nel Tier 2.
 
 - **specie**: assiolo (giovane — dei Dotti, la disputa: piccolo, insonne, dal richiamo insistente)
 - **tipo**: comprimario
@@ -40,8 +39,8 @@
 
 ### Voce — a due tier
 **Tier 1 — registro di gruppo.**
-- **regno + classe**: Piana dei Savi / «i Dotti» → registro *"pomposo, pseudo-dotto, infarcito di latino"* (`_voci.json`)
-  — ma nella sua **faccia giovane**: svelta e duellante, non cattedratica. Il **rovescio** del Dotto, stessa scuola.
+- **regno + classe**: Piana dei Savi / «i Disputanti» → registro *"agonistico, brillante, ribalta la tesi:
+  «vince chi convince»"* (`_voci.json`) — la **faccia agonistica** dei Dotti: il **rovescio** del Dotto, stessa scuola.
 - **forestiero?** no.
 
 **Tier 2 — firma individuale.**
@@ -55,8 +54,8 @@
 ```yaml
 registro_gruppo:
   regno: pianura_bassa
-  gruppo: i Dotti
-  registro_ref: pianura_bassa/i Dotti
+  gruppo: i Disputanti
+  registro_ref: pianura_bassa/i Disputanti
 
 voce_personaggio:
   name: <dal lessico>
@@ -80,7 +79,7 @@ voce_personaggio:
   della risalita. La sua linea e quella di Zara possono **intrecciarsi** proprio al nadir.
 
 ### Nel mondo (canone cartografo) + aggancio alla missione
-- **regno**: Piana dei Savi — «i Dotti» (faccia agonistica: la disputa).
+- **regno**: Piana dei Savi — «i Disputanti» (la faccia agonistica dei Dotti: la disputa).
 - **bioma d'origine**: i **portici** delle dispute, presso il **Gran Fiume**.
 - **perché entra**: è il **motore di trama** che ribalta il midpoint — la retorica che può **rifare il senso**
   dopo che il Dotto l'ha disfatto.
