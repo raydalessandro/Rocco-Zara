@@ -23,6 +23,7 @@ la cosmologia nascosta. È **canone duro** dove marcato "bloccato": il motore di
 - La parte **fisica/geografica** (regni, luoghi, fauna, voci-registri dei gruppi) sta in
   `../cartografia/`, non qui.
 - La **struttura di trama** (spine, scheletro, archi, anti-drift) sta in `../trama/`.
+- La **voce** con cui si scrive (postura del narratore, resa) sta in `../voce/CARTA_VOCE.md`.
 - L'**EAR** di ogni scheda segue `../ontologia/COME_SI_APPLICA.md`.
 
 ## Da aggiungere col procedere della saga
