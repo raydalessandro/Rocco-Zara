@@ -38,7 +38,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 - bbox: `[10.54, 45.62, 11.12, 46.25]`  ·  centro: `[10.83, 45.935]`
 - acque: Lago di Mare di Dentro
 - fiumi: Cimàrio
-- città→rovina: Rovereto, Riva del Mare di Dentro, Mori
+- città→rovina: Rovereto, Riva del Garda, Mori
 - **popolo**: genti di riva: pescatori, traghettatori, uccelli d'acqua
 - **potere**: equilibrio fragile tra le sponde; il lago e' frontiera e ponte
 - **tradizioni**: feste del lago, lanterne sull'acqua, il patto delle due rive
@@ -59,7 +59,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 ## B2 — pianura  (84 m; 29–399 m)
 - bbox: `[9.38, 44.99, 9.96, 45.62]`  ·  centro: `[9.67, 45.305]`
 - fiumi: Vespràna, Concàrio, Gran Fiume, Serio
-- città→rovina: Guadserpe, Lodi, Trezzo sull'Vespràna
+- città→rovina: Guadserpe, Lodi, Trezzo sull'Adda
 - **popolo**: grandi pascolatori e branchi di pianura (l'aperto di Rocco)
 - **potere**: le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi
 - **tradizioni**: la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume
@@ -79,7 +79,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 - bbox: `[10.54, 44.99, 11.12, 45.62]`  ·  centro: `[10.83, 45.305]`
 - acque: Lago di Mare di Dentro
 - fiumi: Cimàrio, Serpàna, Concàrio, Gran Fiume, Secchia
-- città→rovina: Mastignana, Cortacqua, Villafranca di Mastignana
+- città→rovina: Mastignana, Cortacqua, Villafranca di Verona
 - **popolo**: genti di riva: pescatori, traghettatori, uccelli d'acqua
 - **potere**: equilibrio fragile tra le sponde; il lago e' frontiera e ponte
 - **tradizioni**: feste del lago, lanterne sull'acqua, il patto delle due rive
@@ -111,7 +111,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 ## D3 — pianura  (138 m; 7–1021 m)
 - bbox: `[10.54, 44.36, 11.12, 44.99]`  ·  centro: `[10.83, 44.675]`
 - fiumi: Panaro, Gran Fiume, Secchia
-- città→rovina: Savina Piana dei Savi, Cartèa, Vignola
+- città→rovina: Reggio Emilia, Cartèa, Vignola
 - **popolo**: grandi pascolatori e branchi di pianura (l'aperto di Rocco)
 - **potere**: le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi
 - **tradizioni**: la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume
@@ -184,7 +184,7 @@ Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.
 
 ## D5 — pianura  (214 m; -6–1026 m)
 - bbox: `[10.54, 43.1, 11.12, 43.73]`  ·  centro: `[10.83, 43.415]`
-- città→rovina: le Pietre del Leone, Santa Maria a Monte, Santa Croce sull'Leonàrio
+- città→rovina: le Pietre del Leone, Santa Maria a Monte, Santa Croce sull'Arno
 - **popolo**: grandi pascolatori e branchi di pianura (l'aperto di Rocco)
 - **potere**: le mandrie e l'assemblea dei guadi: comanda chi tiene i passaggi sui fiumi
 - **tradizioni**: la grande migrazione stagionale; mercati e tregue ai guadi del Gran Fiume

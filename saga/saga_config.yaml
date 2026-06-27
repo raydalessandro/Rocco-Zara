@@ -102,7 +102,7 @@ cartografia:
   regni:
     - { id: laghi_occidente, nome: "Laghi del Vespro", stemma: lince,         capitale: Rivalba }
     - { id: laghi_oriente,   nome: "Conca Ruggente",   stemma: leonessa,      capitale: Forterocca }
-    - { id: pianura_alta,    nome: "Gran Ducato",       stemma: biscione,      capitale: Anguicorte }
+    - { id: pianura_alta,    nome: "Gran Ducato",       stemma: serpe,      capitale: Anguicorte }
     - { id: pianura_bassa,   nome: "Piana dei Savi",      stemma: "gufo+aquila", capitale: Savenza }
     - { id: selva_di_mezzo,  nome: "Selva di Mezzo",     stemma: cervo,         capitale: "Città-rovina della Selva" }
     - { id: toscana,         nome: "Terre del Leone di Pietra",            stemma: leone,         capitale: Leonalba }

@@ -27,13 +27,13 @@ M["Siena"]="Pietralupa"; M["Pisa"]="Marleone"; M["Lucca"]="Muralba"; M["Pistoia"
 M["Prato"]="Pratoleone"; M["Livorno"]="Marlonga"
 # luoghi antichi (siti)
 M["Valcamonica"]="le Pietre Incise"; M["Marzabotto"]="le Rovine Ordinate"; M["Felsina"]="le Rovine Ordinate"
-M["Bismantova"]="l'Altare di Roccia"; M["Volterra"]="le Pietre del Leone"; M["Monte Amiata"]="le Pietre del Leone"; M["Amiata"]="le Pietre del Leone"
+M["Pietra di Bismantova"]="l'Altare di Roccia"; M["Bismantova"]="l'Altare di Roccia"; M["Volterra"]="le Pietre del Leone"; M["Monte Amiata"]="le Pietre del Leone"; M["Amiata"]="le Pietre del Leone"
 # nomi storici dei siti -> 'i primi' (mai nominati): l'aggettivo storico diventa "dei primi"
 M["etrusca"]="dei primi"; M["etrusco"]="dei primi"; M["etrusche"]="dei primi"; M["etruschi"]="dei primi"
 # citta secondarie — residui atlante (toscane non ancora mappate; stile del reame del Leone)
 M["Massa"]="Marpietra"; M["Viareggio"]="Marsabbia"; M["Vinci"]="Collerocca"
 # araldica/politica (genere)
-M["il Biscione"]="la Serpe"; M["del Biscione"]="della Serpe"; M["al Biscione"]="alla Serpe"; M["Biscione"]="Serpe"
+M["il Biscione"]="la Serpe"; M["del Biscione"]="della Serpe"; M["al Biscione"]="alla Serpe"; M["Biscione"]="Serpe"; M["biscione"]="serpe"
 M["Visconti"]="Anguini"; M["il Marzocco"]="il Leone di Pietra"; M["Marzocco"]="Leone di Pietra"
 M["la Signoria"]="il Gran Ducato"; M["della Signoria"]="del Gran Ducato"; M["Signoria"]="Gran Ducato"
 M["Guelfi"]="Turchini"; M["guelfi"]="turchini"; M["Guelfo"]="Turchino"; M["guelfo"]="turchino"; M["guelfa"]="turchina"
