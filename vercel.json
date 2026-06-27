@@ -1,4 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "framework": null,
+  "installCommand": "echo 'no install: sito statico'",
+  "buildCommand": "echo 'no build: sito statico in web/'",
+  "outputDirectory": "web"
 }
