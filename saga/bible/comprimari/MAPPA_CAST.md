@@ -57,7 +57,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il giovane Disputante** — *i Disputanti (vince chi convince)* — ama la disputa e si potrebbe convincerlo ad arringare **a favore** del Cordone: retore ambizioso con la sua linea.
 
 ## Arco 5 — la Selva di Mezzo
-*Appennino · **anarchia** (nessun governo) · neutro · il cuore strano, prima del finale; qui la cicala è più di casa.*
+*Appennino · **anarchia** (nessun governo) · neutro · il cuore strano, prima del finale; qui la cicala è più di casa.* ✅ **fatto**
+> Schede: `l-esule-libero.md` · `uno-degli-antichi.md` · `il-solitario.md` · `le-creature-della-rovina.md` · `il-tentatore.md` — (slot ④ ingloba il **Cacciatore** trasversale, già scritto, che qui chiude su Toraki)
 - ① **l'Esule libero** — *gli Esuli (voce del regno d'origine)* — fuggito dalla Serpe, vive libero nel bosco anarchico: specchio di ciò che l'Esattore potrebbe diventare — e del **costo** della libertà-senza-appartenenza.
 - ② **uno degli Antichi** — *gli Antichi (oracolare, a indovinello)* — il più vicino alla cicala; parla per enigmi dell'Altare di Roccia: sfiora la cosmologia **senza dirla** (solo indovinelli) → l'Altare di Roccia.
 - ③ **il Solitario** — *i Solitari (schivo, diffidente)* — non vuole compagnia, dà l'aiuto decisivo a malincuore.
