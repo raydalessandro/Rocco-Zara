@@ -22,3 +22,4 @@ next-env.d.ts
 # python (motore di riferimento)
 seme/**/__pycache__/
 seme/.pytest_cache/
+*.pyc
