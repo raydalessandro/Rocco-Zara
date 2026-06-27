@@ -48,7 +48,7 @@
 registro_gruppo:
   regno: <forestiero — origine taciuta>
   gruppo: forestiero
-  registro_ref: forestiera        # regola "voce forestiera" (_voci.md); si risolve all'origine
+  registro_ref: trasversali/forestiera   # chiave trasversale fuori-regni (_voci.json); origine vera taciuta
 
 voce_personaggio:
   name: <dal lessico>

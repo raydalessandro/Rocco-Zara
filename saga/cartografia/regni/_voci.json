@@ -347,5 +347,20 @@
     }
    }
   }
+ },
+ "trasversali": {
+  "forestiera": {
+   "modello": "voce forestiera (ereditata dal luogo d'origine)",
+   "tipo_modello": "regola",
+   "registro": "porta la parlata del luogo d'origine; nel regno in cui si trova è di passaggio, non vi appartiene",
+   "tratti": [
+    "la voce è del posto da cui viene",
+    "non si modella sul regno ospite"
+   ],
+   "in_rima": false,
+   "esempio_in_voce": "Da dove vengo si dice in un altro modo; qui sono di passaggio.",
+   "intensita": "media",
+   "nota": "regola TRASVERSALE, non legata a un regno: vale per chi non appartiene ai regni (o non a quello in cui si trova)"
+  }
  }
 }

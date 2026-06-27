@@ -8,8 +8,9 @@
 > **Chiavi `registro_ref` (reali):** in `../../cartografia/regni/_voci.json` i registri stanno
 > sotto `regni[n].voci[<Gruppo>]`, dove `<Gruppo>` è il **nome esatto del gruppo** (con spazi,
 > es. `Popolo dell'Aperto`, `Contadini del Gran Fiume`). Forma del ref: `<regno>/<Gruppo>`
-> (regno per slug o numero). Per i forestieri vale la *voce forestiera* (ereditata dal luogo
-> d'origine) — `_voci.md`.
+> (regno per slug o numero). Per i **forestieri** vale la *voce forestiera* — chiave
+> trasversale `trasversali/forestiera` in `_voci.json`. Per un membro di **gilda/corporazione**
+> la voce viene dalla sua **classe** sociale (le voci si danno alle classi, non alle gilde).
 
 - **specie**: …
 - **tipo**: protagonista | co-protagonista | comprimario | creatura-ricorrente
@@ -42,7 +43,8 @@
 **Tier 1 — registro di gruppo (default, ereditato dal mondo).**
 - **regno + gruppo**: … → eredita il registro «…» da `_voci.md`.
   *(Per un comprimario di passaggio questo È già la voce: non serve altro.)*
-- **forestiero?** se sì, porta la parlata del **luogo d'origine** (regola "voce forestiera").
+- **forestiero?** se sì, porta la parlata del **luogo d'origine** → chiave `trasversali/forestiera`.
+- **di una gilda/corporazione?** la voce viene dalla sua **classe** sociale (non dalla gilda).
 
 **Tier 2 — firma individuale (solo ricorrenti).** *(prosa per gli umani)*
 - come parla in **superficie** / che cosa c'è **sotto**: …

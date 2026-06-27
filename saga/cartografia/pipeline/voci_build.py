@@ -101,6 +101,15 @@ VOCI = {
 },
 }
 
+# voci TRASVERSALI (fuori-regni): valgono per chi non appartiene ai regni (o non a quello in cui si trova)
+TRASVERSALI = {
+ "forestiera": V("voce forestiera (ereditata dal luogo d'origine)","regola",
+   "porta la parlata del luogo d'origine; nel regno in cui si trova è di passaggio, non vi appartiene",
+   ["la voce è del posto da cui viene","non si modella sul regno ospite"],
+   "Da dove vengo si dice in un altro modo; qui sono di passaggio.","media",
+   nota="regola TRASVERSALE, non legata a un regno: vale per chi non appartiene ai regni (o non a quello in cui si trova)"),
+}
+
 # attacca 'voce' a ogni classe in societa.json + raccogli consolidato
 consol = {"nota": NOTA, "regni": {}}
 for k, folder in FOLD.items():
@@ -116,6 +125,7 @@ for k, folder in FOLD.items():
         "voci": {nome: vmap[nome] for nome in vmap}}
     print(f"  {folder:18} voci applicate: {len(applied)}")
 
+consol["trasversali"] = TRASVERSALI
 json.dump(consol, open("out_regni/_voci.json", "w"), ensure_ascii=False, indent=1)
 json.dump({"$descrizione":"Voce di un gruppo: stile-modello ispirato a una figura/maschera/tradizione storica italiana. Non citazioni; battute originali. Consumato dagli script per dare voce in scrittura.",
    "modello":"figura storica | maschera | tradizione | regola","tipo_modello":"str","registro":"come parla",
@@ -137,4 +147,10 @@ with open("out_regni/_voci.md", "w") as f:
             f.write(f"  - registro: {v['registro']}\n")
             f.write(f"  - esempio (originale, in voce): «{v['esempio_in_voce']}»\n")
         f.write("\n")
+    f.write("## Trasversali (fuori-regni)\n")
+    for nome, v in TRASVERSALI.items():
+        f.write(f"- **{nome}** \u2192 *{v['modello']}* ({v['tipo_modello']})\n")
+        f.write(f"  - registro: {v['registro']}\n")
+        f.write(f"  - esempio (originale, in voce): \u00ab{v['esempio_in_voce']}\u00bb\n")
+    f.write("\n")
 print("\n_voci.json/.md + _schema/voce.schema.json ; societa.json arricchiti")

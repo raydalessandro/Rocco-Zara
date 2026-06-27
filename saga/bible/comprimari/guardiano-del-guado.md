@@ -3,7 +3,7 @@
 > Nome proprio: **dal lessico** (da assegnare). Comprimario **ricorrente** → Tier 2 compilato.
 > **Neutro**: aiuta o ostacola per un **proprio codice** (il fiume non prende parte).
 
-- **specie**: airone (la sentinella ferma dell'acqua) — *adattabile al roster*
+- **specie**: garzetta (l'airone bianco; è nel roster dei Contadini/Argini del Gran Fiume) — *adattabile*
 - **tipo**: comprimario
 - **attribute_ear (dominante)**: connettere
 - **età / mondo**: adulto / il **Gran Fiume**, nella **Piana dei Savi**
@@ -31,8 +31,9 @@
 ### Voce — a due tier
 **Tier 1 — registro di gruppo.**
 - **regno + gruppo**: Piana dei Savi / «Contadini del Gran Fiume» → registro *"umido, paziente,
-  fatalista-bonario"* (`_voci.json`). *(N.B.: il suo **mestiere** è argine-mastro — corporazione
-  in `società` — ma il **gruppo-voce** in `_voci.json` è «Contadini del Gran Fiume».)*
+  fatalista-bonario"* (`_voci.json`). **Mestiere/gilda:** **gli Argini-mastri** (corporazione — *"sanno dove l'acqua salirà"*): è il
+  suo **lavoro**, non una voce a parte — *le voci si danno alle **classi**; un membro di gilda
+  parla con la voce della sua classe.*
 - **forestiero?** no.
 
 **Tier 2 — firma individuale.**
