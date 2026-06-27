@@ -32,8 +32,14 @@ Una piramide del tributo: tutto scende al vertice (principio *"il regno delle pe
 - **Cècca, la Gazza** — la spia: la **prima** a notare i due Forestieri e il Cordone, e a
   riferire su. Gli occhi della Serpe; compare prima ancora che i protagonisti sappiano
   di essere visti.
+  *(scheda-voce: `../../../bible/comprimari/cecca.md` — la migliore spia tradita dal proprio occhio)*
 - **Sòrcio, il Ratto** — contrabbando e voci: compra e vende informazioni; **ambiguo** —
   a volte si fa corrompere e diventa, per interesse, un aiuto temporaneo.
+  *(scheda-voce: `../../../bible/comprimari/sorcio.md` — il disastro che si crede un fuoriclasse)*
+
+> **Cècca + Sòrcio = il braccio comico ricorrente** della Serpe: i due che i protagonisti incontrano
+> **più spesso del vertice**. Caratterizzati a fondo (non stereotipati) nelle loro schede-voce — il
+> battibecco fra i due è il *respiro leggero* della saga, contrappeso alla minaccia seria di **Artiglio**.
 
 ### I comuni (la manovalanza, le facce ordinarie in ogni episodio)
 Guardie dei pedaggi e dei canali, bassi informatori, Carradori arruolati a forza: la
