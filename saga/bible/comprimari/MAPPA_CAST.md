@@ -48,7 +48,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **la successione** — *il Signore e la Corte* — **Bissa** (l'erede impaziente) contro Viscardo: una faida interna alla Serpe che i due possono sfruttare *(propria linea)*.
 
 ## Arco 4 — la Piana dei Savi
-*Bologna (la legge) + Ferrara estense (il sangue) · repubblica della legge vs aristocrazia di sangue · conteso · **MIDPOINT**: il Gran Fiume, i Dotti «smontano» il Cordone, Zara tocca il fondo.*
+*Bologna (la legge) + Ferrara estense (il sangue) · repubblica della legge vs aristocrazia di sangue · conteso · **MIDPOINT**: il Gran Fiume, i Dotti «smontano» il Cordone, Zara tocca il fondo.* ✅ **fatto**
+> Schede: `il-dotto-che-smonta.md` · `la-casa-dell-aquila.md` · `il-giovane-disputante.md` — (②③ = `guardiano-del-guado.md`, trasversale già scritto; «i Disputanti» mappato su «i Dotti», cfr. nota lessico nella scheda)
 - ① **il Dotto che smonta** — *i Dotti (Balanzone)* — «dimostra» che il Cordone non significa niente: l'intellettuale che disfa il senso → **il punto più basso di Zara** (il midpoint).
 - ② **la porta alle Rovine** — coperta dal **Guardiano del guado** (trasversale) → le Rovine Ordinate.
 - ③ **il Guardiano del guado** (garzetta, trasversale) — passaggio + la **traccia più fresca di Toraki** al midpoint. ✅
