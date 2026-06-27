@@ -1,5 +1,9 @@
 # Atlante delle terre — Rocco & Zara
 
+> ⚠️ **Substrato del cartografo.** I nomi reali (OSM/DEM) qui servono solo a *costruire*.
+> I nomi di canone da usare nella **scrittura** sono in [`lessico/MAPPATURA.md`](../../lessico/MAPPATURA.md).
+> Mai nomi reali nella prosa.
+
 Corridoio Muro del Nord → Terre del Leone di Pietra, griglia 5×5 (colonne A–E da ovest, righe 1–5 da nord).
 Terreno e quota sono **reali** (DEM+OSM). Popolo/potere/tradizioni sono **semi** da sviluppare.
 Il dettaglio cartografico di ogni terra si genera con `zonegen.py CODICE Wbbox`.

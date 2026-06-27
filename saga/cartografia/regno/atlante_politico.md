@@ -1,5 +1,9 @@
 # Atlante politico — i sei regni animali (Italia dei Comuni)
 
+> ⚠️ **Substrato del cartografo.** I nomi reali (OSM/DEM) qui servono solo a *costruire*.
+> I nomi di canone da usare nella **scrittura** sono in [`lessico/MAPPATURA.md`](../../lessico/MAPPATURA.md).
+> Mai nomi reali nella prosa.
+
 Confini naturali; capitali = grandi comuni; stemmi medievali → animali. Le due fazioni **Turchini** (papali) e **Vermigli** (imperiali) attraversano i regni: passando da una terra all'altra cambiano alleanze ed equilibri.
 
 ## 1 · Laghi del Vespro — la Lince dei laghi
