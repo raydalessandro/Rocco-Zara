@@ -12,7 +12,7 @@ Usanze del regno:
 - **i Custodi** (lince) — *memoria, testimonianza, giudizio (non comando)*; pochi, solitari; annodano nelle reti la storia del regno e 'vedono nel buio' le verità; siedono al Consiglio del Lago
 - **la Gente delle Rive** (lontra, airone, martin pescatore, rana) — *spina dorsale: acqua, pesca, passaggi*; vivono di lago e di scambio; tessono reti, traghettano, leggono la nebbia
 - **il Popolo del Bosco** (cervo, volpe, tasso, scoiattolo) — *boschi, sentieri, caccia e legna*; tra gli alberi; custodi dei sentieri segreti e del carbone; un po' diffidenti verso chi sta nell'acqua
-- **le Sentinelle d'Altura** (camoscio, stambecco, aquila, marmotta) — *vedetta dei valichi verso il Muro delle Alpi*; in alto, messaggeri e guardiani dei passi; parlano poco, vedono lontano
+- **le Sentinelle d'Altura** (camoscio, stambecco, aquila, marmotta) — *vedetta dei valichi verso il Muro del Nord*; in alto, messaggeri e guardiani dei passi; parlano poco, vedono lontano
 - **gli Ospiti e i Senza-riflesso** (forestieri d'ogni specie, tigre (rara)) — *forestieri, viandanti, esuli in ingresso*; accolti per diritto d'asilo, ma 'il lago non li conosce ancora': devono fare qualcosa di memorabile per essere annodati nella rete e diventare cittadini
 
 ## Le corporazioni (mestieri; differiscono per zona → nascono gli scambi tra regni)

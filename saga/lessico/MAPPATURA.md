@@ -5,9 +5,13 @@
 > comuni intravede simboli, posizioni, dinamiche — mai mostrati, come "i primi").
 >
 > **Sostituzione ESEGUITA** su tutto il canone (~46+ file .md/.json; **non** la geojson
-> grezza, che resta substrato reale in `real_ref: osm`). Verificato: **zero residui**
-> (nessun nome Italia, nessun nome storico, nessun artefatto). Lo script di rename è
+> grezza, che resta substrato reale in `real_ref: osm`). Lo script di rename è
 > **parametrico**: cambiare un nome = modificare questa mappa e ri-eseguire.
+>
+> **Residui ripuliti (giro di verifica):** città dell'atlante auto-generato non ancora
+> mappate (**Massa→Marpietra**, **Viareggio→Marsabbia**, **Vinci→Collerocca**),
+> **"Muro delle Alpi/prealpi" → "Muro del Nord"**, e il nome storico **"Kainua"** rimosso
+> con l'aggettivo **"etrusco" → "dei primi"** (allineato a *i primi*).
 
 ## Resta com'è (già nostro / generico)
 Fauna (lince, gufo, aquila, cervo, leone, leonessa, biscia, mastino, falco, gazza, ratto,
@@ -38,7 +42,8 @@ selva, riva, valico, soglia, bosco) · biomi · termini nostri (**la Serpe**, **
 - **Selva di Mezzo:** Pavullo->**Selvalta**
 - **Terre del Leone di Pietra:** Siena->**Pietralupa** *(la Lupa)* · Pisa->**Marleone** ·
   Lucca->**Muralba** *(la Pantera/le mura)* · Pistoia->**Pietrigna** · Prato->**Pratoleone** ·
-  Livorno->**Marlonga** · Reggello->**Pietralta**
+  Livorno->**Marlonga** · Reggello->**Pietralta** · Massa->**Marpietra** ·
+  Viareggio->**Marsabbia** · Vinci->**Collerocca**
 
 ## Luoghi Antichi (siti)
 le Coppelle *(Laghi del Vespro)* · le Pietre Incise *(Conca Ruggente)* · le Rovine Ordinate

@@ -54,6 +54,7 @@ Se lo stile-canone fissasse solo *medium* e *palette*, un illustratore **rifareb
 con colori nuovi**. Per questo §2–§3 sono **vincolanti**: varietà focale, cambi d'angolo,
 POV e resa del moto vanno **richiesti** nei prompt, non lasciati impliciti.
 
-> Resta aperto (vedi `TODO.md`): **A2** il marcatore individuale di Rocco/Zara/Toraki (il
-> "foulard" — ancora anti-drift visiva), **A3** la palette esatta di Rocco. Questo doc
-> chiude **A1** (stile + movimento come canone).
+> Resta aperto (vedi `TODO.md`): **A2** il marcatore individuale di Rocco/Zara/Toraki (un
+> **segno naturale** distintivo — cicatrice, orecchio intagliato, macchia, occhio diverso;
+> **mai un indumento** — ancora anti-drift visiva), **A3** la palette esatta di Rocco.
+> Questo doc chiude **A1** (stile + movimento come canone).

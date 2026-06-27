@@ -277,7 +277,7 @@ describe("§2.10 buildPagePrompts: riga SCALA solo con ≥2 personaggi in scena"
 // ===========================================================================
 describe("§2.11 buildStylesheet: mappe world/season, fallback ai default, blocchi NEGATIVE/NO-text", () => {
   it("world noto → testo dedicato; world ignoto o assente → DEFAULT_WORLD_STYLE", () => {
-    expect(buildStylesheet({ world: "animali_del_bosco" })).toContain("Anthropomorphic woodland animals");
+    expect(buildStylesheet({ world: "animali_del_bosco" })).toContain("Naturalistic woodland animals");
     expect(buildStylesheet({ world: "spazio" })).toContain("near-future space setting");
     // fallback
     expect(buildStylesheet({ world: "non_esiste" })).toContain("A warm, naturalistic picture-book world");

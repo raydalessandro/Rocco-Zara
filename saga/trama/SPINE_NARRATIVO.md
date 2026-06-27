@@ -24,11 +24,11 @@ Ancore autentiche (per noi autori, non in-storia):
 ## 1. I Luoghi Antichi (concreti, reali — un perno per regno)
 | regno | Luogo Antico (reale) | cosa si vede |
 |---|---|---|
-| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/prealpi) | coppelle scavate nella roccia |
+| Laghi del Vespro | massi coppellati dei monti del lago (Spondalta/Muro del Nord) | coppelle scavate nella roccia |
 | Conca Ruggente (Leonessa) | **le Pietre Incise** (incisioni rupestri) | figure incise da mani che non erano zampe |
-| Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (etrusco) | rovine ordinate nella pianura |
+| Piana dei Savi (la Dotta) | **le Rovine Ordinate / le Rovine Ordinate** (dei primi) | rovine ordinate nella pianura |
 | Selva di Mezzo | **Pietra di l'Altare di Roccia** / massi appenninici | un altare di roccia in mezzo al bosco |
-| Terre del Leone di Pietra | **cuore etrusco** → **le Pietre del Leone** (acropoli etrusca, dentro il regno) | le pietre più antiche di tutte |
+| Terre del Leone di Pietra | **cuore dei primi** → **le Pietre del Leone** (acropoli dei primi, dentro il regno) | le pietre più antiche di tutte |
 | Gran Ducato (la **Serpe**) | il suo Luogo è **sepolto / pavimentato** sotto la corte | il dominio ha cancellato la memoria |
 
 > In-storia gli animali li sentono solo come *posti più vecchi di ogni regno, dove la
@@ -83,9 +83,9 @@ L'ultima pagina **sfiora** — senza dirlo — che da quella rete nascerà qualc
 ## 8. Rotta (logica; il dettaglio fine dopo)
 Soglia (Spondalta) → **Laghi del Vespro** (primo nodo, casa) → **Conca Ruggente/Leonessa**
 (le Pietre Incise) → oltre il **Gran Fiume** → **la Dotta** (le Rovine Ordinate) → **la Selva** (l'Altare di Roccia,
-tracce di Toraki) → **Terre del Leone di Pietra** (le Pietre del Leone, cuore etrusco, ultimo nodo / Toraki).
+tracce di Toraki) → **Terre del Leone di Pietra** (le Pietre del Leone, cuore dei primi, ultimo nodo / Toraki).
 La **Serpe** (Gran Ducato) è l'ombra da evitare e infine affrontare lungo tutto.
-- **Terminus (dove Toraki aspetta)** — *default*: **le Pietre del Leone** (acropoli etrusca delle Terre del Leone di Pietra, le
+- **Terminus (dove Toraki aspetta)** — *default*: **le Pietre del Leone** (acropoli dei primi delle Terre del Leone di Pietra, le
   pietre più antiche, dentro il regno). Alternativa: **anello** che torna
   all'origine (Spondalta). → da confermare.
 
