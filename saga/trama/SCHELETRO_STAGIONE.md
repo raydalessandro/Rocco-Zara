@@ -61,8 +61,11 @@ disegno** sulla pietra tiepida, qualcosa di nuovo è sul punto di nascere da que
 
 **IL FINALE (fissato per primo).** le Pietre del Leone. L'ultimo nodo; il ricongiungimento Zara–
 Toraki; la rete dei cinque regni completa; i segni delle pietre che si compongono nel
-disegno intero; l'accenno — mai detto — che da quella rete nascerà *qualcosa* (i primi /
-l'umanità che verrà). Tutti e quattro i ritornelli **pagano** qui.
+disegno intero. Poi **la consegna**: posano il Cordone sulla pietra tiepida e **lo
+lasciano** — finire era consegnare, non possedere. Non un trionfo, non una tragedia: il
+loro compito è finito, e da quel gesto comincia (fuori campo, mai detto) il **fare spazio**
+a *qualcosa* che verrà — sottotesto d'autore: i primi / l'umanità prossima, da non nominare
+mai. Tutti e **cinque** i ritornelli **pagano** qui. *(meccanismo completo nel Movimento 5.)*
 
 **IL MIDPOINT (il giro forte).** Oltre il Gran Fiume, nella **Piana dei Savi della Dotta**. Tre
 cose insieme: (1) Zara tocca il fondo — i Dotti le "smontano" il Cordone e lei ci crede,
@@ -143,12 +146,48 @@ Qui le **tracce di Toraki** sono più fitte (passato di recente). Il **Mastino**
 valico — il **muro** da superare. *Tentpole:* quarto nodo + superare il Mastino.
 *Ritornello in luce:* le **tracce / il nodo-segno di Toraki**, al massimo.
 
-**5 · Terre del Leone di Pietra — FINALE** (Leonalba il **Leone di Pietra/Leone** · città-stato rivali · **le Pietre del Leone**,
-il cuore dei primi). *Rottura:* i liberi **non** sono idealizzati — le città litigano tra
-loro proprio sull'orlo del finale. L'**ultima corsa**: R&Z + **Viscardo** che incalza,
-verso le Pietre del Leone dove **Toraki aspetta**. *Tentpole = il finale:* ultimo nodo,
-ricongiungimento, rete completa, il **disegno** che si compie, l'**accenno** (mai detto).
-Tutti i ritornelli pagano.
+**5 · Terre del Leone di Pietra — FINALE** (Leonalba · **il Leone di Pietra** · città-stato
+rivali · **le Pietre del Leone**, il cuore dei primi).
+
+*Rottura del reame:* i liberi **non** sono idealizzati — le città rivali litigano tra loro
+proprio sull'orlo del finale. La libertà senza accordo è un'altra forma di caos.
+
+*L'ultima corsa:* R&Z + Viscardo che incalza, verso le Pietre del Leone dove Toraki aspetta.
+
+*Tentpole = il finale — il meccanismo della CONSEGNA (non del trionfo):*
+
+1. **Ricongiungimento con Toraki.** Non è un'esplosione di gioia: è il riconoscimento
+   silenzioso di chi ha fatto la stessa cosa, su strade diverse. Il Cordone con tutti i
+   nodi tranne l'ultimo.
+
+2. **L'ultimo nodo alle Pietre del Leone.** Zara stringe il nodo finale. Il disegno
+   sui segni si compone — tutti i frammenti visti in viaggio formano **un'unica figura**.
+   Nessuno la nomina. È lì, sulla roccia.
+
+3. **La consegna — il gesto centrale del finale.** Posano il Cordone sulla pietra tiepida
+   e lo lasciano lì. Non lo tengono, non lo portano via. È questo il finale:
+   *finire era consegnare, non possedere.* Il gesto è semplice. Non c'è magia.
+
+4. **Il pizzicore.** Sanno — senza dirlo, senza capirlo del tutto — che da questo momento
+   qualcosa di grande inizia a cambiare. Non spariscono. Non muoiono. Ma il loro compito
+   è finito, e questo ha un peso. La pace è vera; il pizzicore è che pace, qui,
+   vuol dire *fare spazio*.
+
+5. **L'immagine finale — non sono loro.** L'ultimo fotogramma è la pietra, il Cordone
+   posato, i segni composti, il silenzio. L'attesa. Nessun personaggio in primo piano.
+   Tenuto a lungo.
+
+*Tre guardrail per il tono (non negoziabili):*
+- **Mostra la porta che si apre, non chi la attraversa.** La transizione comincia lì,
+  non si compie — è fuori campo, oltre il libro.
+- **L'umiltà del non-sapere.** R&Z completano senza capire del tutto perché toccava
+  a loro. Sentono che è giusto. Questo tiene "chi viene dopo" non-detto — naturalmente.
+- **L'amicizia come calore.** L'agrodolce regge solo se il legame R&Z è l'ancora calda:
+  *qualunque cosa venga dopo, noi c'eravamo, insieme, e l'abbiamo lasciata tiepida.*
+
+*Tutti i ritornelli pagano qui:* il Cordone completo (1) · la pietra tiepida ribaltata
+da ricevuta a consegnata (2→5) · l'ombra di Rocco nell'ultima scena insieme (3) ·
+Toraki ritrovato (4) · la consegna sulla pietra (5).
 
 ---
 
@@ -172,6 +211,6 @@ casa/straniero, quale delle 7 zone, tipo di ostacolo, quale paura) — vedi
 - Se **Rocco torni nella pianura della Serpe** (casa sua) prima del finale — chiuderebbe il
   suo arco personale (liberazione di casa) come contrappunto alla A-story.
 
-> *Prossimo passo (deciso): prima le **reference** (3 protagonisti → 4 ritornelli →
+> *Prossimo passo (deciso): prima le **reference** (3 protagonisti → 5 ritornelli →
 > key-art per regno → segni + linguaggio di camera), poi si torna qui a riempire i
 > movimenti in episodi.*

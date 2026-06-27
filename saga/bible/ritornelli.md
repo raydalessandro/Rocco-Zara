@@ -1,4 +1,4 @@
-# I Ritornelli — i 4 elementi che tornano e cambiano senso
+# I Ritornelli — i 5 elementi che tornano e cambiano senso
 
 > I **leitmotiv** della saga: tornano *sempre*, ma ogni volta **accumulano** significato
 > — è ciò che permette di ripetere uno schema raccontandolo diverso (vedi
@@ -70,3 +70,38 @@
 I ritornelli **2** (i segni che si compongono *all'indietro*) e **4** (le tracce che si
 fanno fresche *in avanti*) **sono** il motore della spirale: re-illuminano il passato e
 tirano il futuro. Vedi `../trama/rotture_e_spirale.md`.
+
+## 5. La pietra che si lascia tiepida  · *funzione: la CONSEGNA / il finale*
+
+> Questo ritornello è **distinto dal #2** (il mistero di chi era qui prima).
+> Il #2 guarda *indietro* — la scoperta. Il #5 guarda *avanti* — la scelta.
+> Il #2 apre domande per tutto il viaggio. Il #5 le chiude, con un gesto.
+
+- **Cliché schivato:** il lieto fine "e vissero tutti felici e contenti"; il sacrificio
+  eroico; la trasformazione magica (si annoda il Cordone → compaiono gli uomini).
+- **Versione nostra:** completare il Cordone **non è** un trionfo. È un gesto semplice
+  e deliberato: posarlo sulla pietra tiepida delle Pietre del Leone, e **lasciarlo lì**
+  — non tenerlo, non portarlo via. *Finire era consegnare, non possedere.*
+  Il calore della pietra non è magia: è **continuità fisica**. Qualcuno l'ha lasciata
+  tiepida per loro. Adesso loro la lasciano tiepida per chi viene. Il ciclo è fisico,
+  non mistico.
+- **Come accumula:** per tutta la saga R&Z *trovano* pietre tiepide (ritornello #2 —
+  mistero). Al finale, per la prima volta, *lasciano* qualcosa di caldo. Il ritornello
+  si ribalta: da ricevere a consegnare. Il lettore lo sente senza che nessuno lo dica.
+- **Il pizzicore (senza il tragico):** il Cordone completo non appartiene più a loro.
+  Non spariscono, non muoiono — ma il loro compito è finito, e sanno che da questo
+  momento qualcosa di grande inizia a cambiare. L'ultimo fotogramma **non è loro**:
+  è la pietra, il Cordone posato, i segni composti, il silenzio, **l'attesa**.
+  La pace è vera; il pizzicore è che pace, qui, vuol dire *fare spazio*.
+- **Tre guardrail per non sbagliare il tono:**
+  1. **Mostra la porta che si apre, non chi la attraversa.** Nessuno sparisce nel finale.
+     La transizione *comincia* lì, non si compie — è fuori campo.
+  2. **L'umiltà del non-sapere.** R&Z completano il Cordone senza capire del tutto
+     perché toccava a loro. Sentono che è giusto, sentono il pizzicore. Questo tiene
+     il "cosa viene dopo" non-detto in modo naturale (nemmeno loro lo sanno).
+  3. **L'amicizia come calore.** L'agrodolce regge solo se il legame Rocco-Zara è
+     l'ancora calda: *qualunque cosa venga dopo, noi c'eravamo, insieme, e l'abbiamo
+     lasciata tiepida.* Senza questo calore vira al cupo.
+- **Reference:** la pietra delle Pietre del Leone con il Cordone posato sopra —
+  **immagine finale della saga**. Tenuta a lungo. Nessun personaggio in primo piano.
+  Il Cordone intrecciato coi segni composti sullo sfondo. Silenzio visivo.
