@@ -30,7 +30,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ *(da aggiungere se serve — l'arco è già coperto)*.
 
 ## Arco 2 — la Conca Ruggente
-*Brescia «la Leonessa» / Bergamo · libero comune · **turchino** · mette alla prova **Rocco** (la forza che serve, non rompe).*
+*Brescia «la Leonessa» / Bergamo · libero comune · **turchino** · mette alla prova **Rocco** (la forza che serve, non rompe).* ✅ **fatto**
+> Schede: `la-leonessa-civica.md` · `il-montanaro-delle-incisioni.md` · `l-aiutante-arlecchino.md` · `il-quinto-colonna.md` · `il-giurato.md`
 - ① **la giovane Leonessa civica** — *i Protettori (oratoria del libero comune)* — fiera che nella Conca *tutti contribuiscono*; vede Rocco «grande e basta». Lo sprona: la tua forza può **servire**. Specchio del suo «rompo soltanto».
 - ② **il Montanaro delle incisioni** — *Montanari del Mare di Dentro (laconismo d'altura)* — custode schivo delle Pietre Incise; dice poco, sa quali segni sono antichi → le Pietre Incise.
 - ③ **l'aiutante di Bergamo** — *Gente delle Conche (Arlecchino/Brighella)* — l'aiuto-commedia che va di traverso e per sbaglio funziona; seme: un equivoco che rotola.
@@ -38,7 +39,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il Giurato della parola data** — *i Giurati (soldato-contadino di confine)* — legato da un **giuramento** che lo trascina; «detto è detto» che cozza con la missione *(pattern Salgari: l'uomo d'onore vincolato)*.
 
 ## Arco 3 — il Gran Ducato
-*Milano della Biscia / Verona scaligera · Signoria/autocrazia · **vermiglio** · **casa di Rocco**: il tributo, Artiglio, il **Luogo sepolto** (nessun nodo).*
+*Milano della Biscia / Verona scaligera · Signoria/autocrazia · **vermiglio** · **casa di Rocco**: il tributo, Artiglio, il **Luogo sepolto** (nessun nodo).* ✅ **fatto**
+> Schede: `quello-che-e-rimasto.md` · `la-memoria-sepolta.md` · `il-mercante-delle-vie.md` · `artiglio.md` · `bissa.md` — (④⑤ = Serpe promossa a scheda-voce; costellazione in `../../cartografia/regni/pianura_alta/la_serpe.md`)
 - ① **quello che è rimasto** — *Popolo dell'Aperto (piano, brontolone)* — un pari di Rocco che ha **chinato la testa** e subìto: specchio della scelta/colpa di Rocco (lui è partito).
 - ② **la memoria sepolta** — *un vecchio del Popolo / un Vassallo* — ricorda che **c'era** un Luogo, ora pavimentato sotto Anguicorte: la porta che **non si può** annodare → la svolta amara dell'arco.
 - ③ **il Mercante delle Vie** — *Mercanti delle Vie (rapido, pettegolo)* — vende ciò che ti serve (e dove sei) + **l'Esattore pentito** (trasversale) **paga qui** il suo arco, a casa.
@@ -46,7 +48,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **la successione** — *il Signore e la Corte* — **Bissa** (l'erede impaziente) contro Viscardo: una faida interna alla Serpe che i due possono sfruttare *(propria linea)*.
 
 ## Arco 4 — la Piana dei Savi
-*Bologna (la legge) + Ferrara estense (il sangue) · repubblica della legge vs aristocrazia di sangue · conteso · **MIDPOINT**: il Gran Fiume, i Dotti «smontano» il Cordone, Zara tocca il fondo.*
+*Bologna (la legge) + Ferrara estense (il sangue) · repubblica della legge vs aristocrazia di sangue · conteso · **MIDPOINT**: il Gran Fiume, i Dotti «smontano» il Cordone, Zara tocca il fondo.* ✅ **fatto**
+> Schede: `il-dotto-che-smonta.md` · `la-casa-dell-aquila.md` · `il-giovane-disputante.md` — (②③ = `guardiano-del-guado.md`, trasversale già scritto; «i Disputanti» = classe ufficiale in `_voci.json`)
 - ① **il Dotto che smonta** — *i Dotti (Balanzone)* — «dimostra» che il Cordone non significa niente: l'intellettuale che disfa il senso → **il punto più basso di Zara** (il midpoint).
 - ② **la porta alle Rovine** — coperta dal **Guardiano del guado** (trasversale) → le Rovine Ordinate.
 - ③ **il Guardiano del guado** (garzetta, trasversale) — passaggio + la **traccia più fresca di Toraki** al midpoint. ✅
@@ -54,7 +57,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il giovane Disputante** — *i Disputanti (vince chi convince)* — ama la disputa e si potrebbe convincerlo ad arringare **a favore** del Cordone: retore ambizioso con la sua linea.
 
 ## Arco 5 — la Selva di Mezzo
-*Appennino · **anarchia** (nessun governo) · neutro · il cuore strano, prima del finale; qui la cicala è più di casa.*
+*Appennino · **anarchia** (nessun governo) · neutro · il cuore strano, prima del finale; qui la cicala è più di casa.* ✅ **fatto**
+> Schede: `l-esule-libero.md` · `uno-degli-antichi.md` · `il-solitario.md` · `le-creature-della-rovina.md` · `il-tentatore.md` — (slot ④ ingloba il **Cacciatore** trasversale, già scritto, che qui chiude su Toraki)
 - ① **l'Esule libero** — *gli Esuli (voce del regno d'origine)* — fuggito dalla Serpe, vive libero nel bosco anarchico: specchio di ciò che l'Esattore potrebbe diventare — e del **costo** della libertà-senza-appartenenza.
 - ② **uno degli Antichi** — *gli Antichi (oracolare, a indovinello)* — il più vicino alla cicala; parla per enigmi dell'Altare di Roccia: sfiora la cosmologia **senza dirla** (solo indovinelli) → l'Altare di Roccia.
 - ③ **il Solitario** — *i Solitari (schivo, diffidente)* — non vuole compagnia, dà l'aiuto decisivo a malincuore.
@@ -62,7 +66,8 @@ Lo **schema** di ogni arco (5 caselle): ① specchio interiore · ② porta al n
 - ⑤ **il tentatore** — *un Esule/Solitario* — affascinante, tenta Rocco o Zara a **restare** liberi nel bosco e mollare il Cordone *(pattern Lucignolo: il bivio fatto persona)*.
 
 ## Arco 6 — le Terre del Leone di Pietra
-*Firenze (il Leone/Dante) · Siena (la Lupa/Cecco) · Lucca (la Pantera) · Pisa (il Mare/Galileo) · città rivali, «il regno delle gare» · conteso · **FINALE**: le Pietre del Leone, Toraki, la consegna.*
+*Firenze (il Leone/Dante) · Siena (la Lupa/Cecco) · Lucca (la Pantera) · Pisa (il Mare/Galileo) · città rivali, «il regno delle gare» · conteso · **FINALE**: le Pietre del Leone, Toraki, la consegna.* ✅ **fatto**
+> Schede: `il-cittadino-del-leone.md` · `il-custode-delle-pietre-del-leone.md` · `la-lupa.md` · `la-pantera.md` · `il-marinaio-del-mare.md` — (② ospita **Toraki**, già scritto; ④ ingloba il redde rationem del **Cacciatore** e l'ultima mano della **Serpe**, esistenti)
 - ① **il Cittadino del Leone** — *Cittadini del Leone (Dante, civile, in terzina)* — «la gloria è il vero potere»: specchio della tentazione finale (gloria) contro la **consegna** silenziosa.
 - ② **le Pietre del Leone** — **Toraki** aspetta qui (+ un vecchio che cura le pietre più antiche) → l'ultimo nodo.
 - ③ **la Lupa e i suoi** — *la Lupa (Cecco Angiolieri, beffardo-amaro)* — Siena che aiuta sì ma sghemba: la rivalità con Leonalba (Firenze) da attraversare.
