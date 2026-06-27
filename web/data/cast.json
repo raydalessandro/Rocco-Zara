@@ -1,0 +1,383 @@
+{
+ "generato": "2026-06-27",
+ "arcs": [
+  {
+   "n": 1,
+   "realm": "i Laghi del Vespro",
+   "tagline": "Como/Lario · confederazione libera · conteso · innesco; mette alla prova **Zara** (appartenere).*",
+   "fatto": true
+  },
+  {
+   "n": 2,
+   "realm": "la Conca Ruggente",
+   "tagline": "Brescia «la Leonessa» / Bergamo · libero comune · **turchino** · mette alla prova **Rocco** (la forza che serve, non rompe).*",
+   "fatto": true
+  },
+  {
+   "n": 3,
+   "realm": "il Gran Ducato",
+   "tagline": "Milano della Biscia / Verona scaligera · Signoria/autocrazia · **vermiglio** · **casa di Rocco**: il tributo, Artiglio, il **Luogo sepolto** (nessun nodo).*",
+   "fatto": true
+  },
+  {
+   "n": 4,
+   "realm": "la Piana dei Savi",
+   "tagline": "Bologna (la legge) + Ferrara estense (il sangue) · repubblica della legge vs aristocrazia di sangue · conteso · **MIDPOINT**: il Gran Fiume, i Dotti «smontano» il Cordone, Zara tocca il fondo.*",
+   "fatto": true
+  },
+  {
+   "n": 5,
+   "realm": "la Selva di Mezzo",
+   "tagline": "Appennino · **anarchia** (nessun governo) · neutro · il cuore strano, prima del finale; qui la cicala è più di casa.*",
+   "fatto": true
+  },
+  {
+   "n": 6,
+   "realm": "le Terre del Leone di Pietra",
+   "tagline": "Firenze (il Leone/Dante) · Siena (la Lupa/Cecco) · Lucca (la Pantera) · Pisa (il Mare/Galileo) · città rivali, «il regno delle gare» · conteso · **FINALE**: le Pietre del Leone, Toraki, la consegna.*",
+   "fatto": true
+  }
+ ],
+ "chars": [
+  {
+   "slug": "aspide",
+   "name": "Aspide",
+   "sub": "scheda canone (comprimario · la Serpe, il consigliere)",
+   "specie": "vipera (il consigliere di corte)",
+   "ear": "connettere",
+   "tipo": "comprimario (antagonista ricorrente)",
+   "blurb": "freddo, paziente, sussurrante: non comanda — suggerisce, e il suggerimento è già veleno.",
+   "arc": 0
+  },
+  {
+   "slug": "cecca",
+   "name": "Cècca",
+   "sub": "scheda canone (comprimario · la Serpe, braccio comico ricorrente)",
+   "specie": "gazza (la spia della Serpe)",
+   "ear": "distinguere",
+   "tipo": "comprimario (antagonista comico ricorrente · trasversale a tutti gli archi)",
+   "blurb": "l'occhio più acuto della Serpe: vede per prima, coglie il dettaglio che a tutti sfugge. Davvero brava.",
+   "arc": 0
+  },
+  {
+   "slug": "cacciatore",
+   "name": "il Cacciatore",
+   "sub": "scheda canone (comprimario · cattivo fuori-Serpe)",
+   "specie": "martora (predatore agile, instancabile) — adattabile al roster",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "rapido, freddo, ossessionato dalla gloria. Non odia le prede: le vuole.",
+   "arc": 0
+  },
+  {
+   "slug": "il-mastino",
+   "name": "il Mastino",
+   "sub": "scheda canone (comprimario · la Serpe, il vassallo dei valichi)",
+   "specie": "cane mastino (signore-condottiero dei valichi)",
+   "ear": "distinguere",
+   "tipo": "comprimario (antagonista ricorrente — blocco)",
+   "blurb": "passionale, sprezzante, fiero (boria cavalleresca): onorevole nel proprio codice; disprezza",
+   "arc": 0
+  },
+  {
+   "slug": "esattore-pentito",
+   "name": "l'Esattore pentito",
+   "sub": "scheda canone (comprimario · ex-Serpe)",
+   "specie": "mulo (bestia da soma dell'Aperto) — adattabile al roster (../../cartografia/regni/faunario.md)",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "piano, paziente, testardo; porta la vergogna in silenzio, non la spiega.",
+   "arc": 0
+  },
+  {
+   "slug": "voce-che-torna",
+   "name": "la Voce che torna",
+   "sub": "scheda canone (comprimario · trasversale, di tutta la saga)",
+   "specie": "cicala — omaggio al Grillo; ancora autoriale: le cicale del Fedro di Platone (i cantori che attraversano il tempo). Mai in-storia. — alternativa: grillo (omaggio diretto).",
+   "ear": "connettere",
+   "tipo": "comprimario — ricorrente, trasversale (di tutti i regni e di nessuno)",
+   "blurb": "parla poco; ciò che dice è più vecchio di una creatura così piccola.",
+   "arc": 0
+  },
+  {
+   "slug": "sorcio",
+   "name": "Sòrcio",
+   "sub": "scheda canone (comprimario · la Serpe, braccio comico ricorrente)",
+   "specie": "ratto (contrabbando e voci, per la Serpe)",
+   "ear": "cambiare",
+   "tipo": "comprimario (antagonista comico ricorrente · alleanza mobile · trasversale)",
+   "blurb": "si crede un fuoriclasse del contrabbando — e tutto gli crolla fra le zampe. Improvvisa, pasticcia,",
+   "arc": 0
+  },
+  {
+   "slug": "custode-anziano",
+   "name": "il Custode anziano",
+   "sub": "scheda canone (comprimario · Arco 1, i Laghi del Vespro)",
+   "specie": "testuggine di lago (longeva — la memoria fatta animale) — adattabile al roster",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "osservativo, paziente, enciclopedico: cataloga tutto, trae sentenze dalla natura.",
+   "arc": 1
+  },
+  {
+   "slug": "traghettatrice-delle-rive",
+   "name": "la Traghettatrice delle Rive",
+   "sub": "scheda canone (comprimario · Arco 1, i Laghi del Vespro)",
+   "specie": "lontra (gente d'acqua e di barca) — adattabile al roster",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "concreta, calda, proverbiale: parla per immagini d'acqua e di rete.",
+   "arc": 1
+  },
+  {
+   "slug": "specchio-di-zara",
+   "name": "lo Specchio di Zara",
+   "sub": "scheda canone (comprimario · Arco 1, i Laghi del Vespro)",
+   "specie": "lince (lo stemma del regno — lei ne è il vanto)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "sicura, asciutta, un filo altera senza saperlo: non è cattiva — è solo a casa, e questo,",
+   "arc": 1
+  },
+  {
+   "slug": "il-giurato",
+   "name": "il Giurato della parola data",
+   "sub": "scheda canone (comprimario · Arco 2, la Conca Ruggente)",
+   "specie": "orso bruno (di confine — ruvido, enorme, lento a parlare)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "ruvido, breve, di parola data: \"detto è detto\". Rigido sull'onore fino al dolore.",
+   "arc": 2
+  },
+  {
+   "slug": "il-montanaro-delle-incisioni",
+   "name": "il Montanaro delle incisioni",
+   "sub": "scheda canone (comprimario · Arco 2, la Conca Ruggente)",
+   "specie": "stambecco (montanaro d'altura, verso il Mare di Dentro)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "secco, meteorologico, sentenzioso: dice poco, e quel poco è tempo e pietra. Legge la nuvola",
+   "arc": 2
+  },
+  {
+   "slug": "il-quinto-colonna",
+   "name": "il quinto colonna",
+   "sub": "scheda canone (comprimario · Arco 2, la Conca Ruggente)",
+   "specie": "tasso (rispettabile, industrioso — e scava gallerie nascoste)",
+   "ear": "cambiare",
+   "tipo": "comprimario (antagonista locale)",
+   "blurb": "parla il «noi» civico con solennità perfetta — ma è calcolo: sotto la grande parola c'è solo lui",
+   "arc": 2
+  },
+  {
+   "slug": "l-aiutante-arlecchino",
+   "name": "l'aiutante Arlecchino",
+   "sub": "scheda canone (comprimario · Arco 2, la Conca Ruggente)",
+   "specie": "scoiattolo (regolabile) — svelto, indaffarato, terragno",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "terragno, svelto, comico, furbo-bonario: chiacchiera a raffica, si offre sempre, sa tutto di tutti.",
+   "arc": 2
+  },
+  {
+   "slug": "la-leonessa-civica",
+   "name": "la Leonessa civica",
+   "sub": "scheda canone (comprimario · Arco 2, la Conca Ruggente)",
+   "specie": "leonessa (lo stemma del regno — lei ne è il cuore vivo)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "solenne, fiera, collettiva: pensa e parla in «noi». Il comune libero è la sua casa e la sua misura.",
+   "arc": 2
+  },
+  {
+   "slug": "artiglio",
+   "name": "Artiglio",
+   "sub": "scheda canone (comprimario · la Serpe, antagonista ricorrente)",
+   "specie": "falco (l'esattore della Serpe)",
+   "ear": "distinguere",
+   "tipo": "comprimario (antagonista ricorrente)",
+   "blurb": "predatore in livrea d'ufficio: usa il pretesto (tributo, \"contrabbando\") come arma. Freddo,",
+   "arc": 3
+  },
+  {
+   "slug": "bissa",
+   "name": "Bissa",
+   "sub": "scheda canone (comprimario · la Serpe, l'erede / linea propria)",
+   "specie": "vipera (giovane — l'erede della Serpe)",
+   "ear": "cambiare",
+   "tipo": "comprimario (antagonista, linea propria)",
+   "blurb": "ambiziosa, impaziente: vuole provare il proprio veleno, non aspettare il proprio turno. Prenderebbe",
+   "arc": 3
+  },
+  {
+   "slug": "il-mercante-delle-vie",
+   "name": "il Mercante delle Vie",
+   "sub": "scheda canone (comprimario · Arco 3, il Gran Ducato)",
+   "specie": "dromedario (mercante delle carovane sulle Vie)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "rapido, transattivo, pettegolo: sa l'ultima voce delle Vie e te la rivende. Per lui tutto è merce,",
+   "arc": 3
+  },
+  {
+   "slug": "la-memoria-sepolta",
+   "name": "la memoria sepolta",
+   "sub": "scheda canone (comprimario · Arco 3, il Gran Ducato)",
+   "specie": "elefantessa (vecchia, del Popolo dell'Aperto — i grandi della pianura)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "lenta, ferma, di lunga memoria: parla del «prima» — il tempo in cui la pietra era scoperta e",
+   "arc": 3
+  },
+  {
+   "slug": "quello-che-e-rimasto",
+   "name": "quello che è rimasto",
+   "sub": "scheda canone (comprimario · Arco 3, il Gran Ducato)",
+   "specie": "bufalo (del Popolo dell'Aperto, come Rocco)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "piano, paziente, rassegnato: brontola sottovoce, sopporta, \"qualcuno doveva restare\".",
+   "arc": 3
+  },
+  {
+   "slug": "il-dotto-che-smonta",
+   "name": "il Dotto che smonta",
+   "sub": "scheda canone (comprimario · Arco 4, la Piana dei Savi · MIDPOINT)",
+   "specie": "gufo (l'occhio del sapere — stemma dei Savi; il dottore di Bologna)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "pomposo, pseudo-dotto, infarcito di latino (Balanzone) — ma sotto la cantilena dotta c'è una mente",
+   "arc": 4
+  },
+  {
+   "slug": "il-giovane-disputante",
+   "name": "il giovane Disputante",
+   "sub": "scheda canone (comprimario · Arco 4, la Piana dei Savi · linea propria)",
+   "specie": "assiolo (giovane — dei Dotti, la disputa: piccolo, insonne, dal richiamo insistente)",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "ama la disputa per sé stessa: brillante, agile, argomenta qualunque tesi — perché il gioco è ciò",
+   "arc": 4
+  },
+  {
+   "slug": "guardiano-del-guado",
+   "name": "il Guardiano del guado",
+   "sub": "scheda canone (comprimario · neutro)",
+   "specie": "garzetta (l'airone bianco; è nel roster dei Contadini/Argini del Gran Fiume) — adattabile",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "paziente, fatalista-bonario; parla per sentenze del fiume.",
+   "arc": 4
+  },
+  {
+   "slug": "la-casa-dell-aquila",
+   "name": "la Casa dell'Aquila",
+   "sub": "scheda canone (comprimario · Arco 4, la Piana dei Savi)",
+   "specie": "aquila (la Casa dell'Aquila — il sangue estense)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "epico, cavalleresco, parla in ottava rima: tutto, per lui, è canto e gloria. Conta solo il sangue,",
+   "arc": 4
+  },
+  {
+   "slug": "il-solitario",
+   "name": "il Solitario",
+   "sub": "scheda canone (comprimario · Arco 5, la Selva di Mezzo)",
+   "specie": "gatto selvatico (solitario, guardingo)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "monosillabico, guardingo: non vuole nessuno intorno. Sbrigativo, diffidente.",
+   "arc": 5
+  },
+  {
+   "slug": "il-tentatore",
+   "name": "il tentatore",
+   "sub": "scheda canone (comprimario · Arco 5, la Selva di Mezzo · il bivio)",
+   "specie": "cervo (lo stemma della Selva — la libertà selvatica fatta magnificenza)",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "carismatico, persuasivo, felice (o così pare): rende visibile il peso del Cordone e chiede, dolce,",
+   "arc": 5
+  },
+  {
+   "slug": "l-esule-libero",
+   "name": "l'Esule libero",
+   "sub": "scheda canone (comprimario · Arco 5, la Selva di Mezzo)",
+   "specie": "cavallo (di pianura, fuggito nel bosco — un fuori-posto vivente)",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "libero, autosufficiente, e un po' vuoto: parla con orgoglio della libertà, ma sotto c'è una solitudine",
+   "arc": 5
+  },
+  {
+   "slug": "le-creature-della-rovina",
+   "name": "le Creature della Rovina",
+   "sub": "scheda canone (comprimario collettivo · Arco 5, la Selva di Mezzo)",
+   "specie": "piccole creature notturne della rovina (un coro: pipistrelli, civette, grilli — il bosco-",
+   "ear": "cambiare",
+   "tipo": "comprimario collettivo",
+   "blurb": "cantilenanti, in rima, inquietanti e infantili: non ostili, ma perturbanti. Sanno le cose in",
+   "arc": 5
+  },
+  {
+   "slug": "uno-degli-antichi",
+   "name": "uno degli Antichi",
+   "sub": "scheda canone (comprimario · Arco 5, la Selva di Mezzo)",
+   "specie": "rospo (creatura di pietra, antichissima, immobile sull'Altare)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "lento, gnomico, a indovinello: non risponde mai dritto. Sa qualcosa di vasto — e o non vuole, o",
+   "arc": 5
+  },
+  {
+   "slug": "il-cittadino-del-leone",
+   "name": "il Cittadino del Leone",
+   "sub": "scheda canone (comprimario · Arco 6, le Terre del Leone · FINALE)",
+   "specie": "leone (lo stemma di Leonalba — la gloria civile)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "alto, fiero, in terzina: per lui «la gloria è il vero potere». La grandezza è essere ricordati;",
+   "arc": 6
+  },
+  {
+   "slug": "il-custode-delle-pietre-del-leone",
+   "name": "il custode delle Pietre del Leone",
+   "sub": "scheda canone (comprimario · Arco 6, le Terre del Leone · FINALE)",
+   "specie": "asino (vecchio — umile, paziente, fuori dal tempo)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "umile, paziente, fuori dal tempo: cura le pietre perché le curavano i suoi prima di lui. Sa che la",
+   "arc": 6
+  },
+  {
+   "slug": "il-marinaio-del-mare",
+   "name": "il marinaio del Mare",
+   "sub": "scheda canone (comprimario · Arco 6, le Terre del Leone · FINALE · linea propria)",
+   "specie": "cormorano (marinaio-navigatore, pescatore preciso del mare di Pisa)",
+   "ear": "cambiare",
+   "tipo": "comprimario",
+   "blurb": "salato, pratico, preciso: dice solo ciò che ha misurato; promette solo il certo. Onesto, senza",
+   "arc": 6
+  },
+  {
+   "slug": "la-lupa",
+   "name": "la Lupa",
+   "sub": "scheda canone (comprimario · Arco 6, le Terre del Leone · FINALE)",
+   "specie": "lupa (lo stemma di Siena)",
+   "ear": "connettere",
+   "tipo": "comprimario",
+   "blurb": "brontolona, sardonica, orgogliosa-amara: maledice la sorte (e Firenze) con gusto; aiuta lamentandosi;",
+   "arc": 6
+  },
+  {
+   "slug": "la-pantera",
+   "name": "la Pantera",
+   "sub": "scheda canone (comprimario · Arco 6, le Terre del Leone · FINALE)",
+   "specie": "pantera (lo stemma di Lucca — la città di seta)",
+   "ear": "distinguere",
+   "tipo": "comprimario",
+   "blurb": "riservata, fiera, sobria: tiene il proprio consiglio; legge tutti, mostra niente. La sua",
+   "arc": 6
+  }
+ ]
+}

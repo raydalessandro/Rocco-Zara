@@ -1,0 +1,94 @@
+{
+ "ritornelli": [
+  {
+   "n": "1",
+   "nome": "Il Cordone",
+   "fn": "la missione",
+   "cliche": "il MacGuffin «raccogli gli N pezzi», l'artefatto magico.",
+   "nostra": "Non è magico, non dà poteri. È una corda umile (fibra, crine); ogni nodo si stringe attorno a un pegno reale del regno (un ciuffo di pelo di lince, una piuma, una scaglia di corteccia, un filo di stendardo). Diventa un diario tattile: ci passi la zampa sopra e rileggi dov'eri.",
+   "accum": [
+    "peso che Toraki le ha scaricato addosso",
+    "diario di cui è fiera",
+    "la cosa che lega i regni"
+   ]
+  },
+  {
+   "n": "2",
+   "nome": "La pietra tiepida",
+   "fn": "il mistero",
+   "cliche": "le rune magiche che brillano, la pietra mistica.",
+   "nostra": "Niente energia, solo fisico: una pietra tiepida quando tutto attorno è freddo, segnata da mani che non erano zampe (coppelle, incisioni — reali). Ogni Luogo Antico ha un segno diverso, e solo a fine viaggio i segni si rivelano pezzi di un unico disegno — la Rete di Indra resa letterale.",
+   "accum": [
+    "«perché è tiepida?»",
+    "«sono tutte tiepide, e i segni si somigliano»",
+    "«si collegano» → comprensione (mai detta a parole; mostrata)"
+   ]
+  },
+  {
+   "n": "3",
+   "nome": "L'ombra di Rocco",
+   "fn": "l'amicizia",
+   "cliche": "nessuno — è nostro, viene dalla storia origine (il rischio è solo dimenticarlo).",
+   "nostra": "L'ombra di Rocco = riparo (dal sole, dalla tempesta), e pesa: «Nella tua ombra mi sono sentita al sicuro». L'arco di Zara lo ribalta: da chi cerca riparo a chi diventa riparo per altri.",
+   "accum": [
+    "riparo letterale",
+    "il gesto della fiducia (mettersi nell'ombra di Rocco)",
+    "Zara diventa riparo (nel finale forse non le serve più)"
+   ]
+  },
+  {
+   "n": "4",
+   "nome": "Le tracce di Toraki",
+   "fn": "lo slancio / la famiglia",
+   "cliche": "la briciola di pane, il mentore-fantasma che lascia messaggi.",
+   "nostra": "Toraki non lascia messaggi ma un suo piccolo nodo dove è passato — lo stesso gesto del Cordone. La traccia È il motivo del nodo: un solo segno tiene insieme fratello-sorella e missione. Lo mostriamo nel suo viaggio davanti, non solo alla fine.",
+   "accum": [
+    "è vivo? dov'è?",
+    "le tracce si fanno più fresche (sei più vicino)",
+    "ricongiungimento"
+   ]
+  }
+ ],
+ "semi": {
+  "principio": "«La verità è nel grafo», applicata al tempo. Per scrivere l'episodio N non si rileggono gli episodi 1…N-1: si costruisce uno snapshot compatto dello stato a N a partire dal grafo. La prosa è output, non fonte di verità. E le soglie sono reali: un cambiamento è canonico solo se supera una soglia.",
+  "registri": [
+   {
+    "cls": "fix",
+    "h": "Canone fisso",
+    "d": "Ciò che non cambia mai: aspetto e voci di Rocco e Zara, i luoghi-cardine, le regole. Ogni episodio lo riceve identico."
+   },
+   {
+    "cls": "evo",
+    "h": "Stato evolutivo",
+    "d": "Ciò che cambia per soglie: crescita dei protagonisti, paure toccate/fiorite, relazioni, centri trasformati, creature ricorrenti, semi e debiti."
+   },
+   {
+    "cls": "res",
+    "h": "Resa",
+    "d": "Prosa + immagini per episodio. NON è fonte di verità; se contraddice lo stato, è la resa a sbagliare."
+   }
+  ],
+  "meccanismo": "Ogni episodio dichiara i suoi delta (cosa cambia). Lo stato a N = fold(delta₁ … delta_{N-1}): una riduzione deterministica, non un riassunto a mano. Solo i delta con threshold_crossed entrano nel canone. A chiusura d'arco, un recap canonico generato dai delta diventa la nuova baseline.",
+  "semiKinds": [
+   "oggetto",
+   "gesto",
+   "frase",
+   "suono",
+   "dettaglio del mondo"
+  ],
+  "debtiKinds": [
+   "promessa",
+   "domanda",
+   "preoccupazione",
+   "oggetto perso"
+  ],
+  "audit": [
+   "coerenza col canone fisso (aspetto/voci/luoghi non derivano)",
+   "coerenza con lo stato (N non smentisce N-3)",
+   "semi pagati (ogni seme ha un bloom_target)",
+   "debiti chiusi entro la loro finestra",
+   "soglie ben formate (una crescita «scattata» ha un episodio che la guadagna)",
+   "quote di saga (anti-ripetizione su scala lunga)"
+  ]
+ }
+}

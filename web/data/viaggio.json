@@ -1,0 +1,173 @@
+{
+ "raccontata": "C'è una tigre giovane che non c'entra niente con questo mondo. Suo fratello Toraki le ha lasciato una corda annodata a metà e un compito troppo grande: legare insieme i regni liberi — un nodo per ognuno, stretto sulle pietre più antiche — prima che la Serpe li prenda tutti. Zara guarda la corda, guarda quanto è piccola, e fa l'unica cosa sensata: scappa. Scappando inciampa in Rocco, fuori posto esattamente quanto lei. Una tempesta li costringe a stare insieme: lui le fa ombra, lei gli fa strada. Quando smette di piovere, nessuno dei due ha più voglia di tornare solo.",
+ "Astory": "R&Z + il Cordone: da Spondalta a le Pietre del Leone, un regno-nodo alla volta.",
+ "Bstory": "Toraki, parallela (il «meanwhile…»): brevi cutaway sul suo cammino davanti — annoda i segni, schiva la Serpe, si avvicina a le Pietre del Leone. Converge al midpoint (traccia fresca) e al finale (incontro). Ironia drammatica: noi sappiamo che è vivo, Zara no.",
+ "midpoint": "Oltre il Gran Fiume, nella Piana dei Savi della Dotta: (1) Zara tocca il fondo — i Dotti le «smontano» il Cordone e lei ci crede, molla (e si tocca il buio); (2) la fede di Rocco e la sua ombra la tengono; (3) prima convergenza con Toraki — traccia freschissima. Da qui: non più «completare», ma «arrivare prima». L'orologio parte.",
+ "finale": "le Pietre del Leone, sulle pietre dei primi più antiche: Zara annoda l'ultimo nodo accanto a Toraki, finalmente raggiunto. I cinque regni liberi sono legati — non sotto qualcuno, ma tra pari. I segni raccolti combaciano in un unico disegno; qualcosa di nuovo è sul punto di nascere — senza che venga mai detto. Si chiude.",
+ "movimenti": [
+  {
+   "n": "0",
+   "t": "Innesco — La Soglia",
+   "regno": null,
+   "col": "#cc7d9e",
+   "luogo": "Spondalta · B1",
+   "pegno": "il peso ricevuto da Toraki",
+   "body": "L'Ep01 che già abbiamo, ricontestualizzato: Zara scappa dal compito → incontra Rocco → la tempesta li lega → partono insieme.",
+   "beats": [
+    [
+     "pianta",
+     "il Cordone (il peso), l'ombra di Rocco (riparo), la prima pietra tiepida (mistero); Cècca già li adocchia"
+    ],
+    [
+     "ritornelli",
+     "ombra · Cordone · pietra — accesi"
+    ]
+   ]
+  },
+  {
+   "n": "1",
+   "t": "Laghi del Vespro",
+   "regno": "laghi_occidente",
+   "col": "#3f8e84",
+   "luogo": "Rivalba · la Lince · massi coppellati",
+   "pegno": "ciuffo di pelo di lince",
+   "body": "«Casa» per Zara, ma lei è ancora Senza-riflesso: per annodare il primo nodo deve essere annodata nella rete — fare qualcosa di memorabile per i Laghi.",
+   "beats": [
+    [
+     "rottura",
+     "il regno dei riflessi → uno specchio-personaggio: un animale del Bosco che è tutto ciò che Zara finge di essere, e la costringe a guardarsi"
+    ],
+    [
+     "tentpole",
+     "primo nodo + Zara accettata"
+    ],
+    [
+     "seme",
+     "Cècca ruba un pegno"
+    ]
+   ]
+  },
+  {
+   "n": "2",
+   "t": "Conca Ruggente",
+   "regno": "laghi_oriente",
+   "col": "#c07a33",
+   "luogo": "Forterocca · la Leonessa · le Pietre Incise",
+   "pegno": "un cordone di giuramento",
+   "body": "Il regno fieramente libero. L'aiuto arriva da furbi-imbroglioni, non da saggi.",
+   "beats": [
+    [
+     "rottura",
+     "la Gente delle Conche (maschere comiche): comico e intelligente insieme"
+    ],
+    [
+     "mistero",
+     "sul Luogo Antico R&Z notano per la prima volta che i segni si somigliano"
+    ],
+    [
+     "serpe",
+     "preme da ovest; prima cutaway di Toraki più marcata"
+    ]
+   ]
+  },
+  {
+   "n": "3",
+   "t": "Piana dei Savi",
+   "regno": "pianura_bassa",
+   "col": "#5c6e92",
+   "luogo": "Savenza · Gufo + Aquila · le Rovine Ordinate",
+   "pegno": "un filo di stendardo + scaglia delle Rovine",
+   "isMid": true,
+   "body": "Oltre il Gran Fiume: attraversamento d'acqua = grande set-piece (eco dell'Ep01). I Dotti smontano il Cordone → Zara molla (il buio); Rocco la regge. Traccia fresca di Toraki → convergenza; Artiglio entra sul serio.",
+   "beats": [
+    [
+     "tentpole",
+     "terzo nodo, strappato nonostante tutto"
+    ],
+    [
+     "svolta",
+     "da qui: corsa — arrivare a Toraki prima della Serpe"
+    ]
+   ]
+  },
+  {
+   "n": "4",
+   "t": "Selva di Mezzo",
+   "regno": "selva_di_mezzo",
+   "col": "#3c6b4a",
+   "luogo": "Città-rovina · gli Antichi · l'Altare di Roccia",
+   "pegno": "corteccia del rovere antico",
+   "body": "Il regno senza legge, bosco-anarchia. Dopo regni così politici, l'assenza di struttura è straniante.",
+   "beats": [
+    [
+     "tracce",
+     "qui le tracce di Toraki sono più fitte (passato di recente)"
+    ],
+    [
+     "muro",
+     "il Mastino blocca il valico — il muro da superare (leale fino al tragico)"
+    ],
+    [
+     "tentpole",
+     "quarto nodo + superare il Mastino"
+    ]
+   ]
+  },
+  {
+   "n": "5",
+   "t": "Terre del Leone di Pietra",
+   "regno": "toscana",
+   "col": "#b0503c",
+   "luogo": "Leonalba · il Leone · le Pietre del Leone",
+   "pegno": "l'ultimo nodo, sulla pietra più antica",
+   "isFin": true,
+   "body": "I liberi NON sono idealizzati: le città litigano tra loro proprio sull'orlo del finale. L'ultima corsa: R&Z + Viscardo che incalza, verso le Pietre del Leone dove Toraki aspetta.",
+   "beats": [
+    [
+     "tentpole = finale",
+     "ultimo nodo, ricongiungimento, rete completa, il disegno che si compie, l'accenno (mai detto)"
+    ],
+    [
+     "pagano",
+     "tutti e quattro i ritornelli pagano qui"
+    ]
+   ]
+  }
+ ],
+ "spirale": [
+  {
+   "a": "Altitudine interiore",
+   "d": "Ogni regno ri-tocca la stessa ferita (Zara «troppo piccola»; Rocco «fuori posto») un gradino più in alto. Giro 1: imparano a fidarsi. Giro 5: imparano a guidare altri."
+  },
+  {
+   "a": "I ritornelli trasformati",
+   "d": "I 4 leitmotiv ricorrono sempre ma cambiano senso accumulando (il nodo, la pietra tiepida, l'ombra, le tracce)."
+  },
+  {
+   "a": "La luce gettata all'indietro",
+   "d": "Rete di Indra: ogni nodo riflette gli altri. Una scoperta al regno 4 illumina retroattivamente il regno 2. Il lettore non rivive lo schema, rilegge il passato con occhi nuovi."
+  }
+ ],
+ "serpeLadder": [
+  {
+   "dove": "Laghi (1–2)",
+   "chi": "Cècca + Sòrcio",
+   "cosa": "attrito comico — ma rubano davvero ciò che serve"
+  },
+  {
+   "dove": "Midpoint (Gran Fiume / Dotta)",
+   "chi": "Artiglio",
+   "cosa": "entra sul serio, l'esattore, dietro a Toraki"
+  },
+  {
+   "dove": "Selva (4)",
+   "chi": "il Mastino",
+   "cosa": "al valico — il muro fisico da superare (leale fino al tragico)"
+  },
+  {
+   "dove": "Terre del Leone (5) / finale",
+   "chi": "Viscardo",
+   "cosa": "sentito tutta la stagione, finalmente vicino: l'ultima corsa è R&Z contro la Serpe per arrivare a Toraki"
+  }
+ ]
+}

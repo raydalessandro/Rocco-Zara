@@ -1,0 +1,162 @@
+{
+ "meta": {
+  "pitch": "Una serie illustrata in italiano, episodi autoconclusivi su una trama di fondo — letta come un viaggio dentro un territorio reale. Doppio pubblico: bambini sopra, adulti sotto (il metodo di Animal Farm e di Calvino).",
+  "metodo": "Ogni regno è uno specchio sociale (Orwell: gli animali come ceti) e ha un suo principio magico-realista (Calvino). La geografia è reale (DEM+OSM del corridoio Muro del Nord→Terre del Leone di Pietra), reskinnata come fantasia.",
+  "pokemon": "Disciplina alla Pokémon: faunario esclusivo per regno + grammatica universale a 7 zone. Punti il dito su un km² e ottieni una cascata deterministica: regno → zona → specie/classe → usanze → seme di storia.",
+  "stato": [
+   "Geografia: DEFINITIVA (6 regni, capitali, rete urbana, luoghi antichi).",
+   "Bibbia personaggi: Rocco, Zara, Toraki, cast della Serpe — campi-canone bloccati.",
+   "Scheletro di stagione: 6 movimenti, scritto dal finale all'indietro.",
+   "Grafo episodi (saga_graph.json): ancora vuoto — si popola un arco alla volta.",
+   "Prossimo passo deciso: prima le reference visive, poi riempire i movimenti in episodi."
+  ]
+ },
+ "motore": {
+  "testo": "Gli animali del corridoio portano, senza saperlo, una coscienza ancora collettiva e addormentata. I primi erano già qui, sparsi, non connessi. Intrecciare i Luoghi Antichi in un'unica rete — il Cordone — è il primo gesto che ricuce insieme la coscienza sparsa. Da quella rete, un giorno, verrà ciò che noi chiamiamo umanità.",
+  "regola": "Non si dice MAI in-storia. Solo l'ultima pagina lo sfiora. La storia si chiude, non resta aperta.",
+  "anti": [
+   "Niente energia / vibrazione / risveglio / connessione cosmica. Lo strano è sempre fisico: pietra tiepida quando tutto è freddo, segni non fatti da zampe, un'eco troppo lunga.",
+   "Il Cordone è un oggetto; i Luoghi sono pietra vera.",
+   "La coscienza collettiva non si nomina mai: si intuisce.",
+   "I primi: mai mostrati, mai nominati, mai animali."
+  ],
+  "ancore": [
+   "il fratello = la Tigre Bianca dei miti dell'est (Baihu/Byakko): guardiano dell'ovest, virtù della giustizia, signore del vento.",
+   "il Cordone come rete di nodi che si rispecchiano = la Rete di Indra → si salda col regno dei riflessi dei Laghi del Vespro."
+  ]
+ },
+ "zoneGrammar": [
+  {
+   "z": "Cuore",
+   "d": "la sede del potere / capitale: dove si decide (consiglio, corte, repubblica…)"
+  },
+  {
+   "z": "Spina",
+   "d": "il cuore produttivo: la classe-lavoratrice principale del regno"
+  },
+  {
+   "z": "Bosco",
+   "d": "il bosco/selva del regno: caccia, legna, sentieri, gente schiva"
+  },
+  {
+   "z": "Orlo",
+   "d": "la frontiera alta o estrema: vedette, messaggeri, gente isolata e fiera"
+  },
+  {
+   "z": "Soglia",
+   "d": "i confini coi regni vicini: dove i regni si toccano e arrivano i Forestieri"
+  },
+  {
+   "z": "Vie",
+   "d": "strade, guadi, mercati che collegano tutto: qui si muovono le corporazioni"
+  },
+  {
+   "z": "Rovina",
+   "d": "le rovine antiche coperte di bosco: misteriose, ai margini del canone"
+  }
+ ],
+ "luoghiAntichi": [
+  {
+   "regno": "Laghi del Vespro",
+   "col": "#3f8e84",
+   "sito": "i massi coppellati",
+   "vede": "coppelle scavate nella roccia",
+   "coord": "45.88, 9.40",
+   "ref": "massi coppellati dei monti del lago"
+  },
+  {
+   "regno": "Conca Ruggente",
+   "col": "#c07a33",
+   "sito": "le Pietre Incise",
+   "vede": "figure incise da mani che non erano zampe",
+   "coord": "46.02, 10.34",
+   "ref": "incisioni rupestri di Capo di Ponte (Valcamonica)"
+  },
+  {
+   "regno": "Piana dei Savi",
+   "col": "#5c6e92",
+   "sito": "le Rovine Ordinate",
+   "vede": "rovine ordinate nella pianura",
+   "coord": "44.34, 11.20",
+   "ref": "città dei primi (Marzabotto)"
+  },
+  {
+   "regno": "Selva di Mezzo",
+   "col": "#3c6b4a",
+   "sito": "l'Altare di Roccia",
+   "vede": "un altare di roccia in mezzo al bosco",
+   "coord": "44.43, 10.41",
+   "ref": "rupe delle Gobbe del Sud (Pietra di Bismantova)"
+  },
+  {
+   "regno": "Terre del Leone di Pietra",
+   "col": "#b0503c",
+   "sito": "le Pietre del Leone",
+   "vede": "le pietre più antiche di tutte",
+   "coord": "43.40, 10.86",
+   "ref": "acropoli dei primi (Toscana etrusca) — dove Toraki aspetta"
+  },
+  {
+   "regno": "Gran Ducato (la Serpe)",
+   "col": "#6b7a3e",
+   "sito": "il Luogo sepolto",
+   "vede": "niente: il dominio ha cancellato la memoria (nessun nodo)",
+   "coord": "45.46, 9.19",
+   "ref": "pavimentato sotto la corte (Anguicorte)"
+  }
+ ],
+ "atlante_editoriale": {
+  "base": "Corridoio reale Muro del Nord → Terre del Leone di Pietra (DEM Terrarium 30 m + OSM, riproducibile).",
+  "origine": {
+   "terra": "B1",
+   "place": "monti di Spondalta",
+   "coord": "≈ 45.85, 9.415",
+   "bioma": "transizione foresta ↔ savana — soglia tra Laghi del Vespro e Gran Ducato (Serpe)"
+  },
+  "confini": [
+   [
+    "Muro del Nord",
+    "il rilievo oltre N 46.25"
+   ],
+   [
+    "Mare",
+    "sud-ovest, quota 0"
+   ],
+   [
+    "Terre Liguri",
+    "ovest/sud, fuori dal regno"
+   ],
+   [
+    "Marche dell'Est",
+    "oltre il Mare di Dentro"
+   ]
+  ],
+  "biomi": [
+   [
+    "foresta",
+    "bosco / wood-forest"
+   ],
+   [
+    "savana",
+    "l'aperto / grass-farmland"
+   ],
+   [
+    "acqua",
+    "laghi, fiumi, zone umide"
+   ],
+   [
+    "roccia",
+    "vette e creste"
+   ],
+   [
+    "rovina",
+    "insediamenti → «la civiltà che se n'è andata»"
+   ],
+   [
+    "umido",
+    "golene e paludi"
+   ]
+  ],
+  "rete": "32 città-rovina · 58 vie · 2.721 km. I 13 valichi sono le uniche vie di montagna: i passaggi controllabili tra pianura e foresta."
+ }
+}

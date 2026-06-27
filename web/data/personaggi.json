@@ -1,0 +1,62 @@
+{
+ "protagonisti": [
+  {
+   "id": "rocco",
+   "nome": "Rocco",
+   "specie": "rinoceronte",
+   "ruolo": "protagonista · Forestiero",
+   "glyph": "R",
+   "col": "#6b7a3e",
+   "earDom": "connettere",
+   "ear": {
+    "d": "la mole e il corno storto — lo fanno sentire «altro»",
+    "s": "offrendo riparo, portando, proteggendo (l'ombra, la groppa)",
+    "m": "dall'imbarazzo all'accettazione della propria forza"
+   },
+   "aspetto": "Corno storto (la madre dice che si raddrizzerà — non si è ancora raddrizzato); zampe troppo grandi; corporatura massiccia; pelle spessa. Il corno storto è la firma visiva: non si «corregge».",
+   "natura": "Goffo: inciampa, rompe le cose al suo passaggio, fa rumore, starnuti fortissimi. Gentile, sincero, premuroso fino all'ansia di far danni.",
+   "paura": "Le cose piccole e veloci: teme di far loro male senza volerlo (uccellini, farfalle).",
+   "dono": "È grande, solido, pesante: fa ombra, il vento non lo sposta, attraversa il fiume in piena portando Zara in groppa. Ciò che lo fa sentire goffo è esattamente la sua forza nel contesto giusto.",
+   "arco": {
+    "from": "vergogna del corno storto / «sono solo goffo»",
+    "to": "«il corno storto è mio, è la mia forza»"
+   },
+   "voce": "Si scusa spesso, insicuro, esita prima di osare; quando si fida, agisce con decisione. Non direbbe mai una vanteria.",
+   "mondo": "Regno d'origine: Gran Ducato (la Serpe), classe Popolo dell'Aperto — in fondo alla piramide del tributo. Parte con Zara perché la causa di Toraki è la speranza del suo popolo oppresso. Movente personale, non solo amicizia."
+  },
+  {
+   "id": "zara",
+   "nome": "Zara",
+   "specie": "tigre",
+   "ruolo": "co-protagonista · Forestiera",
+   "glyph": "Z",
+   "col": "#c07a33",
+   "earDom": "distinguere",
+   "ear": {
+    "d": "la velocità e lo sguardo che vede prima",
+    "s": "facendo strada, guidando, fidandosi (porta Rocco nel suo mondo)",
+    "m": "dal bisogno di sembrare grande all'accettarsi com'è"
+   },
+   "aspetto": "Piccola di taglia (si offende: «non sono piccola, sono solo giovane»); strisce nere su arancione; occhi verdi che brillano anche di giorno; artigli affilati. Occhi verdi + taglia minuta = firma visiva.",
+   "natura": "Veloce, agile, silenziosa: nella foresta si muove «come l'acqua tra le pietre». Orgogliosa, vuole sembrare più grande; diretta, sa punzecchiare («Mentitore», ma sorride).",
+   "paura": "Il buio profondo — e non lo dice a nessuno. È il suo segreto.",
+   "dono": "Velocità, agilità, conosce la foresta (legge passi, radici, ombre), guida nella tempesta quando Rocco è perso. Ciò che la fa sentire «troppo piccola» è la sua misura giusta per fare ciò che nessun altro fa.",
+   "arco": {
+    "from": "«tutti mi dicono che sono troppo piccola»",
+    "to": "«sono della misura giusta, e va bene così»"
+   },
+   "voce": "Orgogliosa e pungente in superficie, leale sotto; dice il minimo dove servirebbe molto; quando si fida ringrazia con semplicità («Grazie» — raro e quindi pesante).",
+   "mondo": "Regno ospite: Laghi del Vespro (la Lince), vive col Popolo del Bosco. Classe: Ospiti e Senza-riflesso — «il lago non la conosce ancora»: deve fare qualcosa di memorabile per essere annodata nella rete. Perfetto innesco di saga."
+  }
+ ],
+ "toraki": {
+  "nome": "Toraki",
+  "sub": "nome di lavoro",
+  "specie": "tigre bianca · Forestiera",
+  "ruolo": "il precursore — fratello maggiore di Zara",
+  "ruoloT": "Ha cominciato a intrecciare il Cordone e, non potendo finirlo, lo ha passato a Zara con il compito di portarlo a ogni regno libero. È andato avanti al Luogo Antico più grande ad aspettarla.",
+  "funzione": "La ragione del viaggio e la paura iniziale di Zara (compito troppo grande → fugge → Ep01). Ricongiungimento possibile nel finale.",
+  "cutaway": "Si vede DURANTE il viaggio, non solo alla fine: brevi stacchi sul suo cammino davanti (lui che annoda il segno, lui inseguito dalla Serpe). Ironia drammatica: noi sappiamo che è vivo, Zara no.",
+  "ancora": "La Tigre Bianca dei miti dell'est (Baihu/Byakko) — guardiano dell'ovest, virtù della giustizia, signore del vento. Non citato in-storia."
+ }
+}
