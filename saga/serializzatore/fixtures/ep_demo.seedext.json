@@ -49,19 +49,19 @@
     {
       "name": "Zara",
       "role": "protagonista",
-      "archetype": "orgogliosa e pungente in superficie, leale sotto",
-      "underStress": "dice il minimo dove servirebbe molto; quando si fida ringrazia con semplicità",
-      "ritmo": "secco, essenziale",
-      "words": "Grazie (raro, pesante) / sono veloce / non sono piccola",
+      "archetype": "la piccola orgogliosa e pungente — leale sotto, veloce",
+      "underStress": "dice il minimo dove servirebbe molto; orgoglio in superficie",
+      "ritmo": "diretto, pungente, asciutto",
+      "words": "il minimo necessario / «Grazie» (raro, e quindi pesante)",
       "never": "ammettere paura davanti agli altri"
     },
     {
       "name": "Rocco",
       "role": "protagonista",
-      "archetype": "il gigante goffo e gentile — sincero, premuroso fino all'ansia di far danni",
-      "underStress": "quando si fida agisce con decisione: nella tempesta diventa saldo",
+      "archetype": "il grande goffo — gentile, sincero, premuroso (forza nascosta)",
+      "underStress": "si scusa, esita prima di osare; quando si fida agisce con decisione",
       "ritmo": "frasi semplici, lessico concreto",
-      "words": "Scusa! / non volevo / il ramo, intendo",
+      "words": "Scusa! / concreto, cose che si toccano",
       "never": "una vanteria; non si mette mai al centro"
     },
     {
