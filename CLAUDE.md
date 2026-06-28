@@ -23,6 +23,7 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 | `lib/ai/*` · `lib/images/*` (chiamate ai modelli + generazione foto/video/audio; costi/limiti; MCP lato chiamata) | **ai** | `.claude/agents/ai.md` + `docs/AI_LAYER.md` (frontiera: facciata stabile + registry fresco) |
 | `lib/store.ts` · `lib/supabase/*` · migrazioni · bucket · auth (persistenza/storage, M3) | **supabase** | `.claude/agents/supabase.md` + `docs/SUPABASE_SPEC.md` |
 | comporre i **prompt-immagine** e generare le **scene** (una tavola/pagina) via Manus — saga | **scenografo** *(autoriale)* | `.claude/agents/scenografo.md` + `docs/SCENOGRAFO.md` |
+| **consegnare** in repo le immagini HD (scena/intro/catalogo) + aggiornare il registro reference — saga | **illustratore** *(autoriale)* | `.claude/agents/illustratore.md` + `docs/ILLUSTRATORE.md` |
 
 **Confine front/back (regola d'oro).** `lib/` è la *single source of truth*: non si
 tocca per l'estetica. Il front **legge** dal back e gli **passa** azioni via gli stessi
