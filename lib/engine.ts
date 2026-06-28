@@ -182,6 +182,16 @@ export function buildNode(seedIn: Seed): StoryNodeExt {
     recurring = { motif: "[motivo]", pages: spots };
   }
 
+  // --- ESTENSIONE SAGA (§6 serializzatore/SPEC.md): inietta i CONTENUTI-saga nei
+  // segnaposto appena generati, così la continuità lunga (un seme con un contenuto vero
+  // che torna fra episodi) arriva fin dentro il nodo. PURAMENTE ADDITIVO: se i campi
+  // mancano → comportamento identico (restano i segnaposto). Non tocca l'RNG né il
+  // numero/posizione dei semi → determinismo intatto, parità coi test esistenti.
+  const sagaContents = seed.seed_contents ?? [];
+  seeds.forEach((s, i) => { if (sagaContents[i]) s.what = sagaContents[i]; });
+  if (debt && seed.debt_content) debt.what = seed.debt_content;
+  if (recurring && seed.recurring_motif) recurring.motif = seed.recurring_motif;
+
   const protagonist = seed.protagonist || { name: "[protagonista]", age: null };
   const companions = (seed.companions || []).filter((c: any) => c.name);
   const sp = seed.spine || ({} as Seed["spine"]);

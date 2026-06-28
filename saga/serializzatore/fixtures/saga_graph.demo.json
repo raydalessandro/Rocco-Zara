@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "graph_version": "demo-1",
+  "saga": "rocco_e_zara",
+  "_note": "FIXTURE di lavoro (§13 SPEC). Il saga_graph.json reale (M1) è ancora stub: questa fixture popola lo schema per esercitare il serializzatore end-to-end (fold, semi aperti, cordone, §6 contenuti, voci Tier1/Tier2, registro entità).",
+  "arcs": {
+    "arco_origine": {
+      "id": "arco_origine",
+      "title": "L'incontro e il primo nodo",
+      "regno": "laghi_occidente",
+      "order": 1,
+      "pov_default": "zara"
+    }
+  },
+  "seeds": {
+    "seed_pegno": {
+      "id": "seed_pegno",
+      "what": "un ciuffo di pelo arancione che Zara lascia impigliato a un rovo",
+      "kind": "oggetto",
+      "planted": "ep01",
+      "bloom_target": "ep_demo"
+    },
+    "seed_segno": {
+      "id": "seed_segno",
+      "what": "una coppella nella roccia che somiglia a troppe altre per essere un caso",
+      "kind": "dettaglio_del_mondo",
+      "planted": "ep_demo",
+      "bloom_target": "ep07"
+    }
+  },
+  "debts": {
+    "debt_promessa": {
+      "id": "debt_promessa",
+      "what": "Zara ha promesso a Rocco di non andarsene senza salutare, e non l'ha ancora mantenuta",
+      "kind": "promessa",
+      "opened": "ep01",
+      "window": 4
+    }
+  },
+  "creatures": {
+    "creature_lince": {
+      "id": "creature_lince",
+      "species": "lince"
+    }
+  },
+  "callbacks": {},
+  "world_state_baselines": {},
+  "episodes": {
+    "ep01": {
+      "id": "ep01",
+      "title": "Due mondi",
+      "arc": "arco_origine",
+      "type": "stazione",
+      "order_in_journey": 1,
+      "regno": "laghi_occidente",
+      "zona": "soglia",
+      "bioma": "foresta",
+      "center": "collina_incontro",
+      "route_from": "pianura_alta",
+      "location_primary": "collina_incontro",
+      "locations_secondary": ["il rovo del confine"],
+      "attribute_dominant": "connettere",
+      "premise": "Rocco arriva alla soglia tra la sua pianura e la foresta dei laghi e trova una straniera che non vuole essere trovata",
+      "problem": "i due non parlano la stessa lingua di cortesia: ogni gesto gentile di Rocco sembra a Zara una minaccia",
+      "threshold_moment": "Rocco resta fermo e abbassa il corno invece di avvicinarsi, e Zara per la prima volta non scappa",
+      "resolution_mode": "un gesto goffo che diventa un ponte: Rocco le lascia spazio e lei lo accetta restando",
+      "closure_type": 3,
+      "entry_point_type": "B",
+      "register": "medio",
+      "estimated_length": 840,
+      "episode_creature": { "id": "creature_lince", "species": "lince", "first_seen": true, "becomes_recurring": true },
+      "seeds_planted": ["seed_pegno"],
+      "seeds_bloomed": [],
+      "callbacks": [],
+      "debts_opened": ["debt_promessa"],
+      "debts_closed": [],
+      "luogo_antico": "massi_coppellati",
+      "nodo_cordone": { "annodato_qui": false, "regno": "laghi_occidente" },
+      "toraki_trace": false,
+      "serpe_face": "cecca",
+      "effects": {
+        "growth": [
+          { "who": "rocco", "axis": "vergogna_del_corno", "delta": "+1", "threshold_crossed": false }
+        ],
+        "fear": [
+          { "who": "zara", "fear": "essere catturata di nuovo", "status": "implicita", "threshold_crossed": false }
+        ],
+        "relation": [
+          { "between": ["rocco", "zara"], "delta": "+1 (primo incontro)", "threshold_crossed": true }
+        ],
+        "world": [
+          { "place": "collina_incontro", "change": "diventa un luogo di passaggio condiviso", "threshold_crossed": true }
+        ],
+        "creature_status": [{ "id": "creature_lince", "status": "introdotta" }]
+      },
+      "palette_emotiva": "diffidenza che si scioglie in un attimo di quiete",
+      "voice_notes_essential": ["la cortesia di Rocco è fisica, non a parole", "Zara dice pochissimo"],
+      "active_constraints_touched": ["la stranezza è fisica", "nessun pensiero-in-testa: solo gesti e sguardi"]
+    },
+    "ep_demo": {
+      "id": "ep_demo",
+      "title": "La pietra tiepida",
+      "arc": "arco_origine",
+      "type": "cardine",
+      "order_in_journey": 2,
+      "regno": "laghi_occidente",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "le_coppelle",
+      "route_from": "collina_incontro",
+      "location_primary": "le_coppelle",
+      "locations_secondary": ["il sentiero dei massi"],
+      "attribute_dominant": "distinguere",
+      "premise": "Zara segue una traccia del fratello fino a una rupe di massi segnati, e Rocco la accompagna senza chiedere perché",
+      "problem": "i segni sulla pietra somigliano a qualcosa che Zara non sa nominare, e ha paura di ciò che capirebbe se si fermasse a guardarli",
+      "threshold_moment": "Zara appoggia la zampa sulla pietra e la sente tiepida mentre intorno è freddo, e invece di fuggire resta a leggere i segni",
+      "resolution_mode": "lega al cordone il primo pegno del regno sulla pietra tiepida e lascia che la pietra lo tenga",
+      "closure_type": 7,
+      "entry_point_type": "D",
+      "register": "alto",
+      "estimated_length": 910,
+      "episode_creature": { "id": "creature_lince", "species": "lince", "first_seen": false, "becomes_recurring": true },
+      "seeds_planted": ["seed_segno"],
+      "seeds_bloomed": ["seed_pegno"],
+      "callbacks": ["ep01"],
+      "debts_opened": [],
+      "debts_closed": [],
+      "luogo_antico": "massi_coppellati",
+      "nodo_cordone": { "annodato_qui": true, "regno": "laghi_occidente" },
+      "toraki_trace": true,
+      "serpe_face": "cecca",
+      "cast": ["custode-anziano"],
+      "effects": {
+        "growth": [
+          { "who": "zara", "axis": "guardare_invece_di_fuggire", "delta": "+2", "threshold_crossed": true }
+        ],
+        "fear": [
+          { "who": "zara", "fear": "capire troppo presto il disegno", "status": "esplicita", "threshold_crossed": true }
+        ],
+        "relation": [
+          { "between": ["rocco", "zara"], "delta": "+1 (resta con lei davanti alla pietra)", "threshold_crossed": false }
+        ],
+        "world": [
+          { "place": "le_coppelle", "change": "il primo nodo del Cordone è posato qui", "threshold_crossed": true }
+        ],
+        "creature_status": [{ "id": "creature_lince", "status": "ricorrente" }],
+        "seeds_bloomed": ["seed_pegno"]
+      },
+      "palette_emotiva": "il caldo della pietra contro il freddo della paura",
+      "voice_notes_essential": ["la pietra è tiepida — dettaglio fisico, mai spiegato", "i 'primi' non si nominano: ci sono solo i segni"],
+      "active_constraints_touched": ["la stranezza è fisica", "i 'primi' mai mostrati né nominati", "niente New Age"]
+    }
+  }
+}

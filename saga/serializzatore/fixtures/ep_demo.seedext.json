@@ -1,0 +1,100 @@
+{
+  "id": "ep_demo",
+  "language": "it",
+  "title": "La pietra tiepida",
+  "protagonist": {
+    "name": "Zara",
+    "age": 7,
+    "kind": "tigre",
+    "entityId": "char_zara"
+  },
+  "companions": [
+    {
+      "name": "Rocco",
+      "kind": "rinoceronte",
+      "entityId": "char_rocco"
+    },
+    {
+      "name": "Cècca",
+      "kind": "",
+      "entityId": "char_cecca"
+    },
+    {
+      "name": "Custode Anziano",
+      "kind": "",
+      "entityId": "char_custode_anziano"
+    }
+  ],
+  "world_flavor": "Laghi del Vespro · rovina · roccia",
+  "setting": {
+    "primary": "Le Coppelle",
+    "notes": "rovina · roccia · Luogo Antico: Massi Coppellati",
+    "entityId": "luogo_le_coppelle"
+  },
+  "theme": "scoperta",
+  "pugno": "il caldo della pietra contro il freddo della paura",
+  "personal_detail": "la pietra è tiepida — dettaglio fisico, mai spiegato",
+  "length_pages": 13,
+  "packs": [],
+  "spine": {
+    "premise": "Zara segue una traccia del fratello fino a una rupe di massi segnati, e Rocco la accompagna senza chiedere perché",
+    "problem": "i segni sulla pietra somigliano a qualcosa che Zara non sa nominare, e ha paura di ciò che capirebbe se si fermasse a guardarli",
+    "threshold_moment": "Zara appoggia la zampa sulla pietra e la sente tiepida mentre intorno è freddo, e invece di fuggire resta a leggere i segni",
+    "resolution_mode": "lega al cordone il primo pegno del regno sulla pietra tiepida e lascia che la pietra lo tenga",
+    "closure": ""
+  },
+  "voice": {},
+  "nonce": 973920931,
+  "characterVoices": [
+    {
+      "name": "Zara",
+      "role": "protagonista",
+      "archetype": "orgogliosa e pungente in superficie, leale sotto",
+      "underStress": "dice il minimo dove servirebbe molto; quando si fida ringrazia con semplicità",
+      "ritmo": "secco, essenziale",
+      "words": "Grazie (raro, pesante) / sono veloce / non sono piccola",
+      "never": "ammettere paura davanti agli altri"
+    },
+    {
+      "name": "Rocco",
+      "role": "protagonista",
+      "archetype": "il gigante goffo e gentile — sincero, premuroso fino all'ansia di far danni",
+      "underStress": "quando si fida agisce con decisione: nella tempesta diventa saldo",
+      "ritmo": "frasi semplici, lessico concreto",
+      "words": "Scusa! / non volevo / il ramo, intendo",
+      "never": "una vanteria; non si mette mai al centro"
+    },
+    {
+      "name": "Cècca",
+      "role": "comprimario",
+      "archetype": "la miglior spia della Serpe tradita dal proprio occhio — vede tutto per prima, si perde dietro ogni luccichio",
+      "underStress": "nota ancora di più, ma ogni riflesso la strappa via e il rapporto si sbriciola",
+      "ritmo": "elenco rapido e preciso di dettagli, spezzato di colpo a metà",
+      "words": "l'ho vista io per prima / piccolo particolare / aspetta, cos'è quel—",
+      "never": "finisce un rapporto se qualcosa luccica"
+    },
+    {
+      "name": "Custode Anziano",
+      "role": "comprimario",
+      "archetype": "il naturalista anziano — osservativo, enciclopedico, pacato",
+      "underStress": "si rifugia nell'osservazione, annota invece di agire",
+      "ritmo": "periodo disteso, sentenzioso, un filo latino",
+      "words": "ho osservato che / annoto / la natura insegna",
+      "never": "dice \"non so\" senza aver prima osservato e annotato"
+    }
+  ],
+  "narratorBrief": "Universali di voce:\n- la stranezza è sempre fisica: mai energia/anima/magia, solo cose\n- l'espressività poggia su un fatto che si tocca: mai l'affermazione astratta\n- concreto a tratti singoli: un dettaglio perfetto batte tre buoni; nel dubbio taglia\n- EAR e cosmologia invisibili: mai nominati a nessuno strato\nIndirizzo: respiro=intreccio · narratore=sottrazione · luce=pietra · verso=raccolto.\nNote di voce essenziali:\n- la pietra è tiepida — dettaglio fisico, mai spiegato\n- i 'primi' non si nominano: ci sono solo i segni\nVincoli attivi qui: la stranezza è fisica; i 'primi' mai mostrati né nominati; niente New Age.\nPaga qui il seme `seed_pegno` piantato in ep01: un ciuffo di pelo arancione che Zara lascia impigliato a un rovo.",
+  "overrides": {
+    "attribute_dominant": "distinguere",
+    "entry_point_type": "D",
+    "closure_type": 7,
+    "register": "alto",
+    "time_span_arc": "piu_giorni"
+  },
+  "seed_contents": [
+    "una coppella nella roccia che somiglia a troppe altre per essere un caso"
+  ],
+  "has_sage_figure": true,
+  "recurring_motif": "completare il Cordone non è un trionfo. È un gesto semplice",
+  "debt_content": "Zara ha promesso a Rocco di non andarsene senza salutare, e non l'ha ancora mantenuta"
+}

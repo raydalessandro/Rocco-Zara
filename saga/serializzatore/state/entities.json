@@ -1,0 +1,56 @@
+{
+  "version": "0.1",
+  "_note": "Registro entità persistente (§5 SPEC). entityId stabile → descrittore canonico + reference confermata. Le entità con status 'confermata' pre-popolano story.entities (il Passo 0 non le richiede di nuovo). Le entità non elencate (es. una creatura inedita) restano 'da_generare'.",
+  "entities": {
+    "char_rocco": {
+      "entityId": "char_rocco",
+      "name": "Rocco",
+      "kind": "character",
+      "species": "rinoceronte",
+      "descriptor": "rinoceronte giovane, corporatura massiccia, pelle spessa; corno STORTO (firma visiva, non si corregge); zampe troppo grandi per il corpo; occhi gentili",
+      "prohibitions": ["mai vestito o in costume", "mai corno dritto"],
+      "status": "confermata"
+    },
+    "char_zara": {
+      "entityId": "char_zara",
+      "name": "Zara",
+      "kind": "character",
+      "species": "tigre",
+      "descriptor": "tigre giovane, manto arancione a strisce nere, taglia piccola (giovane); occhi verdi che brillano; agile e veloce",
+      "prohibitions": ["mai vestita o in costume", "mai adulta/grande"],
+      "status": "confermata"
+    },
+    "char_toraki": {
+      "entityId": "char_toraki",
+      "name": "Toraki",
+      "kind": "character",
+      "species": "tigre bianca",
+      "descriptor": "tigre BIANCA (strisce scure su manto bianco — l'inverso di Zara), più grande e adulta; occhi di giada (verde-pietra, fermo)",
+      "prohibitions": ["mai vestito o in costume", "occhi non devono brillare come quelli di Zara"],
+      "status": "da_generare"
+    },
+    "obj_cordone": {
+      "entityId": "obj_cordone",
+      "name": "il Cordone",
+      "kind": "object",
+      "descriptor": "una corda umile (fibra, crine); ogni nodo stringe un pegno reale del regno (ciuffo di pelo, piuma, scaglia di corteccia); cresce visibilmente nodo dopo nodo",
+      "prohibitions": ["mai luminoso o magico", "nessuna energia/aura"],
+      "status": "confermata"
+    },
+    "luogo_collina_incontro": {
+      "entityId": "luogo_collina_incontro",
+      "name": "la collina dell'incontro",
+      "kind": "location",
+      "descriptor": "la soglia (B1, Spondalta) tra i Laghi del Vespro e il Gran Ducato: dove savana e foresta si toccano su una collina non alta ma ripida",
+      "status": "confermata"
+    },
+    "luogo_le_coppelle": {
+      "entityId": "luogo_le_coppelle",
+      "name": "i massi coppellati",
+      "kind": "location",
+      "descriptor": "massi coppellati dei monti del lago (Spondalta/Muro del Nord): coppelle scavate nella roccia da mani che non erano zampe; pietra tiepida quando intorno è freddo",
+      "prohibitions": ["i segni non brillano", "i 'primi' mai mostrati né nominati"],
+      "status": "confermata"
+    }
+  }
+}
