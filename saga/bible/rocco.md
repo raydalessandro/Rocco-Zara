@@ -43,6 +43,28 @@
   con decisione** (nella tempesta diventa saldo). Lessico concreto, frasi semplici.
 - **non direbbe mai**: una vanteria; non si mette mai al centro.
 
+<!--
+  BLOCCO-MACCHINA — il serializzatore estrae QUESTO per popolare `seed.characterVoices`.
+  Campi 1:1 con `lib/types.ts → CharacterVoice`. Stessa logica di CARTA_VOCE §4.
+  `voce_personaggio` (Tier 2) compilato perché Rocco è ricorrente (protagonista).
+  `registro_gruppo` (Tier 1) è forward-compat: lo struct attuale lo ignora.
+-->
+```yaml
+registro_gruppo:                # Tier 1 — baseline ereditata dal mondo
+  regno: pianura_alta
+  gruppo: "Popolo dell'Aperto"
+  registro_ref: "trasversali/forestiera"   # forestiero: porta la parlata d'origine
+
+voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
+  name: "Rocco"
+  role: "protagonista"
+  archetype: "il grande goffo — gentile, sincero, premuroso (forza nascosta)"
+  underStress: "si scusa, esita prima di osare; quando si fida agisce con decisione"
+  ritmo: "frasi semplici, lessico concreto"
+  words: "Scusa! / concreto, cose che si toccano"
+  never: "una vanteria; non si mette mai al centro"
+```
+
 ### EAR di Rocco
 - **Δ** ciò che lo distingue: la mole e il corno storto (lo fanno sentire "altro").
 - **⇄** come si lega: offrendo riparo, portando, proteggendo (l'ombra, la groppa).

@@ -44,6 +44,28 @@
 - **non direbbe mai**: ammettere paura *davanti agli altri* (con Rocco, alla fine, sì —
   ed è un cardine).
 
+<!--
+  BLOCCO-MACCHINA — il serializzatore estrae QUESTO per popolare `seed.characterVoices`.
+  Campi 1:1 con `lib/types.ts → CharacterVoice`. Stessa logica di CARTA_VOCE §4.
+  `voce_personaggio` (Tier 2) compilato perché Zara è ricorrente (co-protagonista).
+  `registro_gruppo` (Tier 1) è forward-compat: lo struct attuale lo ignora.
+-->
+```yaml
+registro_gruppo:                # Tier 1 — baseline ereditata dal mondo
+  regno: laghi_occidente
+  gruppo: "Ospiti e Senza-riflesso"
+  registro_ref: "trasversali/forestiera"   # forestiera: porta la parlata d'origine
+
+voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
+  name: "Zara"
+  role: "protagonista"          # co-protagonista → l'enum CharacterVoice ha solo protagonista|comprimario
+  archetype: "la piccola orgogliosa e pungente — leale sotto, veloce"
+  underStress: "dice il minimo dove servirebbe molto; orgoglio in superficie"
+  ritmo: "diretto, pungente, asciutto"
+  words: "il minimo necessario / «Grazie» (raro, e quindi pesante)"
+  never: "ammettere paura davanti agli altri"
+```
+
 ### EAR di Zara
 - **Δ** ciò che la distingue: la velocità e lo sguardo che vede prima.
 - **⇄** come si lega: facendo strada, guidando, fidandosi (porta Rocco nel suo mondo).

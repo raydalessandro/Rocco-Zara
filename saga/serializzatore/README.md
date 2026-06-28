@@ -19,6 +19,28 @@ Il ponte tra il **livello-saga** e il **motore Scrivia**. Non c'è codice ancora
 4. **Aggiorna lo stato**: applica gli `effects` dell'episodio, e a fine arco genera il
    **recap canonico** (nuova baseline) archiviando i delta di dettaglio.
 
+## Firme (contratto M2) — `canon` è input ESPLICITO
+
+Tutte le funzioni ricevono il **canone fisso** (`canon`) come **ultimo argomento**: è il
+sacchetto già assemblato da `lib/canon.json` + `saga_config.yaml` +
+`cartografia/regni/_voci.json` + i blocchi-macchina delle bibbie +
+`serializzatore/state/entities.json`. (Prima la firma del context-builder non lo prevedeva:
+gap chiuso.)
+
+```ts
+buildSagaContext(graph, n, canon) -> { snapshot, openSeeds, openDebts, fixedCanon }
+buildSeed(episodeId, graph, ctx, canon) -> SeedExt   // ctx = output di buildSagaContext
+auditContinuity(episodeId, graph, ctx) -> SagaVerdict // { verdict:"PASS"|"FAIL"|null, checks:[{key,label,pass,note}], page_flags }
+applyEffects(graph, episodeId)                        // aggiorna lo stato
+recapArc(graph, arcId)                                // baseline canonica di fine arco
+```
+
+- **`nonce`**: automatico = `fnv1a32("${id}@${graph_version}")`; override manuale con
+  `seed_nonce` sul nodo. La `graph_version` ri-tira l'intera resa.
+- **Estensione §6 del motore**: `seed_contents` / `debt_content` / `recurring_motif`
+  riempiono i contenuti (il motore tiene **conteggio e ritmo**, i contenuti arrivano dal
+  grafo). Additiva: senza i campi il comportamento non cambia.
+
 ## Confine col motore (regola d'oro)
 
 Non tocca `lib/` di Scrivia. Lo **consuma** via i suoi contratti (`Seed`, comandi,

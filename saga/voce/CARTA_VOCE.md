@@ -217,6 +217,69 @@ carta_voce:
 
 ---
 
+## §4.1 MAPPATURA → `VoiceOverrides` del motore (il ponte serializzatore)
+
+> Gap chiuso: gli assi della Carta (`respiro/luce/narratore/verso`) **non** coincidono
+> con gli assi del motore (`lib/types.ts → VoiceOverrides`:
+> `temperamento/ritmo/distanza/lente_sensoriale/umorismo`). Questa tabella definisce la
+> **traduzione deterministica** che il serializzatore applica per riempire `seed.voice`.
+>
+> **Precedenza.** Se il nodo-episodio porta `voice_overrides` (assi del motore), **vince
+> verbatim** — anche parziale (gli assi non indicati restano vuoti). Se il nodo **non**
+> porta `voice_overrides`, il serializzatore **deriva l'intero `VoiceOverrides`** dall'
+> `indirizzo` (il `indirizzo_default` di §4, oppure il `preset` dichiarato), con questa
+> mappa. I due assi senza sorgente diretta (`temperamento`, `umorismo`) vengono dal
+> **registro** (§2.2) e dalle **variabili** (§2.4/§2.6), con i default qui sotto.
+
+```yaml
+voce_overrides_map:
+  # respiro (sintassi) -> ritmo (cadenza del periodo)
+  respiro_to_ritmo:
+    intreccio: "periodo disteso che lega la sequenza in un respiro"
+    taglio:    "colpo breve: una proposizione per unità informativa"
+    ritorno:   "eco: ripetizione parziale con variazione minima (1-2 per storia)"
+  # verso (resa tipografica) -> raffina ritmo (densità per riga)
+  verso_to_ritmo_densita:
+    raccolto: "denso, bianco fitto, ritmo concentrato"
+    disteso:  "dilatato, più bianco, ritmo rallentato"
+  # composizione: ritmo = "<respiro_to_ritmo>; resa <verso_to_ritmo_densita>"
+
+  # narratore (struttura del senso) -> distanza (postura narrativa)
+  narratore_to_distanza:
+    sottrazione: "implicita: lo stato interno è tolto, resta il correlato fisico (Δ)"
+    nominazione: "nominante: dà nome al tratto continuo e lo rende cosa (⇄)"
+    inversione:  "straniante: registra il punto in cui troppo segnale = assenza (⟳)"
+
+  # luce (lessico, scena-dipendente) -> lente_sensoriale (campo percettivo)
+  luce_to_lente_sensoriale:
+    aperto: "campo dell'aperto: erba, polvere calda, cielo grande, sole pieno, ombra che ripara"
+    bosco:  "campo del bosco: foglia bagnata, muschio, ombra fitta, radici, acqua di pietra"
+    pietra: "campo della pietra antica: roccia, segni incisi, calore senza ragione, il vecchio"
+
+  # assi senza sorgente nell'indirizzo: da registro/variabili
+  registro_to_temperamento:        # §2.2
+    basso: "terragno, sobrio, a terra"
+    medio: "caldo e piano (default R&Z)"
+    alto:  "lirico trattenuto, mai solenne"
+  variabili_to_umorismo:           # §2.4 banalità + §2.6 velo orwelliano
+    default: "banalità a terra (≥15%), mai cinico"
+    velo_orwelliano: "secchezza satirica calda dove il regno lo chiede"
+
+  defaults:                        # se manca sia voice_overrides sia un asse derivabile
+    temperamento: "caldo, mai cinico"
+    umorismo: "banalità a terra, mai cinico"
+
+  invariante: "questa mappa tocca SOLO la resa (seed.voice). Fatti, hook, cornici, beat NON cambiano."
+```
+
+> **Esempio.** `indirizzo_default` ⇒ `ritmo` = «periodo disteso che lega la sequenza in un
+> respiro; resa densa, bianco fitto», `distanza` = «implicita…», `lente_sensoriale` =
+> «campo dell'aperto…», `temperamento` = (da registro), `umorismo` = (da variabili). Se il
+> nodo dichiara `voice_overrides: { temperamento: "tenera", lente_sensoriale: "tatto" }`,
+> quei due assi vincono verbatim e gli altri restano vuoti.
+
+---
+
 ## §5. NOTA D'USO
 
 - **Drop-in:** sostituisce la sezione "voce" del writing brief. Il resto del brief (cast,
