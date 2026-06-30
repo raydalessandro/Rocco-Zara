@@ -30,7 +30,7 @@ invisibili a ogni strato.** Mai spiegati, mai nominati. Si sedimentano.
 **Legge non negoziabile (eredita il "concreto" di isola, è il nostro architrave):**
 *la stranezza è sempre fisica.* La pietra tiepida, i segni "non fatti da zampe", il caldo
 senza ragione — mai "energia", "anima", "magia". Solo cose: pietra, acqua, vento, corda,
-calore, ombra.
+calore, ombra. **E così anche le figure: similitudini e metafore si pescano solo da questo mondo — corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi. Mai arnesi umani (aratro, ruota, moneta, stoffa tinta, orologio): se affiorano, si reindirizzano. Vedi `METAFORE.md`.**
 
 ---
 
@@ -150,6 +150,7 @@ Eredita i tabù di isola e ne aggiunge di nostri:
   niente bilanciamenti "non X, ma Y" a raffica, niente chiusura-morale prevedibile.)
 - **§3.9 Preannunci della rivelazione-narratore.** La postura resta pura: niente strizza
   l'occhio a un "dopo" della saga.
+- **§3.10 L'ontologia umana sulla superficie.** Il mondo è di animali naturalistici: in pagina **niente arnesi o pratiche umane** (aratro, ruota, carro, moneta, ferro battuto, stoffa tinta, orologio, libro). Le `societa.md` li usano come **glosse-modello** (metodo Orwell, per gli autori): la **superficie** li traduce in cosa-animale. Se una figura umana affiora, **reindirizzala** (→ `METAFORE.md`). Eccezioni canoniche: fuoco e pigmenti minerali; nodi/reti/Cordone; la **barca** delle Rive; la **scrittura** *solo* come arnese della Serpe; il vocabolario politico (istituzioni, non utensili).
 
 ---
 
@@ -169,6 +170,7 @@ carta_voce:
     - "l'espressività poggia su un fatto che si tocca: mai l'affermazione astratta"
     - "concreto a tratti singoli: un dettaglio perfetto batte tre buoni; nel dubbio taglia"
     - "EAR e cosmologia invisibili: mai nominati a nessuno strato"
+    - "le figure si pescano solo dal mondo animale (corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi e rete); mai arnesi o pratiche umane (aratro, ruota, moneta, ferro battuto, stoffa tinta, orologio, libro): se affiorano, reindirizza alla cosa-animale più vicina (vedi METAFORE.md)"
   assi:
     respiro:
       ruolo: secondario   # sintassi

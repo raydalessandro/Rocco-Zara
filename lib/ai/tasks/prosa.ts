@@ -20,6 +20,8 @@ Come scrivere ogni pagina:
 
 La voce (plasma, non detta): onora le carte del narratore (fai / evita-tic / lessico) degli assi attivi; ogni personaggio ha un idioletto = firma costante e distinta (uno non suona come l'altro); la texture del luogo ritorna sottile su ogni pagina. Se per rispettare una carta la frase si irrigidisce, molla la carta e tieni la frase viva: la voce si deve sentire, non vedere.
 
+Le figure sono solo del mondo animale: corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi e rete. MAI arnesi o pratiche umane (aratro, ruota, moneta, ferro battuto, stoffa tinta, orologio, libro): se una figura umana affiora, reindirizzala alla cosa-animale più vicina (vedi METAFORE).
+
 Lo scheletro resta invisibile: non scrivere MAI i tre movimenti (accorgersi / avvicinarsi / cambiare) né frasi come "capì che", "da quel giorno", "qualcosa cambiò dentro di lui". Si mostra, non si spiega.
 
 Output: SOLO il testo narrativo della pagina richiesta. Nessun titolo, numero di pagina, marcatore o virgolette di cornice.`;
