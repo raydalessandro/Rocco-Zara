@@ -68,10 +68,10 @@ voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
 # repertorio_crescita (PCG) — verbi FISICI del focal per banda dell'asse di crescita.
 # Lo legge saga/serializzatore/src/pcg.ts (focalDirections → narratorBrief). Qualitativo:
 # vive qui, non nel codice. Provenance: condensato dal Vol.1 «I Laghi del Vespro».
-# NB axis-id: qui = id del saga_graph (fixture: guardare_invece_di_fuggire). DA RICONCILIARE
-# con saga_config.long_arcs.growth (troppo_piccola) e la scheda Vol.1 (sguardo fugge→guarda).
+# axis-id = saga_config.long_arcs.growth (fonte di verità): zara -> troppo_piccola.
+# (i verbi sono la manifestazione fisica: fuggire = sentirsi troppo piccola; restare = giusta misura.)
 repertorio_crescita:
-  guardare_invece_di_fuggire:
+  troppo_piccola:
     prima:
       - "scatta via da ogni cosa, il corpo che decide da solo"
       - "tiene il muso voltato da ciò che non vuole vedere"

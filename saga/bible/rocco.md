@@ -67,10 +67,9 @@ voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
 # repertorio_crescita (PCG) — verbi FISICI del focal per banda dell'asse di crescita.
 # Lo legge saga/serializzatore/src/pcg.ts (focalDirections → narratorBrief). Qualitativo:
 # vive qui, non nel codice. Provenance: condensato dal Vol.1 «I Laghi del Vespro».
-# NB axis-id: qui = id del saga_graph (fixture: vergogna_del_corno). DA RICONCILIARE con
-# saga_config.long_arcs.growth (vergogna_corno) e la scheda Vol.1 (la-mole ingombro→riparo).
+# axis-id = saga_config.long_arcs.growth (fonte di verità): rocco -> vergogna_corno.
 repertorio_crescita:
-  vergogna_del_corno:
+  vergogna_corno:
     prima:
       - "gira la testa così che il corno storto non si veda"
       - "abbassa il corno solo per togliersi di mezzo, non per spingere"

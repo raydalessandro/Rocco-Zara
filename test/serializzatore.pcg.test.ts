@@ -28,8 +28,8 @@ const canon = {
     protagonists: [{ id: "rocco" }, { id: "zara" }],
     long_arcs: {
       growth: [
-        { who: "rocco", axis: "vergogna_del_corno" },
-        { who: "zara", axis: "guardare_invece_di_fuggire" },
+        { who: "rocco", axis: "vergogna_corno" },
+        { who: "zara", axis: "troppo_piccola" },
       ],
     },
   },
@@ -42,7 +42,7 @@ const ctx: SagaContext = buildSagaContext(graph, ep.order_in_journey);
 /** clona il contesto e vi inietta un attraversamento accumulato su Rocco. */
 function ctxWithRoccoCrossed(): SagaContext {
   const c = JSON.parse(JSON.stringify(ctx)) as SagaContext;
-  c.snapshot.protagonists.rocco = { vergogna_del_corno: "+1(soglia)" };
+  c.snapshot.protagonists.rocco = { vergogna_corno: "+1(soglia)" };
   return c;
 }
 
@@ -70,10 +70,10 @@ describe("pcg — condizionamento dallo stato", () => {
 
   it("(4) bande: attraversamento dichiarato qui → 'attraversa'; accumulato → 'dopo'", () => {
     // ep_demo dichiara l'attraversamento di Zara (effects.growth, threshold_crossed:true)
-    expect(bandOf(ctx, ep, "zara", "guardare_invece_di_fuggire")).toBe("attraversa");
+    expect(bandOf(ctx, ep, "zara", "troppo_piccola")).toBe("attraversa");
     // Rocco non attraversa qui, ma ha un attraversamento accumulato → 'dopo'
-    expect(bandOf(ctxWithRoccoCrossed(), ep, "rocco", "vergogna_del_corno")).toBe("dopo");
+    expect(bandOf(ctxWithRoccoCrossed(), ep, "rocco", "vergogna_corno")).toBe("dopo");
     // senza accumulo e senza attraversamento qui → 'prima'
-    expect(bandOf(ctx, ep, "rocco", "vergogna_del_corno")).toBe("prima");
+    expect(bandOf(ctx, ep, "rocco", "vergogna_corno")).toBe("prima");
   });
 });

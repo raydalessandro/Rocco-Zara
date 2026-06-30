@@ -117,3 +117,29 @@ tipizzato in `CharacterSheet.repertorio_crescita`. **Fuori dal codice**, coerent
 ### Test
 `test/serializzatore.pcg.test.ts` (vitest): nonce deterministico, sensibilità allo stato,
 convergenza (fase node su cardine), bande. Hermetic (fixture via fs, canone minimo).
+
+---
+
+## Risoluzione (branch `claude/pcg-fix-e-test`, in review)
+
+La review ha verificato la branch sulla suite piena (cosa che il PoC non aveva fatto) e ha trovato/risolto:
+
+1. **2 test rossi** (`serializzatore.seed.test.ts`): `applyPcg` cambia legittimamente l'output di
+   `serializeEpisode` — il **nonce** (ora dallo stato) e il `narratorBrief` (nota di convergenza). Quindi:
+   - la **golden** `ep_demo.seedext.json` è stata **rigenerata** dalla fonte canonica;
+   - il test del **nonce §8** è stato aggiornato dal vecchio contratto `fnv1a32(id@graph_version)` a quello
+     nuovo (forma piena: derivato dallo stato, deterministico, esplicito `seed_nonce` vince).
+
+2. **Incoerenza axis-id risolta** verso `saga_config` (fonte di verità per gli enum): `repertorio_crescita`
+   (bible) e `effects.growth` (fixture) ora usano `vergogna_corno` / `troppo_piccola`. Effetto: l'**indirizzo
+   focal si accende** (prima saltava in silenzio) e la convergenza di `ep_demo` sale a 3 fili (seme +
+   attraversamento di Zara, ora combaciante, + nodo del Cordone).
+   - ⚠ **Da ratificare (autoriale):** per Zara l'autore aveva usato `guardare_invece_di_fuggire` (l'azione-EAR);
+     allineato a `troppo_piccola` (la ferita, in `saga_config`). I verbi reggono come manifestazione (fuggire =
+     troppo piccola; restare = giusta misura). Se preferisci il framing-azione, rinomina **l'asse in
+     `saga_config`** (un solo punto) e basta — la chiave resta una sola.
+
+3. **Guardie nuove** (`serializzatore.pcg.consistency.test.ts`): coerenza axis-id config↔bible↔fixture
+   (avrebbe preso il baco), e2e che il focal si accende, convergenza nulla sotto i 2 fili. Suite: 221 verde; tsc puliti.
+
+Resta aperta l'altra segnalazione del PoC (repertorio: bootstrap dal Vol.1 / riconciliare con `brief_pcg.py`).

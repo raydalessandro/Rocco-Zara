@@ -80,7 +80,7 @@
       "serpe_face": "cecca",
       "effects": {
         "growth": [
-          { "who": "rocco", "axis": "vergogna_del_corno", "delta": "+1", "threshold_crossed": false }
+          { "who": "rocco", "axis": "vergogna_corno", "delta": "+1", "threshold_crossed": false }
         ],
         "fear": [
           { "who": "zara", "fear": "essere catturata di nuovo", "status": "implicita", "threshold_crossed": false }
@@ -132,7 +132,7 @@
       "cast": ["custode-anziano"],
       "effects": {
         "growth": [
-          { "who": "zara", "axis": "guardare_invece_di_fuggire", "delta": "+2", "threshold_crossed": true }
+          { "who": "zara", "axis": "troppo_piccola", "delta": "+2", "threshold_crossed": true }
         ],
         "fear": [
           { "who": "zara", "fear": "capire troppo presto il disegno", "status": "esplicita", "threshold_crossed": true }
