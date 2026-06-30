@@ -139,7 +139,8 @@ export function loadCartaVoce(root: string): CartaVoce {
 function sheetFromBlock(castId: string, block: Record<string, unknown>): CharacterSheet {
   const rg = (block.registro_gruppo ?? undefined) as CharacterSheet["registro_gruppo"];
   const vp = (block.voce_personaggio ?? undefined) as CharacterSheet["voce_personaggio"];
-  return { castId, registro_gruppo: rg, voce_personaggio: vp };
+  const rep = (block.repertorio_crescita ?? undefined) as CharacterSheet["repertorio_crescita"];
+  return { castId, registro_gruppo: rg, voce_personaggio: vp, repertorio_crescita: rep };
 }
 
 /** Indice cast: castId → scheda. Protagonisti (rocco/zara/toraki) + comprimari/*.md.

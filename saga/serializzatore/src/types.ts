@@ -252,6 +252,10 @@ export interface CharacterSheet {
     words?: string;
     never?: string;
   };
+  /** repertorio focal per banda di crescita (PCG): axis → { prima|attraversa|dopo: verbi
+   *  fisici }. Qualitativo → vive nella bible (blocco-macchina fratello di voce_personaggio),
+   *  letto da canon.ts; lo consuma saga/serializzatore/src/pcg.ts (focalDirections). */
+  repertorio_crescita?: Record<string, { prima?: string[]; attraversa?: string[]; dopo?: string[] }>;
   /** età nominale (per i protagonisti; il register è comunque sovrascritto). */
   nominalAge?: number | null;
   /** specie (kind) dichiarata nella scheda, se nota. */

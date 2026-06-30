@@ -78,3 +78,42 @@ chiamata RNG → determinismo e parità intatti. Test: `test/serializzatore.engi
   via `lessico/MAPPATURA.md`; `displayNameOf` userà il lessico quando disponibile.
 - **deployment_level / season**: oggi lasciati al campionamento deterministico del motore (salvo
   override su nodo); `season` accetta già un pin per-episodio.
+
+## Strato PCG — condizionamento dallo STATO (src/pcg.ts)
+
+`buildSeed` era un mappatore di campi (passava gli override DICHIARATI; nonce = id@graph_version;
+lo snapshot non condizionava nulla). `src/pcg.ts` aggiunge il condizionamento provato nel PoC,
+**deterministico, zero LLM**, consumando lo snapshot che `sagaContext` produce già. Si innesta con
+**una riga** in `buildSeed` (`return applyPcg(seed, ep, ctx, graph, canon)`).
+
+Tre cose:
+
+1. **Nonce dallo stato** (`deriveNonceFromState`, SPEC §8 forma piena) — la firma di stato (bande +
+   relazione + cordone + quarto-di-viaggio + semi aperti) entra nel nonce. Stessa puntata a stati
+   diversi → seed diverso; stesso stato → byte-identico. Sovrascrive `deriveNonce`.
+2. **Bande → indirizzo focal** (`bandOf` + `focalDirections`) — la banda (prima/attraversa/dopo) si
+   legge dagli attraversamenti accumulati nello snapshot; il verbo-guida viene dal **repertorio**.
+3. **Convergenza** (`convergence`) — più fili aperti (seme che fiorisce + attraversamento di crescita
+   + nodo del Cordone) che ATTERRANO sullo STESSO beat di soglia, consegnati al brief come un'unica
+   immagine. È la fase NODO (◇) della risonanza ∿ del kernel AILA resa operativa. Seme **semantico**
+   (porta il contenuto), non posizionale.
+
+### Dove vive il repertorio (decisione)
+Il repertorio banda→verbi è **qualitativo** → vive nella **bible**, come blocco-macchina
+`repertorio_crescita` (fratello di `voce_personaggio`), letto da `canon.ts` (`sheetFromBlock`) e
+tipizzato in `CharacterSheet.repertorio_crescita`. **Fuori dal codice**, coerente con la regola
+"un dato qualitativo vive nella bible". `pcg.ts` lo legge soltanto; asse senza repertorio → si salta.
+
+### ⚠ SEGNALAZIONI (da decidere con l'autore — non risolte in autonomia)
+- **Incoerenza axis-id.** Lo stesso asse ha tre nomi: `saga_config.long_arcs.growth`
+  (`vergogna_corno`, `troppo_piccola`), la fixture `saga_graph.demo.json`
+  (`vergogna_del_corno`, `guardare_invece_di_fuggire`), la scheda Vol.1 (`la-mole ingombro→riparo`,
+  `appartenenza fuori→annodata`, `sguardo fugge→guarda`). Il repertorio è keyed sugli id della
+  **fixture** (ciò che lo snapshot produce oggi). Va **canonicalizzato** un solo set di axis-id; poi
+  le chiavi del repertorio e gli `axis` nel saga_graph reale combaceranno.
+- **Repertorio = bootstrap dal Vol.1.** I verbi nelle schede sono condensati dalla prosa del Vol.1
+  (materiale dell'autore), non da `brief_pcg.py` (non pushato). Da riconciliare quando arriva.
+
+### Test
+`test/serializzatore.pcg.test.ts` (vitest): nonce deterministico, sensibilità allo stato,
+convergenza (fase node su cardine), bande. Hermetic (fixture via fs, canone minimo).
