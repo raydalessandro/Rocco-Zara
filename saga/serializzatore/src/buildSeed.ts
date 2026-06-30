@@ -15,6 +15,7 @@ import type {
 } from "./types";
 import { resolveCharacterVoice, displayNameOf } from "./voices";
 import { characterEntityId, locationEntityId } from "./entities";
+import { applyPcg } from "./pcg";
 
 // ---------- tabelle di derivazione (DECISIONI §14) ----------
 
@@ -301,7 +302,9 @@ export function buildSeed(
   if (recurring_motif) seed.recurring_motif = recurring_motif;
   if (debt_content) seed.debt_content = debt_content;
 
-  return seed;
+  // PCG: condizionamento dallo STATO accumulato (nonce dallo stato + indirizzo focal dalle
+  // bande di crescita + nota di convergenza). Sovrascrive il nonce id@graph_version qui sopra.
+  return applyPcg(seed, ep, ctx, graph, canon);
 }
 
 /** Entità in scena dell'episodio (per pre-popolare story.entities, §5). */

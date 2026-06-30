@@ -61,11 +61,16 @@ describe("§3 mappatura episodio → SeedExt (ep_demo)", () => {
     expect(seed.overrides?.time_span_arc).toBe("piu_giorni"); // type 'cardine'
   });
 
-  it("nonce deterministico §8 = fnv1a32(id@graph_version)", () => {
-    const seed = serializeEpisode("ep_demo", { graph, canon, root: ROOT });
-    const expected = deriveNonce(graph.episodes["ep_demo"], graph);
-    expect(seed.nonce).toBe(expected);
-    expect(seed.nonce).toBe(fnv1a32("ep_demo@demo-1"));
+  it("nonce §8 (forma piena, post-PCG): derivato dallo STATO, deterministico, non più il semplice id@graph_version", () => {
+    // applyPcg sostituisce hash(id@graph_version) con la firma dello stato accumulato:
+    // resta deterministico (stesso stato → stesso nonce) ma ora lo stato lo condiziona.
+    const a = serializeEpisode("ep_demo", { graph, canon, root: ROOT }).nonce;
+    const b = serializeEpisode("ep_demo", { graph, canon, root: ROOT }).nonce;
+    expect(a).toBe(b); // deterministico
+    expect(a).toBeGreaterThan(0);
+    expect(a).not.toBe(fnv1a32("ep_demo@demo-1")); // lo stato condiziona (non più il solo id@graph_version)
+    // baseline storica disponibile come deriveNonce(...) — vedi serializzatore.pcg.test.ts per la sensibilità allo stato
+    void deriveNonce;
   });
 
   it("§6 contenuti: seed_contents (piantato), recurring_motif (ritornello), debt_content (debito aperto)", () => {

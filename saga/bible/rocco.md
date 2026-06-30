@@ -63,6 +63,24 @@ voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
   ritmo: "frasi semplici, lessico concreto"
   words: "Scusa! / concreto, cose che si toccano"
   never: "una vanteria; non si mette mai al centro"
+
+# repertorio_crescita (PCG) — verbi FISICI del focal per banda dell'asse di crescita.
+# Lo legge saga/serializzatore/src/pcg.ts (focalDirections → narratorBrief). Qualitativo:
+# vive qui, non nel codice. Provenance: condensato dal Vol.1 «I Laghi del Vespro».
+# axis-id = saga_config.long_arcs.growth (fonte di verità): rocco -> vergogna_corno.
+repertorio_crescita:
+  vergogna_corno:
+    prima:
+      - "gira la testa così che il corno storto non si veda"
+      - "abbassa il corno solo per togliersi di mezzo, non per spingere"
+      - "cammina pianissimo, la zampa sospesa, per farsi piccolo"
+    attraversa:
+      - "smette di tenere il fiato e resta fermo: la sua ombra fa una macchia di fresco"
+      - "capisce col corpo che la mole non è solo un pericolo da nascondere"
+    dopo:
+      - "fa muro alla pioggia, la schiena alla tempesta"
+      - "si mette di traverso all'imbocco del buio e tiene aperta la luce"
+      - "diventa riparo: ombra per i pesci, spalla dove l'uccello si posa"
 ```
 
 ### EAR di Rocco

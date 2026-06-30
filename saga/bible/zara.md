@@ -64,6 +64,23 @@ voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
   ritmo: "diretto, pungente, asciutto"
   words: "il minimo necessario / «Grazie» (raro, e quindi pesante)"
   never: "ammettere paura davanti agli altri"
+
+# repertorio_crescita (PCG) — verbi FISICI del focal per banda dell'asse di crescita.
+# Lo legge saga/serializzatore/src/pcg.ts (focalDirections → narratorBrief). Qualitativo:
+# vive qui, non nel codice. Provenance: condensato dal Vol.1 «I Laghi del Vespro».
+# axis-id = saga_config.long_arcs.growth (fonte di verità): zara -> troppo_piccola.
+# (i verbi sono la manifestazione fisica: fuggire = sentirsi troppo piccola; restare = giusta misura.)
+repertorio_crescita:
+  troppo_piccola:
+    prima:
+      - "scatta via da ogni cosa, il corpo che decide da solo"
+      - "tiene il muso voltato da ciò che non vuole vedere"
+    attraversa:
+      - "dice piano una cosa vera — «Ho paura» — e ci entra lo stesso"
+      - "invece di scappare, resta"
+    dopo:
+      - "resta a leggere i segni sulla pietra senza fretta"
+      - "tiene gli occhi sulla cosa anche quando intorno si muove"
 ```
 
 ### EAR di Zara
