@@ -19,6 +19,14 @@
   segni, ombra di Rocco, tracce di Toraki, la pietra che si lascia tiepida (la consegna /
   finale) → `bible/ritornelli.md`.
 - **A1 — stile di saga come canone** + principi di **camera/movimento** → `bible/STILE_VISIVO.md`.
+- **Pipeline generativa LIVE** (da "mondo documentato" a "catena eseguibile"):
+  - **Serializzatore** `saga→Seed` (motore §6 additivo, parità intatta) + **PCG** condizionata
+    dallo stato accumulato, con golden/consistency test → `saga/serializzatore/`. *(chiude B3)*
+  - **Cast completo** dei 6 archi (27+ schede comprimari + template + MAPPA_CAST) → `bible/comprimari/`. *(chiude C3)*
+  - **Lessico "Terre Annodate"** applicato (mondo tutto nostro; reale solo come sottotesto) → `lessico/MAPPATURA.md`.
+  - **Metafore native** (figure solo dal mondo animale) in `voce/METAFORE.md` + `PROSA_SYSTEM`.
+  - **Agenti autoriali** scenografo + illustratore (pipeline immagini) → `.claude/agents/`.
+  - **Sito `web/`** (sala di regia) deployato su Vercel (statico; `saga/…` via GitHub raw).
 
 ---
 
@@ -41,7 +49,8 @@
 - [ ] **B2. (motore) `KIND_SCALE`** in `lib/stylesheet.ts`: aggiungere la fauna nostra
       (rinoceronte, tigre, lince, lontra, cervo, leone, gufo, aquila, lupo, orso, camoscio…)
       per la scala relativa in scena — è tutto il punto visivo (Rocco enorme ↔ Zara piccola).
-- [ ] **B3. (motore) Serializzatore M2** — il ponte `saga→Seed` + audit di continuità.
+- [x] **B3. (motore) Serializzatore M2** — ✅ fatto → `saga/serializzatore/` (ponte `saga→Seed`,
+      audit di continuità, PCG condizionata dallo stato, golden/consistency test).
 - → *esito: Passo 0 + prime pagine reali sull'Ep01.*
 
 ### Fase C — Profondità narrativa
@@ -61,9 +70,31 @@
 - [ ] **D3. `saga_quotas`** — tarare l'anti-ripetizione col procedere delle storie.
 
 ### Fase E — GitHub
-- [ ] **E1. Primo commit** — il base è già stabile: si può **pushare ora** e fare A–D
-      come branch/PR. (Oppure attendere A+B.)
+- [x] **E1. Primo commit** — ✅ fatto; da allora si procede **sempre** branch → PR → (check) → merge.
 - [ ] **E2. (opz.) Git LFS** — se le zone si moltiplicano, png/geojson pesanti → LFS.
+
+### Fase F — Consolidamento tecnico (debito noto, dopo l'ondata #16–#19)
+> Non nuove feature: mettere ordine ora che il sistema ha cambiato volto (pipeline eseguibile).
+- [ ] **F1. Casa del serializzatore.** Oggi vive in `saga/serializzatore/` ma è codice
+      motore-adiacente (qualità backend). Decidere: **portarlo in `lib/`** (harness ufficiale,
+      corsia backend) o tenerlo come tool lato-saga. Incide su *quale agente lo possiede*.
+- [ ] **F2. Pipeline `saga/**/*.py` sotto un check minimo.** I generatori (`voci_build.py`,
+      `faunario.py`, `cartografia/pipeline/*`, `web/tools/build_cast.mjs`) portano i nomi reali
+      e si appoggiano ad `applica_lessico.py` per de-nominare: rischio "rigenero e regredisco".
+      Un test/gate leggero (o un `make check` che rigenera e confronta) evita il drift generatore↔output.
+- [ ] **F3. Destino di `scrivia` (Next).** L'app Next del root è **deprecata** (Vercel ripuntato
+      su `web/` via `vercel.json`) ma la CI la builda ancora. Decidere: **consolidarla** (ha
+      `app/api/ai`, `app/api/images`, il motore UI) **o rimuoverla**; pulire la dashboard Vercel `scrivia`.
+- [ ] **F4. Disciplina di corsia sui bundle.** Gli ultimi PR-codice arrivano come bundle
+      **monolitici cross-corsia** (lib/engine + lib/ai + test + saga). Preferire, dove possibile,
+      bundle **più piccoli e lane-scoped**; basare sempre il bundle sull'**ultimo `main`**.
+
+### Pendenti puntuali (dai lavori recenti)
+- [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
+      comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
+- [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
+      "(Italia dei Comuni)"/"papali/imperiali" — coperte dall'avviso "substrato", ok così finché
+      non si vuole un atlante 100% nostro.
 
 ---
 
