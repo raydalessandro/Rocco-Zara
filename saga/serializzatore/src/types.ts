@@ -397,4 +397,17 @@ export interface ArcRecap {
 
 /** Ciò che il serializzatore EMETTE: un SeedExt + `id` (il motore fa node.id = seed.id).
  *  `EmittedSeed` è un superset di SeedExt: assegnabile dove serve un SeedExt. */
-export type EmittedSeed = SeedExt & { id: string };
+export type EmittedSeed = SeedExt & {
+  /** «il regno vivo» (mondo.ts): estratto del canone largo. */
+  mondo?: MondoInfo; id: string };
+
+// «il regno vivo» (mondo.ts): estratto strutturato del canone largo per il brief.
+export type MondoInfo = {
+  regno?: string;
+  comparse?: string[];
+  fili_aperti?: string[];
+  nome?: string;
+  fauna_sfondo?: string[];
+  righe?: number;
+  [k: string]: unknown;
+};
