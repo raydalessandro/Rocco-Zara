@@ -92,6 +92,11 @@
       sha-identico, golden, close sicuro). La prosa resta cancello umano.
 
 ### Pendenti puntuali (dai lavori recenti)
+- [ ] **Continuità semi ep01 (audit)** — `npm run ep -- build ep01` segnala 3 semi piantati
+      **senza `bloom_target`**: `seed_cordone_incompiuto`, `seed_prima_pietra_tiepida`,
+      `seed_cecca_ha_visto`. Sono i semi grandi (saga-spanning): decidere **dove fioriscono**
+      (probabilmente al finale, Vol.6) e cablare il bersaglio nel `saga_graph.json`, così
+      l'audit dell'ep01 torna PASS 10/10.
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
