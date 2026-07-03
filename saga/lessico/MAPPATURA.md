@@ -8,6 +8,12 @@
 > grezza, che resta substrato reale in `real_ref: osm`). Lo script di rename è
 > **parametrico**: cambiare un nome = modificare questa mappa e ri-eseguire.
 >
+> **La mappa machine-readable è `mappa.json`** (chiavi `nomi` = sostituzioni
+> boundary-safe, `frasi` = replace diretto): la leggono `applica_lessico.py` **e** il
+> linter (`test/canon.lint.test.ts`). Questo file resta il sottotesto dichiarato.
+> La chiave **`substrato`** è l'elenco condiviso (script + linter) dei path a **nomi
+> reali voluti** — atlante del cartografo, zone geojson, sottotesto d'autore — mai riscritti.
+>
 > **Residui ripuliti (giro di verifica):** città dell'atlante auto-generato non ancora
 > mappate (**Massa→Marpietra**, **Viareggio→Marsabbia**, **Vinci→Collerocca**),
 > **"Muro delle Alpi/prealpi" → "Muro del Nord"**, e il nome storico **"Kainua"** rimosso
