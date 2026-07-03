@@ -19,6 +19,9 @@ next-env.d.ts
 .vercel
 *.tsbuildinfo
 
+# artefatti episodio derivati dalla CLI (ricostruibili: la verità è nel grafo)
+saga/episodi/
+
 # python (motore di riferimento)
 seme/**/__pycache__/
 seme/.pytest_cache/
