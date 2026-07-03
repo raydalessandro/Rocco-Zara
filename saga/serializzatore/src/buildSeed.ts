@@ -16,6 +16,7 @@ import type {
 import { resolveCharacterVoice, displayNameOf } from "./voices";
 import { characterEntityId, locationEntityId } from "./entities";
 import { applyPcg } from "./pcg";
+import { buildMondo } from "./mondo";
 
 // ---------- tabelle di derivazione (DECISIONI §14) ----------
 
@@ -249,7 +250,13 @@ export function buildSeed(
   }
 
   // --- narratorBrief (§3) ---
-  const narratorBrief = buildNarratorBrief(ep, canon, graph);
+  // «il regno vivo» (mondo.ts): estratto strutturato del canone largo (info) +
+  // la sua resa testuale (briefBlock) accodata al brief. Deterministico, zero-LLM.
+  // Va PRIMA di applyPcg, che appende in coda l'indirizzo focal + la convergenza.
+  const mondo = buildMondo(ep, canon, graph);
+  const narratorBrief = mondo.briefBlock
+    ? `${buildNarratorBrief(ep, canon, graph)}\n\n${mondo.briefBlock}`
+    : buildNarratorBrief(ep, canon, graph);
 
   // --- overrides (i knob del motore) ---
   const overrides: NonNullable<EmittedSeed["overrides"]> = {
@@ -294,6 +301,7 @@ export function buildSeed(
     nonce,
     characterVoices,
     narratorBrief,
+    mondo: mondo.info,
     overrides,
     seed_contents,
     has_sage_figure,
