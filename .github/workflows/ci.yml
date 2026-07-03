@@ -42,3 +42,26 @@ jobs:
 
       - name: Build (Next)
         run: npm run build
+
+  # Parità col motore di riferimento Python: lib/engine.ts è un port di
+  # seme/scripts/*.py e i pytest di seme/ sono il contratto che il port insegue.
+  # Job parallelo a `test`: se il riferimento è rosso, la parità non è provabile.
+  parity-python:
+    name: parità Python (seme)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: seme/requirements*.txt
+
+      - name: Install (requirements-dev)
+        run: pip install -r seme/requirements-dev.txt
+
+      - name: Pytest (seme/tests)
+        run: pytest seme/tests -q

@@ -1,1 +1,4 @@
+# Dipendenze per eseguire seme/tests (usato anche dal job CI parity-python).
+# I test importano gli script del motore, che richiedono pyyaml (requirements.txt).
+-r requirements.txt
 pytest>=8.0
