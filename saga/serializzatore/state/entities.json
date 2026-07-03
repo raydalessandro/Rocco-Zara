@@ -8,7 +8,10 @@
       "kind": "character",
       "species": "rinoceronte",
       "descriptor": "rinoceronte giovane, corporatura massiccia, pelle spessa; corno STORTO (firma visiva, non si corregge); zampe troppo grandi per il corpo; occhi gentili",
-      "prohibitions": ["mai vestito o in costume", "mai corno dritto"],
+      "prohibitions": [
+        "mai vestito o in costume",
+        "mai corno dritto"
+      ],
       "status": "confermata"
     },
     "char_zara": {
@@ -17,7 +20,10 @@
       "kind": "character",
       "species": "tigre",
       "descriptor": "tigre giovane, manto arancione a strisce nere, taglia piccola (giovane); occhi verdi che brillano; agile e veloce",
-      "prohibitions": ["mai vestita o in costume", "mai adulta/grande"],
+      "prohibitions": [
+        "mai vestita o in costume",
+        "mai adulta/grande"
+      ],
       "status": "confermata"
     },
     "char_toraki": {
@@ -26,7 +32,10 @@
       "kind": "character",
       "species": "tigre bianca",
       "descriptor": "tigre BIANCA (strisce scure su manto bianco — l'inverso di Zara), più grande e adulta; occhi di giada (verde-pietra, fermo)",
-      "prohibitions": ["mai vestito o in costume", "occhi non devono brillare come quelli di Zara"],
+      "prohibitions": [
+        "mai vestito o in costume",
+        "occhi non devono brillare come quelli di Zara"
+      ],
       "status": "da_generare"
     },
     "obj_cordone": {
@@ -34,7 +43,10 @@
       "name": "il Cordone",
       "kind": "object",
       "descriptor": "una corda umile (fibra, crine); ogni nodo stringe un pegno reale del regno (ciuffo di pelo, piuma, scaglia di corteccia); cresce visibilmente nodo dopo nodo",
-      "prohibitions": ["mai luminoso o magico", "nessuna energia/aura"],
+      "prohibitions": [
+        "mai luminoso o magico",
+        "nessuna energia/aura"
+      ],
       "status": "confermata"
     },
     "luogo_collina_incontro": {
@@ -49,8 +61,18 @@
       "name": "i massi coppellati",
       "kind": "location",
       "descriptor": "massi coppellati dei monti del lago (Spondalta/Muro del Nord): coppelle scavate nella roccia da mani che non erano zampe; pietra tiepida quando intorno è freddo",
-      "prohibitions": ["i segni non brillano", "i 'primi' mai mostrati né nominati"],
+      "prohibitions": [
+        "i segni non brillano",
+        "i 'primi' mai mostrati né nominati"
+      ],
       "status": "confermata"
+    },
+    "char_cecca": {
+      "entityId": "char_cecca",
+      "name": "Cècca",
+      "kind": "character",
+      "descriptor": "gazza; lo scatto della testa verso ogni riflesso, l'occhio già altrove su qualcosa che brilla; frammenti lucenti fra le penne. Precisa, finché qualcosa non luccica.",
+      "status": "da_generare"
     }
   }
 }

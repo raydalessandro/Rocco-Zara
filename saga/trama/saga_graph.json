@@ -1,14 +1,225 @@
 {
   "schema_version": "0.1",
-  "graph_version": "0.0.0",
-  "status": "stub — si popola in M1 (dopo la chat geografia)",
+  "graph_version": "0.1.0-vol1",
+  "status": "in lavorazione — Vol.1 (Laghi del Vespro): ep01 pieno, ep02-04 stub",
   "saga": "rocco_e_zara",
-  "_note": "Schema del nodo-episodio: vedi schema_episodio.md. Ep01 (l'origine, 'Due mondi') sara' il primo nodo, ancorato al luogo reale e al centro trovati nella chat geografia.",
-  "arcs": {},
-  "episodes": {},
-  "seeds": {},
+  "_note": "Nodo-episodio: vedi trama/schema_episodio.md. Narrazione fattuale: trama/volumi/VOLUME_1.md. Nomi = etichette di lavoro.",
+  "arcs": {
+    "arco_origine": {
+      "title": "l'Innesco — la Soglia",
+      "volume": 1,
+      "movimento": 0,
+      "regno": "laghi_occidente",
+      "note": "l'incontro sulla Soglia di Spondalta; partono insieme"
+    },
+    "arco_laghi": {
+      "title": "Laghi del Vespro — il primo nodo",
+      "volume": 1,
+      "movimento": 1,
+      "regno": "laghi_occidente",
+      "luogo_antico": "le_coppelle",
+      "note": "Zara si fa accettare nella rete; primo nodo ai massi coppellati"
+    }
+  },
+  "episodes": {
+    "ep01": {
+      "id": "ep01",
+      "title": "Due mondi",
+      "arc": "arco_origine",
+      "type": "cardine",
+      "order_in_journey": 1,
+      "regno": "laghi_occidente",
+      "zona": "soglia",
+      "bioma": "foresta",
+      "center": "collina_incontro",
+      "route_from": null,
+      "location_primary": "luogo_collina_incontro",
+      "locations_secondary": [],
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_cecca"
+      ],
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "deployment_level": "mono",
+      "premise": "Due giovani fuori posto — Zara la Forestiera (fugge il compito di Toraki) e Rocco il rinoceronte del Popolo dell'Aperto — salgono alla Soglia di Spondalta dai due versanti opposti.",
+      "problem": "Ognuno è solo e di troppo nel proprio mondo; nessuno dei due sa se esista un posto per come è fatto.",
+      "threshold_moment": "La tempesta li costringe insieme una notte: Rocco fa riparo con la sua ombra, Zara gli fa strada — e smettono di essere soli.",
+      "resolution_mode": "Non si risolve un ostacolo esterno ma si stringe un legame: Rocco sceglie di partire con Zara perché la causa di Toraki è la speranza del suo popolo.",
+      "closure_type": 3,
+      "entry_point_type": "B",
+      "register": "medio",
+      "estimated_length": 1300,
+      "theme": "appartenenza — non essere soli",
+      "pugno": "l'ombra di Rocco come luogo: «Nella tua ombra mi sono sentita al sicuro»",
+      "personal_detail": "il corno storto di Rocco / Zara che si gonfia per sembrare grande",
+      "seed_nonce": null,
+      "voice_overrides": null,
+      "episode_creature": null,
+      "seeds_planted": [
+        "seed_cordone_incompiuto",
+        "seed_prima_pietra_tiepida",
+        "seed_cecca_ha_visto"
+      ],
+      "seeds_bloomed": [],
+      "callbacks": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "toraki_trace": false,
+      "serpe_face": "cecca",
+      "effects": {
+        "growth": [
+          {
+            "who": "zara",
+            "axis": "troppo_piccola",
+            "delta": "+1",
+            "threshold_crossed": false
+          },
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": false
+          }
+        ],
+        "fear": [
+          {
+            "who": "zara",
+            "fear": "buio",
+            "status": "implicita",
+            "threshold_crossed": false
+          }
+        ],
+        "relation": [
+          {
+            "between": [
+              "rocco",
+              "zara"
+            ],
+            "delta": "incontro",
+            "threshold_crossed": true
+          }
+        ],
+        "world": [
+          {
+            "place": "collina_incontro",
+            "change": "diventa_luogo_condiviso",
+            "threshold_crossed": true
+          }
+        ]
+      },
+      "palette_emotiva": "solitudine → riparo; diffidenza → patto; la calma dopo la tempesta",
+      "voice_notes_essential": [
+        "la pietra è tiepida — dettaglio fisico, mai spiegato",
+        "l'ombra di Rocco è un luogo, non una metafora astratta",
+        "i 'primi' non si nominano: c'è solo il segno sulla pietra"
+      ],
+      "active_constraints_touched": [
+        "stranezza fisica",
+        "primi mai nominati",
+        "niente New Age"
+      ]
+    },
+    "ep02": {
+      "id": "ep02",
+      "title": "Il regno senza riflesso",
+      "arc": "arco_laghi",
+      "type": "viaggio",
+      "order_in_journey": 2,
+      "regno": "laghi_occidente",
+      "zona": "bosco",
+      "bioma": "foresta",
+      "center": "rivalba",
+      "route_from": "ep01",
+      "pov": "zara",
+      "premise": "Arrivo ai Laghi: stranieri fra i confederati-lince; si apre la posta — Zara deve farsi annodare nella rete.",
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "_status": "stub — da dettagliare (narrazione + campi spina/effects)"
+    },
+    "ep03": {
+      "id": "ep03",
+      "title": "Lo specchio",
+      "arc": "arco_laghi",
+      "type": "stazione",
+      "order_in_journey": 3,
+      "regno": "laghi_occidente",
+      "zona": "cuore",
+      "bioma": "foresta",
+      "center": "rivalba",
+      "route_from": "ep02",
+      "pov": "zara",
+      "premise": "Lo Specchio di Zara (lince, il vanto del regno) la costringe a guardarsi; Cècca e Sòrcio rubano un pegno.",
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "_status": "stub — da dettagliare (narrazione + campi spina/effects)"
+    },
+    "ep04": {
+      "id": "ep04",
+      "title": "Il primo nodo",
+      "arc": "arco_laghi",
+      "type": "cardine",
+      "order_in_journey": 4,
+      "regno": "laghi_occidente",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "le_coppelle",
+      "route_from": "ep03",
+      "pov": "zara",
+      "premise": "Mole+velocità risolvono il problema dei Laghi; Zara accettata; primo nodo alle Coppelle; prima traccia forte di Toraki.",
+      "luogo_antico": "le_coppelle",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "laghi_occidente"
+      },
+      "_status": "stub — da dettagliare (narrazione + campi spina/effects)"
+    }
+  },
+  "seeds": {
+    "seed_cordone_incompiuto": {
+      "what": "la corda annodata a metà di Toraki e il compito di completarla",
+      "planted": "ep01",
+      "blooms": "finale (ultimo nodo)"
+    },
+    "seed_prima_pietra_tiepida": {
+      "what": "una pietra tiepida quando tutto è freddo, segnata da mani che non erano zampe",
+      "planted": "ep01",
+      "blooms": "accumula a ogni Luogo Antico → disegno intero nel finale"
+    },
+    "seed_cecca_ha_visto": {
+      "what": "Cècca ha visto i Forestieri e la corda: la Serpe saprà (a metà)",
+      "planted": "ep01",
+      "blooms": "scalata della Serpe"
+    },
+    "seed_pegno_laghi": {
+      "what": "il pegno dei Laghi rubato da Cècca e Sòrcio",
+      "planted": "ep03",
+      "blooms": "⚠ TBD (arco 2 / midpoint)"
+    }
+  },
   "callbacks": {},
   "debts": {},
   "creatures": {},
-  "world_state_baselines": {}
+  "world_state_baselines": {
+    "arco_origine": {
+      "season": "—",
+      "note": "tempesta d'apertura (eco al Gran Fiume)"
+    },
+    "arco_laghi": {
+      "season": "—",
+      "note": "i Laghi del Vespro, il Bosco di montagna"
+    }
+  }
 }
