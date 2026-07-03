@@ -75,7 +75,7 @@ nativo.
   salire), **tributo** (versare il proprio), **vie dritte e pedaggi**, **mandrie spinte**, e
   la **scrittura** come *arnese del potere* (qui sì — il contrario freddo del nodo caldo).
 - **(altri regni):** stesso metodo; tinta dalla loro `societa.md` (la Selva = niente regole;
-  la Toscana = pietra e rivalità di città; ecc.).
+  le Terre del Leone = pietra e rivalità di città; ecc.).
 
 ---
 

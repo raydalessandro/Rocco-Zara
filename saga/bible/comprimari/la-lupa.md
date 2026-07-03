@@ -54,8 +54,8 @@ registro_gruppo:
 voce_personaggio:
   name: <dal lessico>
   role: comprimario
-  archetype: la Lupa di Siena — brontolona, sardonica, orgogliosa-amara (Cecco)
-  underStress: rincara di sarcasmo, maledice la sorte (e Firenze)
+  archetype: la Lupa di Pietralupa — brontolona, sardonica, orgogliosa-amara (beffardo-amaro)
+  underStress: rincara di sarcasmo, maledice la sorte (e Leonalba)
   ritmo: brontolìo sardonico, amaro, tagliente
   words: e va be' / quei di Leonalba / la sorte, sempre storta / manco a dirlo
   never: un complimento sincero e diretto (l'affetto esce sempre con la spina)

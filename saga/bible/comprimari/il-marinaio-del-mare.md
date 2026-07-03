@@ -53,7 +53,7 @@ registro_gruppo:
 voce_personaggio:
   name: <dal lessico>
   role: comprimario
-  archetype: il marinaio di Pisa — salato, pratico, preciso; «misura due volte»
+  archetype: il marinaio di Marleone — salato, pratico, preciso; «misura due volte»
   underStress: si fa più asciutto, riduce tutto a numeri e maree
   ritmo: asciutto, preciso, salato
   words: misura due volte / con questa marea / la rotta è quella / parola data
