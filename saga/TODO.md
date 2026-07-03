@@ -73,21 +73,23 @@
 - [x] **E1. Primo commit** — ✅ fatto; da allora si procede **sempre** branch → PR → (check) → merge.
 - [ ] **E2. (opz.) Git LFS** — se le zone si moltiplicano, png/geojson pesanti → LFS.
 
-### Fase F — Consolidamento tecnico (debito noto, dopo l'ondata #16–#19)
-> Non nuove feature: mettere ordine ora che il sistema ha cambiato volto (pipeline eseguibile).
-- [ ] **F1. Casa del serializzatore.** Oggi vive in `saga/serializzatore/` ma è codice
-      motore-adiacente (qualità backend). Decidere: **portarlo in `lib/`** (harness ufficiale,
-      corsia backend) o tenerlo come tool lato-saga. Incide su *quale agente lo possiede*.
-- [ ] **F2. Pipeline `saga/**/*.py` sotto un check minimo.** I generatori (`voci_build.py`,
-      `faunario.py`, `cartografia/pipeline/*`, `web/tools/build_cast.mjs`) portano i nomi reali
-      e si appoggiano ad `applica_lessico.py` per de-nominare: rischio "rigenero e regredisco".
-      Un test/gate leggero (o un `make check` che rigenera e confronta) evita il drift generatore↔output.
-- [ ] **F3. Destino di `scrivia` (Next).** L'app Next del root è **deprecata** (Vercel ripuntato
-      su `web/` via `vercel.json`) ma la CI la builda ancora. Decidere: **consolidarla** (ha
-      `app/api/ai`, `app/api/images`, il motore UI) **o rimuoverla**; pulire la dashboard Vercel `scrivia`.
-- [ ] **F4. Disciplina di corsia sui bundle.** Gli ultimi PR-codice arrivano come bundle
-      **monolitici cross-corsia** (lib/engine + lib/ai + test + saga). Preferire, dove possibile,
-      bundle **più piccoli e lane-scoped**; basare sempre il bundle sull'**ultimo `main`**.
+### Fase F — Consolidamento tecnico ✅ CHIUSA (PR #21 cancelli · #22 CLI · #23 costituzione)
+- [x] **F1. Casa del serializzatore.** DECISO: resta in `saga/serializzatore/`, **titolare
+      la corsia backend** (src + cli + test), stessa qualità/invarianti di `lib/`. Router aggiornato.
+- [x] **F2. Cancelli anti-drift.** ✅ `saga/lessico/mappa.json` = single source (104 nomi +
+      17 frasi + `substrato` condiviso script↔linter); `test/canon.lint.test.ts` (3 passate,
+      incl. blocchi-macchina nel substrato); `build_cast.mjs --check` + `test/cast.sync.test.ts`;
+      job CI `parity-python` (49 pytest di `seme/`). Due bug reali trovati e chiusi nel giro:
+      lo script corrompeva il substrato se rieseguito; 5 leak di nomi reali nei campi
+      `voce_personaggio` che finivano nel prompt della prosa.
+- [x] **F3. Destino di `scrivia`.** DECISO: resta come **harness di sviluppo** (host di
+      `/api/ai`+`/api/images`, futura workspace R&Z), non deployata; si rivaluta dopo Ep01
+      end-to-end. La dashboard Vercel `scrivia` si può archiviare a mano quando capita.
+- [x] **F4. Disciplina bundle.** Regola scritta in `CLAUDE.md` (workflow): bundle basati
+      sull'ultimo `main`, piccoli e di corsia.
+- [x] **(upgrade) Pipeline impugnabile.** ✅ `npm run ep -- build|close|audit <id>`:
+      catena deterministica canone→seed→nodo→brief+audit con 8 test e2e (determinismo
+      sha-identico, golden, close sicuro). La prosa resta cancello umano.
 
 ### Pendenti puntuali (dai lavori recenti)
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
@@ -95,6 +97,13 @@
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
       "(Italia dei Comuni)"/"papali/imperiali" — coperte dall'avviso "substrato", ok così finché
       non si vuole un atlante 100% nostro.
+- [ ] **CLI `ep` — tre rifiniture** (corsia backend, non bloccanti): guardia entrypoint via
+      `import.meta.url` invece del match sul nome file; `close --dry-run`; default del grafo
+      indipendente dalla cwd.
+- [ ] **`docs/TEST_SPEC.md` non traccia** i test del serializzatore/CLI (corsia testing:
+      aggiungere le righe alla mappa dei test).
+- [ ] **`pytest seme/tests` ha un side-effect**: appende a `seme/generations.jsonl`
+      (file committato) — innocuo in CI, sporca il working tree in locale (corsia seme/backend).
 
 ---
 

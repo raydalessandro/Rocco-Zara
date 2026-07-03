@@ -22,6 +22,8 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 | `lib/` harness deterministico (motore, comandi, tipi, brief/book/audit-verdetto/reference/pagePrompts) **tranne** `store.ts`/`supabase/*` e `ai/*`/`images/*` | **backend** | `.claude/agents/backend.md` + `docs/BACKEND.md` (parità Python `seme/` + invarianti) |
 | `lib/ai/*` · `lib/images/*` (chiamate ai modelli + generazione foto/video/audio; costi/limiti; MCP lato chiamata) | **ai** | `.claude/agents/ai.md` + `docs/AI_LAYER.md` (frontiera: facciata stabile + registry fresco) |
 | `lib/store.ts` · `lib/supabase/*` · migrazioni · bucket · auth (persistenza/storage, M3) | **supabase** | `.claude/agents/supabase.md` + `docs/SUPABASE_SPEC.md` |
+| `saga/serializzatore/` (src + cli) · `test/serializzatore.*` · `test/ep.cli.*` — il ponte deterministico saga→Seed + PCG + CLI `npm run ep` | **backend** | stessa qualità/invarianti di `lib/` (determinismo, golden); resta in `saga/` per coesione con SPEC/fixtures (deciso con l'umano) |
+| `web/` — la sala di regia statica (index+app.js+data; deploy Vercel) | **frontend** | `web/README.md` (dati da `saga/` via raw; indice cast rigenerato con `node web/tools/build_cast.mjs`, sync blindata dal test) |
 | comporre i **prompt-immagine** e generare le **scene** (una tavola/pagina) via Manus — saga | **scenografo** *(autoriale)* | `.claude/agents/scenografo.md` + `docs/SCENOGRAFO.md` |
 | **consegnare** in repo le immagini HD (scena/intro/catalogo) + aggiornare il registro reference — saga | **illustratore** *(autoriale)* | `.claude/agents/illustratore.md` + `docs/ILLUSTRATORE.md` |
 
@@ -29,6 +31,14 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 tocca per l'estetica. Il front **legge** dal back e gli **passa** azioni via gli stessi
 contratti (export di `lib/`, comandi, tipi). Così cambiare il look non perde funzioni
 e cambiare il back non rompe la UI. Dettaglio in `docs/FRONTEND.md`.
+
+**Lessico e cancelli (regola del canone).** La mappa reale→nostro vive SOLO in
+`saga/lessico/mappa.json` (`nomi` + `frasi` + `substrato` = i path dove i nomi reali
+sono *voluti*): la leggono sia `applica_lessico.py` sia il linter `test/canon.lint.test.ts`
+(3 passate: file interi, blocchi-macchina ```yaml anche nel substrato, battute in-world).
+Non aggiungere mai una seconda lista altrove; per cambiare un nome si edita la mappa e
+si rilancia lo script. `web/data/cast.json` si rigenera con `node web/tools/build_cast.mjs`
+(la sync è nel gate).
 Mappa completa degli agenti, **la convenzione (dove vivono agente e doc-compagno)** e
 come aggiungerne: `.claude/agents/README.md`.
 
@@ -72,9 +82,12 @@ agenti: ogni modifica è rivedibile, la CI gira sulla PR, `main` resta protetto.
   pull_request): si mergia **solo a verde**.
 - **`main` si aggiorna SOLO via PR mergiata** — quando l'utente dà l'ok. Niente
   `git push origin HEAD:main`, niente fast-forward a mano sul `main`.
-- `main` deploya in produzione (Vercel) ad ogni aggiornamento → ragione in più per
-  passare sempre dalla PR.
-- **Prima di aprire la PR**: `npm run check` verde in locale (i 4 gate, = la CI).
+- `main` deploya la **sala di regia `web/`** su Vercel ad ogni aggiornamento → ragione
+  in più per passare sempre dalla PR.
+- **Prima di aprire la PR**: `npm run check` verde in locale (= il job JS della CI; il
+  secondo job CI è `pytest seme/tests`, la parità Python).
+- **Bundle esterni**: basarli sempre sull'**ultimo `main`** e tenerli piccoli e
+  di corsia; un bundle cross-corsia si accetta solo come integrazione una-tantum.
 - Resta **nella tua corsia** (vedi router): non sconfinare nell'area di un altro agente.
   Al confine, i confini **dialogano**: fai la tua parte intera e **segnala**; una bozza oltre
   confine è l'eccezione (reversibile, in quarantena) e conta come **debito** finché chi possiede
@@ -83,10 +96,11 @@ agenti: ogni modifica è rivedibile, la CI gira sulla PR, `main` resta protetto.
 
 ## Prima di committare (obbligatorio)
 ```bash
-npm run build      # deve passare: tipi + lint + build
+npm run check      # vitest (incl. linter canone + cast sync) + typecheck + build
 ```
-Non committare se il build è rosso. Quando ci sarà la suite test: `npm test` deve
-passare. Verifica i flussi che hai toccato (build verde è il minimo, non il massimo).
+Non committare se il check è rosso. Se hai toccato `saga/` o il motore, prova anche la
+pipeline dal vivo: `npm run ep -- build ep_demo --graph saga/serializzatore/fixtures/saga_graph.demo.json`.
+Verifica i flussi che hai toccato (gate verde è il minimo, non il massimo).
 
 ## Convenzioni di codice
 - **Scrivi come il codice intorno**: stessa densità di commenti, naming, idiomi.
@@ -118,7 +132,11 @@ passare. Verifica i flussi che hai toccato (build verde è il minimo, non il mas
 (stesso `nonce` → stesso nodo) è un invariante: non romperla.
 
 ## Deploy
-- `main` → produzione Vercel (auto). `vercel.json` forza `framework: nextjs`.
+- `main` → Vercel pubblica la **sala di regia `web/`** (statico: `vercel.json` con
+  `framework: null` + `outputDirectory: web`; i dati `saga/…` arrivano da GitHub raw).
+- L'app Next **scrivia** (`app/` + `components/`) NON è più deployata: resta come
+  **harness di sviluppo** (host di `/api/ai` e `/api/images`, futura workspace R&Z) —
+  deciso con l'umano, si rivaluta dopo che Ep01 gira end-to-end.
 - Branch → preview automatico. Se 403, è la Deployment Protection del team.
 - Non promuovere a `main` per "vedere il deploy": usa il preview del branch.
 
