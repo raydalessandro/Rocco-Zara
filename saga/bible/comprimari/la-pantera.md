@@ -41,11 +41,11 @@
 - **forestiero?** no (è Lucca: discreta, ma del tutto del regno).
 
 **Tier 2 — firma individuale.**
-- **superficie**: sobria, minima, cortese, **non scopre nulla** («Lucca osserva»). **sotto**: la devozione
+- **superficie**: sobria, minima, cortese, **non scopre nulla** («Muralba osserva»). **sotto**: la devozione
   fredda alla sopravvivenza della sua città.
 - **non direbbe MAI**: **scoprire la propria mano** — né impegnarsi **prima del necessario** (e mai una parola alta o calda).
 
-> **Test (CARTA_VOCE §1.4):** «Lucca osserva. A suo tempo si vedrà da che parte conviene stare. Non prima.» → si capisce chi parla.
+> **Test (CARTA_VOCE §1.4):** «Muralba osserva. A suo tempo si vedrà da che parte conviene stare. Non prima.» → si capisce chi parla.
 
 <!-- BLOCCO-MACCHINA → seed.characterVoices ; voce_personaggio = lib/types.ts CharacterVoice -->
 ```yaml
@@ -57,10 +57,10 @@ registro_gruppo:
 voce_personaggio:
   name: <dal lessico>
   role: comprimario
-  archetype: la Pantera di Lucca — riservata, fiera, sobria, «di seta»; ambigua per disciplina
+  archetype: la Pantera di Muralba — riservata, fiera, sobria, «di seta»; ambigua per disciplina
   underStress: si fa ancora più liscia e impenetrabile, non si scopre
   ritmo: sobrio, misurato, levigato, mai una parola di troppo
-  words: Lucca osserva / a suo tempo / si vedrà / di seta
+  words: Muralba osserva / a suo tempo / si vedrà / di seta
   never: scopre la propria mano (o si impegna prima del necessario)
 ```
 

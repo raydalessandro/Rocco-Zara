@@ -1,12 +1,18 @@
 // Genera web/data/cast.json dall'indice MAPPA_CAST.md + le schede comprimari.
 // Uso (dalla root della repo):  node web/tools/build_cast.mjs
+// Con --check (in qualunque posizione): rigenera in memoria e confronta col file
+// committato senza scrivere — exit 0 se allineato, exit 1 (con le entry che
+// differiscono) se divergente.
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = process.argv[2] || '.';
+const args = process.argv.slice(2);
+const CHECK = args.includes('--check');
+const pos = args.filter(a => a !== '--check');
+const ROOT = pos[0] || '.';
 const CDIR = path.join(ROOT, 'saga/bible/comprimari');
 const MAPPA = path.join(CDIR, 'MAPPA_CAST.md');
-const OUT = process.argv[3] || path.join(ROOT, 'web/data/cast.json');
+const OUT = pos[1] || path.join(ROOT, 'web/data/cast.json');
 
 const mappa = fs.readFileSync(MAPPA, 'utf8');
 
@@ -69,7 +75,34 @@ for (const f of fs.readdirSync(CDIR)) {
 chars.sort((a, b) => (a.arc - b.arc) || a.name.localeCompare(b.name, 'it'));
 
 const data = { generato: new Date().toISOString().slice(0, 10), arcs, chars };
-fs.writeFileSync(OUT, JSON.stringify(data, null, 1));
+const serialize = d => JSON.stringify(d, null, 1); // UNICO serializzatore (scrittura e check)
+
+if (CHECK) {
+  // check-mode: nessuna scrittura. Confronto sul serializzato, neutralizzando il
+  // solo campo `generato` (timestamp del giorno): si riusa quello committato.
+  let attuale = null, vecchio = null;
+  try { attuale = fs.readFileSync(OUT, 'utf8'); vecchio = JSON.parse(attuale); } catch { /* assente/illeggibile → divergente */ }
+  if (vecchio && typeof vecchio.generato === 'string') data.generato = vecchio.generato;
+  if (attuale !== null && serialize(data) === attuale) {
+    console.log(`cast.json OK: allineato alle schede (${chars.length} comprimari · ${arcs.length} archi).`);
+    process.exit(0);
+  }
+  console.error(`cast.json DIVERGENTE dalle schede (${OUT}):`);
+  const oldChars = new Map((vecchio?.chars ?? []).map(c => [c.slug, c]));
+  const newChars = new Map(chars.map(c => [c.slug, c]));
+  for (const slug of newChars.keys()) if (!oldChars.has(slug)) console.error(`  + aggiunta: ${slug}`);
+  for (const slug of oldChars.keys()) if (!newChars.has(slug)) console.error(`  - rimossa: ${slug}`);
+  for (const [slug, c] of newChars) {
+    const o = oldChars.get(slug);
+    if (!o) continue;
+    const campi = Object.keys(c).filter(k => JSON.stringify(c[k]) !== JSON.stringify(o[k]));
+    if (campi.length) console.error(`  ~ cambiata: ${slug} (${campi.join(', ')})`);
+  }
+  if (JSON.stringify(vecchio?.arcs) !== JSON.stringify(arcs)) console.error('  ~ archi cambiati (intestazioni/tagline/fatto in MAPPA_CAST.md)');
+  process.exit(1);
+}
+
+fs.writeFileSync(OUT, serialize(data));
 console.log('cast.json:', chars.length, 'comprimari ·', arcs.length, 'archi ·', Object.keys(fileArc).length, 'file mappati');
 const noarc = chars.filter(c => !c.arc).map(c => c.slug);
 if (noarc.length) console.log('senza arco (→ trasversali):', noarc.join(', '));
