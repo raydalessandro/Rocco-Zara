@@ -1,14 +1,1189 @@
 {
   "schema_version": "0.1",
-  "graph_version": "0.0.0",
-  "status": "stub — si popola in M1 (dopo la chat geografia)",
+  "graph_version": "0.2.0-stagione",
+  "status": "stagione completa a 6 volumi (24 episodi): ep01 pieno, ep02-ep24 stub ricchi da dettagliare",
   "saga": "rocco_e_zara",
-  "_note": "Schema del nodo-episodio: vedi schema_episodio.md. Ep01 (l'origine, 'Due mondi') sara' il primo nodo, ancorato al luogo reale e al centro trovati nella chat geografia.",
-  "arcs": {},
-  "episodes": {},
-  "seeds": {},
-  "callbacks": {},
-  "debts": {},
+  "_note": "Nodo-episodio: vedi trama/schema_episodio.md. Narrazione fattuale: trama/volumi/VOLUME_1.md. Nomi = etichette di lavoro.",
+  "arcs": {
+    "arco_origine": {
+      "title": "l'Innesco — la Soglia",
+      "volume": 1,
+      "regno": "laghi_occidente",
+      "note": "l'incontro a Spondalta; partono insieme"
+    },
+    "arco_laghi": {
+      "title": "Laghi del Vespro — il primo nodo",
+      "volume": 1,
+      "regno": "laghi_occidente",
+      "luogo_antico": "le_coppelle",
+      "prova": "zara"
+    },
+    "arco_conca": {
+      "title": "la Conca Ruggente — il giuramento",
+      "volume": 2,
+      "regno": "laghi_oriente",
+      "luogo_antico": "pietre_incise",
+      "prova": "rocco"
+    },
+    "arco_ducato": {
+      "title": "il Gran Ducato — la terra della Serpe",
+      "volume": 3,
+      "regno": "pianura_alta",
+      "luogo_antico": null,
+      "luogo_sepolto": true,
+      "prova": "rocco (casa)"
+    },
+    "arco_savi": {
+      "title": "la Piana dei Savi — il midpoint",
+      "volume": 4,
+      "regno": "pianura_bassa",
+      "luogo_antico": "rovine_ordinate",
+      "prova": "zara (fondo)",
+      "register": "alto"
+    },
+    "arco_selva": {
+      "title": "la Selva di Mezzo — il bosco senza legge",
+      "volume": 5,
+      "regno": "selva_di_mezzo",
+      "luogo_antico": "altare_roccia",
+      "prova": "entrambi"
+    },
+    "arco_leone": {
+      "title": "le Terre del Leone di Pietra — la consegna",
+      "volume": 6,
+      "regno": "toscana",
+      "luogo_antico": "pietre_leone",
+      "prova": "finale"
+    }
+  },
+  "episodes": {
+    "ep01": {
+      "id": "ep01",
+      "title": "Due mondi",
+      "arc": "arco_origine",
+      "type": "cardine",
+      "order_in_journey": 1,
+      "regno": "laghi_occidente",
+      "zona": "soglia",
+      "bioma": "foresta",
+      "center": "collina_incontro",
+      "route_from": null,
+      "location_primary": "luogo_collina_incontro",
+      "locations_secondary": [],
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_cecca"
+      ],
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "deployment_level": "mono",
+      "premise": "Due giovani fuori posto — Zara la Forestiera (fugge il compito di Toraki) e Rocco il rinoceronte del Popolo dell'Aperto — salgono alla Soglia di Spondalta dai due versanti opposti.",
+      "problem": "Ognuno è solo e di troppo nel proprio mondo; nessuno dei due sa se esista un posto per come è fatto.",
+      "threshold_moment": "La tempesta li costringe insieme una notte: Rocco fa riparo con la sua ombra, Zara gli fa strada — e smettono di essere soli.",
+      "resolution_mode": "Non si risolve un ostacolo esterno ma si stringe un legame: Rocco sceglie di partire con Zara perché la causa di Toraki è la speranza del suo popolo.",
+      "closure_type": 3,
+      "entry_point_type": "B",
+      "register": "medio",
+      "estimated_length": 1300,
+      "theme": "appartenenza — non essere soli",
+      "pugno": "l'ombra di Rocco come luogo: «Nella tua ombra mi sono sentita al sicuro»",
+      "personal_detail": "il corno storto di Rocco / Zara che si gonfia per sembrare grande",
+      "seed_nonce": null,
+      "voice_overrides": null,
+      "episode_creature": null,
+      "seeds_planted": [
+        "seed_cordone_incompiuto",
+        "seed_prima_pietra_tiepida",
+        "seed_cecca_ha_visto"
+      ],
+      "seeds_bloomed": [],
+      "callbacks": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "toraki_trace": false,
+      "serpe_face": "cecca",
+      "effects": {
+        "growth": [
+          {
+            "who": "zara",
+            "axis": "troppo_piccola",
+            "delta": "+1",
+            "threshold_crossed": false
+          },
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": false
+          }
+        ],
+        "fear": [
+          {
+            "who": "zara",
+            "fear": "buio",
+            "status": "implicita",
+            "threshold_crossed": false
+          }
+        ],
+        "relation": [
+          {
+            "between": [
+              "rocco",
+              "zara"
+            ],
+            "delta": "incontro",
+            "threshold_crossed": true
+          }
+        ],
+        "world": [
+          {
+            "place": "collina_incontro",
+            "change": "diventa_luogo_condiviso",
+            "threshold_crossed": true
+          }
+        ]
+      },
+      "palette_emotiva": "solitudine → riparo; diffidenza → patto; la calma dopo la tempesta",
+      "voice_notes_essential": [
+        "la pietra è tiepida — dettaglio fisico, mai spiegato",
+        "l'ombra di Rocco è un luogo, non una metafora astratta",
+        "i 'primi' non si nominano: c'è solo il segno sulla pietra"
+      ],
+      "active_constraints_touched": [
+        "stranezza fisica",
+        "primi mai nominati",
+        "niente New Age"
+      ]
+    },
+    "ep02": {
+      "id": "ep02",
+      "title": "Il regno senza riflesso",
+      "arc": "arco_laghi",
+      "type": "viaggio",
+      "order_in_journey": 2,
+      "regno": "laghi_occidente",
+      "zona": "orlo",
+      "bioma": "acqua",
+      "center": "rivalba",
+      "route_from": "ep01",
+      "pov": "zara",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_traghettatrice"
+      ],
+      "premise": "La Traghettatrice porta i due al cuore dei Laghi: stranieri fra i confederati-lince. Zara qui 'sarebbe a casa' ma è senza-riflesso; Rocco impara a fare spazio. Si apre la posta: farsi annodare nella rete.",
+      "serpe_face": null,
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep03": {
+      "id": "ep03",
+      "title": "Lo specchio",
+      "arc": "arco_laghi",
+      "type": "stazione",
+      "order_in_journey": 3,
+      "regno": "laghi_occidente",
+      "zona": "cuore",
+      "bioma": "foresta",
+      "center": "rivalba",
+      "route_from": "ep02",
+      "pov": "zara",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_specchio_di_zara",
+        "char_cecca",
+        "char_sorcio"
+      ],
+      "premise": "La giovane lince — il vanto del regno, tutto ciò che Zara finge di essere — la costringe a guardarsi. Sulla barca della Traghettatrice, Cècca e Sòrcio rubano il pegno dei Laghi.",
+      "serpe_face": "cecca",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_occidente"
+      },
+      "seeds_planted": [
+        "seed_pegno_laghi"
+      ],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep04": {
+      "id": "ep04",
+      "title": "Il primo nodo",
+      "arc": "arco_laghi",
+      "type": "cardine",
+      "order_in_journey": 4,
+      "regno": "laghi_occidente",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "le_coppelle",
+      "route_from": "ep03",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_specchio_di_zara",
+        "char_custode_anziano",
+        "char_cecca"
+      ],
+      "premise": "Mole+velocità risolvono ciò che i Laghi da soli non possono ⚠; Zara accettata; il Custode anziano porta tutti alle Coppelle: primo nodo. Primo piccolo segno di Toraki.",
+      "serpe_face": "cecca",
+      "toraki_trace": true,
+      "luogo_antico": "le_coppelle",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "laghi_occidente"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "growth": [
+          {
+            "who": "zara",
+            "axis": "troppo_piccola",
+            "delta": "+1",
+            "threshold_crossed": true
+          },
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": false
+          }
+        ],
+        "world": [
+          {
+            "place": "le_coppelle",
+            "change": "primo_nodo_annodato",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep05": {
+      "id": "ep05",
+      "title": "Il regno dei giuramenti",
+      "arc": "arco_conca",
+      "type": "viaggio",
+      "order_in_journey": 5,
+      "regno": "laghi_oriente",
+      "zona": "cuore",
+      "bioma": "acqua",
+      "center": "forterocca",
+      "route_from": "ep04",
+      "pov": "rocco",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_leonessa_civica",
+        "char_cecca",
+        "char_sorcio",
+        "char_quinto_colonna"
+      ],
+      "premise": "Forterocca: un nodo È un giuramento, e non si giura coi forestieri. Chi vuole appartenere contribuisce — e Rocco, provando, rompe. Cècca e Sòrcio in città col pegno; un tasso impeccabile ascolta troppo.",
+      "serpe_face": "sorcio",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_oriente"
+      },
+      "seeds_planted": [
+        "seed_quinto_colonna"
+      ],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep06": {
+      "id": "ep06",
+      "title": "L'equivoco che rotola",
+      "arc": "arco_conca",
+      "type": "respiro",
+      "order_in_journey": 6,
+      "regno": "laghi_oriente",
+      "zona": "orlo",
+      "bioma": "acqua",
+      "center": "le_conche",
+      "route_from": "ep05",
+      "pov": "rocco",
+      "attribute_dominant": "cambiare",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_arlecchino",
+        "char_cecca",
+        "char_sorcio"
+      ],
+      "premise": "Le maschere delle rive: l'aiutante scoiattolo aiuta male e innesca l'equivoco che rotola — il pegno dei Laghi torna a R&Z senza che nessuno l'abbia deciso. L'aiuto non viene dai saggi.",
+      "serpe_face": "cecca",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_oriente"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [
+        "seed_pegno_laghi"
+      ],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep07": {
+      "id": "ep07",
+      "title": "La breccia",
+      "arc": "arco_conca",
+      "type": "stazione",
+      "order_in_journey": 7,
+      "regno": "laghi_oriente",
+      "zona": "soglia",
+      "bioma": "acqua",
+      "center": "breccia_ovest",
+      "route_from": "ep06",
+      "pov": "rocco",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_leonessa_civica",
+        "char_giurato",
+        "char_quinto_colonna",
+        "char_esattore_pentito"
+      ],
+      "premise": "Il quinto colonna apre una breccia ⚠; il Giurato è legato dalla parola alla parte sbagliata; la breccia si tiene solo con la mole — e si aggancia solo con un corno storto ⚠. La Leonessa vede la forza che serve. Prima cutaway forte di Toraki.",
+      "serpe_face": "quinto_colonna",
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "laghi_oriente"
+      },
+      "seeds_planted": [
+        "seed_esattore"
+      ],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "growth": [
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep08": {
+      "id": "ep08",
+      "title": "Le Pietre Incise",
+      "arc": "arco_conca",
+      "type": "cardine",
+      "order_in_journey": 8,
+      "regno": "laghi_oriente",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "pietre_incise",
+      "route_from": "ep07",
+      "pov": "rocco",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_montanaro",
+        "char_giurato",
+        "char_leonessa_civica"
+      ],
+      "premise": "Il Montanaro delle incisioni li porta su: il giuramento della comunità, il secondo nodo, il rito del pegno. Il Giurato onora la parola fino in fondo ⚠. I segni SOMIGLIANO a quelli delle Coppelle. Artiglio in volo.",
+      "serpe_face": "artiglio",
+      "toraki_trace": true,
+      "luogo_antico": "pietre_incise",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "laghi_oriente"
+      },
+      "seeds_planted": [
+        "seed_segni_somiglianti"
+      ],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "world": [
+          {
+            "place": "pietre_incise",
+            "change": "secondo_nodo_annodato",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep09": {
+      "id": "ep09",
+      "title": "La terra del tributo",
+      "arc": "arco_ducato",
+      "type": "viaggio",
+      "order_in_journey": 9,
+      "regno": "pianura_alta",
+      "zona": "soglia",
+      "bioma": "savana",
+      "center": "vie_del_ducato",
+      "route_from": "ep08",
+      "pov": "rocco",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_quello_che_e_rimasto",
+        "char_mercante_vie"
+      ],
+      "premise": "Attraversare la terra del nemico — che è casa di Rocco. Il Cordone nascosto (qui è sedizione). Le colonne del tributo. E il pari rimasto: «Tu sei partito.» La colpa prende corpo.",
+      "serpe_face": "artiglio",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_alta"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep10": {
+      "id": "ep10",
+      "title": "Il Luogo sepolto",
+      "arc": "arco_ducato",
+      "type": "cardine",
+      "order_in_journey": 10,
+      "regno": "pianura_alta",
+      "zona": "rovina",
+      "bioma": "savana",
+      "center": "anguicorte",
+      "route_from": "ep09",
+      "pov": "rocco",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_memoria_sepolta"
+      ],
+      "premise": "L'elefantessa che ascolta il selciato li porta dove C'ERA il Luogo: sepolto sotto Anguicorte, i segni spezzati e murati al contrario. In una crepa: tiepido. Nessun nodo — qui non si annoda, si ricorda. La svolta amara.",
+      "serpe_face": "artiglio",
+      "toraki_trace": false,
+      "luogo_antico": "anguicorte_sepolto",
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_alta"
+      },
+      "seeds_planted": [
+        "seed_luogo_sepolto"
+      ],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "world": [
+          {
+            "place": "anguicorte",
+            "change": "luogo_sepolto_scoperto",
+            "threshold_crossed": true
+          }
+        ]
+      },
+      "luogo_sepolto": true
+    },
+    "ep11": {
+      "id": "ep11",
+      "title": "La corte della Serpe",
+      "arc": "arco_ducato",
+      "type": "stazione",
+      "order_in_journey": 11,
+      "regno": "pianura_alta",
+      "zona": "cuore",
+      "bioma": "savana",
+      "center": "anguicorte",
+      "route_from": "ep10",
+      "pov": "rocco",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_mercante_vie",
+        "char_esattore_pentito",
+        "char_bissa",
+        "char_aspide",
+        "char_artiglio"
+      ],
+      "premise": "Il passaggio più vicino al vertice: Artiglio li ha localizzati, ma Bissa scatta in anticipo e la faida con Viscardo inceppa la trappola. L'Esattore pentito paga il suo arco: li copre, a suo costo, a casa ⚠.",
+      "serpe_face": "bissa",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_alta"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [
+        "seed_cecca_ha_visto",
+        "seed_esattore"
+      ],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep12": {
+      "id": "ep12",
+      "title": "A viso aperto",
+      "arc": "arco_ducato",
+      "type": "viaggio",
+      "order_in_journey": 12,
+      "regno": "pianura_alta",
+      "zona": "soglia",
+      "bioma": "savana",
+      "center": "valico_del_ducato",
+      "route_from": "ep11",
+      "pov": "rocco",
+      "attribute_dominant": "cambiare",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_mastino",
+        "char_artiglio"
+      ],
+      "premise": "All'ultimo varco, il Mastino: non tende agguati, affronta a viso aperto. Rocco lo affronta come chiede il suo codice — e il Mastino onora il campo ⚠. Li lascia passare; gli costerà. Notte sulla riva del Gran Fiume.",
+      "serpe_face": "mastino",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_alta"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [
+        "debt_mastino"
+      ],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "growth": [
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep13": {
+      "id": "ep13",
+      "title": "Il Gran Fiume",
+      "arc": "arco_savi",
+      "type": "viaggio",
+      "order_in_journey": 13,
+      "regno": "pianura_bassa",
+      "zona": "orlo",
+      "bioma": "umido",
+      "center": "gran_fiume",
+      "route_from": "ep12",
+      "pov": "zara",
+      "attribute_dominant": "cambiare",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_guardiano_guado"
+      ],
+      "premise": "L'attraversamento: la stessa acqua della prima notte, in scala enorme (eco ep01). La garzetta legge la corrente; Rocco solido nell'acqua. E a cose fatte: un'altra tigre, bianca, è passata — GIORNI, non stagioni.",
+      "serpe_face": null,
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_bassa"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "callbacks": [
+        "cb_tempesta_ep01"
+      ]
+    },
+    "ep14": {
+      "id": "ep14",
+      "title": "Quelli che sanno tutto",
+      "arc": "arco_savi",
+      "type": "stazione",
+      "order_in_journey": 14,
+      "regno": "pianura_bassa",
+      "zona": "cuore",
+      "bioma": "umido",
+      "center": "savenza",
+      "route_from": "ep13",
+      "pov": "zara",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_dotto_che_smonta"
+      ],
+      "premise": "Savenza: il Dotto smonta il Cordone con impeccabile gentilezza — corda, sole del giorno prima, acqua e gelo, una storia che una sorella si racconta. La Casa dell'Aquila disprezza. Zara non ha risposte: lo POSA.",
+      "serpe_face": null,
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_bassa"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "register": "alto"
+    },
+    "ep15": {
+      "id": "ep15",
+      "title": "La notte più buia",
+      "arc": "arco_savi",
+      "type": "cardine",
+      "order_in_journey": 15,
+      "regno": "pianura_bassa",
+      "zona": "vie",
+      "bioma": "umido",
+      "center": "savenza",
+      "route_from": "ep14",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_guardiano_guado",
+        "char_artiglio"
+      ],
+      "premise": "Il fondo: il buio le sale addosso. Rocco non dibatte — resta: la sua ombra fa un posto DENTRO il buio. E lì, la traccia freschissima: un nodo di Toraki a un giorno. Zara riprende il Cordone: il Dotto ha torto su di lei. Artiglio piomba su Savenza.",
+      "serpe_face": "artiglio",
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "pianura_bassa"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "growth": [
+          {
+            "who": "zara",
+            "axis": "troppo_piccola",
+            "delta": "+1",
+            "threshold_crossed": true
+          }
+        ],
+        "fear": [
+          {
+            "who": "zara",
+            "fear": "buio",
+            "status": "attraversata",
+            "threshold_crossed": true
+          }
+        ],
+        "relation": [
+          {
+            "between": [
+              "rocco",
+              "zara"
+            ],
+            "delta": "ombra_nel_buio",
+            "threshold_crossed": true
+          }
+        ]
+      },
+      "register": "alto"
+    },
+    "ep16": {
+      "id": "ep16",
+      "title": "Il nodo strappato",
+      "arc": "arco_savi",
+      "type": "cardine",
+      "order_in_journey": 16,
+      "regno": "pianura_bassa",
+      "zona": "rovina",
+      "bioma": "rovina",
+      "center": "rovine_ordinate",
+      "route_from": "ep15",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_giovane_disputante",
+        "char_guardiano_guado",
+        "char_artiglio"
+      ],
+      "premise": "Il giovane Disputante arringa A FAVORE (vince chi convince); legge e sangue litigano; nel varco, il terzo nodo alle Rovine Ordinate — strappato, col rito minimo. Fuga a sud: CORSA.",
+      "serpe_face": "artiglio",
+      "toraki_trace": false,
+      "luogo_antico": "rovine_ordinate",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "pianura_bassa"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "world": [
+          {
+            "place": "rovine_ordinate",
+            "change": "terzo_nodo_annodato",
+            "threshold_crossed": true
+          }
+        ]
+      },
+      "register": "alto"
+    },
+    "ep17": {
+      "id": "ep17",
+      "title": "Nessuno comanda qui",
+      "arc": "arco_selva",
+      "type": "respiro",
+      "order_in_journey": 17,
+      "regno": "selva_di_mezzo",
+      "zona": "bosco",
+      "bioma": "foresta",
+      "center": "margine_selva",
+      "route_from": "ep16",
+      "pov": "zara",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_solitario"
+      ],
+      "premise": "La Selva: nessun vertice, nessuna rete, nessun giuramento. Il Solitario aiuta a malincuore; l'Esule libero è lo specchio del costo — libertà senza appartenenza.",
+      "serpe_face": null,
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "selva_di_mezzo"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep18": {
+      "id": "ep18",
+      "title": "Il bivio",
+      "arc": "arco_selva",
+      "type": "stazione",
+      "order_in_journey": 18,
+      "regno": "selva_di_mezzo",
+      "zona": "spina",
+      "bioma": "foresta",
+      "center": "crinale_selva",
+      "route_from": "ep17",
+      "pov": "rocco",
+      "attribute_dominant": "cambiare",
+      "cast": [
+        "char_rocco",
+        "char_zara"
+      ],
+      "premise": "Tracce di Toraki fitte. Il tentatore: «restate liberi — adesso». E il beat di Rocco: una creatura piccola e velocissima ⚠ in pericolo; lui, che ne ha sempre avuto paura, la protegge con la mole. La creatura li guida: si va.",
+      "serpe_face": null,
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "selva_di_mezzo"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "fear": [
+          {
+            "who": "rocco",
+            "fear": "piccole_veloci",
+            "status": "attraversata",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep19": {
+      "id": "ep19",
+      "title": "Il valico, di nuovo",
+      "arc": "arco_selva",
+      "type": "stazione",
+      "order_in_journey": 19,
+      "regno": "selva_di_mezzo",
+      "zona": "soglia",
+      "bioma": "roccia",
+      "center": "valico_del_mastino",
+      "route_from": "ep18",
+      "pov": "rocco",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_rocco",
+        "char_zara",
+        "char_mastino"
+      ],
+      "premise": "Il Mastino, ricollocato per ciò che fece. L'ordine stavolta è un agguato — e lui non fa agguati: rifiuta e paga ⚠. Il varco è libero. Cutaway: il Cacciatore chiude su Toraki — segni di lotta, un ciuffo bianco ⚠.",
+      "serpe_face": "mastino",
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "selva_di_mezzo"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [
+        "debt_mastino"
+      ],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep20": {
+      "id": "ep20",
+      "title": "L'Altare di Roccia",
+      "arc": "arco_selva",
+      "type": "cardine",
+      "order_in_journey": 20,
+      "regno": "selva_di_mezzo",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "altare_roccia",
+      "route_from": "ep19",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_uno_degli_antichi"
+      ],
+      "premise": "Il nodo dove nessuno governa: davanti a tutti e a nessuno — il bosco viene a vedere, e il bosco ricorda. Il rospo parla a indovinelli. Quarto nodo. Il segno di Toraki fresco del giorno prima — e accanto, l'impronta del Cacciatore.",
+      "serpe_face": null,
+      "toraki_trace": true,
+      "luogo_antico": "altare_roccia",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "selva_di_mezzo"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "world": [
+          {
+            "place": "altare_roccia",
+            "change": "quarto_nodo_annodato",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep21": {
+      "id": "ep21",
+      "title": "Il regno delle gare",
+      "arc": "arco_leone",
+      "type": "stazione",
+      "order_in_journey": 21,
+      "regno": "toscana",
+      "zona": "vie",
+      "bioma": "roccia",
+      "center": "strade_del_leone",
+      "route_from": "ep20",
+      "pov": "zara",
+      "attribute_dominant": "distinguere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_cittadino_leone"
+      ],
+      "premise": "Le città rivali: ognuna vuole l'ultimo nodo 'a casa sua'. La Lupa aiuta sghemba; la Pantera è di seta; la Gente del Mare misura due volte. Il Cittadino del Leone offre l'ultima tentazione: la gloria. Zara la sente.",
+      "serpe_face": null,
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "toscana"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep22": {
+      "id": "ep22",
+      "title": "L'ultima mano",
+      "arc": "arco_leone",
+      "type": "viaggio",
+      "order_in_journey": 22,
+      "regno": "toscana",
+      "zona": "cuore",
+      "bioma": "roccia",
+      "center": "leonalba",
+      "route_from": "ep21",
+      "pov": "rocco",
+      "attribute_dominant": "cambiare",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_custode_pietre_leone",
+        "char_viscardo"
+      ],
+      "premise": "Viscardo non caccia: semina — il metodo del quinto colonna, in grande. Le città sull'orlo di farsi guerra alla vigilia. R&Z le portano alle Pietre, che non sono di nessuna città. L'ultima corsa comincia.",
+      "serpe_face": "viscardo",
+      "toraki_trace": false,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "toscana"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [
+        "seed_quinto_colonna"
+      ],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+    },
+    "ep23": {
+      "id": "ep23",
+      "title": "Il fratello",
+      "arc": "arco_leone",
+      "type": "cardine",
+      "order_in_journey": 23,
+      "regno": "toscana",
+      "zona": "spina",
+      "bioma": "roccia",
+      "center": "salita_pietre",
+      "route_from": "ep22",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_toraki",
+        "char_cacciatore"
+      ],
+      "premise": "Il Cacciatore ha chiuso: Toraki alle strette. Il ricongiungimento avviene DENTRO la crisi ⚠: Zara non lo trova — lo salva, con Rocco. Poi il riconoscimento silenzioso: la stessa mano, lo stesso gesto.",
+      "serpe_face": "viscardo",
+      "toraki_trace": true,
+      "luogo_antico": null,
+      "nodo_cordone": {
+        "annodato_qui": false,
+        "regno": "toscana"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "relation": [
+          {
+            "between": [
+              "zara",
+              "toraki"
+            ],
+            "delta": "ricongiungimento",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    },
+    "ep24": {
+      "id": "ep24",
+      "title": "La consegna",
+      "arc": "arco_leone",
+      "type": "cardine",
+      "order_in_journey": 24,
+      "regno": "toscana",
+      "zona": "rovina",
+      "bioma": "roccia",
+      "center": "pietre_leone",
+      "route_from": "ep23",
+      "pov": "zara",
+      "attribute_dominant": "connettere",
+      "cast": [
+        "char_zara",
+        "char_rocco",
+        "char_toraki",
+        "char_custode_pietre_leone",
+        "char_viscardo"
+      ],
+      "premise": "L'ultimo nodo davanti alle città, insieme. Il disegno si compone (⚠ incluso il filo sepolto?). Viscardo arriva tardi: prendere UNO si poteva, una rete no ⚠. E la consegna: posare il Cordone sulla pietra tiepida e lasciarlo lì. Il pizzicore. L'immagine finale è la pietra.",
+      "serpe_face": "viscardo",
+      "toraki_trace": true,
+      "luogo_antico": "pietre_leone",
+      "nodo_cordone": {
+        "annodato_qui": true,
+        "regno": "toscana"
+      },
+      "seeds_planted": [],
+      "seeds_bloomed": [
+        "seed_cordone_incompiuto",
+        "seed_segni_somiglianti",
+        "seed_luogo_sepolto",
+        "seed_prima_pietra_tiepida"
+      ],
+      "debts_opened": [],
+      "debts_closed": [],
+      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
+      "effects": {
+        "growth": [
+          {
+            "who": "zara",
+            "axis": "troppo_piccola",
+            "delta": "+1",
+            "threshold_crossed": true
+          },
+          {
+            "who": "rocco",
+            "axis": "vergogna_corno",
+            "delta": "+1",
+            "threshold_crossed": true
+          }
+        ],
+        "world": [
+          {
+            "place": "pietre_leone",
+            "change": "quinto_nodo_annodato",
+            "threshold_crossed": true
+          },
+          {
+            "place": "pietre_leone",
+            "change": "cordone_consegnato",
+            "threshold_crossed": true
+          }
+        ]
+      }
+    }
+  },
+  "seeds": {
+    "seed_cordone_incompiuto": {
+      "what": "la corda annodata a metà di Toraki e il compito di completarla",
+      "planted": "ep01",
+      "blooms": "ep24"
+    },
+    "seed_prima_pietra_tiepida": {
+      "what": "una pietra tiepida quando tutto è freddo, segnata da mani che non erano zampe",
+      "planted": "ep01",
+      "blooms": "ep24 (accumula: ep04/08/10/16/20)"
+    },
+    "seed_cecca_ha_visto": {
+      "what": "Cècca ha visto i Forestieri e la corda: la Serpe saprà (a metà)",
+      "planted": "ep01",
+      "blooms": "ep11"
+    },
+    "seed_pegno_laghi": {
+      "what": "il pegno dei Laghi rubato da Cècca sulla barca della Traghettatrice",
+      "planted": "ep03",
+      "blooms": "ep06"
+    },
+    "seed_quinto_colonna": {
+      "what": "i liberi traditi da dentro — il tasso impeccabile",
+      "planted": "ep05",
+      "blooms": "ep22"
+    },
+    "seed_esattore": {
+      "what": "l'esattore col basto vuoto che esita",
+      "planted": "ep07",
+      "blooms": "ep11"
+    },
+    "seed_segni_somiglianti": {
+      "what": "i segni delle pietre si somigliano da un regno all'altro",
+      "planted": "ep08",
+      "blooms": "ep24"
+    },
+    "seed_luogo_sepolto": {
+      "what": "il Luogo del Ducato, sepolto e ancora tiepido — il filo che manca",
+      "planted": "ep10",
+      "blooms": "ep24 ⚠ (il disegno lo include?)"
+    }
+  },
+  "callbacks": {
+    "cb_tempesta_ep01": {
+      "from": "ep01",
+      "to": "ep13",
+      "what": "la stessa acqua, in scala enorme: 'l'abbiamo già fatto, più piccolo'"
+    },
+    "cb_ombra_ep01": {
+      "from": "ep01",
+      "to": "ep15",
+      "what": "l'ombra come luogo → un posto dentro il buio"
+    }
+  },
+  "debts": {
+    "debt_mastino": {
+      "what": "il Mastino onora il campo e li lascia passare",
+      "opened": "ep12",
+      "closed": "ep19"
+    }
+  },
   "creatures": {},
-  "world_state_baselines": {}
+  "world_state_baselines": {
+    "arco_origine": {
+      "season": "—",
+      "note": "tempesta d'apertura (eco al Gran Fiume)"
+    },
+    "arco_laghi": {
+      "season": "—",
+      "note": "i Laghi del Vespro, il Bosco di montagna"
+    }
+  }
 }
