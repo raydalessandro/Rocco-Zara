@@ -9,7 +9,7 @@
 > `cartografia/ORIGINE.md`, `bible/ritornelli.md`, `bible/comprimari/{specchio-di-zara,
 > cecca,sorcio,custode-anziano}.md`. **Nomi = etichette di lavoro** (lessico definitivo a parte).
 >
-> **Copre:** Movimento 0 (l'Innesco, la Soglia) + Movimento 1 (Laghi del Vespro, primo nodo).
+> **Copre:** Arco 1 (l'Innesco alla Soglia + i Laghi del Vespro, primo nodo) · episodi **ep01–ep04** · prova: **Zara** (appartenere). Stagione in **6 volumi** (uno per regno; il Gran Ducato = Vol.3, il regno **senza nodo**).
 > **Formato volume (canone):** ~100 pagine · **60–80 illustrazioni** di storia + atlante e accessorie.
 > **Capitoli:** 4 (per ritmo; fondibili a 3). ✅ = deciso · ⚠ = da ratificare con te.
 
@@ -21,7 +21,7 @@
 di Toraki; sulla Soglia inciampa in Rocco; una tempesta li lega; partono insieme. *(Steso in
 pieno qui sotto.)*
 
-**Cap. 2 — Il regno senza riflesso** *(arrivo ai Laghi · Rivalba · `ep02`)*. Stranieri tra i
+**Cap. 2 — Il regno senza riflesso** *(arrivo ai Laghi · Rivalba · `ep02`)*. La **Traghettatrice delle rive** (la lontra dalle zampe svelte ai nodi) li porta al cuore del regno. Stranieri tra i
 confederati-lince. Zara qui "sarebbe a casa" ma non appartiene a niente; Rocco, gigante fra
 animali d'acqua, impara a *fare spazio*. Si apre la posta: per annodare il primo nodo, Zara
 deve **essere annodata nella rete** — farsi accettare dai Laghi.
@@ -30,15 +30,13 @@ deve **essere annodata nella rete** — farsi accettare dai Laghi.
 giovane**, lo stemma e il vanto del regno, che sta dritta *senza gonfiarsi* — tutto ciò che
 Zara finge di essere. Non è cattiva: è solo **a casa**, e questo per Zara è la ferita
 («Qui le cose hanno il loro posto. Tu, ancora no.»). Intanto **Cècca** (la gazza) e **Sòrcio**
-rubano *davvero* un pegno — il seme che pagherà più avanti.
+rubano *davvero* un pegno — **sulla barca della Traghettatrice** — il seme che pagherà più avanti.
 
 **Cap. 4 — Il primo nodo** *(tentpole · `ep04`)*. Un problema che i Laghi da soli non
 risolvono, e che si sblocca solo con **la mole di Rocco e la velocità di Zara insieme**: Zara
-fa la cosa memorabile, i Laghi la **accolgono**, la lince smette di giudicarla. Ai **massi
-coppellati** (le Coppelle) si annoda il **primo nodo**: si lega il Cordone alla pietra tiepida,
+fa la cosa memorabile, i Laghi la **accolgono**, la lince smette di giudicarla. Guidati dal **Custode anziano** (la testuggine dal guscio levigato da anni di riposo contro le pietre), ai **massi coppellati** (le Coppelle) si annoda il **primo nodo**: si lega il Cordone alla pietra tiepida,
 la comunità giura. Lì R&Z vedono per la prima volta un **segno fatto da mani che non erano
-zampe** (mistero, mai spiegato). Ripartono con un seme in mano e la **prima traccia forte di
-Toraki** — vivo, davanti a loro (noi lo sappiamo, Zara no).
+zampe** (mistero, mai spiegato). Ripartono con un seme in mano e la **primo piccolo nodo di Toraki** (la traccia leggera; la cutaway *forte* arriva nel Vol.2) — vivo, davanti a loro (noi lo sappiamo, Zara no).
 
 *⚠ Snodi autoriali da fissare scrivendo:* il **problema concreto dei Laghi** (Cap. 4) che
 richiede mole+velocità; **quale pegno** rubano Cècca e Sòrcio (Cap. 3); `theme`/`pugno`/
