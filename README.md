@@ -15,25 +15,30 @@ episodi (`saga/serializzatore/` + `lib/`), la **sala di regia** web (`web/`) e u
 
 ## Dove siamo (per ripartire dallo stesso punto)
 
-Il canone è **stabile e coerente**; da "mondo documentato" siamo passati a **pipeline
-eseguibile**. In `main`, verde (`npm run check`: 24 file di test, **221 test**).
+Il canone è **stabile e coerente**, la pipeline è **eseguibile e blindata**. In `main`,
+verde (`npm run check`: 27 file di test, **233 test** + 49 pytest di parità in CI).
 
 **Fatto:**
-- 🌍 **Mondo completo** — lessico *Terre Annodate* (`saga/lessico/MAPPATURA.md`), 6 regni,
-  cartografia/faunario/società/voci, **cosmologia** (solo-autore), **5 ritornelli**,
-  motore anti-cliché, **stile visivo** naturalistico (niente vestiti) + **metafore native**.
+- 🌍 **Mondo completo** — lessico *Terre Annodate* (`saga/lessico/MAPPATURA.md` +
+  `mappa.json` machine-readable), 6 regni, cartografia/faunario/società/voci,
+  **cosmologia** (solo-autore), **5 ritornelli**, motore anti-cliché, **stile visivo**
+  naturalistico (niente vestiti) + **metafore native**.
 - 🎭 **Cast completo** dei 6 archi — `saga/bible/comprimari/` (27+ schede + template + MAPPA_CAST).
 - ⚙️ **Motore generativo** — `saga/serializzatore/` (ponte `saga → Seed`, audit di continuità,
   **PCG** condizionata dallo stato, golden/consistency test). Aggancio additivo in `lib/engine.ts` (§6).
+- 🕹️ **Pipeline impugnabile** — `npm run ep -- build|close|audit <episodio>`: dal grafo al
+  **writing brief + audit** in un comando, determinismo testato end-to-end (la prosa resta
+  cancello umano).
+- 🛡️ **Cancelli anti-drift** — linter del canone a 3 passate (`mappa.json` = unica fonte
+  nomi+substrato), cast-sync, parità Python (`pytest seme/`) in CI.
 - 🎬 **Agenti autoriali** — `scenografo` (prompt-immagine + scene via Manus) e `illustratore`
   (consegna HD + reference binding) in `.claude/agents/`.
 - 🖥️ **Sala di regia `web/`** — sito statico, **deployato su Vercel** (legge `saga/…` da GitHub raw).
 
 **Prossimo (vedi `saga/TODO.md`):**
-- **Fase F — consolidamento tecnico** (debito noto): casa del serializzatore (`saga/` vs `lib/`),
-  pipeline `saga/*.py` sotto un check minimo, destino dell'app Next `scrivia`, disciplina di corsia.
-- Pendenti puntuali: assegnare i **nomi propri** ai segnaposto `<dal lessico>` delle schede;
-  primo **Ep01** nel `saga_graph.json`.
+- **Ep01 nel `saga_graph.json`** (Fase B, autoriale) → col brief a un comando di distanza.
+- **Fase A** (segni distintivi + palette) → sblocca le reference visive.
+- Pendenti puntuali: nomi `<dal lessico>` delle schede; rifiniture CLI; TEST_SPEC da allineare.
 
 ---
 
@@ -74,7 +79,10 @@ Mai un merge diretto su `main`. La **CI** gira sulla PR; si mergia solo a verde.
 
 ```bash
 npm install
-npm run check    # i 4 gate = la CI: vitest + typecheck test + tsc --noEmit + next build
+npm run check    # il gate JS della CI: vitest (incl. linter canone + cast sync) + typecheck + build
+npm run ep -- build ep_demo --graph saga/serializzatore/fixtures/saga_graph.demo.json
+                 # la pipeline in un comando: seed.json · node.json · brief.md · audit.json
+python3 -m pytest seme/tests -q   # parità Python (il secondo job della CI)
 npm test         # solo la suite Vitest
 node web/tools/build_cast.mjs   # rigenera l'indice del cast per la sala di regia
 ```
