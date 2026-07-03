@@ -7,7 +7,9 @@
   "saga/cartografia/pipeline/",
   "saga/bible/comprimari/",
   "saga/serializzatore/IMPL_NOTES.md",
-  "saga/voce/METAFORE.md"
+  "saga/voce/METAFORE.md",
+  "web/data/cast.json",
+  "web/data/narrativa.json"
  ],
  "nomi": {
   "Laghi d'Occidente": "Laghi del Vespro",

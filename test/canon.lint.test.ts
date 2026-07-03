@@ -81,25 +81,14 @@ const fallisciSe = (violazioni: string[], intestazione: string) => {
 // ------------------------------------------------------------------ passate --
 describe("linter del canone (saga/lessico/mappa.json)", () => {
   it("passata 1 — nessun nome reale nei file interi (canone, meno substrato)", () => {
-    // QUARANTENA — debito esplicito, NON substrato: decisione all'orchestratrice.
-    // La passata 1 sul tree attuale trova nomi reali in questi due file di web/
-    // (la "sala di regia", autore-facing):
-    //  - web/data/cast.json: GENERATO da build_cast.mjs a partire dalle schede
-    //    comprimari (substrato: sottotesto d'autore voluto) — tagline/specie/
-    //    blurb citano Como, Brescia, Siena… L'allineamento alle schede è già
-    //    blindato da test/cast.sync.test.ts (--check).
-    //  - web/data/narrativa.json: campi "ref" dell'atlante editoriale con le
-    //    ancore reali dei Luoghi Antichi (Valcamonica, Marzabotto…).
-    // La corsia testing non decide se è sottotesto voluto (→ substrato in
-    // mappa.json) o drift da ripulire: finché l'orchestratrice non ratifica,
-    // i due file restano esclusi QUI (non in mappa.json), così il cancello
-    // resta vivo su tutto il resto — saga/** e ogni NUOVO file di web/data.
-    const QUARANTENA = ["web/data/cast.json", "web/data/narrativa.json"];
-
+    // Il substrato (nomi reali VOLUTI) vive SOLO in mappa.json — una lista sola per
+    // script di rename e linter. Ratificato dall'orchestratrice: anche i due file
+    // autore-facing di web/data stanno lì (cast.json deriva dalle schede-sottotesto
+    // ed è blindato da test/cast.sync.test.ts; i "ref" di narrativa.json sono le
+    // ancore reali dei Luoghi Antichi, stessa convenzione del real_ref cartografico).
     const violazioni: string[] = [];
     for (const [file, righe] of corpus) {
       if (mappa.substrato.some((p) => file.startsWith(p))) continue; // dir con "/" finale o file singoli
-      if (QUARANTENA.includes(file)) continue;
       righe.forEach((riga, i) => lintRiga(file, riga, i + 1, violazioni));
     }
     fallisciSe(violazioni, "Nomi reali nel canone");
