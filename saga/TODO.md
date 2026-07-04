@@ -101,6 +101,11 @@
 - [x] **Reference batch (fascicolo illustratore)** — ✅ `saga/reference/REFERENCE_BATCH.md`
       committato (riproducibile dal generatore) → **cancello anti-drift**: `genera_batch.py --check`
       + `test/reference.sync.test.ts` (terzo gemello, con cast-sync e digest-sync).
+- [ ] **Cancello di sync per i geojson di `geo/`** (corsia testing/backend): il geo pack (#31)
+      committa `saga/cartografia/geo/*.geojson` + `manifest_taglio.json` generati da
+      `pipeline/geo_confini.py`, ma **senza cancello** dedicato (a differenza di cast/digest/
+      reference). Follow-up: dare a `geo_confini.py` un `--check` e agganciarlo con
+      `test/geo.sync.test.ts` (quarto gemello). Nel frattempo il drift non è bloccato in CI.
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
