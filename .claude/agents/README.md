@@ -23,6 +23,7 @@ lavora chi deve lavorare" senza perdere allineamento tra front e back.
 | **supabase** | ✅ M3 in PR · schema+RLS+bucket applicati, adapter su Supabase | `lib/store.ts` · `lib/supabase/*` · migrazioni · bucket · auth | `supabase.md` + `docs/SUPABASE_SPEC.md` |
 | **scenografo** | ✅ *primo agente autoriale* · saga | composizione prompt-immagine + generazione scene (Manus); consegna via illustratore | `scenografo.md` + `docs/SCENOGRAFO.md` |
 | **illustratore** | ✅ saga | consegna HD in repo (scena/intro/catalogo) + aggiorna `entities.json` (reference binding) | `illustratore.md` + `docs/ILLUSTRATORE.md` |
+| **ritrattista** | ✅ saga | nascita delle reference di catalogo (1c): proposta→validazione→HD multi-veduta→consegna; foglio `CATALOGO_VISIVO.md`, vincolo «Morfologia di reference» delle schede, aggiorna `entities.json` | `ritrattista.md` (+ `docs/ILLUSTRATORE.md`/`SCENOGRAFO.md`) |
 
 L'**orchestratrice** ora ha un file — `orchestratrice.md` + `docs/ORCHESTRAZIONE.md` — ma resta
 una **categoria diversa** dai cinque qui sopra: è la **sessione principale** (il *delegante*),
