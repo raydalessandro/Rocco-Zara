@@ -1118,42 +1118,50 @@
     "seed_cordone_incompiuto": {
       "what": "la corda annodata a metà di Toraki e il compito di completarla",
       "planted": "ep01",
-      "blooms": "ep24"
+      "blooms": "ep24",
+      "bloom_target": "ep24"
     },
     "seed_prima_pietra_tiepida": {
       "what": "una pietra tiepida quando tutto è freddo, segnata da mani che non erano zampe",
       "planted": "ep01",
-      "blooms": "ep24 (accumula: ep04/08/10/16/20)"
+      "blooms": "ep24 (accumula: ep04/08/10/16/20)",
+      "bloom_target": "ep24"
     },
     "seed_cecca_ha_visto": {
       "what": "Cècca ha visto i Forestieri e la corda: la Serpe saprà (a metà)",
       "planted": "ep01",
-      "blooms": "ep11"
+      "blooms": "ep11",
+      "bloom_target": "ep11"
     },
     "seed_pegno_laghi": {
       "what": "il pegno dei Laghi rubato da Cècca sulla barca della Traghettatrice",
       "planted": "ep03",
-      "blooms": "ep06"
+      "blooms": "ep06",
+      "bloom_target": "ep06"
     },
     "seed_quinto_colonna": {
       "what": "i liberi traditi da dentro — il tasso impeccabile",
       "planted": "ep05",
-      "blooms": "ep22"
+      "blooms": "ep22",
+      "bloom_target": "ep22"
     },
     "seed_esattore": {
       "what": "l'esattore col basto vuoto che esita",
       "planted": "ep07",
-      "blooms": "ep11"
+      "blooms": "ep11",
+      "bloom_target": "ep11"
     },
     "seed_segni_somiglianti": {
       "what": "i segni delle pietre si somigliano da un regno all'altro",
       "planted": "ep08",
-      "blooms": "ep24"
+      "blooms": "ep24",
+      "bloom_target": "ep24"
     },
     "seed_luogo_sepolto": {
       "what": "il Luogo del Ducato, sepolto e ancora tiepido — il filo che manca",
       "planted": "ep10",
-      "blooms": "ep24 ⚠ (il disegno lo include?)"
+      "blooms": "ep24 ⚠ (il disegno lo include?)",
+      "bloom_target": "ep24"
     }
   },
   "callbacks": {
