@@ -325,6 +325,62 @@
       "kind": "location",
       "descriptor": "l'acropoli dei primi nelle Terre del Leone: le lastre più antiche di tutte, di nessuna città, dove il disegno si compone",
       "status": "da_generare"
+    },
+    "char_lupa": {
+      "entityId": "char_lupa",
+      "name": "la Lupa",
+      "kind": "character",
+      "species": "lupa",
+      "descriptor": "lupa, lo stemma di Pietralupa; magra, di un orgoglio scarno; il labbro arricciato in un mezzo ghigno permanente; l'occhio storto verso Leonalba — rancore di vecchia data",
+      "status": "da_generare"
+    },
+    "char_pantera": {
+      "entityId": "char_pantera",
+      "name": "la Pantera",
+      "kind": "character",
+      "species": "pantera",
+      "descriptor": "pantera, lo stemma della città di seta; liscia, immacolata, composta; il muso non rivela nulla; si muove senza rumore; l'inclinazione misurata del capo che non concede una sola lettura",
+      "status": "da_generare"
+    },
+    "char_marinaio": {
+      "entityId": "char_marinaio",
+      "name": "il Marinaio del Mare",
+      "kind": "character",
+      "species": "cormorano",
+      "descriptor": "cormorano di Marleone; incrostato di sale, l'occhio che strizza all'orizzonte misurando; gesti deliberati, mai affrettati; controlla due volte prima di muovere",
+      "status": "da_generare"
+    },
+    "char_esule_libero": {
+      "entityId": "char_esule_libero",
+      "name": "l'Esule libero",
+      "kind": "character",
+      "species": "cavallo",
+      "descriptor": "cavallo di pianura fuggito nel bosco; criniera selvatica e incolta, i segni sbiaditi di un vecchio finimento; libero ma scavato; non sta mai del tutto fermo",
+      "status": "da_generare"
+    },
+    "char_tentatore": {
+      "entityId": "char_tentatore",
+      "name": "il tentatore",
+      "kind": "character",
+      "species": "cervo",
+      "descriptor": "cervo, lo stemma della Selva — la libertà selvatica fatta magnificenza; magnifico e senza peso, il palco alto mai chinato; la cosa più bella dell'arco, e in quella bellezza il rischio",
+      "status": "da_generare"
+    },
+    "char_casa_aquila": {
+      "entityId": "char_casa_aquila",
+      "name": "la Casa dell'Aquila",
+      "kind": "character",
+      "species": "aquila",
+      "descriptor": "aquila della corte di Aquilara; si porta come uno stemma vivo — ogni posa un blasone; guarda dall'alto, di posatoio e di spirito; l'inclinazione sprezzante del capo che misura i tuoi avi",
+      "status": "da_generare"
+    },
+    "char_creature_rovina": {
+      "entityId": "char_creature_rovina",
+      "name": "le Creature della Rovina",
+      "kind": "character",
+      "species": "coro notturno",
+      "descriptor": "coro di piccole creature notturne della rovina (pipistrelli, civette, grilli); occhi nel buio, sagome che non si mettono a fuoco; scala infantile, movimento storto; appaiono fra le pietre rotte, solo di notte",
+      "status": "da_generare"
     }
   }
 }

@@ -191,7 +191,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Rivalba non respinge e non accoglie: per i confederati-lince i due sono «di passaggio», e a chi è di passaggio non si mostra niente che conti. Zara, tra i suoi simili per la prima volta, scopre di essere la più straniera di tutti.",
+      "threshold_moment": "La Traghettatrice, che di forestieri ne porta da una vita, li ferma a metà lago e fa la domanda che a riva nessuno fa: «Cosa portate?» — e Zara, per la prima volta davanti a un estraneo, tira fuori il Cordone.",
+      "resolution_mode": "La lontra non giudica: annoda al volo un nodo da rete accanto al nodo del Cordone («il vostro tiene») — non è accoglienza, è il primo riconoscimento. A riva indica la strada per il cuore del regno.",
+      "theme": "Si comincia a esistere quando qualcuno guarda cosa porti, non cosa sei.",
+      "pugno": "Zara tra cento linci è più sola che tra le canne con un rinoceronte.",
+      "personal_detail": "Zara tiene il Cordone sotto la zampa anche dormendo sulla barca — e la Traghettatrice lo nota subito: è il gesto di chi trasporta cose care.",
+      "entry_point_type": "E",
+      "closure_type": 5,
+      "register": "medio",
+      "palette_emotiva": "estraneità → primo riconoscimento; diffidenza → curiosità",
+      "deployment_level": "mono",
+      "estimated_length": 1100,
+      "episode_creature": {
+        "id": "martin_pescatore_vespro",
+        "species": "martin pescatore",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "la Traghettatrice parla annodando: le zampe sempre in opera",
+        "i confederati-lince: cortesia che misura"
+      ],
+      "location_primary": "il Lago del Vespro — la traghettata",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep03": {
       "id": "ep03",
@@ -227,7 +251,30 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "La giovane lince — il vanto del regno — è tutto ciò che Zara finge di essere, e il regno lo sa: i Custodi affiancano ai forestieri proprio lei, e ogni cosa che Zara fa, l'altra la fa meglio. Senza cattiveria: che è peggio.",
+      "threshold_moment": "Di notte Zara la sorprende alle Coppelle, sola, a fissare i segni: la perfetta del regno viene lì a chiedersi a cosa serve essere il vanto di un posto che non va da nessuna parte. Le due si vedono davvero.",
+      "resolution_mode": "Nessuna gara vinta: la lince le insegna il passo sui massi, da pari. Intanto, sulla barca ormeggiata, Cècca fa sparire il pegno dei Laghi mentre Sòrcio «fa il palo» addormentandosi: il furto riesce per il sonno del complice, e stanotte nessuno se ne accorge.",
+      "theme": "Lo specchio non è un nemico: è una domanda.",
+      "pugno": "«Tu almeno vai da qualche parte» — detto dal vanto del regno alla straniera.",
+      "personal_detail": "La lince ha i ciuffi delle orecchie perfetti e se li lecca quando è nervosa: Zara se ne accorge, e smette di sentirsi l'unica a fingere.",
+      "entry_point_type": "B",
+      "closure_type": 4,
+      "register": "medio",
+      "palette_emotiva": "invidia → specchio; finzione → verità",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "ghiro_vedetta",
+        "species": "ghiro",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "lo Specchio: frasi pulite, mai una parola di troppo — la voce di chi non deve dimostrare"
+      ],
+      "location_primary": "Rivalba — i massi e la riva",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep04": {
       "id": "ep04",
@@ -247,7 +294,8 @@
         "char_rocco",
         "char_specchio_di_zara",
         "char_custode_anziano",
-        "char_cecca"
+        "char_cecca",
+        "char_traghettatrice"
       ],
       "premise": "Mole+velocità risolvono ciò che i Laghi da soli non possono ⚠; Zara accettata; il Custode anziano porta tutti alle Coppelle: primo nodo. Primo piccolo segno di Toraki.",
       "serpe_face": "cecca",
@@ -261,7 +309,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "growth": [
           {
@@ -284,7 +331,31 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "La piena di fine stagione gonfia il lago nella notte del rito: le tane basse della Gente delle Rive si allagano, e il regno che non ha mai avuto bisogno di nessuno ha bisogno adesso di una mole che regga la corrente e di una velocità che porti fuori i piccoli.",
+      "threshold_moment": "Zara guida le staffette sui massi col passo imparato dalla lince, Rocco fa diga col corpo nel varco: il regno vede la coppia fare, insieme, ciò che nessuna lince sola può.",
+      "resolution_mode": "All'alba il Custode anziano porta tutti alle Coppelle. Il pegno destinato al rito manca (rubato): se ne sceglie uno nuovo — una scaglia di remo della Traghettatrice — e il primo nodo si stringe lo stesso, con l'assenza notata da tutti.",
+      "theme": "Appartenere è ciò che resta dopo che hai dato.",
+      "pugno": "La lince-vanto cede a Zara il posto di testa sui massi, davanti a tutti.",
+      "personal_detail": "Il coro delle rane tace nella piena e riprende esattamente al primo nodo: il «sì» del lago.",
+      "entry_point_type": "C",
+      "closure_type": 7,
+      "register": "medio",
+      "palette_emotiva": "paura della piena → orgoglio insieme; assenza → patto",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "rana_coro",
+        "species": "rana",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Custode anziano: lento, poche parole, tutte di pietra"
+      ],
+      "location_primary": "le Coppelle — la notte della piena",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep05": {
       "id": "ep05",
@@ -321,7 +392,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Contribuire è la sola porta della Conca — e la prima cosa che Rocco tocca, l'impalcatura del molo delle conche, cede sotto la sua spinta «d'aiuto»: ora il comune ha un danno, e la Leonessa un motivo in più per dire no.",
+      "threshold_moment": "La Leonessa lo mette alla prova al contrario: «Ripara.» Non chiede forza: chiede pazienza — e Rocco scopre che tenere fermo un palo per ore, mentre altri legano, è la sua forza usata al minimo, per gli altri.",
+      "resolution_mode": "Il molo torna su più solido di prima, la mole come morsa vivente; il comune registra il debito come pagato — ma riparare non è giurare: il nodo resta lontano. E il tasso impeccabile si offre «volontario» per sorvegliare i forestieri.",
+      "theme": "La forza che serve comincia dallo stare fermi.",
+      "pugno": "«Grande e basta», dice la Leonessa — e Rocco, per la prima volta, non abbassa la testa: «Grande. Vediamo per cosa.»",
+      "personal_detail": "Rocco impara a misurare la spinta appoggiando prima una nocca sola: il gesto-firma che tornerà alla breccia.",
+      "entry_point_type": "E",
+      "closure_type": 3,
+      "register": "medio",
+      "palette_emotiva": "vergogna del danno → pazienza che serve",
+      "deployment_level": "mono",
+      "estimated_length": 1100,
+      "episode_creature": {
+        "id": "riccio_cantiere",
+        "species": "riccio",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "la Leonessa: solenne, ferma, il 'noi' del comune",
+        "il quinto colonna: impeccabile, sempre una parola più pulita del necessario"
+      ],
+      "location_primary": "Forterocca — il molo delle conche",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep06": {
       "id": "ep06",
@@ -357,7 +452,30 @@
       ],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Il pegno dei Laghi sta per passare dalla borsa di Cècca all'emissario della Serpe, al mercato delle conche — e gli unici a poterlo impedire sono due forestieri che non possono farsi vedere ad accusare nessuno, più uno scoiattolo che vuole «aiutare».",
+      "threshold_moment": "L'aiutante rovescia il carrello sbagliato al momento giusto: tre sacche identiche rotolano, Cècca si fida del luccichio — l'occhio da gazza tradito dall'occhio da gazza — e Sòrcio si siede fiero sulla refurtiva sbagliata.",
+      "resolution_mode": "Il pegno torna al comune, «trovato» dallo scoiattolo davanti a tutti: i forestieri che lo riconsegnano diventano quelli-che-riportano-le-cose, e la Leonessa prende nota. L'emissario riparte con una sacca di castagne.",
+      "theme": "L'aiuto non arriva mai vestito da aiuto.",
+      "pugno": "Lo scoiattolo, festeggiato per la prima volta in vita sua, non capisce cosa ha fatto di giusto — e nessuno glielo spiega.",
+      "personal_detail": "Sòrcio, scoperto, si finge merce: immobile su un banco, col cartellino tra i denti.",
+      "entry_point_type": "A",
+      "closure_type": 6,
+      "register": "basso",
+      "palette_emotiva": "allarme → farsa → sollievo",
+      "deployment_level": "mono",
+      "estimated_length": 1000,
+      "episode_creature": {
+        "id": "capriolo_banco",
+        "species": "capriolo",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "l'aiutante: parla più veloce di quanto pensi, e ogni tanto lo ammette"
+      ],
+      "location_primary": "il mercato delle conche",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep07": {
       "id": "ep07",
@@ -394,7 +512,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "growth": [
           {
@@ -404,7 +521,31 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "Nella notte prima della piena, le pietre-chiave dell'argine delle conche alte sono state «riordinate»: il quinto colonna ha aperto la breccia dove il comune è più fiero. Il Giurato, legato dalla parola a scortare proprio quel tratto per conto di chi l'ha comprato, non può né parlare né fermarsi. Dalle colonne del tributo, un esattore col basto vuoto guarda — ed esita.",
+      "threshold_moment": "La breccia si allarga e nessuna squadra fa in tempo: Rocco entra NELLA breccia e si fa pietra-chiave — la mole a tappo, il corno storto agganciato dove un corno dritto scivolerebbe. Una nocca prima. Poi tutto. E tiene. Zara vola alle torri: le campane della Conca.",
+      "resolution_mode": "Il comune arriva, lega e rinforza intorno a lui; all'alba lo tirano fuori a corde, mezzo assiderato, e la Leonessa gli mette la zampa sulla spalla davanti a tutti: la forza che serve ha un nome e un corno storto. Il Giurato, vista la breccia, capisce cosa ha scortato.",
+      "theme": "Il difetto, messo nel punto giusto, si chiama forma.",
+      "pugno": "Il corno storto — la vergogna di una vita — è l'unica cosa al mondo che entra in quella pietra.",
+      "personal_detail": "Quando lo tirano fuori, il corno ha inciso nella pietra-chiave un segno a uncino: resterà nell'argine, e il regno lo chiamerà «il dente del forestiero».",
+      "entry_point_type": "B",
+      "closure_type": 2,
+      "register": "medio",
+      "palette_emotiva": "impotenza → tenuta; vergogna → forma",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "ermellino_vedetta",
+        "species": "ermellino",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Giurato: ruvido, breve, di parola data — parla come chi firma"
+      ],
+      "location_primary": "l'argine delle conche alte — la breccia",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep08": {
       "id": "ep08",
@@ -440,7 +581,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "world": [
           {
@@ -449,7 +589,31 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "Il comune vuole giurare coi forestieri, ma il Giurato ha ancora una parola aperta che lo lega alla parte sbagliata — e nella Conca un giuramento nuovo non si fa sopra uno sporco.",
+      "threshold_moment": "Il Giurato onora la parola fino in fondo, nel modo dell'orso: completa la scorta, consegna — e poi, libero, torna, depone la fascia davanti al comune e testimonia tutto, pagando con la fascia stessa: «La parola vale se costa.» Il tasso, senza prove, resta solo un sospetto.",
+      "resolution_mode": "Il Montanaro li porta su, alle incisioni: il giuramento della comunità, il rito del pegno — quello dei Laghi mostrato come credenziale, uno della Conca annodato. Secondo nodo. E i segni sulle rocce somigliano a quelli delle Coppelle: Zara lo dice piano; il Montanaro guarda il cielo e non risponde. Artiglio in volo, a sud.",
+      "theme": "Un patto vale il suo prezzo, non le sue parole.",
+      "pugno": "L'orso senza fascia resta comunque sulla porta del comune, di guardia: «la parola era anche quella».",
+      "personal_detail": "Il Montanaro conta con il dito gli anelli delle proprie corna quando pensa — un anello, un inverno — e alle incisioni si ferma su un anello che non è suo.",
+      "entry_point_type": "F",
+      "closure_type": 7,
+      "register": "medio",
+      "palette_emotiva": "sospetto → giuramento; costo → onore",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "gracchio_spirale",
+        "species": "gracchio alpino",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Montanaro: laconico, guarda prima il cielo; le frasi finiscono un passo prima del previsto"
+      ],
+      "location_primary": "le Pietre Incise",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep09": {
       "id": "ep09",
@@ -482,7 +646,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Attraversare l'aperto senza essere due sagome inconfondibili: si va con la carovana del Mercante — che li imbarca senza domande e a prezzo pieno («Non vendo silenzio. Lo affitto.») — il Cordone arrotolato in un carico di corde da lavoro, nascosto in piena vista.",
+      "threshold_moment": "Al guado della colonna del tributo, quello-che-è-rimasto riconosce Rocco. Un istante lunghissimo. Non lo denuncia: abbassa la testa e passa oltre — ed è peggio di un'accusa. La sera viene al campo a dirgli le tre parole.",
+      "resolution_mode": "Rocco non si difende: ascolta tutto — le stagioni del tributo, i nomi di chi non c'è più — e alla fine dice l'unica cosa vera: «Sono partito. E sto tornando con qualcosa.» Il bufalo guarda il carico di corde e non dice niente. Ma da quella notte la carovana trova i guadi già segnati da corna di bufalo.",
+      "theme": "La colpa non si spiega: si ripaga in strada.",
+      "pugno": "«Tu sei partito» — senza punto esclamativo.",
+      "personal_detail": "Da piccolo Rocco aveva inciso il suo segno su un abbeveratoio: ci passa accanto, e il segno c'è ancora — con sopra il conto del tributo scritto dagli esattori.",
+      "entry_point_type": "B",
+      "closure_type": 3,
+      "register": "medio",
+      "palette_emotiva": "nascondersi → colpa a viso aperto",
+      "deployment_level": "mono",
+      "estimated_length": 1100,
+      "episode_creature": {
+        "id": "cicogna_colonne",
+        "species": "cicogna",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Mercante: lento di passo, velocissimo di parola; ogni frase ha un prezzo",
+        "quello che è rimasto: parla al passato anche del presente"
+      ],
+      "location_primary": "le Vie del tributo — il guado della colonna",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep10": {
       "id": "ep10",
@@ -516,7 +704,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "world": [
           {
@@ -526,7 +713,32 @@
           }
         ]
       },
-      "luogo_sepolto": true
+      "luogo_sepolto": true,
+      "problem": "La memoria sepolta non cammina più fino ai margini: se vogliono sapere del Luogo, devono entrare ad Anguicorte — il cuore del nemico, il selciato più sorvegliato del mondo.",
+      "threshold_moment": "L'elefantessa li guida di notte per il mercato vuoto: si ferma, appoggia la zampa, e fa appoggiare la zampa a Rocco. Sotto il freddo della pietra tagliata: il tiepido. Zara cerca un bordo, un appiglio, un modo — e Rocco la ferma con una zampa: qui non si annoda. Si ricorda.",
+      "resolution_mode": "L'elefantessa mostra i segni murati al contrario nelle soglie dei palazzi («li hanno messi a testa in giù perché nessuno li leggesse; ma la pietra non sa stare zitta») e consegna a Zara l'unica cosa che ha: dov'era il centro. Zara lo fissa nel Cordone con un nodo piatto — un nodo che non stringe pegno: tiene solo il posto.",
+      "theme": "Ciò che è sepolto non è perduto: è in attesa.",
+      "pugno": "Il palazzo del Signore ha la soglia più bella della città — fatta della pietra più antica, capovolta.",
+      "personal_detail": "Il tiepido attraversa il selciato in una crepa sola, larga quanto la punta di un corno storto.",
+      "entry_point_type": "E",
+      "closure_type": 5,
+      "register": "alto",
+      "palette_emotiva": "amarezza → memoria; furia → rispetto",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "biscia_corte",
+        "species": "biscia",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "la memoria sepolta: frasi lente che finiscono sotto terra; non nomina mai la Serpe"
+      ],
+      "location_primary": "Anguicorte — il selciato del mercato vecchio",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)",
+        "niente magia mostrata: solo tracce fisiche"
+      ]
     },
     "ep11": {
       "id": "ep11",
@@ -565,7 +777,31 @@
       ],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Artiglio li ha localizzati: il piano è chiuderli al mercato grande, alla vista della corte — un'esecuzione amministrativa. Il Mercante ha già venduto il dove; l'Esattore pentito è di turno al posto di blocco.",
+      "threshold_moment": "Bissa scatta in anticipo per firmare lei la cattura: la trappola parte monca, la corte litiga in pubblico — Aspide registra tutto — e nel varco l'Esattore appone il suo sigillo sui due carri dei forestieri: «Già contati.» È falso. Lo sa. Lo fa.",
+      "resolution_mode": "I carri passano; il falso si scopre in un'ora; all'Esattore tolgono il basto di servizio davanti alla colonna — e lui resta dritto, col collo segnato dal basto che non c'è: la prima schiena dritta che la colonna vede da anni. Il Mercante li scarica al bordo sud: «Il silenzio è finito. La strada no.»",
+      "theme": "Una firma falsa può essere la cosa più vera di una vita.",
+      "pugno": "Il mulo degradato saluta la colonna con un inchino perfetto, da servizio: l'ultimo.",
+      "personal_detail": "Aspide, nell'ombra, incide il nome dell'Esattore su una scaglia di cera: la lista di Aspide. ⚠ (semino per la prossima stagione)",
+      "entry_point_type": "C",
+      "closure_type": 2,
+      "register": "alto",
+      "palette_emotiva": "trappola → varco; paura → schiena dritta",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "ratto_mercato",
+        "species": "ratto",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "Bissa: scatti di frase, il futuro come pretesa",
+        "Aspide: mai una frase intera ad alta voce"
+      ],
+      "location_primary": "Anguicorte — il mercato grande e il posto di blocco",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep12": {
       "id": "ep12",
@@ -600,7 +836,6 @@
         "debt_mastino"
       ],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "growth": [
           {
@@ -610,7 +845,31 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "L'ultimo varco a sud è il valico del Mastino: un passaggio, un guardiano, nessun inganno possibile — e i tempi stretti di Artiglio alle spalle.",
+      "threshold_moment": "Rocco avanza solo. Il Mastino carica: una, e il terreno trema; due, e Rocco arretra d'un passo e tiene; tre — e Rocco non abbassa il corno: incassa a fronte alta, il corno storto rivolto via, l'arma che sceglie di non essere arma. Alla terza il Mastino si ferma a un palmo: nessuno era mai rimasto in piedi. Nessuno aveva mai rinunciato al corno.",
+      "resolution_mode": "«Il campo è tuo.» Il Mastino si scosta d'un passo — quanto basta — e guarda altrove mentre passano: non è tradimento, è il suo codice che sceglie tra due lealtà. Notte sulla riva del Gran Fiume: l'acqua più larga del mondo, e Artiglio alto che non cala — sull'acqua, il falco non ha appigli.",
+      "theme": "Si può vincere rinunciando all'arma.",
+      "pugno": "Il Mastino annusa il corno storto e dice piano: «Storto. E non l'hai usato.»",
+      "personal_detail": "Dopo, Rocco trema per un'ora intera — e Zara cammina zitta al suo fianco, senza dirlo a nessuno.",
+      "entry_point_type": "B",
+      "closure_type": 5,
+      "register": "medio",
+      "palette_emotiva": "minaccia → misura; forza → rinuncia",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "falco_quota",
+        "species": "falco",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Mastino: ringhio d'orgoglio, frasi da consegna; dà del voi al campo"
+      ],
+      "location_primary": "il valico del Ducato — poi la riva del Gran Fiume",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep13": {
       "id": "ep13",
@@ -642,9 +901,32 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "callbacks": [
         "cb_tempesta_ep01"
+      ],
+      "problem": "La piena di stagione: il fiume è il doppio di se stesso e i traghetti fermi; Artiglio riprenderà quota all'alba — attraversare stanotte, o mai.",
+      "threshold_moment": "Il Guardiano del guado legge la corrente al buio («l'acqua dice dove pesa») e li mette in fila sui passi giusti; a metà il fondo manca — ed è la tempesta della prima notte in scala di mondo: Zara sulla schiena di Rocco, il Cordone nei denti, e stavolta niente panico: «L'abbiamo già fatto. Più piccolo.»",
+      "resolution_mode": "Riva sud. E il Guardiano, ripiegando la zampa segnata, quasi senza darci peso: «Un'altra tigre è passata di qui. Bianca. Controcorrente, di notte, sola. Giorni fa.» La distanza da Toraki ha finalmente un numero.",
+      "theme": "Le paure rifatte in grande si chiamano esperienza.",
+      "pugno": "Giorni. Non stagioni. Giorni.",
+      "personal_detail": "Il Guardiano sta su una zampa sola anche nella piena: l'altra — la segnata — la tiene per i passi che contano.",
+      "entry_point_type": "E",
+      "closure_type": 1,
+      "register": "medio",
+      "palette_emotiva": "vertigine → esperienza; distanza → numero",
+      "deployment_level": "mono",
+      "estimated_length": 1100,
+      "episode_creature": {
+        "id": "anatra_piena",
+        "species": "anatra",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Guardiano: immobile anche nella voce; le frasi arrivano quando l'acqua lo permette"
+      ],
+      "location_primary": "il Gran Fiume — il guado della piena",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
       ]
     },
     "ep14": {
@@ -663,7 +945,8 @@
       "cast": [
         "char_zara",
         "char_rocco",
-        "char_dotto_che_smonta"
+        "char_dotto_che_smonta",
+        "char_casa_aquila"
       ],
       "premise": "Savenza: il Dotto smonta il Cordone con impeccabile gentilezza — corda, sole del giorno prima, acqua e gelo, una storia che una sorella si racconta. La Casa dell'Aquila disprezza. Zara non ha risposte: lo POSA.",
       "serpe_face": null,
@@ -677,8 +960,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
-      "register": "alto"
+      "register": "alto",
+      "problem": "A Savenza serve il permesso della corte per accedere alle Rovine Ordinate — e la corte è spaccata: il Gufo vuole esaminare la richiesta, la Casa dell'Aquila respingerla per rango. L'esame diventa pubblico: il Dotto che smonta sale in cattedra.",
+      "threshold_moment": "La dimostrazione — impeccabile, gentile, definitiva: corda; sole del giorno prima; acqua e gelo; «una storia che una sorella si racconta per non essere sola». Zara guarda il Cordone appeso al suo fianco e per la prima volta vede: corda. Lo posa sul banco. Verbale: reperto.",
+      "resolution_mode": "Richiesta respinta «per insussistenza dell'oggetto». La Casa dell'Aquila ride del popolo; il giovane Disputante, in fondo all'aula, non ride: fissa il reperto e prende appunti. Cala la notte sulla città ordinata.",
+      "theme": "Si può avere ragione su tutto e torto sull'unica cosa che conta.",
+      "pugno": "Il timbro dell'archivio sul Cordone: «reperto».",
+      "personal_detail": "Il Dotto maneggia il Cordone con le pinze — e nelle pinze i nodi sembrano davvero soltanto nodi.",
+      "entry_point_type": "A",
+      "closure_type": 2,
+      "palette_emotiva": "certezza smontata → vuoto",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "civetta_archivio",
+        "species": "civetta",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Dotto: gentilezza impeccabile, latinetti brevi, mai una domanda vera",
+        "la Casa dell'Aquila: araldica parlata, misura i tuoi avi"
+      ],
+      "location_primary": "Savenza — l'aula grande",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep15": {
       "id": "ep15",
@@ -711,7 +1017,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "growth": [
           {
@@ -740,7 +1045,30 @@
           }
         ]
       },
-      "register": "alto"
+      "register": "alto",
+      "problem": "Il buio — quello vero, senza il Cordone al fianco per la prima volta da Spondalta. E nella locanda degli argini la notizia: Artiglio è in città coi mandati, e la corte litiga su chi debba eseguirli.",
+      "threshold_moment": "Zara scivola fuori nel buio degli argini per non farsi vedere tremare; Rocco la trova senza cercarla e non dice una parola: si mette col fianco al vento e fa il posto. «Mettiti qui.» Dentro l'ombra, nel buio, Zara smette di tremare — e vede, a un palmo dal muso, nell'erba dell'argine: un nodo. Piccolo. Fibre chiare. Terra smossa. Di giorni.",
+      "resolution_mode": "Al mattino Zara torna all'aula, prende il Cordone dal banco dei reperti senza chiedere («Il verbale dice che è una corda. Le corde si prendono.») e lo riannoda al fianco. Il Dotto non ha torto sulle corde: ha torto su di lei. E Artiglio piomba su Savenza: da qui la caccia è dichiarata.",
+      "theme": "La fede non è credere alla corda: è credere a chi cammina con te.",
+      "pugno": "Il posto dentro il buio esiste dalla prima notte — ma stanotte è la prima volta che serve davvero.",
+      "personal_detail": "Il nodo sull'argine è annodato col gesto di famiglia — il polso che gira due volte: Zara lo riconosce come si riconosce una calligrafia.",
+      "entry_point_type": "D",
+      "closure_type": 3,
+      "palette_emotiva": "buio → posto nel buio; resa → ripresa",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "talpa_argine",
+        "species": "talpa",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "la talpa degli argini: «Passato di qui. Aveva fretta. Gentile, però.»"
+      ],
+      "location_primary": "Savenza — gli argini, di notte",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep16": {
       "id": "ep16",
@@ -774,7 +1102,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "world": [
           {
@@ -784,7 +1111,30 @@
           }
         ]
       },
-      "register": "alto"
+      "register": "alto",
+      "problem": "Mandati esecutivi all'alba, le Rovine chiuse «per ordine», la corte in stallo fra legge e sangue — e la finestra è una sola notte di disputa pubblica, dove a Savenza tutto si può ancora ribaltare: vince chi convince.",
+      "threshold_moment": "Il giovane Disputante prende il caso — per gloria, e va bene così — e arringa il capolavoro: non difende una credenza: difende il diritto dei regni liberi a legarsi tra pari, coi loro pegni e i loro riti, «reperto o reliquia che sia». E chiude col registro: cinque regni, tre nodi, nessuna legge infranta. L'aula si spacca a metà: quanto basta.",
+      "resolution_mode": "Nel tumulto procedurale — l'Aquila che urla al Gufo, il Gufo che verbalizza l'Aquila — il Guardiano li porta per gli argini alle Rovine Ordinate: terzo nodo, rito minimo, con chi c'era; il Disputante arriva trafelato a fare da testimone «per gli atti». Fuga a sud nella nebbia. Corsa.",
+      "theme": "Anche l'ambizione, messa nel punto giusto, si chiama coraggio.",
+      "pugno": "Il Disputante, dopo: «Ho vinto?» — e Zara: «Hai contato.»",
+      "personal_detail": "Il pegno dei Savi annodato al Cordone è la tessera d'archivio col timbro «reperto»: il marchio del Dotto diventa il pegno del regno.",
+      "entry_point_type": "C",
+      "closure_type": 7,
+      "palette_emotiva": "stallo → varco; ambizione → conto",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "oca_argini",
+        "species": "oca",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Disputante: retorica d'assiolo, incisi rapidi, chiude sempre con una domanda vinta"
+      ],
+      "location_primary": "le Rovine Ordinate — la notte della disputa",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep17": {
       "id": "ep17",
@@ -802,7 +1152,8 @@
       "cast": [
         "char_zara",
         "char_rocco",
-        "char_solitario"
+        "char_solitario",
+        "char_esule_libero"
       ],
       "premise": "La Selva: nessun vertice, nessuna rete, nessun giuramento. Il Solitario aiuta a malincuore; l'Esule libero è lo specchio del costo — libertà senza appartenenza.",
       "serpe_face": null,
@@ -816,7 +1167,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "La Selva non ha porte: ha sentieri che si chiudono dietro. Al terzo bivio identico sono persi — e la prima creatura che incontrano, il Solitario, considera l'aiuto una seccatura personale.",
+      "threshold_moment": "L'Esule libero, al fuoco condiviso senza inviti, racconta la libertà vera: nessun tributo, nessun giuramento, nessuno. «E quando ti ammali?» chiede Zara. Silenzio. «E quando trovi una cosa bella?» chiede Rocco. Silenzio più lungo.",
+      "resolution_mode": "Il Solitario — che ha sentito tutto dal buio — lascia sul sentiero giusto tre segni d'artiglio e una preda già divisa: l'aiuto a malincuore, dato di spalle. R&Z capiscono, senza dirselo, che cosa hanno che qui manca.",
+      "theme": "La libertà senza nessuno è una stanza senza eco.",
+      "pugno": "L'Esule chiede, piano, se «quel cordone lì» pesa — e Zara: «Sì. È il bello.»",
+      "personal_detail": "L'Esule tiene ancora il passo di marcia della colonna del tributo: libero da anni, marcia ancora.",
+      "entry_point_type": "B",
+      "closure_type": 4,
+      "register": "basso",
+      "palette_emotiva": "smarrimento → quiete; libertà → eco vuota",
+      "deployment_level": "mono",
+      "estimated_length": 1000,
+      "episode_creature": {
+        "id": "cinghiale_famiglia",
+        "species": "cinghiale",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Solitario: monosillabi, il corpo già rivolto altrove",
+        "l'Esule: parla della libertà come di un debito estinto male"
+      ],
+      "location_primary": "la Selva — il margine e il fuoco",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep18": {
       "id": "ep18",
@@ -833,7 +1208,8 @@
       "attribute_dominant": "cambiare",
       "cast": [
         "char_rocco",
-        "char_zara"
+        "char_zara",
+        "char_tentatore"
       ],
       "premise": "Tracce di Toraki fitte. Il tentatore: «restate liberi — adesso». E il beat di Rocco: una creatura piccola e velocissima ⚠ in pericolo; lui, che ne ha sempre avuto paura, la protegge con la mole. La creatura li guida: si va.",
       "serpe_face": null,
@@ -847,7 +1223,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "fear": [
           {
@@ -857,13 +1232,37 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "Le tracce di Toraki dappertutto — e il tentatore che le usa: «Vi ha portati fin qui, no? E se il punto fosse questo? Restate: il bosco non chiede nodi.» La stanchezza vera dà ragione alla voce.",
+      "threshold_moment": "Un grido nel folto: un pipistrello a terra, in piena luce, un'ala presa in un laccio da caccia — la cosa piccola-e-veloce che Rocco teme da sempre, frenetica, cieca di sole. Rocco non scappa: si mette sopra, fa ombra — il riparo di sempre, dato alla paura di sempre — e nella sua ombra il pipistrello si calma, si orienta, si libera.",
+      "resolution_mode": "Al buio il pipistrello li guida nel folto lungo il filo dei suoi richiami: la risposta al tentatore non è un discorso — è che la strada riparte. Il tentatore resta al bivio, magnifico e fermo, com'era prima e come sarà dopo.",
+      "theme": "Si attraversa una paura facendole ombra, non guerra.",
+      "pugno": "La creatura che Rocco temeva dorme, il giorno dopo, appesa al suo corno storto.",
+      "personal_detail": "Il laccio è annodato bene — troppo bene: Zara lo scioglie e non lo dice, ma quel polso non gira due volte. Non è famiglia. È caccia.",
+      "entry_point_type": "C",
+      "closure_type": 2,
+      "register": "medio",
+      "palette_emotiva": "tentazione → strada; paura → ombra data",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "pipistrello_guida",
+        "species": "pipistrello",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il tentatore: voce senza fretta, offre sempre l'adesso"
+      ],
+      "location_primary": "la Selva — il bivio e il folto",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep19": {
       "id": "ep19",
       "title": "Il valico, di nuovo",
       "arc": "arco_selva",
-      "type": "stazione",
+      "type": "viaggio",
       "order_in_journey": 19,
       "regno": "selva_di_mezzo",
       "zona": "soglia",
@@ -891,7 +1290,30 @@
       "debts_closed": [
         "debt_mastino"
       ],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Il valico sud è del Mastino, ricollocato quassù per punizione — e stavolta l'ordine, portato da due emissari con la cera di Bissa, è un agguato: lasciarli salire, chiudere alle spalle, consegnarli ad Artiglio nel budello.",
+      "threshold_moment": "Il Mastino legge l'ordine due volte. Poi lo posa sulla neve, ci mette sopra una pietra («perché non voli via: è un ordine, va conservato») e si scosta dal valico davanti agli emissari: «Io tengo i valichi. Gli agguati teneteveli.» Gli strappano il collare di servizio lì, sul posto.",
+      "resolution_mode": "R&Z passano accanto a un Mastino senza collare che per la prima volta non custodisce niente — e Rocco si ferma e fa il gesto del campo, la fronte alta del valico del Ducato. Il Mastino risponde. Nessuna parola. E nelle cutaway, sui crinali: segni di lotta, e un ciuffo di pelo bianco in un rovo. Vivo. Cacciato. Vicino.",
+      "theme": "C'è una lealtà più alta dell'obbedienza: quella al proprio mestiere.",
+      "pugno": "La pietra sopra l'ordine — l'ubbidienza perfetta come forma di rivolta.",
+      "personal_detail": "Il collare strappato lascia sul collo una striscia di pelo chiaro: il segno del servizio che resta quando il servizio è tolto.",
+      "entry_point_type": "B",
+      "closure_type": 3,
+      "register": "medio",
+      "palette_emotiva": "ordine → codice; perdita → dignità",
+      "deployment_level": "mono",
+      "estimated_length": 1100,
+      "episode_creature": {
+        "id": "corvo_testimone",
+        "species": "corvo",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "gli emissari: cortesia di cera; il Mastino: frasi da consegna, l'ultima consegna"
+      ],
+      "location_primary": "il valico del Mastino — la neve",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep20": {
       "id": "ep20",
@@ -909,7 +1331,10 @@
       "cast": [
         "char_zara",
         "char_rocco",
-        "char_uno_degli_antichi"
+        "char_uno_degli_antichi",
+        "char_creature_rovina",
+        "char_tentatore",
+        "char_voce_che_torna"
       ],
       "premise": "Il nodo dove nessuno governa: davanti a tutti e a nessuno — il bosco viene a vedere, e il bosco ricorda. Il rospo parla a indovinelli. Quarto nodo. Il segno di Toraki fresco del giorno prima — e accanto, l'impronta del Cacciatore.",
       "serpe_face": null,
@@ -923,7 +1348,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "world": [
           {
@@ -932,7 +1356,33 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "Il quarto nodo non ha nessuno che lo stringa: la Selva non giura. Uno degli Antichi risponde a indovinelli («Chi ha firmato il bosco? — Nessuno. — Ecco chi firma.») e sull'Altare l'impronta del Cacciatore è fresca, sopra il segno di Toraki di ieri.",
+      "threshold_moment": "Capiscono l'indovinello facendolo: portano il rito all'aperto, di notte, senza chiedere niente a nessuno — e il bosco viene. Occhi tra i rami, le Creature della Rovina che cantano la filastrocca dalle pietre cadute, e al margine, fermo, il cervo: il tentatore, venuto a vedere. Il rospo antichissimo tocca la pietra: «Visto.» Il bosco ricorda: questo è il pegno.",
+      "resolution_mode": "Quarto nodo — annodato davanti a tutti e a nessuno. Il pegno della Selva arriva da solo: una ghianda germogliata, portata dal cervo e posata senza una parola. La pietra tiepida; la cicala che qui cantava già prima. E all'alba, sull'ultima cresta verso il Leone: due sagome in corsa controluce — una bianca, una piccola e scura, dietro.",
+      "theme": "Dove nessuno comanda, tutti custodiscono.",
+      "pugno": "«Visto.» — il giuramento più corto della stagione, e il più antico.",
+      "personal_detail": "Le lucciole si posano solo sulla pietra dell'Altare, da sempre: gli Antichi non l'hanno mai spiegato, e non lo spiegano stanotte.",
+      "entry_point_type": "E",
+      "closure_type": 1,
+      "register": "alto",
+      "palette_emotiva": "enigma → rito; estraneità → custodia",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "lucciola_altare",
+        "species": "lucciola",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "uno degli Antichi: indovinelli di tre parole",
+        "le Creature della Rovina: cantilena in rima, un po' storta"
+      ],
+      "location_primary": "l'Altare di Roccia — la notte del bosco",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)",
+        "niente magia mostrata: solo tracce fisiche"
+      ]
     },
     "ep21": {
       "id": "ep21",
@@ -950,7 +1400,9 @@
       "cast": [
         "char_zara",
         "char_rocco",
-        "char_cittadino_leone"
+        "char_cittadino_leone",
+        "char_lupa",
+        "char_pantera"
       ],
       "premise": "Le città rivali: ognuna vuole l'ultimo nodo 'a casa sua'. La Lupa aiuta sghemba; la Pantera è di seta; la Gente del Mare misura due volte. Il Cittadino del Leone offre l'ultima tentazione: la gloria. Zara la sente.",
       "serpe_face": null,
@@ -964,7 +1416,31 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Per arrivare alle Pietre bisogna attraversare tre città in gara — e ognuna offre scorta, onori e strada solo in cambio dell'ultimo nodo «a casa sua»: rifiutarle tutte è restare a piedi; sceglierne una è accendere la guerra con le altre due.",
+      "threshold_moment": "La Lupa li porta di contrabbando per le crete («Vi aiuto perché perdiate meglio») — e al passo del confine c'è il Cittadino del Leone in persona, con l'offerta vera: non la strada, la memoria. Statue, cronache, il nodo nella piazza grande e i loro nomi per sempre. Zara sente il morso della cosa: dopo tutto questo, sarebbe anche giusto.",
+      "resolution_mode": "È Rocco a rompere l'incanto senza saperlo: «E la pietra?» — la pietra tiepida non sta in nessuna piazza. Zara torna in sé: i nomi passano, i segni restano. Rifiutano con l'inchino giusto; la Lupa, per la prima volta non beffarda: «Avete appena perso tutto quello che non serve.» La Pantera osserva, di seta, e riferisce — a chi?",
+      "theme": "La gloria è la trappola che assomiglia di più al premio.",
+      "pugno": "Il Cittadino resta con la zampa a mezz'aria, il gesto che scolpisce l'aria interrotto: nessuno gli aveva mai detto no.",
+      "personal_detail": "La Lupa mastica una spiga amara e la offre a Zara al momento del no: «Sapore di casa mia.»",
+      "entry_point_type": "A",
+      "closure_type": 6,
+      "register": "medio",
+      "palette_emotiva": "gloria offerta → pietra ricordata",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "lepre_staffetta",
+        "species": "lepre",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "la Lupa: beffarda-amara, complimenti che sono lame smussate",
+        "il Cittadino: scolpisce l'aria, parla in epigrafi"
+      ],
+      "location_primary": "le crete e il passo del confine",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep22": {
       "id": "ep22",
@@ -983,7 +1459,9 @@
         "char_zara",
         "char_rocco",
         "char_custode_pietre_leone",
-        "char_viscardo"
+        "char_viscardo",
+        "char_marinaio",
+        "char_lupa"
       ],
       "premise": "Viscardo non caccia: semina — il metodo del quinto colonna, in grande. Le città sull'orlo di farsi guerra alla vigilia. R&Z le portano alle Pietre, che non sono di nessuna città. L'ultima corsa comincia.",
       "serpe_face": "viscardo",
@@ -999,7 +1477,31 @@
       ],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume"
+      "problem": "Viscardo è nelle Terre — e non caccia: semina. Agenti della Serpe accendono le gare in rissa, e la vigilia dell'ultimo nodo diventa quasi-guerra fra le città; le Pietre del Leone stanno nel mezzo del campo di tutte.",
+      "threshold_moment": "R&Z non arbitrano — hanno visto cosa costa scegliere: convocano tutte le città alle Pietre, terreno di nessuna, «a vedere», come il bosco. La Lupa fa da staffetta, il Custode-asino apre il sentiero; la Gente del Mare, che misura due volte, misura — e viene per prima: «Se è di nessuno, è anche nostro.»",
+      "resolution_mode": "Le città salgono armate di vessilli e sospetto — e trovano Viscardo già lì, fermo sul sentiero come una constatazione. La lingua assaggia l'aria, una volta, lentissima. L'ultima corsa comincia: non contro il tempo — contro la pazienza.",
+      "theme": "Chi non può vincerti, ti fa litigare.",
+      "pugno": "Tre città che si scoprono in marcia sulla stessa strada — e nessuna torna indietro per orgoglio: l'orgoglio, per una volta, che lavora per il mondo.",
+      "personal_detail": "Gli agenti della Serpe si riconosceranno dopo, da un dettaglio: applaudivano a tutte le gare.",
+      "entry_point_type": "C",
+      "closure_type": 7,
+      "register": "medio",
+      "palette_emotiva": "discordia seminata → strada comune",
+      "deployment_level": "mono",
+      "estimated_length": 1200,
+      "episode_creature": {
+        "id": "upupa_banditrice",
+        "species": "upupa",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "il Marinaio: misura due volte anche le frasi",
+        "gli agenti: entusiasmo senza appartenenza"
+      ],
+      "location_primary": "Leonalba e le strade delle gare",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep23": {
       "id": "ep23",
@@ -1032,7 +1534,6 @@
       "seeds_bloomed": [],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "relation": [
           {
@@ -1044,7 +1545,32 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "In cima, prima dell'alba, il Cacciatore ha chiuso il cerchio: Toraki alle strette contro la pietra grande — più magro del ricordo, il fianco segnato — il redde rationem di una caccia lunga una stagione.",
+      "threshold_moment": "Zara non chiama: agisce — la velocità di tutta la stagione in un arco solo, tra il Cacciatore e il fratello; e Rocco dietro, la mole che chiude lo spazio, l'ombra che toglie al predatore la luce del colpo. Tre, contro uno che ha sempre cacciato prede sole. Il Cacciatore molla la presa: da predatore vero, riconosce la caccia finita.",
+      "resolution_mode": "La martora posa sulla pietra il dente della vecchia cattura — il trofeo di una vita — e se ne va senza una parola: il suo modo di chiudere il conto con la preda che non prenderà mai. E poi il silenzio: fratello e sorella, i nodi di lei lungo il Cordone, i segni di lui lungo la via — la stessa mano, lo stesso polso che gira due volte. Toraki guarda Zara: non è più quella che scappò dalla corda. Nessuno lo dice.",
+      "theme": "Certe cose si dicono solo arrivando.",
+      "pugno": "Il dente del Cacciatore sulla pietra: la resa più orgogliosa della stagione.",
+      "personal_detail": "Toraki ha una striscia sola che si interrompe a metà, sul fianco: Zara la tocca con la fronte — il segno non finito, come la corda che l'ha portata fin qui. ⚠ (segno naturale da fissare in scheda)",
+      "entry_point_type": "E",
+      "closure_type": 3,
+      "register": "alto",
+      "palette_emotiva": "caccia → salvezza; distanza → riconoscimento",
+      "deployment_level": "mono",
+      "estimated_length": 1300,
+      "episode_creature": {
+        "id": "lupo_presidio",
+        "species": "lupo",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "Toraki: parla per cose fisiche, tre parole alla volta",
+        "il Cacciatore: non parla — respira contando"
+      ],
+      "location_primary": "la salita alle Pietre del Leone",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)"
+      ]
     },
     "ep24": {
       "id": "ep24",
@@ -1083,7 +1609,6 @@
       ],
       "debts_opened": [],
       "debts_closed": [],
-      "_status": "stub ricco — da dettagliare (spina completa/effects fini) nella passata di volume",
       "effects": {
         "growth": [
           {
@@ -1111,7 +1636,33 @@
             "threshold_crossed": true
           }
         ]
-      }
+      },
+      "problem": "L'ultimo nodo davanti a cinque regni testimoni e tre città per una volta insieme — e Viscardo sul sentiero con la scorta: prendere il Cordone adesso significa prenderlo davanti a tutti.",
+      "threshold_moment": "Viscardo pesa la scena come pesa le paure — e trova la scena senza la paura giusta: non due prede ma una rete; non un oggetto da togliere ma un patto già stretto in cinque luoghi, che nessuna scorta può s-annodare. Il vecchio predatore fa l'unica mossa da predatore vero: «Non si morde una rete.» E ordina lui la ritirata — lenta, scelta, senza sconfitta nel corpo.",
+      "resolution_mode": "L'ultimo nodo. Il disegno si compone: Coppelle, Incise, Rovine, Altare, Leone — un'unica figura sulla pietra più antica; e nella figura uno spazio vuoto, esattamente dov'è il Ducato: il disegno conta anche il filo che manca (e sotto il selciato di Anguicorte, nella crepa, il tiepido si fa caldo — due righe, nessuna spiegazione). Poi la consegna: posare, comporre i capi, lasciare. Il pizzicore. La cicala smette di cantare per un battito — e riprende. L'immagine finale non è loro: è la pietra.",
+      "theme": "Il gesto più grande è lasciare la presa.",
+      "pugno": "Lo spazio vuoto nel disegno: il mondo che tiene il posto a chi non ha potuto esserci.",
+      "personal_detail": "I tre Forestieri scendono senza voltarsi; è il Custode-asino, per ultimo, a voltarsi per tutti — e a sgombrare il sentiero, come fa da una vita.",
+      "entry_point_type": "B",
+      "closure_type": 2,
+      "register": "alto",
+      "palette_emotiva": "attesa → consegna; presa → lascito",
+      "deployment_level": "mono",
+      "estimated_length": 1400,
+      "episode_creature": {
+        "id": "tartaruga_largo",
+        "species": "tartaruga marina",
+        "first_seen": true
+      },
+      "voice_notes_essential": [
+        "Viscardo: registro freddo di corte; una battuta sola",
+        "la Voce che torna: canta — e tace un battito"
+      ],
+      "location_primary": "le Pietre del Leone — l'alba",
+      "active_constraints_touched": [
+        "metafore §4 (figure native del regno)",
+        "niente magia mostrata: solo tracce fisiche"
+      ]
     }
   },
   "seeds": {
