@@ -6,11 +6,6 @@
 > partito, davanti a quelli che sono rimasti.
 > Cast (schede): quello che è rimasto · la memoria sepolta · il Mercante delle Vie ·
 > l'Esattore pentito (paga qui) · Artiglio · il Mastino · la Corte (Viscardo/Bissa/Aspide).
->
-> ⚠ **NOTA STRUTTURALE (incoerenza da allineare):** `SCHELETRO_STAGIONE.md` (§ i sei
-> movimenti) *non* elenca questo passaggio; la `MAPPA_CAST.md` sì (Arco 3, ✅ con 5 schede
-> scritte). Geografia (per il Gran Fiume si passa dalla pianura) e `nodi_totali = 5` su 6
-> regni (uno è sepolto) danno ragione alla MAPPA. **Lo SCHELETRO va aggiornato al merge.**
 
 ## La spina del volume
 
