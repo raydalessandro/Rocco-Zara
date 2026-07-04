@@ -1,4 +1,5 @@
 {
+ "versione": 2,
  "bbox": {
   "W": 8.8,
   "S": 43.1,
@@ -7,35 +8,34 @@
  },
  "dem": {
   "fonte": "AWS Terrarium",
-  "z": 9,
-  "url": "s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
+  "z": 9
  },
- "regole_taglio": {
-  "mare": "elevazione <= 8 m",
-  "esclusioni_border": [
-   "lon<9.30 & lat<44.6 (Liguria)",
-   "lon>11.35 & lat>45.0 (NE)"
+ "regole_naturali": {
+  "monti": "maxfilter(15px)+gauss(4) su DEM >= 320 m (le città pedemontane restano col monte)",
+  "R1|R2": "il fiume Adda + ramo di Lecco + Val di Mera (polyline reale)",
+  "monti|pianura": "contorno morfologico (nessuna retta)",
+  "R3|R4": "il Grande Fiume (Po)",
+  "R4|R5": "bordo pianura->Appennino (morfologico)",
+  "R5|R6": "cresta appenninica (argmax quota per colonna, lisciata)",
+  "esclusioni": [
+   "lon<9.30 & lat<44.6 (Terre di Ponente)",
+   "a est dell'Adige per lat>45.0 (valle reale, non retta)"
   ],
-  "fasce": {
-   "NORTH": "lat >= 45.50",
-   "SOUTH": "lat < 44.30",
-   "plain": "in mezzo"
-  },
-  "assegnazione": {
-   "1": "NORTH & lon<9.55",
-   "2": "NORTH & lon>=9.55",
-   "3": "plain & lat>Po(lon)",
-   "4": "plain & lat<=Po(lon)",
-   "5": "SOUTH & lat>=44.0",
-   "6": "SOUTH & lat<44.0"
-  },
-  "po": "polyline OSM waterway=river name=Po, interpolata per longitudine (vedi po.geojson)"
+  "mare": "TUTTO il mare in mappa diventa 'la Gran Piana d'Occidente' (terra fuori dai regni) -> la costa tosco-ligure sparisce e non si riconosce l'Italia; il Grande Fiume esce dalla mappa verso il Mare d'Oriente"
+ },
+ "griglia": {
+  "passo_gradi": 0.25,
+  "colonne": "A.. da W a E",
+  "righe": "1.. da N a S",
+  "uso": "riferimento rapido nei brief e nelle immagini (es. 'collina dell'incontro = C2')"
  },
  "file": {
-  "regni_confini.geojson": "poligoni canonici dei 6 regni (semplificati ~400 m)",
-  "po.geojson": "il Po (divisore R3/R4)",
+  "regni_confini.geojson": "poligoni naturali v2",
+  "gran_piana.geojson": "l'ex-mare a ovest",
+  "fiumi.geojson": "Po/Grande Fiume, Adda, Ticino, Oglio, Mincio, Arno, Serchio, Reno, Secchia, Panaro, Ombrone, Adige",
   "laghi.geojson": "i 5 grandi laghi",
-  "centri.geojson": "capitali e centri (da atlante_politico.json)"
+  "centri.geojson": "capitali+centri",
+  "riferimenti_trama.geojson": "origine, Luoghi Antichi, capitali — i punti ESATTI dove passa la storia"
  },
- "nota": "questi file sono CANONE: le mappe si rigenerano da qui senza rete; l'OSM live cambia, questi no."
+ "nota": "canone congelato: mappe e immagini si rigenerano da qui senza rete"
 }
