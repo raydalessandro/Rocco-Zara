@@ -1,0 +1,41 @@
+{
+ "bbox": {
+  "W": 8.8,
+  "S": 43.1,
+  "E": 11.7,
+  "N": 46.25
+ },
+ "dem": {
+  "fonte": "AWS Terrarium",
+  "z": 9,
+  "url": "s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
+ },
+ "regole_taglio": {
+  "mare": "elevazione <= 8 m",
+  "esclusioni_border": [
+   "lon<9.30 & lat<44.6 (Liguria)",
+   "lon>11.35 & lat>45.0 (NE)"
+  ],
+  "fasce": {
+   "NORTH": "lat >= 45.50",
+   "SOUTH": "lat < 44.30",
+   "plain": "in mezzo"
+  },
+  "assegnazione": {
+   "1": "NORTH & lon<9.55",
+   "2": "NORTH & lon>=9.55",
+   "3": "plain & lat>Po(lon)",
+   "4": "plain & lat<=Po(lon)",
+   "5": "SOUTH & lat>=44.0",
+   "6": "SOUTH & lat<44.0"
+  },
+  "po": "polyline OSM waterway=river name=Po, interpolata per longitudine (vedi po.geojson)"
+ },
+ "file": {
+  "regni_confini.geojson": "poligoni canonici dei 6 regni (semplificati ~400 m)",
+  "po.geojson": "il Po (divisore R3/R4)",
+  "laghi.geojson": "i 5 grandi laghi",
+  "centri.geojson": "capitali e centri (da atlante_politico.json)"
+ },
+ "nota": "questi file sono CANONE: le mappe si rigenerano da qui senza rete; l'OSM live cambia, questi no."
+}
