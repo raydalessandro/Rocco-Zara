@@ -1,5 +1,5 @@
 {
- "generato": "2026-06-27",
+ "generato": "2026-07-04",
  "arcs": [
   {
    "n": 1,
@@ -107,6 +107,16 @@
    "ear": "cambiare",
    "tipo": "comprimario (antagonista comico ricorrente · alleanza mobile · trasversale)",
    "blurb": "si crede un fuoriclasse del contrabbando — e tutto gli crolla fra le zampe. Improvvisa, pasticcia,",
+   "arc": 0
+  },
+  {
+   "slug": "viscardo",
+   "name": "Viscardo, il Gran Serpe",
+   "sub": "scheda canone (antagonista · il vertice della Serpe)",
+   "specie": "vipera — anziana, grande (il doppio di Bissa)",
+   "ear": "distinguere ▲ — il predatore che separa la preda dal branco;",
+   "tipo": "antagonista — il Signore del Gran Ducato; decide tutto, si vede di rado",
+   "blurb": "Tier 1 (il registro, sempre): freddo di corte — frasi brevi, dichiarative, mai domande",
    "arc": 0
   },
   {
