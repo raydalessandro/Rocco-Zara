@@ -92,11 +92,12 @@
       sha-identico, golden, close sicuro). La prosa resta cancello umano.
 
 ### Pendenti puntuali (dai lavori recenti)
-- [x] **Continuità semi ep01 (audit)** *(chiuso: `bloom_target` cablato per tutti gli 8 semi nel grafo — cordone/pietra/segni/luogo_sepolto→ep24, cecca/esattore→ep11, pegno→ep06, quinto→ep22)* — `npm run ep -- build ep01` segnala 3 semi piantati
-      **senza `bloom_target`**: `seed_cordone_incompiuto`, `seed_prima_pietra_tiepida`,
-      `seed_cecca_ha_visto`. Sono i semi grandi (saga-spanning): decidere **dove fioriscono**
-      (probabilmente al finale, Vol.6) e cablare il bersaglio nel `saga_graph.json`, così
-      l'audit dell'ep01 torna PASS 10/10.
+- [x] **Continuità semi ep01 (audit)** — ✅ `bloom_target` cablato per tutti gli 8 semi
+      (cordone/pietra/segni/luogo_sepolto→ep24, cecca/esattore→ep11, pegno→ep06, quinto→ep22).
+      `npm run ep -- build ep01` → **audit PASS 10/10**.
+- [x] **Morfologia (geo) nel brief** — ✅ `zones/_digest.json` committato (riproducibile dal
+      generatore) → la riga MORFOLOGIA è stabile nel brief; **cancello anti-drift**:
+      `geo_digest.py --check` + `test/digest.sync.test.ts` (gemello del cast-sync).
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
