@@ -43,12 +43,12 @@
 - → *esito: descrittori "Passo 0" pronti per i due protagonisti → si generano le reference.*
 
 ### Fase B — Primo nodo giocabile  → *si fa girare il motore*
-- [ ] **B1. Ep01 nel `saga_graph.json`** — l'origine ricontestualizzata (Zara fugge il
-      compito di Toraki → incontro a Spondalta/B1 → tempesta → partenza; Rocco dal Popolo
-      dell'Aperto). Ancorato a regno/zona/bioma + i campi missione.
-- [ ] **B2. (motore) `KIND_SCALE`** in `lib/stylesheet.ts`: aggiungere la fauna nostra
-      (rinoceronte, tigre, lince, lontra, cervo, leone, gufo, aquila, lupo, orso, camoscio…)
-      per la scala relativa in scena — è tutto il punto visivo (Rocco enorme ↔ Zara piccola).
+- [x] **B1. Ep01 nel `saga_graph.json`** — ✅ superato in grande: il grafo è alla versione
+      `0.2.0-stagione` con **tutta la stagione** (ep01–ep24, 6 archi), semi/debiti/soglie/
+      facce della Serpe/tracce di Toraki cablati. Audit ep01 PASS.
+- [x] **B2. (motore) `KIND_SCALE`** — ✅ fatto: `lib/stylesheet.ts` ha la fauna delle Terre
+      Annodate (rinoceronte 1.7 ↔ tigre 0.95 in testa), chiavi = specie canoniche di
+      `entities.json`/`_faunario.json`. La doppia scala Rocco↔Zara è resa in scena.
 - [x] **B3. (motore) Serializzatore M2** — ✅ fatto → `saga/serializzatore/` (ponte `saga→Seed`,
       audit di continuità, PCG condizionata dallo stato, golden/consistency test).
 - → *esito: Passo 0 + prime pagine reali sull'Ep01.*
@@ -57,10 +57,11 @@
 - [ ] **C1. Lessico completo** — tutti i nomi: Cordone, Luoghi Antichi, città-rovina,
       Toraki, cast Serpe (Viscardo/Bissa/Aspide/Mastino/Artiglio/Cècca/Sòrcio), 7 zone,
       principi dei regni. Regola: **concreto/sensoriale**, mai astratto.
-- [ ] **C2. Terminus** — dove aspetta Toraki (Terre del Leone di Pietra/le Pietre del Leone vs anello a Spondalta). *Si
-      decide definendo le storie.*
-- [ ] **C3. Cast dei regni** — estrarre i personaggi (regno→classe→corporazione→individuo).
-- [ ] **C4. Arco Laghi del Vespro** — abbozzo dei ~6 episodi del primo arco.
+- [x] **C2. Terminus** — ✅ deciso: Toraki aspetta alle **Pietre del Leone** (Terre del
+      Leone di Pietra); fissato nello `SCHELETRO_STAGIONE.md`.
+- [x] **C3. Cast dei regni** — ✅ fatto → `bible/comprimari/` (27+ schede + `MAPPA_CAST.md`).
+- [x] **C4. Arco Laghi del Vespro** — ✅ superato dai volumi: la trama fattuale copre
+      **tutti** i 6 archi (`trama/volumi/VOLUME_1..6.md`, 4 puntate ad arco).
 
 ### Fase D — Mondo / cartografia
 - [ ] **D1. Luoghi Antichi → feature geojson** in `zones/` (`kind: luogo_antico`, coord
@@ -101,11 +102,14 @@
 - [x] **Reference batch (fascicolo illustratore)** — ✅ `saga/reference/REFERENCE_BATCH.md`
       committato (riproducibile dal generatore) → **cancello anti-drift**: `genera_batch.py --check`
       + `test/reference.sync.test.ts` (terzo gemello, con cast-sync e digest-sync).
-- [ ] **Cancello di sync per i geojson di `geo/`** (corsia testing/backend): il geo pack (#31)
-      committa `saga/cartografia/geo/*.geojson` + `manifest_taglio.json` generati da
-      `pipeline/geo_confini.py`, ma **senza cancello** dedicato (a differenza di cast/digest/
-      reference). Follow-up: dare a `geo_confini.py` un `--check` e agganciarlo con
-      `test/geo.sync.test.ts` (quarto gemello). Nel frattempo il drift non è bloccato in CI.
+- [x] **Cancello di sync per i geojson di `geo/`** — ✅ fatto: `geo_confini.py --check`
+      (invarianti a stdlib puro: manifest↔pack, INDICE dentro bbox+poligono del regno,
+      celle ricalcolate, join `riferimenti_trama`/`centri`↔INDICE) + `test/geo.sync.test.ts`
+      (**quarto gemello**). Il check ha subito trovato e chiuso un micro-drift: 5 capitali
+      in `centri.geojson` arrotondate a 5 decimali vs INDICE → riallineate al byte.
+- [ ] **Viewer geo morto** (corsia cartografo): `saga/cartografia/viewer/` fetcha
+      `../island.geojson` che non esiste (residuo isola). Da ricablare sul geo pack
+      (`geo/*.geojson`) o rimuovere.
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
@@ -114,8 +118,8 @@
 - [ ] **CLI `ep` — tre rifiniture** (corsia backend, non bloccanti): guardia entrypoint via
       `import.meta.url` invece del match sul nome file; `close --dry-run`; default del grafo
       indipendente dalla cwd.
-- [ ] **`docs/TEST_SPEC.md` non traccia** i test del serializzatore/CLI (corsia testing:
-      aggiungere le righe alla mappa dei test).
+- [x] **`docs/TEST_SPEC.md`** — ✅ aggiornato: §8 mappa i test del serializzatore, della
+      CLI `ep` e dei quattro cancelli-gemelli (cast/digest/reference/geo) + canon.lint.
 - [ ] **`pytest seme/tests` ha un side-effect**: appende a `seme/generations.jsonl`
       (file committato) — innocuo in CI, sporca il working tree in locale (corsia seme/backend).
 

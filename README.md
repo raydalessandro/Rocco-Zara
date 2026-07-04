@@ -15,30 +15,38 @@ episodi (`saga/serializzatore/` + `lib/`), la **sala di regia** web (`web/`) e u
 
 ## Dove siamo (per ripartire dallo stesso punto)
 
-Il canone è **stabile e coerente**, la pipeline è **eseguibile e blindata**. In `main`,
-verde (`npm run check`: 27 file di test, **233 test** + 49 pytest di parità in CI).
+Il canone è **stabile e coerente**, la **stagione è tutta scritta** (trama fattuale), la
+pipeline è **eseguibile e blindata**. In `main`, verde (`npm run check`: 29 file di test,
+**245 test** + 49 pytest di parità in CI).
 
 **Fatto:**
 - 🌍 **Mondo completo** — lessico *Terre Annodate* (`saga/lessico/MAPPATURA.md` +
   `mappa.json` machine-readable), 6 regni, cartografia/faunario/società/voci,
   **cosmologia** (solo-autore), **5 ritornelli**, motore anti-cliché, **stile visivo**
   naturalistico (niente vestiti) + **metafore native**.
+- 📖 **Stagione completa (trama fattuale)** — `saga/trama/volumi/VOLUME_1..6.md`
+  (6 archi × 4 puntate = ep01–ep24), `SCHELETRO_STAGIONE.md` allineato alla MAPPA_CAST,
+  grafo `saga_graph.json` **v0.2.0-stagione** con semi/debiti/soglie/facce della
+  Serpe/tracce di Toraki. Decisioni autoriali aperte in `trama/DECISIONI_PROPOSTE.md` (⚠).
 - 🎭 **Cast completo** dei 6 archi — `saga/bible/comprimari/` (27+ schede + template + MAPPA_CAST).
 - ⚙️ **Motore generativo** — `saga/serializzatore/` (ponte `saga → Seed`, audit di continuità,
   **PCG** condizionata dallo stato, golden/consistency test). Aggancio additivo in `lib/engine.ts` (§6).
+  `KIND_SCALE` con la fauna nostra (la doppia scala Rocco↔Zara in scena).
 - 🕹️ **Pipeline impugnabile** — `npm run ep -- build|close|audit <episodio>`: dal grafo al
   **writing brief + audit** in un comando, determinismo testato end-to-end (la prosa resta
   cancello umano).
 - 🛡️ **Cancelli anti-drift** — linter del canone a 3 passate (`mappa.json` = unica fonte
-  nomi+substrato), cast-sync, parità Python (`pytest seme/`) in CI.
-- 🎬 **Agenti autoriali** — `scenografo` (prompt-immagine + scene via Manus) e `illustratore`
-  (consegna HD + reference binding) in `.claude/agents/`.
+  nomi+substrato), **quattro gemelli** cast/digest/reference/**geo**-sync, catalog-sync
+  del ritrattista, parità Python (`pytest seme/`) in CI.
+- 🎬 **Agenti autoriali** — `scenografo`, `illustratore`, `ritrattista`, e da questo giro
+  **`prosatore`**, **`cartografo`**, **`manutentore`** in `.claude/agents/`.
 - 🖥️ **Sala di regia `web/`** — sito statico, **deployato su Vercel** (legge `saga/…` da GitHub raw).
 
 **Prossimo (vedi `saga/TODO.md`):**
-- **Ep01 nel `saga_graph.json`** (Fase B, autoriale) → col brief a un comando di distanza.
+- **Decisioni autoriali** su `trama/DECISIONI_PROPOSTE.md` (Ray) → poi la **prosa del
+  Volume 1** col prosatore (`npm run ep -- build ep01` → sessione pagina-per-pagina).
 - **Fase A** (segni distintivi + palette) → sblocca le reference visive.
-- Pendenti puntuali: nomi `<dal lessico>` delle schede; rifiniture CLI; TEST_SPEC da allineare.
+- Pendenti puntuali: nomi `<dal lessico>` delle schede; rifiniture CLI; viewer geo da ricablare.
 
 ---
 

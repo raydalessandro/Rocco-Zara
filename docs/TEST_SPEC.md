@@ -161,6 +161,29 @@ quindi prioritari solo i nodali.
 
 ---
 
+## 8. Serializzatore, CLI `ep`, cancelli anti-drift (corsia saga/backend)
+
+| # | Caso | Stato | Dove |
+|---|---|---|---|
+| 8.1 | Serializzatore: `saga_graph` → `SeedExt` (golden per episodio; determinismo sha) | ✅ | `test/serializzatore.seed.test.ts` |
+| 8.2 | Aggancio §6 additivo: `buildNode` con seed esteso = parità con base + blocchi extra | ✅ | `test/serializzatore.engine6.test.ts` |
+| 8.3 | PCG condizionata: fold degli effects → bande di crescita entering/landing (golden) | ✅ | `test/serializzatore.pcg.test.ts` |
+| 8.4 | PCG coerenza: nonce `fnv1a32(id@ver) XOR sha256(state)`; stato diverso ⇒ variazione, stesso stato ⇒ identità | ✅ | `test/serializzatore.pcg.consistency.test.ts` |
+| 8.5 | `buildMondo` di stagione: MONDO/COMPARSE D'ARCO/FILI APERTI per ep01–ep24 (incl. ep24) | ✅ | `test/serializzatore.mondo.stagione.test.ts` |
+| 8.6 | CLI `ep build\|close\|audit`: catena canone→seed→nodo→brief+audit, `close` sicuro, determinismo e2e | ✅ | `test/ep.cli.test.ts` |
+| 8.7 | Linter del canone (3 passate, `mappa.json` unica fonte nomi+substrato) | ✅ | `test/canon.lint.test.ts` |
+| 8.8 | Gemello cast: `build_cast.mjs --check` | ✅ | `test/cast.sync.test.ts` |
+| 8.9 | Gemello digest: `geo_digest.py --check` (riga MORFOLOGIA stabile) | ✅ | `test/digest.sync.test.ts` |
+| 8.10 | Gemello reference: `genera_batch.py --check` (fascicolo illustratore) | ✅ | `test/reference.sync.test.ts` |
+| 8.11 | Gemello geo: `geo_confini.py --check` (manifest↔pack, INDICE in bbox+poligono, celle, join centri/riferimenti) | ✅ | `test/geo.sync.test.ts` |
+| 8.12 | Catalog-sync del ritrattista (catalogo ritratti ↔ schede) | ✅ | `test/catalog.sync.test.ts` |
+| 8.13 | Parità Python del seme (49 pytest, job CI `parity-python`) | ✅ | `seme/tests/` |
+
+Tutti i test vivono sotto `test/` (i file del serializzatore col prefisso
+`serializzatore.`); la fonte di verità è `npm run check`.
+
+---
+
 ## Priorità di scrittura (ordine consigliato)
 1. **§3 commands** + **§1.6–1.14 motore** (cuore deterministico, già quasi tutto verde nei fuzz).
 2. **§4 layer AI** (fetch mock) — prima del collegamento reale (M2).
