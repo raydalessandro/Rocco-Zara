@@ -54,7 +54,7 @@ def overpass(q):
     raise SystemExit("overpass fail")
 bb = f"{BBOX['S']},{BBOX['W']},{BBOX['N']},{BBOX['E']}"
 CACHE = "/home/claude/fiumi_cache.json"
-NAMES = ["Po", "Adda", "Ticino", "Oglio", "Mincio", "Arno", "Serchio", "Reno", "Secchia", "Panaro", "Ombrone", "Adige"]
+NAMES = ["Po", "Adda", "Ticino", "Oglio", "Mincio", "Arno", "Serchio", "Reno", "Secchia", "Panaro", "Ombrone", "Adige", "Trebbia"]
 if os.path.exists(CACHE):
     fiumi_raw = json.load(open(CACHE))
 else:
@@ -85,7 +85,9 @@ sm = nd.gaussian_filter(nd.maximum_filter(np.where(land, dem, 0), size=15), 4)
 MOUNT = sm >= 320
 adige = sorted({(round(x,4),round(y,4)) for seg in by_river.get("Adige",[]) for x,y in seg if y>=45.02})
 ADIGELON = np.interp(lat1d, [p[1] for p in adige], [p[0] for p in adige])[:, None] if adige else np.full((H,1), 11.35)
-border = ((LON < 9.30) & (LAT < 44.6)) | ((LON >= ADIGELON) & (LAT > 45.0))
+trb = sorted({(round(x,4),round(y,4)) for seg in by_river.get("Trebbia",[]) for x,y in seg})
+TREBLON = (np.interp(lat1d, [p[1] for p in trb], [p[0] for p in trb])[:, None] if trb else np.full((H,1), 9.30))
+border = ((LON < TREBLON) & (LAT < 44.78)) | ((LON >= ADIGELON) & (LAT > 45.0))
 # cresta appenninica per colonna (43.75..44.60), lisciata
 crest = np.zeros(W)
 smD = nd.gaussian_filter(np.where(land, dem, 0), 3)
@@ -185,7 +187,7 @@ json.dump({
    "R3|R4": "il Grande Fiume (Po)",
    "R4|R5": "bordo pianura->Appennino (morfologico)",
    "R5|R6": "cresta appenninica (argmax quota per colonna, lisciata)",
-   "esclusioni": ["lon<9.30 & lat<44.6 (Terre di Ponente)", "a est dell'Adige per lat>45.0 (valle reale, non retta)"],
+   "esclusioni": ["a ovest della Trebbia per lat<44.78 (Terre di Ponente, valle reale)", "a est dell'Adige per lat>45.0 (valle reale)"],
    "mare": "TUTTO il mare in mappa diventa 'la Gran Piana d'Occidente' (terra fuori dai regni) -> la costa tosco-ligure sparisce e non si riconosce l'Italia; il Grande Fiume esce dalla mappa verso il Mare d'Oriente"},
  "griglia": {"passo_gradi": 0.25, "colonne": "A.. da W a E", "righe": "1.. da N a S",
              "uso": "riferimento rapido nei brief e nelle immagini (es. 'collina dell'incontro = C2')"},
@@ -196,6 +198,65 @@ json.dump({
  "nota": "canone congelato: mappe e immagini si rigenerano da qui senza rete"
 }, open(f"{OUT}/manifest_taglio.json", "w"), ensure_ascii=False, indent=1)
 print("geojson v2 scritti")
+
+# ---------- collocazione dati: margini, snap, celle, indice unico ----------
+from shapely.geometry import Point
+from shapely.ops import nearest_points
+regs = {f["properties"]["id"]: shape(f["geometry"]) for f in feats}
+def cella(lon, lat):
+    c = int((lon - BBOX["W"]) / 0.25); r = int((BBOX["N"] - lat) / 0.25)
+    return chr(65 + max(0, min(25, c))) + str(r + 1)
+def margine_km(p, k):
+    g = regs[k]
+    return (g.boundary.distance(p) if g.contains(p) else -g.distance(p)) * 111.0
+SOGLIA = 1.5   # km: sotto questa distanza dal confine, il pin si sposta verso l'interno
+def snap_dentro(p, k):
+    core = regs[k].buffer(-0.025)   # ~2.8 km dentro
+    if core.is_empty: core = regs[k].buffer(-0.008)
+    return nearest_points(core, p)[0]
+spostati = []
+for f in rf:
+    x, y = f["geometry"]["coordinates"]; k = f["properties"].get("regno"); p = Point(x, y)
+    if k in regs:
+        m = margine_km(p, k)
+        if m < SOGLIA:
+            q = snap_dentro(p, k)
+            spostati.append((f["properties"]["nome"], round(m, 2), (round(x,4), round(y,4)), (round(q.x,4), round(q.y,4))))
+            f["geometry"]["coordinates"] = [round(q.x, 5), round(q.y, 5)]
+            x, y = q.x, q.y; m = margine_km(Point(x, y), k)
+        f["properties"]["margine_km"] = round(m, 2)
+    f["properties"]["cella"] = cella(x, y)
+json.dump(dict(type="FeatureCollection", features=rf), open(f"{OUT}/riferimenti_trama.geojson", "w"), ensure_ascii=False)
+# centri minori: snap nel regno giusto + regno/cella in proprieta
+cf2 = []
+for k in range(1, 7):
+    m = pol[str(k)]
+    pts = [("capitale", m["capitale"]["nome"], m["capitale"]["ll"])] + \
+          [("centro", f"{m['nome']} — centro {i}", c) for i, c in enumerate(m["centri"][1:], 1)]
+    for ruolo, nome, (x, y) in pts:
+        p = Point(x, y)
+        if k in regs and margine_km(p, k) < (SOGLIA if ruolo == "capitale" else 0.6):
+            q = snap_dentro(p, k); x, y = q.x, q.y
+        cf2.append(dict(type="Feature", properties=dict(regno=k, nome=nome, ruolo=ruolo,
+            cella=cella(x, y), margine_km=round(margine_km(Point(x, y), k), 2)),
+            geometry=dict(type="Point", coordinates=[round(x, 5), round(y, 5)])))
+json.dump(dict(type="FeatureCollection", features=cf2), open(f"{OUT}/centri.geojson", "w"), ensure_ascii=False)
+# indice unico dei luoghi (il punto d'accesso dati)
+idxl = []
+for f in rf:
+    idxl.append(dict(nome=f["properties"]["nome"], tipo=f["properties"]["kind"], regno=f["properties"].get("regno"),
+                     coord=f["geometry"]["coordinates"], cella=f["properties"]["cella"],
+                     margine_km=f["properties"].get("margine_km")))
+for f in cf2:
+    if f["properties"]["ruolo"] == "centro":
+        idxl.append(dict(nome=f["properties"]["nome"], tipo="centro", regno=f["properties"]["regno"],
+                         coord=f["geometry"]["coordinates"], cella=f["properties"]["cella"],
+                         margine_km=f["properties"]["margine_km"]))
+json.dump({"nota": "indice unico dei luoghi canonici: coord, regno, cella griglia 0,25\u00b0, margine dal confine (km). Pin spostati se a <1.5 km dal confine (capitali/riferimenti) o <0.6 km (centri).",
+           "luoghi": idxl}, open(f"{OUT}/INDICE_LUOGHI.json", "w"), ensure_ascii=False, indent=1)
+print("snap eseguiti:", len(spostati))
+for nm, m, a, b in spostati: print("  spostato:", nm, f"(margine {m} km) {a} -> {b}")
+
 
 # ---------- mappa di riferimento (stile atlante) ----------
 import matplotlib; matplotlib.use("Agg")
@@ -239,9 +300,18 @@ for f in json.load(open(f"{OUT}/laghi.geojson"))["features"]:
 gfx, gfy = px(10.35, 45.02)
 ax.annotate("il  Grande  Fiume", (gfx, gfy), fontsize=11, style="italic", color="#1b4d8f", rotation=-4,
             weight="bold", zorder=8, path_effects=[pe.withStroke(linewidth=2.5, foreground=PAR)])
+tpx_, tpy_ = px(9.05, 44.42)
+ax.annotate("TERRE\nDI PONENTE", (tpx_, tpy_), fontsize=9, color="#7a6337", ha="center", style="italic",
+            zorder=8, alpha=0.85, path_effects=[pe.withStroke(linewidth=2.5, foreground=PAR)])
 gpx_, gpy_ = px(9.55, 43.55)
 ax.annotate("LA  GRAN  PIANA\nD'OCCIDENTE", (gpx_, gpy_), fontsize=13, color="#7a6337", ha="center",
             style="italic", zorder=8, alpha=0.9, path_effects=[pe.withStroke(linewidth=3, foreground=PAR)])
+# centri minori (puntini)
+try:
+    for f in cf2:
+        if f["properties"]["ruolo"] == "centro":
+            X, Y = px(*f["geometry"]["coordinates"]); ax.scatter([X], [Y], s=12, color="#2b211a", zorder=6)
+except NameError: pass
 # riferimenti
 for f in rf:
     x, y = f["geometry"]["coordinates"]; k = f["properties"]["kind"]; nm = f["properties"]["nome"]

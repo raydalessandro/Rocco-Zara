@@ -18,8 +18,8 @@
   "R4|R5": "bordo pianura->Appennino (morfologico)",
   "R5|R6": "cresta appenninica (argmax quota per colonna, lisciata)",
   "esclusioni": [
-   "lon<9.30 & lat<44.6 (Terre di Ponente)",
-   "a est dell'Adige per lat>45.0 (valle reale, non retta)"
+   "a ovest della Trebbia per lat<44.78 (Terre di Ponente, valle reale)",
+   "a est dell'Adige per lat>45.0 (valle reale)"
   ],
   "mare": "TUTTO il mare in mappa diventa 'la Gran Piana d'Occidente' (terra fuori dai regni) -> la costa tosco-ligure sparisce e non si riconosce l'Italia; il Grande Fiume esce dalla mappa verso il Mare d'Oriente"
  },
