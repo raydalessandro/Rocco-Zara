@@ -129,6 +129,12 @@
             "fear": "buio",
             "status": "implicita",
             "threshold_crossed": false
+          },
+          {
+            "who": "rocco",
+            "fear": "piccole_veloci",
+            "status": "implicita",
+            "threshold_crossed": false
           }
         ],
         "relation": [
@@ -475,7 +481,17 @@
       "location_primary": "il mercato delle conche",
       "active_constraints_touched": [
         "metafore §4 (figure native del regno)"
-      ]
+      ],
+      "effects": {
+        "fear": [
+          {
+            "who": "rocco",
+            "fear": "piccole_veloci",
+            "status": "implicita",
+            "threshold_crossed": false
+          }
+        ]
+      }
     },
     "ep07": {
       "id": "ep07",
@@ -1068,6 +1084,9 @@
       "location_primary": "Savenza — gli argini, di notte",
       "active_constraints_touched": [
         "metafore §4 (figure native del regno)"
+      ],
+      "callbacks": [
+        "cb_ombra_ep01"
       ]
     },
     "ep16": {
@@ -1256,6 +1275,9 @@
       "location_primary": "la Selva — il bivio e il folto",
       "active_constraints_touched": [
         "metafore §4 (figure native del regno)"
+      ],
+      "callbacks": [
+        "cb_ombra_ep01"
       ]
     },
     "ep19": {
@@ -1570,6 +1592,9 @@
       "location_primary": "la salita alle Pietre del Leone",
       "active_constraints_touched": [
         "metafore §4 (figure native del regno)"
+      ],
+      "callbacks": [
+        "cb_ombra_ep01"
       ]
     },
     "ep24": {
@@ -1590,7 +1615,8 @@
         "char_rocco",
         "char_toraki",
         "char_custode_pietre_leone",
-        "char_viscardo"
+        "char_viscardo",
+        "char_voce_che_torna"
       ],
       "premise": "L'ultimo nodo davanti alle città, insieme. Il disegno si compone (⚠ incluso il filo sepolto?). Viscardo arriva tardi: prendere UNO si poteva, una rete no ⚠. E la consegna: posare il Cordone sulla pietra tiepida e lasciarlo lì. Il pizzicore. L'immagine finale è la pietra.",
       "serpe_face": "viscardo",
@@ -1723,8 +1749,8 @@
     },
     "cb_ombra_ep01": {
       "from": "ep01",
-      "to": "ep15",
-      "what": "l'ombra come luogo → un posto dentro il buio"
+      "to": "ep15+ep18+ep23",
+      "what": "l'ombra di Rocco come luogo — il riparo della prima notte («Nella tua ombra mi sono sentita al sicuro»), che cresce: rifugio, poi dono, poi arma che sceglie di non ferire"
     }
   },
   "debts": {
