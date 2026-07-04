@@ -10,6 +10,7 @@
     "lint": "next lint",
     "test": "vitest run",
     "ep": "tsx saga/serializzatore/cli.ts",
+    "refs": "python3 tools/verifica_referenze.py --check",
     "test:watch": "vitest",
     "test:engine": "vitest run test/engine.parity.test.ts",
     "test:reference": "vitest run test/reference.test.ts",

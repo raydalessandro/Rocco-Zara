@@ -33,7 +33,9 @@ fatta a modo suo (i confederati prudenti dei laghi, la leonessa fieramente liber
 sapienti che sanno tutto e non capiscono niente, il bosco senza legge, le città-stato
 che litigano), risolvono un problema che **da soli non potrebbero** — la mole di Rocco e
 la velocità di Zara che si incastrano — e **annodano il nodo** sulla pietra tiepida del
-luogo antico. Ogni nodo stringe un pegno di quel regno; la corda diventa il **diario** di
+luogo antico. Una volta sola non ci riescono: nella terra della Serpe — che è anche **casa
+di Rocco** — il Luogo è **sepolto** sotto la capitale, e il nodo che manca resta il filo
+amaro del viaggio. Ogni nodo stringe un pegno di quel regno; la corda diventa il **diario** di
 dove sono stati. E ogni pietra antica porta un **segno diverso, fatto da mani che non
 erano zampe** — un mistero che non si spiega mai, ma che si accumula.
 
@@ -65,7 +67,7 @@ disegno intero. Poi **la consegna**: posano il Cordone sulla pietra tiepida e **
 lasciano** — finire era consegnare, non possedere. Non un trionfo, non una tragedia: il
 loro compito è finito, e da quel gesto comincia (fuori campo, mai detto) il **fare spazio**
 a *qualcosa* che verrà — sottotesto d'autore: i primi / l'umanità prossima, da non nominare
-mai. Tutti e **cinque** i ritornelli **pagano** qui. *(meccanismo completo nel Movimento 5.)*
+mai. Tutti e **cinque** i ritornelli **pagano** qui. *(meccanismo completo nel Movimento 6.)*
 
 **IL MIDPOINT (il giro forte).** Oltre il Gran Fiume, nella **Piana dei Savi della Dotta**. Tre
 cose insieme: (1) Zara tocca il fondo — i Dotti le "smontano" il Cordone e lei ci crede,
@@ -99,18 +101,21 @@ midpoint si pianta (il peso, l'ombra, le pietre, lo sguardo di Cècca); dopo, è
 
 ## La scalata della Serpe (cattivo seriale)
 
-Laghi (1–2): **Cècca + Sòrcio**, attrito comico — ma rubano *davvero* ciò che serve.
-→ Midpoint (Gran Fiume/Dotta): **Artiglio** entra sul serio, l'esattore, dietro a Toraki.
-→ Selva (4): il **Mastino** al valico — il muro fisico da superare (leale fino al tragico).
-→ Terre del Leone di Pietra (5)/finale: **Viscardo**, sentito tutta la stagione, finalmente vicino: l'ultima
+Laghi/Conca (1–2): **Cècca + Sòrcio**, attrito comico — ma rubano *davvero* ciò che serve.
+→ Gran Ducato (3): la Serpe **a casa** — la corte (Viscardo/Bissa/Aspide), **Artiglio** che
+cala, la faida che inceppa la trappola; l'**Esattore pentito** paga qui il suo arco.
+→ Midpoint (Gran Fiume/Dotta, 4): **Artiglio** entra sul serio, dietro a Toraki.
+→ Selva (5): il **Mastino** al valico — il muro fisico da superare (leale fino al tragico).
+→ Terre del Leone di Pietra (6)/finale: **Viscardo**, sentito tutta la stagione, finalmente vicino: l'ultima
 corsa a le Pietre del Leone è R&Z contro la Serpe per arrivare a Toraki.
 
 ---
 
-## I sei movimenti (la struttura ad atti)
+## L'innesco e i sei movimenti (la struttura ad atti)
 
-> Ogni movimento è un **arco-regno** = grappolo di puntate (≈6–10) con **un tentpole**
-> (il nodo). Apex/voce/Luogo Antico sono canone; *rottura* e *seme/filo* guidano la scrittura.
+> Ogni movimento è un **arco-regno** = un grappolo di puntate (**4 ciascuno: ep01–ep24
+> nel `saga_graph.json`**, v0.2.0-stagione) con **un tentpole** (il nodo — o la sua
+> negazione). Apex/voce/Luogo Antico sono canone; *rottura* e *seme/filo* guidano la scrittura.
 
 **0 · Innesco — La Soglia** (Spondalta, B1). L'**Ep01 che già abbiamo**, ricontestualizzato:
 Zara scappa dal compito → incontra Rocco → la tempesta li lega → partono insieme. *Pianta:*
@@ -132,21 +137,33 @@ da saggi. Sul Luogo Antico (le **incisioni**), R&Z notano per la prima volta che
 si somigliano** (mistero che accumula). *Tentpole:* secondo nodo. *Serpe:* preme da ovest;
 prima cutaway di Toraki più marcata.
 
-**3 · Piana dei Savi, la Dotta** — **MIDPOINT** (Savenza · **Gufo + Aquila** · repubblica
+**3 · Gran Ducato — la terra della Serpe** (Anguicorte · la **Serpe** · autocrazia della Serpe
+— il regno **non-libero** in mezzo ai liberi · *Luogo Antico:* **SEPOLTO** sotto il selciato
+della capitale). Per arrivare al Gran Fiume si passa dalla pianura del nemico — che è anche
+**casa di Rocco**: il Popolo dell'Aperto a testa bassa, il pari che è rimasto, la colpa di
+chi è partito. *Rottura:* il regno **senza nodo** — qui non si annoda: **si ricorda** (la
+pietra, anche murata nella crepa, è *tiepida*). È la svolta amara della stagione: la rete
+avrà un filo che manca. *Tentpole:* il Luogo sepolto + Rocco **a viso aperto** davanti ai
+suoi. *Serpe:* qui è **di casa** — la corte (Viscardo/**Bissa**/Aspide), **Artiglio** che
+cala, e la **faida** dell'erede impaziente che inceppa la trappola; l'**Esattore pentito**
+paga il suo arco, a casa. *Ritornello in luce:* la **pietra tiepida** (ricevuta ↔ negata).
+*Seme:* il filo sepolto (paga al finale).
+
+**4 · Piana dei Savi, la Dotta** — **MIDPOINT** (Savenza · **Gufo + Aquila** · repubblica
 della legge vs aristocrazia di sangue · *le Rovine Ordinate/le Rovine Ordinate*). Oltre il **Gran Fiume**:
 attraversamento d'acqua = grande set-piece (eco dell'Ep01). I **Dotti** che sanno-tutto-
 capiscono-niente smontano il Cordone → Zara molla (il **buio**); **Rocco** la regge.
 **Traccia fresca di Toraki** → convergenza; **Artiglio** entra sul serio. *Tentpole:*
 terzo nodo, strappato nonostante tutto. Da qui: **corsa**.
 
-**4 · Selva di Mezzo** (nessun governo · gli **Antichi del Bosco** · *Pietra di
+**5 · Selva di Mezzo** (nessun governo · gli **Antichi del Bosco** · *Pietra di
 l'Altare di Roccia* · "tracce di Toraki"). Il regno **senza legge**, bosco-anarchia. *Rottura:*
 dopo regni così *politici*, l'**assenza di struttura** straniante (nessuno comanda).
 Qui le **tracce di Toraki** sono più fitte (passato di recente). Il **Mastino** blocca il
 valico — il **muro** da superare. *Tentpole:* quarto nodo + superare il Mastino.
 *Ritornello in luce:* le **tracce / il nodo-segno di Toraki**, al massimo.
 
-**5 · Terre del Leone di Pietra — FINALE** (Leonalba · **il Leone di Pietra** · città-stato
+**6 · Terre del Leone di Pietra — FINALE** (Leonalba · **il Leone di Pietra** · città-stato
 rivali · **le Pietre del Leone**, il cuore dei primi).
 
 *Rottura del reame:* i liberi **non** sono idealizzati — le città rivali litigano tra loro
@@ -195,7 +212,8 @@ Toraki ritrovato (4) · la consegna sulla pietra (5).
 
 Ogni arco-regno: **arrivo** (stranieri) → **conoscere la gente** (società/voce/rottura del
 regno) → un **problema** risolto dalla **complementarità** R&Z → **annodare il nodo** al
-Luogo Antico (tentpole) → **ripartenza**, con **un seme piantato e un filo chiuso** (di un
+Luogo Antico (tentpole; l'eccezione è il Gran Ducato: Luogo **sepolto**, il tentpole è la
+svolta amara — *si ricorda, non si annoda*) → **ripartenza**, con **un seme piantato e un filo chiuso** (di un
 arco prima). La **spirale** lo rende diverso ogni volta: (a) la ferita di Zara/Rocco un
 gradino più su, (b) i ritornelli più carichi, (c) **una scoperta che rilegge un regno
 precedente** (Rete di Indra). E la **macchina di variazione** ruota i quadranti (chi è a
@@ -204,12 +222,15 @@ casa/straniero, quale delle 7 zone, tipo di ostacolo, quale paura) — vedi
 
 ## Aperto (da decidere scrivendo)
 
-- **Puntate per arco** (≈6–10) e dove cade la **prima cutaway forte** di Toraki (arco 2 o
-  midpoint).
-- **Lessico**: tutti i nomi definitivi (Cordone, Luoghi Antichi, città, Toraki, cast Serpe).
-- **Terminus**: *default* **le Pietre del Leone** (alt. anello di ritorno a Spondalta) — `saga_config.yaml`.
-- Se **Rocco torni nella pianura della Serpe** (casa sua) prima del finale — chiuderebbe il
-  suo arco personale (liberazione di casa) come contrappunto alla A-story.
+- ✅ *deciso* — **Puntate per arco**: 4 (24 episodi, `saga_graph.json` v0.2.0-stagione);
+  prima cutaway forte di Toraki: arco 2 (più marcata), poi traccia fresca al midpoint.
+- **Lessico**: i nomi `<dal lessico>` delle ~28 schede comprimari (unica passata, vedi
+  `../TODO.md` → pendenti).
+- ✅ *deciso* — **Terminus**: **le Pietre del Leone** (Toraki aspetta lì; il finale è la
+  consegna, non l'anello).
+- ✅ *deciso* — **Rocco torna a casa**: è il **Movimento 3** (il Gran Ducato, ep09–ep12) —
+  la colpa di chi è partito, a viso aperto davanti ai suoi; la *liberazione di casa* resta
+  contrappunto che matura verso il finale.
 
 > *Prossimo passo (deciso): prima le **reference** (3 protagonisti → 5 ritornelli →
 > key-art per regno → segni + linguaggio di camera), poi si torna qui a riempire i

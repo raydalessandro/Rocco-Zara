@@ -27,6 +27,9 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 | comporre i **prompt-immagine** e generare le **scene** (una tavola/pagina) via Manus — saga | **scenografo** *(autoriale)* | `.claude/agents/scenografo.md` + `docs/SCENOGRAFO.md` |
 | **consegnare** in repo le immagini HD (scena/intro/catalogo) + aggiornare il registro reference — saga | **illustratore** *(autoriale)* | `.claude/agents/illustratore.md` + `docs/ILLUSTRATORE.md` |
 | far **nascere le reference di catalogo** (ritratti canonici riusabili, contesto 1c) via Manus — proposta→validazione→HD→consegna; lavora PRIMA di scenografo/illustratore — saga | **ritrattista** *(autoriale)* | `.claude/agents/ritrattista.md` + `saga/reference/CATALOGO_VISIVO.md` (+ `docs/ILLUSTRATORE.md`/`SCENOGRAFO.md`) |
+| scrivere la **prosa** delle puntate (brief → testo, UNA pagina alla volta, in sessione con Ray; scrive solo in `saga/prosa/`) — saga | **prosatore** *(autoriale)* | `.claude/agents/prosatore.md` + `docs/PROSATORE.md` |
+| la **carta**: `saga/cartografia/` (pipeline py, geo pack, zones, regni, INDICE_LUOGHI fonte unica; gemelli digest+geo verdi) | **cartografo** | `.claude/agents/cartografo.md` + `docs/CARTOGRAFO.md` |
+| i **giri di riordino**: doc al posto giusto, referenze vere, pannelli di stato onesti (mai comportamento, mai canone) | **manutentore** | `.claude/agents/manutentore.md` + `docs/MANUTENTORE.md` |
 
 **Confine front/back (regola d'oro).** `lib/` è la *single source of truth*: non si
 tocca per l'estetica. Il front **legge** dal back e gli **passa** azioni via gli stessi

@@ -24,6 +24,9 @@ lavora chi deve lavorare" senza perdere allineamento tra front e back.
 | **scenografo** | ✅ *primo agente autoriale* · saga | composizione prompt-immagine + generazione scene (Manus); consegna via illustratore | `scenografo.md` + `docs/SCENOGRAFO.md` |
 | **illustratore** | ✅ saga | consegna HD in repo (scena/intro/catalogo) + aggiorna `entities.json` (reference binding) | `illustratore.md` + `docs/ILLUSTRATORE.md` |
 | **ritrattista** | ✅ saga | nascita delle reference di catalogo (1c): proposta→validazione→HD multi-veduta→consegna; foglio `CATALOGO_VISIVO.md`, vincolo «Morfologia di reference» delle schede, aggiorna `entities.json` | `ritrattista.md` (+ `docs/ILLUSTRATORE.md`/`SCENOGRAFO.md`) |
+| **prosatore** | ✅ saga | prosa delle puntate: brief → testo, una pagina alla volta in sessione con Ray; scrive solo `saga/prosa/epNN.md`; Carta/Metafore/ritornelli/pattern-banditi vincolanti; consuntivo a fine sessione | `prosatore.md` + `docs/PROSATORE.md` |
+| **cartografo** | ✅ | `saga/cartografia/`: pipeline py, geo pack, `zones/`, regni; `INDICE_LUOGHI.json` fonte unica; gemelli `geo_digest --check` + `geo_confini --check`; backward-compat sugli id | `cartografo.md` + `docs/CARTOGRAFO.md` |
+| **manutentore** | ✅ | giri di riordino: archivio (`docs/_archivio/`), referenze (`tools/verifica_referenze.py`, `npm run refs`), pannelli di stato (README/TODO/TEST_SPEC); classi A/B, zero perdita, mai comportamento | `manutentore.md` + `docs/MANUTENTORE.md` |
 
 L'**orchestratrice** ora ha un file — `orchestratrice.md` + `docs/ORCHESTRAZIONE.md` — ma resta
 una **categoria diversa** dai cinque qui sopra: è la **sessione principale** (il *delegante*),
