@@ -98,6 +98,9 @@
 - [x] **Morfologia (geo) nel brief** — ✅ `zones/_digest.json` committato (riproducibile dal
       generatore) → la riga MORFOLOGIA è stabile nel brief; **cancello anti-drift**:
       `geo_digest.py --check` + `test/digest.sync.test.ts` (gemello del cast-sync).
+- [x] **Reference batch (fascicolo illustratore)** — ✅ `saga/reference/REFERENCE_BATCH.md`
+      committato (riproducibile dal generatore) → **cancello anti-drift**: `genera_batch.py --check`
+      + `test/reference.sync.test.ts` (terzo gemello, con cast-sync e digest-sync).
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora

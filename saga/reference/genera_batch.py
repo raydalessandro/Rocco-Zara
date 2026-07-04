@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Genera il fascicolo di reference per l'illustratore.
 Legge entities.json + saga_graph.json → scrive REFERENCE_BATCH.md. Deterministico, zero-LLM.
-Uso: python3 saga/reference/genera_batch.py"""
-import json, os
+Uso: python3 saga/reference/genera_batch.py            (rigenera il file)
+     python3 saga/reference/genera_batch.py --check    (cancello: 0 se allineato, 1 se drift)"""
+import json, os, sys
 ROOT=os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ents=json.load(open(os.path.join(ROOT,"saga/serializzatore/state/entities.json")))
 ents=ents.get("entities",ents)
@@ -45,5 +46,12 @@ for n in eps:
     c=n.get("episode_creature")
     if c: O.append(f"- {n['id']} · **{c.get('species','?')}** — *{n.get('title','')}*")
 O.append("")
-open(os.path.join(ROOT,"saga/reference/REFERENCE_BATCH.md"),"w").write("\n".join(O))
+out="\n".join(O)
+dest=os.path.join(ROOT,"saga/reference/REFERENCE_BATCH.md")
+if "--check" in sys.argv:
+    cur=open(dest,encoding="utf-8").read() if os.path.exists(dest) else None
+    if cur==out:
+        print(f"REFERENCE_BATCH.md OK ({len(chars)} personaggi, {len(locs)} luoghi)"); sys.exit(0)
+    print("REFERENCE_BATCH.md NON allineato: rigenera con `python3 saga/reference/genera_batch.py`",file=sys.stderr); sys.exit(1)
+open(dest,"w",encoding="utf-8").write(out)
 print(f"REFERENCE_BATCH.md ✓ ({len(chars)} personaggi, {len(locs)} luoghi)")
