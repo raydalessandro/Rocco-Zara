@@ -165,7 +165,7 @@ export interface SagaGraph {
   arcs: Record<string, ArcInfo>;
   episodes: Record<string, EpisodeNode>;
   seeds: Record<string, SeedRegistryEntry>;
-  callbacks?: Record<string, unknown>;
+  callbacks?: Record<string, { from?: string; to?: string; what?: string }>;
   debts: Record<string, DebtRegistryEntry>;
   creatures: Record<string, CreatureRegistryEntry>;
   world_state_baselines: Record<string, unknown>;
