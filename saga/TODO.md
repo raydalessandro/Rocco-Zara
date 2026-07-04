@@ -92,7 +92,7 @@
       sha-identico, golden, close sicuro). La prosa resta cancello umano.
 
 ### Pendenti puntuali (dai lavori recenti)
-- [ ] **Continuità semi ep01 (audit)** — `npm run ep -- build ep01` segnala 3 semi piantati
+- [x] **Continuità semi ep01 (audit)** *(chiuso: `bloom_target` cablato per tutti gli 8 semi nel grafo — cordone/pietra/segni/luogo_sepolto→ep24, cecca/esattore→ep11, pegno→ep06, quinto→ep22)* — `npm run ep -- build ep01` segnala 3 semi piantati
       **senza `bloom_target`**: `seed_cordone_incompiuto`, `seed_prima_pietra_tiepida`,
       `seed_cecca_ha_visto`. Sono i semi grandi (saga-spanning): decidere **dove fioriscono**
       (probabilmente al finale, Vol.6) e cablare il bersaglio nel `saga_graph.json`, così
