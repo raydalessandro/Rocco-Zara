@@ -13,6 +13,14 @@
   che si gonfia per sembrare grande). I **ciuffi sulle orecchie** della lince, perfetti. La grazia
   di chi non ha mai dovuto dimostrare di appartenere.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: lince giovane compatta — più bassa di Zara ma più larga di spalla; zamponi da neve sproporzionati ed eleganti insieme
+- manto: sabbia-freddo (#c9b18e) a macchie brevi e nitide; basette ampie che incorniciano il muso; coda corta a punta nera
+- IL SEGNO: i ciuffi auricolari NERI, lunghi, perfetti — ma con le punte un filo piegate (se li lecca quando è nervosa): solo chi guarda bene lo nota, ed è il suo tell
+- occhi: nocciola-oro chiari (#c2a35c), taglio calmo — lo sguardo di chi non deve dimostrare
+- posa-firma: l'appoggio da manuale — sui massi non muove MAI un sasso; quando cede il posto di testa (ep04), lo fa con un solo passo laterale, pulito
+- ancore colore: #c9b18e · #1f1c18 · #c2a35c
+
 ### Natura
 - **sicura, asciutta, un filo altera senza saperlo**: non è cattiva — è solo **a casa**, e questo,
   per Zara, è la ferita.

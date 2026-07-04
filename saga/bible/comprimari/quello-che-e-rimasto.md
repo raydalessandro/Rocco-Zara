@@ -14,6 +14,14 @@
   chi ha **imparato a non alzarla**. Forte come Rocco, ma piegato. Quando per un attimo la solleva, si vede
   quanto gli costa.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: bufalo massiccio, ma svuotato — la struttura c'è, la carne è stanca
+- mantello: nero-terra opaco (#2e2a26), polveroso; corna larghe a mezzaluna, basse
+- IL SEGNO: la SELLA di pelo consumato sul garrese — la geografia di stagioni di giogo del tributo — + una corna con la punta SEGATA di netto (il tributo si prende anche così)
+- occhi: grandi, pesanti, con l'orlo rosso di polvere; guarda sempre a metà distanza, mai in faccia, tranne UNA volta (ep09)
+- posa-firma: il passo della colonna anche da solo — testa bassa, ritmo di giogo
+- ancore colore: #2e2a26 · #6a5a48
+
 ### Natura
 - **piano, paziente, rassegnato**: brontola sottovoce, sopporta, "qualcuno doveva restare".
 - non è un vile: ha **assorbito** lui i colpi di Artiglio perché ne ricadessero meno sugli altri.

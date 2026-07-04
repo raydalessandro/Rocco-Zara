@@ -20,6 +20,14 @@
   dovrebbe** (al freddo, di notte). Riconoscibile dal **canto** — una cadenza sua — più che
   dall'aspetto: e sembra **sempre la stessa**, in ogni regno.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- resa vincolante: si SENTE più che vedersi — nelle tavole è prima di tutto una vibrazione dell'aria calda (onde di calore sopra la pietra), non un primo piano
+- quando si vede: una cicala grande, ambra-verde (#8a8a4a), ali a vetrata con venature scure (#4a4a32), posata di tre quarti
+- IL SEGNO: sta SEMPRE sulla pietra più antica dell'inquadratura — è così che la si trova: si cerca la pietra, non la cicala
+- il canto: reso col paesaggio (l'aria che trema, le altre creature in ascolto), mai con note disegnate
+- a ep24: il battito di silenzio — la tavola lo rende con la cicala ferma e TUTTI gli occhi del quadro rivolti a lei
+- ancore colore: #8a8a4a · #4a4a32
+
 ### Natura
 - parla **poco**; ciò che dice è **più vecchio** di una creatura così piccola.
 - **non è il grillo-rimprovero** (non predica, non viene ignorata): è **gentile, un filo

@@ -15,6 +15,14 @@
 - firma visiva: il **labbro arricciato** in un mezzo ghigno permanente; magra, di un orgoglio **scarno** (Siena
   che perse e non si piegò); l'**occhio storto** verso la direzione di Leonalba, rancore di vecchia data.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: lupa magra, canna asciutta — le costole si LEGGONO: orgoglio scarno, non fame
+- mantello: grigio-terra (#7d7268) con sella scura; pelo corto di crete, non folto di montagna
+- IL SEGNO: il labbro superiore SINISTRO arricciato fisso in un mezzo ghigno (vecchia ferita di rovo) + l'occhio sinistro un filo storto verso fuori — verso Leonalba, dicono nelle sue città
+- occhi: gialli asciutti, ridenti senza allegria
+- posa-firma: coda bassa MA mai fra le zampe — la sconfitta portata come una divisa, non come una resa; la spiga amara masticata di lato
+- ancore colore: #7d7268 · #4d463f
+
 ### Natura
 - **brontolona, sardonica, orgogliosa-amara**: maledice la sorte (e Firenze) con gusto; aiuta **lamentandosi**;
   lingua tagliente, cuore (nascosto) tenero **per i reietti**.

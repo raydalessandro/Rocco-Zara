@@ -16,6 +16,14 @@
 - firma visiva: **liscia, immacolata, composta**; il muso **non rivela nulla**; si muove **senza rumore**, «di
   seta». L'inclinazione misurata del capo che **non concede** una sola lettura.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: pantera piena, spalle basse, linea continua — un'onda ferma
+- manto: NERO assoluto (#141210) con le rosette fantasma (#1d1a16) visibili SOLO in luce radente — nelle tavole: un accenno, mai un pattern
+- IL SEGNO (in negativo): NESSUN segno — ed è il suo segno: manto immacolato, simmetria perfetta, zero cicatrici (chi non combatte non si segna); fra i personaggi è l'unica senza storia scritta addosso
+- occhi: giallo-seta (#d8c46a), palpebra a metà; il muso non rivela nulla — l'inclinazione del capo di CINQUE gradi quando osserva è tutta la sua espressività
+- posa-firma: appare già seduta, se ne va senza che si veda il primo passo
+- ancore colore: #141210 · #d8c46a
+
 ### Natura
 - **riservata, fiera, sobria**: tiene il proprio consiglio; legge **tutti**, mostra **niente**. La sua
   ambiguità è **calcolo di sopravvivenza**, non doppiezza: è *di seta* — liscia, **non falsa**.

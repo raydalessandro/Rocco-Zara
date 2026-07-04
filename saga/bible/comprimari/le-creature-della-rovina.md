@@ -15,6 +15,14 @@
 - firma visiva: **occhi nel buio**, sagome che **non si mettono a fuoco**; appaiono **fra le pietre rotte**
   solo di notte; scala infantile, movimento **storto**. Reali — ma la rovina le fa **sbagliate**.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- resa vincolante: MAI a fuoco pieno — sagome a scala infantile (pipistrelli, civette piccole, grilli, rospetti) rese come occhi e profili nel buio
+- palette: fondo #12141a, occhi #e8d9a0 — punti caldi nel freddo; i corpi si suggeriscono, non si disegnano
+- IL SEGNO: si dispongono sempre in ARCO attorno a ciò che guardano, mai in fila — un piccolo anfiteatro di occhi fra le pietre rotte
+- movimento: un mezzo tempo «storto» — reali, ma la rovina li fa sbagliati; nelle tavole: pose leggermente fuori asse, mai grottesche
+- quando cantano (ep20): le bocche non si vedono — la filastrocca è resa dalle pose in ascolto delle altre creature
+- ancore colore: #12141a · #e8d9a0
+
 ### Natura
 - **cantilenanti, in rima, inquietanti e infantili**: non ostili, ma **perturbanti**. Sanno le cose **in
   filastrocca** — cantano frammenti che poi **contano**.

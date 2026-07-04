@@ -14,6 +14,14 @@
 - firma visiva: **immobile, appena dietro il Signore** — la voce all'orecchio; la vipera **avvolta vicino**,
   che non colpisce mai allo scoperto: il veleno è **nelle parole**. Mai al centro della scena; sempre al suo margine.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: più piccola di Bissa; presenza che si dimentica — ed è il punto
+- livrea: grigio-cenere uniforme (#5d5a54), pattern quasi assente: si confonde coi selciati della corte; una cucitura di scaglie più chiare lungo il labbro
+- occhi: ambra spenta, mezze palpebre — sembra sempre sul punto di dormire, non dorme mai
+- IL SEGNO: la punta della coda in perpetuo movimento MINIMO quando tutto il resto è fermo — scrive nell'aria; nelle tavole è il dettaglio che lo tradisce
+- posa-firma: mai al centro dell'inquadratura di corte: sempre a mezzo passo dietro la spalla di chi comanda
+- ancore colore: #5d5a54 · #b9a26a (occhi)
+
 ### Natura
 - **freddo, paziente, sussurrante**: non comanda — **suggerisce**, e il suggerimento è già veleno.
 - **strumento puro**: non ha ambizione propria. Servirebbe Viscardo **o** Bissa allo stesso modo — è fedele

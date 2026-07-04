@@ -13,6 +13,14 @@
   ha già perso una volta e non lo perdona. Al collo, **un dente** di una cattura: il suo unico
   vezzo (al limite del "pegno portato" — mai vestiti).
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: martora — un nastro di muscolo asciutto; nelle tavole è più LUNGO di quanto sembri possibile
+- pelo: fulvo scuro lucido (#6a4a2c); bavetta golare giallo-crema (#e0b64a) a margini NETTI, la sua fiamma
+- IL SEGNO: al collo, su un cordino di tendine, il dente-trofeo della vecchia cattura (fino a ep23; dopo: il cordino VUOTO — e il vuoto si deve vedere) + tre graffi paralleli vecchi sulla spalla destra: l'unica preda che si difese
+- occhi: bruni quasi neri, tondi, senza fondo; non sbatte quasi mai le palpebre
+- respiro: conta — i fianchi vanno a tempo regolare anche nello sforzo: è il suo metronomo, e nelle tavole si rende con la posa raccolta, mai scomposta
+- ancore colore: #6a4a2c · #e0b64a
+
 ### Natura
 - rapido, freddo, **ossessionato dalla gloria**. Non *odia* le prede: le **vuole**.
 - corteggia chi paga finché conviene; molla senza rimorso.

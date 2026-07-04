@@ -14,6 +14,14 @@
 - firma visiva: **incrostato di sale**, l'occhio che **strizza all'orizzonte** misurando le distanze; gesti
   **deliberati, mai affrettati**; **controlla due volte** prima di muovere (la cima, la marea, la rotta).
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: cormorano grande, collo a esse pronta, corpo da tuffo
+- piumaggio: nero-verde petrolio (#22302c) con gola bianca; becco uncinato grigio corno
+- IL SEGNO: incrostazioni di SALE visibili come brina sulle punte delle ali e attorno alle zampe — il mare portato addosso, sempre
+- occhi: verde smeraldo (#3f7a5f) che STRIZZA all'orizzonte — misura anche quando ti guarda
+- posa-firma: ad ali APERTE ad asciugare, immobile, di fronte al vento — la croce di chi misura due volte; controlla la cima, poi la ricontrolla
+- ancore colore: #22302c · #3f7a5f · #e9e4d6 (sale)
+
 ### Natura
 - **salato, pratico, preciso**: dice solo ciò che ha **misurato**; promette solo il **certo**. Onesto, senza
   trucchi (l'opposto del tentatore: non seduce, **calcola**).

@@ -15,6 +15,14 @@
 - firma visiva: **piantato sul valico come una porta di fortezza**; la posa fiera, il **ringhio che è orgoglio**
   più che minaccia; cicatrici portate come **medaglie**. Non si nasconde, non tende agguati: ti affronta **a viso aperto**.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: mastodontico — il torace più largo delle spalle di Rocco giovane; giogaia pesante, passo che si sente
+- mantello: fulvo-orzo (#a97e4f) con maschera nera piena sul muso; orecchie mozze corte
+- IL SEGNO: da ep19 la striscia di pelo chiaro (#cbb693) attorno al collo dove stava il collare di servizio — il segno del servizio che resta quando il servizio è tolto; PRIMA di ep19: collare di cuoio scuro con placca liscia senza stemma
+- cicatrici: sottili, vecchie, sul petto — da tenuta, non da rissa
+- posa-firma: la fronte SEMPRE alta — non abbassa la testa nemmeno per bere (beve piegando il collo di lato); quando concede il passo, si scosta di UN passo esatto
+- ancore colore: #a97e4f · #1d1b18 · #cbb693
+
 ### Natura
 - **passionale, sprezzante, fiero** (boria cavalleresca): onorevole **nel proprio codice**; **disprezza
   l'inganno**; tiene i valichi come una **carica** d'onore.

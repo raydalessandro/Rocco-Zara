@@ -14,6 +14,15 @@
 - firma visiva: **gira alto in cerchio** prima di calare — il predatore che "fa i conti" dall'alto e poi
   piomba. Gli **artigli che stringe e flette** quando "cita il dovuto". Lo sguardo che **prezza** chi ha sotto.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: falco compatto, spalle larghe da picchiata; in volo la sagoma è un'ancora rovesciata
+- livrea: dorso ardesia (#4a5560), petto crema barrato fitto di bruno (#8a6a4a); coda a bande nette
+- IL SEGNO: UNA remigante primaria sinistra BIANCA — una sola, che in volo lampeggia come una lama chiara: è così che lo si riconosce da terra prima di riconoscerlo
+- occhi: giallo intenso (#d8a020) cerchiati di scuro; lo sguardo non «cerca»: ha già trovato
+- zampe: artigli anteriori lucidi, visibilmente troppo lunghi — curati come strumenti
+- posa-firma: da fermo tiene le ali semi-aperte, mai chiuse del tutto: il decollo è sempre già cominciato
+- ancore colore: #4a5560 · #d8a020
+
 ### Natura
 - **predatore in livrea d'ufficio**: usa il **pretesto** (tributo, "contrabbando") come arma. Freddo,
   famelico, instancabile.

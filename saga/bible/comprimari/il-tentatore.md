@@ -14,6 +14,14 @@
 - firma visiva: **magnifico e senza peso** — si muove nel bosco come chi non possiede niente e tutto; il
   **palco alto**, mai chinato. È la **cosa più bella** dell'arco: la libertà che si vede. (E in quella bellezza, il rischio.)
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: cervo grande, da Cuore della Selva; incede senza rumore anche sul secco
+- mantello: rosso-bruno nobile (#8a5a34), specchio anale chiaro; collo pieno da stagione buona
+- IL SEGNO: il PALCO altissimo, perfettamente simmetrico, a dodici punte — portato senza peso: mai un ramo che tocca un ramo, nemmeno nel folto (è questa l'impossibilità che incanta)
+- occhi: scuri, liquidi, senza fretta — offrono sempre l'adesso
+- posa-firma: fermo al margine dell'inquadratura, di tre quarti, come un invito; a ep20 la ghianda germogliata posata senza una parola
+- ancore colore: #8a5a34 · #d9c7a8
+
 ### Natura
 - **carismatico, persuasivo, felice** (o così pare): rende **visibile** il peso del Cordone e chiede, dolce,
   *«perché lo porti?»*. Offre il **presente verde, infinito**, senza domani e senza nodi.

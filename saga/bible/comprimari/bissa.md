@@ -15,6 +15,14 @@
   avvolta e **pronta a scattare in anticipo**. Il **guizzo troppo svelto**: l'impazienza in una stirpe che ha
   fatto della pazienza un'arma.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: vipera giovane, snella — metà di Viscardo; il corpo disegna sempre almeno un'ansa pronta, mai completamente avvolta
+- livrea: bronzo giovane LUCIDO (#7a5f3a) con losanghe dorsali scure ben stampate (#3c2f22); ventre chiaro pulito — la muta perfetta, scaglie quasi smaltate: l'esatto opposto dell'opacità di Viscardo
+- testa: triangolare, affilata; occhi ambra CHIARA a fessura, rapidi — si muovono prima del corpo
+- IL SEGNO: il guizzo — nelle tavole ha sempre una parte del corpo un mezzo tempo AVANTI rispetto alla posa (la testa già girata, l'ansa già carica): l'impazienza resa anatomia
+- posa-firma: si solleva più del necessario quando parla ai sottoposti (guadagnare altezza è la sua fame)
+- ancore colore: #7a5f3a · #3c2f22
+
 ### Natura
 - **ambiziosa, impaziente**: vuole provare il **proprio veleno**, non aspettare il proprio turno. Prenderebbe
   i Luoghi e il Cordone **più in fretta e più brutalmente** di quanto il vertice consenta.

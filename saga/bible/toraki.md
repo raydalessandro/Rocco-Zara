@@ -24,6 +24,15 @@
   in rima con le **pietre antiche** verso cui va (e con l'ancora orientale — la giada).
 > Manto bianco + taglia maggiore = firma visiva di Toraki (lo distingue da Zara a colpo d'occhio).
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia e proporzioni: più grande di Zara di un quarto abbondante, già adulto; stessa agilità, zero spreco — ogni movimento parte finito
+- manto: bianco caldo (#f2efe8) con strisce grigio-carbone RADE (#3a3a3c), larghe e distanziate — l'inverso esatto di Zara: lei calda e fitta, lui chiaro e rado
+- IL SEGNO (canonizza DECISIONI №12 ⚠): sul fianco SINISTRO una striscia sola che si interrompe a metà — parte dal dorso e muore a mezzo costato, netta, come un segno non finito; nelle tavole è il suo riconoscimento a distanza insieme alla taglia
+- occhi: giada verde-pietra (#6f8f7a), FERMI — non brillano mai; palpebre basse di chi ha già guardato tutto due volte
+- coda: bassa e quasi immobile anche in marcia; le orecchie lavorano al posto suo
+- posa-firma: il polso che gira due volte quando annoda — la «calligrafia di famiglia» che Zara riconosce nei suoi nodi
+- ancore colore: #f2efe8 · #3a3a3c · #6f8f7a
+
 ### Natura
 - **risoluto, fermo, solitario**: è quello che **è andato avanti** — apre la strada, non aspetta.
 - **porta il peso senza mostrarlo**: ha avuto lui per primo il compito troppo grande e ha avuto

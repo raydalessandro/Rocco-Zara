@@ -12,6 +12,13 @@
 - firma visiva: **il guscio liscio** dove ha riposato per anni contro le pietre antiche — la pietra
   ha levigato il carapace. Porta addosso, senza saperlo, il segno del luogo che custodisce.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: lince anziana, più leggera del giusto; il pelo fa volume dove il corpo non c'è più
+- manto: base sbiadita (#b8a488) con macchie slavate; grigio pieno ai fianchi e sul muso (#9b968c); ciuffi auricolari diradati
+- IL SEGNO: l'iride verde-acqua slavato (#a8b8a0) — occhi che sembrano pozze basse — e un canino inferiore che sporge appena dal labbro
+- posa-firma: si siede con le zampe anteriori perfettamente appaiate, simmetriche; parla poco e ogni frase arriva DOPO un respiro visibile
+- ancore colore: #b8a488 · #9b968c · #a8b8a0
+
 ### Natura
 - **osservativo, paziente, enciclopedico**: cataloga tutto, trae sentenze dalla natura.
 - **sa senza capire**: ha annotato la pietra tiepida per una vita, ma non ne conosce il perché.

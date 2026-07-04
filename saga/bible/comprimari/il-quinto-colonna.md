@@ -15,6 +15,14 @@
   alle uscite** mentre parla di restare uniti. Il pelo troppo pulito di chi **predica** il lavoro sporco del
   comune ma non lo fa.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: tasso compatto, spalle da scavatore
+- livrea: maschera bianca/nera IMMACOLATA (#f1ede4 / #1f1d1b), i margini delle bande perfetti come tracciati con la squadra
+- IL SEGNO (in negativo): è l'UNICO sempre pulito in un regno di cantieri — mai calce sulle zampe, mai polvere sulla maschera; nelle tavole di gruppo il suo nitore stona, ed è il punto
+- unghie: da scavo, lunghe, lucide — tenute come strumenti da lavoro che non lavorano
+- posa-firma: il sorriso di cortesia a bocca chiusa, il capo inclinato di lato quel filo in più
+- ancore colore: #f1ede4 · #1f1d1b
+
 ### Natura
 - parla il **«noi»** civico con solennità perfetta — ma è **calcolo**: sotto la grande parola c'è solo lui
   (e chi lo paga).

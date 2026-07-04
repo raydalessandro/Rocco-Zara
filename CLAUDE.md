@@ -26,6 +26,7 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 | `web/` — la sala di regia statica (index+app.js+data; deploy Vercel) | **frontend** | `web/README.md` (dati da `saga/` via raw; indice cast rigenerato con `node web/tools/build_cast.mjs`, sync blindata dal test) |
 | comporre i **prompt-immagine** e generare le **scene** (una tavola/pagina) via Manus — saga | **scenografo** *(autoriale)* | `.claude/agents/scenografo.md` + `docs/SCENOGRAFO.md` |
 | **consegnare** in repo le immagini HD (scena/intro/catalogo) + aggiornare il registro reference — saga | **illustratore** *(autoriale)* | `.claude/agents/illustratore.md` + `docs/ILLUSTRATORE.md` |
+| far **nascere le reference di catalogo** (ritratti canonici riusabili, contesto 1c) via Manus — proposta→validazione→HD→consegna; lavora PRIMA di scenografo/illustratore — saga | **ritrattista** *(autoriale)* | `.claude/agents/ritrattista.md` + `saga/reference/CATALOGO_VISIVO.md` (+ `docs/ILLUSTRATORE.md`/`SCENOGRAFO.md`) |
 
 **Confine front/back (regola d'oro).** `lib/` è la *single source of truth*: non si
 tocca per l'estetica. Il front **legge** dal back e gli **passa** azioni via gli stessi

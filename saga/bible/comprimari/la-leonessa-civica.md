@@ -14,6 +14,14 @@
   zampe consumate dal lavoro fatto *per il comune*. Sta dritta come chi ha **già dato** e lo rifarebbe.
   Niente grazia da erede (è il rovescio dello Specchio di Zara): la sua fierezza è **guadagnata**.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: leonessa asciutta, larga di spalle — costruita dal cantiere, non dalla caccia
+- manto: sabbia operosa (#c2a068), gomiti e garretti scuriti dal lavoro; niente criniera: la solennità sta nel collo dritto e nel mento parallelo a terra
+- IL SEGNO: una cicatrice PULITA che taglia il sopracciglio destro (il cantiere, non la guerra) + i polpastrelli anteriori scuriti di calce — le zampe di chi firma col lavoro
+- occhi: ambra seria (#b98a3a), palpebra franca — guarda negli occhi e aspetta che tu regga
+- posa-firma: la zampa sulla spalla, data di peso, davanti a tutti — il suo sigillo
+- ancore colore: #c2a068 · #b98a3a
+
 ### Natura
 - **solenne, fiera, collettiva**: pensa e parla in **«noi»**. Il comune libero è la sua casa e la sua misura.
 - non capisce chi **non contribuisce**: per lei chi non dà, semplicemente **non c'è**.
