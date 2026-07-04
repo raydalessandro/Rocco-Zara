@@ -16,8 +16,8 @@ episodi (`saga/serializzatore/` + `lib/`), la **sala di regia** web (`web/`) e u
 ## Dove siamo (per ripartire dallo stesso punto)
 
 Il canone è **stabile e coerente**, la **stagione è tutta scritta** (trama fattuale), la
-pipeline è **eseguibile e blindata**. In `main`, verde (`npm run check`: 29 file di test,
-**245 test** + 49 pytest di parità in CI).
+pipeline è **eseguibile e blindata**. In `main`, verde (`npm run check`: 32 file di test,
+**244 test** + 49 pytest di parità in CI).
 
 **Fatto:**
 - 🌍 **Mondo completo** — lessico *Terre Annodate* (`saga/lessico/MAPPATURA.md` +
