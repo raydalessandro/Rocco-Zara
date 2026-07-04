@@ -4,6 +4,7 @@
   "saga/lessico/",
   "saga/cartografia/regno/",
   "saga/cartografia/zones/",
+  "saga/cartografia/geo/",
   "saga/cartografia/pipeline/",
   "saga/bible/comprimari/",
   "saga/serializzatore/IMPL_NOTES.md",
