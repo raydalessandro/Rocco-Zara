@@ -84,12 +84,17 @@ function lessico(): Record<string, string> {
   const m = readJson<Lessico>("saga/lessico/mappa.json");
   return m?.nomi || {};
 }
+const LEX_WORD = "A-Za-zÀ-ÿ"; // stessa classe-parola di applica_lessico.py (parità)
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export function applicaLessico(s: unknown): string {
   let out = asStr(s);
   const nomi = lessico();
-  // chiavi più lunghe prima (evita sostituzioni parziali)
+  // chiavi più lunghe prima; sostituzione a CONFINE DI PAROLA (come boundary() in
+  // applica_lessico.py) così "Po"→"Gran Fiume" non intacca "Popolo del Bosco"
+  // (che diventava "Gran Fiumepolo…"). È parità col rename Python + idempotente.
   for (const k of Object.keys(nomi).sort((a, b) => b.length - a.length)) {
-    if (out.includes(k)) out = out.split(k).join(nomi[k]);
+    if (!out.includes(k)) continue;
+    out = out.replace(new RegExp(`(?<![${LEX_WORD}])${escapeRe(k)}(?![${LEX_WORD}])`, "g"), nomi[k]);
   }
   return out;
 }
