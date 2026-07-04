@@ -381,6 +381,69 @@
       "species": "coro notturno",
       "descriptor": "coro di piccole creature notturne della rovina (pipistrelli, civette, grilli); occhi nel buio, sagome che non si mettono a fuoco; scala infantile, movimento storto; appaiono fra le pietre rotte, solo di notte",
       "status": "da_generare"
+    },
+    "rivalba": {
+      "entityId": "rivalba",
+      "name": "Rivalba",
+      "kind": "location",
+      "descriptor": "capitale dei Laghi del Vespro: città di riva in legno e pietra levigata — passerelle su palafitte, barche a remo, i massi lisci dove il regno si mostra; luce di vespro dorata sull'acqua, brume basse al mattino",
+      "status": "da_generare"
+    },
+    "forterocca": {
+      "entityId": "forterocca",
+      "name": "Forterocca",
+      "kind": "location",
+      "descriptor": "capitale della Conca Ruggente: città-fortezza di pietra chiara a gradoni sulle conche d'acqua; argini, il molo delle conche, torri campanarie; l'acqua che rimbomba sotto — operosa e verticale contro il Muro del Nord",
+      "status": "da_generare"
+    },
+    "anguicorte": {
+      "entityId": "anguicorte",
+      "name": "Anguicorte",
+      "kind": "location",
+      "descriptor": "capitale del Gran Ducato, la corte della Serpe: palazzo basso e lungo sopra il selciato del mercato vecchio; le colonne del tributo, soglie di pietra antica murata a testa in giù; bronzo vecchio, porpora spenta, ombre lunghe — e una crepa nel selciato larga quanto la punta di un corno",
+      "status": "da_generare"
+    },
+    "savenza": {
+      "entityId": "savenza",
+      "name": "Savenza",
+      "kind": "location",
+      "descriptor": "capitale della Piana dei Savi: città ordinata degli argini — canali dritti, l'aula grande, archivi a torre, nebbia bassa; carta, inchiostro, lanterne; gufi e civette ai cornicioni",
+      "status": "da_generare"
+    },
+    "leonalba": {
+      "entityId": "leonalba",
+      "name": "Leonalba",
+      "kind": "location",
+      "descriptor": "capitale delle Terre del Leone: acropoli di pietra dorata sopra il mare, in luce d'alba; la piazza delle gare coi vessilli delle contrade, scalinate — e il sentiero che sale alle Pietre",
+      "status": "da_generare"
+    },
+    "spondalta_soglia": {
+      "entityId": "spondalta_soglia",
+      "name": "la Soglia di Spondalta",
+      "kind": "location",
+      "descriptor": "il confine nord dove tutto comincia: canneto e rive, nebbie basse, acqua ferma in luce fredda — e la pietra tiepida della prima notte",
+      "status": "da_generare"
+    },
+    "gran_fiume_guado": {
+      "entityId": "gran_fiume_guado",
+      "name": "il guado del Gran Fiume",
+      "kind": "location",
+      "descriptor": "il Gran Fiume in piena: acqua larga come un mondo, marrone e argento; passi di pietra a pelo d'acqua, cielo enorme, nessun riparo",
+      "status": "da_generare"
+    },
+    "valico_mastino": {
+      "entityId": "valico_mastino",
+      "name": "il valico del Mastino",
+      "kind": "location",
+      "descriptor": "il budello di roccia e terra battuta tra due pareti — il campo del duello; nella ripresa a sud, verso la Selva: neve sporca, rovi, e il collare strappato",
+      "status": "da_generare"
+    },
+    "le_conche": {
+      "entityId": "le_conche",
+      "name": "le conche alte",
+      "kind": "location",
+      "descriptor": "le conche alte di Forterocca: vasche d'acqua a gradoni tenute da argini e pietre-chiave; calce bagnata, corde, impalcature — e inciso nell'argine, «il dente del forestiero»",
+      "status": "da_generare"
     }
   }
 }
