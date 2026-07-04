@@ -1,0 +1,80 @@
+{
+  "foresta_appennino": {
+    "quota_min": 238,
+    "quota_max": 2127,
+    "biomi": {
+      "roccia": 345,
+      "rovina": 1059,
+      "acqua": 4968,
+      "savana": 2194,
+      "foresta": 1007,
+      "umido": 5
+    },
+    "corsi_acqua": 4851,
+    "rilievi": [
+      {
+        "name": "Monte Cimone",
+        "quota": 2127
+      },
+      {
+        "name": "Monte Cimoncino",
+        "quota": 2092
+      },
+      {
+        "name": "Monte Lagoni",
+        "quota": 1928
+      },
+      {
+        "name": "Monte Giovo",
+        "quota": 1924
+      },
+      {
+        "name": "Corno alle Scale",
+        "quota": 1920
+      },
+      {
+        "name": "Punta Giorgina",
+        "quota": 1900
+      }
+    ]
+  },
+  "origine_lecco": {
+    "quota_min": 187,
+    "quota_max": 2379,
+    "biomi": {
+      "roccia": 282,
+      "rovina": 606,
+      "acqua": 4202,
+      "foresta": 434,
+      "savana": 1441,
+      "umido": 9
+    },
+    "corsi_acqua": 4086,
+    "rilievi": [
+      {
+        "name": "Grigna Settentrionale",
+        "quota": 2379
+      },
+      {
+        "name": "Pizzo della Pieve",
+        "quota": 2213
+      },
+      {
+        "name": "Zuccone Campelli",
+        "quota": 2119
+      },
+      {
+        "name": "Cima di Campione",
+        "quota": 2116
+      },
+      {
+        "name": "Zucco dei Chignoli",
+        "quota": 2112
+      },
+      {
+        "name": "Zucco Barbesino",
+        "quota": 2110
+      }
+    ]
+  }
+}
