@@ -9,8 +9,136 @@ Regole (tutte morfologiche, niente linee rette):
   - R5|R6   : la CRESTA appenninica (argmax di quota per colonna, lisciata)
   - mare in mappa (costa ovest) -> LA GRAN PIANA (terra fuori dai regni): sparisce l'Italia
 Esporta: regni_confini.geojson (v2), gran_piana.geojson, fiumi.geojson,
-riferimenti_trama.geojson, manifest_taglio.json (v2) + mappa_riferimento.png (atlante)."""
-import json, math, os, time, urllib.request, urllib.parse
+riferimenti_trama.geojson, manifest_taglio.json (v2) + mappa_riferimento.png (atlante).
+
+Con `--check` (in qualunque posizione tra gli argomenti): NON rigenera (la rigenerazione
+vuole rete: DEM + Overpass) — verifica gli INVARIANTI del pack committato, a stdlib puro:
+  - i 6 layer + manifest + INDICE_LUOGHI esistono e sono json validi;
+  - manifest.file ↔ layer del pack combaciano (niente file fantasma, niente orfani);
+  - regni_confini ha i 6 regni con gli id dell'atlante politico;
+  - INDICE_LUOGHI è la FONTE UNICA: ogni luogo è dentro il bbox, dentro il POLIGONO del
+    suo regno (lo snap anti-confine del v3), con cella di griglia ricalcolata uguale e
+    margine_km positivo;
+  - riferimenti_trama e centri hanno le STESSE coordinate dell'INDICE (join sul nome).
+Exit 0 con «geo pack OK» se allineato; exit 1 con la diagnosi se no. È il cancello
+anti-drift del pack (gemello di cast/digest/reference-sync); il legame grafo↔geo resta
+al serializzatore, che porta l'INDICE nel brief."""
+import json, math, os, sys
+
+GEO_DIR = "saga/cartografia/geo"
+_LAYER_ATTESI = [
+    "regni_confini.geojson", "gran_piana.geojson", "fiumi.geojson",
+    "laghi.geojson", "centri.geojson", "riferimenti_trama.geojson",
+]
+
+
+def _dentro_anello(pt, anello):
+    """Ray casting: pt [lon,lat] dentro l'anello (lista di [lon,lat])."""
+    x, y = pt
+    dentro = False
+    j = len(anello) - 1
+    for i in range(len(anello)):
+        xi, yi = anello[i]
+        xj, yj = anello[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            dentro = not dentro
+        j = i
+    return dentro
+
+
+def _dentro_geom(pt, geom):
+    polys = geom["coordinates"] if geom["type"] == "MultiPolygon" else [geom["coordinates"]]
+    for p in polys:
+        if _dentro_anello(pt, p[0]) and not any(_dentro_anello(pt, buco) for buco in p[1:]):
+            return True
+    return False
+
+
+def _check():
+    err = []
+
+    def load(nome):
+        path = os.path.join(GEO_DIR, nome)
+        if not os.path.exists(path):
+            err.append(f"manca {path}")
+            return None
+        try:
+            return json.load(open(path))
+        except Exception as e:  # json rotto = drift
+            err.append(f"{nome}: json invalido ({e})")
+            return None
+
+    man = load("manifest_taglio.json")
+    idx = load("INDICE_LUOGHI.json")
+    layers = {nome: load(nome) for nome in _LAYER_ATTESI}
+    if err:
+        return err
+
+    # manifest.file ↔ pack (senza file fantasma né orfani)
+    dichiarati = set(man.get("file", {}))
+    for nome in dichiarati - set(_LAYER_ATTESI):
+        err.append(f"manifest.file dichiara «{nome}» che non fa parte del pack")
+    for nome in set(_LAYER_ATTESI) - dichiarati:
+        err.append(f"manifest.file non elenca «{nome}»")
+
+    # i 6 regni, con gli id dell'atlante politico
+    regni = {f["properties"].get("id"): f for f in layers["regni_confini.geojson"]["features"]}
+    try:
+        pol = json.load(open("saga/cartografia/regno/atlante_politico.json"))["regni"]
+        attesi = sorted(int(k) for k in pol)
+    except Exception as e:
+        err.append(f"atlante_politico.json non leggibile ({e})")
+        attesi = []
+    if attesi and sorted(k for k in regni if k is not None) != attesi:
+        err.append(f"regni_confini: id {sorted(regni)} ≠ atlante politico {attesi}")
+
+    bbox = man["bbox"]
+    passo = man["griglia"]["passo_gradi"]
+
+    def cella(lon, lat):
+        return f"{chr(ord('A') + int((lon - bbox['W']) / passo))}{1 + int((bbox['N'] - lat) / passo)}"
+
+    # INDICE_LUOGHI = fonte unica delle coordinate
+    per_nome = {}
+    for l in idx.get("luoghi", []):
+        nome = l.get("nome", "?")
+        lon, lat = l["coord"]
+        per_nome[nome] = (lon, lat)
+        if not (bbox["W"] <= lon <= bbox["E"] and bbox["S"] <= lat <= bbox["N"]):
+            err.append(f"INDICE «{nome}»: coord fuori dal bbox del manifest")
+        if l.get("cella") != cella(lon, lat):
+            err.append(f"INDICE «{nome}»: cella {l.get('cella')} ≠ ricalcolata {cella(lon, lat)}")
+        if not (l.get("margine_km") or 0) > 0:
+            err.append(f"INDICE «{nome}»: margine_km non positivo (lo snap anti-confine è saltato?)")
+        rid = l.get("regno")
+        if rid in regni and not _dentro_geom((lon, lat), regni[rid]["geometry"]):
+            err.append(f"INDICE «{nome}»: coord FUORI dal poligono del regno {rid} dichiarato")
+
+    # riferimenti_trama + centri: stesse coordinate dell'INDICE (join sul nome)
+    for nome_layer in ("riferimenti_trama.geojson", "centri.geojson"):
+        for f in layers[nome_layer]["features"]:
+            nm = f["properties"].get("nome")
+            if nm not in per_nome:
+                err.append(f"{nome_layer}: «{nm}» non è nell'INDICE (che è la fonte unica)")
+                continue
+            lon, lat = f["geometry"]["coordinates"][:2]
+            rl, rt = per_nome[nm]
+            if abs(rl - lon) > 1e-9 or abs(rt - lat) > 1e-9:
+                err.append(f"{nome_layer}: «{nm}» ha coordinate diverse dall'INDICE")
+    return err
+
+
+if "--check" in sys.argv:
+    _errori = _check()
+    if _errori:
+        print("geo pack NON allineato:")
+        for e in _errori:
+            print(" -", e)
+        sys.exit(1)
+    print(f"geo pack OK ({len(_LAYER_ATTESI)} layer + manifest + INDICE_LUOGHI coerenti)")
+    sys.exit(0)
+
+import urllib.request, urllib.parse, time
 import numpy as np
 import scipy.ndimage as nd
 

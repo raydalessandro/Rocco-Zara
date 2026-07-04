@@ -8,7 +8,7 @@
 //   cartografia/regno/rete_urbana.json       → il percorso (km, terreno, dislivello)
 //   cartografia/luoghi_antichi.md            → «cosa si vede» al Luogo Antico
 //   voce/METAFORE.md (§2 per-regno)          → sorgenti di metafora locali
-//   cartografia/zones/_digest.json           → morfologia (dal GeoJSON, via tools/geo_digest.py)
+//   cartografia/zones/_digest.json           → morfologia (dal GeoJSON, via cartografia/pipeline/geo_digest.py)
 //   cartografia/geo/INDICE_LUOGHI.json       → cella griglia + margine dal confine (coord canoniche congelate)
 //   serializzatore/state/entities.json       → cantiere (schede/reference mancanti nel cast)
 //
