@@ -18,6 +18,14 @@
   troppo svegli; il **richiamo insistente** (il "chiù" dell'assiolo) che è la sua insistenza retorica fatta verso.
   Sempre proteso **in avanti**, pronto alla replica.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: nibbio — elegante, tutto apertura e coda
+- piumaggio: bruno-rossiccio (#9a5f38), testa più chiara striata; la CODA FORCUTA inconfondibile è la sua sagoma-firma in cielo e in aula
+- IL SEGNO: una piuma della forcella sinistra SEMPRE fuori posto (parla troppo, anche in volo) — il difetto che lo rende vero
+- occhi: ambra vivace, mobili — cercano il pubblico prima dell'argomento
+- posa-firma: il capo portato a quindici gradi, mento su: l'arringa è nel collo prima che nella voce
+- ancore colore: #9a5f38 · #c9a06a
+
 ### Natura
 - **ama la disputa per sé stessa**: brillante, agile, argomenta **qualunque tesi** — perché il *gioco* è ciò
   che ama, non la verità. **Disancorato**: non ha una posizione fissa.

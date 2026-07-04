@@ -15,6 +15,14 @@
 - firma visiva: si porta **come uno stemma vivo** — ogni posa è un blasone, ogni gesto un'impresa araldica.
   Guarda **dall'alto** (di posatoio e di spirito); l'inclinazione sprezzante del capo che **misura i tuoi avi**.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: aquila reale grande; anche da ferma sembra in posa per uno stemma — ed è il punto
+- piumaggio: bruno-oro scuro (#5f4a2a) con la NUCA DORATA (#c8a24e) portata sempre alla luce: l'araldica vivente
+- IL SEGNO: la cera del becco gialla IMMACOLATA e gli artigli mai sporchi — un'aquila che non caccia più: viene servita
+- occhi: oro freddo, con l'inclinazione sprezzante del capo che misura i tuoi avi prima di te
+- posa-firma: ali chiuse «a mantello» perfetto; ogni gesto è un'impresa araldica, mai un movimento di necessità
+- ancore colore: #5f4a2a · #c8a24e
+
 ### Natura
 - **epico, cavalleresco, parla in ottava rima**: tutto, per lui, è canto e gloria. Conta solo **il sangue,
   la stirpe, l'onore delle armi**.

@@ -15,6 +15,14 @@
   (la terzina si vede nel gesto). Guarda chi ha davanti come per **assegnargli un posto nella memoria** — o
   negarglielo.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: leone in piena forza, criniera piena portata «a corona» — pettinata dal vento della piazza, mai spettinata dal mondo
+- mantello: dorato civico (#c29b5e), criniera più scura (#8a5f2e) con il bordo esterno acceso dal sole d'alba
+- IL SEGNO: un canino più BIANCO degli altri, visibile quando parla in epigrafi — il lampo nel discorso
+- occhi: ambra da rostro, sopracciglio scolpito; guarda come per assegnarti un posto nella memoria
+- posa-firma: la zampa destra a mezz'aria un istante PRIMA di ogni gesto — scolpisce l'aria; a ep21 resta così, interrotto: la statua di se stesso
+- ancore colore: #c29b5e · #8a5f2e
+
 ### Natura
 - **alto, fiero, in terzina**: per lui *«la gloria è il vero potere»*. La grandezza è **essere ricordati**;
   l'oblio è la sola morte.

@@ -18,6 +18,15 @@
 - **artigli affilati**.
 > Occhi verdi + taglia minuta = firma visiva di Zara.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia e proporzioni: tigre giovane, asciutta — spalla ≈ ⅔ del garrese di Rocco; zampe lunghe rispetto al tronco (lo scatto viene prima della massa); il collo porta la testa alta anche da ferma
+- manto: arancio caldo NON saturo (#d08a3e); guance, petto e ventre crema (#efe3cd); strisce nero-bruno (#241f1a) ASIMMETRICHE: fitte su spalle e coda, rade sui fianchi — mai speculari tra lato destro e sinistro
+- IL SEGNO di riconoscimento: UNA striscia a forcella (a Y) al centro della fronte, con il ramo destro un filo più lungo — è il marchio che la distingue da ogni altra tigre in ogni tavola
+- coda: anellata fitta, punta nera; da seduta la avvolge intorno alle zampe (posa-firma dalla prima notte)
+- occhi: verdi CHE BRILLANO (#7da05a), grandi, taglio allungato — il brillio la distingue dal verde-pietra fermo di Toraki; orecchie con ocelli bianchi netti sul retro
+- posa-firma: quando vuole sembrare grande «si gonfia» — pelo del collo su, petto avanti, mento alto: il tell delle tavole; quando è davvero sicura, invece, sta bassa e morbida
+- ancore colore: #d08a3e · #241f1a · #efe3cd · #7da05a
+
 ### Natura
 - **veloce, agile, silenziosa**: salta, schiva, nella foresta si muove *"come l'acqua
   tra le pietre"*;

@@ -14,6 +14,14 @@
 - firma visiva: **immobilità di pietra** — la pelle vecchia come il masso su cui sta, quasi ne fa parte. Gli
   occhi **guardano attraverso** di te, a qualcosa **dietro**. Sembra ascoltare la roccia più che chi gli parla.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: rospo ENORME per un rospo — quanto una pietra di soglia; e come una pietra sta
+- pelle: come roccia muschiata (#5a5f4a) con chiazze verdi (#7a8062); verruche larghe, opache — la pelle di chi non si muove da ere
+- IL SEGNO: sulla schiena cresce MUSCHIO VERO — l'immobilità fatta prova; palpebre che salgono dal BASSO verso l'alto, lente come maree
+- occhi: oro antico velato, pupilla orizzontale; guardano da prima che tu arrivassi
+- posa-firma: la zampa a tre dita APERTE che tocca la pietra — il gesto del «Visto.»
+- ancore colore: #5a5f4a · #7a8062 · #b99f4e (occhi)
+
 ### Natura
 - **lento, gnomico, a indovinello**: non risponde mai dritto. Sa qualcosa di **vasto** — e o non vuole, o
   **non può** dirlo piano.

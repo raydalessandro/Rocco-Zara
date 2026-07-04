@@ -16,6 +16,14 @@
   finimento** — libero, ma **scavato** da ciò che la libertà gli è costata. Non sta mai del tutto fermo: non
   appartiene a nessun luogo, e in nessuno si posa.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: cavallo di pianura, alto, con l'ossatura da tiro e la carne da bosco — un fuori-posto anche anatomico
+- mantello: morello slavato (#3f3a38) con riflessi rossastri; criniera LUNGA e incolta, piena di lappole; zoccoli non pareggiati
+- IL SEGNO: i segni sbiaditi del vecchio finimento — pelo ricresciuto BIANCO a strisce su groppa e testiera: la libertà che porta ancora la mappa della soma
+- occhi: grandi, scuri, con il bianco che affiora quando si parla di «tornare»
+- posa-firma: il passo — ANCORA la marcia della colonna, quattro tempi troppo regolari; non sta mai del tutto fermo: un piede batte
+- ancore colore: #3f3a38 · #8a8078 (segni)
+
 ### Natura
 - **libero, autosufficiente, e un po' vuoto**: parla con orgoglio della libertà, ma sotto c'è una solitudine
   che non nomina.

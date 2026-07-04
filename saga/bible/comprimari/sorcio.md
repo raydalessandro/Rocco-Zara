@@ -16,6 +16,15 @@
   **nasconde nel posto più sbagliato** con aria soddisfatta; la **posa da gran professionista** smentita da
   una coda che trema. Lo scarto **postura/realtà** è il personaggio.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: ratto tondo, basso, da dispensa più che da vicolo
+- pelo: grigio-topo opaco (#6e675f), ventre più chiaro e perennemente spolverato di qualcosa
+- IL SEGNO: l'orecchio destro con una tacca a V netta + i baffi ASIMMETRICI (metà tranciati in una vecchia trappola) — il muso pende sempre un filo dal lato dei baffi corti
+- coda: nuda, con un anello di pelle più chiara a metà (lo chiamano «l'anello rubato»)
+- occhi e palpebre: a metà, SEMPRE — sonnecchia in piedi; nelle tavole comiche dorme in pose impossibili
+- posa-firma: da scoperto si finge cosa — immobile, sguardo nel vuoto, come merce sul banco
+- ancore colore: #6e675f · #b9a98f
+
 ### Natura
 - **si crede un fuoriclasse** del contrabbando — e tutto gli **crolla fra le zampe**. Improvvisa, pasticcia,
   e se la cava per puro caso (o scappando).

@@ -16,6 +16,14 @@
   brilla, anche mentre ti parla. Rigira fra le penne **frammenti lucenti** che non riesce a lasciare. La gazza
   non è goffa: è **precisa** — finché qualcosa non luccica.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: gazza grande, coda lunga a cuneo che è metà della sua lunghezza
+- livrea: nero con iridescenze blu-verdi (#1c2430, riflessi #3f6d7a); spalle e ventre bianchi NETTI — bicromia pulita, da manifesto
+- IL SEGNO: tre penne timoniere di SINISTRA con le barbe spezzate (troppo bottino trascinato) + fra le penne del petto, sempre UN luccichio infilato — ogni tavola uno diverso
+- occhi: neri vivi, con lo scatto laterale continuo: la testa punta ogni riflesso anche mentre parla con te
+- posa-firma: il saltello obliquo d'avvicinamento — mai in linea retta verso ciò che vuole
+- ancore colore: #1c2430 · #f0ece1 · #3f6d7a
+
 ### Natura
 - **l'occhio più acuto della Serpe**: vede per prima, coglie il dettaglio che a tutti sfugge. Davvero brava.
 - e **davvero condannata**: la stessa facoltà che la rende la migliore — l'occhio che cattura tutto — cattura

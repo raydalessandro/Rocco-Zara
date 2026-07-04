@@ -12,6 +12,14 @@
 - firma visiva: **le zampe svelte ai nodi** (annoda reti senza guardare) e il **pelo sempre umido**;
   una **vecchia cicatrice da amo** sul muso.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: lontra adulta, corpo a fuso; in acqua sta come altri stanno in piedi
+- pelo: bruno scuro bagnato-lucido (#4a382a), gola e petto crema (#d9c9a6)
+- IL SEGNO: le vibrisse più lunghe del normale, piegate TUTTE verso destra (il lato del remo) + le palmature anteriori segnate da anni di corda — righe chiare sul palmo
+- occhi: castani ridenti, con la ruga fissa di chi guarda controluce sull'acqua
+- posa-firma: le zampe SEMPRE in opera — un capo di corda, un nodo, un remo: parla annodando; il nodo da rete accanto al nodo del Cordone è il suo gesto d'accoglienza
+- ancore colore: #4a382a · #d9c9a6
+
 ### Natura
 - **concreta, calda, proverbiale**: parla per **immagini d'acqua e di rete**.
 - **pratica**: non si fida delle parole vuote — solo di ciò che tiene.

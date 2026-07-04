@@ -17,6 +17,14 @@
 - firma visiva: **grigio di muso, consumato come le pietre** che cura; le zampe **conoscono ogni lastra**.
   Lo si vede **rassettare, sgombrare, tenere pulito** — un gesto umile ripetuto da una vita. Occhi caldi, pazienti.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: asino piccolo e fermo, di quelli che portano da sempre
+- mantello: grigio-cenere umile (#8f8a82), muso chiaro; orecchie lunghe con gli orli consumati dai rovi del sentiero
+- IL SEGNO: la CROCE MULINA scura sul dorso — la riga di spalla che incrocia la riga dorsale: il segno vero degli asini, qui portato come un ufficio (la croce di chi porta)
+- occhi: pazienti, cerchiati di chiaro; battito di ciglia lento, da chi ha visto salire tutti
+- posa-firma: si volta per ULTIMO, sempre — e sgombra il sentiero prima di seguirti
+- ancore colore: #8f8a82 · #4a4642 (croce)
+
 ### Natura
 - **umile, paziente, fuori dal tempo**: cura le pietre perché **le curavano i suoi prima di lui**. Sa che la
   pietra è **tiepida** anche di notte e che certi segni **non li hanno fatti zampe** — ma **non sa perché**, e

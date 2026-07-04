@@ -13,6 +13,14 @@
 - firma visiva: le **corna ad anelli** — un anello per ogni inverno, lette come si legge un tronco. Lo sguardo
   che **va sempre prima al cielo** che a chi gli parla. Sta sul ciglio del precipizio come su un sentiero piano.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: stambecco adulto, tarchiato, tutto garretti e collo
+- mantello: grigio-bruno roccia (#8d7f6b), barba corta; zoccoli spaccati da presa, neri
+- IL SEGNO: le corna ad arco con gli anelli di crescita MOLTO marcati — e il QUARTO anello più scuro degli altri (nessuno sa perché, lui non lo dice); il gesto di contarli col dito è la sua posa pensosa
+- occhi: orizzontali di capra, color pietra bagnata — guardano prima il cielo, poi te
+- posa-firma: fermo su un appoggio impossibile, in piano come fosse piano
+- ancore colore: #8d7f6b · #5a5148
+
 ### Natura
 - **secco, meteorologico, sentenzioso**: dice poco, e quel poco è **tempo e pietra**. Legge la nuvola
   prima della frase.

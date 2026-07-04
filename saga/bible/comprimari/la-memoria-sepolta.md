@@ -15,6 +15,14 @@
   proboscide) come chi **ascolta** qualcosa sotto. Cammina una strada che nessun giovane capisce, fino a quel
   punto della piazza, e lì resta. La gravità lenta della matriarca.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: elefantessa anziana, monumentale — nelle tavole occupa il quadro come un edificio
+- pelle: grigio-selciato (#7c7873) con crepe chiare come commessure di pietra; orecchie con gli orli mangiati dal tempo
+- IL SEGNO: la zanna sinistra SPEZZATA a metà e LEVIGATA — l'ha consumata lei, sfregando i selciati per sentire cosa c'è sotto; l'altra è intera ma opaca
+- occhi: piccoli nell'enormità, castano fondo, con la palpebra lenta di chi ricorda a fatica e apposta
+- posa-firma: la zampa anteriore destra che si posa PIATTA, sempre per prima — ascolta col peso; il gesto di far posare la zampa a un altro è la sua massima confidenza
+- ancore colore: #7c7873 · #cfc8ba (zanne)
+
 ### Natura
 - **lenta, ferma, di lunga memoria**: parla del **«prima»** — il tempo in cui la pietra era scoperta e
   tiepida, prima che la Serpe ci colasse sopra la città.

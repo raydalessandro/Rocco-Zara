@@ -12,6 +12,14 @@
 - firma visiva: **l'immobilità** — sta nell'acqua bassa fermo come un palo, finché non si muove
   di colpo. Una **zampa segnata** da una vecchia piena. (segno **naturale**.)
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: garzetta — verticale, leggera, un tratto di pennello bianco in mezzo alla piena
+- piumaggio: bianco calcare (#eee9df); piume del capo a pennello corto; becco giallo pallido, zampe scure
+- IL SEGNO: la zampa SINISTRA con due dita fuse da vecchia ferita — la «zampa segnata» che ripiega e riserva per i passi che contano
+- occhi: gialli chiari, tondi, fermi sull'acqua — leggono la corrente come una pagina
+- posa-firma: su UNA zampa anche nella piena, immobile mentre tutto scorre; le frasi arrivano quando l'acqua lo permette
+- ancore colore: #eee9df · #c8b45a
+
 ### Natura
 - **paziente, fatalista-bonario**; parla per **sentenze del fiume**.
 - **neutrale per codice**: chi rispetta la regola del guado passa, chiunque sia.

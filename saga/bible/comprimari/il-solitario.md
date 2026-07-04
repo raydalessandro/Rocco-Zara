@@ -13,6 +13,14 @@
 - firma visiva: **sempre angolato per andarsene** — il corpo già rivolto all'uscita mentre ti parla. Tiene
   la **distanza**, sobbalza al contatto; ma gli **occhi seguono tutto** (la guardia che non smette mai).
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: gatto selvatico tozzo, più grosso d'un gatto e più corto d'una lince; tutto spalle
+- manto: grigio-bosco (#6d675c) a strisce sfumate; la coda CLAVATA ad anelli con la punta nera TONDA — il suo distintivo di specie, sempre leggibile
+- IL SEGNO: l'orecchio sinistro piegato in avanti da un vecchio congelamento — l'inverno che si è tenuto addosso
+- occhi: verde-freddo, socchiusi; guarda di lato anche quando risponde
+- posa-firma: il corpo SEMPRE a tre quarti via da chi parla — l'aiuto, quando arriva, arriva di spalle
+- ancore colore: #6d675c · #3f3b35
+
 ### Natura
 - **monosillabico, guardingo**: non vuole nessuno intorno. Sbrigativo, diffidente.
 - e tuttavia una **decenza sepolta** — che lui stesso mal sopporta — gli fa dare, una volta, l'aiuto che conta.

@@ -13,6 +13,14 @@
 - firma visiva: le **cicatrici sugli avambracci** — una per ogni parola tenuta a costo del sangue. Sta fermo
   come un masso; quando dà la mano (la zampa), la stretta è un **patto**.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: orso bruno massiccio, gobba di spalla alta; da seduto è comunque più alto di chi gli parla
+- pelo: bruno terra (#5b4632), più chiaro sul muso quadrato
+- IL SEGNO: sulla spalla sinistra, il pelo CONSUMATO a fascia diagonale — dove per anni è corsa la fascia da Giurato (da ep08 la fascia non c'è più; il segno resta, ed è il personaggio) + un artiglio anteriore spezzato
+- occhi: piccoli, seri, infossati — di quelli che firmano
+- posa-firma: di guardia alla porta ANCHE senza carica: seduto, dritto, il peso pari sulle quattro zampe
+- ancore colore: #5b4632 · #8a7458
+
 ### Natura
 - **ruvido, breve, di parola data**: *"detto è detto"*. Rigido sull'onore fino al dolore.
 - non mente, non gira: la parola, per lui, è l'unica cosa che un essere **possiede davvero**.

@@ -18,6 +18,15 @@
 - pelle spessa.
 > Il corno storto è la **firma visiva** di Rocco: non si "corregge" nelle illustrazioni.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia e proporzioni: rinoceronte giovane — garrese ≈ 1,5× la spalla di Zara; corpo compatto ma zampe visibilmente «un numero in più»: giunture larghe, piedi a tre dita grandi che sembrano prestati da un adulto
+- pelle: grigio caldo di polvere (#8a8378), ventre e pieghe interne più chiari (#a29a8d); grana ruvida a crateri fini; pieghe marcate su spalle, collo e anche (la corazza morbida di un giovane)
+- IL CORNO STORTO (geometria esatta): corno nasale unico a base larga, inclinato verso la SUA sinistra di ~20° rispetto all'asse del muso, con una lieve torsione della punta verso l'alto — una virgola, mai un uncino; anelli di crescita visibili alla base; il corno posteriore è solo un bozzo appena accennato
+- testa: fronte alta, labbro prensile morbido spesso fermo «a mezza domanda»; orecchie tonde orlate di setole corte, molto mobili (il suo vero radar)
+- occhi: piccoli, marrone caldo (#5a4632), ciglia lunghe — la gentilezza abita lì; nelle tavole gli occhi si vedono SEMPRE, anche in campo largo
+- posa-firma: il peso un filo in avanti; da fermo appoggia PRIMA una nocca sola (il gesto della misura, ep05); quando protegge, il corpo si mette tra la luce/il pericolo e l'altro — l'ombra è un gesto
+- ancore colore: #8a8378 · #a29a8d · #5a4632
+
 ### Natura
 - **goffo**: inciampa, **rompe le cose** al suo passaggio (rami, nidi), fa rumore;
   starnuti fortissimi che spaventano i piccoli.

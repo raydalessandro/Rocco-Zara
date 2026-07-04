@@ -13,6 +13,14 @@
 - firma visiva: **le guance sempre piene** (porta sempre più di quanto può tenere) e un **ciuffo** che non
   sta giù. È l'Arlecchino che giocoliera con troppe cose: ne perde una, ne acchiappa due.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: scoiattolo rosso piccolo anche per la specie — la coda è più grande di lui
+- manto: rosso vivo (#b4552e), ventre crema; ciuffetti alle orecchie
+- IL SEGNO: una NOCCIOLINA di pelo bianco sulla punta della coda — la bandierina che lo segue ovunque, sempre un battito AVANTI rispetto a lui
+- guance: MAI vuote — parla pieno, e si capisce lo stesso (purtroppo, dice Sòrcio)
+- posa-firma: si ferma a metà di un gesto quando pensa (raro, e le tavole lo celebrano); il carrello rovesciato al momento giusto è il suo capolavoro involontario
+- ancore colore: #b4552e · #efe0c8
+
 ### Natura
 - **terragno, svelto, comico, furbo-bonario**: chiacchiera a raffica, si offre sempre, **sa tutto di tutti**.
 - buono di cuore; la sua furbizia è da bottega, non da inganno — vuole **essere utile** più di ogni cosa.

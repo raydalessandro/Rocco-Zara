@@ -14,6 +14,14 @@
 - firma visiva: lo **sguardo fisso che ti seziona** — il gufo che non sbatte le palpebre e ti guarda come un
   **reperto** da smontare. Inclina la testa lentamente, come chi gira un oggetto per trovarne le giunture.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: gufo reale grande, spalle piene, presenza da cattedra
+- piumaggio: bruno-carta (#8a744f) barrato fine, come pagine fitte; ciuffi auricolari ordinati, simmetrici
+- IL SEGNO: le «LENTI» — due cerchi di piume più chiare, perfetti, attorno agli occhi (#e3d8c0): occhiali naturali da esaminatore
+- occhi: arancio intenso (#d98e2b), fermi; sbatte le palpebre UNA volta, alla fine di ogni dimostrazione — il suo punto fermo
+- zampe: maneggia tutto con la punta degli artigli, mai con la presa piena — il mondo tenuto con le pinze
+- ancore colore: #8a744f · #e3d8c0 · #d98e2b
+
 ### Natura
 - **pomposo, pseudo-dotto, infarcito di latino** (Balanzone) — ma sotto la cantilena dotta c'è una mente
   **davvero affilata**: gli piace **prendere a pezzi** e mostrare che non resta niente.

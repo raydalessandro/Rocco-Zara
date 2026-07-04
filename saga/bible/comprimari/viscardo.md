@@ -24,6 +24,14 @@
   la ritirata: e persino quella è lenta, scelta, senza sconfitta nel corpo).
 - la lingua assaggia l'aria **una volta sola, lentissima** — il suo unico gesto ricorrente.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia e proporzioni: vipera anziana, il DOPPIO di Bissa in lunghezza e spessore; il corpo occupa la scena come un tronco caduto — non si capisce mai dove finisca
+- livrea: bronzo vecchio OPACO (#6b5a3a) con losanghe quasi cancellate dall'età; ventre pergamena (#c9b78e); i bordi delle scaglie opachi, come una muta che non arriva più
+- LA CICATRICE ANULARE (geometria): a metà corpo, una fascia larga due dita di scaglie irregolari e più chiare (#8d7c5c) che circonda TUTTO il corpo — il morso del rivale che non c'è più; in ogni veduta laterale deve leggersi
+- occhi: ambra torbida (#c99a3e), a fessura, MAI chiusi — nemmeno nel riposo; l'unico movimento ricorrente è la lingua nera, una volta sola, lentissima
+- posa-firma: l'immobilità totale — nelle tavole non è mai còlto in movimento: è già arrivato, o non si è ancora mosso
+- ancore colore: #6b5a3a · #c9b78e · #c99a3e
+
 ### Natura
 La **pazienza come forma di fame**. Non minaccia: constata. Non ordina: nomina il futuro come
 già accaduto («Sarà fatto», mai «fatelo»). Il potere della Serpe è verticale e Viscardo ne è

@@ -12,6 +12,14 @@
 - firma visiva: **il segno del basto** sul collo — il callo dei carichi che ha portato per anni
   e non porta più. Non se l'è tolto: *lo porta vuoto.* (segno **naturale**, mai finimenti-vestito.)
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: mulo da soma, ossatura forte, carne asciutta di lavoro
+- mantello: baio spento (#6b5138), muso brizzolato prima del tempo
+- IL SEGNO: la geografia del servizio tolto — due strisce di pelo rovinato sui fianchi (le cinghie del basto) e la riga chiara sul collo (il collare che non c'è più); criniera tagliata da servizio con ricrescita disuguale
+- occhi: grandi, scuri, con la palpebra pesante di chi ha contato troppo
+- posa-firma: la schiena DRITTA — innaturale per un mulo da soma, ed è tutto il personaggio in una linea; l'inchino perfetto, da servizio, riservato a chi non se lo aspetta
+- ancore colore: #6b5138 · #9a8a72
+
 ### Natura
 - piano, paziente, **testardo**; porta la vergogna in silenzio, non la spiega.
 - pratico: ragiona per pesi e per strade, non per parole.

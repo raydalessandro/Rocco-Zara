@@ -14,6 +14,14 @@
 - firma visiva: la **groppa sempre stracarica** (porta più di chiunque) e l'**occhio che prezza** tutto in un
   battito — merce, animale, notizia. Lento di passo, **velocissimo di parola**: il contrasto è il personaggio.
 
+#### Morfologia di reference (vincolante per il ritrattista)
+- taglia: dromedario alto, ossa lunghe; nelle tavole entra sempre «a rate» — prima il collo, poi il resto
+- mantello: sabbia-strada (#b99a6b), consunto a chiazze su gomiti e ginocchia; ciglia lunghissime piene di polvere
+- IL SEGNO: la gobba PIEGATA di lato (anni di carichi asimmetrici) + al collo una campanella MUTA — il batacchio tolto («il silenzio non si vende: si affitta»)
+- muso: labbro inferiore pendulo che mastica sempre qualcosa, anche il niente
+- posa-firma: fermo di tre quarti col carico in vista, l'occhio semichiuso che ha già fatto il prezzo
+- ancore colore: #b99a6b · #7d6647
+
 ### Natura
 - **rapido, transattivo, pettegolo**: sa l'ultima voce delle Vie e te la rivende. Per lui **tutto è merce**,
   anche la verità — ma **senza malizia**: è commercio, non inganno (il che lo rende ancora più pericoloso).
