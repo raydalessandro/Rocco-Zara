@@ -137,7 +137,7 @@ da saggi. Sul Luogo Antico (le **incisioni**), R&Z notano per la prima volta che
 si somigliano** (mistero che accumula). *Tentpole:* secondo nodo. *Serpe:* preme da ovest;
 prima cutaway di Toraki più marcata.
 
-**3 · Gran Ducato — la terra della Serpe** (Anguicorte · la **Serpe** · Signoria/autocrazia
+**3 · Gran Ducato — la terra della Serpe** (Anguicorte · la **Serpe** · autocrazia della Serpe
 — il regno **non-libero** in mezzo ai liberi · *Luogo Antico:* **SEPOLTO** sotto il selciato
 della capitale). Per arrivare al Gran Fiume si passa dalla pianura del nemico — che è anche
 **casa di Rocco**: il Popolo dell'Aperto a testa bassa, il pari che è rimasto, la colpa di
