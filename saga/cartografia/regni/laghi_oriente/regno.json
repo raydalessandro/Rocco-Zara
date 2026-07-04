@@ -11,9 +11,10 @@
  "capitale": {
   "nome": "Forterocca",
   "coord": [
-   10.2200214,
-   45.5398022
-  ]
+   10.2429,
+   45.5494
+  ],
+  "nota_geo": "pin spostato ~3 km dentro la conca (margine di sicurezza dal confine; v. geo/INDICE_LUOGHI.json, fonte autoritativa delle coordinate)"
  },
  "leader": {
   "archetipo": "la Leonessa",

@@ -408,6 +408,7 @@ export type MondoInfo = {
   fili_aperti?: string[];
   nome?: string;
   fauna_sfondo?: string[];
+  luogo_geo?: { cella?: string; margine_km?: number; vicini?: string[] };
   righe?: number;
   [k: string]: unknown;
 };

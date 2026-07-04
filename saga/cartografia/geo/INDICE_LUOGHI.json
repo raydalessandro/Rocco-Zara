@@ -1,0 +1,687 @@
+{
+ "nota": "indice unico dei luoghi canonici: coord, regno, cella griglia 0,25°, margine dal confine (km). Pin spostati se a <1.5 km dal confine (capitali/riferimenti) o <0.6 km (centri).",
+ "luoghi": [
+  {
+   "nome": "la Collina dell'Incontro",
+   "tipo": "origine",
+   "regno": 1,
+   "coord": [
+    9.415,
+    45.85
+   ],
+   "cella": "C2",
+   "margine_km": 2.21
+  },
+  {
+   "nome": "Coppelle di Spondalta (Luogo Antico)",
+   "tipo": "luogo_antico",
+   "regno": 1,
+   "coord": [
+    9.4,
+    45.88
+   ],
+   "cella": "C2",
+   "margine_km": 2.6
+  },
+  {
+   "nome": "le Pietre Incise (Luogo Antico)",
+   "tipo": "luogo_antico",
+   "regno": 2,
+   "coord": [
+    10.34,
+    46.02
+   ],
+   "cella": "G1",
+   "margine_km": 51.53
+  },
+  {
+   "nome": "le Rovine Ordinate (Luogo Antico)",
+   "tipo": "luogo_antico",
+   "regno": 4,
+   "coord": [
+    11.28,
+    44.46
+   ],
+   "cella": "J8",
+   "margine_km": 2.41
+  },
+  {
+   "nome": "l'Altare di Roccia (Luogo Antico)",
+   "tipo": "luogo_antico",
+   "regno": 5,
+   "coord": [
+    10.41,
+    44.43
+   ],
+   "cella": "G8",
+   "margine_km": 17.28
+  },
+  {
+   "nome": "le Pietre del Leone (Luogo Antico)",
+   "tipo": "luogo_antico",
+   "regno": 6,
+   "coord": [
+    10.86,
+    43.4
+   ],
+   "cella": "I12",
+   "margine_km": 36.75
+  },
+  {
+   "nome": "Rivalba",
+   "tipo": "capitale",
+   "regno": 1,
+   "coord": [
+    9.0830353,
+    45.8115623
+   ],
+   "cella": "B2",
+   "margine_km": 12.36
+  },
+  {
+   "nome": "Forterocca",
+   "tipo": "capitale",
+   "regno": 2,
+   "coord": [
+    10.24288,
+    45.54942
+   ],
+   "cella": "F3",
+   "margine_km": 2.78
+  },
+  {
+   "nome": "Anguicorte",
+   "tipo": "capitale",
+   "regno": 3,
+   "coord": [
+    9.1896346,
+    45.4641943
+   ],
+   "cella": "B4",
+   "margine_km": 9.53
+  },
+  {
+   "nome": "Savenza",
+   "tipo": "capitale",
+   "regno": 4,
+   "coord": [
+    11.3426327,
+    44.4938203
+   ],
+   "cella": "K8",
+   "margine_km": 5.32
+  },
+  {
+   "nome": "Città-rovina della Selva",
+   "tipo": "capitale",
+   "regno": 5,
+   "coord": [
+    10.806262296523613,
+    44.1587910883362
+   ],
+   "cella": "I9",
+   "margine_km": 3.27
+  },
+  {
+   "nome": "Leonalba",
+   "tipo": "capitale",
+   "regno": 6,
+   "coord": [
+    11.2556404,
+    43.7697955
+   ],
+   "cella": "J10",
+   "margine_km": 36.17
+  },
+  {
+   "nome": "Laghi del Vespro — centro 1",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    9.42932,
+    45.71144
+   ],
+   "cella": "C3",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Laghi del Vespro — centro 2",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    9.02059,
+    46.19205
+   ],
+   "cella": "A1",
+   "margine_km": 34.98
+  },
+  {
+   "nome": "Laghi del Vespro — centro 3",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    8.93296,
+    45.71936
+   ],
+   "cella": "A3",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Laghi del Vespro — centro 4",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    9.39618,
+    45.88559
+   ],
+   "cella": "C2",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Laghi del Vespro — centro 5",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    9.32335,
+    46.12856
+   ],
+   "cella": "C1",
+   "margine_km": 2.78
+  },
+  {
+   "nome": "Laghi del Vespro — centro 6",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    9.27717,
+    45.70688
+   ],
+   "cella": "B3",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Laghi del Vespro — centro 7",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    8.95123,
+    46.0038
+   ],
+   "cella": "A1",
+   "margine_km": 32.38
+  },
+  {
+   "nome": "Laghi del Vespro — centro 8",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    8.8277,
+    45.70985
+   ],
+   "cella": "A3",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Laghi del Vespro — centro 9",
+   "tipo": "centro",
+   "regno": 1,
+   "coord": [
+    8.83961,
+    45.85245
+   ],
+   "cella": "A2",
+   "margine_km": 12.47
+  },
+  {
+   "nome": "Conca Ruggente — centro 1",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    11.30178,
+    46.00913
+   ],
+   "cella": "K1",
+   "margine_km": 33.3
+  },
+  {
+   "nome": "Conca Ruggente — centro 2",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    9.56968,
+    46.13131
+   ],
+   "cella": "D1",
+   "margine_km": 24.36
+  },
+  {
+   "nome": "Conca Ruggente — centro 3",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    10.33326,
+    46.18063
+   ],
+   "cella": "G1",
+   "margine_km": 41.98
+  },
+  {
+   "nome": "Conca Ruggente — centro 4",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    11.01616,
+    45.51853
+   ],
+   "cella": "I3",
+   "margine_km": 4.5
+  },
+  {
+   "nome": "Conca Ruggente — centro 5",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    9.62335,
+    45.71566
+   ],
+   "cella": "D3",
+   "margine_km": 2.78
+  },
+  {
+   "nome": "Conca Ruggente — centro 6",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    9.94966,
+    45.88709
+   ],
+   "cella": "E2",
+   "margine_km": 28.48
+  },
+  {
+   "nome": "Conca Ruggente — centro 7",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    10.83969,
+    45.88477
+   ],
+   "cella": "I2",
+   "margine_km": 24.13
+  },
+  {
+   "nome": "Conca Ruggente — centro 8",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    10.60674,
+    45.64056
+   ],
+   "cella": "H3",
+   "margine_km": 1.5
+  },
+  {
+   "nome": "Conca Ruggente — centro 9",
+   "tipo": "centro",
+   "regno": 2,
+   "coord": [
+    11.34341,
+    45.61111
+   ],
+   "cella": "K3",
+   "margine_km": 4.82
+  },
+  {
+   "nome": "Gran Ducato — centro 1",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    11.31113,
+    45.1925
+   ],
+   "cella": "K5",
+   "margine_km": 5.8
+  },
+  {
+   "nome": "Gran Ducato — centro 2",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    10.29831,
+    45.47158
+   ],
+   "cella": "F4",
+   "margine_km": 4.49
+  },
+  {
+   "nome": "Gran Ducato — centro 3",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    10.52022,
+    44.92679
+   ],
+   "cella": "G6",
+   "margine_km": 1.78
+  },
+  {
+   "nome": "Gran Ducato — centro 4",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    9.70437,
+    45.16007
+   ],
+   "cella": "D5",
+   "margine_km": 8.43
+  },
+  {
+   "nome": "Gran Ducato — centro 5",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    10.8691,
+    45.48337
+   ],
+   "cella": "I4",
+   "margine_km": 3.95
+  },
+  {
+   "nome": "Gran Ducato — centro 6",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    8.95142,
+    45.15485
+   ],
+   "cella": "A5",
+   "margine_km": 7.76
+  },
+  {
+   "nome": "Gran Ducato — centro 7",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    9.64374,
+    45.49726
+   ],
+   "cella": "D4",
+   "margine_km": 5.86
+  },
+  {
+   "nome": "Gran Ducato — centro 8",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    10.79172,
+    45.15667
+   ],
+   "cella": "H5",
+   "margine_km": 4.9
+  },
+  {
+   "nome": "Gran Ducato — centro 9",
+   "tipo": "centro",
+   "regno": 3,
+   "coord": [
+    10.41307,
+    45.22112
+   ],
+   "cella": "G5",
+   "margine_km": 25.78
+  },
+  {
+   "nome": "Piana dei Savi — centro 1",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    8.86413,
+    44.89666
+   ],
+   "cella": "A6",
+   "margine_km": 12.86
+  },
+  {
+   "nome": "Piana dei Savi — centro 2",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    9.88303,
+    44.77458
+   ],
+   "cella": "E6",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Piana dei Savi — centro 3",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    10.74309,
+    44.99187
+   ],
+   "cella": "H6",
+   "margine_km": 5.34
+  },
+  {
+   "nome": "Piana dei Savi — centro 4",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    9.69475,
+    45.05348
+   ],
+   "cella": "D5",
+   "margine_km": 1.15
+  },
+  {
+   "nome": "Piana dei Savi — centro 5",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    10.21669,
+    44.75202
+   ],
+   "cella": "F6",
+   "margine_km": 5.37
+  },
+  {
+   "nome": "Piana dei Savi — centro 6",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    10.76877,
+    44.54829
+   ],
+   "cella": "H7",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Piana dei Savi — centro 7",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    9.41808,
+    44.77463
+   ],
+   "cella": "C6",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Piana dei Savi — centro 8",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    11.61865,
+    44.83727
+   ],
+   "cella": "L6",
+   "margine_km": 1.31
+  },
+  {
+   "nome": "Piana dei Savi — centro 9",
+   "tipo": "centro",
+   "regno": 4,
+   "coord": [
+    9.41808,
+    44.77463
+   ],
+   "cella": "C6",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Selva di Mezzo — centro 1",
+   "tipo": "centro",
+   "regno": 5,
+   "coord": [
+    9.42653,
+    44.53283
+   ],
+   "cella": "C7",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Selva di Mezzo — centro 2",
+   "tipo": "centro",
+   "regno": 5,
+   "coord": [
+    10.23886,
+    44.31378
+   ],
+   "cella": "F8",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Selva di Mezzo — centro 3",
+   "tipo": "centro",
+   "regno": 5,
+   "coord": [
+    11.18469,
+    44.14385
+   ],
+   "cella": "J9",
+   "margine_km": 2.78
+  },
+  {
+   "nome": "Selva di Mezzo — centro 4",
+   "tipo": "centro",
+   "regno": 5,
+   "coord": [
+    9.73381,
+    44.41133
+   ],
+   "cella": "D8",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Selva di Mezzo — centro 5",
+   "tipo": "centro",
+   "regno": 5,
+   "coord": [
+    10.21689,
+    44.33454
+   ],
+   "cella": "F8",
+   "margine_km": 2.78
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 1",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.22577,
+    43.99472
+   ],
+   "cella": "F10",
+   "margine_km": 4.06
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 2",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.54382,
+    43.30926
+   ],
+   "cella": "G12",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 3",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    11.42145,
+    43.23109
+   ],
+   "cella": "K13",
+   "margine_km": 18.0
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 4",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.693,
+    43.69806
+   ],
+   "cella": "H11",
+   "margine_km": 5.11
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 5",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    11.58583,
+    43.55121
+   ],
+   "cella": "L11",
+   "margine_km": 34.66
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 6",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    11.14876,
+    43.46772
+   ],
+   "cella": "J12",
+   "margine_km": 44.26
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 7",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.91742,
+    43.93362
+   ],
+   "cella": "I10",
+   "margine_km": 13.84
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 8",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.33279,
+    43.54042
+   ],
+   "cella": "G11",
+   "margine_km": 2.77
+  },
+  {
+   "nome": "Terre del Leone di Pietra — centro 9",
+   "tipo": "centro",
+   "regno": 6,
+   "coord": [
+    10.86002,
+    43.40034
+   ],
+   "cella": "I12",
+   "margine_km": 36.78
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "versione": 2,
+ "bbox": {
+  "W": 8.8,
+  "S": 43.1,
+  "E": 11.7,
+  "N": 46.25
+ },
+ "dem": {
+  "fonte": "AWS Terrarium",
+  "z": 9
+ },
+ "regole_naturali": {
+  "monti": "maxfilter(15px)+gauss(4) su DEM >= 320 m (le città pedemontane restano col monte)",
+  "R1|R2": "il fiume Adda + ramo di Lecco + Val di Mera (polyline reale)",
+  "monti|pianura": "contorno morfologico (nessuna retta)",
+  "R3|R4": "il Grande Fiume (Po)",
+  "R4|R5": "bordo pianura->Appennino (morfologico)",
+  "R5|R6": "cresta appenninica (argmax quota per colonna, lisciata)",
+  "esclusioni": [
+   "a ovest della Trebbia per lat<44.78 (Terre di Ponente, valle reale)",
+   "a est dell'Adige per lat>45.0 (valle reale)"
+  ],
+  "mare": "TUTTO il mare in mappa diventa 'la Gran Piana d'Occidente' (terra fuori dai regni) -> la costa tosco-ligure sparisce e non si riconosce l'Italia; il Grande Fiume esce dalla mappa verso il Mare d'Oriente"
+ },
+ "griglia": {
+  "passo_gradi": 0.25,
+  "colonne": "A.. da W a E",
+  "righe": "1.. da N a S",
+  "uso": "riferimento rapido nei brief e nelle immagini (es. 'collina dell'incontro = C2')"
+ },
+ "file": {
+  "regni_confini.geojson": "poligoni naturali v2",
+  "gran_piana.geojson": "l'ex-mare a ovest",
+  "fiumi.geojson": "Po/Grande Fiume, Adda, Ticino, Oglio, Mincio, Arno, Serchio, Reno, Secchia, Panaro, Ombrone, Adige",
+  "laghi.geojson": "i 5 grandi laghi",
+  "centri.geojson": "capitali+centri",
+  "riferimenti_trama.geojson": "origine, Luoghi Antichi, capitali — i punti ESATTI dove passa la storia"
+ },
+ "nota": "canone congelato: mappe e immagini si rigenerano da qui senza rete"
+}

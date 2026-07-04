@@ -9,6 +9,7 @@
 //   cartografia/luoghi_antichi.md            → «cosa si vede» al Luogo Antico
 //   voce/METAFORE.md (§2 per-regno)          → sorgenti di metafora locali
 //   cartografia/zones/_digest.json           → morfologia (dal GeoJSON, via tools/geo_digest.py)
+//   cartografia/geo/INDICE_LUOGHI.json       → cella griglia + margine dal confine (coord canoniche congelate)
 //   serializzatore/state/entities.json       → cantiere (schede/reference mancanti nel cast)
 //
 // Regole: determinismo fnv1a32(epId|sezione); ogni stringa passa dal lessico
@@ -310,6 +311,46 @@ function secLuogoAntico(ep: EpisodeNode, slug: string): string | null {
   return null;
 }
 
+// luogo geo: pesca dal canone congelato (geo/INDICE_LUOGHI.json) la cella-griglia,
+// il margine dal confine e i luoghi vicini, per il centro/route_from dell'episodio.
+// Fonte unica delle coordinate — mai ricalcolata qui, solo letta e messa in brief.
+type LuogoIdx = { nome?: string; tipo?: string; regno?: number | string; coord?: [number, number]; cella?: string; margine_km?: number };
+type IndiceLuoghi = { luoghi?: LuogoIdx[] };
+const REGNO_NUM: Record<string, number> = {
+  laghi_occidente: 1, laghi_oriente: 2, pianura_alta: 3, pianura_bassa: 4, selva_di_mezzo: 5, toscana: 6,
+};
+function indiceLuoghi(): LuogoIdx[] {
+  return readJson<IndiceLuoghi>("saga/cartografia/geo/INDICE_LUOGHI.json")?.luoghi || [];
+}
+function trovaLuogo(nomeGrezzo: string, slug: string): LuogoIdx | null {
+  const target = norm(applicaLessico(nomeGrezzo).replace(/\s*\(.*\)$/, ""));
+  if (!target) return null;
+  const rn = REGNO_NUM[slug];
+  const pool = indiceLuoghi().filter((l) => rn == null || l.regno === rn || l.regno === String(rn));
+  return (
+    pool.find((l) => norm(l.nome || "") === target) ||
+    pool.find((l) => norm(l.nome || "").includes(target) || target.includes(norm(l.nome || ""))) ||
+    null
+  );
+}
+function secLuogoGeo(ep: EpisodeNode, slug: string): { line: string | null; info: { cella?: string; margine_km?: number; vicini?: string[] } } {
+  const nomeCentro = ep.center || ep.route_from || "";
+  const qui = trovaLuogo(nomeCentro, slug);
+  if (!qui?.cella) return { line: null, info: {} };
+  const rn = REGNO_NUM[slug];
+  const vicini = indiceLuoghi()
+    .filter((l) => l.cella === qui.cella && l.nome !== qui.nome && (rn == null || l.regno === rn || l.regno === String(rn)))
+    .slice(0, 3)
+    .map((l) => nomeCentroSicuro(l.nome || "") || (l.tipo === "luogo_antico" ? "un Luogo Antico" : null))
+    .filter((x): x is string => !!x);
+  const margine = typeof qui.margine_km === "number" ? ` · a ${qui.margine_km.toFixed(1)} km dal confine` : "";
+  const altrove = vicini.length ? ` · nella stessa cella: ${vicini.join(", ")}` : "";
+  return {
+    line: `LUOGO (geo, cella ${qui.cella}): coordinate canoniche congelate${margine}${altrove}.`,
+    info: { cella: qui.cella, margine_km: qui.margine_km, vicini },
+  };
+}
+
 function secMorfologia(slug: string): string | null {
   const key = ZONE_KEY_BY_REGNO[slug];
   if (!key) return null;
@@ -472,6 +513,9 @@ export function buildMondo(
   push(secZona(ep, slug));
   push(secPercorso(ep));
   push(secLuogoAntico(ep, slug));
+  const luogoGeo = secLuogoGeo(ep, slug);
+  push(luogoGeo.line);
+  if (luogoGeo.info.cella) info.luogo_geo = luogoGeo.info;
   const fauna = secFauna(ep, slug);
   push(fauna.line);
   info.fauna_sfondo = fauna.picks;
