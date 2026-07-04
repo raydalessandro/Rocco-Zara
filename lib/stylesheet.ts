@@ -26,6 +26,25 @@ export const KIND_SCALE: Record<string, number> = {
   gatto: 0.3, coniglio: 0.3, riccio: 0.2, scoiattolo: 0.2, volpe: 0.4,
   cane: 0.45, tasso: 0.4, cerbiatto: 0.6, pesce: 0.25,
   adulto: 1.25, bambino: 0.9, bambina: 0.9,
+  // — fauna delle Terre Annodate (B2): altezza VISIVA relativa in scena (spalla/testa),
+  //   chiavi = specie canoniche di entities.json + _faunario.json. Il contrasto di mole
+  //   Rocco ↔ Zara è il motore visivo della saga: la doppia scala va resa in ogni quadro.
+  rinoceronte: 1.7, "tigre bianca": 1.0, tigre: 0.95,
+  leone: 1.1, leonessa: 1.0, pantera: 0.7, lince: 0.6, "gatto selvatico": 0.35,
+  lupo: 0.8, lupa: 0.75, "orso bruno": 1.3, cinghiale: 0.85,
+  cervo: 1.2, capriolo: 0.7, camoscio: 0.75, stambecco: 0.9,
+  bufalo: 1.5, bue: 1.4, cavallo: 1.5, mulo: 1.2, asino: 1.1,
+  dromedario: 1.9, elefantessa: 2.6,
+  mastino: 0.8, "cane mastino": 0.8, "cane da pastore": 0.6,
+  lontra: 0.35, martora: 0.35, ermellino: 0.2, istrice: 0.4, ghiro: 0.15,
+  "scoiattolo rosso": 0.2, marmotta: 0.25, lepre: 0.35, ratto: 0.2, pipistrello: 0.1,
+  testuggine: 0.2, rospo: 0.1, rana: 0.08, ramarro: 0.08, granchio: 0.08,
+  biscia: 0.15, "biscia (serpe)": 0.15, vipera: 0.1,
+  cicala: 0.05, lucciola: 0.03,
+  aquila: 0.45, gipeto: 0.5, falco: 0.35, nibbio: 0.35, civetta: 0.2, assiolo: 0.15,
+  picchio: 0.15, gazza: 0.25, "gracchio alpino": 0.25, "martin pescatore": 0.12,
+  cormorano: 0.5, garzetta: 0.6, "airone cenerino": 0.95, cicogna: 1.0,
+  oca: 0.55, anatra: 0.35, gabbiano: 0.35,
 };
 
 export interface StylesheetOpts { world?: string; season?: string; ageHint?: number | null; }
