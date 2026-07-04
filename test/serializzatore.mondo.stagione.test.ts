@@ -3,7 +3,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { loadCanon, loadGraph } from "../saga/serializzatore/src/canon";
-import { buildMondo } from "../saga/serializzatore/src/mondo";
+import { buildMondo, applicaLessico } from "../saga/serializzatore/src/mondo";
 import type { EpisodeNode } from "../saga/serializzatore/src/types";
 
 const canon = loadCanon(process.cwd());
@@ -15,6 +15,14 @@ describe("mondo — stagione reale (24 episodi)", () => {
     expect(buildMondo(ep("ep05"), canon, graph).briefBlock).toBe(
       buildMondo(ep("ep05"), canon, graph).briefBlock,
     );
+  });
+
+  it("applicaLessico rispetta il confine di parola (parità con applica_lessico.py)", () => {
+    // regressione: "Po"→"Gran Fiume" NON deve intaccare "Popolo del Bosco"
+    // (bug: diventava "Gran Fiumepolo del Bosco"). Idempotente + boundary-safe.
+    expect(applicaLessico("il Popolo del Bosco")).toBe("il Popolo del Bosco");
+    expect(applicaLessico("sulle rive del Po")).toBe("sulle rive del Gran Fiume");
+    expect(applicaLessico(applicaLessico("il Popolo del Bosco"))).toBe("il Popolo del Bosco");
   });
 
   it("ogni episodio produce un blocco non vuoto (anche il finale, anche il Ducato)", () => {
