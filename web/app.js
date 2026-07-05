@@ -116,18 +116,25 @@ function adaptSerpe(ls){
 
 /* ---- carica tutto il mondo ---- */
 async function loadWorld(){
-  const [narr, pers, viag, rit, orig, cast] = await Promise.all([
+  const [narr, pers, viag, rit, orig, cast, archi] = await Promise.all([
     fetchData('narrativa.json'),
     fetchData('personaggi.json'),
     fetchData('viaggio.json'),
     fetchData('ritornelli.json'),
     fetchData('origine.json'),
-    fetchData('cast.json').catch(()=>({arcs:[],chars:[]}))
+    fetchData('cast.json').catch(()=>({arcs:[],chars:[]})),
+    fetchData('archi.json').catch(()=>({cappelli:{},semi:{},debiti:{},richiami:{}}))
   ]);
   const cosmologia = await fetchSagaText('bible/COSMOLOGIA.md').catch(()=>'');
-  const [atlanteRepo, serpeRepo] = await Promise.all([
+  const [atlanteRepo, serpeRepo, graph, entReg, indice] = await Promise.all([
     fetchSaga('cartografia/regno/atlante.json'),
-    fetchSaga('cartografia/regni/pianura_alta/la_serpe.json')
+    fetchSaga('cartografia/regni/pianura_alta/la_serpe.json'),
+    // la VERITÀ della trama: il grafo canonico degli episodi (self-updating)
+    fetchSaga('trama/saga_graph.json').catch(()=>({arcs:[],episodes:{},seeds:[],callbacks:[],debts:[]})),
+    // il registro entità: descrittore + reference (imageUrl) + status di generazione
+    fetchSaga('serializzatore/state/entities.json').catch(()=>({entities:{}})),
+    // il geo pack: fonte unica di celle/coordinate dei luoghi
+    fetchSaga('cartografia/geo/INDICE_LUOGHI.json').catch(()=>({luoghi:[]}))
   ]);
   const realmFiles = await Promise.all(REALM_ORDER.map(async id=>{
     const [rg, so] = await Promise.all([
@@ -154,6 +161,10 @@ async function loadWorld(){
   M.viaggio     = viag;
   M.ritornelli  = rit.ritornelli;
   M.semi        = rit.semi;
+  M.archi       = archi || {cappelli:{},semi:{},debiti:{},richiami:{}};
+  M.graph       = graph || {arcs:[],episodes:{},seeds:[],callbacks:[],debts:[]};
+  M.entities    = (entReg && entReg.entities) || {};
+  M.indice      = (indice && indice.luoghi) || [];
   ORIGINE.length = 0; (orig||[]).forEach(c=>ORIGINE.push(c));
 }
 
@@ -202,8 +213,8 @@ const SECTIONS=[
  {id:'cast',label:'Cast',render:renderCast},
  {id:'regni',label:'I Regni',render:renderRegni},
  {id:'atlante',label:'Atlante',render:renderAtlante},
+ {id:'archi',label:'Archi & Trama',render:renderArchi},
  {id:'storia',label:'La Storia',render:renderStoria},
- {id:'viaggio',label:'Il Viaggio',render:renderViaggio},
  {id:'ritornelli',label:'Ritornelli & semi',render:renderRitornelli},
  {id:'banco',label:'Banco',render:renderBanco}
 ];
@@ -247,7 +258,7 @@ function renderPlancia(s){
     <div class="stats">
       <div class="stat"><div class="n">6</div><div class="l">regni-comuni</div></div>
       <div class="stat"><div class="n">5</div><div class="l">nodi del Cordone</div></div>
-      <div class="stat"><div class="n">50–100</div><div class="l">puntate previste</div></div>
+      <div class="stat"><div class="n">24</div><div class="l">puntate · 6 volumi</div></div>
       <div class="stat"><div class="n">4</div><div class="l">ritornelli</div></div>
     </div>
     <div class="cordrun" title="la rotta: origine → 5 regni-nodo → il finale">${cordrun}</div>
@@ -306,6 +317,7 @@ function pcCard(p){
         <div class="kv"><span class="k">Voce</span><span class="v">${p.voce}</span></div>
         <div class="kv"><span class="k">Nel mondo</span><span class="v">${p.mondo}</span></div>
       </div>
+      ${entRefBlock(entOf('char_'+p.id),'cast')}
     </div>
   </div>`;
 }
@@ -332,6 +344,7 @@ function renderPersonaggi(s){
       <div class="kv"><span class="k">In parallelo</span><span class="v">${t.cutaway}</span></div>
       <div class="kv"><span class="k">Ancora</span><span class="v muted">${t.ancora}</span></div>
     </div>
+    ${entRefBlock(entOf('char_toraki'),'cast')}
   </div>
 
   <div class="divider"></div>
@@ -546,66 +559,6 @@ function openReader(idx){
   });
 }
 function closeReader(){ $('#overlay').classList.remove('on'); document.body.style.overflow=''; }
-
-/* ---------- VIAGGIO ---------- */
-function movementHtml(m){
-  const fin=m.isFin, mid=m.isMid;
-  const knot=`<span style="position:absolute;left:12px;top:5px;width:20px;height:20px;border-radius:50%;
-     background:radial-gradient(circle at 35% 30%, #fff6, ${m.col});border:2px solid ${m.col};
-     box-shadow:0 0 0 4px var(--stone)${fin?', 0 0 16px rgba(204,125,158,.6)':''};z-index:2"></span>`;
-  const flag=mid?'<span class="flag mid">midpoint</span>':fin?'<span class="flag fin">finale</span>':'';
-  const beats=m.beats.map(b=>`<div class="beat"><span class="bl">${b[0]}</span><span>${b[1]}</span></div>`).join('');
-  return `<div style="position:relative;padding:0 0 28px 58px">${knot}
-    <div class="mv ${mid?'mid':''} ${fin?'fin':''}" style="padding-top:0">
-      <div class="badge">movimento ${m.n}${flag}</div>
-      <h3>${m.t}</h3>
-      <div class="place mono">${m.luogo}</div>
-      <div style="margin:8px 0"><span class="chip" style="background:rgba(182,138,62,.12);border-color:rgba(182,138,62,.3)"><span class="dot" style="background:${m.col}"></span>pegno · ${m.pegno}</span></div>
-      <p class="small" style="margin:4px 0 10px">${m.body}</p>
-      ${beats}
-    </div></div>`;
-}
-function renderViaggio(s){
-  const V=M.viaggio;
-  const cord=`<div style="position:absolute;left:21px;top:12px;bottom:12px;width:3px;background:repeating-linear-gradient(180deg,var(--cord-deep) 0 7px,transparent 7px 11px);opacity:.6;z-index:1"></div>`;
-  const movs=V.movimenti.map(movementHtml).join('');
-  s.innerHTML=`
-  <div class="eyebrow">l'arco · scritto dal finale all'indietro</div>
-  <h2 class="h-sec">Il Viaggio</h2>
-  <p class="lede italic">${V.raccontata}</p>
-
-  <div class="grid g2" style="margin:16px 0">
-    <div class="card"><div class="label">A-story</div><p class="small" style="margin-top:6px">${V.Astory}</p></div>
-    <div class="card" style="border-left:3px solid #cfc7b6"><div class="label">B-story · il «meanwhile…»</div><p class="small" style="margin-top:6px">${V.Bstory}</p></div>
-  </div>
-
-  <div class="label" style="margin:8px 0 4px">la rotta · un nodo del Cordone per regno libero</div>
-  <p class="note" style="margin-bottom:10px">La corda cresce a ogni tappa: ogni nodo stringe un pegno diverso e diventa un diario tattile. Il Gran Ducato della Serpe non ha nodo (il suo Luogo è sepolto): è l'ombra lungo tutto il viaggio.</p>
-  <div style="position:relative">${cord}${movs}</div>
-
-  <div class="callout" style="margin-top:8px;border-left-color:var(--turchino);background:rgba(63,110,146,.07)">
-    <div class="label" style="color:var(--turchino)">il midpoint · il giro forte</div>
-    <p class="small" style="margin-top:6px">${V.midpoint}</p>
-  </div>
-  <div class="callout" style="margin-top:12px">
-    <div class="label">il finale · chiuso</div>
-    <p class="small" style="margin-top:6px">${V.finale}</p>
-  </div>
-
-  <div class="grid g2" style="margin-top:18px">
-    <div class="card">
-      <div class="label" style="color:var(--cord-deep)">la spirale · lo schema torna, ma sale</div>
-      <p class="note" style="margin:6px 0 10px">Un cerchio che avanza su un secondo asse: la ripetizione diventa ri-illuminazione del passato.</p>
-      ${V.spirale.map(x=>`<div class="kv"><span class="k" style="min-width:120px">${x.a}</span><span class="v muted">${x.d}</span></div>`).join('')}
-    </div>
-    <div class="card">
-      <div class="label" style="color:var(--vermiglio)">la scalata della Serpe · cattivo seriale</div>
-      <div class="ladder" style="margin-top:8px">
-        ${V.serpeLadder.map(r=>`<div class="rung"><div><div class="who">${r.chi}</div><div class="note mono">${r.dove}</div></div><div class="small">${r.cosa}</div></div>`).join('')}
-      </div>
-    </div>
-  </div>`;
-}
 
 /* ---------- RITORNELLI & SEMI ---------- */
 function renderRitornelli(s){
@@ -878,6 +831,33 @@ function renderAtlante(s){
   const fiumi=[...new Set(terre.flatMap(t=>t.fiumi||[]))];
   const coordTxt=c=>Array.isArray(c)?c.join(', '):c;
   const luoghi=(A.luoghiAntichi||[]).map(l=>`<div class="card" style="padding:14px 16px;border-left:3px solid ${l.col}"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap"><div style="font-family:'Fraunces',serif;font-size:17px">${l.sito}</div><div class="mono small muted">${coordTxt(l.coord)}</div></div><div class="small" style="color:${l.col};font-weight:600">${l.regno}</div><div class="small" style="margin-top:4px">${l.vede}</div><div class="note" style="margin-top:4px">reale: ${l.ref}</div></div>`).join('');
+  // --- geo pack (INDICE_LUOGHI) incrociato col registro entità: cella + stato immagine ---
+  const geoByName={}; (M.indice||[]).forEach(x=>geoByName[x.nome]=x);
+  const GEO_ALIAS={
+    luogo_collina_incontro:"la Collina dell'Incontro",
+    luogo_le_coppelle:"Coppelle di Spondalta (Luogo Antico)",
+    luogo_pietre_incise:"le Pietre Incise (Luogo Antico)",
+    luogo_rovine_ordinate:"le Rovine Ordinate (Luogo Antico)",
+    luogo_altare_roccia:"l'Altare di Roccia (Luogo Antico)",
+    luogo_pietre_leone:"le Pietre del Leone (Luogo Antico)",
+    rivalba:"Rivalba", forterocca:"Forterocca", anguicorte:"Anguicorte",
+    savenza:"Savenza", leonalba:"Leonalba"
+  };
+  const geoOf=e=>geoByName[GEO_ALIAS[e.entityId]]||null;
+  const locEnts=Object.values(M.entities||{}).filter(e=>e.kind==='location');
+  const confermate=locEnts.filter(e=>e.status==='confermata').length;
+  const cruscotto=locEnts.map(e=>{
+    const g=geoOf(e); const rid=g?REGNO_NUM_TO_ID[g.regno]:null;
+    return `<div class="luogocard">
+       ${entShot(e,'luoghi','width:100%;height:118px;border-radius:12px 12px 0 0')}
+       <div class="lc-body">
+         <div class="lc-name">${esc(e.name)}</div>
+         <div class="lc-meta">${stBadge(e.status)}${g?`<span class="chip small"><span class="dot" style="background:${regnoColor(rid)}"></span>cella ${g.cella}</span>`:''}</div>
+         ${g?`<div class="note mono" style="margin-top:5px">${g.coord[1]}, ${g.coord[0]} · ${esc(regnoNome(rid))}</div>`:''}
+         ${e.descriptor?`<div class="small muted" style="margin-top:6px">${esc(e.descriptor)}</div>`:''}
+       </div>
+     </div>`;
+  }).join('');
   s.innerHTML=`<div class="eyebrow">la geografia · letta in diretta dalla repo</div><h2 class="h-sec">Atlante</h2>
   <p class="lede">${A.base||''} La griglia e le terre qui sotto sono lette da <span class="mono">saga/cartografia/regno/atlante.json</span>.</p>
   <div class="grid g2" style="margin-top:16px">
@@ -895,7 +875,12 @@ function renderAtlante(s){
     <div class="card"><div class="label">il reskin · dato reale → mondo</div><div class="bio" style="margin-top:8px">${(A.biomi||[]).map(b=>`<div class="b"><b>${b[0]}</b><div class="muted" style="margin-top:2px">${b[1]}</div></div>`).join('')}</div></div>
   </div>
   <div class="card" style="margin-top:16px"><div class="label" style="color:var(--cord-deep)">la grammatica universale delle 7 zone</div><p class="small muted" style="margin:6px 0 10px">Dato un punto: regno → zona → classe/specie → usanze → seme. (Lo strumento al <b>Banco</b> esegue la cascata.)</p><div class="grid g2">${(A.zoneGrammar||[]).map(z=>`<div class="kv"><span class="k" style="min-width:70px">${z.z}</span><span class="v muted">${z.d}</span></div>`).join('')}</div></div>
-  <div class="divider"></div><div class="eyebrow" style="color:var(--cord-deep)">i perni della missione</div><h3 style="font-size:24px;margin-bottom:4px">I Luoghi Antichi</h3><p class="lede small">Siti archeologici reali; uno per regno (quello della Serpe è sepolto).</p><div class="grid g2" style="margin-top:12px">${luoghi}</div>`;
+  <div class="divider"></div><div class="eyebrow" style="color:var(--cord-deep)">i perni della missione</div><h3 style="font-size:24px;margin-bottom:4px">I Luoghi Antichi</h3><p class="lede small">Siti archeologici reali; uno per regno (quello della Serpe è sepolto).</p><div class="grid g2" style="margin-top:12px">${luoghi}</div>
+  <div class="divider"></div>
+  <div class="eyebrow" style="color:var(--cord-deep)">cruscotto reference · geo pack + registro entità</div>
+  <h3 style="font-size:24px;margin-bottom:4px">I Luoghi — cella &amp; stato immagini</h3>
+  <p class="lede small">I ${locEnts.length} luoghi del registro (${confermate} reference confermate): capitali, valichi, guadi, soglie e Luoghi Antichi. Cella e coordinate da <span class="mono">cartografia/geo/INDICE_LUOGHI.json</span>; lo slot appare da solo quando la reference è in <span class="mono">img/luoghi/&lt;id&gt;.webp</span>.</p>
+  <div class="luoghi-grid" style="margin-top:12px">${cruscotto||'<span class="note">registro entità non raggiungibile</span>'}</div>`;
   const info=$('#cellInfo',s);
   $('#atlGrid',s).addEventListener('click',e=>{const cell=e.target.closest('[data-code]');if(!cell)return;const t=byCode[cell.dataset.code];
     if(!t){info.innerHTML='Casella <b>'+cell.dataset.code+'</b> · fuori dal regno';return;}
@@ -988,6 +973,195 @@ function realmArt(r){
     </div></div>`;
 }
 
+/* =====================================================================
+   NUOVO — legame col grafo canonico (trama) e col registro entità
+   La VERITÀ è nel grafo: qui si LEGGE e si mostra, non si reimplementa.
+   ===================================================================== */
+
+/* numero-regno del geo pack → id del regno (per incrociare INDICE_LUOGHI) */
+const REGNO_NUM_TO_ID = {1:'laghi_occidente',2:'laghi_oriente',3:'pianura_alta',4:'pianura_bassa',5:'selva_di_mezzo',6:'toscana'};
+function regnoNome(id){ const r=(M.regni||[]).find(x=>x.id===id); return r?r.nome:cap((id||'').replace(/_/g,' ')); }
+function regnoColor(id){ return REALM_COLORS[id]||'#8a8270'; }
+
+/* helper testo su id "grezzi" del grafo */
+function humanId(s){ return (s||'').replace(/^(seed|char|luogo|cb|debt|obj)_/,'').replace(/_/g,' '); }
+function entOf(id){ return (M.entities||{})[id]||null; }
+function entLabel(id){ const e=entOf(id); return e?e.name:cap(humanId(id)); }
+function charName(short){ if(!short) return ''; const e=entOf('char_'+short); return e?e.name:cap(short); }
+/* etichetta leggibile per semi/debiti/richiami: dal lessico archi.json, altrimenti id ripulito */
+function lex(kind,id){ const m=(M.archi&&M.archi[kind])||{}; return m[id]||cap(humanId(id)); }
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---- slot-ritratto d'entità: mostra la reference se c'è (imageUrl o file locale),
+        altrimenti un placeholder con lo STATO. Quando la foto arriva, appare da sola. ---- */
+function entShot(entity, kind, style){
+  if(!entity) return '';
+  const id=entity.entityId;
+  const src=entity.imageUrl || `img/${kind}/${id}.webp`;
+  const ok=entity.status==='confermata';
+  return `<div class="entshot" style="${style||''}">
+     <div class="entph"><span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span></div>
+     <img src="${src}" alt="${esc(entity.name)}" loading="lazy" onerror="this.remove()">
+   </div>`;
+}
+function stBadge(status){ const ok=status==='confermata'; return `<span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span>`; }
+
+/* blocco «reference visiva» per un'entità (cruscotto del ritrattista):
+   ritratto (o placeholder+stato) + descrittore come direzione artistica. */
+function entRefBlock(entity, kind){
+  if(!entity) return '';
+  return `<div class="entref">
+     ${entShot(entity, kind, 'width:92px;height:92px;flex:0 0 auto')}
+     <div class="entref-txt">
+       <div class="label">reference visiva ${stBadge(entity.status)}</div>
+       ${entity.descriptor?`<div class="small muted" style="margin-top:5px">${esc(entity.descriptor)}</div>`:''}
+       <div class="note" style="margin-top:6px;color:#8a8270">foto attesa in <span class="mono">img/${kind}/${entity.entityId}.webp</span></div>
+     </div>
+   </div>`;
+}
+
+/* =====================================================================
+   ARCHI & TRAMA — il Percorso letto dal grafo canonico saga_graph.json
+   ===================================================================== */
+function episodesInOrder(){
+  const eps=(M.graph&&M.graph.episodes)||{};
+  return Object.values(eps).sort((a,b)=>(a.order_in_journey||0)-(b.order_in_journey||0));
+}
+function epNum(id){ const m=/(\d+)/.exec(id||''); return m?('ep'+m[1]):(id||''); }
+
+/* card di un episodio (accordion nativo <details>) */
+function episodeCard(e){
+  const nodo=e.nodo_cordone&&e.nodo_cordone.annodato_qui;
+  const luogoAnt = e.luogo_antico ? entLabel('luogo_'+e.luogo_antico) : '';
+  const creat = e.episode_creature ? e.episode_creature.species : '';
+  const serpe = e.serpe_face ? charName(e.serpe_face) : '';
+  const pov = charName(e.pov) || cap(e.pov||'');
+  // semi/debiti/richiami: la verità sta nel grafo (what/planted/blooms/opened/closed/from/to)
+  const SD=(M.graph&&M.graph.seeds)||{}, DD=(M.graph&&M.graph.debts)||{}, CD=(M.graph&&M.graph.callbacks)||{};
+  const seedsP=(e.seeds_planted||[]).map(id=>{const s=SD[id]||{}; const t=s.blooms||s.bloom_target;
+    return `<li><b>${esc(s.what||lex('semi',id))}</b>${t?` <span class="seedto">→ fiorisce a ${esc(t)}</span>`:''}</li>`;}).join('');
+  const seedsB=(e.seeds_bloomed||[]).map(id=>{const s=SD[id]||{};
+    return `<li><b>${esc(s.what||lex('semi',id))}</b>${s.planted?` <span class="seedfrom">← piantato a ${esc(s.planted)}</span>`:''}</li>`;}).join('');
+  const debO=(e.debts_opened||[]).map(id=>`<span class="chip small">apre un debito · ${esc(cap(humanId(id)))}</span>`).join(' ');
+  const debC=(e.debts_closed||[]).map(id=>`<span class="chip small">chiude un debito · ${esc(cap(humanId(id)))}</span>`).join(' ');
+  const cbs=(e.callbacks||[]).map(id=>`<span class="chip small">richiama ${esc((CD[id]&&CD[id].from)||'')}</span>`).join(' ');
+
+  const tent = nodo
+    ? `<span class="ep-tent nodo">◆ annoda il nodo del Cordone${luogoAnt?` · <b>${esc(luogoAnt)}</b>`:''}</span>`
+    : (e.luogo_antico ? `<span class="ep-tent">tocca il Luogo Antico · <b>${esc(luogoAnt)}</b></span>` : '');
+
+  return `<details class="ep">
+    <summary>
+      <span class="ep-id">${epNum(e.id)}</span>
+      <span class="ep-ttl">${esc(e.title||'')}</span>
+      <span class="ep-tags">
+        <span class="tag ep-type ${e.type||''}">${e.type||''}</span>
+        ${nodo?'<span class="tag nodo">◆ nodo</span>':''}
+        ${e.toraki_trace?'<span class="tag toraki">Toraki</span>':''}
+      </span>
+    </summary>
+    <div class="ep-body">
+      <div class="ep-meta">
+        <span class="chip"><span class="dot" style="background:${regnoColor(e.regno)}"></span>${esc(regnoNome(e.regno))}</span>
+        <span class="chip">${esc(cap(e.zona||''))} · ${esc(e.bioma||'')}</span>
+        <span class="chip">POV · ${esc(pov)}</span>
+        ${creat?`<span class="chip">creatura · ${esc(creat)}</span>`:''}
+        ${serpe?`<span class="chip serpe">la Serpe · ${esc(serpe)}</span>`:''}
+      </div>
+      ${tent?`<div class="ep-tentline">${tent}</div>`:''}
+      ${e.premise?`<p class="small" style="margin:10px 0 4px">${esc(e.premise)}</p>`:''}
+      <div class="ep-spina">
+        ${e.problem?`<div class="kv"><span class="k">problema</span><span class="v">${esc(e.problem)}</span></div>`:''}
+        ${e.threshold_moment?`<div class="kv"><span class="k">soglia</span><span class="v">${esc(e.threshold_moment)}</span></div>`:''}
+        ${e.resolution_mode?`<div class="kv"><span class="k">si scioglie</span><span class="v">${esc(e.resolution_mode)}</span></div>`:''}
+        ${e.theme?`<div class="kv"><span class="k">tema</span><span class="v">${esc(e.theme)}</span></div>`:''}
+        ${e.pugno?`<div class="kv"><span class="k">il pugno</span><span class="v">${esc(e.pugno)}</span></div>`:''}
+      </div>
+      ${(seedsP||seedsB)?`<div class="ep-seeds">
+        ${seedsP?`<div><div class="label">semi piantati qui</div><ul class="seedlist">${seedsP}</ul></div>`:''}
+        ${seedsB?`<div><div class="label">semi che fioriscono qui</div><ul class="seedlist">${seedsB}</ul></div>`:''}
+      </div>`:''}
+      ${(debO||debC||cbs)?`<div class="ep-threads">${debO} ${debC} ${cbs}</div>`:''}
+    </div>
+  </details>`;
+}
+
+function renderArchi(s){
+  const G=M.graph||{arcs:[],episodes:{}};
+  const V=M.viaggio||{};
+  const cappelli=(M.archi&&M.archi.cappelli)||{};
+  const eps=episodesInOrder();
+  const byArc={}; eps.forEach(e=>{ (byArc[e.arc]=byArc[e.arc]||[]).push(e); });
+  const arcOrder=(G.arcs&&G.arcs.length)?G.arcs:Object.keys(byArc);
+
+  // --- gli archi, in ordine di viaggio ---
+  const arcsHtml=arcOrder.filter(a=>byArc[a]).map((a,i)=>{
+    const capo=cappelli[a]||{};
+    const list=byArc[a];
+    const regnoId=list[0]?list[0].regno:'';
+    return `<div class="arc" style="--arc:${regnoColor(regnoId)}">
+      <div class="arc-hd">
+        <div class="eyebrow">arco ${i+1} · ${esc(a.replace(/^arco_/,''))}</div>
+        <h3>${esc(capo.titolo||regnoNome(regnoId))}</h3>
+        ${capo.regni?`<div class="arc-sub">${esc(capo.regni)}</div>`:''}
+        ${capo.cappello?`<p class="lede small" style="margin-top:8px">${esc(capo.cappello)}</p>`:''}
+      </div>
+      <div class="ep-list">${list.map(episodeCard).join('')}</div>
+    </div>`;
+  }).join('');
+
+  // --- i fili che attraversano la stagione (letti dal grafo: seeds/debts/callbacks) ---
+  const threadRow=(label,a,arrow,b)=>`<div class="thread-row"><div class="thread-lbl">${esc(label)}</div>
+      <div class="thread-flow"><span class="pin plant">${esc(a||'—')}</span><span class="flowarr">${arrow}</span><span class="pin bloom">${esc(b||'—')}</span></div></div>`;
+  const semiThread=Object.entries(G.seeds||{}).map(([id,s])=>
+    threadRow(s.what||lex('semi',id), s.planted, 'pianta → fiorisce', s.blooms||s.bloom_target)).join('');
+  const debtThread=Object.entries(G.debts||{}).map(([id,s])=>
+    threadRow(s.what||lex('debiti',id), s.opened, 'apre → chiude', s.closed)).join('');
+  const cbThread=Object.entries(G.callbacks||{}).map(([id,s])=>
+    threadRow(s.what||lex('richiami',id), s.from, 'torna a', s.to)).join('');
+  const torakiEps=eps.filter(x=>x.toraki_trace).map(x=>`<span class="pin toraki">${epNum(x.id)}</span>`).join('');
+
+  s.innerHTML=`
+  <div class="eyebrow">il percorso · letto dal grafo canonico</div>
+  <h2 class="h-sec">Archi &amp; Trama</h2>
+  <p class="lede italic">${esc(V.raccontata||'Il viaggio, arco per arco, dai Laghi del Vespro alle Pietre del Leone.')}</p>
+
+  <div class="grid g2" style="margin:16px 0">
+    <div class="card"><div class="label">A-story</div><p class="small" style="margin-top:6px">${esc(V.Astory||'')}</p></div>
+    <div class="card" style="border-left:3px solid #cfc7b6"><div class="label">B-story · il «meanwhile…» di Toraki</div><p class="small" style="margin-top:6px">${esc(V.Bstory||'')}</p></div>
+  </div>
+
+  <div class="note" style="margin:6px 0 14px">${eps.length} puntate · ${arcOrder.filter(a=>byArc[a]).length} archi · ${eps.filter(e=>e.nodo_cordone&&e.nodo_cordone.annodato_qui).length} nodi del Cordone. Tocca un arco per aprire le puntate; ogni episodio è letto da <span class="mono">saga/trama/saga_graph.json</span> — cambia il grafo, cambia qui.</div>
+
+  <div class="arcs">${arcsHtml||'<p class="muted">grafo non raggiungibile.</p>'}</div>
+
+  <div class="divider"></div>
+  <div class="eyebrow" style="color:var(--cord-deep)">continuità · i fili della stagione</div>
+  <h3 style="font-size:24px;margin-bottom:4px">Semi, debiti, richiami</h3>
+  <p class="lede small">La memoria lunga della storia: cosa si pianta e dove fiorisce, cosa si apre e dove si chiude. Tutto derivato dal grafo.</p>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="label">semi · pianta → fiorisce</div><div class="threads" style="margin-top:8px">${semiThread||'<span class="note">nessun seme nel grafo</span>'}</div></div>
+    <div>
+      <div class="card"><div class="label">debiti · apre → chiude</div><div class="threads" style="margin-top:8px">${debtThread||'<span class="note">nessun debito</span>'}</div></div>
+      <div class="card" style="margin-top:14px"><div class="label">richiami · dove tornano</div><div class="threads" style="margin-top:8px">${cbThread||'<span class="note">nessun richiamo</span>'}</div></div>
+      <div class="card" style="margin-top:14px"><div class="label">traccia di Toraki · il «meanwhile…»</div><div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">${torakiEps||'<span class="note">—</span>'}</div></div>
+    </div>
+  </div>
+
+  ${(V.midpoint||V.finale)?`<div class="grid g2" style="margin-top:18px">
+    ${V.midpoint?`<div class="callout" style="margin-top:0;border-left-color:var(--turchino);background:rgba(63,110,146,.07)"><div class="label" style="color:var(--turchino)">il midpoint · il giro forte</div><p class="small" style="margin-top:6px">${esc(V.midpoint)}</p></div>`:''}
+    ${V.finale?`<div class="callout" style="margin-top:0"><div class="label">il finale · chiuso</div><p class="small" style="margin-top:6px">${esc(V.finale)}</p></div>`:''}
+  </div>`:''}
+
+  ${(V.spirale||V.serpeLadder)?`<div class="grid g2" style="margin-top:18px">
+    ${V.spirale?`<div class="card"><div class="label" style="color:var(--cord-deep)">la spirale · lo schema torna, ma sale</div>
+      <p class="note" style="margin:6px 0 10px">Un cerchio che avanza su un secondo asse: la ripetizione diventa ri-illuminazione del passato.</p>
+      ${V.spirale.map(x=>`<div class="kv"><span class="k" style="min-width:120px">${esc(x.a)}</span><span class="v muted">${esc(x.d)}</span></div>`).join('')}</div>`:''}
+    ${V.serpeLadder?`<div class="card"><div class="label" style="color:var(--vermiglio)">la scalata della Serpe · cattivo seriale</div>
+      <div class="ladder" style="margin-top:8px">${V.serpeLadder.map(r=>`<div class="rung"><div><div class="who">${esc(r.chi)}</div><div class="note mono">${esc(r.dove)}</div></div><div class="small">${esc(r.cosa)}</div></div>`).join('')}</div></div>`:''}
+  </div>`:''}`;
+}
+
 /* ---- lettore documenti (riusa l'overlay) ---- */
 function openDoc(title, html){
   const ov=$('#overlay'), rd=$('#reader');
@@ -1072,6 +1246,75 @@ function injectStyles(){
   .md-body code{font-family:'Spline Sans Mono',monospace;font-size:.9em}
   .md-body hr{border:none;border-top:1px solid rgba(0,0,0,.12);margin:14px 0}
   .repo-img{background:rgba(0,0,0,.04)}
+
+  /* ---- stato reference (badge) ---- */
+  .stbadge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+  .stbadge::before{content:"";width:7px;height:7px;border-radius:50%}
+  .stbadge.ok{background:rgba(60,107,74,.16);color:#2f5b3c;border-color:rgba(60,107,74,.3)}
+  .stbadge.ok::before{background:#3c6b4a}
+  .stbadge.wip{background:rgba(182,138,62,.14);color:var(--cord-deep);border-color:rgba(182,138,62,.32)}
+  .stbadge.wip::before{background:var(--cord)}
+  .chip.small{font-size:11px;padding:3px 8px;gap:5px}
+
+  /* ---- slot-ritratto d'entità (foto o placeholder+stato) ---- */
+  .entshot{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(135deg,var(--stone-1),var(--stone-2));border:1px solid var(--line-s)}
+  .entshot .entph{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px;z-index:1}
+  .entshot > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;background:var(--stone-1)}
+  .entref{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-s)}
+  .entref-txt{min-width:0;flex:1}
+
+  /* ---- Archi & Trama ---- */
+  .arc{margin:22px 0;padding-left:16px;border-left:3px solid var(--arc,var(--cord))}
+  .arc-hd h3{font-size:24px;font-family:'Fraunces',serif;margin:2px 0}
+  .arc-hd .arc-sub{font-size:12.5px;color:var(--ink-2);font-family:'Spline Sans Mono',monospace}
+  .ep-list{margin-top:12px;display:grid;gap:8px}
+  details.ep{background:var(--stone-card);border:1px solid var(--line-s);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  details.ep > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 15px;flex-wrap:wrap}
+  details.ep > summary::-webkit-details-marker{display:none}
+  details.ep > summary::before{content:"›";font-family:'Fraunces',serif;font-size:20px;color:var(--cord-deep);transition:transform .18s;flex:0 0 auto}
+  details.ep[open] > summary::before{transform:rotate(90deg)}
+  .ep-id{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--cord-deep);font-weight:600;flex:0 0 auto}
+  .ep-ttl{font-family:'Fraunces',serif;font-size:17px;flex:1;min-width:120px}
+  .ep-tags{display:flex;gap:5px;flex-wrap:wrap}
+  .tag.ep-type{background:var(--stone-1);color:var(--ink-2)}
+  .tag.ep-type.cardine{background:rgba(204,125,158,.16);color:var(--glow-deep)}
+  .tag.ep-type.stazione{background:rgba(63,110,146,.14);color:var(--turchino)}
+  .tag.ep-type.viaggio{background:rgba(182,138,62,.14);color:var(--cord-deep)}
+  .tag.ep-type.respiro{background:rgba(60,107,74,.14);color:#3c6b4a}
+  .tag.nodo{background:rgba(204,125,158,.18);color:var(--glow-deep)}
+  .tag.toraki{background:var(--stone-1);color:var(--ink-1);border:1px solid var(--line-s)}
+  .ep-body{padding:2px 15px 16px;border-top:1px solid var(--line-s)}
+  .ep-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+  .ep-meta .chip.serpe{background:rgba(176,70,58,.12);color:var(--vermiglio);border-color:rgba(176,70,58,.28)}
+  .ep-tentline{margin-top:10px}
+  .ep-tent{display:inline-block;font-size:12.5px;background:rgba(182,138,62,.1);border:1px solid rgba(182,138,62,.28);border-radius:8px;padding:5px 10px;color:var(--cord-deep)}
+  .ep-tent.nodo{background:rgba(204,125,158,.12);border-color:rgba(204,125,158,.32);color:var(--glow-deep)}
+  .ep-spina{margin-top:10px}
+  .ep-spina .kv .k{min-width:82px}
+  .ep-seeds{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .seedlist{margin:6px 0 0;padding-left:16px;font-size:13px;color:var(--ink-1)}
+  .seedlist li{margin-bottom:4px}
+  .seedto{color:var(--glow-deep);font-weight:600} .seedfrom{color:var(--turchino);font-weight:600}
+  .ep-threads{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+  .threads{display:grid;gap:8px}
+  .thread-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-s);flex-wrap:wrap}
+  .thread-row:last-child{border-bottom:0}
+  .thread-lbl{font-size:13.5px;color:var(--ink-1);min-width:140px;flex:1}
+  .thread-flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .flowarr{font-size:11px;color:var(--ink-2);font-style:italic;font-family:'Fraunces',serif}
+  .pin{font-family:'Spline Sans Mono',monospace;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:7px;background:var(--stone-1);border:1px solid var(--line-s);color:var(--ink-1)}
+  .pin.plant{background:rgba(182,138,62,.14);color:var(--cord-deep);border-color:rgba(182,138,62,.3)}
+  .pin.bloom{background:rgba(204,125,158,.14);color:var(--glow-deep);border-color:rgba(204,125,158,.3)}
+  .pin.toraki{background:var(--vespro-3);color:#e9dfc8;border-color:var(--cord-deep)}
+
+  /* ---- cruscotto luoghi ---- */
+  .luoghi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .luogocard{background:var(--stone-card);border:1px solid var(--line-s);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .luogocard .lc-body{padding:12px 14px}
+  .lc-name{font-family:'Fraunces',serif;font-size:16px;line-height:1.2}
+  .lc-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:7px}
+
+  @media (max-width:860px){ .ep-seeds{grid-template-columns:1fr} .entref{flex-direction:column} }
   `;
   const st=document.createElement('style'); st.id='regia-extra-css'; st.textContent=css; document.head.appendChild(st);
 }
