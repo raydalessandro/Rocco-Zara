@@ -52,7 +52,7 @@ Personaggi: 38 · Luoghi: 16 · Creature d'episodio: vedi §6.
 - **status**: da_generare
 
 ### Cècca — `char_cecca`
-- **specie**: character
+- **specie**: gazza
 - **reference**: gazza; lo scatto della testa verso ogni riflesso, l'occhio già altrove su qualcosa che brilla; frammenti lucenti fra le penne. Precisa, finché qualcosa non luccica.
 - **status**: da_generare
 

@@ -13,7 +13,7 @@ import type {
   SagaContext,
   SagaGraph,
 } from "./types";
-import { resolveCharacterVoice, displayNameOf } from "./voices";
+import { resolveCharacterVoice, displayNameOf, sheetOf, entityOf } from "./voices";
 import { characterEntityId, locationEntityId } from "./entities";
 import { applyPcg } from "./pcg";
 import { buildMondo } from "./mondo";
@@ -83,8 +83,8 @@ function regnoNome(canon: Canon, regnoId: string): string {
 }
 
 function speciesOf(castId: string, canon: Canon): string {
-  const sheet = canon.characters[castId];
-  return sheet?.species || "";
+  const sheet = sheetOf(castId, canon);
+  return sheet?.species || entityOf(castId, canon)?.species || "";
 }
 
 /** humanizza un id-luogo ("collina_incontro" → "Collina Incontro"). */
@@ -142,6 +142,12 @@ function buildNarratorBrief(ep: EpisodeNode, canon: Canon, graph: SagaGraph): st
   }
   if (Array.isArray(ep.active_constraints_touched) && ep.active_constraints_touched.length) {
     L.push(`Vincoli attivi qui: ${ep.active_constraints_touched.join("; ")}.`);
+  }
+  // callback del grafo (audit di stagione, C2): un richiamo cablato è un'istruzione
+  // di scrittura — l'eco di una scena passata, con peso nuovo, senza dirlo.
+  for (const cbId of ep.callbacks || []) {
+    const cb = graph.callbacks?.[cbId];
+    if (cb?.what) L.push(`Richiama (da ${cb.from || "prima"}), senza nominarlo: ${cb.what}.`);
   }
   // §6.1 — semi che FIORISCONO qui (piantati prima): nota di pagamento al brief.
   const bloomed = Array.from(
@@ -268,9 +274,18 @@ export function buildSeed(
   };
 
   // --- estensione-contenuti (§6): semi/motivo/debito ---
-  const seed_contents: string[] = (ep.seeds_planted || []).map(
+  // §C1 (audit di stagione): gli slot-semi che non ospitano un seme di stagione
+  // restavano `[tipo]` — 64/72 nella stagione. I volumi però il contenuto l'hanno
+  // già scritto: il dettaglio personale e il pugno SONO semi (si piantano piano,
+  // tornano con peso). Li si candida in coda, marcati ⚠ finché Ray non ratifica
+  // scrivendo il seme vero nel grafo (che, quando c'è, vince per posizione).
+  const seasonTexts: string[] = (ep.seeds_planted || []).map(
     (id) => graph.seeds?.[id]?.what ?? `[${id}]`,
   );
+  const candidati: string[] = [];
+  if (personal_detail) candidati.push(`${personal_detail} ⚠ (candidato: dal dettaglio personale)`);
+  if (pugno && pugno !== personal_detail) candidati.push(`${pugno} ⚠ (candidato: dal pugno — piantalo piano, molto prima che colpisca)`);
+  const seed_contents: string[] = [...seasonTexts, ...candidati];
   const recurring_motif = pickRitornelloEssence(ep, canon);
   const openedHere = ep.debts_opened?.[0];
   const debt_content = openedHere

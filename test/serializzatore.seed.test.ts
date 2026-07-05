@@ -75,8 +75,13 @@ describe("§3 mappatura episodio → SeedExt (ep_demo)", () => {
 
   it("§6 contenuti: seed_contents (piantato), recurring_motif (ritornello), debt_content (debito aperto)", () => {
     const seed = serializeEpisode("ep_demo", { graph, canon, root: ROOT });
-    // pianta seed_segno → seed_contents = [contenuto del seme]
-    expect(seed.seed_contents).toEqual([graph.seeds["seed_segno"].what]);
+    // pianta seed_segno → seed_contents[0] = contenuto del seme; in coda i
+    // candidati auto (⚠, da dettaglio/pugno — audit di stagione, C1)
+    const contenuti = seed.seed_contents ?? [];
+    expect(contenuti[0]).toBe(graph.seeds["seed_segno"].what);
+    for (const extra of contenuti.slice(1)) {
+      expect(extra).toMatch(/⚠ \(candidato/);
+    }
     // nodo annodato qui → ritornello #5 (la pietra che si lascia, tiepida)
     const r5 = canon.ritornelli.find((r) => r.n === 5)?.essence;
     expect(seed.recurring_motif).toBe(r5);

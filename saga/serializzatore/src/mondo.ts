@@ -75,7 +75,15 @@ const asStr = (v: unknown): string => {
 };
 const cut = (s: unknown, n: number) => {
   const t = asStr(s).replace(/\s+/g, " ").trim();
-  return t.length <= n ? t : `${t.slice(0, n - 1).trimEnd()}…`;
+  if (t.length <= n) return t;
+  // mai a metà parola (audit di stagione, B2): confine di frase se cade oltre
+  // metà budget, altrimenti l'ultima parola intera che ci sta.
+  const head = t.slice(0, n);
+  const frase = Math.max(head.lastIndexOf(". "), head.lastIndexOf("; "));
+  if (frase >= Math.floor(n * 0.55)) return t.slice(0, frase + 1); // frase compiuta: si chiude senza ellissi
+  const spazio = head.lastIndexOf(" ");
+  const at = spazio > 0 ? spazio : n - 1;
+  return `${t.slice(0, at).replace(/[\s,;·]+$/, "")}…`;
 };
 
 // ---------- lessico: nomi reali → canonici; guardia anti-nome-reale ----------
@@ -151,7 +159,7 @@ function vociRegno(slug: string) {
   const tras: string[] = [];
   for (const [k, val] of Object.entries(v?.trasversali || {})) {
     const reg = typeof val === "string" ? val : val?.registro || "";
-    if (reg) tras.push(`${k}: ${cut(reg, 70)}`);
+    if (reg) tras.push(`${k}: ${cut(reg, 110)}`);
   }
   return { voci: entry?.voci || {}, trasversali: tras };
 }
@@ -245,8 +253,8 @@ function secZona(ep: EpisodeNode, slug: string): string | null {
   const descr = zone[zonaCap];
   const geo = zoneGeo.find((z) => (z.tipo || "") === zonaCap)?.luogo;
   const parts = [
-    soZona ? `qui: ${cut(applicaLessico(soZona), 90)}` : null,
-    descr ? cut(descr, soZona ? 70 : 90) : null,
+    soZona ? `qui: ${cut(applicaLessico(soZona), 140)}` : null,
+    descr ? cut(descr, soZona ? 120 : 140) : null,
     geo && geo !== soZona ? `(faunario: ${cut(applicaLessico(geo), 60)})` : null,
   ].filter(Boolean);
   return parts.length ? `ZONA (${zonaCap}): ${parts.join(" — ")}.` : null;
@@ -262,13 +270,13 @@ function secPresenze(ep: EpisodeNode, slug: string): string | null {
   const pick = [c[i1], i2 !== i1 ? c[i2] : c[(i2 + 1) % c.length]].filter(Boolean);
   const fmt = (x: NonNullable<Societa["classi"]>[number]) =>
     `${x.nome}${x.animali?.length ? ` (${x.animali[0]})` : ""} — ${cut(x.ruolo_sociale || "", 55)}`;
-  const tens = so.tensione_viva ? ` · tensione viva: ${cut(applicaLessico(so.tensione_viva), 110)}` : "";
+  const tens = so.tensione_viva ? ` · tensione viva: ${cut(applicaLessico(so.tensione_viva), 170)}` : "";
   return `PRESENZE (società): ${pick.map(fmt).join("; ")}${tens}.`;
 }
 
 function secVoci(slug: string): string | null {
   const { voci, trasversali } = vociRegno(slug);
-  const entries = Object.entries(voci).slice(0, 3).map(([k, v]) => `${k}: ${cut(v?.registro || "", 55)}`);
+  const entries = Object.entries(voci).slice(0, 3).map(([k, v]) => `${k}: ${cut(v?.registro || "", 110)}`);
   const tras = trasversali.length ? ` · trasversali → ${trasversali.join("; ")}` : "";
   return entries.length ? `VOCI (registri del regno): ${entries.join("; ")}${tras}.` : null;
 }
@@ -332,10 +340,20 @@ function trovaLuogo(nomeGrezzo: string, slug: string): LuogoIdx | null {
   if (!target) return null;
   const rn = REGNO_NUM[slug];
   const pool = indiceLuoghi().filter((l) => rn == null || l.regno === rn || l.regno === String(rn));
+  // token portanti (via articoli/preposizioni): «collina_incontro» deve trovare
+  // «la Collina dell'Incontro» (audit di stagione, B7 — il luogo-origine mancava).
+  const FUNZ = new Set(["il", "lo", "la", "le", "li", "i", "gli", "un", "uno", "una", "l", "di", "del", "dei", "della", "delle", "dell", "degli", "d", "da", "dal", "e", "a", "al", "alla"]);
+  const tokens = (s: string) => norm(s).split("_").filter((t) => t && !FUNZ.has(t));
+  const tTok = tokens(target.replace(/_/g, " "));
   return (
     pool.find((l) => norm(l.nome || "") === target) ||
     pool.find((l) => norm(l.nome || "").includes(target) || target.includes(norm(l.nome || ""))) ||
-    null
+    (tTok.length
+      ? pool.find((l) => {
+          const nTok = new Set(tokens(l.nome || ""));
+          return tTok.every((t) => nTok.has(t));
+        }) || null
+      : null)
   );
 }
 function secLuogoGeo(ep: EpisodeNode, slug: string): { line: string | null; info: { cella?: string; margine_km?: number; vicini?: string[] } } {
@@ -364,11 +382,23 @@ function secMorfologia(slug: string): string | null {
   if (!z) return null;
   const biomi = Object.entries(z.biomi || {}).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([b]) => b).join("/");
   const range = ZONE_RANGE[key] ? ` ${ZONE_RANGE[key]}` : "";
-  const ril = (z.rilievi || []).slice(0, 2).map((r) => {
+  const ril0 = (z.rilievi || []).slice(0, 2).map((r) => {
     const canon = applicaLessico(r.name || "");
     const isCanon = canon !== (r.name || "") || nomiCanonici().has(canon);
-    return isCanon && canon ? `${canon} (~${r.quota} m)` : `una cima${range} (~${r.quota} m)`;
+    return { label: isCanon && canon ? canon : `una cima${range}`, quota: r.quota };
   });
+  // stessa etichetta due volte → una voce aggregata (audit di stagione, B4)
+  const ril: string[] = [];
+  for (let i = 0; i < ril0.length; i++) {
+    const r = ril0[i];
+    const gemella = i + 1 < ril0.length && ril0[i + 1].label === r.label ? ril0[++i] : null;
+    if (gemella) {
+      const due = r.label.startsWith("una cima") ? r.label.replace(/^una cima/, "due cime") : `due cime: ${r.label}`;
+      ril.push(`${due} (~${r.quota} e ~${gemella.quota} m)`);
+    } else {
+      ril.push(`${r.label} (~${r.quota} m)`);
+    }
+  }
   const parts = [
     z.quota_min != null && z.quota_max != null ? `quote ${z.quota_min}–${z.quota_max} m` : null,
     biomi ? `biomi dominanti: ${biomi}` : null,
@@ -511,7 +541,7 @@ export function buildMondo(
       `REGNO: ${r.nome || slug} — governo: ${cut(r.governo || "?", 60)}${r.leader?.archetipo ? ` — vertice: ${r.leader.archetipo}${tratti ? ` (${tratti})` : ""}` : ""}.`,
     );
     if (r.ruolo_nel_viaggio) L.push(`RUOLO NEL VIAGGIO: ${cut(applicaLessico(r.ruolo_nel_viaggio), 120)}.`);
-    if (r.prompt_scrittura_base) L.push(`SCRITTURA (base regno): ${cut(applicaLessico(r.prompt_scrittura_base), 200)}`);
+    if (r.prompt_scrittura_base) L.push(`SCRITTURA (base regno): ${cut(applicaLessico(r.prompt_scrittura_base), 300)}`);
     info.nome = r.nome;
   }
   const push = (x: string | null) => { if (x) L.push(x); };
