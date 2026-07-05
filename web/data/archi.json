@@ -1,0 +1,57 @@
+{
+ "_nota": "Livello narrativo (prosa editoriale) del Percorso & Archi. La VERITÀ della trama (episodi, semi, debiti, richiami, nodi) è nel grafo canonico saga/trama/saga_graph.json: qui vive solo il cappello di prosa per arco e le etichette leggibili degli id del grafo. Se il grafo aggiunge un seme/debito/episodio, la sezione si aggiorna da sola (le etichette mancanti ripiegano sull'id ripulito).",
+ "cappelli": {
+  "arco_origine": {
+   "titolo": "Origine — La Soglia",
+   "regni": "Soglia di Spondalta · B1",
+   "cappello": "L'innesco. Zara fugge il compito troppo grande lasciatole da Toraki e inciampa in Rocco, fuori posto esattamente quanto lei; una tempesta li costringe insieme una notte e non se ne vanno più soli. Da qui partono tutti i semi della stagione."
+  },
+  "arco_laghi": {
+   "titolo": "I Laghi del Vespro",
+   "regni": "Laghi del Vespro · il regno-specchio",
+   "cappello": "Il regno dei riflessi, che dovrebbe essere «casa» per Zara e invece non la riconosce ancora. Per annodare il primo nodo deve prima farsi annodare nella rete — fare qualcosa di memorabile per i Laghi. Uno specchio-lince la costringe a guardarsi davvero."
+  },
+  "arco_conca": {
+   "titolo": "La Conca Ruggente",
+   "regni": "Conca Ruggente · fieramente libera",
+   "cappello": "Il regno che si tiene libero per orgoglio, dove l'aiuto arriva da furbi e imbroglioni, non da saggi. Sul Luogo Antico R&Z notano per la prima volta che i segni si somigliano. Dietro, l'esattore Artiglio entra sul serio."
+  },
+  "arco_ducato": {
+   "titolo": "Il Gran Ducato della Serpe",
+   "regni": "Gran Ducato · la terra d'origine di Rocco",
+   "cappello": "La patria della Serpe e il mondo da cui Rocco viene: attraversarla vuol dire cambiare pelle, tra tributi, posti di blocco ed esattori. Il suo Luogo Antico è sepolto sotto la corte — qui non si annoda nessun nodo: è l'ombra lungo tutto il viaggio."
+  },
+  "arco_savi": {
+   "titolo": "La Piana dei Savi",
+   "regni": "Piana dei Savi · oltre il Gran Fiume",
+   "cappello": "Il midpoint della stagione, dopo il grande attraversamento d'acqua. I Dotti «smontano» il Cordone a parole e Zara ci crede e molla; la fede di Rocco e la sua ombra la reggono. Da qui non è più «completare», è «arrivare prima»: l'orologio parte."
+  },
+  "arco_selva": {
+   "titolo": "La Selva di Mezzo",
+   "regni": "Selva di Mezzo · il bosco senza legge",
+   "cappello": "Dopo regni così politici, un bosco-anarchia dove nessuno comanda e nessuno protegge: l'assenza di struttura è straniante. Qui le tracce di Toraki si fanno fitte. Il Mastino blocca il valico — il muro leale, fino al tragico."
+  },
+  "arco_leone": {
+   "titolo": "Le Terre del Leone di Pietra",
+   "regni": "Terre del Leone di Pietra · dove Toraki aspetta",
+   "cappello": "I liberi non sono idealizzati: le città rivali litigano tra loro proprio sull'orlo del finale. L'ultima corsa è R&Z contro Viscardo, verso le Pietre del Leone — le più antiche di tutte — dove Toraki, finalmente, aspetta."
+  }
+ },
+ "semi": {
+  "seed_cordone_incompiuto": "il Cordone lasciato a metà da Toraki",
+  "seed_prima_pietra_tiepida": "la prima pietra tiepida",
+  "seed_cecca_ha_visto": "Cècca ha visto — e riferirà",
+  "seed_pegno_laghi": "il pegno dei Laghi (rubato)",
+  "seed_quinto_colonna": "il quinto colonna — chi tradisce dall'interno",
+  "seed_esattore": "l'esattore della Serpe",
+  "seed_segni_somiglianti": "i segni antichi che si somigliano",
+  "seed_luogo_sepolto": "il Luogo sepolto sotto la corte"
+ },
+ "debiti": {
+  "debt_mastino": "il debito col Mastino — aperto al valico"
+ },
+ "richiami": {
+  "cb_tempesta_ep01": "la tempesta dell'incontro (ep01)",
+  "cb_ombra_ep01": "l'ombra di Rocco come riparo (ep01)"
+ }
+}

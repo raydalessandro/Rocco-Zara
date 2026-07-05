@@ -6,9 +6,10 @@
   "stato": [
    "Geografia: DEFINITIVA (6 regni, capitali, rete urbana, luoghi antichi).",
    "Bibbia personaggi: Rocco, Zara, Toraki, cast della Serpe — campi-canone bloccati.",
-   "Scheletro di stagione: 6 movimenti, scritto dal finale all'indietro.",
-   "Grafo episodi (saga_graph.json): ancora vuoto — si popola un arco alla volta.",
-   "Prossimo passo deciso: prima le reference visive, poi riempire i movimenti in episodi."
+   "Trama di stagione: 6 volumi · 24 puntate · 7 archi, scritta dal finale all'indietro.",
+   "Grafo episodi (saga_graph.json): pieno — ep01 dettagliato, ep02–24 stub ricchi; semi, debiti e richiami collegati.",
+   "Registro entità: 55 voci (38 personaggi, 16 luoghi, 1 oggetto); 5 reference confermate, il resto da generare.",
+   "Prossimo passo: reference visive (ritrattista) e prosa una pagina alla volta (prosatore)."
   ]
  },
  "motore": {
