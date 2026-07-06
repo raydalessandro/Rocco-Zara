@@ -1,6 +1,6 @@
 # CARTA DELLA VOCE — Rocco & Zara
 
-**Versione:** 0.1
+**Versione:** 0.2
 **Stato:** bloccata per la scrittura (rivedibile con l'uso)
 **Derivata da:** metodo della `CARTA_VOCE` di isola (firma/variabili/tabù) + il selettore
 a 4 assi · contenuto **nativo di R&Z** (non riskin di isola).
@@ -105,6 +105,29 @@ storia, sempre con eco d'azione).
 
 ---
 
+### §1.9 Il favolista e la «legge piccola» — ARCHITRAVE
+Il narratore di R&Z non è una camera: è un **favolista appena sopraelevato** — sta coi
+personaggi ma conosce il mondo, e ogni tanto lo dice. I suoi dispositivi (validati sul
+Volume 1, edizione PCG):
+- **La legge piccola:** gesto concreto → regola breve del mondo → ritorno al fatto, spesso
+  con lo scatto corto («…quando un corno ti cresce storto impari presto a girare la testa
+  così che non si veda. *La girò.*» · «quando uno è piccolo il freddo lo trova prima» ·
+  «Certe cose, se le nomini, scappano»). **Quota: 2–3 per capitolo, mai in chiusura di
+  pagina** — lì diventerebbe morale.
+- **Il contro-colpo secco:** il narratore smentisce il personaggio con due parole a terra
+  («Non era terra sua.» · «*Si era fatto pungere.*») — al massimo 1 per capitolo, comico
+  o rivelatore.
+- **La mano del cantastorie:** ordina il racconto a voce alta («Ma quello viene dopo.
+  Prima c'è il villaggio, e prima ancora c'è una voce.») — raro: apre movimenti, mai
+  dentro le scene.
+- **Il doppio sguardo di scala:** la stessa cosa misurata dai due corpi (il fosso: un
+  salto per lei, un passo per lui) — quando i due condividono la scena, almeno una volta.
+- *Falsif:* la legge piccola in chiusura di pagina; più di tre per capitolo; il favolista
+  che legifera sulle emozioni invece che sul mondo.
+- **Gerarchia di voce:** questo indirizzo è **architrave**; gli assi-override del nodo
+  (§4) plasmano come **spezia**. In conflitto, vince la Carta.
+
+
 ## §2. LE VARIABILI — devono oscillare
 
 Antidoto all'omogeneità: ogni storia sceglie **diversamente** dalla precedente.
@@ -164,13 +187,15 @@ Eredita i tabù di isola e ne aggiunge di nostri:
 ```yaml
 carta_voce:
   id: rocco_e_zara
-  versione: "0.1"
+  versione: "0.2"
   universali:
     - "la stranezza è sempre fisica: mai energia/anima/magia, solo cose"
     - "l'espressività poggia su un fatto che si tocca: mai l'affermazione astratta"
     - "concreto a tratti singoli: un dettaglio perfetto batte tre buoni; nel dubbio taglia"
     - "EAR e cosmologia invisibili: mai nominati a nessuno strato"
     - "le figure si pescano solo dal mondo animale (corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi e rete); mai arnesi o pratiche umane (aratro, ruota, moneta, ferro battuto, stoffa tinta, orologio, libro): se affiorano, reindirizza alla cosa-animale più vicina (vedi METAFORE.md)"
+    - "il narratore è un favolista appena sopraelevato: può dire la legge piccola del mondo — gesto concreto che diventa regola breve e torna al fatto — 2-3 per capitolo, mai in chiusura di pagina; concesso 1 contro-colpo secco per capitolo e, dove i due condividono la scena, il doppio sguardo di scala"
+    - "gerarchia di voce: l'indirizzo della Carta (respiro/narratore/luce/verso) è architrave; gli assi-override del nodo sono spezia — in conflitto vince la Carta"
   assi:
     respiro:
       ruolo: secondario   # sintassi
