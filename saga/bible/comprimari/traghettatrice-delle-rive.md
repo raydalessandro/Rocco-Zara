@@ -57,8 +57,8 @@ voce_personaggio:
   name: <dal lessico>
   role: comprimario
   archetype: la barcaiola proverbiale — concreta, calda, d'acqua
-  underStress: torna ai proverbi, si fa pratica e spiccia
-  ritmo: frase breve e proverbiale, immagini d'acqua e di nodo
+  underStress: "lavora più veloce e parla più corto: è il gesto a finire la frase"
+  ritmo: "la frase cammina col lavoro: spezzata dai gesti, verbi davanti — riprende dove il remo la lascia; immagini d'acqua e di nodo"
   words: il nodo tiene / rete / corrente / a parole no
   never: promette "a parole vuote"
 ```

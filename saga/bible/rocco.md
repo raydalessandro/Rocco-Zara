@@ -69,8 +69,8 @@ voce_personaggio:               # Tier 2 — = CharacterVoice (lib/types.ts)
   role: "protagonista"
   archetype: "il grande goffo — gentile, sincero, premuroso (forza nascosta)"
   underStress: "si scusa, esita prima di osare; quando si fida agisce con decisione"
-  ritmo: "frasi semplici, lessico concreto"
-  words: "Scusa! / concreto, cose che si toccano"
+  ritmo: "frasi semplici che atterrano: quando la pagina si fa lirica, lui la rompe con un fatto concreto"
+  words: "Scusa! / immagini terrestri che sembrano sbagliate e sono esatte («Lui è l'acqua. Voi due siete ancora pioggia.»)"
   never: "una vanteria; non si mette mai al centro"
 
 # repertorio_crescita (PCG) — verbi FISICI del focal per banda dell'asse di crescita.
