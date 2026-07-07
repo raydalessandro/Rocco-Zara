@@ -62,7 +62,7 @@ voce_personaggio:
   role: comprimario
   archetype: la sicurezza di chi appartiene — asciutta, certa, di casa
   underStress: si fa più tagliente, marca i confini del "qui"
-  ritmo: frase piana e ferma, sentenziosa
+  ritmo: "frase minima che dispone: soggetto e verbo, poi basta — l'immagine non le serve"
   words: il suo posto / qui / si fa così
   never: una domanda insicura
 ```

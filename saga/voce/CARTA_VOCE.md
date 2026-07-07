@@ -1,6 +1,6 @@
 # CARTA DELLA VOCE — Rocco & Zara
 
-**Versione:** 0.2
+**Versione:** 0.3
 **Stato:** bloccata per la scrittura (rivedibile con l'uso)
 **Derivata da:** metodo della `CARTA_VOCE` di isola (firma/variabili/tabù) + il selettore
 a 4 assi · contenuto **nativo di R&Z** (non riskin di isola).
@@ -128,6 +128,22 @@ Volume 1, edizione PCG):
   (§4) plasmano come **spezia**. In conflitto, vince la Carta.
 
 
+### §1.10 La distanza fra le voci
+La firma del favolista è una; le bocche sono tante. **Prova dei nomi coperti**: in ogni scena
+a più voci, coperti i nomi, si deve riconoscere chi parla. Ancore (validate sul Volume 1):
+- **chi lavora parlando** (Brénta-tipo): la frase cammina col lavoro — spezzata dai gesti,
+  verbi davanti; riprende dove il remo la lascia. («Succede ai migliori.» *Nodo.* «L'acqua è
+  vera due volte.» *Colpo di remo.*)
+- **chi appartiene** (Cervara-tipo): frase minima che dispone — soggetto e verbo; l'immagine
+  non le serve. («Il peso prima. Tu lo porti meglio. Vai.»)
+- **chi rompe la poesia** (Rocco): quando la pagina sale, lui atterra — immagini terrestri
+  che sembrano sbagliate e sono esatte. («Lui è l'acqua. Voi due siete ancora pioggia.» ·
+  «Ho freddo alle ginocchia.»)
+- **chi ricorda** (Custode-tipo): verdetti di tre parole, pietre posate — mai una figura.
+- *Falsif:* due personaggi scambiabili nella stessa scena; un comprimario che legifera con
+  la cadenza del narratore.
+
+
 ## §2. LE VARIABILI — devono oscillare
 
 Antidoto all'omogeneità: ogni storia sceglie **diversamente** dalla precedente.
@@ -187,7 +203,7 @@ Eredita i tabù di isola e ne aggiunge di nostri:
 ```yaml
 carta_voce:
   id: rocco_e_zara
-  versione: "0.2"
+  versione: "0.3"
   universali:
     - "la stranezza è sempre fisica: mai energia/anima/magia, solo cose"
     - "l'espressività poggia su un fatto che si tocca: mai l'affermazione astratta"
@@ -195,6 +211,7 @@ carta_voce:
     - "EAR e cosmologia invisibili: mai nominati a nessuno strato"
     - "le figure si pescano solo dal mondo animale (corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi e rete); mai arnesi o pratiche umane (aratro, ruota, moneta, ferro battuto, stoffa tinta, orologio, libro): se affiorano, reindirizza alla cosa-animale più vicina (vedi METAFORE.md)"
     - "il narratore è un favolista appena sopraelevato: può dire la legge piccola del mondo — gesto concreto che diventa regola breve e torna al fatto — 2-3 per capitolo, mai in chiusura di pagina; concesso 1 contro-colpo secco per capitolo e, dove i due condividono la scena, il doppio sguardo di scala"
+    - "la musica è del favolista, non dei personaggi: in dialogo la cantilena si spezza, e ognuno la rompe a modo suo (il lavoro, il minimo, il concreto) — prova dei nomi coperti: se copri i nomi e non riconosci chi parla, la battuta si riscrive"
     - "gerarchia di voce: l'indirizzo della Carta (respiro/narratore/luce/verso) è architrave; gli assi-override del nodo sono spezia — in conflitto vince la Carta"
   assi:
     respiro:

@@ -61,7 +61,7 @@ voce_personaggio:
   role: comprimario
   archetype: il naturalista anziano — osservativo, enciclopedico, pacato
   underStress: si rifugia nell'osservazione, annota invece di agire
-  ritmo: periodo disteso, sentenzioso, un filo latino
+  ritmo: "verdetti di tre parole, pietre posate: mai una figura, mai un aggettivo"
   words: ho osservato che / annoto / la natura insegna
   never: dice "non so" senza aver prima osservato e annotato
 ```
