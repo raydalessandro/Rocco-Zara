@@ -110,6 +110,16 @@
 - [ ] **Viewer geo morto** (corsia cartografo): `saga/cartografia/viewer/` fetcha
       `../island.geojson` che non esiste (residuo isola). Da ricablare sul geo pack
       (`geo/*.geojson`) o rimuovere.
+- [ ] **Prosa — debiti tracciati (dalla verifica dei 20 capitoli, corsia prosatore):**
+  - **METAFORE §2 — sistemi di regno da formalizzare** (decisione di canone, non di prosa):
+    l'apparato *molo/impalcatura* delle Rive-Conca (ep05, "molo" ×14) e la *scrittura fuori
+    dalla Serpe* di Savenza (ep14–16) sono in tensione con METAFORE §3/§4; i brief li davano
+    già per "⚠ da formalizzare in METAFORE §2". Scelta: formalizzare il doc **oppure**
+    reindirizzare la prosa.
+  - **ep08 Pagina 10 — legge piccola in chiusura (§1.9)**: «Certe domande si lasciano intere,
+    come i nodi degli altri.» — tenuta *per scelta d'autore* (piace l'originale); rivedere alla fine.
+  - **Passata di leggibilità 6–8 anni**: "cosine" arcaiche / italiano poco usato sparse nei
+    capitoli (es. "occhio a conto") — spesso basta cambiare una parola. Giro dedicato, in blocco.
 - [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
       comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
