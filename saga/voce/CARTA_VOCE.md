@@ -1,6 +1,6 @@
 # CARTA DELLA VOCE — Rocco & Zara
 
-**Versione:** 0.3
+**Versione:** 0.4
 **Stato:** bloccata per la scrittura (rivedibile con l'uso)
 **Derivata da:** metodo della `CARTA_VOCE` di isola (firma/variabili/tabù) + il selettore
 a 4 assi · contenuto **nativo di R&Z** (non riskin di isola).
@@ -203,7 +203,7 @@ Eredita i tabù di isola e ne aggiunge di nostri:
 ```yaml
 carta_voce:
   id: rocco_e_zara
-  versione: "0.3"
+  versione: "0.4"
   universali:
     - "la stranezza è sempre fisica: mai energia/anima/magia, solo cose"
     - "l'espressività poggia su un fatto che si tocca: mai l'affermazione astratta"
@@ -212,6 +212,8 @@ carta_voce:
     - "le figure si pescano solo dal mondo animale (corpo, movimento, sensi, acqua, pietra, fuoco, caccia, tana, nodi e rete); mai arnesi o pratiche umane (aratro, ruota, moneta, ferro battuto, stoffa tinta, orologio, libro): se affiorano, reindirizza alla cosa-animale più vicina (vedi METAFORE.md)"
     - "il narratore è un favolista appena sopraelevato: può dire la legge piccola del mondo — gesto concreto che diventa regola breve e torna al fatto — 2-3 per capitolo, mai in chiusura di pagina; concesso 1 contro-colpo secco per capitolo e, dove i due condividono la scena, il doppio sguardo di scala"
     - "la musica è del favolista, non dei personaggi: in dialogo la cantilena si spezza, e ognuno la rompe a modo suo (il lavoro, il minimo, il concreto) — prova dei nomi coperti: se copri i nomi e non riconosci chi parla, la battuta si riscrive"
+    - "carico cognitivo: per ogni doppia pagina il lettore assimila UNA sola novità-di-mondo davvero importante; le altre etichette del regno si distribuiscono, si rimandano o si tacciono"
+    - "pagina-respiro: ogni tanto una pagina esiste quasi solo per respirare — succede poco, e il lettore recupera fiato (modello: «Il molo lavorava già. Nessuno ci pensava più.»)"
     - "gerarchia di voce: l'indirizzo della Carta (respiro/narratore/luce/verso) è architrave; gli assi-override del nodo sono spezia — in conflitto vince la Carta"
   assi:
     respiro:
