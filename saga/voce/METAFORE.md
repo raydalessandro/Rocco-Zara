@@ -104,6 +104,10 @@ nativo.
 Non per incoerenza: perché il canone le ha già messe, e con un senso.
 - **il fuoco** e i **pigmenti minerali** (Notte dei Fuochi): esistono (`laghi_occidente/societa.md`).
 - **i nodi, le reti, la corda, il Cordone**: esistono — sono **scrittura, memoria e moneta**
+- **l'inchiostro, i registri, i libri di pelle e i timbri di Savenza**: esistono — la Dotta è il regno
+  degli scrivani («la legge vive nei libri e vale solo se letta ad alta voce», dal grafo). La scrittura
+  resta **assente negli altri regni liberi**; nella Serpe è **potere** (cera, mandati, registri): tre
+  culture della memoria — nodo, libro, sigillo. ⚠ *eccezione da ratificare (specchio della decisione-molo).*
   del mondo libero («qui non si scrive: si annoda e si rispecchia»).
 - **la barca** della Gente delle Rive (lontre «di barca»): esiste — canone della scheda
   `traghettatrice-delle-rive`. *(Si approda alla riva, allo scoglio — non a un molo costruito,

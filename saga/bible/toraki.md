@@ -99,3 +99,12 @@
 - **nome definitivo** (dal lessico).
 - **sorte esatta all'arrivo** (ricongiungimento? e poi?) — si decide al finale.
 > EAR ⟳, palette speculare bianco↔arancione e **occhi di giada**: **confermati**.
+
+### La ninna-nanna e il segno *(derivato dalla fonte-canzone «Tora-Ki» — ⚠ da confermare)*
+- La **ninna-nanna della Prima Tigre** (`prima_tigre.md`) è *sua di voce* per Zara: gliela cantava
+  nelle notti di vento. È la prima cosa di lui che il lettore incontra (ep02), prima dei nodi.
+- Gli **occhi di giada fermi** sono, nel mito di famiglia, il segno di chi deve andare avanti:
+  spiega perché è partito lui — e perché ha potuto **affidare** («lascio gli occhi di giada per
+  l'energia della tigre»: la giada sceglie l'energia; il precursore sceglie chi finisce).
+- A ep23 la riga diventa scena: *gli occhi di giada guardano gli occhi di giada* — fermi i suoi,
+  accesi i suoi riflessi. Nessuno dei due la dice.
