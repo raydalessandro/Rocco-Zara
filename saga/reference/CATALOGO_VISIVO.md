@@ -37,7 +37,7 @@
 - **nota di firma**: Il corno storto è la firma visiva di Rocco: non si "corregge" nelle illustrazioni.
 - **reference (registro)**: rinoceronte giovane, corporatura massiccia, pelle spessa; corno STORTO (firma visiva, non si corregge); zampe troppo grandi per il corpo; occhi gentili
 - **viste**: proposta `char_rocco_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_rocco/`
-- **status**: confermata
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_rocco_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### Zara — `char_zara`
 - **soggetto**: tigre
@@ -56,7 +56,7 @@
 - **nota di firma**: Occhi verdi + taglia minuta = firma visiva di Zara.
 - **reference (registro)**: tigre giovane, manto arancione a strisce nere, taglia piccola (giovane); occhi verdi che brillano; agile e veloce
 - **viste**: proposta `char_zara_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_zara/`
-- **status**: confermata
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_zara_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### lo Specchio di Zara ⚠nome dal lessico — `char_specchio_di_zara`
 - **soggetto**: lince (lo stemma del regno — lei ne è il vanto)
@@ -71,7 +71,7 @@
   - ancore colore: #c9b18e · #1f1c18 · #c2a35c
 - **reference (registro)**: lince giovane, lo stemma del regno; portamento dritto e a suo agio SENZA gonfiarsi (l'opposto di Zara); ciuffi sulle orecchie perfetti; la grazia di chi non ha mai dovuto dimostrare di appartenere
 - **viste**: proposta `char_specchio_di_zara_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_specchio_di_zara/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_specchio_di_zara_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### Toraki — `char_toraki`
 - **soggetto**: tigre bianca (Forestiera, "marcata")
@@ -90,7 +90,7 @@
 - **nota di firma**: Manto bianco + taglia maggiore = firma visiva di Toraki (lo distingue da Zara a colpo d'occhio).
 - **reference (registro)**: tigre BIANCA (strisce scure su manto bianco — l'inverso di Zara), più grande e adulta; occhi di giada (verde-pietra, fermo)
 - **viste**: proposta `char_toraki_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_toraki/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_toraki_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### Artiglio — `char_artiglio`
 - **soggetto**: falco (l'esattore della Serpe)
@@ -106,7 +106,7 @@
   - ancore colore: #4a5560 · #d8a020
 - **reference (registro)**: falco, l'esattore della Serpe; gira alto in cerchio prima di calare; gli artigli che stringe e flette quando cita il dovuto; lo sguardo che prezza chi ha sotto
 - **viste**: proposta `char_artiglio_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_artiglio/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_artiglio_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### Aspide — `char_aspide`
 - **soggetto**: vipera (il consigliere di corte)
@@ -121,7 +121,7 @@
   - ancore colore: #5d5a54 · #b9a26a (occhi)
 - **reference (registro)**: vipera, il consigliere; immobile, appena dietro il Signore, la voce all'orecchio; non colpisce mai allo scoperto: il veleno è nelle parole; sempre al margine della scena
 - **viste**: proposta `char_aspide_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_aspide/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_aspide_ritratto.png (rigenerare solo su richiesta)
 
 ### Bissa — `char_bissa`
 - **soggetto**: vipera (giovane — l'erede della Serpe)
@@ -136,7 +136,7 @@
   - ancore colore: #7a5f3a · #3c2f22
 - **reference (registro)**: vipera giovane, l'erede della Serpe; tesa dove Viscardo è immobile — avvolta e pronta a scattare in anticipo; il guizzo troppo svelto
 - **viste**: proposta `char_bissa_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_bissa/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_bissa_ritratto.png (rigenerare solo su richiesta)
 
 ### Cècca — `char_cecca`
 - **soggetto**: gazza (la spia della Serpe)
@@ -151,7 +151,7 @@
   - ancore colore: #1c2430 · #f0ece1 · #3f6d7a
 - **reference (registro)**: gazza; lo scatto della testa verso ogni riflesso, l'occhio già altrove su qualcosa che brilla; frammenti lucenti fra le penne. Precisa, finché qualcosa non luccica.
 - **viste**: proposta `char_cecca_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_cecca/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_cecca_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### Sòrcio — `char_sorcio`
 - **soggetto**: ratto (contrabbando e voci, per la Serpe)
@@ -167,7 +167,7 @@
   - ancore colore: #6e675f · #b9a98f
 - **reference (registro)**: ratto della Serpe; stracarico di refurtiva che gli scivola di continuo; si nasconde nel posto più sbagliato con aria soddisfatta; posa da gran professionista smentita dai fatti
 - **viste**: proposta `char_sorcio_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_sorcio/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_sorcio_FINALE.png (rigenerare solo su richiesta)
 
 ### Viscardo ⚠scheda mancante — `char_viscardo`
 - **soggetto**: vipera — anziana, grande (il doppio di Bissa)
@@ -186,7 +186,7 @@
   - ancore colore: #6b5a3a · #c9b78e · #c99a3e
 - **reference (registro)**: vipera anziana, il Signore della Serpe; immobile e paziente dove Bissa scatta — la costellazione è in cartografia/regni/pianura_alta/la_serpe.md
 - **viste**: proposta `char_viscardo_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_viscardo/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_viscardo_ritratto_v2.png (rigenerare solo su richiesta)
 
 ### il Cacciatore — `char_cacciatore`
 - **soggetto**: martora (predatore agile, instancabile) — adattabile al roster
@@ -201,7 +201,7 @@
   - ancore colore: #6a4a2c · #e0b64a
 - **reference (registro)**: martora, predatore instancabile; un orecchio strappato (una vecchia caccia finita male); al collo il dente di una cattura; ha già perso una volta e non lo perdona
 - **viste**: proposta `char_cacciatore_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_cacciatore/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_cacciatore_FINALE.png (rigenerare solo su richiesta)
 
 ### il Cittadino del Leone — `char_cittadino_leone`
 - **soggetto**: leone (lo stemma di Leonalba — la gloria civile)
@@ -216,7 +216,7 @@
   - ancore colore: #c29b5e · #8a5f2e
 - **reference (registro)**: leone, lo stemma di Leonalba; magnifico e tagliente, la criniera portata come un'incoronazione; parla scolpendo l'aria; guarda come per assegnarti un posto nella memoria
 - **viste**: proposta `char_cittadino_leone_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_cittadino_leone/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_cittadino_leone_FINALE.png (rigenerare solo su richiesta)
 
 ### il Custode anziano — `char_custode_anziano`
 - **soggetto**: testuggine di lago (longeva — la memoria fatta animale) — adattabile al roster
@@ -245,7 +245,7 @@
   - ancore colore: #8f8a82 · #4a4642 (croce)
 - **reference (registro)**: asino vecchio; grigio di muso, consumato come le pietre che cura; le zampe conoscono ogni lastra; lo si vede rassettare e tenere pulito, un gesto umile ripetuto da una vita; occhi caldi
 - **viste**: proposta `char_custode_pietre_leone_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_custode_pietre_leone/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_custode_pietre_leone_FINALE.png (rigenerare solo su richiesta)
 
 ### il Dotto che smonta — `char_dotto_che_smonta`
 - **soggetto**: gufo (l'occhio del sapere — stemma dei Savi; il dottore di Savenza)
@@ -260,7 +260,7 @@
   - ancore colore: #8a744f · #e3d8c0 · #d98e2b
 - **reference (registro)**: gufo, l'occhio del sapere; lo sguardo fisso che seziona — non sbatte le palpebre e ti guarda come un reperto; inclina la testa piano, come chi cerca le giunture di un oggetto
 - **viste**: proposta `char_dotto_che_smonta_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_dotto_che_smonta/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_dotto_che_smonta_FINALE.png (rigenerare solo su richiesta)
 
 ### il Giurato della parola data — `char_giurato`
 - **soggetto**: orso bruno (di confine — ruvido, enorme, lento a parlare)
@@ -275,7 +275,7 @@
   - ancore colore: #5b4632 · #8a7458
 - **reference (registro)**: orso bruno di confine, enorme e lento a parlare; cicatrici sugli avambracci, una per ogni parola tenuta a costo del sangue; quando dà la zampa, la stretta è un patto
 - **viste**: proposta `char_giurato_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_giurato/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_giurato_FINALE.png (rigenerare solo su richiesta)
 
 ### il Guardiano del guado — `char_guardiano_guado`
 - **soggetto**: garzetta (l'airone bianco; è nel roster dei Contadini/Argini del Gran Fiume) — adattabile
@@ -290,7 +290,7 @@
   - ancore colore: #eee9df · #c8b45a
 - **reference (registro)**: garzetta; l'immobilità — sta nell'acqua bassa fermo come un palo finché non si muove di colpo; una zampa segnata da una vecchia piena (segno naturale)
 - **viste**: proposta `char_guardiano_guado_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_guardiano_guado/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_guardiano_guado_FINALE.png (rigenerare solo su richiesta)
 
 ### il Marinaio del Mare — `char_marinaio`
 - **soggetto**: cormorano (marinaio-navigatore, pescatore preciso del mare di Marleone)
@@ -305,7 +305,7 @@
   - ancore colore: #22302c · #3f7a5f · #e9e4d6 (sale)
 - **reference (registro)**: cormorano di Marleone; incrostato di sale, l'occhio che strizza all'orizzonte misurando; gesti deliberati, mai affrettati; controlla due volte prima di muovere
 - **viste**: proposta `char_marinaio_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_marinaio/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_marinaio_FINALE.png (rigenerare solo su richiesta)
 
 ### il Mastino — `char_mastino`
 - **soggetto**: cane mastino (signore-condottiero dei valichi)
@@ -320,7 +320,7 @@
   - ancore colore: #a97e4f · #1d1b18 · #cbb693
 - **reference (registro)**: mastino, signore-condottiero dei valichi; piantato sul valico come una porta di fortezza; il ringhio che è orgoglio più che minaccia; cicatrici portate come medaglie; affronta a viso aperto
 - **viste**: proposta `char_mastino_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_mastino/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_mastino_ritratto.png (rigenerare solo su richiesta)
 
 ### il Mercante delle Vie — `char_mercante_vie`
 - **soggetto**: dromedario (mercante delle carovane sulle Vie)
@@ -335,7 +335,7 @@
   - ancore colore: #b99a6b · #7d6647
 - **reference (registro)**: dromedario delle carovane; la groppa sempre stracarica, l'occhio che prezza tutto in un battito; lento di passo, velocissimo di parola
 - **viste**: proposta `char_mercante_vie_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_mercante_vie/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_mercante_vie_FINALE.png (rigenerare solo su richiesta)
 
 ### il Montanaro delle incisioni — `char_montanaro`
 - **soggetto**: stambecco (montanaro d'altura, verso il Mare di Dentro)
@@ -350,7 +350,7 @@
   - ancore colore: #8d7f6b · #5a5148
 - **reference (registro)**: stambecco d'altura; corna ad anelli, uno per inverno, lette come un tronco; lo sguardo che va sempre prima al cielo; sta sul precipizio come su un sentiero piano
 - **viste**: proposta `char_montanaro_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_montanaro/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_montanaro_FINALE.png (rigenerare solo su richiesta)
 
 ### il Solitario — `char_solitario`
 - **soggetto**: gatto selvatico (solitario, guardingo)
@@ -365,7 +365,7 @@
   - ancore colore: #6d675c · #3f3b35
 - **reference (registro)**: gatto selvatico; sempre angolato per andarsene — il corpo già rivolto all'uscita mentre parla; tiene la distanza, ma gli occhi seguono tutto
 - **viste**: proposta `char_solitario_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_solitario/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_solitario_FINALE.png (rigenerare solo su richiesta)
 
 ### il giovane Disputante — `char_giovane_disputante`
 - **soggetto**: assiolo (giovane — dei Dotti, la disputa: piccolo, insonne, dal richiamo insistente)
@@ -395,7 +395,7 @@
   - ancore colore: #f1ede4 · #1f1d1b
 - **reference (registro)**: tasso rispettabile e industrioso; impeccabile come l'ideale civico — ma lo sguardo corre alle uscite mentre predica l'unità; il pelo troppo pulito
 - **viste**: proposta `char_quinto_colonna_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_quinto_colonna/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_quinto_colonna_FINALE.png (rigenerare solo su richiesta)
 
 ### il tentatore — `char_tentatore`
 - **soggetto**: cervo (lo stemma della Selva — la libertà selvatica fatta magnificenza)
@@ -410,7 +410,7 @@
   - ancore colore: #8a5a34 · #d9c7a8
 - **reference (registro)**: cervo, lo stemma della Selva — la libertà selvatica fatta magnificenza; magnifico e senza peso, il palco alto mai chinato; la cosa più bella dell'arco, e in quella bellezza il rischio
 - **viste**: proposta `char_tentatore_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_tentatore/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_tentatore_FINALE.png (rigenerare solo su richiesta)
 
 ### l'Esattore pentito — `char_esattore_pentito`
 - **soggetto**: mulo (bestia da soma dell'Aperto) — adattabile al roster (`../../cartografia/regni/_faunario.md`)
@@ -425,7 +425,7 @@
   - ancore colore: #6b5138 · #9a8a72
 - **reference (registro)**: mulo dell'Aperto; il segno del basto sul collo — il callo dei carichi che non porta più: lo porta VUOTO (segno naturale, mai finimenti)
 - **viste**: proposta `char_esattore_pentito_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_esattore_pentito/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_esattore_pentito_FINALE.png (rigenerare solo su richiesta)
 
 ### l'Esule libero — `char_esule_libero`
 - **soggetto**: cavallo (di pianura, fuggito nel bosco — un fuori-posto vivente)
@@ -440,7 +440,7 @@
   - ancore colore: #3f3a38 · #8a8078 (segni)
 - **reference (registro)**: cavallo di pianura fuggito nel bosco; criniera selvatica e incolta, i segni sbiaditi di un vecchio finimento; libero ma scavato; non sta mai del tutto fermo
 - **viste**: proposta `char_esule_libero_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_esule_libero/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_esule_libero_FINALE.png (rigenerare solo su richiesta)
 
 ### l'aiutante delle Conche — `char_arlecchino`
 - **soggetto**: scoiattolo (regolabile) — svelto, indaffarato, terragno
@@ -455,7 +455,7 @@
   - ancore colore: #b4552e · #efe0c8
 - **reference (registro)**: scoiattolo svelto; guance sempre piene (porta più di quanto può tenere), un ciuffo che non sta giù; giocoliere di troppe cose: ne perde una, ne acchiappa due
 - **viste**: proposta `char_arlecchino_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_arlecchino/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_arlecchino_FINALE.png (rigenerare solo su richiesta)
 
 ### la Casa dell'Aquila — `char_casa_aquila`
 - **soggetto**: aquila (la Casa dell'Aquila — il sangue estense)
@@ -470,7 +470,7 @@
   - ancore colore: #5f4a2a · #c8a24e
 - **reference (registro)**: aquila della corte di Aquilara; si porta come uno stemma vivo — ogni posa un blasone; guarda dall'alto, di posatoio e di spirito; l'inclinazione sprezzante del capo che misura i tuoi avi
 - **viste**: proposta `char_casa_aquila_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_casa_aquila/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_casa_aquila_FINALE.png (rigenerare solo su richiesta)
 
 ### la Leonessa civica ⚠nome dal lessico — `char_leonessa_civica`
 - **soggetto**: leonessa (lo stemma del regno — lei ne è il cuore vivo)
@@ -485,7 +485,7 @@
   - ancore colore: #c2a068 · #b98a3a
 - **reference (registro)**: leonessa, lo stemma del regno; i segni del servizio e non dell'ornamento — una cicatrice presa sulle mura, le zampe consumate dal lavoro fatto per il comune; sta dritta come chi ha già dato
 - **viste**: proposta `char_leonessa_civica_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_leonessa_civica/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_leonessa_civica_FINALE.png (rigenerare solo su richiesta)
 
 ### la Lupa — `char_lupa`
 - **soggetto**: lupa (lo stemma di Pietralupa)
@@ -500,7 +500,7 @@
   - ancore colore: #7d7268 · #4d463f
 - **reference (registro)**: lupa, lo stemma di Pietralupa; magra, di un orgoglio scarno; il labbro arricciato in un mezzo ghigno permanente; l'occhio storto verso Leonalba — rancore di vecchia data
 - **viste**: proposta `char_lupa_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_lupa/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_lupa_FINALE.png (rigenerare solo su richiesta)
 
 ### la Pantera — `char_pantera`
 - **soggetto**: pantera (lo stemma di Muralba — la città di seta)
@@ -515,7 +515,7 @@
   - ancore colore: #141210 · #d8c46a
 - **reference (registro)**: pantera, lo stemma della città di seta; liscia, immacolata, composta; il muso non rivela nulla; si muove senza rumore; l'inclinazione misurata del capo che non concede una sola lettura
 - **viste**: proposta `char_pantera_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_pantera/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_pantera_FINALE.png (rigenerare solo su richiesta)
 
 ### la Traghettatrice delle rive — `char_traghettatrice`
 - **soggetto**: lontra (gente d'acqua e di barca) — adattabile al roster
@@ -530,7 +530,7 @@
   - ancore colore: #4a382a · #d9c9a6
 - **reference (registro)**: lontra; zampe svelte ai nodi (annoda reti senza guardare), pelo sempre umido, una vecchia cicatrice da amo sul muso
 - **viste**: proposta `char_traghettatrice_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_traghettatrice/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_traghettatrice_ritratto_v4.png (rigenerare solo su richiesta)
 
 ### la Voce che torna — `char_voce_che_torna`
 - **soggetto**: cicala — omaggio al Grillo; ancora autoriale: le cicale del Fedro di Platone (i cantori che attraversano il tempo). Mai in-storia. — alternativa: grillo (omaggio diretto).
@@ -545,7 +545,7 @@
   - ancore colore: #8a8a4a · #4a4a32
 - **reference (registro)**: cicala; piccola, la si sente prima di vederla; ali come vetro vecchio, un filo incrinato; la si trova sempre sulle pietre tiepide
 - **viste**: proposta `char_voce_che_torna_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_voce_che_torna/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_voce_che_torna_FINALE.png (rigenerare solo su richiesta)
 
 ### la memoria sepolta — `char_memoria_sepolta`
 - **soggetto**: elefantessa (vecchia, del Popolo dell'Aperto — i grandi della pianura)
@@ -560,7 +560,7 @@
   - ancore colore: #7c7873 · #cfc8ba (zanne)
 - **reference (registro)**: elefantessa vecchia del Popolo dell'Aperto; si ferma sul selciato dove gli altri passano e vi appoggia la zampa come chi ascolta qualcosa sotto
 - **viste**: proposta `char_memoria_sepolta_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_memoria_sepolta/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_memoria_sepolta_FINALE.png (rigenerare solo su richiesta)
 
 ### le Creature della Rovina — `char_creature_rovina`
 - **soggetto**: piccole creature notturne della rovina (un coro: pipistrelli, civette, grilli — il bosco-
@@ -575,7 +575,7 @@
   - ancore colore: #12141a · #e8d9a0
 - **reference (registro)**: coro di piccole creature notturne della rovina (pipistrelli, civette, grilli); occhi nel buio, sagome che non si mettono a fuoco; scala infantile, movimento storto; appaiono fra le pietre rotte, solo di notte
 - **viste**: proposta `char_creature_rovina_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_creature_rovina/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_creature_rovina_FINALE.png (rigenerare solo su richiesta)
 
 ### quello che è rimasto — `char_quello_che_e_rimasto`
 - **soggetto**: bufalo (del Popolo dell'Aperto, come Rocco)
@@ -590,7 +590,7 @@
   - ancore colore: #2e2a26 · #6a5a48
 - **reference (registro)**: bufalo del Popolo dell'Aperto; il collo basso — la testa portata bassa per abitudine, non stanchezza: la postura di chi ha imparato a non alzarla; forte come Rocco, ma piegato
 - **viste**: proposta `char_quello_che_e_rimasto_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_quello_che_e_rimasto/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_quello_che_e_rimasto_FINALE.png (rigenerare solo su richiesta)
 
 ### uno degli Antichi — `char_uno_degli_antichi`
 - **soggetto**: rospo (creatura di pietra, antichissima, immobile sull'Altare)
@@ -605,7 +605,7 @@
   - ancore colore: #5a5f4a · #7a8062 · #b99f4e (occhi)
 - **reference (registro)**: rospo antichissimo; immobilità di pietra — la pelle vecchia come il masso su cui sta, quasi ne fa parte; gli occhi guardano attraverso, a qualcosa dietro
 - **viste**: proposta `char_uno_degli_antichi_ritratto` → HD dopo conferma: `fronte`·`tre_quarti`·`profilo`·`segno` → `public/reference/char_uno_degli_antichi/`
-- **status**: da_generare
+- **status**: confermata · **già in catalogo**: saga/reference/personaggi/char_uno_degli_antichi_FINALE.png (rigenerare solo su richiesta)
 
 ## 2 · Luoghi Antichi
 
@@ -617,12 +617,12 @@
 ### il Luogo sepolto di Anguicorte — `luogo_anguicorte_sepolto`
 - **key-art (registro)**: il Luogo Antico del Gran Ducato: pietre tagliate e murate nel selciato della capitale, segni spezzati riusati al contrario; in una crepa, tiepido
 - **viste da generare**: `luogo_anguicorte_sepolto_campo` · `luogo_anguicorte_sepolto_materia` → `public/reference/luogo_anguicorte_sepolto/`
-- **status**: da_generare
+- **status**: confermata
 
 ### l'Altare di Roccia — `luogo_altare_roccia`
 - **key-art (registro)**: il masso-altare della Selva di Mezzo: pietra nuda nel folto, i segni sul piano superiore, il muschio che si ferma a un palmo dal bordo
 - **viste da generare**: `luogo_altare_roccia_campo` · `luogo_altare_roccia_materia` → `public/reference/luogo_altare_roccia/`
-- **status**: da_generare
+- **status**: confermata
 
 ### la collina dell'incontro — `luogo_collina_incontro`
 - **key-art (registro)**: la soglia (B1, Spondalta) tra i Laghi del Vespro e il Gran Ducato: dove savana e foresta si toccano su una collina non alta ma ripida
@@ -632,61 +632,61 @@
 ### le Pietre Incise — `luogo_pietre_incise`
 - **key-art (registro)**: le rocce incise d'altura della Conca Ruggente: figure antiche su lastre inclinate verso il cielo, i segni che somigliano a quelli delle Coppelle
 - **viste da generare**: `luogo_pietre_incise_campo` · `luogo_pietre_incise_materia` → `public/reference/luogo_pietre_incise/`
-- **status**: da_generare
+- **status**: confermata
 
 ### le Pietre del Leone — `luogo_pietre_leone`
 - **key-art (registro)**: l'acropoli dei primi nelle Terre del Leone: le lastre più antiche di tutte, di nessuna città, dove il disegno si compone
 - **viste da generare**: `luogo_pietre_leone_campo` · `luogo_pietre_leone_materia` → `public/reference/luogo_pietre_leone/`
-- **status**: da_generare
+- **status**: confermata
 
 ### le Rovine Ordinate — `luogo_rovine_ordinate`
 - **key-art (registro)**: le rovine della Piana dei Savi: filari di pietre antiche allineate come i campi, un ordine che non è quello dei registri
 - **viste da generare**: `luogo_rovine_ordinate_campo` · `luogo_rovine_ordinate_materia` → `public/reference/luogo_rovine_ordinate/`
-- **status**: da_generare
+- **status**: confermata
 
 ## 3 · Capitali e scene madri
 
 ### Anguicorte — `anguicorte`
 - **key-art (registro)**: capitale del Gran Ducato, la corte della Serpe: palazzo basso e lungo sopra il selciato del mercato vecchio; le colonne del tributo, soglie di pietra antica murata a testa in giù; bronzo vecchio, porpora spenta, ombre lunghe — e una crepa nel selciato larga quanto la punta di un corno
 - **viste da generare**: `anguicorte_campo` · `anguicorte_materia` → `public/reference/anguicorte/`
-- **status**: da_generare
+- **status**: confermata
 
 ### Forterocca — `forterocca`
 - **key-art (registro)**: capitale della Conca Ruggente: città-fortezza di pietra chiara a gradoni sulle conche d'acqua; argini, il molo delle conche, torri campanarie; l'acqua che rimbomba sotto — operosa e verticale contro il Muro del Nord
 - **viste da generare**: `forterocca_campo` · `forterocca_materia` → `public/reference/forterocca/`
-- **status**: da_generare
+- **status**: confermata
 
 ### Leonalba — `leonalba`
 - **key-art (registro)**: capitale delle Terre del Leone: acropoli di pietra dorata sopra il mare, in luce d'alba; la piazza delle gare coi vessilli delle contrade, scalinate — e il sentiero che sale alle Pietre
 - **viste da generare**: `leonalba_campo` · `leonalba_materia` → `public/reference/leonalba/`
-- **status**: da_generare
+- **status**: confermata
 
 ### Rivalba — `rivalba`
 - **key-art (registro)**: capitale dei Laghi del Vespro: città di riva in legno e pietra levigata — passerelle su palafitte, barche a remo, i massi lisci dove il regno si mostra; luce di vespro dorata sull'acqua, brume basse al mattino
 - **viste da generare**: `rivalba_campo` · `rivalba_materia` → `public/reference/rivalba/`
-- **status**: da_generare
+- **status**: confermata
 
 ### Savenza — `savenza`
 - **key-art (registro)**: capitale della Piana dei Savi: città ordinata degli argini — canali dritti, l'aula grande, archivi a torre, nebbia bassa; carta, inchiostro, lanterne; gufi e civette ai cornicioni
 - **viste da generare**: `savenza_campo` · `savenza_materia` → `public/reference/savenza/`
-- **status**: da_generare
+- **status**: confermata
 
 ### il guado del Gran Fiume — `gran_fiume_guado`
 - **key-art (registro)**: il Gran Fiume in piena: acqua larga come un mondo, marrone e argento; passi di pietra a pelo d'acqua, cielo enorme, nessun riparo
 - **viste da generare**: `gran_fiume_guado_campo` · `gran_fiume_guado_materia` → `public/reference/gran_fiume_guado/`
-- **status**: da_generare
+- **status**: confermata
 
 ### il valico del Mastino — `valico_mastino`
 - **key-art (registro)**: il budello di roccia e terra battuta tra due pareti — il campo del duello; nella ripresa a sud, verso la Selva: neve sporca, rovi, e il collare strappato
 - **viste da generare**: `valico_mastino_campo` · `valico_mastino_materia` → `public/reference/valico_mastino/`
-- **status**: da_generare
+- **status**: confermata
 
 ### la Soglia di Spondalta — `spondalta_soglia`
 - **key-art (registro)**: il confine nord dove tutto comincia: canneto e rive, nebbie basse, acqua ferma in luce fredda — e la pietra tiepida della prima notte
 - **viste da generare**: `spondalta_soglia_campo` · `spondalta_soglia_materia` → `public/reference/spondalta_soglia/`
-- **status**: da_generare
+- **status**: confermata
 
 ### le conche alte — `le_conche`
 - **key-art (registro)**: le conche alte di Forterocca: vasche d'acqua a gradoni tenute da argini e pietre-chiave; calce bagnata, corde, impalcature — e inciso nell'argine, «il dente del forestiero»
 - **viste da generare**: `le_conche_campo` · `le_conche_materia` → `public/reference/le_conche/`
-- **status**: da_generare
+- **status**: confermata
