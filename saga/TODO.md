@@ -114,7 +114,7 @@
   - [x] **METAFORE §2 — «molo» della Conca** ✅ CHIUSO (decisione d'autore: *si tiene molo*).
     Formalizzata l'eccezione in `METAFORE.md` (§3 «molo *tranne la Conca*» + §4 «il molo delle
     conche di Forterocca»): doc-only, nessun controllo di codice la impone ("molo" non è nome reale).
-  - [ ] **METAFORE §2 — scrittura di Savenza (ep14–16)**, ancora aperto: la *scrittura fuori dalla
+  - [x] **METAFORE §2 — scrittura di Savenza (ep14–16)** — *proposta formalizzata in §4* (tre culture della memoria: nodo/libro/sigillo), ⚠ in attesa di ratifica. Era: la *scrittura fuori dalla
     Serpe* (inchiostro/registri/scrivano in un regno libero) è in tensione con §4 («scrittura mai
     nei regni liberi»). Da decidere nella passata finale: eccezione ratificata (la Dotta è un
     regno di scrivani) oppure reindirizzo.
