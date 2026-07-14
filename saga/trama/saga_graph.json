@@ -1548,7 +1548,7 @@
     "char_toraki",
     "char_cacciatore"
    ],
-   "premise": "Il Cacciatore ha chiuso: Toraki alle strette. Il ricongiungimento avviene DENTRO la crisi ⚠: Zara non lo trova — lo salva, con Rocco. Poi il riconoscimento silenzioso: la stessa mano, lo stesso gesto. Il Cacciatore ha chiuso il cerchio anche grazie alla via aperta dall'errore di Rocco — e Rocco lo sa.",
+   "premise": "Il Cacciatore ha chiuso: Toraki alle strette. Il ricongiungimento avviene DENTRO la crisi ⚠: Zara non lo trova — lo salva, con Rocco. Poi il riconoscimento silenzioso: la stessa mano, lo stesso gesto. Il Cacciatore ha chiuso il cerchio anche grazie alla via aperta dall'errore di Rocco — e Rocco lo sa. Il riconoscimento è la riga antica fatta scena: gli occhi di giada guardano gli occhi di giada — fermi i suoi, accesi quelli di lei. Nessuno la dice.",
    "serpe_face": "viscardo",
    "toraki_trace": true,
    "luogo_antico": null,
@@ -1558,7 +1558,8 @@
    },
    "seeds_planted": [],
    "seeds_bloomed": [
-    "seed_errore_gentile"
+    "seed_errore_gentile",
+    "seed_ninna_nanna"
    ],
    "debts_opened": [],
    "debts_closed": [],
@@ -1700,7 +1701,7 @@
    "riserve_autoriali": [
     "il «Grazie» di Zara a Rocco (primo in 24 episodi) — dopo la consegna",
     "«Sempre insieme» — una volta sola, dal libro-origine",
-    "la filastrocca dei cuccioli: la conta dei cinque nodi cantata dai piccoli dei regni",
+    "la filastrocca dei cuccioli: la conta dei cinque nodi cantata dai piccoli dei regni — sull'aria della ninna-nanna della Prima Tigre",
     "la formula-chiusa torna: «i nodi adesso erano sei» (Brénta compresa)",
     "la ghianda germogliata nel nodo — verde piccolissimo nell'immagine finale della pietra",
     "il pipistrello resta senza nome: i suoi nomi li tiene il bosco"
@@ -1785,6 +1786,12 @@
    "planted": "ep16",
    "blooms": "stagione 2",
    "bloom_target": "s2"
+  },
+  "seed_ninna_nanna": {
+   "what": "la ninna-nanna della Prima Tigre — piantata intera, spezzata nel buio, pagata come scena (occhi di giada su occhi di giada) e come aria dei cuccioli",
+   "planted": "ep02",
+   "blooms": "ep23 (scena) + ep24 (aria)",
+   "bloom_target": "ep23"
   }
  },
  "callbacks": {

@@ -43,3 +43,26 @@ era sottostimato dalle curve (E≈7, non 5). **Nessuna riscrittura**: solo micro
 - Canto di lavoro dei moli della Conca (bello, ma retro-inserirlo gonfia ep05–07).
 - Dare un nome al pipistrello (contro il canone dei nomi; la mancanza *è* il personaggio).
 - Ritocchi a ep03/ep09/ep11: riletti, tengono — il buio del Ducato è di progetto.
+
+## Sessione «Tora-Ki» (la fonte-canzone entra in canone come mito)
+**Le due folgorazioni.** (1) *«Gli occhi di giada guardano gli occhi di giada»* — la scheda di
+Toraki aveva già gli occhi di giada *fermi* contro quelli di Zara *che brillano*: la riga della
+canzone **è ep23**, il riconoscimento tra fratelli. (2) *«Lascio gli occhi di giada per l'energia
+della tigre»* — è la teologia dell'**affidare** che avevamo dato a Toraki: il segno non basta,
+serve chi corre. La canzone conferma il canone che avevamo costruito senza conoscerla.
+
+**Cosa ho fatto.** La canzone diventa in-world la **ninna-nanna della Prima Tigre** (sei versi
+nuovi, cantabili, `prima_tigre.md`): piantata intera a ep02 p3 (la prima notte — e la prima cosa
+di Toraki che il lettore incontra è la sua voce, non i suoi nodi); **spezzata** a ep15 p13
+(*«Verde la notte» — ma lì non c'era niente di verde*); pagata a ep23 come scena e a ep24 come
+aria dei cuccioli. Ultimo verso: *«chi porta la corda non è mai piccolino»* — l'asse
+`troppo_piccola` di Zara ha adesso una radice: è la frase su cui ha dormito tutta la vita.
+
+**La porta-bambini.** Era la richiesta: più piacevole ai piccoli senza snaturare. La leva non è
+semplificare la prosa — è dare ai piccoli **appigli loro**: la rima che torna (ora la saga ne ha
+tre: ninna-nanna, filastrocca della Rovina, ottave dell'Aquila — dolce, storta, altezzosa), il
+compagno-creatura (il pipistrello), i suoni (*CRACK, tòc tòc, tec*). Il doppio livello resta.
+
+**Lasciato fuori (apposta).** Okinawa, Gaia, il «male per uccidere» — e *l'uomo-polvere*: resta
+sostrato d'autore, la saga lo custodisce senza nominarlo. La «cecità» è diventata *camminare
+senza vedere la fine della strada*: il patto di ogni portatore.
