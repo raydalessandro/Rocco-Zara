@@ -91,7 +91,7 @@ nativo.
 | martello / fucina / ferro battuto / arnese di metallo | **dente** · **artiglio** · **corno** · la **forza dell'acqua in piena** · la **durezza della pietra** |
 | stoffa / tessuto / cucito / **tinto** / vestito | **pelo** · **scaglia** · **piuma** · i **colori-minerale** del fuoco · una **rete annodata** |
 | capanna / casa costruita | **tana** · **nido** · **riparo / ricovero fra le canne** |
-| molo / pontile / banchina | **scoglio** · **sasso piatto** · **tronco affiorante** · la **riva** |
+| molo / pontile / banchina *(tranne la Conca)* | **scoglio** · **sasso piatto** · **tronco affiorante** · la **riva** |
 | sacchetto / borsa cucita | **reticella annodata** · **involto di foglie** · **guscio** · un **nodo di corda** |
 | candela / lampada | la **fiamma** del fuoco-segnale · la **luce dell'alba** · il **bagliore** del minerale |
 | orto / giardino coltivato | la **radura** · il **folto** · il **margine del bosco** |
@@ -106,8 +106,13 @@ Non per incoerenza: perché il canone le ha già messe, e con un senso.
 - **i nodi, le reti, la corda, il Cordone**: esistono — sono **scrittura, memoria e moneta**
   del mondo libero («qui non si scrive: si annoda e si rispecchia»).
 - **la barca** della Gente delle Rive (lontre «di barca»): esiste — canone della scheda
-  `traghettatrice-delle-rive`. *(Ma niente molo o banchina costruiti: si approda alla riva,
-  allo scoglio.)*
+  `traghettatrice-delle-rive`. *(Si approda alla riva, allo scoglio — non a un molo costruito,
+  tranne nella Conca: vedi sotto.)*
+- **il molo delle conche** di Forterocca (la Conca Ruggente): esiste — è l'**identità del regno**,
+  canonizzata nel brief («il molo delle conche»). È l'**unica eccezione** al reindirizzo di §3:
+  qui «molo» si usa in pagina. Altrove `molo → scoglio/riva` resta valido. *(Decisione d'autore,
+  documentata; nessun controllo di codice la impone — "molo" non è un nome reale. È il modello di
+  "pagina-respiro" della Carta §4: «Il molo lavorava già. Nessuno ci pensava più.»)*
 - **la scrittura della Serpe**: esiste, **solo** come arnese del potere nel Gran Ducato — il
   contrario freddo del nodo caldo. Mai nei regni liberi.
 - **il vocabolario politico** (comune, signoria, repubblica, Consiglio, tributo, vassallo,

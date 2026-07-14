@@ -111,11 +111,13 @@
       `../island.geojson` che non esiste (residuo isola). Da ricablare sul geo pack
       (`geo/*.geojson`) o rimuovere.
 - [ ] **Prosa — debiti tracciati (dalla verifica dei 20 capitoli, corsia prosatore):**
-  - **METAFORE §2 — sistemi di regno da formalizzare** (decisione di canone, non di prosa):
-    l'apparato *molo/impalcatura* delle Rive-Conca (ep05, "molo" ×14) e la *scrittura fuori
-    dalla Serpe* di Savenza (ep14–16) sono in tensione con METAFORE §3/§4; i brief li davano
-    già per "⚠ da formalizzare in METAFORE §2". Scelta: formalizzare il doc **oppure**
-    reindirizzare la prosa.
+  - [x] **METAFORE §2 — «molo» della Conca** ✅ CHIUSO (decisione d'autore: *si tiene molo*).
+    Formalizzata l'eccezione in `METAFORE.md` (§3 «molo *tranne la Conca*» + §4 «il molo delle
+    conche di Forterocca»): doc-only, nessun controllo di codice la impone ("molo" non è nome reale).
+  - [ ] **METAFORE §2 — scrittura di Savenza (ep14–16)**, ancora aperto: la *scrittura fuori dalla
+    Serpe* (inchiostro/registri/scrivano in un regno libero) è in tensione con §4 («scrittura mai
+    nei regni liberi»). Da decidere nella passata finale: eccezione ratificata (la Dotta è un
+    regno di scrivani) oppure reindirizzo.
   - **ep08 Pagina 10 — legge piccola in chiusura (§1.9)**: «Certe domande si lasciano intere,
     come i nodi degli altri.» — tenuta *per scelta d'autore* (piace l'originale); rivedere alla fine.
   - **Passata di leggibilità 6–8 anni**: "cosine" arcaiche / italiano poco usato sparse nei
