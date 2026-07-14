@@ -994,16 +994,35 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 
 /* ---- slot-ritratto d'entità: mostra la reference se c'è (imageUrl o file locale),
         altrimenti un placeholder con lo STATO. Quando la foto arriva, appare da sola. ---- */
+// catena di fallback per il src della reference. imageUrl del registro è un path
+// repo-relative (es. public/reference/<id>/_hd/…): servito da web/ (Vercel root=web) o
+// da file://, quel path NON risolve → si prova prima GitHub raw, poi il relativo dalla
+// radice repo (Pages), poi lo slot locale web/img/. Quando l'immagine c'è, appare da sola.
+function refCandidates(entity, kind){
+  const id=entity.entityId, out=[], u=entity.imageUrl;
+  if(u){
+    if(/^https?:/i.test(u)) out.push(u);                 // già URL assoluto
+    else { out.push(rawBase(BRANCHES[0])+u); out.push('../'+u); out.push(u); } // raw · repo-root · relativo
+  }
+  out.push(`img/${kind}/${id}.webp`);                    // slot locale del sito
+  out.push(rawBase(BRANCHES[0])+`web/img/${kind}/${id}.webp`);
+  return out.filter(Boolean);
+}
 function entShot(entity, kind, style){
   if(!entity) return '';
-  const id=entity.entityId;
-  const src=entity.imageUrl || `img/${kind}/${id}.webp`;
+  const cand=refCandidates(entity, kind);
   const ok=entity.status==='confermata';
   return `<div class="entshot" style="${style||''}">
      <div class="entph"><span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span></div>
-     <img src="${src}" alt="${esc(entity.name)}" loading="lazy" onerror="this.remove()">
+     <img src="${cand[0]}" data-fb="${esc(cand.slice(1).join('|'))}" alt="${esc(entity.name)}" loading="lazy" onerror="rzImgNext(this)">
    </div>`;
 }
+// avanza nella catena di fallback; quando finiscono, rimuove lo slot (resta il placeholder).
+window.rzImgNext=function(img){
+  const fb=(img.getAttribute('data-fb')||'').split('|').filter(Boolean);
+  if(fb.length){ img.setAttribute('data-fb', fb.slice(1).join('|')); img.src=fb[0]; }
+  else { img.remove(); }
+};
 function stBadge(status){ const ok=status==='confermata'; return `<span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span>`; }
 
 /* blocco «reference visiva» per un'entità (cruscotto del ritrattista):
