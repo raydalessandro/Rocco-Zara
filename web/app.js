@@ -1045,9 +1045,13 @@ function entShot(entity, kind, style){
    </div>`;
 }
 // avanza nella catena di fallback; quando finiscono, rimuove lo slot (resta il placeholder).
+// ECCEZIONE: l'immagine del lightbox è un SINGLETON riusato per tutte le tavole —
+// non va MAI rimossa, altrimenti il prossimo openLightbox non la ritrova più e crasha
+// (il classico «apre la prima poi devi ricaricare»). Per il lightbox si spegne e basta.
 window.rzImgNext=function(img){
   const fb=(img.getAttribute('data-fb')||'').split('|').filter(Boolean);
   if(fb.length){ img.setAttribute('data-fb', fb.slice(1).join('|')); img.src=fb[0]; }
+  else if(img.classList.contains('rz-lb-img')){ img.onerror=null; img.removeAttribute('src'); }
   else { img.remove(); }
 };
 function stBadge(status){ const ok=status==='confermata'; return `<span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span>`; }
@@ -1093,9 +1097,11 @@ function openLightbox(candsStr, name, source){
   const lb=document.getElementById('rzLightbox'); if(!lb) return;
   const cand=(candsStr||'').split('|').filter(Boolean); if(!cand.length) return;
   LB_PREV=source||null;
-  const img=lb.querySelector('.rz-lb-img'), cap=lb.querySelector('.rz-lb-cap');
+  let img=lb.querySelector('.rz-lb-img'); const cap=lb.querySelector('.rz-lb-cap');
+  // self-heal: se per qualunque ragione l'<img> singleton non c'è più, ricrealo.
+  if(!img){ img=document.createElement('img'); img.className='rz-lb-img'; lb.querySelector('.rz-lb-fig').prepend(img); }
+  img.onerror=function(){ rzImgNext(this); };   // PRIMA del src: stessa catena di fallback delle thumbnail
   img.alt=name||''; img.setAttribute('data-fb', cand.slice(1).join('|')); img.src=cand[0];
-  img.onerror=function(){ rzImgNext(this); };   // stessa catena di fallback delle thumbnail
   cap.textContent=name||'';
   lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
   lb.querySelector('.rz-lb-x').focus();
@@ -1103,7 +1109,8 @@ function openLightbox(candsStr, name, source){
 function closeLightbox(){
   const lb=document.getElementById('rzLightbox'); if(!lb) return;
   lb.classList.remove('on'); lb.setAttribute('aria-hidden','true');
-  const img=lb.querySelector('.rz-lb-img'); img.src=''; img.removeAttribute('data-fb');
+  // spegni PRIMA l'onerror: img.src='' farebbe scattare il fallback e, esaurito, l'auto-rimozione.
+  const img=lb.querySelector('.rz-lb-img'); if(img){ img.onerror=null; img.removeAttribute('src'); img.removeAttribute('data-fb'); }
   document.body.style.overflow='';
   if(LB_PREV && LB_PREV.focus){ try{ LB_PREV.focus(); }catch(e){} }
   LB_PREV=null;
