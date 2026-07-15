@@ -63,7 +63,7 @@ registro_gruppo:
   registro_ref: pianura_bassa/la Casa dell'Aquila
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Casa Grifagna
   role: comprimario
   archetype: la Casa dell'Aquila — nobile di sangue, epico in ottava rima, cieco a ogni grandezza non nobile
   underStress: s'innalza ancora di più nel verso, sprezza il «plebeo» per non vedere la verità

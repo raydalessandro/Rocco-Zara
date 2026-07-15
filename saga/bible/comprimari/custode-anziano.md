@@ -57,7 +57,7 @@ registro_gruppo:
   registro_ref: laghi_occidente/i Custodi
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Rèmolo
   role: comprimario
   archetype: il naturalista anziano — osservativo, enciclopedico, pacato
   underStress: si rifugia nell'osservazione, annota invece di agire

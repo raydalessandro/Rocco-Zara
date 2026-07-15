@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: laghi_oriente/Montanari del Mare di Dentro
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Cote
   role: comprimario
   archetype: il montanaro delle incisioni — secco, meteorologico, sentenzioso
   underStress: si chiude, riferisce solo l'essenziale, guarda il cielo

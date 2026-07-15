@@ -60,7 +60,7 @@ registro_gruppo:
   registro_ref: pianura_bassa/i Dotti
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Postillo
   role: comprimario
   archetype: il Dotto che smonta — pomposo, pseudo-dotto, l'analisi come acido
   underStress: accumula latino e distinguo, smonta più in fretta, iperspiega

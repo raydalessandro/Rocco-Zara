@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: laghi_oriente/i Giurati
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Saldo
   role: comprimario
   archetype: il Giurato della parola data — ruvido, breve, d'onore
   underStress: si irrigidisce sul giuramento, ripete «detto è detto»

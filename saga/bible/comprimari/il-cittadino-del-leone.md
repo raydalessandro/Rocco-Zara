@@ -61,7 +61,7 @@ registro_gruppo:
   registro_ref: toscana/Cittadini del Leone
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Lapo
   role: comprimario
   archetype: il Cittadino del Leone — alto, fiero, in terzina; «la gloria è il vero potere»
   underStress: s'innalza nella terzina, sprezza il silenzio anonimo per non concepirlo

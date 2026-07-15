@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: toscana/Gente del Mare
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Braccio
   role: comprimario
   archetype: il marinaio di Marleone — salato, pratico, preciso; «misura due volte»
   underStress: si fa più asciutto, riduce tutto a numeri e maree

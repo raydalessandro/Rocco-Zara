@@ -66,7 +66,7 @@ registro_gruppo:
   registro_ref: pianura_bassa/i Disputanti
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Cavillo
   role: comprimario
   archetype: il giovane Disputante — retore agile che argomenta ogni tesi per il gusto di vincere
   underStress: rilancia, ribalta la tesi, accelera i distinguo

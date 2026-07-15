@@ -63,7 +63,7 @@ registro_gruppo:
   registro_ref: pianura_alta/Popolo dell'Aperto
 
 voce_personaggio:
-  name: <dal lessico>
+  name: l'Esule (il nome l'ha lasciato alla colonna)
   role: comprimario
   archetype: l'Esule libero — libero e solo, parla la pianura da cui è fuggito
   underStress: si chiude nell'orgoglio della libertà, nega la mancanza

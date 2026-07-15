@@ -1,4 +1,7 @@
-# Nomi propri — proposta (RATIFICATA → canone in `saga/bible/nomi.md`)
+# NOMI — canone (ratificato)
+
+> Applicato a prosa + schede. Correzioni dal campo: **Cote** entra a ep08 (non ep07);
+> **Tacca = il mulo** (l'esattore pentito, ep11); **Fagotto** entra a ep06.
 
 > **Musica del canone**: parole concrete del lessico, accenti rustici (Brénta, Cècca, Sòrcio),
 > registro del regno. **Metodo in prosa**: il nome entra **una volta**, al primo incontro, in

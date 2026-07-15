@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: pianura_bassa/Contadini del Gran Fiume
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Ghiaia
   role: comprimario
   archetype: il neutrale del guado — gnomico, paziente, del fiume
   underStress: si fa più gnomico, si chiude nel codice

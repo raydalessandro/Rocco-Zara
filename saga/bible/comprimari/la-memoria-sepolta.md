@@ -62,7 +62,7 @@ registro_gruppo:
   registro_ref: pianura_alta/Popolo dell'Aperto
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Zolla
   role: comprimario
   archetype: la memoria sepolta — vecchia, lenta, di lunga memoria
   underStress: rallenta, torna al «prima», appoggia la zampa sulla pietra

@@ -54,7 +54,7 @@ registro_gruppo:
   registro_ref: laghi_occidente/la Gente delle Rive
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Brénta
   role: comprimario
   archetype: la barcaiola proverbiale — concreta, calda, d'acqua
   underStress: "lavora più veloce e parla più corto: è il gesto a finire la frase"

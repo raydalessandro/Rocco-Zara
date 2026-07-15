@@ -68,7 +68,7 @@ registro_gruppo:
   registro_ref: trasversali/antica
 
 voce_personaggio:
-  name: <dal lessico>
+  name: la Voce (senza nome — è una voce)
   role: comprimario
   archetype: la coscienza che torna — gnomica, gentile, antica
   underStress: canta invece di rispondere; si fa più breve e più vecchia
