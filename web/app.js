@@ -325,7 +325,11 @@ function pcCard(p){
 function renderPersonaggi(s){
   const P=M.personaggi;
   const t=P.toraki;
-  const serpeGroup=(title,arr)=>`<div class="label" style="margin:16px 0 8px">${title}</div><div class="serpe-grid">${arr.map((x,i)=>`<div class="sp ${i===0&&title.includes('braccio')?'lead':''}"><div class="nm">${x.nm}</div><div class="rl">${x.rl}</div><div class="small muted" style="margin-top:6px">${x.d}</div></div>`).join('')}</div>`;
+  const serpeGroup=(title,arr)=>`<div class="label" style="margin:16px 0 8px">${title}</div><div class="serpe-grid">${arr.map((x,i)=>{
+    const ent=entByName(x.nm);
+    const shot=ent?entShot(ent,'cast','width:100%;height:130px;border-radius:10px;margin-bottom:8px'):'';
+    return `<div class="sp ${i===0&&title.includes('braccio')?'lead':''}">${shot}<div class="nm">${x.nm}</div><div class="rl">${x.rl}</div><div class="small muted" style="margin-top:6px">${x.d}</div></div>`;
+  }).join('')}</div>`;
   s.innerHTML=`
   <div class="eyebrow">il cast</div>
   <h2 class="h-sec">Personaggi</h2>
@@ -987,6 +991,14 @@ function regnoColor(id){ return REALM_COLORS[id]||'#8a8270'; }
 /* helper testo su id "grezzi" del grafo */
 function humanId(s){ return (s||'').replace(/^(seed|char|luogo|cb|debt|obj)_/,'').replace(/_/g,' '); }
 function entOf(id){ return (M.entities||{})[id]||null; }
+// risolve un'entità-personaggio dal NOME (accent-insensitive), per le sezioni che
+// non hanno l'entityId (es. la Serpe da la_serpe.json). Match esatto poi «contiene».
+const _norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+function entByName(nome){
+  const n=_norm(nome); if(!n) return null;
+  const chars=Object.values(M.entities||{}).filter(e=>e.kind==='character');
+  return chars.find(e=>_norm(e.name)===n) || chars.find(e=>{const m=_norm(e.name);return m&&(m===n||m.includes(n)||n.includes(m));}) || null;
+}
 function entLabel(id){ const e=entOf(id); return e?e.name:cap(humanId(id)); }
 function charName(short){ if(!short) return ''; const e=entOf('char_'+short); return e?e.name:cap(short); }
 /* etichetta leggibile per semi/debiti/richiami: dal lessico archi.json, altrimenti id ripulito */
