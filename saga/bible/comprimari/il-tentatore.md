@@ -60,7 +60,7 @@ registro_gruppo:
   registro_ref: trasversali/forestiera
 
 voce_personaggio:
-  name: <dal lessico>
+  name: il tentatore (senza nome — il bosco li tiene)
   role: comprimario
   archetype: il tentatore — il cervo libero, affascinante, il bivio fatto persona (Lucignolo)
   underStress: intensifica il fascino, fa pesare di più il Cordone

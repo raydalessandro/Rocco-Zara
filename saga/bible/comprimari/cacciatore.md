@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: trasversali/forestiera   # chiave trasversale fuori-regni (_voci.json); origine vera taciuta
 
 voce_personaggio:
-  name: <dal lessico>
+  name: il Cacciatore (senza nome — di progetto)
   role: comprimario
   archetype: il cacciatore di gloria — asciutto, feroce, sportivo
   underStress: accelera, alza la posta, non molla la preda

@@ -57,7 +57,7 @@ registro_gruppo:
   registro_ref: pianura_alta/Mercanti delle Vie
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Quattrino
   role: comprimario
   archetype: il Mercante delle Vie — rapido, transattivo, pettegolo
   underStress: accelera il patter, alza il prezzo, gira la voce

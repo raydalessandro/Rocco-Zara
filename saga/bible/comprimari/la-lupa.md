@@ -60,7 +60,7 @@ registro_gruppo:
   registro_ref: toscana/la Lupa e i suoi
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Creta
   role: comprimario
   archetype: la Lupa di Pietralupa — brontolona, sardonica, orgogliosa-amara (beffardo-amaro)
   underStress: rincara di sarcasmo, maledice la sorte (e Leonalba)

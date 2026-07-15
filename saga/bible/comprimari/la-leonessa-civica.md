@@ -59,7 +59,7 @@ registro_gruppo:
   registro_ref: laghi_oriente/i Protettori
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Turrita
   role: comprimario
   archetype: la fierezza civica del libero comune — solenne, collettiva, di servizio
   underStress: si rifugia nel «noi», irrigidisce il dovere, alza la guardia del comune

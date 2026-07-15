@@ -61,7 +61,7 @@ registro_gruppo:
   registro_ref: laghi_oriente/i Protettori
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Netto
   role: comprimario
   archetype: il quinto colonna — il «noi» civico perfetto e vuoto
   underStress: si fa ancora più solenne, si copre col bene comune

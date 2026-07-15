@@ -63,7 +63,7 @@ registro_gruppo:
   registro_ref: toscana/la Pantera libera
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Seta
   role: comprimario
   archetype: la Pantera di Muralba — riservata, fiera, sobria, «di seta»; ambigua per disciplina
   underStress: si fa ancora più liscia e impenetrabile, non si scopre

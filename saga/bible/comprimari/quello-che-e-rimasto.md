@@ -60,7 +60,7 @@ registro_gruppo:
   registro_ref: pianura_alta/Popolo dell'Aperto
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Sodo
   role: comprimario
   archetype: il pari che è rimasto e ha chinato la testa — piano, paziente, rassegnato
   underStress: brontola più piano, si chiude nel «si sopporta»

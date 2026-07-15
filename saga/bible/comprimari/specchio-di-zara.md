@@ -58,7 +58,7 @@ registro_gruppo:
   registro_ref: laghi_occidente/il Popolo del Bosco
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Cervara
   role: comprimario
   archetype: la sicurezza di chi appartiene — asciutta, certa, di casa
   underStress: si fa più tagliente, marca i confini del "qui"

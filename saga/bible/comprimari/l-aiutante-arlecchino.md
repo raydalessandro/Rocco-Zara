@@ -57,7 +57,7 @@ registro_gruppo:
   registro_ref: laghi_oriente/Gente delle Conche
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Fagotto
   role: comprimario
   archetype: l'aiutante-Arlecchino — svelto, comico, furbo-bonario
   underStress: parla più in fretta, improvvisa, combina pasticci che a volte risolvono

@@ -56,7 +56,7 @@ registro_gruppo:
   registro_ref: selva_di_mezzo/i Solitari
 
 voce_personaggio:
-  name: <dal lessico>
+  name: il Solitario (senza nome — il bosco li tiene)
   role: comprimario
   archetype: il Solitario — monosillabico, guardingo, aiuta a malincuore
   underStress: si chiude in monosillabi, si tira indietro

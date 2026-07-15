@@ -122,8 +122,9 @@
     come i nodi degli altri.» — tenuta *per scelta d'autore* (piace l'originale); rivedere alla fine.
   - **Passata di leggibilità 6–8 anni**: "cosine" arcaiche / italiano poco usato sparse nei
     capitoli (es. "occhio a conto") — spesso basta cambiare una parola. Giro dedicato, in blocco.
-- [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
-      comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
+- [x] **Nomi `<dal lessico>`** ✅ CHIUSO — passata unica: 18 nomi + 7 senza-nome di progetto
+      (canone in `saga/bible/nomi.md`); 25 schede riempite; 21 innesti in prosa (il nome entra
+      una volta, poi l'epiteto resta primario, da fiaba).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
       "(Italia dei Comuni)"/"papali/imperiali" — coperte dall'avviso "substrato", ok così finché
       non si vuole un atlante 100% nostro.

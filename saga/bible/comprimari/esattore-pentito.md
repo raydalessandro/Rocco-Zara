@@ -57,7 +57,7 @@ registro_gruppo:
   registro_ref: pianura_alta/Popolo dell'Aperto
 
 voce_personaggio:
-  name: <dal lessico>
+  name: Tacca
   role: comprimario
   archetype: il portatore pentito — piano, terragno, schivo
   underStress: si chiude, abbassa la testa, porta in silenzio
