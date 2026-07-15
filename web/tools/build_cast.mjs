@@ -12,9 +12,46 @@ const pos = args.filter(a => a !== '--check');
 const ROOT = pos[0] || '.';
 const CDIR = path.join(ROOT, 'saga/bible/comprimari');
 const MAPPA = path.join(CDIR, 'MAPPA_CAST.md');
+const ENTITIES = path.join(ROOT, 'saga/serializzatore/state/entities.json');
 const OUT = pos[1] || path.join(ROOT, 'web/data/cast.json');
 
 const mappa = fs.readFileSync(MAPPA, 'utf8');
+
+// --- registro entità: la FONTE dei ritratti (imageUrl + status). Il sito legge la
+// reference del comprimario da qui via entityId, non più da web/img/cast/<slug>.webp.
+// Perciò ogni scheda DEVE risolvere un entityId che esiste davvero nel registro. ---
+const ENT = JSON.parse(fs.readFileSync(ENTITIES, 'utf8')).entities || {};
+const CHAR_IDS = new Set(Object.keys(ENT).filter(k => ENT[k].kind === 'character'));
+const normName = s => (s || '').split('⚠')[0].toLowerCase()
+  .replace(/['’`]/g, '').replace(/[^a-z0-9à-ÿ]+/g, ' ').trim();
+const ENT_BY_NAME = new Map();
+for (const [id, e] of Object.entries(ENT)) {
+  if (e.kind !== 'character') continue;
+  const n = normName(e.name);
+  if (n && !ENT_BY_NAME.has(n)) ENT_BY_NAME.set(n, id);
+}
+// override editoriale: schede il cui slug NON deriva l'entityId (né per nome-file né
+// per nome). Ha priorità su auto/nome. Chi qui punta a un id inesistente → build FALLISCE.
+const ENTITY_OVERRIDE = {
+  'traghettatrice-delle-rive': 'char_traghettatrice',
+  'il-montanaro-delle-incisioni': 'char_montanaro',
+  'l-aiutante-arlecchino': 'char_arlecchino',
+  'il-mercante-delle-vie': 'char_mercante_vie',
+  'guardiano-del-guado': 'char_guardiano_guado',
+  'la-casa-dell-aquila': 'char_casa_aquila',
+  'le-creature-della-rovina': 'char_creature_rovina',
+  'il-cittadino-del-leone': 'char_cittadino_leone',
+  'il-custode-delle-pietre-del-leone': 'char_custode_pietre_leone',
+  'il-marinaio-del-mare': 'char_marinaio',
+  'il-quinto-colonna': 'char_quinto_colonna'
+};
+// slug scheda → entityId del registro: (a) override, (b) char_<slug con _>, (c) per nome.
+function resolveEntityId(slug, name) {
+  if (ENTITY_OVERRIDE[slug]) return ENTITY_OVERRIDE[slug];
+  const auto = 'char_' + slug.replace(/-/g, '_');
+  if (CHAR_IDS.has(auto)) return auto;
+  return ENT_BY_NAME.get(normName(name)) || null;
+}
 
 // --- archi + assegnazione file -> arco ---
 const arcs = [];
@@ -68,7 +105,17 @@ for (const f of fs.readdirSync(CDIR)) {
   if (nat) { const b = nat.match(/-\s+(.+)/); if (b) blurb = strip(b[1]); }
   if (!blurb) blurb = sub;
   if (blurb.length > 160) blurb = blurb.slice(0, 157) + '…';
-  chars.push({ slug, name, sub, specie, ear, tipo, blurb, arc: fileArc[slug] ?? 0 });
+  const entityId = resolveEntityId(slug, name);
+  chars.push({ slug, entityId, name, sub, specie, ear, tipo, blurb, arc: fileArc[slug] ?? 0 });
+}
+
+// GATE: ogni scheda deve puntare a un entityId che esiste nel registro. Se no, il
+// sito non troverebbe la reference → build FALLISCE (e test/cast.sync lo cattura).
+const orfane = chars.filter(c => !c.entityId || !CHAR_IDS.has(c.entityId));
+if (orfane.length) {
+  console.error(`build_cast: ${orfane.length} scheda/e non risolvono un entityId del registro (${ENTITIES}):`);
+  for (const c of orfane) console.error(`  x ${c.slug} -> ${c.entityId || '(nessun match)'} — aggiungi un ENTITY_OVERRIDE o allinea il nome nel registro.`);
+  process.exit(1);
 }
 
 // ordina: per arco, poi per nome
