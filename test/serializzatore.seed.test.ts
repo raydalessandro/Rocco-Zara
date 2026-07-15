@@ -48,7 +48,7 @@ describe("§3 mappatura episodio → SeedExt (ep_demo)", () => {
     const names = seed.companions.map((c) => c.name);
     expect(names).toContain("Rocco");
     expect(names).toContain("Cècca");
-    expect(names).toContain("Custode Anziano"); // name <dal lessico> → handle stabile
+    expect(names).toContain("Rèmolo"); // name <dal lessico> → handle stabile
     expect(seed.companions.find((c) => c.name === "Rocco")?.entityId).toBe("char_rocco");
   });
 
@@ -200,7 +200,7 @@ describe("determinismo & golden", () => {
     expect(ids).toContain("char_zara");
     expect(ids).toContain("luogo_le_coppelle");
     // entità nuove (non nel registro) restano da_generare
-    const custode = full.entities.find((e) => e.id === "char_custode_anziano");
+    const custode = full.entities.find((e) => e.id === "char_remolo"); // Rèmolo (nome ratificato): entità nuova, non nel registro
     expect(custode?.status).toBe("da_generare");
     expect(full.audit.verdict).toBe("PASS");
   });
