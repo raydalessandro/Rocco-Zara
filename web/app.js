@@ -1021,18 +1021,27 @@ function refCandidates(entity, kind){
   out.push(rawBase(BRANCHES[0])+`web/img/${kind}/${id}.webp`);
   return out.filter(Boolean);
 }
+// miniatura per la GRIGLIA: <dir>/_thumb/<base>.webp (generata da saga/reference/tools/genera_thumb.mjs).
+// Se manca, la catena ripiega sulla piena risoluzione. Il lightbox usa sempre l'originale.
+const deriveThumb = u => u.replace(/\/([^/]+)\.[^./]+$/, '/_thumb/$1.webp');
+function thumbCandidates(entity, kind){
+  const u=entity.imageUrl, out=[];
+  if(u && !/^https?:/i.test(u)){ const t=deriveThumb(u); out.push(rawBase(BRANCHES[0])+t, '../'+t, t); }
+  return out.concat(refCandidates(entity, kind));        // fallback: piena risoluzione + slot locale
+}
 function entShot(entity, kind, style){
   if(!entity) return '';
-  const cand=refCandidates(entity, kind);
+  const full=refCandidates(entity, kind);    // piena risoluzione → lightbox
+  const thumb=thumbCandidates(entity, kind);  // miniatura → griglia (ripiega sulla piena)
   const ok=entity.status==='confermata';
-  // se c'è una reference vera (imageUrl) la si può aprire a schermo intero: la stessa
-  // catena di candidati va nel lightbox, che carica la piena risoluzione solo al click.
+  // se c'è una reference vera (imageUrl) la si può aprire a schermo intero: nel lightbox
+  // va la piena risoluzione (caricata solo al click); la griglia mostra la miniatura.
   const zoom = entity.imageUrl
-    ? ` data-lb="${esc(cand.join('|'))}" data-lb-name="${esc(entity.name)}" role="button" tabindex="0" aria-label="ingrandisci ${esc(entity.name)}"`
+    ? ` data-lb="${esc(full.join('|'))}" data-lb-name="${esc(entity.name)}" role="button" tabindex="0" aria-label="ingrandisci ${esc(entity.name)}"`
     : '';
   return `<div class="entshot${entity.imageUrl?' zoomable':''}" style="${style||''}"${zoom}>
      <div class="entph"><span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span></div>
-     <img src="${cand[0]}" data-fb="${esc(cand.slice(1).join('|'))}" alt="${esc(entity.name)}" loading="lazy" onerror="rzImgNext(this)">
+     <img src="${thumb[0]}" data-fb="${esc(thumb.slice(1).join('|'))}" alt="${esc(entity.name)}" loading="lazy" onerror="rzImgNext(this)">
    </div>`;
 }
 // avanza nella catena di fallback; quando finiscono, rimuove lo slot (resta il placeholder).
