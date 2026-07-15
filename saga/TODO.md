@@ -120,8 +120,10 @@
     regno di scrivani) oppure reindirizzo.
   - **ep08 Pagina 10 — legge piccola in chiusura (§1.9)**: «Certe domande si lasciano intere,
     come i nodi degli altri.» — tenuta *per scelta d'autore* (piace l'originale); rivedere alla fine.
-  - **Passata di leggibilità 6–8 anni**: "cosine" arcaiche / italiano poco usato sparse nei
-    capitoli (es. "occhio a conto") — spesso basta cambiare una parola. Giro dedicato, in blocco.
+  - [x] **Passata di leggibilità 6–8 anni** ✅ CHIUSA (giro dedicato, in blocco): 11 sostituzioni
+    chirurgiche (incl. «uccello di conto» → «della Serpe», «tatto dell'occhio», epigrafi, bivacco,
+    crinale ×8 dosato in ep01) + **criterio e registro** in `saga/redazione/LESSICO_6-8.md`
+    (voce / il-mondo-insegna / strato-specie: cosa non si tocca e perché).
 - [x] **Nomi `<dal lessico>`** ✅ CHIUSO — passata unica: 18 nomi + 7 senza-nome di progetto
       (canone in `saga/bible/nomi.md`); 25 schede riempite; 21 innesti in prosa (il nome entra
       una volta, poi l'epiteto resta primario, da fiaba).
