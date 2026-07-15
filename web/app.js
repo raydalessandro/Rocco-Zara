@@ -186,6 +186,7 @@ async function init(){
   }
   const content = document.getElementById('content');
   content.innerHTML = '';                 // toglie il loader
+  installLightbox();
   buildNav();
   renderAll();
   injectCosmologia();
@@ -1012,7 +1013,12 @@ function entShot(entity, kind, style){
   if(!entity) return '';
   const cand=refCandidates(entity, kind);
   const ok=entity.status==='confermata';
-  return `<div class="entshot" style="${style||''}">
+  // se c'è una reference vera (imageUrl) la si può aprire a schermo intero: la stessa
+  // catena di candidati va nel lightbox, che carica la piena risoluzione solo al click.
+  const zoom = entity.imageUrl
+    ? ` data-lb="${esc(cand.join('|'))}" data-lb-name="${esc(entity.name)}" role="button" tabindex="0" aria-label="ingrandisci ${esc(entity.name)}"`
+    : '';
+  return `<div class="entshot${entity.imageUrl?' zoomable':''}" style="${style||''}"${zoom}>
      <div class="entph"><span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span></div>
      <img src="${cand[0]}" data-fb="${esc(cand.slice(1).join('|'))}" alt="${esc(entity.name)}" loading="lazy" onerror="rzImgNext(this)">
    </div>`;
@@ -1024,6 +1030,63 @@ window.rzImgNext=function(img){
   else { img.remove(); }
 };
 function stBadge(status){ const ok=status==='confermata'; return `<span class="stbadge ${ok?'ok':'wip'}">${ok?'confermata':'da generare'}</span>`; }
+
+/* =====================================================================
+   LIGHTBOX — una qualunque reference (Personaggi · Cast · Luoghi) si apre a
+   schermo intero. Un SOLO overlay riusato per tutte le immagini; la piena
+   risoluzione (6–8 MB) si scarica solo al click, non nelle thumbnail lazy.
+   ===================================================================== */
+let LB_PREV=null;                         // elemento a cui restituire il focus
+function installLightbox(){
+  if(document.getElementById('rzLightbox')) return;
+  const lb=document.createElement('div');
+  lb.id='rzLightbox'; lb.className='rz-lb'; lb.setAttribute('role','dialog');
+  lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-hidden','true');
+  lb.setAttribute('aria-label','immagine a schermo intero');
+  lb.innerHTML=`<button class="rz-lb-x" aria-label="chiudi">✕</button>
+    <figure class="rz-lb-fig">
+      <img class="rz-lb-img" alt="">
+      <figcaption class="rz-lb-cap"></figcaption>
+    </figure>`;
+  document.body.appendChild(lb);
+  lb.addEventListener('click',e=>{ if(e.target===lb) closeLightbox(); });
+  lb.querySelector('.rz-lb-x').addEventListener('click',closeLightbox);
+  // apertura: click (fase di cattura, così vince sul bottone-scheda del Cast) o tastiera.
+  document.addEventListener('click',e=>{
+    const shot=e.target.closest && e.target.closest('.entshot[data-lb]');
+    if(!shot) return;
+    e.preventDefault(); e.stopPropagation();
+    openLightbox(shot.getAttribute('data-lb'), shot.getAttribute('data-lb-name'), shot);
+  }, true);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && document.getElementById('rzLightbox').classList.contains('on')){
+      closeLightbox(); e.stopImmediatePropagation(); return;   // non far chiudere anche il reader
+    }
+    if((e.key==='Enter'||e.key===' ') && e.target.matches && e.target.matches('.entshot[data-lb]')){
+      e.preventDefault();
+      openLightbox(e.target.getAttribute('data-lb'), e.target.getAttribute('data-lb-name'), e.target);
+    }
+  }, true);
+}
+function openLightbox(candsStr, name, source){
+  const lb=document.getElementById('rzLightbox'); if(!lb) return;
+  const cand=(candsStr||'').split('|').filter(Boolean); if(!cand.length) return;
+  LB_PREV=source||null;
+  const img=lb.querySelector('.rz-lb-img'), cap=lb.querySelector('.rz-lb-cap');
+  img.alt=name||''; img.setAttribute('data-fb', cand.slice(1).join('|')); img.src=cand[0];
+  img.onerror=function(){ rzImgNext(this); };   // stessa catena di fallback delle thumbnail
+  cap.textContent=name||'';
+  lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  lb.querySelector('.rz-lb-x').focus();
+}
+function closeLightbox(){
+  const lb=document.getElementById('rzLightbox'); if(!lb) return;
+  lb.classList.remove('on'); lb.setAttribute('aria-hidden','true');
+  const img=lb.querySelector('.rz-lb-img'); img.src=''; img.removeAttribute('data-fb');
+  document.body.style.overflow='';
+  if(LB_PREV && LB_PREV.focus){ try{ LB_PREV.focus(); }catch(e){} }
+  LB_PREV=null;
+}
 
 /* blocco «reference visiva» per un'entità (cruscotto del ritrattista):
    ritratto (o placeholder+stato) + descrittore come direzione artistica. */
@@ -1202,7 +1265,7 @@ function renderCast(s){
   const meta={}; (C.arcs||[]).forEach(a=>meta[a.n]=a);
   const earCol={connettere:'#3f8e84',distinguere:'#b0503c',cambiare:'#6b6ea0'};
   const card=c=>`<button class="castcard" data-slug="${c.slug}" data-name="${(c.name||'').replace(/"/g,'&quot;')}">
-      ${imgSlot('cast', c.slug, 'display:block;width:100%;height:118px;object-fit:cover;border-radius:9px;margin-bottom:8px')}
+      ${entShot(entOf(c.entityId),'cast','display:block;width:100%;height:118px;border-radius:9px;margin-bottom:8px')}
       <div class="cc-name">${c.name||c.slug}</div>
       <div class="cc-sub">${c.specie||''}</div>
       <div class="cc-tags">${c.ear?`<span class="chip" style="border-color:${earCol[c.ear]||'#ccc'};color:${earCol[c.ear]||'#555'}">EAR · ${c.ear}</span>`:''}</div>
@@ -1279,8 +1342,21 @@ function injectStyles(){
   .entshot{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(135deg,var(--stone-1),var(--stone-2));border:1px solid var(--line-s)}
   .entshot .entph{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px;z-index:1}
   .entshot > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;background:var(--stone-1)}
+  .entshot.zoomable{cursor:zoom-in}
+  .entshot.zoomable:focus-visible{outline:2px solid var(--cord-deep);outline-offset:2px}
   .entref{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-s)}
   .entref-txt{min-width:0;flex:1}
+
+  /* ---- lightbox (reference a schermo intero) ---- */
+  .rz-lb{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,18,28,.92);backdrop-filter:blur(4px)}
+  .rz-lb.on{display:flex}
+  .rz-lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:96vw;max-height:92vh}
+  .rz-lb-img{max-width:96vw;max-height:84vh;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:rgba(255,255,255,.04)}
+  .rz-lb-cap{font-family:'Fraunces',serif;font-size:17px;color:#ece6d8;text-align:center;letter-spacing:.01em}
+  .rz-lb-x{position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center}
+  .rz-lb-x:hover{background:rgba(255,255,255,.16)}
+  .rz-lb-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  @media (max-width:640px){ .rz-lb{padding:12px} .rz-lb-img{max-height:78vh} }
 
   /* ---- Archi & Trama ---- */
   .arc{margin:22px 0;padding-left:16px;border-left:3px solid var(--arc,var(--cord))}
