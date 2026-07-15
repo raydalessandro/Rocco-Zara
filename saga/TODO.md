@@ -124,8 +124,9 @@
     chirurgiche (incl. «uccello di conto» → «della Serpe», «tatto dell'occhio», epigrafi, bivacco,
     crinale ×8 dosato in ep01) + **criterio e registro** in `saga/redazione/LESSICO_6-8.md`
     (voce / il-mondo-insegna / strato-specie: cosa non si tocca e perché).
-- [ ] **Nomi `<dal lessico>`** — assegnare i nomi propri ai segnaposto nelle ~28 schede
-      comprimari, in **un'unica passata**, dopo che la trama/`saga_graph` è definita (coerenza).
+- [x] **Nomi `<dal lessico>`** ✅ CHIUSO — passata unica: 18 nomi + 7 senza-nome di progetto
+      (canone in `saga/bible/nomi.md`); 25 schede riempite; 21 innesti in prosa (il nome entra
+      una volta, poi l'epiteto resta primario, da fiaba).
 - [ ] **Incoerenze storiche residue** (basso impatto): `atlante_politico.md` ha ancora
       "(Italia dei Comuni)"/"papali/imperiali" — coperte dall'avviso "substrato", ok così finché
       non si vuole un atlante 100% nostro.
