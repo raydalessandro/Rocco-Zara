@@ -20,9 +20,9 @@
       "entityId": "char_cecca"
     },
     {
-      "name": "Custode Anziano",
+      "name": "Rèmolo",
       "kind": "",
-      "entityId": "char_custode_anziano"
+      "entityId": "char_remolo"
     }
   ],
   "world_flavor": "Laghi del Vespro · rovina · roccia",
@@ -74,7 +74,7 @@
       "never": "finisce un rapporto se qualcosa luccica"
     },
     {
-      "name": "Custode Anziano",
+      "name": "Rèmolo",
       "role": "comprimario",
       "archetype": "il naturalista anziano — osservativo, enciclopedico, pacato",
       "underStress": "si rifugia nell'osservazione, annota invece di agire",
