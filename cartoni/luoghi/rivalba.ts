@@ -22,7 +22,7 @@ import { type P, ellisseD, n, path, pt } from "../motore/svg";
 import { barcaASecco, molo, palafitta, passerella, retiStese } from "../scene/lago";
 import { type Colori, type OpzPalco, creaLuogo } from "../scene/luogo";
 import { piegaErba } from "../scene/meteo";
-import { roccia } from "../scene/oggetti";
+import { alberoDAutunno, roccia } from "../scene/oggetti";
 import { type Cresta, monti } from "../scene/pittura";
 
 // ------------------------------------------------------------ geografia --
@@ -72,6 +72,18 @@ const C: Colori = {
   bosco: "#4b5836",
   boscoScuro: "#2e3a25",
 };
+/** Gli alberi del bosco sul ciglio (x, altezza): Rocco e Zara ne escono in s02. */
+const BOSCO_DEL_CIGLIO: readonly (readonly [number, number])[] = [
+  [2980, 560],
+  [3240, 640],
+  [3470, 520],
+  [3700, 610],
+  [3960, 580],
+  [4230, 660],
+  [4520, 540],
+  [4800, 600],
+];
+
 
 /**
  * Le altezze dei lontani, per le camere della riva (y ~ 700-800): l'orizzonte del
@@ -204,9 +216,10 @@ export const RIVALBA = creaLuogo(
       [400, 894],
       [1100, 886],
       [1950, 876],
-      [2250, 800],
-      [2550, 640],
-      [2800, 572],
+      [2250, 862],
+      [2450, 790],
+      [2650, 650],
+      [2850, 574],
       [3300, 548],
       [8000, 520],
     ],
@@ -234,7 +247,9 @@ export const RIVALBA = creaLuogo(
       if (inVista(-300, 700)) s += `<g transform="translate(0 ${q})">${molo(luce, RIVA.molo[0], RIVA.molo[1], -RIVA.alturaMolo)}</g>`;
       for (const [i, x] of RIVA.secche.entries()) if (inVista(x)) s += `<g transform="translate(${x} ${n(luogo.quota(x) + 4)})rotate(${i ? -3 : 2})">${barcaASecco(luce, defs, `secca${i}`, i ? 380 : 440)}</g>`;
       if (inVista(RIVA.reti, 500)) s += `<g transform="translate(${RIVA.reti} ${n(luogo.quota(RIVA.reti))})">${retiStese(luce, t, 300, 210)}</g>`;
-      if (inVista(RIVA.custode)) s += roccia(luogo, "masso-custode", RIVA.custode, 190, 150, luce, defs, 0.15);
+      if (inVista(RIVA.custode)) s += roccia(luogo, "masso-custode", RIVA.custode, 300, 150, luce, defs, 0.15);
+      // il bosco da cui arrivano (p.1: «Poi il bosco si aprì»), sul piano oltre il ciglio
+      for (const [x, h] of BOSCO_DEL_CIGLIO) if (inVista(x, 400)) s += alberoDAutunno(o, x, `ciglio${x}`, h);
       for (const [x, w, h] of [[80, 90, 60], [-120, 120, 50], [180, 60, 40], [2200, 80, 56]] as const) if (inVista(x)) s += roccia(luogo, `riva${x}`, x, w, h, luce, defs, 0.3);
       return s;
     },

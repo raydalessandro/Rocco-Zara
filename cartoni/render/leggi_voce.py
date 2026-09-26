@@ -18,7 +18,9 @@ I motori:
 - piper (voci Piper, VITS): `lentezza` = length_scale, `variazione` = noise_scale,
   `cadenza` = noise_w. La stessa frase non esce mai due volte identica.
 - kokoro (Kokoro-82M, onnx): `lentezza` = 1/velocità; `variazione` e `cadenza`
-  non servono. Esce sempre identica (a parità di modello e di macchina).
+  non servono. Esce sempre identica (a parità di modello e di macchina). Il
+  `modello` può essere un miscuglio di voci: «if_sara*0.3+ef_dora*0.7» (così il
+  cast cresce: l'italiano lo legge comunque, la voce cambia).
 
 `tono` (semitoni) rende la voce più acuta E più piccola (una bambina, un
 cucciolo) o più grave e più grande (tono negativo): si fa leggere più lenta
@@ -115,8 +117,19 @@ class Kokoro:
         self.sr = 24000
         self.voce = lavoro["modello"]
 
+    def stile(self):
+        """La voce: un nome di Kokoro, o un miscuglio «if_sara*0.3+ef_dora*0.7» (i pesi sommano a 1)."""
+        if "+" not in self.voce and "*" not in self.voce:
+            return self.voce
+        tot = None
+        for parte in self.voce.split("+"):
+            nome, _, peso = parte.strip().partition("*")
+            v = self.k.get_voice_style(nome.strip()) * float(peso or 1)
+            tot = v if tot is None else tot + v
+        return tot
+
     def leggi(self, testo: str, lentezza: float) -> np.ndarray:
-        a, sr = self.k.create(testo, voice=self.voce, speed=1.0 / lentezza, lang="it")
+        a, sr = self.k.create(testo, voice=self.stile(), speed=1.0 / lentezza, lang="it")
         self.sr = sr
         return np.asarray(a, dtype=np.float32)
 

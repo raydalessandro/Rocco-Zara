@@ -2,28 +2,16 @@
 //
 // Musica scritta come dati (la suona cartoni/audio/partitura.ts): sezioni
 // agganciate alle inquadrature (così se il montaggio cambia, la musica lo
-// segue), progressioni di accordi, e tre temi:
+// segue), progressioni di accordi, e tre temi della serie (cartoni/audio/temi.ts):
 //  - il tema di Zara: veloce, pentatonico, a scatti (corre, «faceva tutto di corsa»);
 //  - i passi di Rocco: un basso lento e pesante, gentile;
 //  - il tema dell'amicizia: caldo, discendente, che torna nel finale.
 // Tonalità di casa: Re maggiore; il temporale in re minore; il riparo di nuovo in Re.
 
 import { type Nota, type Sezione, suona } from "../../audio/partitura";
+import { AMICIZIA, APERTO, PASSI_ROCCO, ZARA } from "../../audio/temi";
 
-const ZARA: Nota[] = [
-  [0, 0.5, 69], [0.5, 0.5, 71], [1, 0.5, 74], [1.5, 0.5, 76], [2, 1, 78], [3, 0.5, 76], [3.5, 0.5, 74], [4, 1, 71],
-  [5, 1, 74], [6, 0.5, 71], [6.5, 0.5, 69], [7, 1, 71],
-  [8, 0.5, 69], [8.5, 0.5, 71], [9, 0.5, 74], [9.5, 0.5, 76], [10, 1, 78], [11, 0.5, 81], [11.5, 0.5, 78],
-  [12, 1.5, 76], [13.5, 0.5, 74], [14, 2, 74],
-];
-const APERTO: Nota[] = [[0, 2, 74], [2, 1, 76], [3, 1, 78], [4, 3, 81], [7, 1, 78], [8, 2, 76], [10, 2, 74], [12, 4, 73]];
-const AMICIZIA: Nota[] = [
-  [0, 1, 74], [1, 1, 73], [2, 1, 71], [3, 1, 69], [4, 1, 71], [5, 1, 69], [6, 1, 66], [7, 1, 64],
-  [8, 1, 62], [9, 1, 64], [10, 1, 66], [11, 1, 69], [12, 2, 71], [14, 2, 69],
-  [16, 1, 74], [17, 1, 73], [18, 1, 71], [19, 1, 69], [20, 1, 71], [21, 1, 73], [22, 2, 74], [24, 4, 74],
-];
 const SPIA: Nota[] = [[0, 0.5, 76], [0.5, 0.5, 75], [1, 0.5, 76], [2, 0.5, 79], [2.5, 0.5, 78], [3, 0.5, 76], [4, 0.5, 71], [4.5, 0.5, 72], [5, 0.5, 71], [6, 1, 76]];
-const PASSI_ROCCO = [38, 33, 35, 30, 31, 38, 40, 33];
 const RIPARO: Nota[] = [[0, 4, 69], [4, 2, 71], [6, 2, 69], [8, 6, 66]];
 
 const SEZIONI: Sezione[] = [

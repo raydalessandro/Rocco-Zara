@@ -129,13 +129,34 @@ export function barca(luce: Luce, defs: Defs, id: string, o: OpzBarca = {}): Sca
   ]);
   davanti += `<g clip-path="${clip}">${path(`M${n(-h - 80)} -2H${n(h + 80)}V${n(fondo + 30)}H${n(-h - 80)}Z`, { fill: velo })}</g>`;
   davanti += path(`M${n(-h - 20)} 1Q${n(-h * 0.2)} 5 ${n(h * 0.3)} 1T${n(h + 10)} 2`, { stroke: inLuce(colAcqua.chiaro, luce), "stroke-width": 3, fill: "none", opacity: 0.75, "stroke-linecap": "round" });
-  // le reti a poppa (un mucchio morbido, coi galleggianti di sughero)
+  // le reti a poppa: un mucchio morbido e bitorzoluto, a maglie (che non sembri un
+  // guscio), coi galleggianti di sughero e un lembo che pende fuori dal bordo
   let dietroReti = "";
   if (o.reti ?? true) {
     const rx = X(h * 0.72);
-    dietroReti += path(curva([[rx - 60, bordo + 2], [rx - 40, bordo - 26], [rx, bordo - 34], [rx + 44, bordo - 22], [rx + 58, bordo + 2]], true), { fill: inLuce("#6f6a55", luce) });
-    dietroReti += path(`M${n(rx - 44)} ${n(bordo - 14)}l18 -12l20 10l18 -14l20 12`, { stroke: inLuce("#9a9476", luce), "stroke-width": 1.5, fill: "none", opacity: 0.8 });
-    for (const [dx, dy] of [[-30, -22], [8, -30], [36, -18]] as const) dietroReti += path(ellisseD([rx + dx, bordo + dy], 6, 4), { fill: inLuce("#c28a4a", luce) });
+    const mucchio = curva(
+      [
+        [rx - 72, bordo + 2],
+        [rx - 62, bordo - 16],
+        [rx - 40, bordo - 22],
+        [rx - 22, bordo - 34],
+        [rx + 2, bordo - 28],
+        [rx + 22, bordo - 38],
+        [rx + 46, bordo - 24],
+        [rx + 64, bordo - 10],
+        [rx + 72, bordo + 2],
+      ],
+      true,
+    );
+    dietroReti += path(mucchio, { fill: inLuce("#8a8670", luce) });
+    // le maglie: due trame di traverso, dentro il mucchio
+    const clipR = defs.clip(`${id}-reti`, mucchio);
+    let maglie = "";
+    for (let x = -100; x <= 100; x += 11) maglie += `M${n(rx + x)} ${n(bordo + 4)}l40 -48M${n(rx + x)} ${n(bordo + 4)}l-40 -48`;
+    dietroReti += `<g clip-path="${clipR}">${path(maglie, { stroke: inLuce("#bdb89c", luce), "stroke-width": 1.4, fill: "none", opacity: 0.75 })}${path(`M${n(rx - 80)} ${n(bordo - 6)}H${n(rx + 80)}V${n(bordo + 6)}H${n(rx - 80)}Z`, { fill: "#2a261c", opacity: 0.3 })}</g>`;
+    for (const [dx, dy] of [[-44, -16], [-6, -26], [30, -30], [54, -12]] as const) {
+      dietroReti += path(ellisseD([rx + dx, bordo + dy], 8, 5.5), { fill: inLuce("#d9a15a", luce) }) + path(ellisseD([rx + dx - 1.5, bordo + dy - 1.5], 4, 2.2), { fill: "#fff3d6", opacity: 0.45 });
+    }
   }
   const taglio = defs.clip(`${id}-bordo`, `M${n(-h - 200)} ${n(bordo - 900)}H${n(h + 200)}V${n(fondo - 8)}H${n(-h - 200)}Z`);
   return {
@@ -150,14 +171,18 @@ export function barca(luce: Luce, defs: Defs, id: string, o: OpzBarca = {}): Sca
  * Un remo, vogato in piedi guardando avanti (come si fa sui laghi): gira sullo
  * scalmo, il manico nelle zampe di chi voga, la pala in acqua verso poppa.
  * `fase` 0..1 è il ciclo (fino a 0.5 la passata, pala in acqua; poi la pala esce e
- * torna); `fermo` (0..1) lo tira in barca, lungo il bordo. `verso` = dove sta la
- * poppa (+1 a destra). Restituisce il disegno, il manico (per le zampe) e la pala.
+ * torna); `fermo` (0..1) lo tira in barca, lungo il bordo. `verso` = da che parte
+ * dello scalmo sta la pala (+1 a destra); `spinge` per chi voga in piedi guardando
+ * avanti. Restituisce il disegno, il manico (per le zampe) e la pala.
  */
-export function remo(luce: Luce, scalmo: P, fase: number, fermo = 0, verso: 1 | -1 = 1): { disegno: string; manico: P; pala: P } {
+export function remo(luce: Luce, scalmo: P, fase: number, fermo = 0, verso: 1 | -1 = 1, spinge = false): { disegno: string; manico: P; pala: P } {
   const f = ((fase % 1) + 1) % 1;
   const passata = f < 0.5;
   const u = passata ? f / 0.5 : (f - 0.5) / 0.5;
-  const va = passata ? u : 1 - u; // la pala va verso poppa nella passata, torna dopo
+  // la pala va verso poppa nella passata, torna dopo; chi voga in piedi guardando
+  // avanti SPINGE (la pala sta davanti allo scalmo, e nella passata torna indietro)
+  const va0 = passata ? u : 1 - u;
+  const va = spinge ? 1 - va0 : va0;
   const alza = passata ? 0 : Math.sin(u * Math.PI) * 0.3; // fuori dall'acqua mentre torna
   const angV = ((20 + va * 32) * Math.PI) / 180; // dal verticale, verso poppa
   let d: P = [verso * Math.sin(angV), Math.cos(angV) * (1 - alza)];
@@ -167,7 +192,8 @@ export function remo(luce: Luce, scalmo: P, fase: number, fermo = 0, verso: 1 | 
   const nd = Math.hypot(d[0], d[1]);
   d = [d[0] / nd, d[1] / nd];
   const Lp = 300 - 60 * kf;
-  const Lm = 105;
+  // il manico: chi voga in piedi lo tiene all'altezza del petto (non davanti al muso)
+  const Lm = spinge ? 62 : 105;
   const pala: P = [scalmo[0] + d[0] * Lp, scalmo[1] + d[1] * Lp];
   const manico: P = [scalmo[0] - d[0] * Lm, scalmo[1] - d[1] * Lm];
   const legno = inLuce(LEGNO.chiaro, luce);

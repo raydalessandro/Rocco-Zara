@@ -211,6 +211,72 @@ export function effetto(bus: Bus, nome: string, t: number, vol = 1, durata?: num
       }
       break;
     }
+    case "folaga": {
+      // il verso della folaga (ep02, p.1): due «pitt» secchi, metallici, sull'acqua
+      for (const [dt, f0] of [[0, 1350], [0.26, 1250]] as const) {
+        const i0 = idx(t + dt);
+        let fase = 0;
+        for (let i = 0; i < idx(0.13); i++) {
+          const tt = i / SR;
+          const f = f0 * (1 - tt * 2.2);
+          fase += (2 * Math.PI * f) / SR;
+          const e = Math.min(1, tt * 400) * Math.exp(-tt * 22);
+          bus.add(i0 + i, (Math.sin(fase) + 0.4 * Math.sin(2 * fase) + 0.2 * Math.sin(3 * fase)) * e * vol * 0.22, -0.35);
+        }
+      }
+      break;
+    }
+    case "toc": {
+      // due colpetti col palmo sul bordo della barca: «tòc tòc» (ep02, p.5 e p.14)
+      for (const [k, dt] of [[0, 0], [1, 0.24]] as const) {
+        const i0 = idx(t + dt);
+        let fase = 0;
+        for (let i = 0; i < idx(0.09); i++) {
+          const tt = i / SR;
+          fase += (2 * Math.PI * (330 + 90 * Math.exp(-tt * 60))) / SR;
+          bus.add(i0 + i, Math.sin(fase) * Math.exp(-tt * 55) * vol * 0.55, 0.15);
+        }
+        soffio(bus, t + dt, 0.04, vol * 0.5, 2400, 1.2, seme + k, (u) => Math.exp(-u * 9), 0.15);
+      }
+      break;
+    }
+    case "remo": {
+      // un colpo di remo: la pala entra, l'acqua gira, gocciola
+      const d = durata ?? 1;
+      const hz = ritmo ?? 0.55;
+      for (let k = 0; k * (1 / hz) < d; k++) {
+        const t0 = t + k / hz;
+        soffio(bus, t0, 0.55, vol * 0.5, 700, 0.9, seme + k * 3, (u) => Math.sin(Math.PI * Math.min(1, u * 1.4)) * (1 - u * 0.6), 0.25);
+        soffio(bus, t0 + 0.45, 0.35, vol * 0.25, 2600, 1.6, seme + k * 3 + 1, (u) => Math.exp(-u * 5), 0.3);
+        for (let j = 0; j < 3; j++) {
+          const tg = t0 + 0.55 + j * 0.13 + r.tra(0, 0.05);
+          const i0 = idx(tg);
+          let fase = 0;
+          for (let i = 0; i < idx(0.05); i++) {
+            const tt = i / SR;
+            fase += (2 * Math.PI * (900 + 1400 * Math.exp(-tt * 70))) / SR;
+            bus.add(i0 + i, Math.sin(fase) * Math.exp(-tt * 60) * vol * 0.12, 0.3);
+          }
+        }
+      }
+      break;
+    }
+    case "legno": {
+      // la barca che s'inclina e decide di reggere: uno scricchiolio lungo, basso
+      const d = durata ?? 0.9;
+      const i0 = idx(t);
+      const n = idx(d);
+      const bp = new PassaBanda(260, 3);
+      let fase = 0;
+      for (let i = 0; i < n; i++) {
+        const u = i / n;
+        fase += (2 * Math.PI * (38 + 18 * Math.sin(u * 9))) / SR;
+        const graffio = Math.sin(fase) > 0.93 ? 1 : 0; // i piccoli scatti del legno
+        const y = bp.passa((r() * 2 - 1) * (0.3 + graffio));
+        bus.add(i0 + i, y * Math.sin(Math.PI * u) * vol * 0.9, 0);
+      }
+      break;
+    }
     case "giunco": {
       soffio(bus, t, 0.06, vol * 0.9, 3600, 2, seme, (u) => Math.exp(-u * 6), -0.2);
       soffio(bus, t + 0.05, 0.3, vol * 0.25, 1800, 0.8, seme + 1, (u) => Math.exp(-u * 5), -0.2);

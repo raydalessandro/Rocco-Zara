@@ -47,6 +47,26 @@
         "riccardo-ricordo"
       ],
       "come": "il fratello di Zara, nel ricordo: più grande, poche parole, di chi ha già capito (saga/bible/toraki.md, «Voce»)"
+    },
+    "brenta": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "dora-barcaiola",
+      "provini": [
+        "dora-barcaiola",
+        "dora-chiara"
+      ],
+      "come": "la lontra barcaiola: femmina adulta, concreta, calda, d'acqua; parla mentre lavora, come se le parole fossero l'avanzo (saga/bible/comprimari/traghettatrice-delle-rive.md, «Voce»)"
+    },
+    "custode": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "george-custode",
+      "provini": [
+        "george-custode",
+        "fable-custode"
+      ],
+      "come": "il Custode, una vecchia testuggine di lago: maschio, anziano, lento e pacato, con la calma di chi ricorda tutto (saga/bible/comprimari/custode-anziano.md, «Voce»)"
     }
   },
   "candidate": {
@@ -138,6 +158,38 @@
       "tono": 4,
       "esito": "scartata da Ray (26/9/2026): la S è spenta",
       "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
+    },
+    "dora-barcaiola": {
+      "descrizione": "Sara e Dora (Kokoro, 40% Sara e 60% Dora), due semitoni più grave e appena lenta: una donna adulta, calda, diversa da Zara (parole capite 95%)",
+      "motore": "kokoro",
+      "modello": "if_sara*0.4+pf_dora*0.6",
+      "lentezza": 1.05,
+      "tono": -2,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci if_sara e pf_dora sono del modello)"
+    },
+    "dora-chiara": {
+      "descrizione": "Sara e Dora (Kokoro, 60% Sara e 40% Dora), due semitoni più grave: più vicina a Sara, un poco più chiara (parole capite 93%)",
+      "motore": "kokoro",
+      "modello": "if_sara*0.6+pf_dora*0.4",
+      "lentezza": 1.0,
+      "tono": -2,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci if_sara e pf_dora sono del modello)"
+    },
+    "george-custode": {
+      "descrizione": "Nicola e George (Kokoro, 40% Nicola e 60% George), tre semitoni più grave e lenta: un vecchio pacato, diverso da Rocco (parole capite 100%)",
+      "motore": "kokoro",
+      "modello": "im_nicola*0.4+bm_george*0.6",
+      "lentezza": 1.3,
+      "tono": -3,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci im_nicola e bm_george sono del modello)"
+    },
+    "fable-custode": {
+      "descrizione": "Nicola e Fable (Kokoro, 40% Nicola e 60% Fable), tre semitoni più grave e lenta: un vecchio più scuro e più roco (parole capite 100%)",
+      "motore": "kokoro",
+      "modello": "im_nicola*0.4+bm_fable*0.6",
+      "lentezza": 1.3,
+      "tono": -3,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci im_nicola e bm_fable sono del modello)"
     }
   },
   "pronuncia": {

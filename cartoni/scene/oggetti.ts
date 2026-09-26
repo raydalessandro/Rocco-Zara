@@ -213,5 +213,57 @@ export function alberoSecco(o: OpzPalco, x: number): string {
   return path(d, { stroke: col, "stroke-width": 9, fill: "none", "stroke-linecap": "round" });
 }
 
+/**
+ * Un albero d'autunno (l'anno che pende verso il freddo): tronco che si
+ * assottiglia, due rami, la chioma a nuvole di foglie in tre strati (l'ombra
+ * dietro, il colore, la luce in cima). Ogni albero ha il suo seme e il suo tono.
+ */
+export function alberoDAutunno(o: OpzPalco, x: number, seme: string, h = 520): string {
+  const { luce, luogo } = o;
+  const r = caso("albero/" + seme);
+  const y = luogo.quota(x) + 6;
+  const toni = ["#8a7a3c", "#a8843a", "#96603a", "#6f7442", "#b3923f"];
+  const tono = toni[Math.floor(r.tra(0, toni.length)) % toni.length];
+  const accanto = toni[(toni.indexOf(tono) + 1 + Math.floor(r.tra(0, 2))) % toni.length];
+  const corteccia = inLuce("#5a4a3a", luce);
+  const cortecciaS = inOmbra("#3b3027", luce);
+  const piega = r.segno(24);
+  // il tronco: largo alla base, sottile in alto, un poco storto
+  const cima: P = [x + piega, y - h * 0.62];
+  const tronco = `M${n(x - 26)} ${n(y)}C${n(x - 20)} ${n(y - h * 0.3)} ${n(cima[0] - 14)} ${n(y - h * 0.45)} ${n(cima[0] - 8)} ${n(cima[1])}L${n(cima[0] + 8)} ${n(cima[1])}C${n(cima[0] + 12)} ${n(y - h * 0.4)} ${n(x + 20)} ${n(y - h * 0.25)} ${n(x + 28)} ${n(y)}Z`;
+  let s = path(tronco, { fill: corteccia });
+  s += path(`M${n(x + 8)} ${n(y)}C${n(x + 10)} ${n(y - h * 0.25)} ${n(cima[0] + 4)} ${n(y - h * 0.42)} ${n(cima[0] + 6)} ${n(cima[1])}`, { stroke: cortecciaS, "stroke-width": 10, fill: "none", opacity: 0.6 });
+  // i rami
+  const rami = `M${n(x + piega * 0.4)} ${n(y - h * 0.4)}Q${n(x + 60)} ${n(y - h * 0.5)} ${n(x + 120 + r.segno(20))} ${n(y - h * 0.62)}M${n(x + piega * 0.6)} ${n(y - h * 0.5)}Q${n(x - 50)} ${n(y - h * 0.58)} ${n(x - 110 + r.segno(20))} ${n(y - h * 0.7)}`;
+  s += path(rami, { stroke: corteccia, "stroke-width": 12, fill: "none", "stroke-linecap": "round" });
+  // la chioma: nuvole di foglie attorno alla cima, in tre strati
+  const centro: P = [x + piega, y - h * 0.74];
+  const nuvole: [number, number, number][] = [];
+  for (let i = 0; i < 11; i++) {
+    const a = r.tra(0, Math.PI * 2);
+    const d = r.tra(0, 1);
+    nuvole.push([centro[0] + Math.cos(a) * 170 * d, centro[1] + Math.sin(a) * 110 * d, r.tra(70, 120)]);
+  }
+  let dietro = "";
+  let medio = "";
+  let luceC = "";
+  for (const [cx, cy, rr] of nuvole) {
+    dietro += ellisseD([cx + 10, cy + 14], rr * 1.05, rr * 0.92);
+    medio += ellisseD([cx, cy], rr * 0.92, rr * 0.8);
+    luceC += ellisseD([cx - rr * 0.22, cy - rr * 0.3], rr * 0.55, rr * 0.42);
+  }
+  s += path(dietro, { fill: inOmbra(tono, luce) });
+  s += path(medio, { fill: inLuce(mescola(tono, accanto, 0.3), luce) });
+  s += path(luceC, { fill: inLuce(schiarisci(tono, 0.14), luce), opacity: 0.8 });
+  // qualche foglia più accesa, sparsa
+  let foglie = "";
+  for (let i = 0; i < 22; i++) {
+    const [cx, cy, rr] = nuvole[Math.floor(r.tra(0, nuvole.length)) % nuvole.length];
+    foglie += ellisseD([cx + r.segno(rr * 0.8), cy + r.segno(rr * 0.6)], r.tra(6, 11), r.tra(4, 7));
+  }
+  s += path(foglie, { fill: inLuce(accanto, luce), opacity: 0.85 });
+  return s;
+}
+
 /** Dove posa un uccello sull'albero secco piantato in x. */
 export const posatoio = (luogo: Luogo, x: number): P => [x + 120, luogo.quota(x) - 214];

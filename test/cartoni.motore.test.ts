@@ -12,7 +12,7 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { CECCA_ANCORE } from "../cartoni/cast/fauna";
+import { CECCA_ANCORE, martinPescatore } from "../cartoni/cast/fauna";
 import { BRENTA_ANCORE } from "../cartoni/cast/laghi";
 import { ROCCO_ANCORE } from "../cartoni/cast/rocco";
 import { VOCI } from "../cartoni/cast/voci";
@@ -32,7 +32,10 @@ import { ease, traccia } from "../cartoni/motore/tempo";
 import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, impronta, pianifica } from "../cartoni/motore/voce";
 import { type Brani, postiDeiBrani, versiCantati } from "../cartoni/audio/brani";
 import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
-import { insertoPietra } from "../cartoni/scene/inserti";
+import { FINE_NODI, insertoCorda, insertoPietra } from "../cartoni/scene/inserti";
+import { galleggia, riflesso } from "../cartoni/scene/lago";
+import { APPRODO, LAGO_VESPRO, RIVA, RIVALBA } from "../cartoni/luoghi/rivalba";
+import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
 
@@ -196,6 +199,99 @@ describe("cartoni — attrezzi e luoghi", () => {
 
   it("le didascalie vanno a capo in al più tre righe", () => {
     expect(aCapo("Uno scatto, il luccichio nel becco, e via bassa sopra il canneto, verso sud, senza finire né la frase né il lavoro.").length).toBeLessThanOrEqual(3);
+  });
+});
+
+describe("cartoni — il lago (ep02): la riva, le barche, i riflessi, la corda sul legno", () => {
+  it("la riva di Rivalba e l'approdo: suolo continuo; le cose stanno dove la prosa le vuole (il molo e la barca sull'acqua, la tana e il masso all'asciutto)", () => {
+    for (const L of [RIVALBA, APPRODO]) {
+      for (let x = -3000; x < 6000; x += 7) expect(Math.abs(L.quota(x + 1) - L.quota(x)), `${L.id} x=${x}`).toBeLessThan(3);
+      for (const [x, y] of L.profilo) expect(L.quota(x)).toBeCloseTo(y, 6);
+    }
+    const q = LAGO_VESPRO.quota; // y cresce verso il basso: sotto il pelo dell'acqua = quota > q
+    for (const x of [RIVA.molo[0], RIVA.molo[1] - 60, RIVA.barca, RIVA.largo]) expect(RIVALBA.quota(x), `acqua a x=${x}`).toBeGreaterThan(q);
+    for (const x of [RIVA.custode, RIVA.tana, RIVA.ciglio, ...RIVA.secche, RIVA.reti]) expect(RIVALBA.quota(x), `asciutto a x=${x}`).toBeLessThan(q);
+    expect(RIVA.molo[0]).toBeLessThan(RIVA.molo[1]);
+  });
+
+  it("una barca a galla dondola poco, sempre uguale per lo stesso nome; la calma la ferma", () => {
+    for (let t = 0; t < 60; t += 0.37) {
+      const a = galleggia(t, "barca");
+      expect(Math.abs(a.dy)).toBeLessThan(5);
+      expect(Math.abs(a.ang)).toBeLessThan(1.5);
+      expect(galleggia(t, "barca")).toEqual(a);
+      const ferma = galleggia(t, "barca", 0);
+      expect(Math.abs(ferma.dy) + Math.abs(ferma.ang)).toBe(0);
+    }
+  });
+
+  it("il riflesso: capovolto attorno al pelo dell'acqua, solo sotto; sfumato ai bordi se serve", () => {
+    const defs = new Defs("");
+    const r = riflesso(defs, "prova", '<circle cx="0" cy="850" r="20"/>', 900, { t: 1, opacita: 0.6, sfuma: { c: [0, 850], r: 100 } });
+    expect(r).toContain("translate(0 1800)scale(1 -1)");
+    expect(r).toContain("clip-path");
+    expect(r).toContain("mask=");
+    expect(riflesso(new Defs(""), "vuoto", "", 900, { t: 1 })).toBe("");
+  });
+
+  it("la corda sul legno o nell'involto non ha le conche della pietra (quelle sono di ep01); il nodo nuovo c'è solo quando lo si fa", () => {
+    const testo = (o: Partial<Parameters<typeof insertoCorda>[0]>) =>
+      insertoCorda({ t: 1, luce: LUCI.giorno, defs: new Defs(""), srotolata: 1, lettura: -1, spinta: 0, ...o })
+        .map((l) => l.contenuto)
+        .join("");
+    expect(testo({})).toContain("conca");
+    expect(testo({ fondo: "legno" })).not.toContain("conca");
+    expect(testo({ fondo: "foglie" })).not.toContain("conca");
+    const senza = testo({ fondo: "legno", nuovi: [{ u: FINE_NODI + 0.05, fatto: 0 }] });
+    const con = testo({ fondo: "legno", nuovi: [{ u: FINE_NODI + 0.05, fatto: 1 }] });
+    expect(senza).toBe(testo({ fondo: "legno" }));
+    expect(con.length).toBeGreaterThan(senza.length);
+    expect(testo({ fondo: "legno", zampeLontra: { u: FINE_NODI + 0.1, strappo: 0.4, lavora: 1 } })).not.toMatch(/NaN|undefined|Infinity/);
+  });
+
+  it("il martin pescatore posato (anche offeso e bagnato) è ben disegnato e sempre uguale", () => {
+    const ctx = { luce: LUCI.giorno, defs: new Defs(""), id: "mp" };
+    for (const t of [0, 1.3, 7.9]) {
+      const d = martinPescatore({ t, modo: "posato", offeso: 1, bagnato: 1 }, ctx);
+      expect(d).not.toMatch(/NaN|undefined|Infinity/);
+      expect(martinPescatore({ t, modo: "posato", offeso: 1, bagnato: 1 }, ctx)).toBe(d);
+    }
+  });
+});
+
+describe("cartoni — i temi della serie (cartoni/audio/temi.ts): la musica che torna", () => {
+  const temi = Object.entries(TEMI).filter(([, v]) => Array.isArray(v)) as [string, readonly unknown[]][];
+
+  it("ogni tema è fatto bene: note in fila, durate positive, dentro l'estensione degli strumenti", () => {
+    expect(temi.length).toBeGreaterThanOrEqual(8);
+    for (const [nome, tema] of temi) {
+      if (typeof tema[0] === "number") {
+        for (const m of tema as number[]) expect(m, nome).toBeGreaterThanOrEqual(24);
+        continue; // un ostinato nel basso: una nota per battito
+      }
+      let prima = -1;
+      for (const [b, d, m] of tema as [number, number, number][]) {
+        expect(b, nome).toBeGreaterThanOrEqual(prima);
+        expect(d, nome).toBeGreaterThan(0);
+        expect(m, nome).toBeGreaterThanOrEqual(48);
+        expect(m, nome).toBeLessThanOrEqual(96);
+        prima = b;
+      }
+    }
+  });
+
+  it("il riflesso è il tema del lago capovolto (specchio diatonico attorno al Re)", () => {
+    const scala = [62, 64, 66, 67, 69, 71, 73]; // Re maggiore
+    const grado = (m: number) => {
+      const o = Math.floor((m - 62) / 12);
+      const i = scala.indexOf(m - 12 * o);
+      expect(i, `nota ${m} fuori dalla scala`).toBeGreaterThanOrEqual(0);
+      return o * 7 + i;
+    };
+    const nota = (g: number) => scala[((g % 7) + 7) % 7] + 12 * Math.floor(g / 7);
+    const asse = grado(74);
+    expect(TEMI.RIFLESSO.length).toBe(TEMI.LAGO.length);
+    TEMI.LAGO.forEach(([b, d, m], i) => expect(TEMI.RIFLESSO[i]).toEqual([b, d, nota(2 * asse - grado(m))]));
   });
 });
 

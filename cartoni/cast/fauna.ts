@@ -127,15 +127,22 @@ export function gazza(posa: PosaGazza, ctx: CtxFauna): string {
 // --------------------------------------------------------- martin pescatore --
 export interface PosaMartin {
   t: number;
-  modo: "volo" | "tuffo";
+  /** in volo, in picchiata, o posato (su un ramo, sulla prua di una barca) */
+  modo: "volo" | "tuffo" | "posato";
   fase?: number;
+  /** (posato) l'aria offesa, 0..1: il becco in su, l'occhio a mezz'asta, le piume arruffate (ep02, p.9) */
+  offeso?: number;
+  /** (posato) bagnato, 0..1: gocciola, e ogni tanto si scrolla */
+  bagnato?: number;
 }
 
+/** Il martin pescatore: lampo azzurro basso sull'acqua. Origine: il centro del corpo (posato: le zampe). */
 export function martinPescatore(posa: PosaMartin, ctx: CtxFauna): string {
   const { luce } = ctx;
   const blu = inLuce("#2b8db5", luce);
   const bluChiaro = inLuce("#5fc2da", luce);
   const arancio = inLuce("#dc7536", luce);
+  if (posa.modo === "posato") return martinPosato(posa, blu, bluChiaro, arancio);
   let s = "";
   const tuffo = posa.modo === "tuffo";
   const f = posa.fase ?? posa.t * 7;
@@ -152,6 +159,51 @@ export function martinPescatore(posa: PosaMartin, ctx: CtxFauna): string {
   s += path(ellisseD([11, 0], 2.4, 1.4), { fill: "#f4efe2" });
   s += path("M-12 0L-22 -2L-20 2Z", { fill: blu });
   if (!tuffo) s += path(curva([[-2, -1], [4, -9 - a * 12], [12, -13 - a * 18], [11, -2]], true), { fill: blu });
+  return s;
+}
+
+/** Il martin pescatore posato, dritto sulle zampe corte; offeso e bagnato se serve. */
+function martinPosato(posa: PosaMartin, blu: string, bluChiaro: string, arancio: string): string {
+  const t = posa.t;
+  const off = clamp(posa.offeso ?? 0);
+  const bag = clamp(posa.bagnato ?? 0);
+  // si scrolla l'acqua di dosso ogni tanto (un brivido veloce)
+  const scrolla = bag > 0 ? Math.max(0, Math.sin(t * 1.7)) ** 12 : 0;
+  const brivido = Math.sin(t * 60) * 3 * scrolla;
+  let s = "";
+  // le zampe corte, rosse
+  s += path("M-3 0L-2 -7M4 0L3 -7M-7 0h7M1 0h8", { stroke: "#b8452a", "stroke-width": 2.2, fill: "none", "stroke-linecap": "round" });
+  let corpo = "";
+  // la coda in giù, il corpo quasi dritto
+  corpo += path("M-6 -10L-16 4L-10 5Z", { fill: blu });
+  corpo += path(ellisseD([0, -18], 9, 14), { fill: blu });
+  corpo += path(curva([[-5, -8], [6, -10], [8, -22], [2, -26]], true), { fill: arancio });
+  corpo += path(curva([[-9, -14], [-6, -26], [0, -30], [-4, -18]], true), { fill: bluChiaro, opacity: 0.8 });
+  // le piume arruffate dall'acqua
+  if (bag > 0.05 || off > 0.05) corpo += path("M-8 -22l-5 -3M-9 -16l-6 0M-7 -9l-5 3", { stroke: blu, "stroke-width": 2, "stroke-linecap": "round", opacity: Math.max(bag, off) });
+  s += g({ transform: `translate(${n(brivido)} 0)` }, corpo);
+  // la testa: in su e un poco girata dall'altra parte, se è offeso
+  let testa = path(cerchioD([0, 0], 8), { fill: blu });
+  testa += path(`M4 -2L${n(22)} 0L4 3Z`, { fill: "#1d1d1d" });
+  testa += path(ellisseD([2, 4], 3, 1.6), { fill: "#f4efe2" });
+  testa += path(ellisseD([-2, 3], 3.4, 2.4), { fill: arancio });
+  testa += path(cerchioD([1, -2], 1.7), { fill: "#0b0b0b" });
+  // la palpebra a mezz'asta (l'aria offesa) e il ciuffo ritto
+  if (off > 0.05) {
+    testa += path(`M-2 ${n(-4.2)}Q1 ${n(-5.4)} 4 ${n(-4.2)}L4 ${n(-4.2 + 2.6 * off)}Q1 ${n(-3 + 2 * off)} -2 ${n(-4.2 + 2.6 * off)}Z`, { fill: blu });
+    testa += path("M-4 -7l-3 -5M-1 -8l-1 -5M2 -8l1 -4", { stroke: blu, "stroke-width": 2, "stroke-linecap": "round", opacity: off });
+  }
+  const ang = -8 - 26 * off + Math.sin(t * 0.9) * 2;
+  s += g({ transform: `translate(${n(4 + brivido)} -33)rotate(${n(ang)})` }, testa);
+  // le gocce che cadono
+  if (bag > 0.05) {
+    let gocce = "";
+    for (let i = 0; i < 3; i++) {
+      const fase = (t * 1.3 + i * 0.37) % 1;
+      gocce += ellisseD([-4 + i * 4, -6 + fase * 26], 1.3, 2);
+    }
+    s += path(gocce, { fill: "#dff2f7", opacity: 0.8 * bag });
+  }
   return s;
 }
 
