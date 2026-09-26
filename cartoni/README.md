@@ -48,10 +48,12 @@ npx tsx cartoni/render/nuovo.ts --episodio ep02     # scheletro: un'inquadratura
   da un piccolo sintetizzatore a formanti (`audio/grammelot.ts`); le bocche dei pupazzi
   seguono le sillabe. Chi dice una battuta lo scrive il copione: `chi: "zara"`.
 - **La narratrice** (facoltativa) legge la narrazione — tutto quello che nelle
-  didascalie sta fuori dalle «». È **una sola per la saga** (`voce/voce.json`): Ray la
-  sceglie dai provini, e poi resta quella (un test lo controlla). Le sue riprese si
-  fanno una volta (`render/narra.ts`, con Piper) e si tengono in `episodi/<id>/voce/`
-  come una registrazione: una voce sintetica non ridice mai una frase identica.
+  didascalie sta fuori dalle «». È **una sola per la saga** (`voce/voce.json`): Ray l'ha
+  scelta dai provini — **Paola, da bambina** (più lenta, e più acuta di 4 semitoni:
+  altezza e formanti salgono insieme, come in una voce più piccola) — e resta quella
+  (un test lo controlla). Le sue riprese si fanno una volta (`render/narra.ts`, con
+  Piper) e si tengono in `episodi/<id>/voce/` come una registrazione: una voce
+  sintetica non ridice mai una frase identica.
 - **I tempi seguono le voci.** Una didascalia dura almeno quanto la sua voce: la
   storia *aspetta* (pupazzi e camera rallentano dentro quella didascalia), il mondo no
   (vento, acqua, pioggia vanno al tempo vero). Suoni, musica e stacchi seguono.

@@ -4,7 +4,8 @@
 //   npx tsx cartoni/render/narra.ts --provini [--episodio ep01] [--uscita cartoni/out/provini_voce]
 //
 // La voce della saga è UNA (cartoni/voce/voce.json): finché Ray non la
-// sceglie si usa la "provvisoria" e le riprese sono provini. Le riprese vanno
+// sceglie si usa la "provvisoria" e le riprese sono provini; scelta la voce,
+// le riprese sono definitive e un'altra voce non si può più usare. Le riprese vanno
 // in episodi/<id>/voce/ (una per pezzo di narrazione, Opus 48 kHz) con il loro
 // registro narrazione.json: si tengono come si tiene una registrazione — la
 // voce sintetica non ridice mai una frase identica, e i tempi del cartone
@@ -39,12 +40,14 @@ interface Candidata {
   lentezza: number;
   variazione: number;
   cadenza: number;
+  /** semitoni: più acuta e più piccola (una bambina); 0 = la voce com'è */
+  tono?: number;
   licenza: string;
 }
 interface VoceSaga {
   stato: "da-scegliere" | "scelta";
   narratrice: string | null;
-  provvisoria: string;
+  provvisoria?: string;
   candidate: Record<string, Candidata>;
 }
 
@@ -56,22 +59,22 @@ export function perLaVoce(testo: string): string {
   return s.replace(/,$/, ".");
 }
 
-/** Fa leggere dei pezzi a una candidata: WAV 22 kHz nella cartella, con le durate. */
-function leggi(c: Candidata, pezzi: { testo: string; file: string; lentezza?: number }[]): Map<string, number> {
+/** Fa leggere dei pezzi a una candidata: un WAV per pezzo, con durata e frequenza di campionamento. */
+function leggi(c: Candidata, pezzi: { testo: string; file: string; lentezza?: number }[]): Map<string, { durata: number; sr: number }> {
   const modelli = resolve(arg("modelli", process.env.PIPER_VOCI ?? join(homedir(), ".cache/rocco-zara/piper"))!);
   const tmp = mkdtempSync(join(tmpdir(), "narra-"));
   const lavoro = join(tmp, "lavoro.json");
-  writeFileSync(lavoro, JSON.stringify({ modello: c.modello, modelli, lentezza: c.lentezza, variazione: c.variazione, cadenza: c.cadenza, pezzi }));
+  writeFileSync(lavoro, JSON.stringify({ modello: c.modello, modelli, lentezza: c.lentezza, variazione: c.variazione, cadenza: c.cadenza, tono: c.tono ?? 0, pezzi }));
   const out = execFileSync(arg("python", "python3")!, [join(RADICE, "cartoni/render/piper_narra.py"), lavoro], {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "inherit"],
     maxBuffer: 1 << 26,
   });
   rmSync(tmp, { recursive: true, force: true });
-  const durate = new Map<string, number>();
+  const durate = new Map<string, { durata: number; sr: number }>();
   for (const riga of out.split("\n").filter(Boolean)) {
-    const r = JSON.parse(riga) as { file: string; durata: number };
-    durate.set(r.file, r.durata);
+    const r = JSON.parse(riga) as { file: string; durata: number; sr: number };
+    durate.set(r.file, { durata: r.durata, sr: r.sr });
   }
   return durate;
 }
@@ -86,7 +89,8 @@ async function episodio(id: string): Promise<Episodio> {
 async function registra(saga: VoceSaga): Promise<void> {
   const id = arg("episodio");
   if (!id) throw new Error("manca --episodio");
-  const nomeVoce = arg("voce", saga.narratrice ?? saga.provvisoria)!;
+  const nomeVoce = arg("voce", saga.narratrice ?? saga.provvisoria);
+  if (!nomeVoce) throw new Error("nessuna voce: né scelta né provvisoria in cartoni/voce/voce.json");
   const c = saga.candidate[nomeVoce];
   if (!c) throw new Error(`voce sconosciuta: ${nomeVoce} (candidate: ${Object.keys(saga.candidate).join(", ")})`);
   if (saga.stato === "scelta" && nomeVoce !== saga.narratrice) throw new Error(`la voce della saga è «${saga.narratrice}»: non si cambia episodio per episodio`);
@@ -110,7 +114,7 @@ async function registra(saga: VoceSaga): Promise<void> {
     const wav = join(tmp, nomeFile(p) + ".wav");
     const file = nomeFile(p) + ".ogg";
     ffmpeg("-i", wav, "-ac", "1", "-ar", "48000", "-c:a", "libopus", "-b:a", "56k", join(cartella, file));
-    clip[p.chiave] = { testo: p.testo, durata: durate.get(wav) ?? 0, file };
+    clip[p.chiave] = { testo: p.testo, durata: durate.get(wav)?.durata ?? 0, file };
   }
   rmSync(tmp, { recursive: true, force: true });
   const n: Narrazione = { voce: nomeVoce, stato: saga.stato === "scelta" ? "definitiva" : "provino", clip };
@@ -130,10 +134,11 @@ async function provini(saga: VoceSaga): Promise<void> {
   for (const [nome, c] of Object.entries(saga.candidate)) {
     const tmp = mkdtempSync(join(tmpdir(), "provino-"));
     const pezzi = pagina.map((p, k) => ({ testo: perLaVoce(p.testo), file: join(tmp, `${String(k).padStart(2, "0")}.wav`), lentezza: p.pensiero ? c.lentezza * 1.06 : undefined }));
-    leggi(c, pezzi);
-    // in fila, con un respiro di 0.7 s tra un pezzo e l'altro
+    const letti = leggi(c, pezzi);
+    // in fila, con un respiro di 0.7 s tra un pezzo e l'altro (alla stessa frequenza dei pezzi)
+    const sr = letti.get(pezzi[0].file)?.sr ?? 22050;
     const lista = join(tmp, "lista.txt");
-    ffmpeg("-f", "lavfi", "-i", "anullsrc=r=22050:cl=mono", "-t", "0.7", join(tmp, "pausa.wav"));
+    ffmpeg("-f", "lavfi", "-i", `anullsrc=r=${sr}:cl=mono`, "-t", "0.7", "-c:a", "pcm_s16le", join(tmp, "pausa.wav"));
     writeFileSync(lista, pezzi.map((p) => `file '${p.file}'\nfile '${join(tmp, "pausa.wav")}'`).join("\n"));
     const file = join(uscita, `${nome}.m4a`);
     ffmpeg("-f", "concat", "-safe", "0", "-i", lista, "-ac", "1", "-ar", "44100", "-c:a", "aac", "-b:a", "128k", file);

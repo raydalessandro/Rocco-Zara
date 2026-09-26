@@ -304,14 +304,16 @@ describe("cartoni — le voci", () => {
 });
 
 describe("cartoni — la voce narrante è UNA (cartoni/voce/voce.json)", () => {
-  type Saga = { stato: string; narratrice: string | null; provvisoria: string; candidate: Record<string, { modello: string; licenza: string }> };
+  type Saga = { stato: string; narratrice: string | null; provvisoria?: string; candidate: Record<string, { modello: string; licenza: string }> };
   const saga: Saga = JSON.parse(leggi("cartoni/voce/voce.json"));
 
   it("lo stato è chiaro: da scegliere (con una provvisoria) o scelta (una delle candidate)", () => {
     expect(["da-scegliere", "scelta"]).toContain(saga.stato);
-    expect(Object.keys(saga.candidate)).toContain(saga.provvisoria);
     if (saga.stato === "scelta") expect(Object.keys(saga.candidate)).toContain(saga.narratrice);
-    else expect(saga.narratrice).toBeNull();
+    else {
+      expect(saga.narratrice).toBeNull();
+      expect(Object.keys(saga.candidate)).toContain(saga.provvisoria);
+    }
     for (const c of Object.values(saga.candidate)) expect(c.licenza.length).toBeGreaterThan(10);
   });
 

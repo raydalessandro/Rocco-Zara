@@ -1,11 +1,44 @@
 {
   "_cosa": "La voce narrante della saga: UNA, scelta da Ray, e poi sempre quella (test/cartoni.motore.test.ts lo controlla). Finché stato = da-scegliere, le narrazioni degli episodi sono provini.",
-  "stato": "da-scegliere",
-  "narratrice": null,
-  "provvisoria": "serena",
+  "stato": "scelta",
+  "narratrice": "paola-bambina",
+  "scelta": {
+    "da": "Ray",
+    "il": "2026-09-26",
+    "come": "Paola, un poco più lenta e più acuta: la voce di una bambina"
+  },
   "candidate": {
+    "paola-bambina": {
+      "descrizione": "Paola (Piper, qualità media), più acuta di 4 semitoni e un 10% più lenta di «paola»: una bambina",
+      "motore": "piper",
+      "modello": "it_IT-paola-medium",
+      "lentezza": 1.38,
+      "variazione": 0.6,
+      "cadenza": 0.7,
+      "tono": 4,
+      "licenza": "dataset CC0 (paolapersico1/Voice-Dataset-Italian), MA il modello è rifinito da en_US-lessac, addestrato sul corpus Lessac del Blizzard Challenge 2013, che è concesso solo per ricerca e non per usi commerciali: prima di pubblicare o vendere va chiarito"
+    },
+    "paola": {
+      "descrizione": "Paola (Piper, qualità media), com'è",
+      "motore": "piper",
+      "modello": "it_IT-paola-medium",
+      "lentezza": 1.12,
+      "variazione": 0.6,
+      "cadenza": 0.7,
+      "licenza": "come paola-bambina: modello derivato da en_US-lessac (corpus Lessac 2013, solo ricerca, non commerciale)"
+    },
+    "serena-bambina": {
+      "descrizione": "Serena (Piper, qualità alta) con lo stesso trattamento: più acuta di 4 semitoni e un poco più lenta (l'alternativa con la licenza pulita)",
+      "motore": "piper",
+      "modello": "it_IT-serena-high",
+      "lentezza": 1.4,
+      "variazione": 0.55,
+      "cadenza": 0.5,
+      "tono": 4,
+      "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
+    },
     "serena": {
-      "descrizione": "Serena (Piper, qualità alta), un poco più lenta del parlato: la proposta",
+      "descrizione": "Serena (Piper, qualità alta), un poco più lenta del parlato",
       "motore": "piper",
       "modello": "it_IT-serena-high",
       "lentezza": 1.15,
@@ -21,15 +54,6 @@
       "variazione": 0.5,
       "cadenza": 0.45,
       "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
-    },
-    "paola": {
-      "descrizione": "Paola (Piper, qualità media): un'altra voce, per confronto",
-      "motore": "piper",
-      "modello": "it_IT-paola-medium",
-      "lentezza": 1.12,
-      "variazione": 0.6,
-      "cadenza": 0.7,
-      "licenza": "dataset CC0 (paolapersico1/Voice-Dataset-Italian), ma il modello è rifinito da una voce inglese con licenza propria: da verificare prima di pubblicare"
     }
   },
   "calore": { "bassi": 2.5, "alti": -2, "stanza": 0.12, "vol": 1 }

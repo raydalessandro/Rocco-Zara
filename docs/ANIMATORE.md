@@ -126,7 +126,15 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   un'altra voce e marca `provino` tutto quello che è registrato prima della scelta.
 - **Scegliere** (cancello di Ray): `npx tsx cartoni/render/narra.ts --provini` fa leggere
   la stessa pagina a tutte le candidate. Scelta fatta: `stato: "scelta"`,
-  `narratrice: "<id>"`, e si rifanno le riprese degli episodi.
+  `narratrice: "<id>"` (con chi e quando in `scelta`), e si rifanno le riprese degli
+  episodi. Scelta del 26/9/2026: **Paola, da bambina** (`paola-bambina`).
+- **Una candidata** è un modello Piper con quattro numeri: `lentezza` (1 = il suo passo),
+  `variazione` e `cadenza` (quanto varia il suono e il ritmo), `tono` (semitoni). Il
+  `tono` fa la voce più acuta *e più piccola*: si fa leggere più lenta di 2^(tono/12) e
+  si riascolta più veloce dello stesso fattore, così salgono insieme altezza e formanti
+  (una bambina) e il passo resta quello di `lentezza`, senza stirare il suono. Col tono
+  la `lentezza` rende un po' meno (Piper non allunga in proporzione): si regola a
+  orecchio — `paola-bambina` a 1.38 è circa il 10% più lenta di `paola` a 1.12.
 - **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` (python3 + `piper-tts`,
   ffmpeg; i modelli stanno fuori dal repo, `--modelli` o `PIPER_VOCI`). Le riprese
   (Opus, una per pezzo) e `narrazione.json` vanno in `episodi/epNN/voce/` e **si
