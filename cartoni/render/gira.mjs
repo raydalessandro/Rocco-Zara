@@ -20,7 +20,7 @@
 // ffmpeg nel PATH.
 
 import { spawn, execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync, existsSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -144,9 +144,9 @@ async function main() {
   if (NARRATRICE && !AUDIO) console.warn("⚠ versione narrata senza --audio: il video avrà i tempi della narratrice ma sarà muto");
   const da = Math.round(Number(arg("da", 0)) * FPS);
   const a = Math.round(Math.min(durata, Number(arg("a", durata))) * FPS);
-  const tmp = join(dirname(USCITA), ".pezzi");
-  rmSync(tmp, { recursive: true, force: true });
-  mkdirSync(tmp, { recursive: true });
+  // una cartella di lavoro tutta sua: due giri insieme non si pestano i pezzi
+  mkdirSync(dirname(USCITA), { recursive: true });
+  const tmp = mkdtempSync(join(dirname(USCITA), ".pezzi-"));
   console.log(`cartone ${EPISODIO}${NARRATRICE ? " (narrato)" : ""}: ${durata.toFixed(1)}s · ${a - da} fotogrammi · ${W}×${H} @ ${FPS}fps · ${LAVORATORI} lavoratori`);
   const browser = await apriChromium();
   const passo = Math.ceil((a - da) / LAVORATORI);
