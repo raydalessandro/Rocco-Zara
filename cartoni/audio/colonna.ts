@@ -25,6 +25,9 @@ export interface OpzColonna {
   volAmbiente?: number;
   /** Le voci già suonate sul loro bus (grammelot e narratrice) e i loro tempi. */
   voci?: { bus: Bus; parlato: readonly Parlato[] };
+  /** I brani (canzoni registrate) già messi al loro posto: vanno con la musica, senza il suo riverbero. */
+  brani?: Bus;
+  volBrani?: number;
   volVoci?: number;
 }
 
@@ -76,6 +79,8 @@ export function colonna(ep: Episodio, o: OpzColonna): Bus {
   const musica = new Bus(tot + 2);
   o.musica(musica, ep);
   const musicaR = riverbero(musica, 0.3, 0.84, 0.35);
+  // i brani hanno già la loro stanza: si aggiungono alla musica dopo il riverbero
+  if (o.brani) musicaR.mescola(o.brani, o.volBrani ?? 1);
 
   const fx = new Bus(tot + 5);
   for (const s of suoni(ep)) effetto(fx, s.nome, s.tg, s.vol ?? 1, s.durata, s.ritmo);

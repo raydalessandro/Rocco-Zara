@@ -25,6 +25,11 @@ export interface Didascalia {
    * battute restano alla narratrice. Il resto della didascalia è narrazione.
    */
   chi?: string | readonly string[];
+  /**
+   * La canta un brano (id in cartoni/brani/brani.json): nessuno la legge, compare
+   * mentre il brano la canta (i tempi vengono dal brano: cartoni/audio/brani.ts).
+   */
+  canto?: string;
 }
 
 /** Titoli (non citazioni): testa e coda dell'episodio. */

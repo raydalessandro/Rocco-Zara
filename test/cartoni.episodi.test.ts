@@ -178,6 +178,11 @@ for (const { id, ep, narr, bat } of EPISODI) {
       expect(d, `${id}: ${Math.floor(d / 60)}′${Math.round(d % 60)}″`).toBeLessThanOrEqual(DURATA_EPISODIO.max);
     });
 
+    it("sotto un brano la storia non rallenta (il brano suona a tempo vero), e ogni didascalia cantata ha il suo brano nell'inquadratura", () => {
+      expect(epV.fuoriTempo, epV.fuoriTempo.join("\n")).toEqual([]);
+      for (const q of ep.inquadrature) for (const d of q.didascalie ?? []) if (d.canto) expect(q.brano?.id, `${q.id}: «${d.testo}»`).toBe(d.canto);
+    });
+
     if (bat) {
       it("le battute registrate sono complete: ogni battuta ha la sua ripresa, di chi la dice, col testo giusto; e la bocca le sta dietro", () => {
         expect(epV.senzaRegistrazione, epV.senzaRegistrazione.join("\n")).toEqual([]);

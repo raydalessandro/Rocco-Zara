@@ -229,6 +229,15 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   durata (e Piper non ridice mai una frase identica; Kokoro sì, sulla stessa macchina).
   Se una voce cambia, si riregistrano le sue riprese in tutti gli episodi che ci sono
   (`--chi <ruolo>`) e si rigirano: è per questo che conviene sceglierle presto.
+- **Uguali in tutti gli episodi.** Ogni registro di riprese (`narrazione.json`,
+  `battute.json`) porta l'`impronta` delle impostazioni con cui la voce l'ha letto
+  (motore, modello, lentezza, variazione, cadenza, tono). Il test la confronta con
+  `voce.json`: se una voce cambia, dice quali episodi riregistrare
+  (`narra.ts --episodio epNN --chi <ruolo>`), e `--solo` non mescola riprese fatte con
+  impostazioni diverse. Il missaggio (`calore`, volume, stereo, eco) è lo stesso per
+  tutti gli episodi. La voce della narratrice resta quella di ep01 (Ray, 26/9/2026:
+  le prove rifatte, anche con le stesse impostazioni ma fuori dal cartone, gli sono
+  suonate più metalliche).
 - **Licenze.** Ogni candidata dichiara la sua in `voce.json` e va rispettata prima di
   pubblicare. Kokoro: Apache 2.0. Riccardo (Piper): BSD del dataset M-AILABS. Paola
   (Piper): dataset CC0 ma modello derivato da una voce inglese addestrata su dati *solo
@@ -239,6 +248,17 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
 - **Partitura come dati** (`episodi/<id>/partitura.ts` → `suona(SEZIONI)` di
   `audio/partitura.ts`): sezioni agganciate alle inquadrature (se il montaggio o le voci
   cambiano i tempi, la musica li segue), progressioni, temi, ostinati nel basso.
+- **Brani** (`cartoni/brani/`): le canzoni vere, fatte una volta e tenute — la prima
+  è la ninna-nanna della Prima Tigre, fatta da Ray con Suno (26/9/2026: introduzione
+  suonata, i sei versi cantati «da filastrocca», poi canticchiata). Il registro
+  `brani.json` dice il file, le sezioni, i versi col momento in cui si cantano (i versi
+  devono essere quelli del canone: test), la fonte e la licenza. In un'inquadratura:
+  `brano: { id, da, dal, al }` e le didascalie dei versi fatte da
+  `versiCantati(id, brano, uso, pagina)` (`canto`: nessuno le legge, compaiono col
+  canto). Il brano va con la musica e cala sotto le voci; sotto un brano la storia non
+  può rallentare (suona a tempo vero): una voce nella sua finestra deve starci, se no
+  il test (`fuoriTempo`) lo dice. Canone (`saga/bible/prima_tigre.md`): il testo intero
+  della ninna-nanna una volta sola (ep02); la canticchiata può tornare quanto si vuole.
 - **Effetti**: rumore seminato e filtrato. Niente suoni "magici" (campanelle sulla
   pietra, arpeggi scintillanti sui segni): è la stessa regola anti-New-Age.
 - **Missaggio**: musica con riverbero, effetti, ambiente, voci; quando si parla la

@@ -2,19 +2,23 @@
  "voci": {
   "fratello": {
    "voce": "riccardo-ricordo",
-   "stato": "provino"
+   "stato": "provino",
+   "impronta": "a3d9604f"
   },
   "cecca": {
    "voce": "sara-gazza",
-   "stato": "provino"
+   "stato": "provino",
+   "impronta": "b1082851"
   },
   "rocco": {
    "voce": "nicola-grande",
-   "stato": "provino"
+   "stato": "provino",
+   "impronta": "4dc6fc0c"
   },
   "zara": {
    "voce": "sara-ragazza",
-   "stato": "provino"
+   "stato": "provino",
+   "impronta": "502042fd"
   }
  },
  "clip": {

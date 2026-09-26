@@ -1,0 +1,24 @@
+{
+  "_cosa": "I brani della saga: canzoni registrate una volta e tenute (cartoni/audio/brani.ts). Di ogni brano: il file, la durata, le sezioni, e i versi col momento in cui si cantano (così le didascalie compaiono col canto). I versi devono essere quelli del canone (test).",
+  "ninna-nanna": {
+    "file": "ninna_nanna_prima_tigre.mp3",
+    "titolo": "La Prima Tigre (ninna-nanna)",
+    "durata": 68.4,
+    "sezioni": {
+      "introduzione": [0, 17.2],
+      "strofa": [17.2, 45.2],
+      "canticchiata": [45.2, 68.4]
+    },
+    "versi": [
+      { "testo": "La Prima Tigre, occhi di giada,", "da": 17.4, "a": 22.7 },
+      { "testo": "prese la corda e prese la strada.", "da": 22.9, "a": 26.8 },
+      { "testo": "Il sole le diede la corsa e il coraggio,", "da": 26.96, "a": 31.0 },
+      { "testo": "la luna la scelta, che è un dono più saggio.", "da": 31.18, "a": 35.6 },
+      { "testo": "Verde la notte, verde il cammino:", "da": 35.82, "a": 39.7 },
+      { "testo": "chi porta la corda non è mai piccolino.", "da": 39.9, "a": 45.0 }
+    ],
+    "testo": "saga/bible/prima_tigre.md",
+    "fonte": "Fatta da Ray con Suno il 26/9/2026 (brano 212d2abb-3fd9-4284-b1a7-450d09ba09b7), dal testo del canone: la terza versione, scelta perché ha «un cantato più da filastrocca». Introduzione suonata, strofa cantata, poi canticchiata che sfuma. I momenti dei versi sono presi con Whisper (a orecchio da confermare).",
+    "licenza": "Generata con Suno: l'uso fuori dalla sala (pubblicare, vendere) dipende dal piano Suno con cui è stata fatta — da controllare prima di pubblicare."
+  }
+}
