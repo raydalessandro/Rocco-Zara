@@ -1,0 +1,302 @@
+{
+ "voce": "paola-bambina",
+ "stato": "definitiva",
+ "impronta": "28afdab3",
+ "clip": {
+  "s01/0/0": {
+   "testo": "Il lago si annunciò con un verso: quello della folaga — il verso che fa quando arriva qualcuno.",
+   "durata": 4.399,
+   "file": "s01-0-0.ogg"
+  },
+  "s02/0/0": {
+   "testo": "Poi il bosco si aprì, e il Lago del Vespro fu tutto lì sotto: largo, grigio e oro, con la nebbia del mattino ancora addosso.",
+   "durata": 7.101,
+   "file": "s02-0-0.ogg"
+  },
+  "s03/0/0": {
+   "testo": "Sotto, lungo le rive, cominciavano le passerelle.",
+   "durata": 3.139,
+   "file": "s03-0-0.ogg"
+  },
+  "s03/1/0": {
+   "testo": "E linci — sulle passerelle, sulle soglie, sui massi — linci dappertutto, coi musi disegnati quasi come il suo.",
+   "durata": 6.322,
+   "file": "s03-1-0.ogg"
+  },
+  "s04/0/0": {
+   "testo": "Nessuno si voltò troppo.",
+   "durata": 1.626,
+   "file": "s04-0-0.ogg"
+  },
+  "s04/1/0": {
+   "testo": "A due di passaggio spettava un cenno.",
+   "durata": 1.908,
+   "file": "s04-1-0.ogg"
+  },
+  "s04/2/0": {
+   "testo": "Ricevettero il cenno.",
+   "durata": 1.233,
+   "file": "s04-2-0.ogg"
+  },
+  "s05/0/0": {
+   "testo": "Passarono la notte da Ospiti, in una tana di canne vicino all'acqua,",
+   "durata": 3.457,
+   "file": "s05-0-0.ogg"
+  },
+  "s05/1/0": {
+   "testo": "Zara dormì raggomitolata con la zampa sopra l'involto.",
+   "durata": 3.221,
+   "file": "s05-1-0.ogg"
+  },
+  "s06/0/0": {
+   "testo": "E nel mezzo del sonno le salì, da sola com'era andata la zampa, la ninna-nanna di casa —",
+   "durata": 4.878,
+   "file": "s06-0-0.ogg"
+  },
+  "s06/1/0": {
+   "testo": "quella che Toraki le cantava nelle notti di vento, e che a lui aveva cantato la madre, e alla madre la sua, indietro così fino a dove le madri non hanno più nome:",
+   "durata": 8.994,
+   "file": "s06-1-0.ogg"
+  },
+  "s06/8/0": {
+   "testo": "Zara non la cantò.",
+   "durata": 1.087,
+   "file": "s06-8-0.ogg"
+  },
+  "s06/9/0": {
+   "testo": "La pensò soltanto, fino in fondo — e il fondo era il sonno.",
+   "durata": 3.179,
+   "file": "s06-9-0.ogg"
+  },
+  "s07/0/0": {
+   "testo": "Rocco, fuori, dormiva da fermo — che era il suo modo di dormire dovunque.",
+   "durata": 3.909,
+   "file": "s07-0-0.ogg"
+  },
+  "s08/0/0": {
+   "testo": "Al mattino chiesero del cuore del regno,",
+   "durata": 2.339,
+   "file": "s08-0-0.ogg"
+  },
+  "s08/1/0": {
+   "testo": "Un Custode li ascoltò dall'alto di un masso,",
+   "durata": 2.207,
+   "file": "s08-1-0.ogg"
+  },
+  "s08/2/1": {
+   "testo": "osservò infine, come si nomina un vento.",
+   "durata": 2.345,
+   "file": "s08-2-1.ogg"
+  },
+  "s09/0/0": {
+   "testo": "Indicò l'acqua: per andare al cuore, si attraversa.",
+   "durata": 3.023,
+   "file": "s09-0-0.ogg"
+  },
+  "s10/0/0": {
+   "testo": "La barca stava a un molo basso, e la barcaiola era una lontra col pelo che non finiva mai d'asciugare.",
+   "durata": 5.786,
+   "file": "s10-0-0.ogg"
+  },
+  "s10/1/0": {
+   "testo": "La chiamavano Brénta.",
+   "durata": 1.323,
+   "file": "s10-1-0.ogg"
+  },
+  "s11/0/1": {
+   "testo": "Due colpetti col palmo sul bordo, tòc tòc, e stette a sentire.",
+   "durata": 3.5,
+   "file": "s11-0-1.ogg"
+  },
+  "s11/1/0": {
+   "testo": "La barca disse di sì.",
+   "durata": 1.408,
+   "file": "s11-1-0.ogg"
+  },
+  "s12/0/0": {
+   "testo": "una lince piccola si fermò a guardare Zara — le strisce, la coda, il muso quasi-uguale-ma-no —",
+   "durata": 5.478,
+   "file": "s12-0-0.ogg"
+  },
+  "s12/1/0": {
+   "testo": "Erano i primi musi, da che era nata, disegnati quasi come il suo.",
+   "durata": 3.781,
+   "file": "s12-1-0.ogg"
+  },
+  "s13/0/0": {
+   "testo": "Si tenne dritta, e non contò altro.",
+   "durata": 2.236,
+   "file": "s13-0-0.ogg"
+  },
+  "s14/0/0": {
+   "testo": "Dal molo, tra due pali, l'acqua stava ferma.",
+   "durata": 2.702,
+   "file": "s14-0-0.ogg"
+  },
+  "s14/1/0": {
+   "testo": "Zara si sporse: c'erano il cielo, le canne, e lei — ma sfumata ai bordi, come una cosa che l'acqua non ha ancora deciso.",
+   "durata": 7.194,
+   "file": "s14-1-0.ogg"
+  },
+  "s15/0/0": {
+   "testo": "Il lago impara le facce di tutti; certe facce ci mette di più.",
+   "durata": 3.65,
+   "file": "s15-0-0.ogg"
+  },
+  "s16/0/0": {
+   "testo": "Salire, per Zara, fu un salto. Per Rocco fu una trattativa.",
+   "durata": 3.956,
+   "file": "s16-0-0.ogg"
+  },
+  "s16/1/1": {
+   "testo": "disse Brénta, misurandolo con l'occhio come si misura un carico.",
+   "durata": 3.621,
+   "file": "s16-1-1.ogg"
+  },
+  "s17/0/1": {
+   "testo": "La barca s'inclinò, pensò su, decise di reggere.",
+   "durata": 3.298,
+   "file": "s17-0-1.ogg"
+  },
+  "s17/1/0": {
+   "testo": "Stare fermo, Rocco lo sapeva fare benissimo. Era il muoversi, il problema.",
+   "durata": 4.709,
+   "file": "s17-1-0.ogg"
+  },
+  "s18/0/0": {
+   "testo": "L'acqua di mezzo era d'un grigio che teneva dentro l'oro.",
+   "durata": 3.054,
+   "file": "s18-0-0.ogg"
+  },
+  "s18/1/0": {
+   "testo": "si tuffò, sbagliò pesce, riemerse con niente e un'aria offesa, come se il pesce avesse barato.",
+   "durata": 6.111,
+   "file": "s18-1-0.ogg"
+  },
+  "s19/0/1": {
+   "testo": "disse Brénta senza voltarsi. Un nodo.",
+   "durata": 2.908,
+   "file": "s19-0-1.ogg"
+  },
+  "s19/1/0": {
+   "testo": "Un colpo di remo.",
+   "durata": 1.002,
+   "file": "s19-1-0.ogg"
+  },
+  "s20/0/1": {
+   "testo": "chiese Rocco, dopo un poco.",
+   "durata": 1.596,
+   "file": "s20-0-1.ogg"
+  },
+  "s20/1/1": {
+   "testo": "Un colpo di remo.",
+   "durata": 0.916,
+   "file": "s20-1-1.ogg"
+  },
+  "s21/0/0": {
+   "testo": "E poi, a metà del lago e a metà d'una frase, tirò i remi in barca. Il silenzio salì dall'acqua tutto insieme.",
+   "durata": 6.744,
+   "file": "s21-0-0.ogg"
+  },
+  "s22/1/0": {
+   "testo": "Zara sentì le zampe dire via. Ma via, lì, non esisteva.",
+   "durata": 4.398,
+   "file": "s22-1-0.ogg"
+  },
+  "s23/0/0": {
+   "testo": "e tirò fuori la corda di suo fratello, il nodo a metà, davanti a un'estranea, per la prima volta da che l'aveva al fianco.",
+   "durata": 6.68,
+   "file": "s23-0-0.ogg"
+  },
+  "s23/1/0": {
+   "testo": "La posò sul legno, tra loro.",
+   "durata": 1.726,
+   "file": "s23-1-0.ogg"
+  },
+  "s24/0/0": {
+   "testo": "Brénta guardò la corda a lungo.",
+   "durata": 1.963,
+   "file": "s24-0-0.ogg"
+  },
+  "s24/1/0": {
+   "testo": "Poi guardò lei — non le strisce, non la taglia: lei — e fu uno sguardo diverso da tutti quelli delle rive.",
+   "durata": 5.638,
+   "file": "s24-1-0.ogg"
+  },
+  "s25/0/0": {
+   "testo": "tra cento musi quasi uguali al suo, Zara era stata più sola che tra le canne con un rinoceronte.",
+   "durata": 5.296,
+   "file": "s25-0-0.ogg"
+  },
+  "s25/1/0": {
+   "testo": "E la solitudine, che non aveva fatto rumore arrivando, se ne andò facendone un po'.",
+   "durata": 4.027,
+   "file": "s25-1-0.ogg"
+  },
+  "s27/0/0": {
+   "testo": "Poi diede un colpetto secco al nodo a metà",
+   "durata": 2.142,
+   "file": "s27-0-0.ogg"
+  },
+  "s27/1/0": {
+   "testo": "Il nodo non si mosse.",
+   "durata": 1.348,
+   "file": "s27-1-0.ogg"
+  },
+  "s28/0/1": {
+   "testo": "un capo della sua rete, due giri,",
+   "durata": 1.924,
+   "file": "s28-0-1.ogg"
+  },
+  "s28/1/0": {
+   "testo": "E annodò il suo nodo da pescatori accanto a quello di Toraki senza guardarlo nemmeno una volta:",
+   "durata": 4.457,
+   "file": "s28-1-0.ogg"
+  },
+  "s29/0/1": {
+   "testo": "disse.",
+   "durata": 0.497,
+   "file": "s29-0-1.ogg"
+  },
+  "s29/1/1": {
+   "testo": "disse Zara.",
+   "durata": 0.977,
+   "file": "s29-1-1.ogg"
+  },
+  "s30/0/0": {
+   "testo": "Brénta batté due colpetti sul bordo, tòc tòc, com'aveva fatto al molo.",
+   "durata": 3.803,
+   "file": "s30-0-0.ogg"
+  },
+  "s30/1/0": {
+   "testo": "Solo che stavolta — e Zara lo sentì nelle zampe, prima che in ogni altro posto — la barca diceva di sì anche a loro.",
+   "durata": 6.802,
+   "file": "s30-1-0.ogg"
+  },
+  "s32/0/1": {
+   "testo": "provò.",
+   "durata": 0.482,
+   "file": "s32-0-1.ogg"
+  },
+  "s32/3/0": {
+   "testo": "Primo colpo di remo.",
+   "durata": 1.156,
+   "file": "s32-3-0.ogg"
+  },
+  "s33/0/0": {
+   "testo": "Dietro, i colpi di remo si fecero piccoli, poi minuti, poi acqua e basta.",
+   "durata": 4.123,
+   "file": "s33-0-0.ogg"
+  },
+  "s34/0/0": {
+   "testo": "Sotto la zampa, quando lo toccò, i nodi adesso erano due: quello di suo fratello, e uno che rispondeva.",
+   "durata": 6.102,
+   "file": "s34-0-0.ogg"
+  },
+  "s15/1/0": {
+   "testo": "Vero due volte, si dice qui delle cose che l'acqua conferma. Il suo riflesso, per ora, era vero una volta sola.",
+   "durata": 6.595,
+   "file": "s15-1-0.ogg"
+  }
+ }
+}

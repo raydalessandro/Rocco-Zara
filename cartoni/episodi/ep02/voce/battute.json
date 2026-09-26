@@ -1,0 +1,202 @@
+{
+ "voci": {
+  "custode": {
+   "voce": "george-custode",
+   "stato": "provino",
+   "impronta": "b47f9c39"
+  },
+  "brenta": {
+   "voce": "dora-barcaiola",
+   "stato": "provino",
+   "impronta": "2097429e"
+  },
+  "rocco": {
+   "voce": "nicola-grande",
+   "stato": "provino",
+   "impronta": "4dc6fc0c"
+  },
+  "zara": {
+   "voce": "sara-ragazza",
+   "stato": "provino",
+   "impronta": "502042fd"
+  }
+ },
+ "clip": {
+  "s08/2/0": {
+   "chi": "custode",
+   "voce": "george-custode",
+   "testo": "Di passaggio,",
+   "durata": 1.642,
+   "file": "s08-2-0.ogg",
+   "bocca": "078885078777654443887778777767888776665300"
+  },
+  "s11/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Al cuore? Si può. Se la barca dice di sì—",
+   "durata": 2.649,
+   "file": "s11-0-0.ogg",
+   "bocca": "4760148888777634374007887652013577865885402774576045574564332443200"
+  },
+  "s16/1/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Tu al centro,",
+   "durata": 1.063,
+   "file": "s16-1-0.ogg",
+   "bocca": "167888633657878860547665410"
+  },
+  "s17/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "E fermo come un sasso in secca—",
+   "durata": 2.072,
+   "file": "s17-0-0.ogg",
+   "bocca": "4750058877888603867666644378733356675332664001544220"
+  },
+  "s19/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Succede ai migliori,",
+   "durata": 1.495,
+   "file": "s19-0-0.ogg",
+   "bocca": "04477226478857888777776547777754543300"
+  },
+  "s19/0/2": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "L'acqua è vera due volte.",
+   "durata": 1.771,
+   "file": "s19-0-2.ogg",
+   "bocca": "368884001588758745886786467787437776403454300"
+  },
+  "s19/1/1": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Lui ha creduto a quella sbagliata.",
+   "durata": 1.931,
+   "file": "s19-1-1.ogg",
+   "bocca": "3688880377865778427850587787652787667887303443300"
+  },
+  "s20/1/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Quanto basta.",
+   "durata": 1.104,
+   "file": "s20-1-0.ogg",
+   "bocca": "0388787378658876343056554310"
+  },
+  "s20/1/2": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Il lago decide, io remo—",
+   "durata": 1.875,
+   "file": "s20-1-2.ogg",
+   "bocca": "47677885488487035555676467620467875478766654320"
+  },
+  "s22/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Cosa portate?",
+   "durata": 1.241,
+   "file": "s22-0-0.ogg",
+   "bocca": "16888768850687500788760366654300"
+  },
+  "s26/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Dormi con la zampa sopra.",
+   "durata": 1.845,
+   "file": "s26-0-0.ogg",
+   "bocca": "13888768886027777874346877605754546760034443200"
+  },
+  "s26/1/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "L'ho visto salire a bordo. La zampa ci va da sola.",
+   "durata": 3.219,
+   "file": "s26-1-0.ogg",
+   "bocca": "388578750286547876786788548887542566410005886446888800870466638836744446665543200"
+  },
+  "s28/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Chi tiene la zampa sopra una cosa anche nel sonno—",
+   "durata": 3.119,
+   "file": "s28-0-0.ogg",
+   "bocca": "057201678788778843588772076444685046766750238876477766742677765244376665542210"
+  },
+  "s28/0/2": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "—trasporta cose care.",
+   "durata": 1.646,
+   "file": "s28-0-2.ogg",
+   "bocca": "068865306888503860047887578402777755544300"
+  },
+  "s29/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Il vostro tiene,",
+   "durata": 1.234,
+   "file": "s29-0-0.ogg",
+   "bocca": "3778645886520477303677766654310"
+  },
+  "s31/0/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Di là. Dove l'acqua si fa stretta e le voci si fanno tante—",
+   "durata": 3.509,
+   "file": "s31-0-0.ogg",
+   "bocca": "0787888877546885888884007745560276443065883004777778747860556555600777776006776650034210"
+  },
+  "s32/1/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Il molo regge da solo.",
+   "durata": 1.658,
+   "file": "s32-1-0.ogg",
+   "bocca": "277888888878854888754457738645536666543210"
+  },
+  "s32/2/0": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "A parole no: mi dovete una storia vera. Vale più dell'oro, da queste parti.",
+   "durata": 4.709,
+   "file": "s32-2-0.ogg",
+   "bocca": "4830787888787887787677638737870376776562277667763677614543000000001268877830267568766688875754600655126104776200033200"
+  },
+  "s32/3/1": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Si paga al ritorno.",
+   "durata": 1.427,
+   "file": "s32-3-1.ogg",
+   "bocca": "056850488766888875576027887446665430"
+  },
+  "s20/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "È lontano, il cuore?",
+   "durata": 1.757,
+   "file": "s20-0-0.ogg",
+   "bocca": "03888887883388777777876331488777765655211000"
+  },
+  "s32/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Posso reggerti il molo,",
+   "durata": 1.839,
+   "file": "s32-0-0.ogg",
+   "bocca": "3888555588767887555688650288777887666666653200"
+  },
+  "s29/1/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Grazie,",
+   "durata": 0.827,
+   "file": "s29-1-0.ogg",
+   "bocca": "588888870345888766600"
+  }
+ }
+}
