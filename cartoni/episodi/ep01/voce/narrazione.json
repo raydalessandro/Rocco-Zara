@@ -1,0 +1,216 @@
+{
+ "voce": "paola-bambina",
+ "stato": "definitiva",
+ "clip": {
+  "s01/0/0": {
+   "testo": "La Soglia di Spondalta era una collina sola in mezzo alla luce",
+   "durata": 3.315,
+   "file": "s01-0-0.ogg"
+  },
+  "s02/0/0": {
+   "testo": "Zara ci arrivò dal versante dei laghi, di corsa, perché in quei giorni faceva tutto di corsa",
+   "durata": 4.863,
+   "file": "s02-0-0.ogg"
+  },
+  "s03/0/0": {
+   "testo": "L'erba si muoveva piano, tutta da una parte, come il pelo di una bestia che respira",
+   "durata": 4.575,
+   "file": "s03-0-0.ogg"
+  },
+  "s04/0/0": {
+   "testo": "Da qualche parte, sotto, un martin pescatore bucò il lago. Uno schiocco.",
+   "durata": 4.514,
+   "file": "s04-0-0.ogg"
+  },
+  "s05/0/0": {
+   "testo": "L'Aperto. Ne conosceva solo il nome.",
+   "durata": 2.558,
+   "file": "s05-0-0.ogg"
+  },
+  "s05/1/0": {
+   "testo": "E allora perché, pensò, non riesco a smettere di guardare?",
+   "durata": 3.371,
+   "file": "s05-1-0.ogg"
+  },
+  "s06/0/0": {
+   "testo": "Tutto, tranne una pietra.",
+   "durata": 1.437,
+   "file": "s06-0-0.ogg"
+  },
+  "s06/1/0": {
+   "testo": "Erano fatti bene. Fatti da qualcosa che non erano zampe.",
+   "durata": 3.622,
+   "file": "s06-1-0.ogg"
+  },
+  "s07/0/0": {
+   "testo": "ogni nodo un luogo dove suo fratello era stato, e leggerli con la zampa era come camminargli dietro.",
+   "durata": 5.468,
+   "file": "s07-0-0.ogg"
+  },
+  "s07/1/0": {
+   "testo": "Poi la zampa arrivò al liscio. Il liscio era lungo.",
+   "durata": 3.369,
+   "file": "s07-1-0.ogg"
+  },
+  "s07/2/1": {
+   "testo": "aveva detto lui.",
+   "durata": 1.254,
+   "file": "s07-2-1.ogg"
+  },
+  "s08/0/0": {
+   "testo": "Fu così che vide, sul versante aperto, un masso grigio che si muoveva.",
+   "durata": 4.165,
+   "file": "s08-0-0.ogg"
+  },
+  "s09/0/0": {
+   "testo": "I massi non si muovono. Quello sì: lento, controvento",
+   "durata": 3.513,
+   "file": "s09-0-0.ogg"
+  },
+  "s09/1/0": {
+   "testo": "come chi porta qualcosa che non vuole mostrare.",
+   "durata": 2.3,
+   "file": "s09-1-0.ogg"
+  },
+  "s10/1/0": {
+   "testo": "Uno scatto, il luccichio nel becco, e via bassa sopra il canneto, verso sud, senza finire né la frase né il lavoro.",
+   "durata": 6.81,
+   "file": "s10-1-0.ogg"
+  },
+  "s11/0/0": {
+   "testo": "Il giorno che il masso grigio salì la collina, le zampe di Zara dissero via. Lei, per una volta, non le ascoltò.",
+   "durata": 6.583,
+   "file": "s11-0-0.ogg"
+  },
+  "s12/0/1": {
+   "testo": "disse. Al ramo, agli uccelli, e un po' anche a lei.",
+   "durata": 3.21,
+   "file": "s12-0-1.ogg"
+  },
+  "s13/0/0": {
+   "testo": "Il sole gli stava alle spalle, e la sua ombra cadde su Zara tutta insieme.",
+   "durata": 3.867,
+   "file": "s13-0-0.ogg"
+  },
+  "s13/1/0": {
+   "testo": "Dentro l'ombra l'aria era fresca.",
+   "durata": 1.96,
+   "file": "s13-1-0.ogg"
+  },
+  "s14/0/1": {
+   "testo": "disse lui, guardandola dritto in faccia",
+   "durata": 2.338,
+   "file": "s14-0-1.ogg"
+  },
+  "s14/2/1": {
+   "testo": "disse il rinoceronte, e girò la testa.",
+   "durata": 2.311,
+   "file": "s14-2-1.ogg"
+  },
+  "s15/0/0": {
+   "testo": "Zara si mise davanti:",
+   "durata": 1.459,
+   "file": "s15-0-0.ogg"
+  },
+  "s15/1/0": {
+   "testo": "E lui dietro, un passo alla volta, enorme e attento — e non si ruppe più niente.",
+   "durata": 4.304,
+   "file": "s15-1-0.ogg"
+  },
+  "s15/2/0": {
+   "testo": "Quasi niente. Un giunco, forse due.",
+   "durata": 2.553,
+   "file": "s15-2-0.ogg"
+  },
+  "s16/0/0": {
+   "testo": "Fischiò due volte, quel pomeriggio — il fischio lungo, quello che non riguarda le volpi.",
+   "durata": 4.552,
+   "file": "s16-0-0.ogg"
+  },
+  "s16/1/0": {
+   "testo": "A sud il cielo aveva messo su un colore nuovo: nuvole basse, ferme come una riva di pietra che però avanzava.",
+   "durata": 6.744,
+   "file": "s16-1-0.ogg"
+  },
+  "s17/0/1": {
+   "testo": "disse Zara.",
+   "durata": 0.907,
+   "file": "s17-0-1.ogg"
+  },
+  "s17/1/0": {
+   "testo": "Lo guidò lei.",
+   "durata": 0.842,
+   "file": "s17-1-0.ogg"
+  },
+  "s18/0/0": {
+   "testo": "Il mondo diventò acqua e rumore.",
+   "durata": 2.293,
+   "file": "s18-0-0.ogg"
+  },
+  "s18/1/0": {
+   "testo": "si piantò di traverso al vento, grande come una riva, e non si mosse più.",
+   "durata": 3.832,
+   "file": "s18-1-0.ogg"
+  },
+  "s19/1/0": {
+   "testo": "Il tuono dopo arrivò da più lontano.",
+   "durata": 2.095,
+   "file": "s19-1-0.ogg"
+  },
+  "s20/0/0": {
+   "testo": "Tutto, tranne il posto dove avevano dormito.",
+   "durata": 2.424,
+   "file": "s20-0-0.ogg"
+  },
+  "s20/1/0": {
+   "testo": "Si lascia tiepida, pensò",
+   "durata": 1.618,
+   "file": "s20-1-0.ogg"
+  },
+  "s20/2/0": {
+   "testo": "una piccola luna per ogni segno.",
+   "durata": 2,
+   "file": "s20-2-0.ogg"
+  },
+  "s21/0/0": {
+   "testo": "Durò finché il sole non toccò il lago: mille luccichii insieme — e per una volta Cècca non si lasciò strappare.",
+   "durata": 5.724,
+   "file": "s21-0-0.ogg"
+  },
+  "s22/0/1": {
+   "testo": "chiese Rocco.",
+   "durata": 0.861,
+   "file": "s22-0-1.ogg"
+  },
+  "s22/1/1": {
+   "testo": "disse Zara.",
+   "durata": 0.937,
+   "file": "s22-1-1.ogg"
+  },
+  "s23/0/1": {
+   "testo": "disse.",
+   "durata": 0.563,
+   "file": "s23-0-1.ogg"
+  },
+  "s23/1/0": {
+   "testo": "Poi guardò lei:",
+   "durata": 0.879,
+   "file": "s23-1-0.ogg"
+  },
+  "s24/1/0": {
+   "testo": "Un altro momento, il più lungo.",
+   "durata": 1.924,
+   "file": "s24-1-0.ogg"
+  },
+  "s25/0/0": {
+   "testo": "Partirono che il sole era basso e il cielo enorme, di quelli che stanno sopra tutti i regni insieme.",
+   "durata": 5.819,
+   "file": "s25-0-0.ogg"
+  },
+  "s25/1/0": {
+   "testo": "e la collina restò indietro, coi suoi segni e il suo tiepido.",
+   "durata": 3.19,
+   "file": "s25-1-0.ogg"
+  }
+ }
+}
