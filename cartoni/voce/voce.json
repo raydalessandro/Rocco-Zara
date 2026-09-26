@@ -1,0 +1,36 @@
+{
+  "_cosa": "La voce narrante della saga: UNA, scelta da Ray, e poi sempre quella (test/cartoni.motore.test.ts lo controlla). Finché stato = da-scegliere, le narrazioni degli episodi sono provini.",
+  "stato": "da-scegliere",
+  "narratrice": null,
+  "provvisoria": "serena",
+  "candidate": {
+    "serena": {
+      "descrizione": "Serena (Piper, qualità alta), un poco più lenta del parlato: la proposta",
+      "motore": "piper",
+      "modello": "it_IT-serena-high",
+      "lentezza": 1.15,
+      "variazione": 0.55,
+      "cadenza": 0.5,
+      "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
+    },
+    "serena-lenta": {
+      "descrizione": "Serena, più lenta: per i più piccoli (allunga l'episodio)",
+      "motore": "piper",
+      "modello": "it_IT-serena-high",
+      "lentezza": 1.3,
+      "variazione": 0.5,
+      "cadenza": 0.45,
+      "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
+    },
+    "paola": {
+      "descrizione": "Paola (Piper, qualità media): un'altra voce, per confronto",
+      "motore": "piper",
+      "modello": "it_IT-paola-medium",
+      "lentezza": 1.12,
+      "variazione": 0.6,
+      "cadenza": 0.7,
+      "licenza": "dataset CC0 (paolapersico1/Voice-Dataset-Italian), ma il modello è rifinito da una voce inglese con licenza propria: da verificare prima di pubblicare"
+    }
+  },
+  "calore": { "bassi": 2.5, "alti": -2, "stanza": 0.12, "vol": 1 }
+}

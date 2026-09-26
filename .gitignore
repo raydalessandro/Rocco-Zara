@@ -26,3 +26,7 @@ saga/episodi/
 seme/**/__pycache__/
 seme/.pytest_cache/
 *.pyc
+
+# cartoni: video, audio e pacchetti si rigenerano dal copione (la verità è nel copione)
+cartoni/out/
+cartoni/dist/
