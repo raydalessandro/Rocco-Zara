@@ -1,8 +1,70 @@
 # ANIMATORE — il dettaglio normativo
 
-> Compagno di `.claude/agents/animatore.md`. Qui: come si scrive un copione animato,
-> come si aggiunge un pupazzo, un luogo o una voce, come si gira e come si consegna.
-> Il panorama della corsia è in `cartoni/README.md`.
+> Compagno di `.claude/agents/animatore.md`. Qui: la serie, la ricetta di un episodio,
+> come si scrive un copione animato, come si aggiunge un pupazzo, un luogo o una voce,
+> come si gira, si consegna e si monta. Il panorama della corsia è in `cartoni/README.md`.
+
+## La serie (la visione)
+
+> Ray, 26/9/2026: tutta la stagione a cartoni, per farla vedere ai bambini — di fila,
+> come un film lungo fatto di episodi. Si affina con calma, ma intanto si va avanti.
+
+- **Un episodio animato per ogni episodio di prosa: 24, di circa 5 minuti** (come ep01).
+  La prosa c'è tutta (`saga/prosa/ep01…ep24.md`, 14-20 pagine l'uno).
+- **Sei puntate di circa 20 minuti**, una per volume — una macrostoria, un regno — coi
+  suoi quattro episodi. Il raggruppamento non si scrive a mano: si ricava dal grafo
+  (`cartoni/motore/serie.ts`: episodio → arco → volume; i titoli dall'indice
+  `saga/trama/volumi/README.md`). Oggi:
+
+  | Puntata | Volume | Episodi |
+  |---|---|---|
+  | 1 | i Laghi del Vespro | ep01–ep04 |
+  | 2 | la Conca Ruggente | ep05–ep08 |
+  | 3 | il Gran Ducato | ep09–ep12 |
+  | 4 | la Piana dei Savi | ep13–ep16 |
+  | 5 | la Selva di Mezzo | ep17–ep20 |
+  | 6 | le Terre del Leone di Pietra | ep21–ep24 |
+
+- **Un episodio alla volta, sempre con la stessa ricetta** (qui sotto). E il **catalogo
+  cresce** con gli episodi: ogni luogo, pupazzo e voce nuovi entrano nel motore e
+  servono a tutti gli episodi dopo — non si rifanno, non si copiano.
+- **Il montaggio** (`render/monta.ts`): `--elenco` dice a che punto è la serie;
+  `--puntata N` mette in fila i quattro episodi girati del volume N, così come sono
+  (ognuno apre e chiude sul nero, il volume è lo stesso per tutti), un capitolo per
+  episodio; `--stagione` tutte le puntate di fila, il film lungo.
+- **La durata** è un cancello leggero: con le voci un episodio sta tra 3′ e 7′ (test),
+  mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`).
+
+## La ricetta di un episodio (sempre la stessa)
+
+1. **Leggere.** La prosa (`saga/prosa/epNN.md`); il suo nodo nel grafo
+   (`saga/trama/saga_graph.json` → `episodes.epNN`: cast, centro, premessa, problema,
+   soglia, risoluzione); il capitolo del volume (`saga/trama/volumi/VOLUME_N.md`); le
+   schede dei personaggi (`saga/bible/`) e dei luoghi (`saga/cartografia/`).
+2. **Il catalogo: cosa c'è e cosa manca.** Luoghi (`cartoni/luoghi/`), pupazzi
+   (`cartoni/cast/`), voci (`cartoni/voce/voce.json` + `cartoni/cast/voci.ts`). Quello
+   che manca si aggiunge **al motore**, riusabile, mai dentro l'episodio: un luogo = un
+   file in `luoghi/` (§3); un pupazzo = dalla «Morfologia di reference» della sua
+   scheda (§2; se la scheda non c'è, si chiede al ritrattista); un personaggio che
+   parla = un profilo in `cast/voci.ts` e un ruolo in `voce.json`, con una voce
+   provvisoria e i provini (§5). La voce la sceglie Ray.
+3. **Lo scheletro.** `npx tsx cartoni/render/nuovo.ts --episodio epNN`.
+4. **La regia.** Il copione (§1: inquadrature, didascalie citate alla lettera, `chi` su
+   ogni «», camera, luce, meteo, suoni) e la partitura (§6), con la grammatica visiva.
+   Si mira a ~5′.
+5. **Le prove, prima di registrare.** `suona.ts` + `gira.mjs --da … --a … --larghezza
+   960` a pezzi (le battute non registrate si sentono in grammelot), e il foglio-provini.
+6. **Le voci.** Se ci sono voci nuove: `narra.ts --provini personaggi` (Ray sceglie, o
+   si parte con la provvisoria). Poi `narra.ts --episodio epNN` registra la narratrice
+   e i personaggi, e `python3 cartoni/render/ascolta.py --episodio epNN` controlla che
+   si capisca (§5).
+7. **Girare.** `suona.ts --episodio epNN --narratrice`, poi `gira.mjs --episodio epNN
+   --narratrice --audio cartoni/out/epNN_narrato.wav`.
+8. **Controllare e consegnare** (§7): test verdi, foglio-provini, il video, il
+   consuntivo. Se il motore è cresciuto, due PR (prima il motore, poi l'episodio con
+   le sue riprese); se no, una. Ray guarda e ascolta; il merge è suo, o su sua
+   autorizzazione.
+9. **Quando i quattro episodi di un volume ci sono**: `monta.ts --puntata N`.
 
 ## 0. Motore ed episodi: due pacchetti
 
@@ -145,10 +207,19 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   rende un po' meno: si regola a orecchio (`paola-bambina` a 1.38 è circa il 10% più
   lenta di `paola` a 1.12).
 - **Che si capisca.** Più una voce sale di tono, meno si capisce: prima di proporre una
-  voce si fa trascrivere ogni battuta a un riconoscitore vocale (per ep01: Whisper) e
-  si tengono le impostazioni che la fanno capire tutta. Le parole che una voce sbaglia
-  vanno nel dizionario `pronuncia` di `voce.json` (es. `giovane` → `giòvane`): vale solo
-  per le voci, le didascalie restano quelle della prosa.
+  voce si fa trascrivere ogni battuta a un riconoscitore vocale e si tengono le
+  impostazioni che la fanno capire tutta:
+  `python3 cartoni/render/ascolta.py --episodio epNN [--chi rocco,narratrice]` (Whisper,
+  via faster-whisper) confronta parola per parola quello che sente con quello che la
+  voce doveva dire, e dà le riprese peggiori e le parole capite per voce. Il
+  riconoscitore sbaglia anche lui (le riprese cortissime, le parole che si fondono:
+  «tocca a te» → «toccatti»): dice dove ascoltare, il verdetto è di chi ascolta. Le
+  parole che una voce sbaglia vanno nel dizionario `pronuncia` di `voce.json` (es.
+  `giovane` → `giòvane`): vale solo per le voci, le didascalie restano quelle della prosa.
+  Ep01 (26/9/2026): Rocco 100% delle parole, Zara 94%, la narratrice 73% — e Paola
+  adulta, senza tono, fa lo stesso (75%): è il modello, non il tono; il riconoscitore
+  ne perde soprattutto le R («pietra» → «pietta»). Con meno `variazione` (0,3) sale
+  intorno all'80%.
 - **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` registra la
   narratrice (`narrazione.json`) e le battute di ogni personaggio (`battute.json`) in
   `episodi/epNN/voce/`; `--chi zara,rocco` solo alcune voci, `--solo s05,s06` solo
@@ -156,6 +227,8 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   stanno fuori dal repo (`--modelli` o `PIPER_VOCI`, li scarica la prima volta). Le
   riprese (Opus, una per pezzo) **si tengono**: i tempi del cartone dipendono dalla loro
   durata (e Piper non ridice mai una frase identica; Kokoro sì, sulla stessa macchina).
+  Se una voce cambia, si riregistrano le sue riprese in tutti gli episodi che ci sono
+  (`--chi <ruolo>`) e si rigirano: è per questo che conviene sceglierle presto.
 - **Licenze.** Ogni candidata dichiara la sua in `voce.json` e va rispettata prima di
   pubblicare. Kokoro: Apache 2.0. Riccardo (Piper): BSD del dataset M-AILABS. Paola
   (Piper): dataset CC0 ma modello derivato da una voce inglese addestrata su dati *solo
@@ -178,11 +251,20 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
 2. Foglio-provini: un fotogramma per inquadratura → la prima cosa che Ray guarda.
 3. `suona.ts --episodio <id>` → `gira.mjs --episodio <id> --audio …` →
    `cartoni/out/<id>.mp4` (fuori da git: si rigenera dal copione). Con `--narratrice`
-   la versione narrata (stesso flag a tutti e due).
-4. **Consuntivo** nel messaggio o nella PR: inquadrature ↔ pagine, scarti di regia
+   la versione narrata (stesso flag a tutti e due). Un render alla volta: due insieme
+   si rubano i due processori.
+4. **Il sincrono**: il video dura quanto la colonna sonora (stessi tempi, le voci
+   comprese); un fotogramma prima di ogni battuta ha la bocca chiusa, uno sulla
+   sillaba più forte ce l'ha aperta.
+5. **Per mandarlo** in chat (tetto ~30 MB) si ricomprime: x264 in due passate a ~780
+   kbit/s col sonoro AAC a 128k (5′ ≈ 28 MB). Il file buono resta quello di `gira.mjs`.
+6. **Consuntivo** nel messaggio o nella PR: inquadrature ↔ pagine, scarti di regia
    dalla prosa (da ratificare), dove la storia rallenta per le voci, cosa manca.
-5. Branch + PR come ogni altra corsia; motore ed episodi in pacchetti separati. Il
+7. Branch + PR come ogni altra corsia; motore ed episodi in pacchetti separati. Il
    video **non si pubblica** senza l'ok di Ray.
+8. **Le puntate**: `npx tsx cartoni/render/monta.ts --puntata N` (i quattro episodi del
+   volume, girati con lo stesso `gira.mjs`: se no si ferma e dice quale rigirare);
+   `--parziale` per montare quelli che ci sono; `--stagione` per tutto di fila.
 
 ## 8. Casi limite
 
@@ -195,3 +277,8 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   scrive qui: si chiede al prosatore / a Ray.
 - **Una battuta ha troppa voce per la sua scena** (la storia rallenta sotto ~0,5×) →
   si allunga l'inquadratura nel copione o si sposta la didascalia, non si accorcia la voce.
+- **Un episodio esce dalla forbice** (sotto 3′ o sopra 7′ con le voci) → si rivede la
+  regia (quante pagine per inquadratura, quanto dura il silenzio), non la forbice.
+- **La saga cambia forma** (un volume fuso a tre capitoli, un episodio spostato) → la
+  serie segue il grafo da sola; il test «quattro per puntata» e la tabella della serie
+  qui sopra si aggiornano insieme, con Ray.

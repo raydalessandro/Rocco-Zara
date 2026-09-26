@@ -4,8 +4,9 @@
 // (quelli hanno i loro, in test/cartoni.episodi.test.ts, che li scopre da sé).
 // Qui: l'invariante madre del seme (stesso copione, stesso tempo → stesso
 // fotogramma e stessa colonna sonora, byte per byte), gli attrezzi, i luoghi,
-// le voci (grammelot, tempi, narratrice) e i cancelli del canone che valgono
-// per tutto il codice: ancore colore dei pupazzi, lessico, anti-New-Age.
+// le voci (grammelot, tempi, narratrice), la serie (le puntate dal grafo della
+// saga) e i cancelli del canone che valgono per tutto il codice: ancore colore
+// dei pupazzi, lessico, anti-New-Age.
 // Un episodio di prova piccolo piccolo, scritto qui, fa girare il montaggio.
 
 import { describe, expect, it } from "vitest";
@@ -28,6 +29,7 @@ import { segmenta, sillabe, sillabeParola } from "../cartoni/motore/parola";
 import { Defs } from "../cartoni/motore/svg";
 import { ease, traccia } from "../cartoni/motore/tempo";
 import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, pianifica } from "../cartoni/motore/voce";
+import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
 import { insertoPietra } from "../cartoni/scene/inserti";
 import { LUCI } from "../cartoni/scene/luci";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
@@ -389,6 +391,52 @@ describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (ca
         for (const [k, c] of Object.entries(b.clip)) expect(c.voce, `${id} ${k}`).toBe(b.voci[c.chi!]?.voce);
       }
     }
+  });
+});
+
+describe("cartoni — la serie: 24 episodi di ~5′, a quattro a quattro in 6 puntate di ~20′ (dal grafo della saga)", () => {
+  const serie = puntate(JSON.parse(leggi("saga/trama/saga_graph.json")), titoliVolumi(leggi("saga/trama/volumi/README.md")));
+  const tutti = serie.flatMap((p) => p.episodi);
+
+  it("una puntata per volume, in ordine, col titolo del volume", () => {
+    expect(serie.map((p) => p.numero)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(serie[0].titolo).toBe("i Laghi del Vespro");
+    for (const p of serie) expect(p.titolo.length, `puntata ${p.numero}`).toBeGreaterThan(3);
+  });
+
+  it("ogni episodio della saga sta in una puntata sola: quattro per puntata, 24 in tutto, in ordine", () => {
+    expect(tutti.length).toBe(24);
+    expect(new Set(tutti).size).toBe(24);
+    expect(tutti).toEqual([...tutti].sort());
+    for (const p of serie) expect(p.episodi.length, `puntata ${p.numero}: ${p.episodi.join(", ")}`).toBe(4);
+    expect(puntataDi(serie, "ep01")?.numero).toBe(1);
+    expect(puntataDi(serie, "ep24")?.numero).toBe(6);
+  });
+
+  it("ogni episodio ha la sua prosa, col titolo in testa (il titolo del suo capitolo nella puntata)", () => {
+    for (const id of tutti) {
+      const f = `saga/prosa/${id}.md`;
+      expect(existsSync(join(ROOT, f)), f).toBe(true);
+      expect(titoloDallaProsa(leggi(f)), f).toBeTruthy();
+    }
+  });
+
+  it("la durata di un episodio mira a ~5′ (e quattro fanno una puntata di ~20′)", () => {
+    expect(DURATA_EPISODIO.min).toBeLessThan(DURATA_EPISODIO.mira);
+    expect(DURATA_EPISODIO.mira).toBeLessThan(DURATA_EPISODIO.max);
+    expect(4 * DURATA_EPISODIO.mira).toBe(20 * 60);
+  });
+
+  it("un grafo di prova: si raggruppa per volume; un arco che manca o un volume senza titolo si dicono", () => {
+    const g = { arcs: { a: { volume: 2 }, b: { volume: 1 } }, episodes: { ep03: { arc: "a" }, ep02: { arc: "b" }, ep01: { arc: "b" } } };
+    expect(puntate(g, { 1: "uno", 2: "due" })).toEqual([
+      { numero: 1, titolo: "uno", episodi: ["ep01", "ep02"] },
+      { numero: 2, titolo: "due", episodi: ["ep03"] },
+    ]);
+    expect(() => puntate({ arcs: {}, episodes: { ep01: { arc: "x" } } }, {})).toThrow(/arco/);
+    expect(() => puntate(g, { 1: "uno" })).toThrow(/titolo/);
+    expect(titoliVolumi("| Vol | Titolo |\n|---|---|\n| 3 | [il Gran Ducato](VOLUME_3.md) | `pianura_alta` |")).toEqual({ 3: "il Gran Ducato" });
+    expect(titoloDallaProsa("# ep02 — Il regno senza riflesso\n\n## Pagina 1")).toBe("Il regno senza riflesso");
   });
 });
 

@@ -30,7 +30,7 @@ instradamento, delega cache-native, ratifica — in `.claude/agents/orchestratri
 | scrivere la **prosa** delle puntate (brief → testo, UNA pagina alla volta, in sessione con Ray; scrive solo in `saga/prosa/`) — saga | **prosatore** *(autoriale)* | `.claude/agents/prosatore.md` + `docs/PROSATORE.md` |
 | la **carta**: `saga/cartografia/` (pipeline py, geo pack, zones, regni, INDICE_LUOGHI fonte unica; gemelli digest+geo verdi) | **cartografo** | `.claude/agents/cartografo.md` + `docs/CARTOGRAFO.md` |
 | i **giri di riordino**: doc al posto giusto, referenze vere, pannelli di stato onesti (mai comportamento, mai canone) | **manutentore** | `.claude/agents/manutentore.md` + `docs/MANUTENTORE.md` |
-| i **cartoni animati** delle saghe: `cartoni/` (il motore: pupazzi, palco e luoghi, voci in grammelot + narratrice, montaggio, colonna sonora, render video; gli episodi in `cartoni/episodi/<id>/`: copioni animati dalla prosa approvata) + `test/cartoni.*` — saga | **animatore** *(autoriale)* | `.claude/agents/animatore.md` + `docs/ANIMATORE.md` (+ `cartoni/README.md`) |
+| i **cartoni animati** delle saghe: `cartoni/` (il motore: pupazzi, palco e luoghi, una voce per personaggio + la narratrice (grammelot di ripiego), montaggio, colonna sonora, render video; gli episodi in `cartoni/episodi/<id>/`: copioni animati dalla prosa approvata; la serie: 24 episodi in 6 puntate, `render/monta.ts`) + `test/cartoni.*` — saga | **animatore** *(autoriale)* | `.claude/agents/animatore.md` + `docs/ANIMATORE.md` (+ `cartoni/README.md`) |
 
 **Confine front/back (regola d'oro).** `lib/` è la *single source of truth*: non si
 tocca per l'estetica. Il front **legge** dal back e gli **passa** azioni via gli stessi
