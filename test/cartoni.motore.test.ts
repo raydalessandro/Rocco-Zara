@@ -28,7 +28,8 @@ import { type Episodio, durata, fotogramma, postoA, scaletta, suoni } from "../c
 import { segmenta, sillabe, sillabeParola } from "../cartoni/motore/parola";
 import { Defs } from "../cartoni/motore/svg";
 import { ease, traccia } from "../cartoni/motore/tempo";
-import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, pianifica } from "../cartoni/motore/voce";
+import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, impronta, pianifica } from "../cartoni/motore/voce";
+import { type Brani, postiDeiBrani, versiCantati } from "../cartoni/audio/brani";
 import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
 import { insertoPietra } from "../cartoni/scene/inserti";
 import { LUCI } from "../cartoni/scene/luci";
@@ -339,7 +340,7 @@ describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (ca
   type Saga = {
     narratrice: Ruolo;
     personaggi: Record<string, Ruolo>;
-    candidate: Record<string, { motore: string; modello: string; lentezza: number; licenza: string }>;
+    candidate: Record<string, { motore: string; modello: string; lentezza: number; variazione?: number; cadenza?: number; tono?: number; licenza: string }>;
   };
   const saga: Saga = JSON.parse(leggi("cartoni/voce/voce.json"));
   const ruoli: [string, Ruolo][] = [["narratrice", saga.narratrice], ...Object.entries(saga.personaggi)];
@@ -369,7 +370,7 @@ describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (ca
     for (const p of Object.keys(saga.personaggi)) expect(Object.keys(VOCI), p).toContain(p);
   });
 
-  it("ogni episodio registrato usa le voci della saga (e finché una voce non è scelta, le sue riprese sono provini)", () => {
+  it("ogni episodio registrato usa le voci della saga (e finché una voce non è scelta, le sue riprese sono provini) — con le stesse impostazioni: la stessa voce suona uguale in tutti gli episodi", () => {
     const dir = join(ROOT, "cartoni/episodi");
     const episodi = existsSync(dir) ? readdirSync(dir) : [];
     for (const id of episodi) {
@@ -378,6 +379,7 @@ describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (ca
         const n: Narrazione = JSON.parse(readFileSync(fn, "utf8"));
         expect(n.voce, `${id}: la narratrice della saga è ${attuale(saga.narratrice)}`).toBe(attuale(saga.narratrice));
         expect(n.stato, id).toBe(saga.narratrice.stato === "scelta" ? "definitiva" : "provino");
+        expect(n.impronta, `${id}: la narrazione è registrata con impostazioni di «${n.voce}» diverse da quelle di voce.json: riregistrala (narra.ts --episodio ${id} --chi narratrice)`).toBe(impronta(saga.candidate[n.voce]));
       }
       const fb = join(dir, id, "voce/battute.json");
       if (existsSync(fb)) {
@@ -387,10 +389,88 @@ describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (ca
           expect(r, `${id}: ${chi} non ha un ruolo in voce.json`).toBeDefined();
           expect(v.voce, `${id}: la voce di ${chi} è ${attuale(r)}`).toBe(attuale(r));
           expect(v.stato, `${id}: ${chi}`).toBe(r.stato === "scelta" ? "definitiva" : "provino");
+          expect(v.impronta, `${id}: le battute di ${chi} sono registrate con impostazioni di «${v.voce}» diverse da quelle di voce.json: riregistrale (narra.ts --episodio ${id} --chi ${chi})`).toBe(impronta(saga.candidate[v.voce]));
         }
         for (const [k, c] of Object.entries(b.clip)) expect(c.voce, `${id} ${k}`).toBe(b.voci[c.chi!]?.voce);
       }
     }
+  });
+});
+
+describe("cartoni — i brani della saga (cartoni/brani/): canzoni registrate, coi versi del canone", () => {
+  const brani: Brani = JSON.parse(leggi("cartoni/brani/brani.json"));
+  const voci = Object.entries(brani).filter(([k]) => !k.startsWith("_"));
+
+  it("ogni brano ha il suo file, le sezioni in fila dentro la durata, i versi in ordine dentro le sezioni, la fonte e la licenza", () => {
+    expect(voci.length).toBeGreaterThan(0);
+    for (const [id, b] of voci) {
+      expect(existsSync(join(ROOT, "cartoni/brani", b.file)), `${id}: ${b.file}`).toBe(true);
+      expect(statSync(join(ROOT, "cartoni/brani", b.file)).size, id).toBeGreaterThan(10_000);
+      const sez = Object.values(b.sezioni).sort((x, y) => x[0] - y[0]);
+      expect(sez[0][0], id).toBe(0);
+      expect(sez[sez.length - 1][1], id).toBeCloseTo(b.durata, 3);
+      for (let i = 1; i < sez.length; i++) expect(sez[i][0], id).toBeCloseTo(sez[i - 1][1], 6);
+      b.versi.forEach((v, i) => {
+        expect(v.a, `${id}: ${v.testo}`).toBeGreaterThan(v.da);
+        if (i > 0) expect(v.da, `${id}: ${v.testo}`).toBeGreaterThanOrEqual(b.versi[i - 1].a);
+        expect(v.a, id).toBeLessThanOrEqual(b.durata);
+      });
+      expect(b.fonte.length, id).toBeGreaterThan(20);
+      expect(b.licenza.length, id).toBeGreaterThan(20);
+    }
+  });
+
+  it("i versi cantati sono quelli del canone, alla lettera e in ordine", () => {
+    for (const [id, b] of voci) {
+      if (!b.testo) continue;
+      const canone = leggi(b.testo);
+      // nel canone i versi stanno in corsivo, uno dopo l'altro, separati da « / »
+      const blocco = canone.split(/\n\s*\n/).find((p) => p.includes(b.versi[0].testo)) ?? "";
+      const corsivo = blocco.slice(blocco.indexOf("*") + 1, blocco.lastIndexOf("*"));
+      const righe = corsivo.replace(/\s+/g, " ").split(" / ").map((r) => r.trim());
+      expect(b.versi.map((v) => v.testo), id).toEqual(righe);
+    }
+  });
+
+  it("i versi compaiono col canto, e sotto un brano la storia non rallenta (se una voce ne avesse bisogno, si dice)", () => {
+    const b = brani["ninna-nanna"];
+    const uso = { id: "ninna-nanna", da: 2, dal: 15 };
+    const versi = versiCantati("ninna-nanna", b, uso, 1);
+    expect(versi.length).toBe(b.versi.length);
+    expect(versi[0].da).toBeCloseTo(2 + (b.versi[0].da - 15) - 0.25, 6);
+    expect(versi.every((d) => d.canto === "ninna-nanna" && d.pensiero)).toBe(true);
+    const fine = versi[versi.length - 1].a + 1;
+    const conBrano = (narrata: { da: number; a: number }): Episodio => ({
+      ...PROVA,
+      inquadrature: [{ ...PROVA.inquadrature[0], durata: fine + 4, brano: uso, didascalie: [{ ...narrata, pagina: 1, testo: "Zara non la cantò." }, ...versi] }],
+    });
+    const narr = (durata: number) => ({ voce: "x", stato: "definitiva" as const, clip: { "a/0/0": { testo: "Zara non la cantò.", durata, file: "x.ogg" } } });
+    // una voce che ci sta nella sua didascalia, anche dentro la finestra del brano: niente da dire
+    const ok = conVoce(conBrano({ da: 2.1, a: 3.9 }), { voci: VOCI, narrazione: narr(0.9) });
+    expect(ok.fuoriTempo).toEqual([]);
+    // una voce dentro la finestra che non ci sta: la storia dovrebbe rallentare sotto il brano → si dice
+    const no = conVoce(conBrano({ da: 2.2, a: 3.0 }), { voci: VOCI, narrazione: narr(2.4) });
+    expect(no.fuoriTempo.length).toBe(1);
+    // e prima del brano la storia può rallentare quanto vuole
+    const prima = conVoce({ ...conBrano({ da: 0, a: 0.6 }), inquadrature: [{ ...conBrano({ da: 0, a: 0.6 }).inquadrature[0], brano: { ...uso, da: 5 } }] }, { voci: VOCI, narrazione: narr(2.4) });
+    expect(prima.fuoriTempo).toEqual([]);
+    // i versi non si registrano (li canta il brano)
+    expect(daNarrare(conBrano({ da: 0, a: 1.9 }), VOCI).map((p) => p.testo)).toEqual(["Zara non la cantò."]);
+    // dove suona, a tempo vero
+    const ep = conVoce(conBrano({ da: 0, a: 1.9 }), { voci: VOCI });
+    const [posto] = postiDeiBrani(ep, brani);
+    expect(posto.tg).toBeCloseTo(2, 6);
+    expect(posto.dal).toBe(15);
+    expect(posto.al).toBeCloseTo(b.durata, 6);
+  });
+
+  it("l'impronta di una voce cambia se cambia una delle sue impostazioni (e solo allora)", () => {
+    const c = { motore: "piper", modello: "it_IT-paola-medium", lentezza: 1.38, variazione: 0.6, cadenza: 0.7, tono: 4 };
+    expect(impronta(c)).toMatch(/^[0-9a-f]{8}$/);
+    expect(impronta({ ...c })).toBe(impronta(c));
+    expect(impronta({ ...c, descrizione: "altro" } as typeof c)).toBe(impronta(c));
+    for (const k of ["lentezza", "variazione", "cadenza", "tono"] as const) expect(impronta({ ...c, [k]: c[k] + 0.01 }), k).not.toBe(impronta(c));
+    expect(impronta({ ...c, modello: "it_IT-serena-high" })).not.toBe(impronta(c));
   });
 });
 

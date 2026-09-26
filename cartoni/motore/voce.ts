@@ -240,14 +240,33 @@ export interface Narrazione {
   voce: string;
   /** "provino" finché la voce della saga non è scelta */
   stato: "provino" | "definitiva";
+  /** le impostazioni della voce con cui sono state fatte le riprese (vedi `impronta`) */
+  impronta?: string;
   /** chiave: `${inquadratura}/${didascalia}/${segmento}` */
   clip: Record<string, Ripresa>;
+}
+
+/**
+ * L'impronta di una voce: le impostazioni che la fanno quella che è (motore,
+ * modello, lentezza, variazione, cadenza, tono), in otto cifre. Ogni registro
+ * di riprese la porta: se in voce.json una voce cambia, il test elenca gli
+ * episodi registrati con quella vecchia — così la stessa voce suona uguale in
+ * tutti gli episodi.
+ */
+export function impronta(c: { motore?: string; modello?: string; lentezza?: number; variazione?: number; cadenza?: number; tono?: number }): string {
+  const chiave = JSON.stringify([c.motore ?? "piper", c.modello ?? "", c.lentezza ?? 1, c.variazione ?? null, c.cadenza ?? null, c.tono ?? 0]);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < chiave.length; i++) {
+    h ^= chiave.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
 }
 
 /** Il registro delle battute registrate dei personaggi (episodi/<id>/voce/battute.json). */
 export interface Battute {
   /** per ogni personaggio: la voce che l'ha detta e se è quella scelta */
-  voci: Record<string, { voce: string; stato: "provino" | "definitiva" }>;
+  voci: Record<string, { voce: string; stato: "provino" | "definitiva"; impronta?: string }>;
   /** chiave: `${inquadratura}/${didascalia}/${segmento}`; ogni ripresa ha `chi`, `voce`, `bocca` */
   clip: Record<string, Ripresa>;
 }
@@ -281,7 +300,7 @@ export function daNarrare(ep: Episodio, voci: Readonly<Record<string, ProfiloVoc
   const out: DaNarrare[] = [];
   for (const q of ep.inquadrature) {
     (q.didascalie ?? []).forEach((d, i) =>
-      segmenta(d.testo, d.chi).forEach((s, j) => {
+      (d.canto ? [] : segmenta(d.testo, d.chi)).forEach((s, j) => {
         if (s.tipo === "battuta" && voci[s.chi]) return;
         out.push({ chiave: chiaveClip(q.id, i, j), q: q.id, testo: s.testo, pensiero: !!d.pensiero });
       }),
@@ -303,7 +322,7 @@ export function daRecitare(ep: Episodio, voci: Readonly<Record<string, ProfiloVo
   const out: DaRecitare[] = [];
   for (const q of ep.inquadrature) {
     (q.didascalie ?? []).forEach((d, i) =>
-      segmenta(d.testo, d.chi).forEach((s, j) => {
+      (d.canto ? [] : segmenta(d.testo, d.chi)).forEach((s, j) => {
         if (s.tipo === "battuta" && voci[s.chi]) out.push({ chiave: chiaveClip(q.id, i, j), q: q.id, chi: s.chi, testo: s.testo });
       }),
     );
@@ -361,6 +380,8 @@ export interface EpisodioConVoce extends Episodio {
   senzaRipresa: string[];
   /** battute senza registrazione (dette in grammelot), quando le registrazioni ci sono */
   senzaRegistrazione: string[];
+  /** didascalie che farebbero rallentare la storia sotto un brano (che suona a tempo vero) */
+  fuoriTempo: string[];
 }
 
 /** Interpolazione a tratti su nodi [x, y] crescenti; fuori, pendenza 1. */
@@ -397,6 +418,7 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
   const prestito = o.prestito ?? 0.6;
   const senzaRipresa: string[] = [];
   const senzaRegistrazione: string[] = [];
+  const fuoriTempo: string[] = [];
   const tempi: Record<string, TempoInquadratura> = {};
   const locali: { q: Inquadratura; eventi: (EventoVoce & { t: number })[] }[] = [];
 
@@ -408,9 +430,12 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
     let R = 0;
     const didascalie: Didascalia[] = [];
     const eventi: (EventoVoce & { t: number })[] = [];
+    // dove suona un brano (a tempo vero) la storia non può rallentare
+    const B = q.brano;
+    const finestra = B ? ([B.da, B.da + ((B.al ?? Infinity) - (B.dal ?? 0))] as const) : null;
     ordinate.forEach(({ d, i }, k) => {
       const pezzi: Pezzo[] = [];
-      segmenta(d.testo, d.chi).forEach((s, j) => {
+      (d.canto ? [] : segmenta(d.testo, d.chi)).forEach((s, j) => {
         const chiave = chiaveClip(q.id, i, j);
         if (s.tipo === "battuta") {
           const v = o.voci[s.chi];
@@ -463,6 +488,9 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
       const presa = Math.min(extra, Math.max(0, prossima - d.a) * prestito);
       const fineN = d.a + presa;
       const zona = Math.max(fineN - d.da, serve);
+      if (finestra && zona > fineN - d.da + 1e-6 && d.da < finestra[1] && fineN > finestra[0]) {
+        fuoriTempo.push(`${q.id}: «${d.testo}» ha bisogno di ${(zona - (fineN - d.da)).toFixed(2)} s in più mentre suona «${B!.id}»: allarga la sua finestra (il brano non aspetta)`);
+      }
       R += zona;
       N = fineN;
       nodi.push([R, N]);
@@ -524,11 +552,12 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
       durata: T.durata,
       suoni,
       titoli,
+      brano: q.brano ? { ...q.brano, da: vero(q.brano.da) } : undefined,
       disegna: (t, defs) => q.disegna(storia(t), defs, { t, bocca: (chi) => bocca(chi, t) } satisfies InScena),
     };
     return nuova;
   });
-  return { ...ep, inquadrature, voci, tempi, senzaRipresa, senzaRegistrazione };
+  return { ...ep, inquadrature, voci, tempi, senzaRipresa, senzaRegistrazione, fuoriTempo };
 }
 
 /** Quanto la scena rallenta al massimo (1 = mai): per il consuntivo. */

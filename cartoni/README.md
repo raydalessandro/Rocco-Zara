@@ -77,6 +77,12 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
   dalle «». È **una sola per la saga**: Ray l'ha scelta dai provini — **Paola, da
   bambina** (più lenta, e più acuta di 4 semitoni: altezza e formanti salgono insieme,
   come in una voce più piccola). Anche le sue riprese si tengono in `episodi/<id>/voce/`.
+- **Le stesse in tutti gli episodi.** Ogni registrazione porta l'impronta delle
+  impostazioni della sua voce: se in `voce.json` una voce cambia, il test dice quali
+  episodi riregistrare. Il missaggio è uno per tutti.
+- **La ninna-nanna** della Prima Tigre è un brano vero (`brani/`, fatto da Ray con
+  Suno): quando la si canta i versi compaiono a tempo col canto; la parte canticchiata
+  può tornare negli altri episodi.
 - **Le voci si capiscono.** Più una voce è spinta verso l'acuto, meno si capisce: il
   cast è stato scelto controllando ogni battuta con un riconoscitore vocale; le parole
   che una voce sintetica sbaglia si correggono nel dizionario `pronuncia` di `voce.json`
@@ -105,6 +111,7 @@ cartoni/
                la narratrice, il missaggio → WAV
   voce/        voce.json: il cast delle voci (la narratrice e una voce per personaggio),
                le candidate, la pronuncia
+  brani/       le canzoni registrate (la ninna-nanna) e il loro registro brani.json
   player/      il cartone per il browser (CARTONE.svg(t)), con le voci
   render/      gira.mjs (Chrome headless → ffmpeg), suona.ts (WAV), narra.ts (registra
                le voci e fa i provini) con leggi_voce.py, ascolta.py (si capisce?),

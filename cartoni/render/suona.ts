@@ -13,6 +13,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { VOCI } from "../cast/voci";
 import { colonna, wav } from "../audio/colonna";
+import { type Brani, postiDeiBrani, suonaBrani } from "../audio/brani";
 import { battute } from "../audio/grammelot";
 import { CALORE_BASE, type Calore, riprese } from "../audio/narratrice";
 import { Bus, SR } from "../audio/sintesi";
@@ -26,6 +27,19 @@ const arg = (nome: string, def?: string) => {
   return i >= 0 ? process.argv[i + 1] : def;
 };
 const flag = (nome: string) => process.argv.includes(`--${nome}`);
+
+/** Legge un brano (stereo, a 48 kHz). */
+function leggiStereo(file: string): [Float32Array, Float32Array] {
+  const buf = execFileSync("ffmpeg", ["-v", "error", "-i", file, "-map", "0:a", "-f", "f32le", "-ac", "2", "-ar", String(SR), "-"], { maxBuffer: 1 << 30 });
+  const x = new Float32Array(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
+  const l = new Float32Array(x.length / 2);
+  const r = new Float32Array(x.length / 2);
+  for (let i = 0; i < l.length; i++) {
+    l[i] = x[2 * i];
+    r[i] = x[2 * i + 1];
+  }
+  return [l, r];
+}
 
 /** Legge una ripresa (qualunque formato ffmpeg capisca) come campioni mono a 48 kHz. */
 function leggiRipresa(file: string): Float32Array {
@@ -63,7 +77,18 @@ async function main(): Promise<void> {
     const saga = JSON.parse(readFileSync(join(RADICE, "cartoni/voce/voce.json"), "utf8")) as { calore?: Calore };
     riprese(voci, epV.voci, file, { ...CALORE_BASE, ...saga.calore }, VOCI);
   }
-  const bus = colonna(epV, { musica, voci: { bus: voci, parlato: epV.voci } });
+  // i brani (le canzoni registrate) che l'episodio usa
+  let braniBus: Bus | undefined;
+  if (epV.inquadrature.some((q) => q.brano)) {
+    const reg = JSON.parse(readFileSync(join(RADICE, "cartoni/brani/brani.json"), "utf8")) as Brani;
+    const posti = postiDeiBrani(epV, reg);
+    const audio = new Map<string, [Float32Array, Float32Array]>();
+    for (const p of posti) if (!audio.has(p.id)) audio.set(p.id, leggiStereo(join(RADICE, "cartoni/brani", reg[p.id].file)));
+    braniBus = new Bus(durata(epV) + 3);
+    suonaBrani(braniBus, posti, audio);
+  }
+  if (epV.fuoriTempo.length) console.warn(`⚠ la storia rallenterebbe sotto un brano:\n  ${epV.fuoriTempo.join("\n  ")}`);
+  const bus = colonna(epV, { musica, voci: { bus: voci, parlato: epV.voci }, brani: braniBus });
   mkdirSync(dirname(uscita), { recursive: true });
   writeFileSync(uscita, wav(bus));
   const registrate = epV.voci.filter((v) => v.tipo === "battuta" && v.clip).length;

@@ -29,7 +29,7 @@ import { homedir, tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { VOCI } from "../cast/voci";
 import type { Episodio } from "../motore/montaggio";
-import { type Battute, type DaNarrare, type DaRecitare, type Narrazione, type Ripresa, daNarrare, daRecitare } from "../motore/voce";
+import { type Battute, type DaNarrare, type DaRecitare, type Narrazione, type Ripresa, daNarrare, daRecitare, impronta } from "../motore/voce";
 
 const RADICE = resolve(__dirname, "../..");
 const arg = (nome: string, def?: string) => {
@@ -137,6 +137,7 @@ function registraNarrazione(saga: VociSaga, ep: Episodio, cartella: string, solo
   const registro = join(cartella, "narrazione.json");
   const prima: Narrazione | null = existsSync(registro) ? JSON.parse(readFileSync(registro, "utf8")) : null;
   if (solo && prima && prima.voce !== c.id) throw new Error(`le altre riprese della narrazione sono di «${prima.voce}»: rifalle tutte (senza --solo)`);
+  if (solo && prima && prima.impronta !== impronta(c)) throw new Error(`le altre riprese della narrazione sono fatte con impostazioni diverse di «${c.id}»: rifalle tutte (senza --solo), se no la voce cambia a metà episodio`);
   const pezzi: DaNarrare[] = daNarrare(ep, VOCI).filter((p) => !solo || solo.includes(p.q));
   const tmp = mkdtempSync(join(tmpdir(), "riprese-"));
   console.log(`narratrice: ${pezzi.length} pezzi letti da «${c.id}»…`);
@@ -149,7 +150,7 @@ function registraNarrazione(saga: VociSaga, ep: Episodio, cartella: string, solo
     clip[p.chiave] = { testo: p.testo, durata: letti.get(wav)?.durata ?? 0, file };
   }
   rmSync(tmp, { recursive: true, force: true });
-  const n: Narrazione = { voce: c.id, stato: r.stato === "scelta" ? "definitiva" : "provino", clip };
+  const n: Narrazione = { voce: c.id, stato: r.stato === "scelta" ? "definitiva" : "provino", impronta: impronta(c), clip };
   writeFileSync(registro, JSON.stringify(n, null, 1) + "\n");
   console.log(`→ ${registro} (${Object.keys(clip).length} riprese, stato: ${n.stato})`);
 }
@@ -170,6 +171,7 @@ function registraBattute(saga: VociSaga, ep: Episodio, cartella: string, chi: st
     const c = candidata(saga, voceDi(r), p);
     const sue = tutte.filter((x) => x.chi === p && (!solo || solo.includes(x.q)));
     if (solo && prima?.voci[p] && prima.voci[p].voce !== c.id) throw new Error(`le altre battute di ${p} sono di «${prima.voci[p].voce}»: rifalle tutte (senza --solo)`);
+    if (solo && prima?.voci[p] && prima.voci[p].impronta !== impronta(c)) throw new Error(`le altre battute di ${p} sono fatte con impostazioni diverse di «${c.id}»: rifalle tutte (senza --solo)`);
     // cambiando voce, le vecchie riprese di questo personaggio non valgono più
     if (!solo) for (const [k, v] of Object.entries(b.clip)) if (v.chi === p) delete b.clip[k];
     const tmp = mkdtempSync(join(tmpdir(), "battute-"));
@@ -183,7 +185,7 @@ function registraBattute(saga: VociSaga, ep: Episodio, cartella: string, chi: st
       b.clip[x.chiave] = { chi: p, voce: c.id, testo: x.testo, durata: l?.durata ?? 0, file, bocca: l?.bocca ?? "" };
     }
     rmSync(tmp, { recursive: true, force: true });
-    b.voci[p] = { voce: c.id, stato: r.stato === "scelta" ? "definitiva" : "provino" };
+    b.voci[p] = { voce: c.id, stato: r.stato === "scelta" ? "definitiva" : "provino", impronta: impronta(c) };
   }
   writeFileSync(registro, JSON.stringify(b, null, 1) + "\n");
   console.log(`→ ${registro} (${Object.keys(b.clip).length} battute: ${Object.entries(b.voci).map(([k, v]) => `${k}=${v.voce} (${v.stato})`).join(", ")})`);

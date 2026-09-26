@@ -60,6 +60,23 @@ export interface InScena {
 /** Una scena senza voci: il tempo vero è quello della storia, nessuno parla. */
 export const MUTA = (t: number): InScena => ({ t, bocca: () => 0 });
 
+/**
+ * Un brano (una canzone registrata, cartoni/brani/) che suona in un'inquadratura:
+ * parte a `da` (tempo della storia dell'inquadratura), dal secondo `dal` del brano
+ * fino al secondo `al` (o alla fine), col suo volume e le sue sfumate. Suona a
+ * tempo vero: dove c'è un brano la storia non può rallentare (cartoni/motore/voce.ts).
+ */
+export interface UsoBrano {
+  id: string;
+  da: number;
+  dal?: number;
+  al?: number;
+  vol?: number;
+  /** sfumata d'entrata e d'uscita (s) */
+  entra?: number;
+  esce?: number;
+}
+
 export interface Inquadratura {
   id: string;
   /** Titolo breve per il foglio-provini e il copione. */
@@ -72,6 +89,8 @@ export interface Inquadratura {
   titoli?: Titolo[];
   suoni?: Suono[];
   ambiente?: Ambiente;
+  /** Un brano che suona sotto l'inquadratura (una canzone: la ninna-nanna…). */
+  brano?: UsoBrano;
   /** Disegna al tempo locale t della storia (secondi dall'inizio dell'inquadratura). */
   disegna(t: number, defs: Defs, scena: InScena): Disegno;
 }
