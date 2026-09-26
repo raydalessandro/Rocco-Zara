@@ -1,0 +1,292 @@
+{
+ "voce": "paola-bambina",
+ "stato": "definitiva",
+ "impronta": "28afdab3",
+ "clip": {
+  "s01/0/0": {
+   "testo": "Rivalba stava sull'acqua come una cosa posata bene:",
+   "durata": 2.854,
+   "file": "s01-0-0.ogg"
+  },
+  "s02/0/0": {
+   "testo": "e in mezzo i Massi del Consiglio — pietre larghe e lisce, levigate da generazioni di zampe, dove il regno si mostra e si decide.",
+   "durata": 7.805,
+   "file": "s02-0-0.ogg"
+  },
+  "s03/0/0": {
+   "testo": "Sopra il masso più alto, ferma nella luce, c'era una lince giovane.",
+   "durata": 3.993,
+   "file": "s03-0-0.ogg"
+  },
+  "s03/1/0": {
+   "testo": "Non faceva niente. Stava.",
+   "durata": 1.823,
+   "file": "s03-1-0.ogg"
+  },
+  "s04/0/0": {
+   "testo": "A uno grande, i posti d'acqua chiedono sempre qualcosa. A una piccola, per ora, niente.",
+   "durata": 5.27,
+   "file": "s04-0-0.ogg"
+  },
+  "s05/0/1": {
+   "testo": "disse infatti — frase piana, di casa.",
+   "durata": 2.559,
+   "file": "s05-0-1.ogg"
+  },
+  "s05/1/0": {
+   "testo": "Si chiamava Cervara, ed era, glielo dissero in tre, il vanto delle rive.",
+   "durata": 4.222,
+   "file": "s05-1-0.ogg"
+  },
+  "s06/0/0": {
+   "testo": "se li leccò — un colpetto di zampa, veloce, e di nuovo perfetti.",
+   "durata": 4.03,
+   "file": "s06-0-0.ogg"
+  },
+  "s07/0/0": {
+   "testo": "Zara lo vide. Non seppe ancora cosa farsene.",
+   "durata": 2.838,
+   "file": "s07-0-0.ogg"
+  },
+  "s08/0/0": {
+   "testo": "dalla barca di Brénta — ormeggiata al molo basso, col carico che si custodisce per i giorni che contano — venne un suono piccolo: tec.",
+   "durata": 7.212,
+   "file": "s08-0-0.ogg"
+  },
+  "s09/0/0": {
+   "testo": "E ogni tanto guardava Zara con un'attenzione pulita, senza cattiveria — che è peggio — come si guarda una che va da qualche parte.",
+   "durata": 6.787,
+   "file": "s09-0-0.ogg"
+  },
+  "s10/0/0": {
+   "testo": "Zara mise in fila le cose che l'altra faceva meglio. Erano parecchie.",
+   "durata": 3.948,
+   "file": "s10-0-0.ogg"
+  },
+  "s10/1/0": {
+   "testo": "Smise di metterle in fila.",
+   "durata": 1.588,
+   "file": "s10-1-0.ogg"
+  },
+  "s11/0/0": {
+   "testo": "da pietra a pietra senza suono, perché sui Massi si va leggeri o non si va.",
+   "durata": 4.154,
+   "file": "s11-0-0.ogg"
+  },
+  "s12/0/0": {
+   "testo": "Ma il suo passo suonava. Poco: abbastanza.",
+   "durata": 2.988,
+   "file": "s12-0-0.ogg"
+  },
+  "s13/0/0": {
+   "testo": "Cervara, dietro, passò sugli stessi sassi come passa la sera: e non si sentì niente.",
+   "durata": 5.05,
+   "file": "s13-0-0.ogg"
+  },
+  "s14/0/0": {
+   "testo": "Fu allora che un camoscio attraversò i Massi.",
+   "durata": 2.179,
+   "file": "s14-0-0.ogg"
+  },
+  "s14/1/0": {
+   "testo": "quattro tocchi, un soffio, dall'altra parte.",
+   "durata": 2.604,
+   "file": "s14-1-0.ogg"
+  },
+  "s15/0/1": {
+   "testo": "disse Rocco piano.",
+   "durata": 1.229,
+   "file": "s15-0-1.ogg"
+  },
+  "s15/1/0": {
+   "testo": "Non disse niente. Se lo tenne.",
+   "durata": 2.147,
+   "file": "s15-1-0.ogg"
+  },
+  "s16/0/0": {
+   "testo": "Non era stanca. Era piena — di cose fatte quasi bene, che è una stanchezza più lunga.",
+   "durata": 5.094,
+   "file": "s16-0-0.ogg"
+  },
+  "s17/0/0": {
+   "testo": "Dall'acqua ferma il suo riflesso la guardava un po' meno sfumato di ieri, e non abbastanza.",
+   "durata": 4.577,
+   "file": "s17-0-0.ogg"
+  },
+  "s18/0/0": {
+   "testo": "Le mise accanto il silenzio, che era la cosa sua che pesava meglio.",
+   "durata": 3.482,
+   "file": "s18-0-0.ogg"
+  },
+  "s19/0/1": {
+   "testo": "disse, piana.",
+   "durata": 0.937,
+   "file": "s19-0-1.ogg"
+  },
+  "s20/0/1": {
+   "testo": "chiese Zara.",
+   "durata": 0.794,
+   "file": "s20-0-1.ogg"
+  },
+  "s20/3/0": {
+   "testo": "Per la prima volta, non rispose subito.",
+   "durata": 2.409,
+   "file": "s20-3-0.ogg"
+  },
+  "s21/0/1": {
+   "testo": "disse infine, e si toccò un orecchio senza pensarci.",
+   "durata": 3.085,
+   "file": "s21-0-1.ogg"
+  },
+  "s21/1/1": {
+   "testo": "Una pausa piana.",
+   "durata": 1.143,
+   "file": "s21-1-1.ogg"
+  },
+  "s22/0/0": {
+   "testo": "e Zara, che di cose dette bene al posto delle risposte se ne intendeva, la riconobbe al volo.",
+   "durata": 4.916,
+   "file": "s22-0-0.ogg"
+  },
+  "s23/0/0": {
+   "testo": "Quella notte Zara non dormì.",
+   "durata": 1.467,
+   "file": "s23-0-0.ogg"
+  },
+  "s23/1/0": {
+   "testo": "era tutto a posto, e proprio quello non la faceva dormire.",
+   "durata": 3.038,
+   "file": "s23-1-0.ogg"
+  },
+  "s24/0/0": {
+   "testo": "La luna stava bassa sull'acqua, vera due volte.",
+   "durata": 2.748,
+   "file": "s24-0-0.ogg"
+  },
+  "s25/0/0": {
+   "testo": "Passando sopra il molo lo risentì: tec.",
+   "durata": 2.273,
+   "file": "s25-0-0.ogg"
+  },
+  "s25/1/0": {
+   "testo": "qualcuno, a bordo, russava di gusto.",
+   "durata": 2.36,
+   "file": "s25-1-0.ogg"
+  },
+  "s26/0/0": {
+   "testo": "Le Coppelle stavano nella notte come stanno da sempre:",
+   "durata": 2.737,
+   "file": "s26-0-0.ogg"
+  },
+  "s27/0/0": {
+   "testo": "pietre larghe, e sopra le conche tonde a cerchi, piene di luna.",
+   "durata": 3.342,
+   "file": "s27-0-0.ogg"
+  },
+  "s28/0/0": {
+   "testo": "Cervara. Sola, seduta male — lei, seduta male — davanti ai segni, i ciuffi d'un orecchio piegati di lato.",
+   "durata": 6.617,
+   "file": "s28-0-0.ogg"
+  },
+  "s29/0/1": {
+   "testo": "disse, piana, guardando le conche.",
+   "durata": 2.036,
+   "file": "s29-0-1.ogg"
+  },
+  "s29/1/0": {
+   "testo": "La frase cadde nel cerchio, a metà.",
+   "durata": 1.995,
+   "file": "s29-1-0.ogg"
+  },
+  "s30/0/0": {
+   "testo": "Zara si sedette accanto. Male anche lei, per compagnia.",
+   "durata": 3.565,
+   "file": "s30-0-0.ogg"
+  },
+  "s31/0/1": {
+   "testo": "disse Cervara. Piana come sempre. Ferma come mai.",
+   "durata": 3.582,
+   "file": "s31-0-1.ogg"
+  },
+  "s32/0/0": {
+   "testo": "E Zara, che aveva passato giorni a metterle in fila i primati, sentì la fila rovesciarsi tutta insieme —",
+   "durata": 5.796,
+   "file": "s32-0-0.ogg"
+  },
+  "s32/1/0": {
+   "testo": "perché il vanto del regno aveva appena detto, alla straniera senza riflesso, la cosa che la straniera avrebbe dato una stagione per sentirsi dire.",
+   "durata": 7.289,
+   "file": "s32-1-0.ogg"
+  },
+  "s33/0/1": {
+   "testo": "disse poi Cervara, alzandosi.",
+   "durata": 2.095,
+   "file": "s33-0-1.ogg"
+  },
+  "s34/0/0": {
+   "testo": "Lo mostrò una volta, lenta, da pari a pari — non da vanto a ospite.",
+   "durata": 3.82,
+   "file": "s34-0-0.ogg"
+  },
+  "s35/0/0": {
+   "testo": "Zara provò. La pietra, sotto, non disse niente.",
+   "durata": 3.218,
+   "file": "s35-0-0.ogg"
+  },
+  "s35/1/0": {
+   "testo": "Riprovò. Niente.",
+   "durata": 1.732,
+   "file": "s35-1-0.ogg"
+  },
+  "s36/0/0": {
+   "testo": "Sui Massi del Consiglio, per la prima volta, una tigre passò come passa la sera.",
+   "durata": 4.757,
+   "file": "s36-0-0.ogg"
+  },
+  "s37/0/0": {
+   "testo": "Sulla discesa Cervara si fermò a sistemarsi i ciuffi —",
+   "durata": 3.237,
+   "file": "s37-0-0.ogg"
+  },
+  "s37/1/0": {
+   "testo": "e stavolta Zara la vide per intero: il gesto, e la cosa sotto il gesto.",
+   "durata": 4.272,
+   "file": "s37-1-0.ogg"
+  },
+  "s38/0/0": {
+   "testo": "Certi specchi funzionano così: basta guardarci dentro insieme, una volta.",
+   "durata": 4.481,
+   "file": "s38-0-0.ogg"
+  },
+  "s38/1/0": {
+   "testo": "Non era l'unica, a tenersi in ordine il davanti mentre il dietro tremava — e non lo era mai stata.",
+   "durata": 5.029,
+   "file": "s38-1-0.ogg"
+  },
+  "s39/0/0": {
+   "testo": "Zara si sporse dal solito punto: il riflesso c'era, più fermo ai bordi — quasi vero due volte, ormai.",
+   "durata": 6.038,
+   "file": "s39-0-0.ogg"
+  },
+  "s40/0/0": {
+   "testo": "Dietro il suo, sull'acqua, passò quello di Cervara, dritto e perfetto come il primo giorno.",
+   "durata": 4.974,
+   "file": "s40-0-0.ogg"
+  },
+  "s40/1/0": {
+   "testo": "Solo che adesso Zara sapeva cosa costava, quel dritto.",
+   "durata": 3.26,
+   "file": "s40-1-0.ogg"
+  },
+  "s41/0/0": {
+   "testo": "e la domanda le salì da sola, e lì rimase:",
+   "durata": 2.494,
+   "file": "s41-0-0.ogg"
+  },
+  "s41/1/0": {
+   "testo": "chi delle due, veramente, era lo specchio?",
+   "durata": 2.419,
+   "file": "s41-1-0.ogg"
+  }
+ }
+}

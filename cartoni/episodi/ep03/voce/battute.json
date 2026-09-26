@@ -1,0 +1,149 @@
+{
+ "voci": {
+  "cervara": {
+   "voce": "siwis-cervara",
+   "stato": "provino",
+   "impronta": "d1dbd3fd"
+  },
+  "rocco": {
+   "voce": "nicola-grande",
+   "stato": "provino",
+   "impronta": "4dc6fc0c"
+  },
+  "zara": {
+   "voce": "sara-ragazza",
+   "stato": "provino",
+   "impronta": "502042fd"
+  }
+ },
+ "clip": {
+  "s05/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Qui si fa così,",
+   "durata": 1.164,
+   "file": "s05-0-0.ogg",
+   "bocca": "138885468305885038886566654400"
+  },
+  "s19/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Il mio posto è qui,",
+   "durata": 1.322,
+   "file": "s19-0-0.ogg",
+   "bocca": "3788888860088754058776022576543200"
+  },
+  "s19/1/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Qui si nasce con l'acqua in—",
+   "durata": 1.799,
+   "file": "s19-1-0.ogg",
+   "bocca": "017864588888865577068777870008875678876555420"
+  },
+  "s20/1/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Com'è cosa.",
+   "durata": 1.041,
+   "file": "s20-1-0.ogg",
+   "bocca": "128888771037877765777654400"
+  },
+  "s21/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "È come i ciuffi,",
+   "durata": 1.258,
+   "file": "s21-0-0.ogg",
+   "bocca": "58860488888743546774000266554400"
+  },
+  "s21/1/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Belli. Fermi. Di casa.",
+   "durata": 1.575,
+   "file": "s21-1-0.ogg",
+   "bocca": "4588877786210488678875472158887557765300"
+  },
+  "s21/1/2": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Si fa così, e io lo so fare.",
+   "durata": 1.919,
+   "file": "s21-1-2.ogg",
+   "bocca": "035860787006887568840687788777443773007877554320"
+  },
+  "s29/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Il vanto delle rive,",
+   "durata": 1.411,
+   "file": "s29-0-0.ogg",
+   "bocca": "488864788881477588778864677731654200"
+  },
+  "s29/0/2": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Di un posto dove tutto si fa così, e nessuno—",
+   "durata": 2.796,
+   "file": "s29-0-2.ogg",
+   "bocca": "2688880688502868868506730286346248702787556664000688876443357776776420"
+  },
+  "s31/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Tu almeno vai da qualche parte,",
+   "durata": 1.988,
+   "file": "s31-0-0.ogg",
+   "bocca": "34788788888887548877648600587504730676751000553310"
+  },
+  "s33/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Il passo sui massi,",
+   "durata": 1.512,
+   "file": "s33-0-0.ogg",
+   "bocca": "48885078863158733688888887521105655420"
+  },
+  "s33/0/2": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Non è nelle zampe. È nel peso. Prima tu. Poi la zampa.",
+   "durata": 3.315,
+   "file": "s33-0-2.ogg",
+   "bocca": "47888888778854588877105641006888760067775566400047888703575006888687446887640564200"
+  },
+  "s15/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Ecco,",
+   "durata": 0.653,
+   "file": "s15-0-0.ogg",
+   "bocca": "03688740348875310"
+  },
+  "s15/0/2": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Lui è l'acqua. Voi due siete ancora pioggia.",
+   "durata": 2.797,
+   "file": "s15-0-2.ogg",
+   "bocca": "3788888877777750011876578758888664861787864388867603388766544455555430"
+  },
+  "s20/0/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "E com'è?",
+   "durata": 0.808,
+   "file": "s20-0-0.ogg",
+   "bocca": "078604788888876666400"
+  },
+  "s20/2/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Nascere col posto già pronto.",
+   "durata": 1.948,
+   "file": "s20-2-0.ogg",
+   "bocca": "4888865468786178710788421875578702777888603555400"
+  }
+ }
+}
