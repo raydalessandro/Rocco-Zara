@@ -13,6 +13,7 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { CECCA_ANCORE } from "../cartoni/cast/fauna";
+import { BRENTA_ANCORE } from "../cartoni/cast/laghi";
 import { ROCCO_ANCORE } from "../cartoni/cast/rocco";
 import { VOCI } from "../cartoni/cast/voci";
 import { ZARA_ANCORE } from "../cartoni/cast/zara";
@@ -532,6 +533,7 @@ describe("cartoni — i colori dei pupazzi vengono dalle schede", () => {
   it("Rocco = saga/bible/rocco.md", () => expect(del(ROCCO_ANCORE)).toEqual(ancore("saga/bible/rocco.md")));
   it("Zara = saga/bible/zara.md", () => expect(del(ZARA_ANCORE)).toEqual(ancore("saga/bible/zara.md")));
   it("Cècca = saga/bible/comprimari/cecca.md", () => expect(del(CECCA_ANCORE)).toEqual(ancore("saga/bible/comprimari/cecca.md")));
+  it("Brénta = saga/bible/comprimari/traghettatrice-delle-rive.md", () => expect(del(BRENTA_ANCORE)).toEqual(ancore("saga/bible/comprimari/traghettatrice-delle-rive.md")));
 });
 
 describe("cartoni — lessico delle Terre Annodate nel codice", () => {
