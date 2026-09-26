@@ -22,7 +22,7 @@ import { martinPescatore } from "../../cast/fauna";
 import { type PosaLontra, folaga, lince, lontra, testuggine } from "../../cast/laghi";
 import { type PosaRocco, rocco } from "../../cast/rocco";
 import { type PosaZara, zara } from "../../cast/zara";
-import { APPRODO, LAGO_VESPRO, RIVA, RIVALBA, cimaMassoCustode } from "../../luoghi/rivalba";
+import { APPRODO, LAGO_VESPRO, ORLO, RIVA, cimaMassoCustode } from "../../luoghi/rivalba";
 import { type Luce, mescolaLuce } from "../../motore/colore";
 import { type Camera, type Livello } from "../../motore/fotogramma";
 import { type Episodio, type Inquadratura, type UsoBrano } from "../../motore/montaggio";
@@ -35,14 +35,14 @@ import { palcoscenico } from "../../scene/palcoscenico";
 import { CICLO, camTra, fase, inPunto } from "../../scene/regia";
 
 // ------------------------------------------------------------- attrezzi --
-const V = palcoscenico(RIVALBA);
+const V = palcoscenico(ORLO);
 const A = palcoscenico(APPRODO);
 const Q = LAGO_VESPRO.quota;
 /** Il piano del molo basso. */
 const MOLO = Q - RIVA.alturaMolo - 4;
 /** La barca di Brénta: lunga (ci sta un rinoceronte seduto al centro). */
 const L_BARCA = 900;
-const ACQUA = { lago: RIVALBA.colori.lago, chiaro: RIVALBA.colori.lagoChiaro };
+const ACQUA = { lago: ORLO.colori.lago, chiaro: ORLO.colori.lagoChiaro };
 /** Dove sta ormeggiata, contro la testa del molo. */
 const X_ORMEGGIO = RIVA.molo[0] - L_BARCA / 2 - 20;
 /** A bordo (coordinate della barca, prua a sinistra): Rocco al centro, Zara verso poppa che guarda Brénta, Brénta a poppa in piedi. */
@@ -236,7 +236,7 @@ const s05: Inquadratura = {
   disegna(t, defs, v) {
     const L = mescolaLuce(LUCI.tramonto, LUCI.notte, rampa(t, 0, 4));
     const tana = tanaDiCanne(L, defs);
-    const y = RIVALBA.quota(RIVA.tana);
+    const y = ORLO.quota(RIVA.tana);
     const zp: PosaZara = { t, andatura: "acquattata", testa: 24, occhi: 1, involto: true, codaAvvolta: 1 };
     const att =
       `<g transform="translate(${RIVA.tana} ${n(y)})">${tana.fondo}</g>` +
@@ -270,7 +270,7 @@ const s06: Inquadratura = {
   disegna(t, defs, v) {
     const L = LUCI.notte;
     const tana = tanaDiCanne(L, defs);
-    const y = RIVALBA.quota(RIVA.tana);
+    const y = ORLO.quota(RIVA.tana);
     const zp: PosaZara = { t, andatura: "acquattata", testa: 24, occhi: 1, involto: true, codaAvvolta: 1, orecchie: 0.2 + 0.2 * onda(t, 7) };
     const att = `<g transform="translate(${RIVA.tana} ${n(y)})">${tana.fondo}</g>` + V.Z(RIVA.tana + 10, zp, 1, L, defs) + `<g transform="translate(${RIVA.tana} ${n(y)})">${tana.fronte}</g>`;
     // la camera: si avvicina a Zara mentre la canzone sale; durante i versi si allarga
@@ -297,9 +297,9 @@ const s07: Inquadratura = {
     const x = X_ROCCO_NOTTE;
     const rp: PosaRocco = { t, andatura: "fermo", occhi: 1, testa: 12 + 2 * onda(t, 4.5), orecchie: -0.2 };
     const tana = tanaDiCanne(L, defs);
-    const y = RIVALBA.quota(RIVA.tana);
+    const y = ORLO.quota(RIVA.tana);
     const att = `<g transform="translate(${RIVA.tana} ${n(y)})">${tana.fondo}${tana.fronte}</g>` + V.R(x, rp, 1, L, defs);
-    const cam = camTra({ x: x + 90, y: RIVALBA.quota(x) - 190, zoom: 1.35 }, { x: x + 220, y: RIVALBA.quota(x) - 210, zoom: 1.15 }, ease.dentroFuori(t / 8.2));
+    const cam = camTra({ x: x + 90, y: ORLO.quota(x) - 190, zoom: 1.35 }, { x: x + 220, y: ORLO.quota(x) - 210, zoom: 1.15 }, ease.dentroFuori(t / 8.2));
     return { cam, livelli: V.scena(t, defs, { mondo: v.t, cam, luce: L, meteo: { notte: 1, nebbia: 0.25, vento: 0.05 }, attori: att }) };
   },
 };

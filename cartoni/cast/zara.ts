@@ -53,6 +53,8 @@ export interface PosaZara {
   bagnata?: number;
   /** Coda avvolta attorno alle zampe (posa-firma da seduta). */
   codaAvvolta?: number;
+  /** Seduta male (0..1): la schiena che cede, la testa giù (ep03, p.13: «Male anche lei, per compagnia»). */
+  male?: number;
 }
 
 // ------------------------------------------------------------- scheletro --
@@ -184,13 +186,15 @@ function scheletroBase(posa: PosaZara): Scheletro {
       break;
     }
     case "seduta": {
-      // groppa a terra, cosce raccolte, zampe anteriori dritte, petto alto
+      // groppa a terra, cosce raccolte, zampe anteriori dritte, petto alto;
+      // `male` la fa cedere: la schiena si arrotonda, il petto scende
+      const m = clamp(posa.male ?? 0);
       spina = [
         [-66, -26],
         [-50, -48],
-        [-12, -86 - respiro * 0.4],
-        [26, -120 - respiro],
-        [52, -146],
+        [-12, -86 - respiro * 0.4 + 10 * m],
+        [26 - 6 * m, -120 - respiro + 20 * m],
+        [52 - 8 * m, -146 + 32 * m],
       ];
       dorso = [10, 34, 26, 32, 28];
       ventre = [22, 30, 28, 34, 30];
@@ -204,7 +208,7 @@ function scheletroBase(posa: PosaZara): Scheletro {
         [-40, -8],
         [-40, -8],
       ];
-      testa += -4;
+      testa += -4 + 20 * m;
       const avv = clamp(posa.codaAvvolta ?? 1);
       const avvolta = [160, 62, 4, 0, -2, -4, -8, -18, -38, -70, -105];
       coda = codaBase.map((a, i) => lerp(a, avvolta[i] + onda(t, 4, 0.2) * 4 * (i / LUNG_CODA), avv));

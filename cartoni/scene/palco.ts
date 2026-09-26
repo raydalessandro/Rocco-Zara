@@ -33,7 +33,7 @@ export function palco(o: OpzPalco): Livello[] {
     ...(o.extra ?? []),
     { id: "attori", contenuto: o.attori ?? "", p: 1 },
     { id: "fronda", contenuto: fronda, p: 1 },
-    { id: "davanti", contenuto: o.attoriDavanti ?? "", p: 1 },
+    { id: "davanti", contenuto: (luogo.davanti?.(o, inVista) ?? "") + (o.attoriDavanti ?? ""), p: 1 },
   ];
   if (o.primoPiano) liv.push({ id: "primo", contenuto: primoPiano(o, 1.7), p: 1.7 });
   liv.push({ id: "pioggia", contenuto: pioggia(o), schermo: true });

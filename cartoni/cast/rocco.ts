@@ -50,6 +50,11 @@ export interface PosaRocco {
   bagnato?: number;
   /** Il piede che schiaccia il ramo: alza la zampa anteriore vicina (0..1). */
   zampaSu?: number;
+  /**
+   * A terra (0..1): si mette giù — la pancia sul suolo, le zampe davanti distese in
+   * avanti, quelle dietro raccolte sotto la groppa (ep03, p.8: «venne a sedersi vicino»).
+   */
+  aTerra?: number;
   /** Sfasamento del battito di ciglia (per non sbattere in sincrono). */
   semeCiglia?: number;
   /** Disegna l'ombra portata. */
@@ -74,16 +79,20 @@ const FALCATA = 64;
 /** La testa di un giovane è grande rispetto al corpo. */
 const SCALA_TESTA = 1.16;
 
+/** Quanto scende ogni vertebra-guida quando si mette a terra (il collo meno: la testa resta su). */
+const A_TERRA = [92, 90, 88, 82, 66];
+
 /** Scheletro del corpo a riposo (centro del tronco), coda → collo. */
-function spina(bob: number, respiro: number, piantato: number): P[] {
+function spina(bob: number, respiro: number, piantato: number, aTerra = 0): P[] {
   const giu = piantato * 10;
-  return [
+  const s: P[] = [
     [-152, -178 + bob + giu],
     [-106, -162 + bob + giu],
     [-24, -156 + bob + giu - respiro * 0.6],
     [58, -166 + bob + giu - respiro],
     [116, -172 + bob + giu * 1.6],
   ];
+  return aTerra > 0 ? s.map(([x, y], i) => [x, y + A_TERRA[i] * aTerra] as P) : s;
 }
 const DORSO = [6, 64, 70, 84, 58];
 const VENTRE = [28, 70, 82, 78, 54];
@@ -97,6 +106,9 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   const fase = posa.fase ?? 0;
   const cammina = posa.andatura === "passo";
   const respiro = onda(t, 3.4) * 2.2;
+  const aTerra = clamp(posa.aTerra ?? 0);
+  /** quanto scende il corpo (per le cose disegnate sul tronco) */
+  const giuC = aTerra * A_TERRA[2];
 
   // --- colori sotto questa luce ------------------------------------------
   const pelleBase = mescola(ROCCO_ANCORE.pelle, "#4e4a44", bagnato * 0.45);
@@ -113,7 +125,7 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   // --- il passo: bob del corpo, piedi --------------------------------------
   const amp = clamp(posa.ampiezza ?? 1);
   const bob = cammina ? -3.2 * Math.cos(fase * Math.PI * 4) * amp : 0;
-  const sp = spina(bob, respiro, piantato);
+  const sp = spina(bob, respiro, piantato, aTerra);
   const contorno = corpoDaSpina(sp, DORSO, VENTRE);
   const dPelle = curva(contorno, true);
 
@@ -137,6 +149,14 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   if (zampaSu > 0) {
     fAV.y -= 34 * zampaSu;
     fAV.x += 10 * zampaSu;
+  }
+  // a terra: le anteriori si distendono in avanti sul suolo (il gomito giù), le posteriori
+  // si raccolgono sotto la groppa (il ginocchio avanti, lungo la pancia)
+  if (aTerra > 0) {
+    fAV.x += 112 * aTerra;
+    fAL.x += 100 * aTerra;
+    fPV.x -= 34 * aTerra;
+    fPL.x -= 30 * aTerra;
   }
 
   const ombraPortata = posa.ombra !== false ? ombraSotto(defs, id, luce, verso) : "";
@@ -177,7 +197,7 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   vicine += zampa(spallaV, fAV.x, fAV.y, L1_ANT, L2_ANT, 1, [46, 31, 30], zV, "av");
 
   // --- corpo ----------------------------------------------------------------
-  const gCorpo = defs.lineare(`${id}-corpo`, [0, -250], [0, -70], [
+  const gCorpo = defs.lineare(`${id}-corpo`, [0, -250 + giuC], [0, -70 + giuC], [
     [0, pelleAlta],
     [0.45, pelle],
     [1, pelleBassa],
@@ -186,8 +206,8 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   let corpo = path(dPelle, { fill: gCorpo });
   // ombra propria dal lato opposto alla luce + ventre chiaro (canone: ventre più chiaro)
   let dentro = "";
-  dentro += path(ellisseD([-10, -60], 190, 44), { fill: inOmbra(chiaroBase, luce), opacity: 0.55 });
-  dentro += path(ellisseD([lato > 0 ? -150 : 130, -150], 70, 110), { fill: pelleOmbra, opacity: 0.35 });
+  dentro += path(ellisseD([-10, -60 + giuC], 190, 44), { fill: inOmbra(chiaroBase, luce), opacity: 0.55 });
+  dentro += path(ellisseD([lato > 0 ? -150 : 130, -150 + giuC], 70, 110), { fill: pelleOmbra, opacity: 0.35 });
   // volume: la massa della spalla e della groppa prendono luce
   const vol = defs.radiale(`${id}-vol`, [0.5, 0.5], 0.5, [
     [0, schiarisci(pelleAlta, 0.12), 0.55],
@@ -203,7 +223,7 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   let crateri = "";
   for (let i = 0; i < 70; i++) {
     const x = r.tra(-190, 150);
-    const y = r.tra(-235, -80) + bob;
+    const y = r.tra(-235, -80) + bob + giuC;
     const rr = r.tra(1.6, 4.2);
     crateri += `M${n(x - rr)} ${n(y)}a${n(rr)} ${n(rr * 0.7)} 0 1 0 ${n(rr * 2)} 0a${n(rr)} ${n(rr * 0.7)} 0 1 0 ${n(-rr * 2)} 0Z`;
   }

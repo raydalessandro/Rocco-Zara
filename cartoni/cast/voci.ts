@@ -137,6 +137,27 @@ const CUSTODE: ProfiloVoce = {
   pan: 0.1,
 };
 
+/**
+ * Cervara, la lince giovane — il vanto delle rive (saga/bible/comprimari/specchio-di-zara.md,
+ * «Voce»): calma, certa, piana; frase minima che dispone, soggetto e verbo, poi basta.
+ * Mai una domanda insicura. Una melodia quasi ferma, il passo pari.
+ */
+const CERVARA: ProfiloVoce = {
+  id: "cervara",
+  nome: "Cervara",
+  f0: 236,
+  estensione: 3,
+  ritmo: 3.8,
+  formanti: 1.12,
+  soffio: 0.3,
+  grana: 0.2,
+  alfabeto: { nessuno: "", labiale: "mb", nasale: "n", occlusiva: "td", fricativa: "sf", liquida: "l", vibrante: "r" },
+  pause: { virgola: 0.26, punto: 0.42 },
+  finale: 1.3,
+  vol: 0.92,
+  pan: 0.1,
+};
+
 /** Il cast delle voci: `chi` nelle didascalie è una di queste chiavi (o "narratrice"). */
 export const VOCI: Readonly<Record<string, ProfiloVoce>> = {
   rocco: ROCCO,
@@ -145,4 +166,5 @@ export const VOCI: Readonly<Record<string, ProfiloVoce>> = {
   fratello: FRATELLO,
   brenta: BRENTA,
   custode: CUSTODE,
+  cervara: CERVARA,
 };

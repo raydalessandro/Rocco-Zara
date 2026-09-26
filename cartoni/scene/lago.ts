@@ -40,6 +40,10 @@ export interface OpzBarca {
   prua?: 1 | -1;
   /** Il mucchio di reti a poppa. */
   reti?: boolean;
+  /** Il carico sotto un telo, legato, in mezzo alla barca («il carico che si custodisce per i giorni che contano», ep03). */
+  telo?: boolean;
+  /** Qualcosa sotto il telo: un colpetto da dentro (0..1, un bozzo che spunta) e un respiro (−1..1, il mucchio che sale e scende). */
+  sottoIlTelo?: { colpo?: number; respiro?: number };
   /** I colori dell'acqua del luogo (per l'acqua che bagna lo scafo). */
   acqua?: { lago: string; chiaro: string };
 }
@@ -157,6 +161,20 @@ export function barca(luce: Luce, defs: Defs, id: string, o: OpzBarca = {}): Sca
     for (const [dx, dy] of [[-44, -16], [-6, -26], [30, -30], [54, -12]] as const) {
       dietroReti += path(ellisseD([rx + dx, bordo + dy], 8, 5.5), { fill: inLuce("#d9a15a", luce) }) + path(ellisseD([rx + dx - 1.5, bordo + dy - 1.5], 4, 2.2), { fill: "#fff3d6", opacity: 0.45 });
     }
+  }
+  // il carico sotto il telo: un mucchio tondo, le pieghe della tela, una corda che lo lega
+  if (o.telo) {
+    const cx = X(-h * 0.1);
+    const tela = inLuce("#8f846c", luce);
+    const telaS = inOmbra("#5f5646", luce);
+    const sale = (o.sottoIlTelo?.respiro ?? 0) * 5;
+    const d = curva([[cx - 150, bordo + 2], [cx - 132, bordo - 38], [cx - 70, bordo - 60 - sale], [cx + 10, bordo - 66 - sale], [cx + 90, bordo - 56 - sale], [cx + 140, bordo - 30], [cx + 152, bordo + 2]], true);
+    dietroReti += path(d, { fill: tela });
+    // il colpetto da dentro: un bozzo piccolo che spunta e torna giù (un becco, sotto la tela)
+    const bozzo = clamp(o.sottoIlTelo?.colpo ?? 0) * 13;
+    if (bozzo > 0.2) dietroReti += path(curva([[cx + 38, bordo - 58 - sale], [cx + 52, bordo - 60 - sale - bozzo], [cx + 60, bordo - 61 - sale - bozzo * 1.05], [cx + 68, bordo - 60 - sale - bozzo * 0.6], [cx + 80, bordo - 57 - sale]], true), { fill: tela });
+    dietroReti += path(`M${n(cx - 110)} ${n(bordo - 30)}Q${n(cx - 80)} ${n(bordo - 8)} ${n(cx - 60)} ${n(bordo)}M${n(cx - 10)} ${n(bordo - 58)}Q${n(cx + 10)} ${n(bordo - 28)} ${n(cx + 2)} ${n(bordo)}M${n(cx + 70)} ${n(bordo - 50)}Q${n(cx + 96)} ${n(bordo - 22)} ${n(cx + 110)} ${n(bordo)}`, { stroke: telaS, "stroke-width": 3, fill: "none", opacity: 0.8 });
+    dietroReti += path(`M${n(cx - 140)} ${n(bordo - 16)}Q${n(cx)} ${n(bordo - 44)} ${n(cx + 142)} ${n(bordo - 14)}`, { stroke: inLuce("#a88b5c", luce), "stroke-width": 3.2, fill: "none" });
   }
   const taglio = defs.clip(`${id}-bordo`, `M${n(-h - 200)} ${n(bordo - 900)}H${n(h + 200)}V${n(fondo - 8)}H${n(-h - 200)}Z`);
   return {
@@ -355,6 +373,95 @@ export function passerella(luce: Luce, x0: number, x1: number, y: number, seme =
   // il corrimano di corda
   s += path(`M${n(x0)} ${n(y - 38)}Q${n((x0 + x1) / 2)} ${n(y - 26)} ${n(x1)} ${n(y - 40)}`, { stroke: inLuce("#a58d5e", luce), "stroke-width": 2, fill: "none", opacity: 0.8 });
   return s;
+}
+
+// ---------------------------------------------------- i Massi del Consiglio --
+/**
+ * Un masso del Consiglio (ep03, p.1): «pietre larghe e lisce, levigate da
+ * generazioni di zampe». Sorge dall'acqua; il piano in cima è largo e appena
+ * bombato, più chiaro (lisciato) — ma non brilla. Origine: sul pelo dell'acqua,
+ * al centro; `w` è la larghezza, `h` l'altezza della cima sopra l'acqua.
+ */
+export function massoDelConsiglio(luce: Luce, defs: Defs, seme: string, w: number, h: number, acqua: { lago: string; chiaro: string } = ACQUA): string {
+  const r = caso(`masso/${seme}`);
+  const pietra = inLuce(mescola("#9a948a", "#8c8676", r.tra(0, 1)), luce);
+  const liscia = inLuce("#bdb5a4", luce);
+  const scura = inOmbra("#57524a", luce);
+  const bagnata = inOmbra("#4a463f", luce);
+  const hw = w / 2;
+  // un sasso vero: più largo in basso, i fianchi che si gonfiano, le spalle tonde,
+  // il piano appena storto (ognuno il suo)
+  const storto = r.segno(5);
+  const sagoma: P[] = [
+    [-hw - 22, 18],
+    [-hw - 14, -h * 0.18],
+    [-hw - 4, -h * 0.55],
+    [-hw + 8, -h + 14 + storto],
+    [-hw * 0.6, -h - 1 + storto * 0.6],
+    [-hw * 0.1, -h - 5 + storto * 0.2],
+    [hw * 0.4, -h - 3 - storto * 0.3],
+    [hw - 10, -h + 12 - storto * 0.8],
+    [hw + 4, -h * 0.5 + r.segno(6)],
+    [hw + 16, -h * 0.15],
+    [hw + 24, 18],
+  ];
+  const d = curva(sagoma, true, 0.85);
+  const url = defs.lineare(`masso-${seme}`, [0, -h], [0, 10], [
+    [0, pietra],
+    [0.7, mescola(pietra, scura, 0.45)],
+    [1, bagnata],
+  ]);
+  let s = path(d, { fill: url });
+  const clip = defs.clip(`masso-${seme}-clip`, d);
+  let dentro = "";
+  // il piano lisciato dalle zampe: una fascia chiara lungo la cima
+  dentro += path(curva([[-hw + 8, -h + 10], [-hw * 0.5, -h - 1], [0, -h - 4], [hw * 0.5, -h - 1], [hw - 8, -h + 10], [hw * 0.4, -h + 14], [-hw * 0.4, -h + 14]], true), { fill: liscia, opacity: 0.85 });
+  // la linea bagnata, poco sopra l'acqua (il lago sale e scende)
+  dentro += path(`M${n(-hw - 20)} ${n(-8 - r.tra(0, 6))}L${n(hw + 20)} ${n(-10 - r.tra(0, 6))}L${n(hw + 20)} 20L${n(-hw - 20)} 20Z`, { fill: bagnata, opacity: 0.55 });
+  // il fianco in ombra (a destra) e una faccia più chiara (a sinistra)
+  dentro += path(curva([[hw * 0.25, -h + 16], [hw + 30, -h * 0.5], [hw + 30, 20], [hw * 0.35, 20], [hw * 0.45, -h * 0.5]], true), { fill: scura, opacity: 0.35 });
+  dentro += path(curva([[-hw - 4, -h * 0.5], [-hw + 10, -h + 18], [-hw * 0.45, -h + 20], [-hw * 0.55, -h * 0.45]], true), { fill: liscia, opacity: 0.25 });
+  // qualche segno della pietra (non licheni: qui ci si passa sopra)
+  let segni = "";
+  for (let i = 0; i < 4; i++) {
+    const x = r.tra(-hw * 0.7, hw * 0.7);
+    const y = r.tra(-h * 0.7, -h * 0.25);
+    segni += `M${n(x)} ${n(y)}q${n(r.segno(8))} ${n(10)} ${n(r.segno(4))} ${n(r.tra(10, 22))}`;
+  }
+  dentro += path(segni, { stroke: scura, "stroke-width": 1.8, fill: "none", opacity: 0.5 });
+  // sotto il pelo dell'acqua la pietra sparisce nel lago
+  const velo = defs.lineare(`masso-${seme}-velo`, [0, 0], [0, 16], [
+    [0, inLuce(acqua.lago, luce), 0.5],
+    [1, inLuce(acqua.lago, luce), 0.95],
+  ]);
+  dentro += path(`M${n(-hw - 30)} 0H${n(hw + 30)}V30H${n(-hw - 30)}Z`, { fill: velo });
+  s += g({ "clip-path": clip }, dentro);
+  s += path(`M${n(-hw - 14)} 2Q${n(0)} 7 ${n(hw + 14)} 2`, { stroke: inLuce(acqua.chiaro, luce), "stroke-width": 2.4, fill: "none", opacity: 0.7, "stroke-linecap": "round" });
+  return s;
+}
+
+/** Dove si posa un piede sulla cima di un masso del Consiglio (y rispetto all'acqua), a `dx` dal centro. */
+export function cimaDelMasso(w: number, h: number, dx: number): number {
+  const k = clamp(Math.abs(dx) / (w / 2));
+  return -h - 4 + 10 * k * k;
+}
+
+/** Il gorgo: «l'orlo dove il lago gira» (ep03, p.9) — anelli d'acqua che girano piano. Origine: il centro, sul pelo. */
+export function gorgo(luce: Luce, t: number, r = 90): string {
+  const chiaro = inLuce(ACQUA.chiaro, luce);
+  let d = "";
+  for (let i = 0; i < 4; i++) {
+    const rr = r * (0.35 + i * 0.22);
+    const a0 = t * (0.5 - i * 0.08) + i * 1.3;
+    for (let j = 0; j < 2; j++) {
+      const a = a0 + j * Math.PI;
+      const p0: P = [Math.cos(a) * rr, Math.sin(a) * rr * 0.22];
+      const p1: P = [Math.cos(a + 1.2) * rr, Math.sin(a + 1.2) * rr * 0.22];
+      const c: P = [Math.cos(a + 0.6) * rr * 1.08, Math.sin(a + 0.6) * rr * 0.24];
+      d += `M${pt(p0)}Q${pt(c)} ${pt(p1)}`;
+    }
+  }
+  return path(d, { stroke: chiaro, "stroke-width": 2.2, fill: "none", opacity: 0.6, "stroke-linecap": "round" });
 }
 
 // ----------------------------------------------------- reti, barche a secco --

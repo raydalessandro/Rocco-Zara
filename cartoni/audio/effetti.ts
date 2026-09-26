@@ -282,6 +282,85 @@ export function effetto(bus: Bus, nome: string, t: number, vol = 1, durata?: num
       soffio(bus, t + 0.05, 0.3, vol * 0.25, 1800, 0.8, seme + 1, (u) => Math.exp(-u * 5), -0.2);
       break;
     }
+    case "tec": {
+      // un colpetto secco, di becco su legno (ep03, p.4 e p.12): un «tec» solo; con
+      // `durata`, tanti, piccoli e fitti («tec, tec»), a intervalli mai uguali
+      const colpi: number[] = [0];
+      for (let dt = r.tra(0.16, 0.24); dt < (durata ?? 0); dt += r.tra(0.13, 0.3)) colpi.push(dt);
+      colpi.forEach((dt, k) => {
+        const v = vol * (k === 0 ? 1 : r.tra(0.55, 0.9));
+        const i0 = idx(t + dt);
+        let f1 = 0;
+        let f2 = 0;
+        for (let i = 0; i < idx(0.05); i++) {
+          const s = i / SR;
+          f1 += (2 * Math.PI * 1180) / SR;
+          f2 += (2 * Math.PI * 2650) / SR;
+          bus.add(i0 + i, (Math.sin(f1) * Math.exp(-s * 150) * 0.55 + Math.sin(f2) * Math.exp(-s * 240) * 0.35) * v * 0.5, -0.3);
+        }
+        soffio(bus, t + dt, 0.014, v * 0.9, 4200, 1.4, seme + k, (u) => Math.exp(-u * 4), -0.3);
+      });
+      break;
+    }
+    case "russare": {
+      // qualcuno di piccolo che russa di gusto (ep03, p.12): lungo e pari — dentro il
+      // ronfo (il palato che vibra: colpetti fitti dentro una formante), fuori un soffio
+      const d = durata ?? 6;
+      const periodo = 1 / (ritmo ?? 0.32);
+      for (let k = 0; k * periodo < d; k++) {
+        const t0 = t + k * periodo;
+        const rr = mulberry32(seme + k * 7);
+        const f1 = new PassaBanda(560, 2.2);
+        const f2 = new PassaBanda(1250, 3);
+        const i0 = idx(t0);
+        const n = idx(1.3);
+        const passo = SR / r.tra(26, 31);
+        for (let i = 0; i < n; i++) {
+          const u = i / n;
+          const colpo = Math.exp(-((i % passo) / SR) * 260); // un colpetto a ogni vibrazione del palato
+          const x = (rr() * 2 - 1) * colpo;
+          const e = Math.sin(Math.PI * u) ** 0.8;
+          bus.add(i0 + i, (f1.passa(x) * 1.2 + f2.passa(x) * 0.5) * e * vol * 0.7, 0.35);
+        }
+        soffio(bus, t0 + 1.45, 0.95, vol * 0.18, 1700, 1.1, seme + k * 7 + 1, (u) => Math.sin(Math.PI * u) ** 1.5, 0.35);
+      }
+      break;
+    }
+    case "sasso": {
+      // una zampa che si posa su una pietra e SUONA (ep03, p.6): le unghie che toccano,
+      // la pietra che risponde sorda, un filo di graniglia
+      soffio(bus, t, 0.012, vol * 0.8, 4600, 1.6, seme, (u) => Math.exp(-u * 3), 0);
+      const i0 = idx(t + 0.004);
+      let fase = 0;
+      for (let i = 0; i < idx(0.07); i++) {
+        const s = i / SR;
+        fase += (2 * Math.PI * (210 + 60 * Math.exp(-s * 80))) / SR;
+        bus.add(i0 + i, Math.sin(fase) * Math.exp(-s * 70) * vol * 0.45, 0);
+      }
+      soffio(bus, t + 0.01, 0.09, vol * 0.25, 2200, 0.9, seme + 1, (u) => Math.exp(-u * 5), 0);
+      break;
+    }
+    case "soffio": {
+      // un soffio: l'aria di chi passa leggero (il camoscio sui Massi, ep03 p.7)
+      soffio(bus, t, durata ?? 0.5, vol * 0.3, 900, 0.7, seme, (u) => Math.sin(Math.PI * u) ** 2, 0);
+      break;
+    }
+    case "asse": {
+      // un'asse di passerella che canta sotto un passo: uno scricchiolio breve, più alto del «legno»
+      const d = durata ?? 0.35;
+      const i0 = idx(t);
+      const n = idx(d);
+      const bp = new PassaBanda(640, 4);
+      let fase = 0;
+      for (let i = 0; i < n; i++) {
+        const u = i / n;
+        fase += (2 * Math.PI * (70 + 40 * Math.sin(u * 7))) / SR;
+        const graffio = Math.sin(fase) > 0.9 ? 1 : 0;
+        const y = bp.passa((r() * 2 - 1) * (0.25 + graffio));
+        bus.add(i0 + i, y * Math.sin(Math.PI * u) * vol * 1.1, 0.1);
+      }
+      break;
+    }
     default:
       break;
   }
@@ -292,11 +371,14 @@ export interface Aria {
   vento: number;
   pioggia: number;
   lago: number;
+  /** i grilli della notte (ep03): dove non ci sono, l'aria resta quella di sempre */
+  grilli?: number;
 }
 
 /**
- * Il fondo continuo: vento, sciabordio del lago, pioggia. `aria(t)` dice quanto
- * di ciascuno c'è a ogni istante (il copione lo dichiara per inquadratura).
+ * Il fondo continuo: vento, sciabordio del lago, pioggia, i grilli di notte.
+ * `aria(t)` dice quanto di ciascuno c'è a ogni istante (il copione lo dichiara
+ * per inquadratura).
  */
 export function ambiente(bus: Bus, aria: (t: number) => Aria, seme = 11): void {
   const r = mulberry32(seme);
@@ -331,5 +413,29 @@ export function ambiente(bus: Bus, aria: (t: number) => Aria, seme = 11): void {
   // le gocce: piccoli tic sparsi
   for (const g of gocce) {
     for (let k = 0; k < 120; k++) bus.add(g.i + k, Math.sin(k * 0.9) * Math.exp(-k / 25) * g.v * 0.2, ((g.i % 7) - 3) / 4);
+  }
+  // i grilli: pochi, ognuno col suo tono, il suo posto e il suo passo (tre o quattro
+  // impulsi a canto). Seminati a parte: dove non ci sono, i campioni restano quelli di prima
+  const rg = mulberry32(seme * 31 + 7);
+  const lung = bus.n / SR;
+  const durImp = Math.round(0.016 * SR);
+  for (let c = 0; c < 5; c++) {
+    const f = 4100 + rg() * 1000;
+    const pan = rg() * 1.4 - 0.7;
+    const passo = 0.5 + rg() * 0.6;
+    const impulsi = 3 + Math.floor(rg() * 2);
+    for (let t0 = rg() * passo; t0 < lung; t0 += passo * (0.85 + rg() * 0.3)) {
+      const quanti = aria(t0).grilli ?? 0;
+      const v = quanti * (0.45 + rg() * 0.55) * 0.035;
+      if (quanti <= 0.01) continue;
+      for (let k = 0; k < impulsi; k++) {
+        const i0 = Math.round((t0 + k * 0.03) * SR);
+        let fase = 0;
+        for (let i = 0; i < durImp; i++) {
+          fase += (2 * Math.PI * f) / SR;
+          bus.add(i0 + i, Math.sin(fase) * Math.sin((Math.PI * i) / durImp) * v, pan);
+        }
+      }
+    }
   }
 }

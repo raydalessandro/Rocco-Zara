@@ -100,6 +100,89 @@ export function pietraSegnata(o: OpzPalco, x: number, nome = "segnata"): string 
   return s;
 }
 
+/**
+ * Una pietra delle Coppelle (ep03, p.13; ep04): larga e bassa, e sul piano le
+ * conche tonde a cerchi — una al centro, un giro intorno, un giro più largo —
+ * «più vecchie di tutti i vanti». Vista un poco dall'alto: il piano si vede di
+ * sbieco. Con `o.coppellePiene` le conche tengono l'acqua e ci sta la luna (o il
+ * cielo): solo riflesso, niente luce propria. Appoggiata al suolo in x.
+ */
+export function pietraCoppellata(o: OpzPalco, x: number, seme: string, w = 300, h = 58): string {
+  const { luce, defs, luogo } = o;
+  const C = luogo.colori;
+  const r = caso("coppellata/" + seme);
+  const y = luogo.quota(x) + 8;
+  const hw = w / 2;
+  const ky = 0.24; // quanto si vede del piano (la prospettiva)
+  const piano = y - h; // il centro del piano
+  const fianco = poliMorbido([
+    [x - hw - 6, y + 6],
+    [x - hw, piano + 4],
+    [x - hw * 0.4, piano + hw * ky * 0.9],
+    [x + hw * 0.5, piano + hw * ky * 0.85],
+    [x + hw + 2, piano + 2],
+    [x + hw + 8, y + 6],
+  ]);
+  const gF = defs.lineare(`coppellata-${seme}-fianco`, [x, piano], [x, y + 6], [
+    [0, inLuce(C.roccia, luce)],
+    [1, inOmbra(C.rocciaScura, luce)],
+  ]);
+  let s = path(fianco, { fill: gF });
+  // il piano: un ovale irregolare (la pietra è stata spaccata, non tornita)
+  const bordo: P[] = [];
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2;
+    const rr = 1 + r.segno(0.09);
+    bordo.push([x + Math.cos(a) * hw * rr, piano + Math.sin(a) * hw * ky * rr]);
+  }
+  const dPiano = poliMorbido(bordo);
+  const gP = defs.lineare(`coppellata-${seme}-piano`, [x, piano - hw * ky], [x, piano + hw * ky], [
+    [0, inLuce(mescola(C.roccia, "#c4b89c", 0.35), luce)],
+    [1, inLuce(C.roccia, luce)],
+  ]);
+  s += path(dPiano, { fill: gP });
+  // le conche: al centro, un giro, un giro più largo (poche fuori posto: sono fatte a mano)
+  const piene = !!o.coppellePiene;
+  const acqua = inLuce(mescola(C.lagoChiaro, "#dfe6ef", 0.45), luce);
+  const buio = inOmbra(C.rocciaScura, luce);
+  const centro: P = [x + r.segno(hw * 0.12), piano];
+  const conche: [P, number][] = [[centro, hw * 0.1]];
+  for (const [giro, quante, rr] of [[0.34, 6, 0.07], [0.64, 10, 0.055]] as const) {
+    const fase = r.tra(0, Math.PI);
+    for (let i = 0; i < quante; i++) {
+      const a = fase + (i / quante) * Math.PI * 2 + r.segno(0.08);
+      conche.push([[centro[0] + Math.cos(a) * hw * giro, centro[1] + Math.sin(a) * hw * giro * ky], hw * rr * r.tra(0.85, 1.15)]);
+    }
+  }
+  let dc = "";
+  let orli = "";
+  let lune = "";
+  for (const [c, rr] of conche) {
+    dc += ellisseD(c, rr, rr * ky * 1.4);
+    orli += `M${n(c[0] - rr)} ${n(c[1])}Q${n(c[0])} ${n(c[1] + rr * ky * 2.2)} ${n(c[0] + rr)} ${n(c[1])}`;
+    if (piene) lune += ellisseD([c[0] - rr * 0.3, c[1] - rr * ky * 0.3], rr * 0.3, rr * ky * 0.45);
+  }
+  s += path(dc, { fill: piene ? acqua : buio, opacity: piene ? 0.95 : 0.85 });
+  s += path(orli, { stroke: schiarisci(inLuce(C.roccia, luce), 0.15), "stroke-width": 1.4, fill: "none", opacity: 0.6 });
+  if (piene) s += path(lune, { fill: "#f7f5ea", opacity: 0.9 });
+  // le crepe del fianco e del piano
+  let crepe = "";
+  for (let i = 0; i < 3; i++) {
+    const cx = x + r.segno(hw * 0.7);
+    crepe += `M${n(cx)} ${n(piano + hw * ky * 0.8)}l${n(r.segno(6))} ${n(r.tra(10, 20))}l${n(r.segno(5))} ${n(r.tra(8, 16))}`;
+  }
+  crepe += `M${n(x + hw * 0.2)} ${n(piano - hw * ky * 0.5)}l${n(r.tra(20, 40))} ${n(r.tra(4, 10))}`;
+  s += path(crepe, { stroke: inOmbra(C.rocciaScura, luce), "stroke-width": 1.8, fill: "none", opacity: 0.6 });
+  // licheni sul bordo
+  let lic = "";
+  for (let i = 0; i < 7; i++) {
+    const a = r.tra(0, Math.PI * 2);
+    lic += ellisseD([x + Math.cos(a) * hw * 0.9, piano + Math.sin(a) * hw * ky * 0.9], r.tra(5, 11), r.tra(2, 4));
+  }
+  s += path(lic, { fill: inLuce(C.lichene, luce), opacity: 0.5 });
+  return s;
+}
+
 /** Un masso con una lastra a sbalzo: un riparo (sotto, un incavo in ombra). */
 export function bordoDiRoccia(o: OpzPalco, x: number, nome = "bordo"): string {
   const { luce, defs, luogo } = o;

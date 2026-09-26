@@ -4,7 +4,8 @@
 // inquadrature (da quale a quale): se il montaggio cambia — o le voci
 // allungano una scena — la musica la segue. Ogni sezione dice il tempo, gli
 // accordi, come suona l'arpa, se c'è una melodia al flauto (da che battito),
-// il basso (le radici, o un ostinato: i passi di qualcuno), i timpani.
+// il basso (le radici, o un ostinato: i passi di qualcuno), i timpani; e, se
+// serve, un controcanto (una seconda melodia, dall'altra parte).
 // L'episodio scrive solo i dati (episodi/<id>/partitura.ts); qui si suona.
 
 import { type Episodio, scaletta } from "../motore/montaggio";
@@ -40,6 +41,9 @@ export interface Sezione {
   melodia?: Nota[];
   /** da che battito parte la melodia */
   attacco?: number;
+  /** una seconda voce al flauto, dall'altra parte (ep03: i due riflessi), e da che battito parte */
+  controcanto?: Nota[];
+  attaccoControcanto?: number;
   /** basso: le radici degli accordi, o un ostinato (note MIDI, una per battito) */
   basso?: "radici" | readonly number[];
   timpani?: "cuore" | "rulli";
@@ -101,6 +105,16 @@ export function suonaSezione(bus: Bus, z: Sezione, t0: number, t1: number): void
       const tn = inizio + (a + bb) * beat;
       if (tn + d * beat > t1 + 0.5) break;
       flauto(bus, tn, m, d * beat * 0.95, 0.8 * v, -0.15, seme++);
+    }
+  }
+  // il controcanto: la stessa voce, un po' più piano, dall'altra parte
+  if (z.controcanto) {
+    const a = z.attaccoControcanto ?? z.attacco ?? 0;
+    let seme = 101;
+    for (const [bb, d, m] of z.controcanto) {
+      const tn = inizio + (a + bb) * beat;
+      if (tn + d * beat > t1 + 0.5) break;
+      flauto(bus, tn, m, d * beat * 0.95, 0.66 * v, 0.3, seme++);
     }
   }
 }
