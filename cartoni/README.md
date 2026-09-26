@@ -13,8 +13,12 @@ Due cose separate, che viaggiano in due pacchetti:
 - **gli episodi** — `episodi/<id>/`: il copione animato, la partitura, e (se c'è)
   la narrazione registrata. Ognuno si aggiunge quando c'è, e i test lo trovano da soli.
 
-Primo episodio fatto: **ep01 — Due mondi** (`episodi/ep01/`): 26 inquadrature dalle
-19 pagine della sua prosa (`saga/prosa/ep01.md`), 4′10″ con le voci.
+Episodi fatti:
+- **ep01 — Due mondi** (`episodi/ep01/`): 26 inquadrature dalle 19 pagine della sua
+  prosa (`saga/prosa/ep01.md`), 4′10″ con le voci.
+- **ep02 — Il regno senza riflesso** (`episodi/ep02/`): 35 inquadrature dalle 16 pagine
+  (`saga/prosa/ep02.md`), 6′48″ con le voci — il Lago del Vespro, Brénta la barcaiola,
+  le linci, il Custode, e la ninna-nanna della Prima Tigre cantata.
 
 ## La serie
 
@@ -24,8 +28,8 @@ in **6 puntate di circa 20 minuti**, una per volume (i Laghi del Vespro, la Conc
 Ruggente, il Gran Ducato, la Piana dei Savi, la Selva di Mezzo, le Terre del Leone di
 Pietra). Le puntate si ricavano dal grafo della saga (`motore/serie.ts`). Si fa un
 episodio alla volta, sempre con la stessa ricetta (`docs/ANIMATORE.md`, «La ricetta di un
-episodio»), e intanto il catalogo cresce: ogni luogo, pupazzo e voce nuovi entrano nel
-motore e servono agli episodi dopo.
+episodio»), e intanto il catalogo cresce: ogni luogo, pupazzo, voce e tema musicale
+nuovi entrano nel motore e servono agli episodi dopo.
 
 ```bash
 npx tsx cartoni/render/monta.ts --elenco        # a che punto è la serie
@@ -62,7 +66,10 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
 ## Le voci
 
 - **Ogni personaggio ha la sua voce**, e poi la tiene: Rocco una voce d'uomo, Zara di
-  ragazza, Cècca piccola e svelta, il fratello di Zara lontana, da ricordo. Dicono le
+  ragazza, Cècca piccola e svelta, il fratello di Zara lontana, da ricordo; Brénta una
+  donna calda e concreta, il Custode un vecchio pacato. Il cast cresce anche mescolando
+  le voci di Kokoro (`"if_sara*0.4+pf_dora*0.6"`): l'italiano lo legge comunque, la
+  voce cambia. Dicono le
   battute vere (le «» della prosa, `chi: "zara"` nel copione), registrate una volta
   (`render/narra.ts`) in `episodi/<id>/voce/battute.json`; la bocca del pupazzo segue
   il volume della ripresa. Le voci sono sintetiche (Kokoro, Piper) e trasformate:
@@ -83,6 +90,9 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
 - **La ninna-nanna** della Prima Tigre è un brano vero (`brani/`, fatto da Ray con
   Suno): quando la si canta i versi compaiono a tempo col canto; la parte canticchiata
   può tornare negli altri episodi.
+- **La musica torna.** I temi di chi c'è in più episodi (Zara, i passi di Rocco,
+  l'amicizia, il lago, Brénta, la corda di Toraki) stanno in `audio/temi.ts`: ogni
+  partitura li prende da lì, così un tema resta quello da un episodio all'altro.
 - **Le voci si capiscono.** Più una voce è spinta verso l'acuto, meno si capisce: il
   cast è stato scelto controllando ogni battuta con un riconoscitore vocale; le parole
   che una voce sintetica sbaglia si correggono nel dizionario `pronuncia` di `voce.json`
@@ -101,14 +111,18 @@ cartoni/
                sillabe italiane), la voce (piano delle battute, bocche, tempi),
                la serie (le puntate, dal grafo della saga)
   scene/       il palco: il kit di pennelli (cielo, temporale, monti, terreno, erba,
-               canneto, pioggia), gli oggetti (rocce, lastre, rami), il meteo, le luci,
-               gli inserti in macro, la regia (sul palco, passi, scosse) e il
-               palcoscenico (un luogo pronto per il copione)
+               canneto, pioggia), gli oggetti (rocce, lastre, rami, alberi d'autunno),
+               il lago (barche e remi, il dondolio, cerchi d'acqua, moli, palafitte,
+               reti, la tana di canne, i riflessi), il meteo, le luci, gli inserti in
+               macro, la regia (sul palco, passi, scosse) e il palcoscenico (un luogo
+               pronto per il copione)
   luoghi/      i luoghi del mondo: profilo, tavolozza, lontani, oggetti (soglia.ts:
-               la Soglia di Spondalta)
-  cast/        i pupazzi (Rocco, Zara, Cècca, fauna minore) e le loro voci
-  audio/       strumenti di sintesi, effetti, il suonatore di partiture, il grammelot,
-               la narratrice, il missaggio → WAV
+               la Soglia di Spondalta; rivalba.ts: la riva di Rivalba sul Lago del
+               Vespro, e l'approdo dove le rive si stringono)
+  cast/        i pupazzi (Rocco, Zara, Cècca, la gente dei laghi — Brénta la lontra,
+               le linci, il Custode-testuggine, la folaga —, fauna minore) e le voci
+  audio/       strumenti di sintesi, effetti, il suonatore di partiture, i temi della
+               serie, il grammelot, la narratrice, i brani, il missaggio → WAV
   voce/        voce.json: il cast delle voci (la narratrice e una voce per personaggio),
                le candidate, la pronuncia
   brani/       le canzoni registrate (la ninna-nanna) e il loro registro brani.json

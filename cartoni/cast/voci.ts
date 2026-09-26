@@ -98,10 +98,51 @@ const FRATELLO: ProfiloVoce = {
   vol: 0.6,
 };
 
+/**
+ * Brénta, la lontra barcaiola (saga/bible/comprimari/traghettatrice-delle-rive.md,
+ * «Voce»): concreta, calda, proverbiale; la frase cammina col lavoro, spezzata
+ * dai gesti, verbi davanti. Adulta, media, rotonda.
+ */
+const BRENTA: ProfiloVoce = {
+  id: "brenta",
+  nome: "Brénta",
+  f0: 205,
+  estensione: 5,
+  ritmo: 4.2,
+  formanti: 1.08,
+  soffio: 0.3,
+  grana: 0.3,
+  alfabeto: { nessuno: "", labiale: "mb", nasale: "n", occlusiva: "tk", fricativa: "sv", liquida: "l", vibrante: "r" },
+  pause: { virgola: 0.22, punto: 0.35 },
+  finale: 1.25,
+  vol: 0.92,
+  pan: 0.14,
+};
+
+/** Il Custode di ep02 (p.4): una testuggine, vecchia e lenta; parla dopo un respiro. */
+const CUSTODE: ProfiloVoce = {
+  id: "custode",
+  nome: "il Custode",
+  f0: 95,
+  estensione: 3,
+  ritmo: 2.4,
+  formanti: 0.85,
+  soffio: 0.4,
+  grana: 0.45,
+  alfabeto: { nessuno: "h", labiale: "m", nasale: "n", occlusiva: "d", fricativa: "s", liquida: "l", vibrante: "l" },
+  pause: { virgola: 0.4, punto: 0.6 },
+  finale: 1.6,
+  esita: 0.8,
+  vol: 0.95,
+  pan: 0.1,
+};
+
 /** Il cast delle voci: `chi` nelle didascalie è una di queste chiavi (o "narratrice"). */
 export const VOCI: Readonly<Record<string, ProfiloVoce>> = {
   rocco: ROCCO,
   zara: ZARA,
   cecca: CECCA,
   fratello: FRATELLO,
+  brenta: BRENTA,
+  custode: CUSTODE,
 };

@@ -33,7 +33,8 @@
   (ognuno apre e chiude sul nero, il volume è lo stesso per tutti), un capitolo per
   episodio; `--stagione` tutte le puntate di fila, il film lungo.
 - **La durata** è un cancello leggero: con le voci un episodio sta tra 3′ e 7′ (test),
-  mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`).
+  mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`). Fatti: ep01 4′10″, ep02 6′48″
+  (c'è la ninna-nanna intera, un minuto).
 
 ## La ricetta di un episodio (sempre la stessa)
 
@@ -143,6 +144,14 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   *brillano* (tengono metà del loro verde anche al buio).
 - **Id dei gradienti:** usa SEMPRE il valore restituito da `defs.lineare/radiale/clip`
   (le inquadrature in dissolvenza hanno prefissi diversi).
+- **Il catalogo** (cresce con gli episodi): `rocco.ts`, `zara.ts`, `cecca.ts`;
+  `fauna.ts` (la gazza, la marmotta, lo stormo, il martin pescatore — in volo, in
+  picchiata, e `posato`, con l'aria `offeso` e `bagnato`); `laghi.ts`, la gente del Lago
+  del Vespro (ep02): **Brénta** la lontra (`lontra`: in piedi, le zampe al remo, al nodo,
+  al bordo; `BRENTA_ANCORE` dalla sua scheda, test), le **linci** (`lince`: seduta o in
+  piedi, ognuna col suo manto dal suo `seme`, e il cenno), il **Custode** (`testuggine`:
+  il collo che esce piano), la folaga. Un comprimario senza scheda disegnata si fa
+  dalla sua scheda di `saga/bible/comprimari/` e si segnala.
 
 ## 3. Il palco (`cartoni/scene/`) e i luoghi (`cartoni/luoghi/`)
 
@@ -159,6 +168,22 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   **allineati al mondo** (passi fissi o a potenze di due): niente sfarfallii.
 - Meteo e luce sono parametri (`Meteo`, `LUCI`), interpolabili nel tempo
   (`mescolaLuce`): il vento che gira a ep01 p.13 è `versoVento` da +1 a −1.
+- **I luoghi fatti**: `soglia.ts` (ep01: la Soglia di Spondalta) e `rivalba.ts` (ep02:
+  `RIVALBA`, la riva sul Lago del Vespro — il molo basso, le barche a secco, le reti
+  stese, il masso del Custode, la tana di canne, il ciglio col bosco d'autunno; i
+  villaggi sull'acqua nei lontani — e `APPRODO`, la lingua di sassi). Dove stanno le
+  cose che la prosa nomina è una costante esportata (`RIVA`), non un numero nel copione.
+- **Il lago** (`scene/lago.ts`): `galleggia` (il dondolio, seminato), `barca` (la
+  fiancata, le reti a poppa, gli scalmi; `aBordo` taglia chi è dentro sotto l'orlo),
+  `remo` (vogato in piedi guardando avanti, `spinge`), `cerchiAcqua`, `molo`, `palo`,
+  `palafitta`, `retiStese`, `barcaASecco`, `tanaDiCanne` (fondo e fronte: chi dorme
+  sta in mezzo) e **`riflesso`**: il disegno specchiato sotto la linea dell'acqua,
+  mosso dalle onde, e se serve **sfumato ai bordi** (ep02 p.7: «come una cosa che
+  l'acqua non ha ancora deciso»).
+- **Gli inserti** (`scene/inserti.ts`): la pietra coi segni; la corda di Toraki con la
+  zampa di Zara che legge i nodi, su un `fondo` (`pietra` di ep01, con le due conche;
+  `legno` della barca; `foglie` dell'involto), coi nodi `nuovi` che le si aggiungono (il
+  nodo da pescatori di Brénta, ep02 p.13) e le zampe palmate di Brénta (`zampeLontra`).
 
 ## 4. Le voci (`motore/parola.ts`, `motore/voce.ts`, `cast/voci.ts`, `audio/`)
 
@@ -192,7 +217,9 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   la `voce`, e chi e quando). Due ruoli non hanno mai la stessa voce. Il test vieta le
   riprese con una voce diversa da quella del ruolo, e marca `provino` tutto quello che è
   registrato prima della scelta. Scelta del 26/9/2026: la narratrice è **Paola, da
-  bambina** (`paola-bambina`); i personaggi sono ancora provvisori.
+  bambina** (`paola-bambina`); i personaggi sono ancora provvisori: Rocco `nicola-grande`,
+  Zara `sara-ragazza`, Cècca `sara-gazza`, il fratello `riccardo-ricordo`, e da ep02
+  Brénta `dora-barcaiola` e il Custode `george-custode` (con i loro provini).
 - **Scegliere** (cancello di Ray): `npx tsx cartoni/render/narra.ts --provini narratrice`
   fa leggere la stessa pagina a tutte le candidate; `--provini personaggi` fa dire a
   ogni personaggio le sue battute con ognuna delle sue voci in prova. Scelta fatta:
@@ -206,6 +233,13 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   resta quello di `lentezza`, senza stirare il suono. Con Piper la `lentezza` col tono
   rende un po' meno: si regola a orecchio (`paola-bambina` a 1.38 è circa il 10% più
   lenta di `paola` a 1.12).
+- **Il cast cresce mescolando.** Kokoro ha poche voci italiane (Sara, Nicola), ma una
+  candidata Kokoro può essere un **miscuglio** di voci del modello, anche di altre
+  lingue: `modello: "if_sara*0.4+pf_dora*0.6"` (Brénta), `"im_nicola*0.4+bm_george*0.6"`
+  (il Custode). L'italiano lo legge comunque (la pronuncia è della lingua, non della
+  voce), il timbro cambia: così due ruoli non si somigliano. Più la voce straniera
+  pesa, meno si capisce: si controlla con `ascolta.py` (o sulle battute di prova) prima
+  di proporla.
 - **Che si capisca.** Più una voce sale di tono, meno si capisce: prima di proporre una
   voce si fa trascrivere ogni battuta a un riconoscitore vocale e si tengono le
   impostazioni che la fanno capire tutta:
@@ -219,7 +253,7 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   Ep01 (26/9/2026): Rocco 100% delle parole, Zara 94%, la narratrice 73% — e Paola
   adulta, senza tono, fa lo stesso (75%): è il modello, non il tono; il riconoscitore
   ne perde soprattutto le R («pietra» → «pietta»). Con meno `variazione` (0,3) sale
-  intorno all'80%.
+  intorno all'80%. Ep02: vedi il consuntivo della sua PR.
 - **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` registra la
   narratrice (`narrazione.json`) e le battute di ogni personaggio (`battute.json`) in
   `episodi/epNN/voce/`; `--chi zara,rocco` solo alcune voci, `--solo s05,s06` solo
@@ -248,6 +282,15 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
 - **Partitura come dati** (`episodi/<id>/partitura.ts` → `suona(SEZIONI)` di
   `audio/partitura.ts`): sezioni agganciate alle inquadrature (se il montaggio o le voci
   cambiano i tempi, la musica li segue), progressioni, temi, ostinati nel basso.
+- **I temi della serie** (`audio/temi.ts`): come le voci, anche i temi sono di tutta
+  la serie. Chi c'è in più episodi ha il suo tema e lo tiene — Zara, i passi di Rocco,
+  l'amicizia (chiude gli episodi), il mondo che si apre (da ep01); il Lago del Vespro,
+  il riflesso (il tema del lago capovolto), Brénta, la corda di Toraki (da ep02). La
+  partitura di un episodio li importa da lì; un tema di una sola scena resta nella
+  sua partitura. Un tema nuovo che tornerà si mette in `temi.ts` subito.
+- **Il silenzio è musica.** Dove la prosa fa tacere (ep02 p.10: «Il silenzio salì
+  dall'acqua tutto insieme») nessuna sezione copre l'inquadratura; sotto un brano
+  nemmeno (il brano è la musica).
 - **Brani** (`cartoni/brani/`): le canzoni vere, fatte una volta e tenute — la prima
   è la ninna-nanna della Prima Tigre, fatta da Ray con Suno (26/9/2026: introduzione
   suonata, i sei versi cantati «da filastrocca», poi canticchiata). Il registro
@@ -259,6 +302,8 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   può rallentare (suona a tempo vero): una voce nella sua finestra deve starci, se no
   il test (`fuoriTempo`) lo dice. Canone (`saga/bible/prima_tigre.md`): il testo intero
   della ninna-nanna una volta sola (ep02); la canticchiata può tornare quanto si vuole.
+  Il `vol` del brano lo tiene appena sotto la narratrice (ep02: 0,6): è una ninna-nanna
+  pensata nel sonno, non un numero musicale.
 - **Effetti**: rumore seminato e filtrato. Niente suoni "magici" (campanelle sulla
   pietra, arpeggi scintillanti sui segni): è la stessa regola anti-New-Age.
 - **Missaggio**: musica con riverbero, effetti, ambiente, voci; quando si parla la

@@ -13,8 +13,9 @@ description: Fa i CARTONI ANIMATI delle saghe in codice — un MOTORE (cartoni/:
 
 0. **La serie.** 24 episodi di ~5′ → 6 puntate di ~20′ (una per volume, i suoi 4
    episodi), da guardare di fila come un film lungo. Si fa un episodio alla volta con
-   **la ricetta** di `docs/ANIMATORE.md` (sempre la stessa); luoghi, pupazzi e voci
-   nuovi entrano nel motore, e il catalogo cresce per tutti gli episodi dopo.
+   **la ricetta** di `docs/ANIMATORE.md` (sempre la stessa); luoghi, pupazzi, voci e
+   temi musicali nuovi entrano nel motore, e il catalogo cresce per tutti gli episodi
+   dopo.
 1. **Si parte dalla prosa approvata.** Una puntata animata esiste solo se la sua
    prosa (`saga/prosa/`) è mergiata: `cartoni/render/nuovo.ts --episodio epNN` fa lo
    scheletro. Le didascalie si **citano** alla lettera (test).
@@ -66,8 +67,8 @@ description: Fa i CARTONI ANIMATI delle saghe in codice — un MOTORE (cartoni/:
   narratrice invece **si tengono** (`episodi/<id>/voce/`): non si rifanno a ogni giro.
 - Non scegliere le voci (narratrice e personaggi) al posto di Ray, e non cambiarle
   episodio per episodio.
-- Non rifare dentro un episodio un luogo, un pupazzo o una voce che il motore ha già:
-  il catalogo è uno, e cresce.
+- Non rifare dentro un episodio un luogo, un pupazzo, una voce o un tema che il motore
+  ha già (`audio/temi.ts`): il catalogo è uno, e cresce.
 
 ## Al confine
 

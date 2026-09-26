@@ -7,6 +7,9 @@
 //    vapore nell'aria fredda). Regola anti-New-Age dei ritornelli.
 //  - la corda di Toraki (p.4, p.18): nodi fitti fino a metà, poi più niente.
 //  - la zampa di Zara che legge (la zampa sul tiepido, la zampa sui nodi).
+//  - (ep02) la corda sul legno della barca (p.11), le zampe palmate di Brénta
+//    che la pesano e ci annodano il loro nodo (p.13); la corda nell'involto di
+//    foglie (p.16: «i nodi adesso erano due»).
 // Composizioni a schermo (1920×1080), con una lenta spinta della camera.
 
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
@@ -14,7 +17,11 @@ import { caso } from "../motore/caso";
 import type { Livello } from "../motore/fotogramma";
 import { type Defs, type P, add, cerchioD, curva, ellisseD, g, mix, n, path, pt, tubo } from "../motore/svg";
 import { clamp, ease, lerp, onda } from "../motore/tempo";
+import { BRENTA_ANCORE } from "../cast/laghi";
 import { ZARA_ANCORE } from "../cast/zara";
+
+const BRENTA_PELO = BRENTA_ANCORE.pelo;
+const BRENTA_UNGHIE = BRENTA_ANCORE.gola;
 
 const W = 1920;
 const H = 1080;
@@ -263,6 +270,134 @@ export function zampaDallAlto(c: P, luce: Luce, defs: Defs): string {
 }
 
 // ---------------------------------------------------------------- la corda --
+/** Il fondo dell'inserto sulla barca: le tavole del pagliolo, vicine, bagnate qua e là. */
+function tavoleDellaBarca(o: OpzCorda): string {
+  const { luce, defs } = o;
+  const gp = defs.lineare("corda-legno", [0, 0], [0, H], [
+    [0, inLuce("#8a6a46", luce)],
+    [1, inOmbra("#5e4630", luce)],
+  ]);
+  let s = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${gp}"/>`;
+  const r = caso("corda/tavole");
+  let fughe = "";
+  let venature = "";
+  for (let y = -40; y < H + 60; y += 150) {
+    fughe += `M-60 ${n(y)}L${W + 60} ${n(y + r.segno(6))}`;
+    for (let j = 0; j < 7; j++) {
+      const yy = y + r.tra(12, 138);
+      const x0 = r.tra(-100, W);
+      venature += `M${n(x0)} ${n(yy)}q${n(r.tra(120, 300))} ${n(r.segno(10))} ${n(r.tra(300, 700))} ${n(r.segno(6))}`;
+    }
+  }
+  s += path(venature, { stroke: inOmbra("#4a3624", luce), "stroke-width": 2, fill: "none", opacity: 0.35 });
+  s += path(fughe, { stroke: "#2a1f15", "stroke-width": 6, fill: "none", opacity: 0.55 });
+  // qualche goccia d'acqua di lago, e una chiazza bagnata
+  let gocce = "";
+  for (let i = 0; i < 26; i++) gocce += ellisseD([r.tra(0, W), r.tra(0, H)], r.tra(3, 9), r.tra(2, 6));
+  s += path(gocce, { fill: "#e9eef0", opacity: 0.35 });
+  s += path(ellisseD([420, 820], 260, 90), { fill: "#2a1f15", opacity: 0.18 });
+  return s;
+}
+
+/** Il fondo dell'involto: foglie larghe e lunghe, avvolte, coi loro nervi (i colori dell'involto di Zara). */
+function fogliDellInvolto(o: OpzCorda): string {
+  const { luce, defs } = o;
+  const gp = defs.lineare("corda-foglie", [0, 0], [0, H], [
+    [0, inLuce("#4a5a2a", luce)],
+    [1, inOmbra("#2c3619", luce)],
+  ]);
+  let s = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${gp}"/>`;
+  const r = caso("corda/foglie");
+  const toni = ["#56662f", "#62733a", "#7b8a44", "#4c5a29"];
+  for (let i = 0; i < 7; i++) {
+    const c: P = [r.tra(-100, W + 100), r.tra(80, H - 40)];
+    const L = r.tra(700, 1200);
+    const w = r.tra(170, 260);
+    const ang = r.tra(-28, 28) + (i % 2 ? 180 : 0);
+    const a: P = [-L / 2, 0];
+    const b: P = [L / 2, 0];
+    let f = path(`M${pt(a)}Q${n(-L * 0.1)} ${n(-w)} ${pt(b)}Q${n(L * 0.1)} ${n(w * 0.9)} ${pt(a)}Z`, { fill: inLuce(toni[i % toni.length], luce) });
+    // l'ombra della foglia sopra, il nervo centrale, i nervi laterali
+    f += path(`M${pt(a)}Q${n(L * 0.1)} ${n(w * 0.9)} ${pt(b)}Q${n(L * 0.05)} ${n(w * 0.45)} ${pt(a)}Z`, { fill: "#1d240f", opacity: 0.22 });
+    f += path(`M${n(-L / 2 + 20)} 0Q0 ${n(-w * 0.12)} ${n(L / 2 - 20)} 0`, { stroke: inLuce("#9aa55c", luce), "stroke-width": 5, fill: "none", opacity: 0.75 });
+    let nervi = "";
+    for (let j = 1; j < 11; j++) {
+      const x = -L / 2 + (j / 11) * L;
+      const lung = w * 0.75 * Math.sin((j / 11) * Math.PI);
+      nervi += `M${n(x)} ${n(-w * 0.06)}q${n(40)} ${n(-lung * 0.5)} ${n(90)} ${n(-lung * 0.8)}M${n(x)} ${n(-w * 0.04)}q${n(40)} ${n(lung * 0.5)} ${n(90)} ${n(lung * 0.75)}`;
+    }
+    f += path(nervi, { stroke: inLuce("#8e9a52", luce), "stroke-width": 2, fill: "none", opacity: 0.45 });
+    s += g({ transform: `translate(${n(c[0])} ${n(c[1])})rotate(${n(ang)})` }, f);
+  }
+  // la penombra dentro l'involto
+  s += path(ellisseD([W / 2, H * 0.55], W * 0.7, H * 0.6), { fill: "#fff6d8", opacity: 0.06 });
+  return s;
+}
+
+/**
+ * Una zampa di lontra vista dall'alto, sulla corda: l'avambraccio corto e
+ * robusto che arriva da `spalla`, il pelo bagnato (Brénta non finisce mai
+ * d'asciugare: qualche goccia), la mano palmata con cinque dita e le unghie chiare.
+ */
+function zampaDiLontra(c: P, spalla: P, luce: Luce, defs: Defs, id: string): string {
+  const pelo = inLuce(BRENTA_PELO, luce);
+  const peloC = inLuce(schiarisci(BRENTA_PELO, 0.16), luce);
+  const peloS = inOmbra(BRENTA_PELO, luce);
+  // la mano guarda dove va il braccio: le dita in fondo, oltre il polso
+  const dir = Math.atan2(c[1] - spalla[1], c[0] - spalla[0]);
+  const rot = (dir * 180) / Math.PI - 90;
+  let s = "";
+  // l'ombra corta sul fondo
+  s += path(ellisseD(add(c, [24, 34]), 104, 62), { fill: "#1a1610", opacity: 0.3 });
+  // l'avambraccio: dalla spalla (fuori quadro) al polso, più stretto della mano
+  const polso = add(c, [-Math.cos(dir) * 34, -Math.sin(dir) * 34]);
+  const spina: P[] = [spalla, mix(spalla, polso, 0.55), polso];
+  const gb = defs.lineare(`braccio-${id}`, add(c, [-90, -60]), add(c, [110, 40]), [
+    [0, peloS],
+    [0.4, pelo],
+    [0.7, peloC],
+    [1, peloS],
+  ]);
+  s += path(tubo(spina, [100, 86, 72], { tappoInizio: false }), { fill: gb });
+  // il pelo lucido, liscio, che segue il braccio; e qualche goccia (non finisce mai d'asciugare)
+  let lisci = "";
+  const r = caso(`macro/${id}`);
+  for (let i = 0; i < 14; i++) {
+    const p = mix(spina[0], spina[2], r.tra(0.08, 0.85));
+    const dx = r.tra(-30, 30);
+    lisci += `M${n(p[0] + dx)} ${n(p[1] - 16)}l${n(Math.cos(dir) * 30)} ${n(Math.sin(dir) * 30)}`;
+  }
+  s += path(lisci, { stroke: peloC, "stroke-width": 3, "stroke-linecap": "round", opacity: 0.5 });
+  let gocce = "";
+  for (let i = 0; i < 3; i++) {
+    const p = add(mix(spina[0], spina[2], r.tra(0.35, 0.9)), [r.tra(-24, 24), 0]);
+    gocce += ellisseD(p, r.tra(4, 6), r.tra(5, 7));
+  }
+  s += path(gocce, { fill: "#e9f1f2", opacity: 0.45 });
+  // la mano: il palmo largo, cinque dita a ventaglio, la membrana chiara tra le dita, le unghie
+  const dita: P[] = [
+    [-66, 16],
+    [-38, 50],
+    [0, 62],
+    [38, 52],
+    [66, 20],
+  ];
+  let mano = "";
+  let membrana = `M${pt(dita[0])}`;
+  for (const d of dita.slice(1)) membrana += `Q${pt([d[0] * 0.78, d[1] * 0.62])} ${pt(d)}`;
+  membrana += `L${pt([52, -8])}L${pt([-52, -8])}Z`;
+  mano += path(membrana, { fill: mescola(pelo, "#b09a86", 0.6), opacity: 0.95 });
+  mano += path(ellisseD([0, 0], 70, 50), { fill: pelo });
+  mano += path(ellisseD([-8, -12], 46, 26), { fill: peloC, opacity: 0.45 });
+  for (const d of dita) {
+    mano += path(ellisseD(d, 18, 23), { fill: pelo });
+    mano += path(ellisseD(add(d, [-3, -5]), 9, 10), { fill: peloC, opacity: 0.6 });
+    mano += path(`M${pt([d[0] * 1.05, d[1] + 16])}l${n(d[0] * 0.07)} 10`, { stroke: inLuce(BRENTA_UNGHIE, luce), "stroke-width": 3.4, "stroke-linecap": "round" });
+  }
+  s += g({ transform: `translate(${n(c[0])} ${n(c[1])})rotate(${n(rot)})` }, mano);
+  return s;
+}
+
 export interface OpzCorda {
   t: number;
   luce: Luce;
@@ -272,6 +407,19 @@ export interface OpzCorda {
   /** La zampa che passa sui nodi: posizione lungo la corda 0..1 (o <0 = assente). */
   lettura: number;
   spinta: number;
+  /**
+   * Su cosa sta la corda: la pietra dei segni (ep01, con le due conche: «si
+   * somigliano»), il legno della barca (ep02, p.11: «La posò sul legno, tra
+   * loro») o le foglie dell'involto (ep02, p.16).
+   */
+  fondo?: "pietra" | "legno" | "foglie";
+  /** I nodi nuovi, dopo quelli di Toraki: dove (0..1 lungo la corda) e quanto sono fatti (0..1). */
+  nuovi?: readonly { u: number; fatto: number }[];
+  /**
+   * Le zampe palmate di Brénta sulla corda: dove (0..1 lungo la corda), lo
+   * strappo secco al nodo a metà (0..1), e quanto lavorano (0..1: annodano).
+   */
+  zampeLontra?: { u: number; strappo?: number; lavora?: number };
 }
 
 /** Il percorso della corda sulla pietra: attraversa il quadro, appena ondulata. */
@@ -288,40 +436,48 @@ export function insertoCorda(o: OpzCorda): Livello[] {
   const { luce, defs } = o;
   const sc = 1 + 0.05 * ease.dentroFuori(o.spinta);
   const cam = `translate(${W / 2} ${H / 2})scale(${Math.round(sc * 1000) / 1000})translate(${-W / 2} ${-H / 2})`;
-  // il fondo: la pietra tiepida, vicina, con la grana e il sole caldo
-  const gp = defs.radiale("corda-pietra", [760, 360], 1500, [
-    [0, inLuce("#bcae93", luce)],
-    [0.6, inLuce("#9d917b", luce)],
-    [1, inOmbra("#6f6759", luce)],
-  ]);
-  let fondo = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${gp}"/>`;
-  const rg = caso("corda/grana");
-  let grana = "";
-  let lic = "";
-  for (let i = 0; i < 360; i++) grana += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(1.5, 5), rg.tra(1, 3));
-  for (let i = 0; i < 9; i++) lic += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(30, 90), rg.tra(16, 40));
-  fondo += path(lic, { fill: inLuce("#c2b27c", luce), opacity: 0.2 });
-  fondo += path(grana, { fill: inOmbra("#5b5448", luce), opacity: 0.26 });
-  // due conche del segno, in alto a destra (la somiglianza: «Si somigliano», p.18)
-  for (const [x, y, rr] of [
-    [1540, 200, 70],
-    [1740, 250, 66],
-  ] as const) {
-    const ry = rr * 0.8;
-    fondo += path(ellisseD([x, y], rr, ry), { fill: inLuce("#8d826e", luce) });
-    const clipC = defs.clip(`corda-clip-conca-${x}`, ellisseD([x, y], rr, ry));
-    fondo += g(
-      { "clip-path": clipC },
-      path(ellisseD([x + rr * 0.3, y + ry * 0.32], rr * 1.02, ry * 1.02), { fill: inLuce("#a79b84", luce) }) +
-        path(ellisseD([x - rr * 0.55, y - ry * 0.55], rr * 0.9, ry * 0.7), { fill: inOmbra("#5d564b", luce), opacity: 0.75 }),
-    );
+  // il fondo: la pietra tiepida, vicina, con la grana e il sole caldo (o il legno, o le foglie)
+  const suCosa = o.fondo ?? "pietra";
+  let fondo = "";
+  if (suCosa === "legno") fondo = tavoleDellaBarca(o);
+  else if (suCosa === "foglie") fondo = fogliDellInvolto(o);
+  else {
+    const gp = defs.radiale("corda-pietra", [760, 360], 1500, [
+      [0, inLuce("#bcae93", luce)],
+      [0.6, inLuce("#9d917b", luce)],
+      [1, inOmbra("#6f6759", luce)],
+    ]);
+    fondo = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${gp}"/>`;
+    const rg = caso("corda/grana");
+    let grana = "";
+    let lic = "";
+    for (let i = 0; i < 360; i++) grana += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(1.5, 5), rg.tra(1, 3));
+    for (let i = 0; i < 9; i++) lic += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(30, 90), rg.tra(16, 40));
+    fondo += path(lic, { fill: inLuce("#c2b27c", luce), opacity: 0.2 });
+    fondo += path(grana, { fill: inOmbra("#5b5448", luce), opacity: 0.26 });
+    // due conche del segno, in alto a destra (la somiglianza: «Si somigliano», p.18)
+    for (const [x, y, rr] of [
+      [1540, 200, 70],
+      [1740, 250, 66],
+    ] as const) {
+      const ry = rr * 0.8;
+      fondo += path(ellisseD([x, y], rr, ry), { fill: inLuce("#8d826e", luce) });
+      const clipC = defs.clip(`corda-clip-conca-${x}`, ellisseD([x, y], rr, ry));
+      fondo += g(
+        { "clip-path": clipC },
+        path(ellisseD([x + rr * 0.3, y + ry * 0.32], rr * 1.02, ry * 1.02), { fill: inLuce("#a79b84", luce) }) +
+          path(ellisseD([x - rr * 0.55, y - ry * 0.55], rr * 0.9, ry * 0.7), { fill: inOmbra("#5d564b", luce), opacity: 0.75 }),
+      );
+    }
   }
 
   // la corda: fibra e crine, spessa (siamo vicinissimi). Srotolata fino a `srotolata`.
   const fine = clamp(o.srotolata);
   const N = 120;
   const pts: P[] = [];
-  for (let i = 0; i <= N * fine; i++) pts.push(puntoCorda(i / N));
+  const strappo = clamp(o.zampeLontra?.strappo ?? 0);
+  const scossa = (u: number): P => (strappo > 0 ? [Math.sin(strappo * 40) * 10 * (1 - strappo) * Math.exp(-Math.abs(u - FINE_NODI) * 6), 0] : [0, 0]);
+  for (let i = 0; i <= N * fine; i++) pts.push(add(puntoCorda(i / N), scossa(i / N)));
   let corda = "";
   const fibra = inLuce("#b0935f", luce);
   const fibraC = inLuce("#cdb27c", luce);
@@ -379,8 +535,61 @@ export function insertoCorda(o: OpzCorda): Livello[] {
     }
   }
 
+  // i nodi nuovi: un nodo da rete, di spago verde di lago, accanto a quello di Toraki
+  // (grosso come i suoi: si deve vedere che adesso sono due)
+  for (const nv of o.nuovi ?? []) {
+    const k = clamp(nv.fatto);
+    if (k <= 0 || nv.u > fine) continue;
+    const p = add(puntoCorda(nv.u), scossa(nv.u));
+    const spago = inLuce("#6f8f86", luce);
+    const spagoC = inLuce("#9db8ae", luce);
+    const spagoS = inOmbra("#3f5550", luce);
+    // i due giri (fino a 0.6), poi il nodo stretto e il capo che resta
+    const giri = Math.min(1, k / 0.6);
+    let d = "";
+    for (let j = 0; j < 2; j++) {
+      const q = j / 2;
+      if (giri <= q) continue;
+      const kk = clamp((giri - q) * 2);
+      const x = p[0] - 16 + j * 26;
+      d += `M${n(x - 6)} ${n(p[1] - 38)}Q${n(x + 14)} ${n(p[1] - 4)} ${n(x - 6 + 4 * kk)} ${n(p[1] - 38 + 76 * kk)}`;
+    }
+    nodi += path(d, { stroke: spagoS, "stroke-width": 13, fill: "none", "stroke-linecap": "round" }) + path(d, { stroke: spago, "stroke-width": 9, fill: "none", "stroke-linecap": "round" });
+    nodi += path(d, { stroke: spagoC, "stroke-width": 2.5, fill: "none", "stroke-linecap": "round", opacity: 0.6, transform: "translate(-2 -2)" });
+    if (k > 0.6) {
+      const st = (k - 0.6) / 0.4;
+      const c = add(p, [0, -6]);
+      nodi += path(ellisseD(add(c, [5, 10]), 30, 20), { fill: "#1a1610", opacity: 0.22 * st });
+      nodi += path(ellisseD(c, 18 + st * 12, 14 + st * 8), { fill: spagoS, opacity: st });
+      nodi += path(ellisseD(add(c, [-2, -3]), 14 + st * 10, 10 + st * 6), { fill: spago, opacity: st });
+      nodi += path(`M${n(c[0] - 20)} ${n(c[1] - 2)}Q${n(c[0])} ${n(c[1] - 16)} ${n(c[0] + 22)} ${n(c[1] + 2)}M${n(c[0] - 14)} ${n(c[1] + 8)}Q${n(c[0] + 2)} ${n(c[1] - 2)} ${n(c[0] + 16)} ${n(c[1] + 12)}`, {
+        stroke: spagoS,
+        "stroke-width": 3,
+        fill: "none",
+        opacity: 0.9 * st,
+      });
+      // il capo che resta, tagliato corto (è spago da rete, non si spreca)
+      nodi += path(`M${n(c[0] + 18)} ${n(c[1] + 8)}q${n(24)} ${n(20)} ${n(26)} ${n(54 * st)}`, { stroke: spago, "stroke-width": 6, fill: "none", "stroke-linecap": "round", opacity: st });
+    }
+  }
+  // le zampe palmate di Brénta: arrivano da destra, dalla poppa (lei sta di fronte a
+  // Zara, la corda tra loro); lavorano da sole mentre lei guarda Zara
+  let zampeLontra = "";
+  if (o.zampeLontra) {
+    const u0 = clamp(o.zampeLontra.u, 0, fine);
+    const lavora = o.zampeLontra.lavora ?? 0;
+    for (const [i, du] of [
+      [0, 0],
+      [1, 0.075],
+    ] as const) {
+      const u = Math.min(fine, u0 + du);
+      const muove: P = [Math.sin(o.t * 7.3 + i * 2) * 10 * lavora, Math.cos(o.t * 6.1 + i) * 8 * lavora];
+      const c = add(add(add(puntoCorda(u), scossa(u)), [0, -24]), muove);
+      zampeLontra += zampaDiLontra(c, add(c, [640 - i * 70, -560 + i * 50]), luce, defs, `lontra${i}`);
+    }
+  }
   // la zampa che legge i nodi, uno per uno (e poi arriva al liscio)
-  let zampa = "";
+  let zampa = zampeLontra;
   if (o.lettura >= 0) {
     const p = puntoCorda(clamp(o.lettura, 0, fine));
     zampa = zampaDallAlto(add(p, [-30, -70]), luce, defs);
