@@ -19,11 +19,12 @@ dalle 19 pagine della sua prosa (`saga/prosa/ep01.md`).
 ## Come si gira
 
 ```bash
-npx tsx cartoni/render/suona.ts --episodio ep01                         # colonna sonora → cartoni/out/ep01.wav
+npx tsx cartoni/render/suona.ts --episodio ep01                         # colonna sonora (personaggi con le loro voci) → cartoni/out/ep01.wav
 node cartoni/render/gira.mjs --episodio ep01 --audio cartoni/out/ep01.wav   # video 1080p24 → cartoni/out/ep01.mp4
 node cartoni/render/gira.mjs --episodio ep01 --da 90 --a 105 --larghezza 960  # un pezzo, in piccolo, per guardare
 
-# con la voce narrante (le riprese in episodi/ep01/voce/): stessi comandi con --narratrice
+# con la voce narrante (le riprese in episodi/ep01/voce/): stessi comandi con --narratrice;
+# con --grammelot i personaggi tornano a parlare in grammelot anche se sono registrati
 npx tsx cartoni/render/suona.ts --episodio ep01 --narratrice
 node cartoni/render/gira.mjs --episodio ep01 --narratrice --audio cartoni/out/ep01_narrato.wav
 ```
@@ -41,19 +42,26 @@ npx tsx cartoni/render/nuovo.ts --episodio ep02     # scheletro: un'inquadratura
 
 ## Le voci
 
-- **I personaggi parlano in grammelot** (come Pingu): una lingua che non esiste, fatta
-  del ritmo, delle vocali e della melodia della battuta vera. La didascalia dice le
-  parole, la voce dice il tono. Le voci sono profili di numeri (`cast/voci.ts`: altezza,
-  passo, grandezza del tratto vocale, aria, grana, l'alfabeto delle consonanti) suonati
-  da un piccolo sintetizzatore a formanti (`audio/grammelot.ts`); le bocche dei pupazzi
-  seguono le sillabe. Chi dice una battuta lo scrive il copione: `chi: "zara"`.
-- **La narratrice** (facoltativa) legge la narrazione — tutto quello che nelle
-  didascalie sta fuori dalle «». È **una sola per la saga** (`voce/voce.json`): Ray l'ha
-  scelta dai provini — **Paola, da bambina** (più lenta, e più acuta di 4 semitoni:
-  altezza e formanti salgono insieme, come in una voce più piccola) — e resta quella
-  (un test lo controlla). Le sue riprese si fanno una volta (`render/narra.ts`, con
-  Piper) e si tengono in `episodi/<id>/voce/` come una registrazione: una voce
-  sintetica non ridice mai una frase identica.
+- **Ogni personaggio ha la sua voce**, e poi la tiene: Rocco una voce d'uomo, Zara di
+  ragazza, Cècca piccola e svelta, il fratello di Zara lontana, da ricordo. Dicono le
+  battute vere (le «» della prosa, `chi: "zara"` nel copione), registrate una volta
+  (`render/narra.ts`) in `episodi/<id>/voce/battute.json`; la bocca del pupazzo segue
+  il volume della ripresa. Le voci sono sintetiche (Kokoro, Piper) e trasformate:
+  più acute e piccole o più gravi e grandi (`tono`), più lente o svelte (`lentezza`).
+  Il cast è in `voce/voce.json`: ogni ruolo è *da scegliere* (con una voce provvisoria
+  e i suoi provini) o *scelto* da Ray — e da lì non si cambia (un test lo controlla).
+- **Il grammelot resta** (come Pingu: il ritmo, le vocali e la melodia della battuta
+  vera, parole inventate, sintetizzato in codice da `audio/grammelot.ts`): è il ripiego
+  per le battute non ancora registrate, e il modo di provare un episodio nuovo prima di
+  registrarlo.
+- **La narratrice** legge la narrazione — tutto quello che nelle didascalie sta fuori
+  dalle «». È **una sola per la saga**: Ray l'ha scelta dai provini — **Paola, da
+  bambina** (più lenta, e più acuta di 4 semitoni: altezza e formanti salgono insieme,
+  come in una voce più piccola). Anche le sue riprese si tengono in `episodi/<id>/voce/`.
+- **Le voci si capiscono.** Più una voce è spinta verso l'acuto, meno si capisce: il
+  cast è stato scelto controllando ogni battuta con un riconoscitore vocale; le parole
+  che una voce sintetica sbaglia si correggono nel dizionario `pronuncia` di `voce.json`
+  (solo per le voci: le didascalie restano quelle della prosa).
 - **I tempi seguono le voci.** Una didascalia dura almeno quanto la sua voce: la
   storia *aspetta* (pupazzi e camera rallentano dentro quella didascalia), il mondo no
   (vento, acqua, pioggia vanno al tempo vero). Suoni, musica e stacchi seguono.

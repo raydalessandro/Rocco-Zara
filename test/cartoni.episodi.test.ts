@@ -9,7 +9,8 @@
 //  3. il lessico: niente nomi reali nelle parole a schermo;
 //  4. il montaggio, con le voci, sta in piedi (in fila, niente buchi, SVG sano),
 //     e ogni voce sta dentro la sua didascalia;
-//  5. se c'è la narrazione registrata, ogni pezzo ha la sua ripresa.
+//  5. se ci sono le voci registrate (narratrice, personaggi), ogni pezzo ha la
+//     sua ripresa, col testo giusto, e la bocca dei personaggi le sta dietro.
 
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
@@ -18,7 +19,7 @@ import { VOCI } from "../cartoni/cast/voci";
 import { aCapo } from "../cartoni/motore/didascalie";
 import { inSvg } from "../cartoni/motore/fotogramma";
 import { type Episodio, durata, fotogramma, scaletta } from "../cartoni/motore/montaggio";
-import { type Narrazione, daNarrare } from "../cartoni/motore/voce";
+import { type Battute, type Narrazione, daNarrare, daRecitare } from "../cartoni/motore/voce";
 import { conLeVoci } from "../cartoni/player/cartone";
 
 const ROOT = process.cwd();
@@ -26,12 +27,13 @@ const leggi = (p: string) => readFileSync(join(ROOT, p), "utf8");
 const DIR = join(ROOT, "cartoni/episodi");
 
 const ID = existsSync(DIR) ? readdirSync(DIR).filter((d) => existsSync(join(DIR, d, "copione.ts"))).sort() : [];
-const EPISODI: { id: string; ep: Episodio; musica: unknown; narr: Narrazione | null }[] = await Promise.all(
+const EPISODI: { id: string; ep: Episodio; musica: unknown; narr: Narrazione | null; bat: Battute | null }[] = await Promise.all(
   ID.map(async (id) => ({
     id,
     ep: (await import(join(DIR, id, "copione.ts"))).default as Episodio,
     musica: existsSync(join(DIR, id, "partitura.ts")) ? (await import(join(DIR, id, "partitura.ts"))).default : undefined,
     narr: existsSync(join(DIR, id, "voce/narrazione.json")) ? (JSON.parse(readFileSync(join(DIR, id, "voce/narrazione.json"), "utf8")) as Narrazione) : null,
+    bat: existsSync(join(DIR, id, "voce/battute.json")) ? (JSON.parse(readFileSync(join(DIR, id, "voce/battute.json"), "utf8")) as Battute) : null,
   })),
 );
 
@@ -62,7 +64,7 @@ describe("cartoni — gli episodi presenti", () => {
   });
 });
 
-for (const { id, ep, narr } of EPISODI) {
+for (const { id, ep, narr, bat } of EPISODI) {
   describe(`cartoni — ${id}: le didascalie sono citazioni della prosa`, () => {
     const pp = pagine(ep.prosa);
 
@@ -124,7 +126,7 @@ for (const { id, ep, narr } of EPISODI) {
   });
 
   describe(`cartoni — ${id}: il montaggio con le voci`, () => {
-    const epV = conLeVoci(ep, narr);
+    const epV = conLeVoci(ep, narr, bat);
     const sc = scaletta(epV);
 
     it("stesso tempo → stesso fotogramma; SVG ben chiusi (un campione per inquadratura)", () => {
@@ -160,6 +162,20 @@ for (const { id, ep, narr } of EPISODI) {
       }
       for (let i = 1; i < epV.voci.length; i++) expect(epV.voci[i].tg).toBeGreaterThanOrEqual(epV.voci[i - 1].tg + epV.voci[i - 1].durata - 1e-9);
     });
+
+    if (bat) {
+      it("le battute registrate sono complete: ogni battuta ha la sua ripresa, di chi la dice, col testo giusto; e la bocca le sta dietro", () => {
+        expect(epV.senzaRegistrazione, epV.senzaRegistrazione.join("\n")).toEqual([]);
+        for (const b of daRecitare(ep, VOCI)) {
+          const c = bat.clip[b.chiave];
+          expect(c?.testo, b.chiave).toBe(b.testo);
+          expect(c.chi, b.chiave).toBe(b.chi);
+          expect(existsSync(join(DIR, id, "voce", c.file)), c.file).toBe(true);
+          expect(c.durata).toBeGreaterThan(0.2);
+          expect(Math.abs((c.bocca ?? "").length - Math.ceil(c.durata * 25)), `${b.chiave}: bocca`).toBeLessThanOrEqual(2);
+        }
+      });
+    }
 
     if (narr) {
       it("la narrazione registrata è completa: ogni pezzo ha la sua ripresa, col testo giusto, e il file c'è", () => {

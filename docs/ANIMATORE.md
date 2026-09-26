@@ -98,50 +98,68 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
 - Meteo e luce sono parametri (`Meteo`, `LUCI`), interpolabili nel tempo
   (`mescolaLuce`): il vento che gira a ep01 p.13 è `versoVento` da +1 a −1.
 
-## 4. Le voci (`motore/parola.ts`, `motore/voce.ts`, `cast/voci.ts`, `audio/grammelot.ts`)
+## 4. Le voci (`motore/parola.ts`, `motore/voce.ts`, `cast/voci.ts`, `audio/`)
 
 - **Chi parla.** Una didascalia si spezza in *narrazione* (fuori dalle «») e *battute*
   (dentro). `chi` dice di chi sono le battute (`"zara"`, o una lista in ordine). Senza
   `chi` una battuta resta alla narratrice (una frase *ricordata*); ma ogni didascalia
   con le «» deve dichiarare `chi` (test), anche solo `"narratrice"`.
-- **Il grammelot.** La battuta vera diventa sillabe (accenti, punteggiatura); il profilo
-  della voce ne fa un piano: tempi, melodia (la frase scende, la domanda risale, la
-  sillaba accentata sale), consonanti del *suo* alfabeto (Rocco: labbra e nasi; Zara:
-  denti e scatti; Cècca: becco), bocca aperta sulle vocali e chiusa su m/b/p. Il piano
-  lo suona il sintetizzatore a formanti e lo mima il pupazzo: stesso piano, stesso tempo.
-- **Una voce nuova** = un profilo in `cast/voci.ts` (dalla sezione «Voce» della scheda:
-  Rocco *esita prima di osare* → un "mh" a bocca chiusa; Zara *asciutta* → finali corti).
+- **Le battute registrate.** Ogni personaggio con un ruolo in `voce.json` dice le sue
+  battute con la sua voce: riprese in `episodi/<id>/voce/battute.json` (testo, durata,
+  file, voce, e la **bocca**: una cifra 0-9 ogni 40 ms dal volume della ripresa, che il
+  pupazzo mima). Una ripresa vale solo se il suo testo è quello della didascalia.
+- **Il grammelot** è il ripiego per le battute senza ripresa (e `--grammelot` lo forza
+  su tutto l'episodio): la battuta vera diventa sillabe (accenti, punteggiatura); il
+  profilo di `cast/voci.ts` ne fa un piano — tempi, melodia, consonanti del *suo*
+  alfabeto (Rocco: labbra e nasi; Zara: denti e scatti; Cècca: becco), bocca aperta
+  sulle vocali e chiusa su m/b/p — che il sintetizzatore a formanti suona e il pupazzo
+  mima. I profili danno anche volume, posto nello stereo ed eco (il ricordo) alle
+  battute registrate.
 - **I tempi.** `conVoce` (via `player/cartone.ts → conLeVoci`, lo stesso per video e
   audio) rifà i tempi: ogni didascalia dura almeno respiro (0,3 s) + voce + margine
   (0,6 s); si prende fino al 60% della pausa che la segue, poi la **storia rallenta**
   dentro la didascalia (il consuntivo riporta di quanto). La narrazione muta (senza
   narratrice) conta come tempo di lettura solo se viene *prima* di una battuta.
-- **Niente battute nuove.** Il grammelot non è un permesso di far parlare chi la prosa
-  fa tacere: si suonano solo le «» della prosa.
+- **Niente battute nuove.** Né le voci né il grammelot sono un permesso di far parlare
+  chi la prosa fa tacere: si dicono solo le «» della prosa.
 
-## 5. La narratrice (`cartoni/voce/voce.json`, `render/narra.ts`, `audio/narratrice.ts`)
+## 5. Il cast delle voci (`cartoni/voce/voce.json`, `render/narra.ts`, `render/leggi_voce.py`)
 
-- **Una sola per la saga.** `voce.json`: `stato` `da-scegliere` (con una `provvisoria` per
-  i provini) oppure `scelta` con la `narratrice`. Il test vieta gli episodi narrati con
-  un'altra voce e marca `provino` tutto quello che è registrato prima della scelta.
-- **Scegliere** (cancello di Ray): `npx tsx cartoni/render/narra.ts --provini` fa leggere
-  la stessa pagina a tutte le candidate. Scelta fatta: `stato: "scelta"`,
-  `narratrice: "<id>"` (con chi e quando in `scelta`), e si rifanno le riprese degli
-  episodi. Scelta del 26/9/2026: **Paola, da bambina** (`paola-bambina`).
-- **Una candidata** è un modello Piper con quattro numeri: `lentezza` (1 = il suo passo),
-  `variazione` e `cadenza` (quanto varia il suono e il ritmo), `tono` (semitoni). Il
-  `tono` fa la voce più acuta *e più piccola*: si fa leggere più lenta di 2^(tono/12) e
-  si riascolta più veloce dello stesso fattore, così salgono insieme altezza e formanti
-  (una bambina) e il passo resta quello di `lentezza`, senza stirare il suono. Col tono
-  la `lentezza` rende un po' meno (Piper non allunga in proporzione): si regola a
-  orecchio — `paola-bambina` a 1.38 è circa il 10% più lenta di `paola` a 1.12.
-- **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` (python3 + `piper-tts`,
-  ffmpeg; i modelli stanno fuori dal repo, `--modelli` o `PIPER_VOCI`). Le riprese
-  (Opus, una per pezzo) e `narrazione.json` vanno in `episodi/epNN/voce/` e **si
-  tengono**: la voce sintetica non ridice mai una frase uguale, e i tempi del cartone
-  dipendono dalla durata di ogni ripresa. `--solo s05,s06` rifà solo quelle inquadrature.
-- **Licenze.** Ogni candidata dichiara la sua in `voce.json`: va rispettata (es. CC BY →
-  citazione nei titoli di coda) prima di pubblicare.
+- **Una voce per ruolo, per sempre.** `voce.json` ha la `narratrice` e i `personaggi`;
+  ogni ruolo è `da-scegliere` (con una `provvisoria` e i suoi `provini`) o `scelta` (con
+  la `voce`, e chi e quando). Due ruoli non hanno mai la stessa voce. Il test vieta le
+  riprese con una voce diversa da quella del ruolo, e marca `provino` tutto quello che è
+  registrato prima della scelta. Scelta del 26/9/2026: la narratrice è **Paola, da
+  bambina** (`paola-bambina`); i personaggi sono ancora provvisori.
+- **Scegliere** (cancello di Ray): `npx tsx cartoni/render/narra.ts --provini narratrice`
+  fa leggere la stessa pagina a tutte le candidate; `--provini personaggi` fa dire a
+  ogni personaggio le sue battute con ognuna delle sue voci in prova. Scelta fatta:
+  `stato: "scelta"`, `voce: "<id>"`, e si rifanno le riprese.
+- **Una candidata** è un modello con pochi numeri: `motore` (`piper` o `kokoro`),
+  `modello` (il modello Piper, o la voce Kokoro), `lentezza` (1 = il suo passo; di più =
+  più lenta), per Piper `variazione` e `cadenza` (quanto variano suono e ritmo), e
+  `tono` (semitoni). Il `tono` fa la voce più acuta *e più piccola* (o più grave e più
+  grande, se negativo): si fa leggere più lenta di 2^(tono/12) e si riascolta più
+  veloce dello stesso fattore, così altezza e formanti si muovono insieme e il passo
+  resta quello di `lentezza`, senza stirare il suono. Con Piper la `lentezza` col tono
+  rende un po' meno: si regola a orecchio (`paola-bambina` a 1.38 è circa il 10% più
+  lenta di `paola` a 1.12).
+- **Che si capisca.** Più una voce sale di tono, meno si capisce: prima di proporre una
+  voce si fa trascrivere ogni battuta a un riconoscitore vocale (per ep01: Whisper) e
+  si tengono le impostazioni che la fanno capire tutta. Le parole che una voce sbaglia
+  vanno nel dizionario `pronuncia` di `voce.json` (es. `giovane` → `giòvane`): vale solo
+  per le voci, le didascalie restano quelle della prosa.
+- **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` registra la
+  narratrice (`narrazione.json`) e le battute di ogni personaggio (`battute.json`) in
+  `episodi/epNN/voce/`; `--chi zara,rocco` solo alcune voci, `--solo s05,s06` solo
+  alcune inquadrature. Serve python3 con `piper-tts` e `kokoro-onnx`, e ffmpeg; i modelli
+  stanno fuori dal repo (`--modelli` o `PIPER_VOCI`, li scarica la prima volta). Le
+  riprese (Opus, una per pezzo) **si tengono**: i tempi del cartone dipendono dalla loro
+  durata (e Piper non ridice mai una frase identica; Kokoro sì, sulla stessa macchina).
+- **Licenze.** Ogni candidata dichiara la sua in `voce.json` e va rispettata prima di
+  pubblicare. Kokoro: Apache 2.0. Riccardo (Piper): BSD del dataset M-AILABS. Paola
+  (Piper): dataset CC0 ma modello derivato da una voce inglese addestrata su dati *solo
+  per ricerca*: per uso commerciale **non è pulita**.
 
 ## 6. Audio (`cartoni/audio/`)
 

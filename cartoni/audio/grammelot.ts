@@ -1,4 +1,7 @@
-// cartoni/audio/grammelot.ts — la voce dei personaggi, fatta di numeri.
+// cartoni/audio/grammelot.ts — il grammelot dei personaggi, fatto di numeri.
+//
+// È il ripiego per le battute che non hanno ancora una ripresa con la voce del
+// personaggio (e il modo di provare un episodio prima di registrarlo).
 //
 // Un piccolo sintetizzatore a formanti (sorgente → filtro, come la voce vera):
 //  - la SORGENTE è la glottide: un'onda a impulsi morbidi (Rosenberg) che

@@ -1,11 +1,53 @@
 {
-  "_cosa": "La voce narrante della saga: UNA, scelta da Ray, e poi sempre quella (test/cartoni.motore.test.ts lo controlla). Finché stato = da-scegliere, le narrazioni degli episodi sono provini.",
-  "stato": "scelta",
-  "narratrice": "paola-bambina",
-  "scelta": {
-    "da": "Ray",
-    "il": "2026-09-26",
-    "come": "Paola, un poco più lenta e più acuta: la voce di una bambina"
+  "_cosa": "Le voci della saga: UNA narratrice e UNA voce per ogni personaggio, scelte da Ray e poi sempre quelle (test/cartoni.motore.test.ts lo controlla). Finché una voce è da-scegliere si usa la sua provvisoria e le riprese sono provini. Le candidate sono il vivaio: ogni ruolo ne prende una, due ruoli mai la stessa.",
+  "narratrice": {
+    "stato": "scelta",
+    "voce": "paola-bambina",
+    "scelta": {
+      "da": "Ray",
+      "il": "2026-09-26",
+      "come": "Paola, un poco più lenta e più acuta: la voce di una bambina"
+    }
+  },
+  "personaggi": {
+    "rocco": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "nicola-grande",
+      "provini": [
+        "nicola-grande",
+        "nicola-ragazzo"
+      ],
+      "come": "maschio, grande e gentile, un po' lento; esita prima di parlare (saga/bible/rocco.md, «Voce»)"
+    },
+    "zara": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "sara-ragazza",
+      "provini": [
+        "sara-ragazza",
+        "sara-cucciola"
+      ],
+      "come": "femmina, giovane tigre, svelta e asciutta (saga/bible/zara.md, «Voce»)"
+    },
+    "cecca": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "sara-gazza",
+      "provini": [
+        "sara-gazza"
+      ],
+      "come": "la gazza: femmina, rapida, pettegola, si interrompe da sola (saga/bible/comprimari/cecca.md)"
+    },
+    "fratello": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "riccardo-ricordo",
+      "provini": [
+        "riccardo-ricordo"
+      ],
+      "come": "il fratello di Zara, nel ricordo: più grande, poche parole, di chi ha già capito (saga/bible/toraki.md, «Voce»)"
+    }
   },
   "candidate": {
     "paola-bambina": {
@@ -27,15 +69,54 @@
       "cadenza": 0.7,
       "licenza": "come paola-bambina: modello derivato da en_US-lessac (corpus Lessac 2013, solo ricerca, non commerciale)"
     },
-    "serena-bambina": {
-      "descrizione": "Serena (Piper, qualità alta) con lo stesso trattamento: più acuta di 4 semitoni e un poco più lenta (l'alternativa con la licenza pulita)",
+    "sara-cucciola": {
+      "descrizione": "Sara (Kokoro), più acuta di 3 semitoni e un poco svelta: più bambina, ma alcune parole si capiscono meno",
+      "motore": "kokoro",
+      "modello": "if_sara",
+      "lentezza": 0.95,
+      "tono": 3,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad)"
+    },
+    "sara-ragazza": {
+      "descrizione": "Sara (Kokoro), appena più acuta: una ragazza, chiara (si capisce tutto)",
+      "motore": "kokoro",
+      "modello": "if_sara",
+      "lentezza": 1.0,
+      "tono": 1,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad)"
+    },
+    "sara-gazza": {
+      "descrizione": "Sara (Kokoro), molto più acuta e svelta: una voce piccola che chiacchiera",
+      "motore": "kokoro",
+      "modello": "if_sara",
+      "lentezza": 0.88,
+      "tono": 6,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad)"
+    },
+    "nicola-grande": {
+      "descrizione": "Nicola (Kokoro), un semitono più grave e un poco lento: grande e gentile (si capisce tutto)",
+      "motore": "kokoro",
+      "modello": "im_nicola",
+      "lentezza": 1.15,
+      "tono": -1,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad)"
+    },
+    "nicola-ragazzo": {
+      "descrizione": "Nicola (Kokoro), più acuto di 2 semitoni: più ragazzo, ma alcune parole si capiscono meno",
+      "motore": "kokoro",
+      "modello": "im_nicola",
+      "lentezza": 1.1,
+      "tono": 2,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad)"
+    },
+    "riccardo-ricordo": {
+      "descrizione": "Riccardo (Piper, qualità minima): un'altra voce d'uomo, lontana e sgranata, da ricordo",
       "motore": "piper",
-      "modello": "it_IT-serena-high",
-      "lentezza": 1.4,
-      "variazione": 0.55,
-      "cadenza": 0.5,
-      "tono": 4,
-      "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
+      "modello": "it_IT-riccardo-x_low",
+      "lentezza": 1.1,
+      "variazione": 0.6,
+      "cadenza": 0.7,
+      "licenza": "licenza in stile BSD del dataset M-AILABS (da LibriVox): uso commerciale permesso, va tenuta la nota di copyright"
     },
     "serena": {
       "descrizione": "Serena (Piper, qualità alta), un poco più lenta del parlato",
@@ -44,17 +125,29 @@
       "lentezza": 1.15,
       "variazione": 0.55,
       "cadenza": 0.5,
+      "esito": "scartata da Ray (26/9/2026): la S è spenta",
       "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
     },
-    "serena-lenta": {
-      "descrizione": "Serena, più lenta: per i più piccoli (allunga l'episodio)",
+    "serena-bambina": {
+      "descrizione": "Serena (Piper, qualità alta), più acuta di 4 semitoni e un poco più lenta",
       "motore": "piper",
       "modello": "it_IT-serena-high",
-      "lentezza": 1.3,
-      "variazione": 0.5,
-      "cadenza": 0.45,
+      "lentezza": 1.4,
+      "variazione": 0.55,
+      "cadenza": 0.5,
+      "tono": 4,
+      "esito": "scartata da Ray (26/9/2026): la S è spenta",
       "licenza": "CC BY 4.0 (dataset committa/serena-synthetic-it-27h): va citata nei titoli di coda"
     }
   },
-  "calore": { "bassi": 2.5, "alti": -2, "stanza": 0.12, "vol": 1 }
+  "pronuncia": {
+    "_cosa": "come le voci sintetiche devono leggere certe parole (solo per loro: le didascalie restano come nella prosa)",
+    "giovane": "giòvane"
+  },
+  "calore": {
+    "bassi": 2.5,
+    "alti": -2,
+    "stanza": 0.12,
+    "vol": 1
+  }
 }

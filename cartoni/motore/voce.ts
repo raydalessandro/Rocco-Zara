@@ -1,7 +1,10 @@
 // cartoni/motore/voce.ts — la voce nel tempo: chi parla, quando, e quanto aspetta la scena.
 //
 // Due cose, tutte e due pure (le usa il browser per le bocche e il render per
-// l'audio, e danno lo stesso risultato):
+// l'audio, e danno lo stesso risultato). Le voci sono di due specie: le
+// RIPRESE (una voce vera o sintetica, registrata una volta e tenuta: la
+// narratrice e, se hanno la loro voce, i personaggi) e il GRAMMELOT (le
+// battute che non hanno ancora una ripresa: si suonano in codice).
 //
 // 1. IL PIANO DI UNA BATTUTA. Dalla battuta vera (le sue sillabe, gli accenti,
 //    la punteggiatura) e dal profilo della voce esce una fila di sillabe di
@@ -211,25 +214,53 @@ export function boccaBattuta(p: PianoBattuta, t: number): number {
   return clamp(best);
 }
 
-// ------------------------------------------------------ la narratrice --
-/** Una ripresa della narratrice (un file audio, fuori dal copione). */
-export interface ClipNarrazione {
+// ------------------------------------------------------------ le riprese --
+/** Una ripresa: un pezzo letto da una voce, in un file audio fuori dal copione. */
+export interface Ripresa {
   /** il testo letto: deve essere quello del segmento, o la ripresa non vale */
   testo: string;
   /** durata del parlato (s) */
   durata: number;
   /** il file, relativo alla cartella voce/ dell'episodio */
   file: string;
+  /** chi parla (le battute dei personaggi) */
+  chi?: string;
+  /** la voce che ha letto (id in cartoni/voce/voce.json) */
+  voce?: string;
+  /** la bocca per il pupazzo: una cifra 0-9 ogni 40 ms (le battute) */
+  bocca?: string;
 }
 
-/** Il registro delle riprese di un episodio (episodi/epNN/voce/narrazione.json). */
+/** Compatibilità: la ripresa della narratrice. */
+export type ClipNarrazione = Ripresa;
+
+/** Il registro delle riprese della narratrice (episodi/<id>/voce/narrazione.json). */
 export interface Narrazione {
   /** la voce che ha letto (id in cartoni/voce/voce.json) */
   voce: string;
   /** "provino" finché la voce della saga non è scelta */
   stato: "provino" | "definitiva";
   /** chiave: `${inquadratura}/${didascalia}/${segmento}` */
-  clip: Record<string, ClipNarrazione>;
+  clip: Record<string, Ripresa>;
+}
+
+/** Il registro delle battute registrate dei personaggi (episodi/<id>/voce/battute.json). */
+export interface Battute {
+  /** per ogni personaggio: la voce che l'ha detta e se è quella scelta */
+  voci: Record<string, { voce: string; stato: "provino" | "definitiva" }>;
+  /** chiave: `${inquadratura}/${didascalia}/${segmento}`; ogni ripresa ha `chi`, `voce`, `bocca` */
+  clip: Record<string, Ripresa>;
+}
+
+/** La bocca 0..1 a `t` secondi dall'inizio di una ripresa (dal suo volume, 25 volte al secondo). */
+export function boccaRipresa(b: string, t: number): number {
+  if (t < 0 || !b) return 0;
+  const x = t * 25;
+  const i = Math.floor(x);
+  if (i >= b.length) return 0;
+  const a = (b.charCodeAt(i) - 48) / 9;
+  const c = i + 1 < b.length ? (b.charCodeAt(i + 1) - 48) / 9 : 0;
+  return clamp(a + (c - a) * (x - i));
 }
 
 export const chiaveClip = (q: string, didascalia: number, segmento: number): string => `${q}/${didascalia}/${segmento}`;
@@ -259,12 +290,35 @@ export function daNarrare(ep: Episodio, voci: Readonly<Record<string, ProfiloVoc
   return out;
 }
 
+/** Una battuta che un personaggio dice con la sua voce (quel che si registra). */
+export interface DaRecitare {
+  chiave: string;
+  q: string;
+  chi: string;
+  testo: string;
+}
+
+/** Tutte le battute dei personaggi che hanno un profilo di voce, in ordine. */
+export function daRecitare(ep: Episodio, voci: Readonly<Record<string, ProfiloVoce>>): DaRecitare[] {
+  const out: DaRecitare[] = [];
+  for (const q of ep.inquadrature) {
+    (q.didascalie ?? []).forEach((d, i) =>
+      segmenta(d.testo, d.chi).forEach((s, j) => {
+        if (s.tipo === "battuta" && voci[s.chi]) out.push({ chiave: chiaveClip(q.id, i, j), q: q.id, chi: s.chi, testo: s.testo });
+      }),
+    );
+  }
+  return out;
+}
+
 // ------------------------------------------------ l'episodio con voci --
 export interface OpzVoce {
   /** Il cast delle voci (cartoni/cast/voci.ts). */
   voci: Readonly<Record<string, ProfiloVoce>>;
   /** Le riprese della narratrice; senza, la narrazione resta muta (solo didascalie). */
   narrazione?: Narrazione | null;
+  /** Le battute registrate dei personaggi; quelle che mancano si dicono in grammelot. */
+  battute?: Battute | null;
   /** La voce parte dopo che la didascalia è apparsa (s). */
   attacco?: number;
   /** La didascalia resta dopo che la voce ha finito (s). */
@@ -290,7 +344,7 @@ export interface EventoVoce {
   /** pensiero (corsivo): la narratrice lo dice più piano */
   pensiero?: boolean;
   piano?: PianoBattuta;
-  clip?: ClipNarrazione;
+  clip?: Ripresa;
 }
 
 /** Come scorre il tempo di un'inquadratura: nodi (tempo vero, tempo della storia). */
@@ -305,6 +359,8 @@ export interface EpisodioConVoce extends Episodio {
   tempi: Record<string, TempoInquadratura>;
   /** segmenti di narrazione senza ripresa (o con una ripresa di un testo diverso) */
   senzaRipresa: string[];
+  /** battute senza registrazione (dette in grammelot), quando le registrazioni ci sono */
+  senzaRegistrazione: string[];
 }
 
 /** Interpolazione a tratti su nodi [x, y] crescenti; fuori, pendenza 1. */
@@ -327,7 +383,7 @@ interface Pezzo {
   durata: number;
   segmento: number;
   piano?: PianoBattuta;
-  clip?: ClipNarrazione;
+  clip?: Ripresa;
 }
 
 /** Caratteri al secondo di una lettura svelta: il tempo minimo di un pezzo muto. */
@@ -340,6 +396,7 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
   const respiro = o.respiro ?? 0.3;
   const prestito = o.prestito ?? 0.6;
   const senzaRipresa: string[] = [];
+  const senzaRegistrazione: string[] = [];
   const tempi: Record<string, TempoInquadratura> = {};
   const locali: { q: Inquadratura; eventi: (EventoVoce & { t: number })[] }[] = [];
 
@@ -354,16 +411,23 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
     ordinate.forEach(({ d, i }, k) => {
       const pezzi: Pezzo[] = [];
       segmenta(d.testo, d.chi).forEach((s, j) => {
+        const chiave = chiaveClip(q.id, i, j);
         if (s.tipo === "battuta") {
           const v = o.voci[s.chi];
           if (v) {
+            // la battuta registrata, se c'è (e se è proprio quella); se no il grammelot
+            const reg = o.battute?.clip[chiave];
+            if (reg && reg.testo === s.testo && reg.chi === s.chi) {
+              pezzi.push({ tipo: "battuta", chi: s.chi, testo: s.testo, durata: reg.durata, segmento: j, clip: reg });
+              return;
+            }
+            if (o.battute) senzaRegistrazione.push(`${chiave} (${s.chi}): «${s.testo}»`);
             const piano = pianifica(s.testo, v);
             pezzi.push({ tipo: "battuta", chi: s.chi, testo: s.testo, durata: piano.durata, segmento: j, piano });
             return;
           }
         }
         // narrazione (o battuta lasciata alla narratrice): con la ripresa, o muta
-        const chiave = chiaveClip(q.id, i, j);
         const clip = o.narrazione?.clip[chiave];
         if (clip && clip.testo === s.testo) {
           pezzi.push({ tipo: "narrazione", chi: "narratrice", testo: s.testo, durata: clip.durata, segmento: j, clip });
@@ -438,10 +502,14 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
     const vero = (t: number) => aTratti(nodiInv, t); // tempo della storia → tempo vero
     for (const { t: tl, ...e } of eventi) voci.push({ ...e, tg: tg + tl });
     tg += T.durata;
-    const battute = eventi.filter((e) => e.piano);
+    const battute = eventi.filter((e) => e.tipo === "battuta");
     const bocca = (chi: string, t: number): number => {
       let b = 0;
-      for (const e of battute) if (e.chi === chi) b = Math.max(b, boccaBattuta(e.piano!, t - e.t));
+      for (const e of battute) {
+        if (e.chi !== chi) continue;
+        if (e.piano) b = Math.max(b, boccaBattuta(e.piano, t - e.t));
+        else if (e.clip?.bocca) b = Math.max(b, boccaRipresa(e.clip.bocca, t - e.t));
+      }
       return b;
     };
     const suoni = q.suoni?.map((s): Suono => {
@@ -460,7 +528,7 @@ export function conVoce(ep: Episodio, o: OpzVoce): EpisodioConVoce {
     };
     return nuova;
   });
-  return { ...ep, inquadrature, voci, tempi, senzaRipresa };
+  return { ...ep, inquadrature, voci, tempi, senzaRipresa, senzaRegistrazione };
 }
 
 /** Quanto la scena rallenta al massimo (1 = mai): per il consuntivo. */

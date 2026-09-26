@@ -27,7 +27,7 @@ import { type Episodio, durata, fotogramma, postoA, scaletta, suoni } from "../c
 import { segmenta, sillabe, sillabeParola } from "../cartoni/motore/parola";
 import { Defs } from "../cartoni/motore/svg";
 import { ease, traccia } from "../cartoni/motore/tempo";
-import { type Narrazione, boccaBattuta, chiaveClip, conVoce, daNarrare, pianifica } from "../cartoni/motore/voce";
+import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, pianifica } from "../cartoni/motore/voce";
 import { insertoPietra } from "../cartoni/scene/inserti";
 import { LUCI } from "../cartoni/scene/luci";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
@@ -303,30 +303,91 @@ describe("cartoni — le voci", () => {
   });
 });
 
-describe("cartoni — la voce narrante è UNA (cartoni/voce/voce.json)", () => {
-  type Saga = { stato: string; narratrice: string | null; provvisoria?: string; candidate: Record<string, { modello: string; licenza: string }> };
-  const saga: Saga = JSON.parse(leggi("cartoni/voce/voce.json"));
+describe("cartoni — le battute registrate", () => {
+  it("una battuta registrata prende il posto del grammelot, e la bocca segue il suo volume", () => {
+    const chiave = chiaveClip("a", 0, 0);
+    expect(daRecitare(PROVA, VOCI).map((b) => [b.chiave, b.chi, b.testo])).toEqual([
+      [chiave, "rocco", "Sei piccola,"],
+      [chiaveClip("a", 1, 0), "zara", "Sono giovane."],
+    ]);
+    const b: Battute = {
+      voci: { rocco: { voce: "prova", stato: "provino" } },
+      clip: { [chiave]: { chi: "rocco", voce: "prova", testo: "Sei piccola,", durata: 0.4, file: "a-0-0.ogg", bocca: "0599" } },
+    };
+    const ep = conVoce(PROVA, { voci: VOCI, battute: b });
+    const rocco = ep.voci.find((v) => v.chi === "rocco")!;
+    expect(rocco.clip?.file).toBe("a-0-0.ogg");
+    expect(rocco.piano).toBeUndefined();
+    expect(rocco.durata).toBe(0.4);
+    // Zara non è registrata: resta in grammelot, e si dice
+    expect(ep.voci.find((v) => v.chi === "zara")?.piano).toBeDefined();
+    expect(ep.senzaRegistrazione).toEqual([`${chiaveClip("a", 1, 0)} (zara): «Sono giovane.»`]);
+    // la bocca: 0 prima, aperta dove la ripresa è forte, 0 dopo
+    expect(boccaRipresa("0599", -0.1)).toBe(0);
+    expect(boccaRipresa("0599", 0.1)).toBeGreaterThan(0.9);
+    expect(boccaRipresa("0599", 0.2)).toBe(0);
+    // un testo diverso da quello della didascalia non vale: si torna al grammelot
+    const sbagliata = conVoce(PROVA, { voci: VOCI, battute: { ...b, clip: { [chiave]: { ...b.clip[chiave], testo: "Sei grande," } } } });
+    expect(sbagliata.voci.find((v) => v.chi === "rocco")?.piano).toBeDefined();
+  });
+});
 
-  it("lo stato è chiaro: da scegliere (con una provvisoria) o scelta (una delle candidate)", () => {
-    expect(["da-scegliere", "scelta"]).toContain(saga.stato);
-    if (saga.stato === "scelta") expect(Object.keys(saga.candidate)).toContain(saga.narratrice);
-    else {
-      expect(saga.narratrice).toBeNull();
-      expect(Object.keys(saga.candidate)).toContain(saga.provvisoria);
+describe("cartoni — le voci della saga: una per ruolo, e poi sempre quella (cartoni/voce/voce.json)", () => {
+  type Ruolo = { stato: string; voce: string | null; provvisoria?: string; provini?: string[] };
+  type Saga = {
+    narratrice: Ruolo;
+    personaggi: Record<string, Ruolo>;
+    candidate: Record<string, { motore: string; modello: string; lentezza: number; licenza: string }>;
+  };
+  const saga: Saga = JSON.parse(leggi("cartoni/voce/voce.json"));
+  const ruoli: [string, Ruolo][] = [["narratrice", saga.narratrice], ...Object.entries(saga.personaggi)];
+  const attuale = (r: Ruolo) => r.voce ?? r.provvisoria;
+
+  it("ogni ruolo è chiaro: scelta (una candidata) o da scegliere (con una provvisoria); i provini sono candidate", () => {
+    const nomi = Object.keys(saga.candidate);
+    for (const [nome, r] of ruoli) {
+      expect(["da-scegliere", "scelta"], nome).toContain(r.stato);
+      if (r.stato === "scelta") expect(nomi, nome).toContain(r.voce);
+      else {
+        expect(r.voce, nome).toBeNull();
+        expect(nomi, nome).toContain(r.provvisoria);
+      }
+      for (const pv of r.provini ?? []) expect(nomi, `${nome}: provino ${pv}`).toContain(pv);
     }
-    for (const c of Object.values(saga.candidate)) expect(c.licenza.length).toBeGreaterThan(10);
+    for (const [nome, c] of Object.entries(saga.candidate)) {
+      expect(["piper", "kokoro"], nome).toContain(c.motore);
+      expect(c.lentezza, nome).toBeGreaterThan(0);
+      expect(c.licenza.length, nome).toBeGreaterThan(10);
+    }
   });
 
-  it("ogni episodio narrato usa la voce della saga (e finché non è scelta, è un provino)", () => {
+  it("due ruoli non hanno mai la stessa voce, e ogni personaggio ha il suo profilo nel cast", () => {
+    const usate = ruoli.map(([, r]) => attuale(r));
+    expect(new Set(usate).size).toBe(usate.length);
+    for (const p of Object.keys(saga.personaggi)) expect(Object.keys(VOCI), p).toContain(p);
+  });
+
+  it("ogni episodio registrato usa le voci della saga (e finché una voce non è scelta, le sue riprese sono provini)", () => {
     const dir = join(ROOT, "cartoni/episodi");
-    const episodi = existsSync(dir) ? readdirSync(dir).filter((d) => existsSync(join(dir, d, "voce/narrazione.json"))) : [];
+    const episodi = existsSync(dir) ? readdirSync(dir) : [];
     for (const id of episodi) {
-      const n: Narrazione = JSON.parse(readFileSync(join(dir, id, "voce/narrazione.json"), "utf8"));
-      expect(Object.keys(saga.candidate), id).toContain(n.voce);
-      if (saga.stato === "scelta") {
-        expect(n.voce, `${id}: la voce della saga è ${saga.narratrice}`).toBe(saga.narratrice);
-        expect(n.stato, id).toBe("definitiva");
-      } else expect(n.stato, id).toBe("provino");
+      const fn = join(dir, id, "voce/narrazione.json");
+      if (existsSync(fn)) {
+        const n: Narrazione = JSON.parse(readFileSync(fn, "utf8"));
+        expect(n.voce, `${id}: la narratrice della saga è ${attuale(saga.narratrice)}`).toBe(attuale(saga.narratrice));
+        expect(n.stato, id).toBe(saga.narratrice.stato === "scelta" ? "definitiva" : "provino");
+      }
+      const fb = join(dir, id, "voce/battute.json");
+      if (existsSync(fb)) {
+        const b: Battute = JSON.parse(readFileSync(fb, "utf8"));
+        for (const [chi, v] of Object.entries(b.voci)) {
+          const r = saga.personaggi[chi];
+          expect(r, `${id}: ${chi} non ha un ruolo in voce.json`).toBeDefined();
+          expect(v.voce, `${id}: la voce di ${chi} è ${attuale(r)}`).toBe(attuale(r));
+          expect(v.stato, `${id}: ${chi}`).toBe(r.stato === "scelta" ? "definitiva" : "provino");
+        }
+        for (const [k, c] of Object.entries(b.clip)) expect(c.voce, `${id} ${k}`).toBe(b.voci[c.chi!]?.voce);
+      }
     }
   });
 });

@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // cartoni/render/gira.mjs — gira il cartone: dal copione al video.
 //
-//   node cartoni/render/gira.mjs --episodio ep01 [--narratrice] [--audio file.wav]
+//   node cartoni/render/gira.mjs --episodio ep01 [--narratrice] [--grammelot] [--audio file.wav]
 //                                [--fps 24] [--larghezza 1920] [--lavoratori 2]
 //                                [--da 0] [--a <fine>] [--uscita cartoni/out/ep01.mp4]
 //
 // --narratrice gira i tempi della versione narrata (le riprese in
-// episodi/<id>/voce/): l'audio va fatto con lo stesso flag (suona.ts).
+// episodi/<id>/voce/); le battute registrate dei personaggi (voce/battute.json)
+// si usano sempre se ci sono, tranne con --grammelot. L'audio va fatto con gli
+// stessi flag (suona.ts): i tempi dipendono dalle voci.
 //
 // Come funziona: esbuild impacchetta il copione dell'episodio con le voci
 // (player/cartone.ts → conLeVoci, gli stessi tempi di suona.ts); Chrome headless
@@ -39,13 +41,14 @@ const H = Math.round((W * 9) / 16);
 const LAVORATORI = Math.max(1, Number(arg("lavoratori", 2)));
 const EPISODIO = arg("episodio", "");
 const NARRATRICE = process.argv.includes("--narratrice");
+const GRAMMELOT = process.argv.includes("--grammelot");
 const USCITA = resolve(RADICE, arg("uscita", `cartoni/out/${EPISODIO}${NARRATRICE ? "_narrato" : ""}.mp4`));
 const AUDIO = arg("audio", "");
 const QUALITA = Number(arg("qualita", 20)); // CRF di x264
 
 // ------------------------------------------------------------------ il pacchetto --
 /** Il pacchetto del cartone di un episodio: copione + voci + player, in un solo script. */
-export async function impacchetta(episodio = EPISODIO, narratrice = NARRATRICE) {
+export async function impacchetta(episodio = EPISODIO, narratrice = NARRATRICE, grammelot = GRAMMELOT) {
   if (!episodio) throw new Error("manca --episodio (es. --episodio ep01)");
   const require = createRequire(join(RADICE, "package.json"));
   const { build } = require("esbuild");
@@ -53,10 +56,14 @@ export async function impacchetta(episodio = EPISODIO, narratrice = NARRATRICE) 
   if (!existsSync(join(cartella, "copione.ts"))) throw new Error(`episodio sconosciuto: ${cartella}/copione.ts`);
   const narr = join(cartella, "voce/narrazione.json");
   if (narratrice && !existsSync(narr)) throw new Error(`nessuna ripresa della narratrice: manca ${narr}`);
+  const bat = join(cartella, "voce/battute.json");
+  const conBattute = !grammelot && existsSync(bat);
   const ingresso =
     `import ep from ${JSON.stringify(join(cartella, "copione.ts"))};\n` +
     `import { conLeVoci, registra } from ${JSON.stringify(join(RADICE, "cartoni/player/cartone.ts"))};\n` +
-    (narratrice ? `import narrazione from ${JSON.stringify(narr)};\nregistra(conLeVoci(ep, narrazione));\n` : `registra(conLeVoci(ep));\n`);
+    (narratrice ? `import narrazione from ${JSON.stringify(narr)};\n` : `const narrazione = null;\n`) +
+    (conBattute ? `import battute from ${JSON.stringify(bat)};\n` : `const battute = null;\n`) +
+    `registra(conLeVoci(ep, narrazione, battute));\n`;
   const out = await build({
     stdin: { contents: ingresso, resolveDir: RADICE, loader: "ts", sourcefile: "cartone-ingresso.ts" },
     bundle: true,

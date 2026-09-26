@@ -1,14 +1,15 @@
-// cartoni/cast/voci.ts — come parlano i personaggi: il grammelot.
+// cartoni/cast/voci.ts — come parlano i personaggi.
 //
-// I personaggi non parlano italiano: parlano un grammelot, come Pingu — una
-// lingua inventata fatta del RITMO, delle VOCALI e della MELODIA della battuta
-// vera. La didascalia dice le parole; la voce dice il tono. Così resta
-// semplice, adatta ai piccoli, e non suona come una voce "generata".
-//
-// Ogni voce è un profilo di numeri (niente campioni registrati): altezza,
-// passo delle sillabe, grandezza del tratto vocale, aria, grana, e l'alfabeto
-// delle consonanti che usa. Cambiare una voce = cambiare questi numeri.
-// Il motore che li suona è cartoni/audio/grammelot.ts.
+// Ogni personaggio ha una VOCE registrata (il cast è in cartoni/voce/voce.json:
+// una voce per ruolo, scelta da Ray e poi tenuta): dice le sue battute vere.
+// Qui c'è il suo PROFILO, che serve a due cose:
+//  - il posto nel missaggio delle sue battute registrate: volume, stereo, e
+//    l'eco di chi parla da un ricordo;
+//  - il GRAMMELOT, il ripiego per le battute non ancora registrate: una lingua
+//    inventata fatta del ritmo, delle vocali e della melodia della battuta vera
+//    (come Pingu), suonata da cartoni/audio/grammelot.ts coi numeri del profilo
+//    (altezza, passo delle sillabe, grandezza del tratto vocale, aria, grana,
+//    l'alfabeto delle consonanti). Cambiare un grammelot = cambiare questi numeri.
 
 import type { ProfiloVoce } from "../motore/voce";
 

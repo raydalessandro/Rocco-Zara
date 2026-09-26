@@ -9,15 +9,16 @@
 import { VOCI } from "../cast/voci";
 import { inSvg } from "../motore/fotogramma";
 import { type Episodio, durata, fotogramma, scaletta } from "../motore/montaggio";
-import { type EpisodioConVoce, type Narrazione, conVoce } from "../motore/voce";
+import { type Battute, type EpisodioConVoce, type Narrazione, conVoce } from "../motore/voce";
 
 /**
- * L'episodio come si gira: il grammelot dei personaggi sempre (i tempi e le
- * bocche vengono dalle battute), la narratrice se ci sono le sue riprese.
- * Video (gira.mjs) e audio (suona.ts) passano di qui: stessi tempi, al campione.
+ * L'episodio come si gira: i personaggi con le loro voci registrate (o in
+ * grammelot, dove una battuta non è registrata), la narratrice se ci sono le
+ * sue riprese. Video (gira.mjs) e audio (suona.ts) passano di qui: stessi
+ * tempi, al campione.
  */
-export function conLeVoci(ep: Episodio, narrazione?: Narrazione | null): EpisodioConVoce {
-  return conVoce(ep, { voci: VOCI, narrazione });
+export function conLeVoci(ep: Episodio, narrazione?: Narrazione | null, battute?: Battute | null): EpisodioConVoce {
+  return conVoce(ep, { voci: VOCI, narrazione, battute });
 }
 
 export interface Cartone {

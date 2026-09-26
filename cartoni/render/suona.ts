@@ -1,10 +1,12 @@
 // cartoni/render/suona.ts — scrive la colonna sonora di un episodio in WAV.
 //
-//   npx tsx cartoni/render/suona.ts --episodio ep01 [--narratrice] [--uscita cartoni/out/ep01.wav]
+//   npx tsx cartoni/render/suona.ts --episodio ep01 [--narratrice] [--grammelot] [--uscita cartoni/out/ep01.wav]
 //
-// Musica (episodi/<id>/partitura.ts), effetti e ambiente dal copione, il
-// grammelot dei personaggi, e — con --narratrice — le riprese della voce
-// narrante (episodi/<id>/voce/narrazione.json; per leggerle serve ffmpeg).
+// Musica (episodi/<id>/partitura.ts), effetti e ambiente dal copione; i
+// personaggi con le loro voci registrate (episodi/<id>/voce/battute.json, se
+// c'è — altrimenti, o con --grammelot, in grammelot); con --narratrice le
+// riprese della voce narrante (voce/narrazione.json). Per leggere le riprese
+// serve ffmpeg.
 
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -12,10 +14,10 @@ import { dirname, join, resolve } from "node:path";
 import { VOCI } from "../cast/voci";
 import { colonna, wav } from "../audio/colonna";
 import { battute } from "../audio/grammelot";
-import { CALORE_BASE, type Calore, narrazione } from "../audio/narratrice";
+import { CALORE_BASE, type Calore, riprese } from "../audio/narratrice";
 import { Bus, SR } from "../audio/sintesi";
 import { durata, type Episodio } from "../motore/montaggio";
-import type { Narrazione } from "../motore/voce";
+import type { Battute, Narrazione } from "../motore/voce";
 import { conLeVoci } from "../player/cartone";
 
 const RADICE = resolve(__dirname, "../..");
@@ -38,6 +40,8 @@ async function main(): Promise<void> {
   const ep: Episodio = (await import(join(cartella, "copione.ts"))).default;
   const musica = (await import(join(cartella, "partitura.ts"))).default;
   const conNarratrice = flag("narratrice");
+  const fileBattute = join(cartella, "voce/battute.json");
+  const bat: Battute | null = !flag("grammelot") && existsSync(fileBattute) ? (JSON.parse(readFileSync(fileBattute, "utf8")) as Battute) : null;
   const uscita = resolve(arg("uscita", `cartoni/out/${id}${conNarratrice ? "_narrato" : ""}.wav`)!);
   let narr: Narrazione | null = null;
   if (conNarratrice) {
@@ -46,24 +50,26 @@ async function main(): Promise<void> {
     narr = JSON.parse(readFileSync(f, "utf8")) as Narrazione;
   }
   const t0 = Date.now();
-  const epV = conLeVoci(ep, narr);
+  const epV = conLeVoci(ep, narr, bat);
   if (epV.senzaRipresa.length) console.warn(`⚠ ${epV.senzaRipresa.length} pezzi di narrazione senza ripresa (restano solo scritti):\n  ${epV.senzaRipresa.join("\n  ")}`);
+  if (epV.senzaRegistrazione.length) console.warn(`⚠ ${epV.senzaRegistrazione.length} battute senza registrazione (dette in grammelot):\n  ${epV.senzaRegistrazione.join("\n  ")}`);
   const voci = new Bus(durata(epV) + 3);
   battute(voci, epV.voci, VOCI);
-  if (narr) {
+  const file = new Map<string, Float32Array>();
+  for (const e of epV.voci) {
+    if (e.clip && !file.has(e.clip.file)) file.set(e.clip.file, leggiRipresa(join(cartella, "voce", e.clip.file)));
+  }
+  if (file.size) {
     const saga = JSON.parse(readFileSync(join(RADICE, "cartoni/voce/voce.json"), "utf8")) as { calore?: Calore };
-    const riprese = new Map<string, Float32Array>();
-    for (const e of epV.voci) {
-      if (e.clip && !riprese.has(e.clip.file)) riprese.set(e.clip.file, leggiRipresa(join(cartella, "voce", e.clip.file)));
-    }
-    narrazione(voci, epV.voci, riprese, { ...CALORE_BASE, ...saga.calore });
+    riprese(voci, epV.voci, file, { ...CALORE_BASE, ...saga.calore }, VOCI);
   }
   const bus = colonna(epV, { musica, voci: { bus: voci, parlato: epV.voci } });
   mkdirSync(dirname(uscita), { recursive: true });
   writeFileSync(uscita, wav(bus));
-  const battuteN = epV.voci.filter((v) => v.tipo === "battuta").length;
+  const registrate = epV.voci.filter((v) => v.tipo === "battuta" && v.clip).length;
+  const grammelot = epV.voci.filter((v) => v.tipo === "battuta" && v.piano).length;
   const narrN = epV.voci.filter((v) => v.tipo === "narrazione").length;
-  console.log(`colonna sonora: ${(bus.n / SR).toFixed(1)}s · ${battuteN} battute · ${narrN} pezzi narrati → ${uscita} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
+  console.log(`colonna sonora: ${(bus.n / SR).toFixed(1)}s · ${registrate} battute registrate · ${grammelot} in grammelot · ${narrN} pezzi narrati → ${uscita} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
 }
 
 main().catch((e) => {
