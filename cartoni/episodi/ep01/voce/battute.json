@@ -1,0 +1,174 @@
+{
+ "voci": {
+  "fratello": {
+   "voce": "riccardo-ricordo",
+   "stato": "provino"
+  },
+  "cecca": {
+   "voce": "sara-gazza",
+   "stato": "provino"
+  },
+  "rocco": {
+   "voce": "nicola-grande",
+   "stato": "provino"
+  },
+  "zara": {
+   "voce": "sara-ragazza",
+   "stato": "provino"
+  }
+ },
+ "clip": {
+  "s07/2/0": {
+   "chi": "fratello",
+   "voce": "riccardo-ricordo",
+   "testo": "Ora tocca a te,",
+   "durata": 1.001,
+   "file": "s07-2-0.ogg",
+   "bocca": "28888777216500576000067500"
+  },
+  "s10/0/0": {
+   "chi": "cecca",
+   "voce": "sara-gazza",
+   "testo": "Tu saresti quella che— aspetta, cos'è quel—",
+   "durata": 2.091,
+   "file": "s10-0-0.ogg",
+   "bocca": "77785488787168087882388863218860077338688028877655400"
+  },
+  "s12/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Scusa!",
+   "durata": 0.807,
+   "file": "s12-0-0.ogg",
+   "bocca": "044305888876786642000"
+  },
+  "s14/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Sei piccola,",
+   "durata": 1.113,
+   "file": "s14-0-0.ogg",
+   "bocca": "0343888741885113588765552000"
+  },
+  "s14/2/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Anch'io,",
+   "durata": 0.768,
+   "file": "s14-2-0.ogg",
+   "bocca": "03688885438888875300"
+  },
+  "s14/2/2": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Rocco.",
+   "durata": 0.718,
+   "file": "s14-2-2.ogg",
+   "bocca": "046688885013776400"
+  },
+  "s22/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "La conosci?",
+   "durata": 0.998,
+   "file": "s22-0-0.ogg",
+   "bocca": "2678850488888886443465410"
+  },
+  "s23/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Si somigliano,",
+   "durata": 1.228,
+   "file": "s23-0-0.ogg",
+   "bocca": "0334686448877888766777766664000"
+  },
+  "s23/1/1": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Dove va, il resto?",
+   "durata": 1.522,
+   "file": "s23-1-1.ogg",
+   "bocca": "056788588757877777776676664552016654200"
+  },
+  "s24/1/1": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Vengo anch'io.",
+   "durata": 1.196,
+   "file": "s24-1-1.ogg",
+   "bocca": "056688887887777332887766530000"
+  },
+  "s14/1/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Sono giovane.",
+   "durata": 1.153,
+   "file": "s14-1-0.ogg",
+   "bocca": "03358888645678886387876654520"
+  },
+  "s14/3/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Zara.",
+   "durata": 0.734,
+   "file": "s14-3-0.ogg",
+   "bocca": "5887688888787767500"
+  },
+  "s15/0/1": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Dove passo io, passi tu.",
+   "durata": 1.728,
+   "file": "s15-0-1.ogg",
+   "bocca": "57887786088642377788887208863237702787655300"
+  },
+  "s17/0/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Vieni,",
+   "durata": 0.695,
+   "file": "s17-0-0.ogg",
+   "bocca": "265788888877666500"
+  },
+  "s17/0/2": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "C'è un posto.",
+   "durata": 1.081,
+   "file": "s17-0-2.ogg",
+   "bocca": "0447788850777753205766665300"
+  },
+  "s19/0/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Nella tua ombra mi sono sentita al sicuro.",
+   "durata": 2.436,
+   "file": "s19-0-0.ogg",
+   "bocca": "3888887860588888888787775447775237880585288732465016777455300"
+  },
+  "s22/1/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "No,",
+   "durata": 0.553,
+   "file": "s22-1-0.ogg",
+   "bocca": "28887777655520"
+  },
+  "s22/1/2": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Ma lei conosce noi.",
+   "durata": 1.358,
+   "file": "s22-1-2.ogg",
+   "bocca": "5888877888604888865557887887643310"
+  },
+  "s24/0/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Avanti. Dove i regni si toccano.",
+   "durata": 1.918,
+   "file": "s24-0-0.ogg",
+   "bocca": "077488784266568768776678887634640687302566554300"
+  }
+ }
+}
