@@ -67,6 +67,16 @@
         "fable-custode"
       ],
       "come": "il Custode, una vecchia testuggine di lago: maschio, anziano, lento e pacato, con la calma di chi ricorda tutto (saga/bible/comprimari/custode-anziano.md, «Voce»)"
+    },
+    "cervara": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "siwis-cervara",
+      "provini": [
+        "siwis-cervara",
+        "emma-cervara"
+      ],
+      "come": "Cervara, la lince giovane, il vanto delle rive: femmina, giovane come Zara ma calma, certa, piana — la voce di chi non deve dimostrare (saga/bible/comprimari/specchio-di-zara.md, «Voce»)"
     }
   },
   "candidate": {
@@ -183,6 +193,22 @@
       "tono": -3,
       "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci im_nicola e bm_george sono del modello)"
     },
+    "siwis-cervara": {
+      "descrizione": "Sara e Siwis (Kokoro, 60% Sara e 40% Siwis), appena lenta: giovane come Zara ma d'un altro timbro, piana (parole capite 96%)",
+      "motore": "kokoro",
+      "modello": "if_sara*0.6+ff_siwis*0.4",
+      "lentezza": 1.06,
+      "tono": 0,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci if_sara e ff_siwis sono del modello)"
+    },
+    "emma-cervara": {
+      "descrizione": "Sara ed Emma (Kokoro, 40% Sara e 60% Emma), appena lenta: più bassa e più composta (parole capite 92%)",
+      "motore": "kokoro",
+      "modello": "if_sara*0.4+bf_emma*0.6",
+      "lentezza": 1.08,
+      "tono": 0,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci if_sara e bf_emma sono del modello)"
+    },
     "fable-custode": {
       "descrizione": "Nicola e Fable (Kokoro, 40% Nicola e 60% Fable), tre semitoni più grave e lenta: un vecchio più scuro e più roco (parole capite 100%)",
       "motore": "kokoro",
@@ -194,7 +220,9 @@
   },
   "pronuncia": {
     "_cosa": "come le voci sintetiche devono leggere certe parole (solo per loro: le didascalie restano come nella prosa)",
-    "giovane": "giòvane"
+    "giovane": "giòvane",
+    "ancora pioggia": "ancora, pióggia",
+    "tec": "tecc"
   },
   "calore": {
     "bassi": 2.5,

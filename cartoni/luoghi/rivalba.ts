@@ -1,4 +1,4 @@
-// cartoni/luoghi/rivalba.ts — il Lago del Vespro: la riva di Rivalba e l'approdo (ep02).
+// cartoni/luoghi/rivalba.ts — il Lago del Vespro, attorno a Rivalba (ep02, ep03, ep04).
 //
 // «Il Lago del Vespro fu tutto lì sotto: largo, grigio e oro, con la nebbia del
 // mattino ancora addosso. […] Sotto, lungo le rive, cominciavano le passerelle.»
@@ -7,29 +7,36 @@
 // colline boscose nella nebbia, la luce d'oro; l'autunno («l'anno pendeva già
 // verso il freddo»).
 //
-// Due luoghi con la stessa acqua e la stessa tavolozza:
-//  - RIVALBA: la riva dei villaggi (a destra: la ghiaia, le barche a secco, le
-//    reti, il masso del Custode, la tana degli Ospiti, e su fino al bosco da cui
-//    si vede il lago) e il lago aperto a sinistra, per la traversata;
-//  - APPRODO: la lingua di sassi «dove le rive cominciavano a stringersi» (p.15).
-// Le palafitte e le passerelle stanno su un livello di mezzo (p=0.7), dietro il
-// molo e la barca; il molo basso sta sul piano dei personaggi.
+// Rivalba è la capitale del regno (saga/cartografia: il «centro» degli episodi
+// ep02-ep04, all'orlo e al cuore). Quattro luoghi con la stessa acqua e la stessa
+// tavolozza:
+//  - ORLO (ep02): la riva dei villaggi dove si arriva dal bosco (la ghiaia, le
+//    barche a secco, le reti, il masso del Custode, la tana degli Ospiti, il
+//    ciglio) e il lago aperto a sinistra, per la traversata;
+//  - APPRODO (ep02, p.15): la lingua di sassi «dove le rive cominciavano a stringersi»;
+//  - RIVALBA (ep03): il cuore, sull'acqua — passerelle su pali, tetti di canna, e
+//    in mezzo i Massi del Consiglio; il molo basso con la barca di Brénta; la riva
+//    e il sentiero che sale dietro;
+//  - COPPELLE (ep03, ep04): sul colle dietro Rivalba, le pietre vecchie col
+//    cerchio di conche «contro il cielo».
+// Le palafitte lontane stanno su un livello di mezzo (p=0.7); moli, passerelle,
+// massi e barche ormeggiate sul piano dei personaggi.
 
 import { type Luce, inLuce, lontano, mescola, scurisci } from "../motore/colore";
 import { elemento, fnv1a32, frattale1 } from "../motore/caso";
 import { type Livello, vista } from "../motore/fotogramma";
 import { type P, ellisseD, n, path, pt } from "../motore/svg";
-import { barcaASecco, molo, palafitta, passerella, retiStese } from "../scene/lago";
+import { barca, barcaASecco, galleggia, gorgo, massoDelConsiglio, molo, palafitta, passerella, retiStese, tanaDiCanne } from "../scene/lago";
 import { type Colori, type OpzPalco, creaLuogo } from "../scene/luogo";
 import { piegaErba } from "../scene/meteo";
-import { alberoDAutunno, roccia } from "../scene/oggetti";
-import { type Cresta, monti } from "../scene/pittura";
+import { alberoDAutunno, pietraCoppellata, roccia } from "../scene/oggetti";
+import { type Cresta, dalloSchermo, lunaRiflessa, monti } from "../scene/pittura";
 
 // ------------------------------------------------------------ geografia --
-/** L'acqua del lago: la riva di Rivalba è a x=0. */
+/** L'acqua del lago (la stessa in tutti i luoghi di qui); all'orlo la riva è a x=0. */
 export const LAGO_VESPRO = { quota: 900, riva: 0 } as const;
 
-/** Dove stanno le cose della riva (piano dei personaggi). */
+/** Dove stanno le cose all'orlo (ep02; piano dei personaggi). */
 export const RIVA = {
   /** il molo basso (p.5): da-a, e l'altezza del piano sopra l'acqua */
   molo: [-560, -40] as const,
@@ -169,7 +176,26 @@ function lagoAperto(o: OpzPalco, p: number): string {
     }
     s += path(nb, { fill: neb, opacity: meteo.nebbia * 0.45 });
   }
+  // la luna bassa sull'acqua, «vera due volte»: la sua scia, spezzata dalle onde, e il disco rimandato
+  if (o.luna && meteo.notte > 0.05) s += sciaDiLuna(o, p, ORIZZONTE + 4, 320) + lunaRiflessa(o, p, (_, y) => y > ORIZZONTE + 3);
   return s;
+}
+
+/** La scia della luna su un'acqua che va da `y0` in giù per `h`: strisce spezzate, strette lontano, larghe vicino. */
+function sciaDiLuna(o: OpzPalco, p: number, y0: number, h: number): string {
+  const { t, meteo } = o;
+  const x = dalloSchermo(o, p, o.luna!.a)[0];
+  const semeL = fnv1a32("vespro/luna");
+  let d = "";
+  for (let i = 0; i < 46; i++) {
+    const r = elemento(semeL, i);
+    const k = r();
+    const y = y0 + k * k * h;
+    const w = (6 + k * 60) * r.tra(0.4, 1.2);
+    const dx = r.segno(8 + k * 40) + Math.sin(t * 0.8 + i) * 3;
+    d += `M${n(x + dx - w / 2)} ${n(y)}h${n(w)}`;
+  }
+  return path(d, { stroke: "#f2eedc", "stroke-width": 2.6, opacity: 0.75 * meteo.notte, "stroke-linecap": "round" });
 }
 
 /** Il villaggio sull'acqua (p=0.7): palafitte e passerelle lungo la riva, con qualche lume. */
@@ -203,11 +229,12 @@ function villaggio(o: OpzPalco, p: number): string {
   return s;
 }
 
-// ---------------------------------------------------------------- RIVALBA --
-export const RIVALBA = creaLuogo(
+// ------------------------------------------------------------------- ORLO --
+/** L'orlo del regno (ep02): la riva dei villaggi dove si arriva dal bosco, e il lago aperto. */
+export const ORLO = creaLuogo(
   {
-    id: "rivalba",
-    nome: "la riva di Rivalba, sul Lago del Vespro",
+    id: "orlo",
+    nome: "l'orlo di Rivalba, la riva dei villaggi sul Lago del Vespro",
     profilo: [
       [-30000, 1500],
       [-900, 1240],
@@ -257,7 +284,7 @@ export const RIVALBA = creaLuogo(
 );
 
 /** Dove si appoggia chi sale sul masso del Custode. */
-export const cimaMassoCustode = (): P => [RIVA.custode + 10, RIVALBA.quota(RIVA.custode) - 150 * 0.85];
+export const cimaMassoCustode = (): P => [RIVA.custode + 10, ORLO.quota(RIVA.custode) - 150 * 0.85];
 
 // ---------------------------------------------------------------- APPRODO --
 /** La lingua di sassi (p.15): ghiaia, qualche canna, un legno portato dall'acqua; le rive che si stringono. */
@@ -311,6 +338,276 @@ export const APPRODO = creaLuogo(
       // un legno portato dall'acqua
       if (inVista(460)) s += path(`M${n(380)} ${n(luogo.quota(380) - 4)}Q${n(470)} ${n(luogo.quota(470) - 16)} ${n(560)} ${n(luogo.quota(560) - 6)}`, { stroke: inLuce("#9c8a6c", luce), "stroke-width": 12, fill: "none", "stroke-linecap": "round" });
       void piegaErba;
+      return s;
+    },
+  },
+);
+
+// ---------------------------------------------------------------- RIVALBA --
+/** Rivalba, il cuore (ep03): dove stanno le cose (piano dei personaggi; y verso il basso, l'acqua a 900). */
+export const CUORE = {
+  /** i Massi del Consiglio: [centro, larghezza, altezza della cima sopra l'acqua], da sinistra */
+  massi: [
+    [-650, 152, 56],
+    [-430, 176, 78],
+    [-200, 190, 96],
+    [50, 236, 158],
+    [292, 186, 92],
+    [516, 162, 72],
+    [724, 150, 54],
+  ] as readonly (readonly [number, number, number])[],
+  /** il masso più alto: quello da cui si parla al Consiglio (p.1, p.9) */
+  alto: 3,
+  /** le passerelle (da, a) e quanto stanno sopra l'acqua */
+  passerelle: [
+    [-2700, -760],
+    [830, 1320],
+  ] as readonly (readonly [number, number])[],
+  alturaPasserella: 46,
+  /** il molo basso (pp. 4, 12), con la barca di Brénta ormeggiata dietro */
+  molo: [1320, 2140] as const,
+  alturaMolo: 22,
+  /** la barca di Brénta, ormeggiata contro il molo (davanti a chi ci cammina) */
+  barca: 1790,
+  lunghezzaBarca: 700,
+  /** il lavatoio delle reti e l'orlo dove il lago gira (p.9) */
+  lavatoio: -1780,
+  gorgo: -3000,
+  /** in fondo alla passerella: la sera (p.8) e «il solito punto» (p.17) */
+  fondoPasserella: -2620,
+  /** la riva, la tana degli Ospiti, il sentiero che sale dietro Rivalba (p.11) */
+  riva: 2140,
+  tana: 2520,
+  sentiero: [2760, 5400] as const,
+};
+
+/** Le case di Rivalba sul piano dei personaggi (dietro passerelle e massi): [x, seme, larghezza, lume]. */
+const CASE_CUORE: readonly (readonly [number, string, number, number])[] = [
+  [-2230, "cuore-a", 300, 0.8],
+  [-1250, "cuore-b", 340, 1],
+  [1080, "cuore-c", 280, 0.6],
+];
+
+/** Dove finisce l'acqua della città lontana (p=0.7): più in là c'è la riva, e il colle. */
+const FINE_CITTA = 1700;
+
+/** La città sull'acqua, lontana (p=0.7): tante palafitte, le passerelle, i lumi la sera. */
+function cittaSullAcqua(o: OpzPalco, p: number): string {
+  const { luce, defs, meteo } = o;
+  const v = vista(o.cam, p, 0.25);
+  if (v.x0 > FINE_CITTA) return "";
+  const acquaY = ACQUA_VILLAGGIO;
+  const lume = meteo.notte;
+  const x1 = Math.min(v.x1 + 300, FINE_CITTA);
+  let s = path(`M${n(v.x0 - 300)} ${acquaY}H${n(x1)}V1400H${n(v.x0 - 300)}Z`, { fill: lontano(inLuce(C.lago, luce), luce, 0.1) });
+  s += path(`M${n(v.x0 - 300)} ${acquaY + 1}H${n(x1)}`, { stroke: lontano(inLuce(C.lagoChiaro, luce), luce, 0.1), "stroke-width": 3, opacity: 0.7 });
+  const semeC = fnv1a32("cuore/citta");
+  const case_: [number, number, string][] = [];
+  for (let i = 0; i < 16; i++) {
+    const r = elemento(semeC, i);
+    const x = -4200 + i * 520 + r.segno(90);
+    const w = r.tra(240, 360);
+    if (x + w / 2 < FINE_CITTA - 60) case_.push([x, w, `cc${i}`]);
+  }
+  for (let i = 0; i < case_.length - 1; i++) {
+    const [a, wa] = case_[i];
+    const [b, wb] = case_[i + 1];
+    const x0 = a + wa / 2 + 20;
+    const x1 = b - wb / 2 - 20;
+    if (x1 < v.x0 - 200 || x0 > v.x1 + 200 || x1 <= x0) continue;
+    s += `<g transform="translate(0 ${acquaY})">${passerella(luce, x0, x1, -70, `cc${i}`)}</g>`;
+  }
+  for (const [x, w, seme] of case_) {
+    if (x + w < v.x0 - 200 || x - w > v.x1 + 200) continue;
+    const r = elemento(semeC, 1000 + Math.round(x));
+    s += `<g transform="translate(${n(x)} ${acquaY})">${palafitta(luce, defs, seme, { w, lume: lume * (r.moneta(0.6) ? 1 : 0.25) })}</g>`;
+  }
+  return s;
+}
+
+/** Il colle dietro Rivalba (p=0.36), e in cima le pietre vecchie «contro il cielo» (p.11): si vedono dai massi. */
+function colleDelleCoppelle(o: OpzPalco, p: number): string {
+  const { luce } = o;
+  const v = vista(o.cam, p, 0.3);
+  if (v.x1 < -400 || v.x0 > 3200) return "";
+  const col = lontano(inLuce(C.bosco, luce), luce, 0.26);
+  const cresta = (x: number) => (x < 900 ? 520 - ((x + 300) / 1200) * 400 : x > 1600 ? 120 + ((x - 1600) / 1400) * 350 : 120 - Math.sin(((x - 900) / 700) * Math.PI) * 8);
+  const pts: P[] = [];
+  for (let x = -300; x <= 3000; x += 50) pts.push([x, cresta(x)]);
+  let s = path(`M-300 1400L${pts.map(pt).join("L")}L3000 1400Z`, { fill: col });
+  // il bosco sui fianchi; in cima, tra le pietre, niente alberi
+  const semeB = fnv1a32("cuore/colle");
+  let chiome = "";
+  for (let i = 0; i < 110; i++) {
+    const r = elemento(semeB, i);
+    const x = r.tra(-250, 2950);
+    if (x > 860 && x < 1640) continue;
+    const y = cresta(x) + r.tra(4, 140);
+    chiome += ellisseD([x, y], r.tra(18, 34), r.tra(20, 38));
+  }
+  s += path(chiome, { fill: lontano(inLuce(C.boscoScuro, luce), luce, 0.28) });
+  let pietre = "";
+  for (const [x, w] of [[930, 44], [1060, 58], [1210, 50], [1350, 62], [1480, 46], [1590, 38]] as const) pietre += `M${n(x - w / 2)} ${n(cresta(x) + 2)}Q${n(x)} ${n(cresta(x) - w * 0.55)} ${n(x + w / 2)} ${n(cresta(x) + 2)}Z`;
+  s += path(pietre, { fill: lontano(inLuce(C.rocciaScura, luce), luce, 0.3) });
+  return s;
+}
+
+/** Rivalba, il cuore del regno sull'acqua (ep03). */
+export const RIVALBA = creaLuogo(
+  {
+    id: "rivalba",
+    nome: "Rivalba, il cuore del regno, sull'acqua",
+    profilo: [
+      [-30000, 1500],
+      [-900, 1240],
+      [900, 1200],
+      [1700, 1060],
+      [CUORE.riva, 904],
+      [2500, 890],
+      [2700, 878],
+      [2900, 840],
+      [3200, 764],
+      [3600, 680],
+      [4200, 604],
+      [5000, 552],
+      [8000, 500],
+    ],
+    acqua: { quota: LAGO_VESPRO.quota, riva: CUORE.riva },
+    colori: C,
+    suolo: { da: 2300, a: 3400 },
+    erba: { confine: 2700, sinistra: [5, 12], destra: [18, 34] },
+    cespugli: { quanti: 14, sinistraProb: 0.02, sinistra: [2300, 2600], destra: [2800, 5600], sotto: [40, 200] },
+    canneto: [-3560, -3140],
+  },
+  {
+    lontanissimo: (o): Livello[] => [
+      { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
+      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+    ],
+    lontano: (o): Livello[] => [
+      { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "colle", contenuto: colleDelleCoppelle(o, 0.36), p: 0.36 },
+      { id: "citta", contenuto: cittaSullAcqua(o, 0.7), p: 0.7 },
+    ],
+    oggetti: (o, inVista) => {
+      const { luce, defs, t, meteo } = o;
+      const q = LAGO_VESPRO.quota;
+      const acqua = { lago: C.lago, chiaro: C.lagoChiaro };
+      let s = "";
+      // l'orlo dove il lago gira, lontano dalle passerelle
+      if (inVista(CUORE.gorgo, 300)) s += `<g transform="translate(${CUORE.gorgo} ${q + 4})">${gorgo(luce, t, 110)}</g>`;
+      // le case, dietro a tutto
+      for (const [x, seme, w, lume] of CASE_CUORE) if (inVista(x, w)) s += `<g transform="translate(${x} ${q})">${palafitta(luce, defs, seme, { w, lume: lume * meteo.notte, piano: 96 })}</g>`;
+      // il lavatoio delle reti: le reti a bagno tra due pali, accanto alla passerella
+      if (inVista(CUORE.lavatoio, 400)) s += `<g transform="translate(${CUORE.lavatoio - 150} ${q + 6})">${retiStese(luce, t, 300, 120, "lavatoio")}</g>`;
+      // i moli e le passerelle, sopra l'acqua
+      for (const [a, b] of CUORE.passerelle) if (inVista((a + b) / 2, (b - a) / 2 + 200)) s += `<g transform="translate(0 ${q})">${molo(luce, a, b, -CUORE.alturaPasserella, `passerella${a}`)}</g>`;
+      if (inVista((CUORE.molo[0] + CUORE.molo[1]) / 2, 700)) s += `<g transform="translate(0 ${q})">${molo(luce, CUORE.molo[0], CUORE.molo[1], -CUORE.alturaMolo, "molo-cuore")}</g>`;
+      // i Massi del Consiglio
+      CUORE.massi.forEach(([x, w, h], i) => {
+        if (inVista(x, w)) s += `<g transform="translate(${x} ${q})">${massoDelConsiglio(luce, defs, `consiglio${i}`, w, h, acqua)}</g>`;
+      });
+      // la tana degli Ospiti sulla riva, e il bosco del sentiero
+      if (inVista(CUORE.tana, 300)) {
+        const tn = tanaDiCanne(luce, defs);
+        s += `<g transform="translate(${CUORE.tana} ${n(o.luogo.quota(CUORE.tana))})">${tn.fondo}${tn.fronte}</g>`;
+      }
+      // il sentiero che sale dietro Rivalba (p.11): una striscia di terra battuta sul fianco
+      if (inVista((CUORE.sentiero[0] + CUORE.sentiero[1]) / 2, 1500)) {
+        const pts: P[] = [];
+        for (let x = CUORE.sentiero[0] - 300; x <= CUORE.sentiero[1]; x += 40) pts.push([x, o.luogo.quota(x) + 18 + Math.sin(x * 0.004) * 6]);
+        s += path(`M${pts.map(pt).join("L")}`, { stroke: inLuce(mescola(C.terra, "#d2c3a0", 0.35), luce), "stroke-width": 18, fill: "none", opacity: 0.55, "stroke-linecap": "round", "stroke-linejoin": "round" });
+      }
+      for (const [x, h] of [[3000, 560], [3380, 620], [3760, 540], [4180, 640], [4620, 580], [5100, 620]] as const) if (inVista(x, 400)) s += alberoDAutunno(o, x, `sentiero${x}`, h);
+      return s;
+    },
+    // la barca di Brénta, ormeggiata contro il molo basso (dalla parte di chi guarda): il
+    // carico sotto il telo. Chi cammina sul molo le passa dietro
+    davanti: (o, inVista) => {
+      if (!inVista(CUORE.barca, 600)) return "";
+      const gal = galleggia(o.t, "ormeggio", 0.5);
+      const sc = barca(o.luce, o.defs, "ormeggio", { lunghezza: CUORE.lunghezzaBarca, carico: 0.6, telo: true, sottoIlTelo: o.telo, acqua: { lago: C.lago, chiaro: C.lagoChiaro } });
+      return `<g transform="translate(${CUORE.barca} ${n(LAGO_VESPRO.quota + gal.dy)})rotate(${n(gal.ang)})">${sc.dietro}${sc.davanti}</g>`;
+    },
+  },
+);
+
+/** Dove si posa chi sta sul masso i del Consiglio, a dx dal centro (coordinate del palco). */
+export function sulMassoDelConsiglio(i: number, dx = 0): P {
+  const [x, w, h] = CUORE.massi[i];
+  const k = Math.min(1, Math.abs(dx) / (w / 2));
+  return [x + dx, LAGO_VESPRO.quota - h - 4 + 10 * k * k];
+}
+
+/** Quanto sta la passerella (o il molo basso) a x: la quota su cui si cammina. */
+export function sullaPasserella(x: number): number {
+  if (x >= CUORE.molo[0] && x <= CUORE.molo[1]) return LAGO_VESPRO.quota - CUORE.alturaMolo - 6;
+  return LAGO_VESPRO.quota - CUORE.alturaPasserella - 6;
+}
+
+// --------------------------------------------------------------- COPPELLE --
+/** Le Coppelle: le tre pietre larghe sul piano dei personaggi, [x, larghezza, altezza]. */
+export const PIETRE_COPPELLE: readonly (readonly [number, number, number])[] = [
+  [-660, 300, 54],
+  [-40, 380, 66],
+  [600, 290, 50],
+];
+
+/** Il lago di notte visto dal colle (p=0.14): lontano e basso, la luna sopra, e i lumi di Rivalba. */
+function lagoDalColle(o: OpzPalco, p: number): string {
+  const { luce, meteo } = o;
+  const v = vista(o.cam, p, 0.3);
+  const y0 = 130; // il lago è giù: dal colle lo si vede sopra l'erba vicina
+  const acqua = lontano(inLuce(mescola(C.lago, "#26303e", meteo.notte * 0.4), luce), luce, 0.25);
+  let s = path(`M${n(v.x0 - 400)} ${y0}H${n(v.x1 + 400)}V1400H${n(v.x0 - 400)}Z`, { fill: acqua });
+  if (o.luna && meteo.notte > 0.05) s += sciaDiLuna(o, p, y0 + 3, 260) + lunaRiflessa(o, p, (_, y) => y > y0 + 3);
+  // i lumi di Rivalba, laggiù sull'acqua
+  if (meteo.notte > 0.05) {
+    const semeL = fnv1a32("coppelle/lumi");
+    let d = "";
+    for (let i = 0; i < 24; i++) {
+      const r = elemento(semeL, i);
+      d += ellisseD([r.tra(-900, 700), y0 + r.tra(10, 40)], r.tra(1.5, 3), r.tra(1.5, 2.5));
+    }
+    s += path(d, { fill: "#f3cf85", opacity: 0.8 * meteo.notte });
+  }
+  return s;
+}
+
+/** Le Coppelle, sul colle dietro Rivalba (ep03 pp.13-15; ep04): le pietre vecchie in cerchio. */
+export const COPPELLE = creaLuogo(
+  {
+    id: "coppelle",
+    nome: "le Coppelle, sul colle dietro Rivalba",
+    profilo: [
+      [-30000, 980],
+      [-3000, 820],
+      [-1600, 726],
+      [-600, 690],
+      [400, 686],
+      [1500, 716],
+      [3000, 800],
+      [30000, 960],
+    ],
+    colori: { ...C, erba: "#aaa58c", erbaScura: "#7f7a64", erbaAperto: "#8e9163", erbaApertoScura: "#626645" },
+    suolo: { da: -1500, a: 1500 },
+    erba: { confine: 99999, sinistra: [8, 20], destra: [8, 20] },
+    cespugli: { quanti: 12, sinistraProb: 0.5, sinistra: [-2800, -1100], destra: [1100, 2800], sotto: [40, 220] },
+  },
+  {
+    lontanissimo: (o): Livello[] => [
+      { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
+      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
+    ],
+    lontano: (o): Livello[] => [{ id: "lago", contenuto: lagoDalColle(o, 0.14), p: 0.14 }],
+    oggetti: (o, inVista) => {
+      let s = "";
+      // due pietre più indietro (piccole), poi le tre sul piano
+      for (const [x, i, w, h] of [[-1400, 0, 260, 46], [1300, 1, 240, 44]] as const) if (inVista(x, w)) s += pietraCoppellata(o, x, `dietro${i}`, w, h);
+      PIETRE_COPPELLE.forEach(([x, w, h], i) => {
+        if (inVista(x, w)) s += pietraCoppellata(o, x, `coppella${i}`, w, h);
+      });
+      for (const [x, h] of [[-2300, 600], [-1900, 520], [2000, 560], [2450, 640]] as const) if (inVista(x, 400)) s += alberoDAutunno(o, x, `colle${x}`, h);
       return s;
     },
   },

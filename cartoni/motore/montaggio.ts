@@ -36,6 +36,8 @@ export interface Ambiente {
   pioggia?: number;
   lago?: number;
   notte?: number;
+  /** i grilli della notte (0..1) */
+  grilli?: number;
 }
 
 export interface Disegno {

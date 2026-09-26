@@ -62,8 +62,68 @@ export function cielo(o: OpzPalco): string {
     }
     s += path(st, { fill: "#dfe7ff", opacity: notte * (1 - temp * 0.8) * 0.8 });
   }
+  const kLuna = notte * (1 - temp * 0.8);
+  if (o.luna && notte > 0.05) s += luna(o, kLuna, true);
   s += nuvole(o, velato);
+  // il disco sta davanti alle nuvole (di notte le nuvole sono veli scuri: la luna si vede sempre)
+  if (o.luna && notte > 0.05) s += luna(o, kLuna, false);
   return s;
+}
+
+/**
+ * La luna: un disco chiaro con le sue macchie e l'alone dell'aria umida intorno
+ * (è fisica: niente raggi, niente scintille). Più è bassa, più è calda.
+ */
+function luna(o: OpzPalco, k: number, alone: boolean): string {
+  const { defs } = o;
+  const L = o.luna!;
+  const x = L.a[0] * LARGHEZZA;
+  const y = L.a[1] * ALTEZZA;
+  const r = L.r ?? 34;
+  const bassa = clamp((L.a[1] - 0.35) / 0.4);
+  const disco = mescola("#f4f1e4", "#f3dcb0", bassa * 0.6);
+  if (alone) {
+    const url = defs.radiale("alone-luna", [0.5, 0.5], 0.5, [
+      [0, disco, 0.34 * k],
+      [0.3, disco, 0.12 * k],
+      [1, disco, 0],
+    ], "objectBoundingBox");
+    return path(ellisseD([x, y], r * 7, r * 7), { fill: url });
+  }
+  let s = path(ellisseD([x, y], r, r), { fill: disco, opacity: k });
+  // i mari: macchie morbide, sempre quelle
+  s += path(ellisseD([x - r * 0.28, y - r * 0.2], r * 0.34, r * 0.26) + ellisseD([x + r * 0.22, y + r * 0.12], r * 0.26, r * 0.22) + ellisseD([x - r * 0.05, y + r * 0.38], r * 0.18, r * 0.12), { fill: "#c9c3ad", opacity: 0.55 * k });
+  return s;
+}
+
+/** Un punto dello schermo (frazioni 0..1) nelle coordinate di un livello a parallasse p. */
+export function dalloSchermo(o: OpzPalco, p: number, a: readonly [number, number]): P {
+  const z = Math.pow(Math.max(0.01, o.cam.zoom), p);
+  return [o.cam.x * p + (a[0] - 0.5) * (LARGHEZZA / z), o.cam.y * p + (a[1] - 0.5) * (ALTEZZA / z)];
+}
+
+/**
+ * La luna rimandata dall'acqua («vera due volte»), nelle coordinate di un livello a
+ * parallasse p: un poco schiacciata, a strisce spostate dalle onde. Solo dove quel
+ * livello ha acqua (`sullAcqua`), così la disegna chi sta davanti, lontano o vicino.
+ */
+export function lunaRiflessa(o: OpzPalco, p: number, sullAcqua: (x: number, y: number) => boolean): string {
+  const L = o.luna;
+  if (!L || L.riflesso === undefined || o.meteo.notte <= 0.05) return "";
+  const z = Math.pow(Math.max(0.01, o.cam.zoom), p);
+  const [x, y] = dalloSchermo(o, p, [L.a[0], L.riflesso]);
+  if (!sullAcqua(x, y)) return "";
+  const r = (L.r ?? 34) / z;
+  const N = 9;
+  let d = "";
+  for (let i = 0; i < N; i++) {
+    const u = ((i + 0.5) / N) * 2 - 1;
+    const w = r * Math.sqrt(Math.max(0, 1 - u * u));
+    const dx = Math.sin(o.t * 0.9 + i * 1.7) * r * 0.14;
+    d += `M${n(x + dx - w)} ${n(y + u * r * 0.8)}h${n(2 * w)}`;
+  }
+  const bassa = clamp((L.a[1] - 0.35) / 0.4);
+  return path(d, { stroke: mescola("#f4f1e4", "#f3dcb0", bassa * 0.6), "stroke-width": n(((r * 1.6) / N) * 0.85), opacity: 0.8 * o.meteo.notte, "stroke-linecap": "round" });
 }
 
 function nuvole(o: OpzPalco, velato: number): string {
@@ -328,6 +388,24 @@ export function terreno(o: OpzPalco): { terra: string; fronda: string } {
       }
       terra += path(lu, { stroke: "#fff8e0", "stroke-width": 3, opacity: n(0.9 * meteo.luccichii), "stroke-linecap": "round" });
     }
+  }
+
+  // la luna sull'acqua vicina (se l'inquadratura la vuole): «vera due volte»
+  if (A && o.luna && meteo.notte > 0.05 && v.x0 < A.riva) {
+    const xl = dalloSchermo(o, 1, o.luna.a)[0];
+    const semeL = fnv1a32("lago/luna");
+    let d = "";
+    for (let i = 0; i < 70; i++) {
+      const r = elemento(semeL, i);
+      const k = r();
+      const y = A.quota + 4 + k * k * 520;
+      const w = (10 + k * 120) * r.tra(0.4, 1.2);
+      const dx = r.segno(10 + k * 80) + Math.sin(t * 0.9 + i) * 4;
+      if (xl + dx > A.riva) continue;
+      d += `M${n(xl + dx - w / 2)} ${n(y)}h${n(w)}`;
+    }
+    terra += path(d, { stroke: "#f2eedc", "stroke-width": 3, opacity: 0.7 * meteo.notte, "stroke-linecap": "round" });
+    terra += lunaRiflessa(o, 1, (x, y) => x < A.riva - 20 && y > A.quota + 6);
   }
 
   // la fronda del crinale: l'erba che fa la sagoma (il pelo che respira)

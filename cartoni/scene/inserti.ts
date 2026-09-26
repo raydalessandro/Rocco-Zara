@@ -42,6 +42,10 @@ export interface OpzPietra {
   cielo: string;
   /** Spinta lenta della camera 0..1. */
   spinta: number;
+  /** Come stanno le conche: in fila (la pietra segnata, ep01) o a cerchi (le Coppelle, ep03). */
+  conche?: "fila" | "cerchi";
+  /** Di notte, nelle conche piene: la luna, piccola, in ognuna («piene di luna», ep03 p.13). */
+  luna?: boolean;
 }
 
 /** Le conche: posizioni fisse (fatte bene, una accanto all'altra). */
@@ -53,6 +57,13 @@ const CONCHE: readonly (readonly [number, number, number])[] = [
   [900, 688, 58],
   [1070, 676, 62],
   [1236, 700, 57],
+];
+
+/** Le conche delle Coppelle: una in mezzo, e attorno due cerchi (la pietra vista un poco di sbieco). */
+const CERCHI: readonly (readonly [number, number, number])[] = [
+  [980, 580, 56],
+  ...Array.from({ length: 6 }, (_, i) => [980 + 190 * Math.cos((i * Math.PI) / 3 + 0.3), 580 + 137 * Math.sin((i * Math.PI) / 3 + 0.3), 44] as const),
+  ...Array.from({ length: 10 }, (_, i) => [980 + 345 * Math.cos((i * Math.PI) / 5), 580 + 248 * Math.sin((i * Math.PI) / 5), 34] as const),
 ];
 
 export function insertoPietra(o: OpzPietra): Livello[] {
@@ -97,12 +108,12 @@ export function insertoPietra(o: OpzPietra): Livello[] {
   dentro += path(lic, { fill: inLuce("#bcae78", luce), opacity: 0.22 });
   dentro += path(grana, { fill: inOmbra("#5b5448", luce), opacity: 0.3 });
   // le conche: tonde, regolari — e, dopo la pioggia, piene di cielo
-  for (const [cx, cy, rr] of CONCHE) {
+  for (const [cx, cy, rr] of o.conche === "cerchi" ? CERCHI : CONCHE) {
     // la conca: una scodella scavata nella pietra. Luce da sinistra-alto:
     // ombra dentro il bordo di sinistra, luce sulla parete di destra.
     const ry = rr * 0.8;
     dentro += path(ellisseD([cx, cy], rr, ry), { fill: inLuce("#8d826e", luce) });
-    const clipC = defs.clip(`clip-conca-${cx}-${cy}`, ellisseD([cx, cy], rr, ry));
+    const clipC = defs.clip(`clip-conca-${Math.round(cx)}-${Math.round(cy)}`, ellisseD([cx, cy], rr, ry));
     dentro += g(
       { "clip-path": clipC },
       path(ellisseD([cx + rr * 0.3, cy + ry * 0.32], rr * 1.02, ry * 1.02), { fill: inLuce("#a79b84", luce) }) +
@@ -118,7 +129,7 @@ export function insertoPietra(o: OpzPietra): Livello[] {
     });
     if (o.piene) {
       // «una piccola luna per ogni segno»: acqua tonda, precisa, che specchia il cielo
-      const ga = defs.radiale(`luna-${cx}-${cy}`, [cx - rr * 0.25, cy - ry * 0.3], rr * 1.05, [
+      const ga = defs.radiale(`luna-${Math.round(cx)}-${Math.round(cy)}`, [cx - rr * 0.25, cy - ry * 0.3], rr * 1.05, [
         [0, schiarisci(o.cielo, 0.12)],
         [0.55, o.cielo],
         [1, scurisci(o.cielo, 0.28)],
@@ -128,6 +139,16 @@ export function insertoPietra(o: OpzPietra): Livello[] {
       // un tremolio minimo sul pelo dell'acqua
       const tr = 0.5 + 0.5 * Math.sin(t * 1.3 + cx * 0.01);
       dentro += path(`M${n(cx - rr * 0.45)} ${n(cy - ry * 0.28)}q${n(rr * 0.3)} ${n(-5 - tr * 2)} ${n(rr * 0.55)} ${n(2)}`, { stroke: "#ffffff", "stroke-width": 3, fill: "none", opacity: 0.6, "stroke-linecap": "round" });
+      if (o.luna) {
+        // la luna, piccola, dentro ogni conca (sempre dallo stesso lato: è una sola, e le conche la rimandano tutte)
+        const lc: P = [cx - rr * 0.18, cy - ry * 0.12];
+        const alone = defs.radiale(`lunetta-${Math.round(cx)}-${Math.round(cy)}`, lc, rr * 0.6, [
+          [0, "#f4f1e4", 0.5],
+          [1, "#f4f1e4", 0],
+        ]);
+        dentro += path(ellisseD(lc, rr * 0.6, rr * 0.5), { fill: alone });
+        dentro += path(ellisseD(add(lc, [Math.sin(t * 1.1 + cy) * 1.2, 0]), rr * 0.2, rr * 0.18), { fill: "#f6f3e8", opacity: 0.95 });
+      }
     }
   }
   pietra += g({ "clip-path": clip }, dentro);

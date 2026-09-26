@@ -47,8 +47,15 @@ export interface OpzScena {
   riparo?: { x0: number; x1: number; y0: number };
   /** Il sole in un punto preciso dello schermo (frazioni 0..1). */
   soleA?: readonly [number, number];
+  /**
+   * La luna (di notte): dove sta a schermo, quanto è grande e — se l'acqua la
+   * rimanda, «vera due volte» — a che altezza dello schermo sta il suo riflesso.
+   */
+  luna?: { a: readonly [number, number]; r?: number; riflesso?: number };
   /** Le mandrie lontane (dove il luogo ne ha; default sì). */
   mandrie?: boolean;
+  /** Sotto il telo della barca ormeggiata (dove il luogo ne ha una): un colpetto, un respiro. */
+  telo?: { colpo?: number; respiro?: number };
 }
 
 export interface Palcoscenico {
@@ -87,6 +94,8 @@ export function palcoscenico(luogo: Luogo): Palcoscenico {
         coppellePiene: o.coppelle,
         riparo: o.riparo,
         soleA: o.soleA,
+        luna: o.luna,
+        telo: o.telo,
         mandrie: o.mandrie ?? true,
       }),
     sulPalco: (x, disegno, o) => sulPalco(luogo, x, disegno, o),

@@ -22,6 +22,8 @@ export const CICLO = {
   zaraPasso: 93.75,
   /** Zara al galoppo: 98 di appoggio in 0.32 del ciclo. */
   zaraCorsa: 306,
+  /** Cervara al passo (ep03): falcata 54 in appoggio per 0.64 del ciclo. */
+  cervaraPasso: 84.4,
 } as const;
 
 /** La fase dell'andatura dalla strada percorsa. */

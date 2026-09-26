@@ -78,6 +78,11 @@ export interface Luogo extends DatiLuogo {
   lontano(o: OpzPalco): Livello[];
   /** Gli oggetti del luogo sul piano del suolo (solo quelli in vista). */
   oggetti(o: OpzPalco, inVista: (x: number, margine?: number) => boolean): string;
+  /**
+   * Le cose del luogo che stanno DAVANTI a chi è in scena (una barca ormeggiata
+   * contro il molo su cui si cammina): dove un luogo non ne ha, niente.
+   */
+  davanti?(o: OpzPalco, inVista: (x: number, margine?: number) => boolean): string;
 }
 
 /** Le opzioni di un palco a un tempo t: chi lo guarda, con che luce e che tempo. */
@@ -100,6 +105,12 @@ export interface OpzPalco {
   riparo?: { x0: number; x1: number; y0: number };
   /** Posizione del sole a schermo (frazioni 0..1), se l'inquadratura lo vuole lì. */
   soleA?: readonly [number, number];
+  /**
+   * La luna, di notte: dove sta a schermo (frazioni 0..1) e quanto è grande (raggio
+   * in pixel). I luoghi d'acqua ne disegnano anche la scia sul lago e, se c'è
+   * `riflesso` (l'altezza a schermo, 0..1), il disco rimandato dall'acqua («vera due volte»).
+   */
+  luna?: { a: readonly [number, number]; r?: number; riflesso?: number };
   /** Disegna l'erba di primo piano (p>1). */
   primoPiano?: boolean;
   /** Mostra le mandrie lontane (dove il luogo ne ha). */
@@ -108,6 +119,8 @@ export interface OpzPalco {
   vaporePietra?: number;
   /** Acqua nelle coppelle (dopo la pioggia). */
   coppellePiene?: boolean;
+  /** Sotto il telo della barca ormeggiata (ep03): un colpetto da dentro (0..1), un respiro (−1..1). */
+  telo?: { colpo?: number; respiro?: number };
 }
 
 /** Quota da un profilo: Hermite con tangenti alla Catmull-Rom (x non uniformi). */
@@ -132,7 +145,7 @@ export function quotaDaProfilo(P: readonly P[], x: number): number {
 /** Costruisce un luogo dai suoi dati e dalle sue due funzioni di pittura. */
 export function creaLuogo(
   dati: DatiLuogo,
-  pittura: Pick<Luogo, "lontanissimo" | "lontano" | "oggetti">,
+  pittura: Pick<Luogo, "lontanissimo" | "lontano" | "oggetti" | "davanti">,
 ): Luogo {
   const quota = (x: number) => quotaDaProfilo(dati.profilo, x);
   return {

@@ -10,13 +10,16 @@
 //  4. il montaggio, con le voci, sta in piedi (in fila, niente buchi, SVG sano),
 //     e ogni voce sta dentro la sua didascalia;
 //  5. se ci sono le voci registrate (narratrice, personaggi), ogni pezzo ha la
-//     sua ripresa, col testo giusto, e la bocca dei personaggi le sta dietro.
+//     sua ripresa, col testo giusto, e la bocca dei personaggi le sta dietro;
+//     e ogni suono del copione è un effetto che il motore sa fare.
 //  6. sta nella serie (la sua puntata, dal grafo della saga), col titolo della
 //     sua prosa, e con le voci dura intorno ai 5 minuti.
 
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { effetto } from "../cartoni/audio/effetti";
+import { Bus } from "../cartoni/audio/sintesi";
 import { VOCI } from "../cartoni/cast/voci";
 import { aCapo } from "../cartoni/motore/didascalie";
 import { inSvg } from "../cartoni/motore/fotogramma";
@@ -128,6 +131,20 @@ for (const { id, ep, narr, bat } of EPISODI) {
     it("le parole a schermo (didascalie e titoli) non contengono nomi reali", () => {
       const testi = ep.inquadrature.flatMap((q) => [...(q.didascalie ?? []).map((d) => d.testo), ...(q.titoli ?? []).flatMap((t) => t.righe.map((r) => r.testo))]);
       expect(testi.filter((t) => PATTERN.test(t))).toEqual([]);
+    });
+  });
+
+  describe(`cartoni — ${id}: i suoni`, () => {
+    it("ogni suono del copione è un effetto che il motore sa fare (un nome sbagliato non suonerebbe)", () => {
+      for (const q of ep.inquadrature) {
+        for (const s of q.suoni ?? []) {
+          const b = new Bus(2 + (s.durata ?? 0));
+          effetto(b, s.nome, 0.1, s.vol ?? 1, s.durata, s.ritmo);
+          let e = 0;
+          for (let i = 0; i < b.n; i += 7) e += Math.abs(b.l[i]) + Math.abs(b.r[i]);
+          expect(e, `${q.id}: «${s.nome}»`).toBeGreaterThan(0);
+        }
+      }
     });
   });
 

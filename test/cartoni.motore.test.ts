@@ -13,12 +13,13 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { CECCA_ANCORE, martinPescatore } from "../cartoni/cast/fauna";
+import { CERVARA_ANCORE } from "../cartoni/cast/cervara";
 import { BRENTA_ANCORE } from "../cartoni/cast/laghi";
 import { ROCCO_ANCORE } from "../cartoni/cast/rocco";
 import { VOCI } from "../cartoni/cast/voci";
 import { ZARA_ANCORE } from "../cartoni/cast/zara";
 import { wav } from "../cartoni/audio/colonna";
-import { effetto } from "../cartoni/audio/effetti";
+import { ambiente, effetto } from "../cartoni/audio/effetti";
 import { suonaBattuta } from "../cartoni/audio/grammelot";
 import { Bus, SR, arpa } from "../cartoni/audio/sintesi";
 import { SOGLIA } from "../cartoni/luoghi/soglia";
@@ -34,7 +35,7 @@ import { type Brani, postiDeiBrani, versiCantati } from "../cartoni/audio/brani"
 import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
 import { FINE_NODI, insertoCorda, insertoPietra } from "../cartoni/scene/inserti";
 import { galleggia, riflesso } from "../cartoni/scene/lago";
-import { APPRODO, LAGO_VESPRO, RIVA, RIVALBA } from "../cartoni/luoghi/rivalba";
+import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, sulMassoDelConsiglio, sullaPasserella } from "../cartoni/luoghi/rivalba";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
@@ -124,6 +125,17 @@ describe("cartoni — determinismo", () => {
     expect(trovati).toEqual([]);
   });
 
+  it("i grilli della notte: dove non ci sono, l'ambiente resta quello di prima campione per campione; dove ci sono, si sentono", () => {
+    const aria = (grilli?: number) => () => ({ vento: 0.1, pioggia: 0, lago: 0.2, ...(grilli === undefined ? {} : { grilli }) });
+    const suona = (grilli?: number) => {
+      const b = new Bus(3);
+      ambiente(b, aria(grilli));
+      return Buffer.from(b.l.buffer);
+    };
+    expect(suona(0).equals(suona())).toBe(true);
+    expect(suona(0.8).equals(suona())).toBe(false);
+  });
+
   it("la colonna sonora è deterministica (strumenti, effetti, grammelot)", () => {
     const suona = () => {
       const b = new Bus(1.5);
@@ -203,15 +215,35 @@ describe("cartoni — attrezzi e luoghi", () => {
 });
 
 describe("cartoni — il lago (ep02): la riva, le barche, i riflessi, la corda sul legno", () => {
-  it("la riva di Rivalba e l'approdo: suolo continuo; le cose stanno dove la prosa le vuole (il molo e la barca sull'acqua, la tana e il masso all'asciutto)", () => {
-    for (const L of [RIVALBA, APPRODO]) {
+  it("l'orlo, l'approdo, Rivalba e le Coppelle: suolo continuo; all'orlo le cose stanno dove la prosa le vuole (il molo e la barca sull'acqua, la tana e il masso all'asciutto)", () => {
+    for (const L of [ORLO, APPRODO, RIVALBA, COPPELLE]) {
       for (let x = -3000; x < 6000; x += 7) expect(Math.abs(L.quota(x + 1) - L.quota(x)), `${L.id} x=${x}`).toBeLessThan(3);
       for (const [x, y] of L.profilo) expect(L.quota(x)).toBeCloseTo(y, 6);
     }
     const q = LAGO_VESPRO.quota; // y cresce verso il basso: sotto il pelo dell'acqua = quota > q
-    for (const x of [RIVA.molo[0], RIVA.molo[1] - 60, RIVA.barca, RIVA.largo]) expect(RIVALBA.quota(x), `acqua a x=${x}`).toBeGreaterThan(q);
-    for (const x of [RIVA.custode, RIVA.tana, RIVA.ciglio, ...RIVA.secche, RIVA.reti]) expect(RIVALBA.quota(x), `asciutto a x=${x}`).toBeLessThan(q);
+    for (const x of [RIVA.molo[0], RIVA.molo[1] - 60, RIVA.barca, RIVA.largo]) expect(ORLO.quota(x), `acqua a x=${x}`).toBeGreaterThan(q);
+    for (const x of [RIVA.custode, RIVA.tana, RIVA.ciglio, ...RIVA.secche, RIVA.reti]) expect(ORLO.quota(x), `asciutto a x=${x}`).toBeLessThan(q);
     expect(RIVA.molo[0]).toBeLessThan(RIVA.molo[1]);
+  });
+
+  it("Rivalba (ep03): i Massi del Consiglio escono dall'acqua uno accanto all'altro, il più alto è quello da cui si parla; passerelle, molo e barca sull'acqua, la tana e il sentiero all'asciutto", () => {
+    const q = LAGO_VESPRO.quota;
+    const alte = CUORE.massi.map(([, , h]) => h);
+    expect(Math.max(...alte)).toBe(alte[CUORE.alto]);
+    CUORE.massi.forEach(([x, w], i) => {
+      expect(RIVALBA.quota(x), `sotto il masso ${i} c'è acqua`).toBeGreaterThan(q);
+      expect(sulMassoDelConsiglio(i)[1], `la cima del masso ${i} sta sopra l'acqua`).toBeLessThan(q);
+      if (i > 0) {
+        const [xp, wp] = CUORE.massi[i - 1];
+        const salto = x - w / 2 - (xp + wp / 2);
+        expect(salto, `tra il masso ${i - 1} e il ${i}: un passo`).toBeGreaterThan(20);
+        expect(salto, `tra il masso ${i - 1} e il ${i}: un passo`).toBeLessThan(110);
+      }
+    });
+    for (const [a, b] of CUORE.passerelle) for (const x of [a, (a + b) / 2, b]) expect(RIVALBA.quota(x), `acqua sotto la passerella a x=${x}`).toBeGreaterThan(q);
+    for (const x of [CUORE.molo[0], CUORE.barca, CUORE.barca - CUORE.lunghezzaBarca / 2 - 40, CUORE.barca + CUORE.lunghezzaBarca / 2]) expect(RIVALBA.quota(x), `acqua a x=${x}`).toBeGreaterThan(q);
+    for (const x of [CUORE.molo[0] + 10, CUORE.fondoPasserella]) expect(sullaPasserella(x)).toBeLessThan(q);
+    for (const x of [CUORE.tana, CUORE.sentiero[0], CUORE.sentiero[1]]) expect(RIVALBA.quota(x), `asciutto a x=${x}`).toBeLessThan(q);
   });
 
   it("una barca a galla dondola poco, sempre uguale per lo stesso nome; la calma la ferma", () => {
@@ -280,7 +312,7 @@ describe("cartoni — i temi della serie (cartoni/audio/temi.ts): la musica che 
     }
   });
 
-  it("il riflesso è il tema del lago capovolto (specchio diatonico attorno al Re)", () => {
+  it("il riflesso è il tema del lago capovolto, Cervara quello di Zara (specchi diatonici attorno al Re)", () => {
     const scala = [62, 64, 66, 67, 69, 71, 73]; // Re maggiore
     const grado = (m: number) => {
       const o = Math.floor((m - 62) / 12);
@@ -292,6 +324,9 @@ describe("cartoni — i temi della serie (cartoni/audio/temi.ts): la musica che 
     const asse = grado(74);
     expect(TEMI.RIFLESSO.length).toBe(TEMI.LAGO.length);
     TEMI.LAGO.forEach(([b, d, m], i) => expect(TEMI.RIFLESSO[i]).toEqual([b, d, nota(2 * asse - grado(m))]));
+    // Cervara è lo specchio di Zara: le sue note capovolte, e lente il doppio
+    expect(TEMI.CERVARA.length).toBe(TEMI.ZARA.length);
+    TEMI.ZARA.forEach(([b, d, m], i) => expect(TEMI.CERVARA[i]).toEqual([b * 2, d * 2, nota(2 * asse - grado(m))]));
   });
 });
 
@@ -630,6 +665,7 @@ describe("cartoni — i colori dei pupazzi vengono dalle schede", () => {
   it("Zara = saga/bible/zara.md", () => expect(del(ZARA_ANCORE)).toEqual(ancore("saga/bible/zara.md")));
   it("Cècca = saga/bible/comprimari/cecca.md", () => expect(del(CECCA_ANCORE)).toEqual(ancore("saga/bible/comprimari/cecca.md")));
   it("Brénta = saga/bible/comprimari/traghettatrice-delle-rive.md", () => expect(del(BRENTA_ANCORE)).toEqual(ancore("saga/bible/comprimari/traghettatrice-delle-rive.md")));
+  it("Cervara = saga/bible/comprimari/specchio-di-zara.md", () => expect(del(CERVARA_ANCORE)).toEqual(ancore("saga/bible/comprimari/specchio-di-zara.md")));
 });
 
 describe("cartoni — lessico delle Terre Annodate nel codice", () => {

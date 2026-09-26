@@ -12,8 +12,9 @@
 
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
 import { caso } from "../motore/caso";
-import { type Defs, type P, add, cerchioD, curva, ellisseD, g, n, path, pt, tr } from "../motore/svg";
-import { clamp, onda, palpebra } from "../motore/tempo";
+import { type Defs, type P, add, cerchioD, curva, ellisseD, g, n, path, pt, tr, tubo } from "../motore/svg";
+import { clamp, lerp, onda, palpebra } from "../motore/tempo";
+import { corpoDaSpina, ik2 } from "./anatomia";
 
 export const CECCA_ANCORE = { nero: "#1c2430", bianco: "#f0ece1", riflessi: "#3f6d7a" } as const;
 
@@ -204,6 +205,87 @@ function martinPosato(posa: PosaMartin, blu: string, bluChiaro: string, arancio:
     }
     s += path(gocce, { fill: "#dff2f7", opacity: 0.8 * bag });
   }
+  return s;
+}
+
+// ---------------------------------------------------------------- camoscio --
+export interface PosaCamoscio {
+  t: number;
+  /** Quanto ha raccolto le zampe (0 = distese in volo, 1 = tutte sotto: sta per toccare o per staccare). */
+  raccolto: number;
+  /** Testa: gradi (+ giù). */
+  testa?: number;
+}
+
+/**
+ * Il camoscio che viene dall'Altura (ep03, p.7): «non guardò dove metteva gli
+ * zoccoli, perché non ne aveva bisogno». Mantello d'autunno bruno-grigio con la
+ * riga scura sul dorso, la faccia chiara con la fascia nera dall'occhio al muso,
+ * le corna nere dritte e a uncino. Guarda a destra; zoccoli a y=0 quando posa.
+ */
+export function camoscio(posa: PosaCamoscio, ctx: CtxFauna): string {
+  const { luce, defs, id } = ctx;
+  const k = clamp(posa.raccolto);
+  const mantello = inLuce("#6e5a45", luce);
+  const mantelloS = inOmbra("#4d3e30", luce);
+  const ventre = inLuce("#a8957a", luce);
+  const faccia = inLuce("#e9e2d2", luce);
+  const nero = inLuce("#221c17", luce);
+  // la spina: in volo distesa, raccolta s'inarca
+  const spina: P[] = [
+    [-80 + 10 * k, -118 + 6 * k],
+    [-54 + 8 * k, -122 - 4 * k],
+    [-4, -124 - 8 * k],
+    [40 - 6 * k, -126 - 2 * k],
+    [62 - 8 * k, -140],
+  ];
+  const contorno = corpoDaSpina(spina, [10, 28, 30, 38, 26], [18, 42, 40, 44, 30]);
+  const piede = (dist: P, racc: P) => [lerp(dist[0], racc[0], k), lerp(dist[1], racc[1], k)] as P;
+  // i piedi: distesi (volo) → raccolti sotto la pancia
+  const pAV = piede([92, -30], [18, 0]);
+  const pAL = piede([78, -20], [8, 0]);
+  const pPV = piede([-122, -26], [-30, 0]);
+  const pPL = piede([-108, -16], [-40, 0]);
+  const gamba = (radice: P, p: P, l1: number, l2: number, piega: 1 | -1, col: string) => {
+    const { ginocchio, fine } = ik2(radice, p, l1, l2, piega);
+    return path(tubo([radice, ginocchio, fine, p], [19, 9, 6, 5.5]), { fill: col }) + path(`M${n(p[0] - 5)} ${n(p[1] - 2)}l2 6h8l-1 -7Z`, { fill: nero });
+  };
+  const spV = add(spina[3], [4, 18]);
+  const anV = add(spina[1], [0, 12]);
+  let s = "";
+  s += gamba(add(spina[1], [-8, 8]), pPL, 48, 46, -1, mantelloS) + gamba(add(spina[3], [-4, 14]), pAL, 46, 44, 1, mantelloS);
+  // la coda corta e scura
+  s += path(`M${pt(add(spina[0], [2, 0]))}q-12 2 -16 14`, { stroke: nero, "stroke-width": 7, fill: "none", "stroke-linecap": "round" });
+  const url = defs.lineare(`${id}-mantello`, [0, -160], [0, -80], [
+    [0, schiarisci(mantello, 0.06)],
+    [1, mantelloS],
+  ]);
+  const d = curva(contorno, true);
+  s += path(d, { fill: url });
+  const clip = defs.clip(`${id}-clip`, d);
+  // la pancia chiara e la riga scura sul dorso
+  const N = spina.length;
+  const ventreL = contorno.slice(N).reverse();
+  const dorsoL = contorno.slice(0, N);
+  s += g({ "clip-path": clip }, path(curva([...ventreL.map((p) => add(p, [0, 6])), ...ventreL.slice().reverse().map((p) => add(p, [0, -12]))], true), { fill: ventre, opacity: 0.8 }) + path(curva(dorsoL.map((p) => add(p, [0, 4]))), { stroke: nero, "stroke-width": 7, fill: "none", opacity: 0.6 }));
+  s += gamba(anV, pPV, 48, 46, -1, mantello) + gamba(spV, pAV, 46, 44, 1, mantello);
+  // il collo e la testa
+  const collo = spina[4];
+  const testa = g(
+    { transform: `translate(${n(collo[0] + 6)} ${n(collo[1] - 6)})rotate(${n((posa.testa ?? 0) - 6 * (1 - k))})` },
+    // le corna: dritte in su, poi a uncino all'indietro
+    path("M2 -26q2 -22 -2 -30q-4 -6 -10 -2", { stroke: nero, "stroke-width": 4.5, fill: "none", "stroke-linecap": "round" }) +
+      path("M-6 -24q0 -20 -4 -26q-4 -5 -9 -1", { stroke: nero, "stroke-width": 4, fill: "none", "stroke-linecap": "round", opacity: 0.8 }) +
+      path(curva([[-14, -8], [-10, -24], [4, -28], [22, -20], [38, -8], [40, 2], [26, 6], [4, 6], [-12, 4]], true), { fill: faccia }) +
+      // la fascia nera dall'attaccatura delle corna, sull'occhio, fino al muso
+      path("M-2 -24q10 6 18 12q10 8 22 10q-10 2 -24 -6q-10 -6 -18 -12Z", { fill: nero }) +
+      path(ellisseD([10, -14], 2.6, 2.2), { fill: "#15110d" }) +
+      // l'orecchio
+      path(curva([[-8, -18], [-22, -30], [-16, -16]], true), { fill: mantello }) +
+      path(ellisseD([38, -2], 2.2, 1.6), { fill: nero }),
+  );
+  s += path(tubo([add(spina[3], [6, -2]), collo, add(collo, [10, -4])], [28, 20, 15]), { fill: mantello });
+  s += testa;
   return s;
 }
 

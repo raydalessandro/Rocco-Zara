@@ -34,7 +34,8 @@
   episodio; `--stagione` tutte le puntate di fila, il film lungo.
 - **La durata** è un cancello leggero: con le voci un episodio sta tra 3′ e 7′ (test),
   mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`). Fatti: ep01 4′10″, ep02 6′48″
-  (c'è la ninna-nanna intera, un minuto).
+  (c'è la ninna-nanna intera, un minuto), ep03 6′35″ (la prosa è quasi tutta dialogo:
+  le didascalie sono scelte, e il resto lo dicono le immagini).
 
 ## La ricetta di un episodio (sempre la stessa)
 
@@ -122,15 +123,24 @@ della collina), lo si **segnala** nel consuntivo.
 ### Ingombri (per non far pestare i pupazzi)
 
 A scala 1: Rocco va da −178 (coda) a +313 (muso) attorno al centro; Zara da −160
-a +163. Per guardarsi in faccia servono ~550 unità tra i centri (`CIMA`, `RIPARO`
-nel copione di ep01). Quando camminano insieme: separati, oppure Zara disegnata
-**dopo** (più vicina alla camera).
+a +163 (col muso grande: da vicino il naso sta a ~+165). Cervara (a scala 0,95, la
+sua) da −110 a +130. Per guardarsi in faccia servono ~550 unità tra i centri di Rocco e
+Zara (`CIMA`, `RIPARO` nel copione di ep01), ~300 tra Zara e Cervara (ep03: sotto, i
+nasi si toccano). Quando camminano insieme: separati, oppure chi è più vicino alla
+camera disegnato **dopo**. In fila sulla stessa passerella: ~330 tra Cervara davanti e
+Zara dietro, ~320 tra Zara e Rocco. Una barca ormeggiata *davanti* al molo (ep03) copre
+le zampe di chi ci cammina: si capisce che passa dietro, non dentro.
 
 ### Andature senza scivolare
 
 La fase del passo si ricava dalla **strada fatta** (`fase(strada, CICLO.x, scala)`):
 così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupazzi
-(Rocco al passo 100, Zara al passo 93,75, Zara al galoppo 306 × ampiezza).
+(Rocco al passo 100, Zara al passo 93,75, Zara al galoppo 306 × ampiezza, Cervara al
+passo 84,4). **Di sasso in sasso** (ep03, i Massi): la traversata si scrive come
+appoggi (punti), un tempo in aria e uno di sosta per salto (`diSassoInSasso` nel
+copione di ep03); il galoppo di Zara mette il volo tra 0,78 e 1,18 del ciclo e
+l'appoggio tra 0,18 e 0,78, così a ogni sasso le zampe toccano davvero — e il suono
+(`sasso`) cade sugli istanti degli appoggi (`tocchi`).
 
 ## 2. I pupazzi (`cartoni/cast/`)
 
@@ -150,8 +160,18 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   del Vespro (ep02): **Brénta** la lontra (`lontra`: in piedi, le zampe al remo, al nodo,
   al bordo; `BRENTA_ANCORE` dalla sua scheda, test), le **linci** (`lince`: seduta o in
   piedi, ognuna col suo manto dal suo `seme`, e il cenno), il **Custode** (`testuggine`:
-  il collo che esce piano), la folaga. Un comprimario senza scheda disegnata si fa
-  dalla sua scheda di `saga/bible/comprimari/` e si segnala.
+  il collo che esce piano), la folaga. Da ep03: **Cervara** (`cervara.ts`, lo specchio
+  di Zara: in piedi, al passo, seduta — dritta, o `male` —; i ciuffi neri che si piegano
+  (`ciuffi`) e il colpetto di zampa che li rimette a posto (`zampaAlCiuffo`: la zampa
+  sale all'orecchio e la testa le scende incontro, come fanno i gatti); `verso` per
+  passare da una posa all'altra, «alzandosi»; `CERVARA_ANCORE` dalla scheda, test), il
+  **camoscio** dell'Altura (`fauna.ts → camoscio`: `raccolto` 1 = zampe sotto, 0 = in
+  volo). E crescono i due di sempre: Rocco si mette **a terra** (`aTerra` 0..1: la
+  pancia giù, le zampe davanti distese, quelle dietro raccolte — ep03 p.8, «venne a
+  sedersi vicino»), Zara si siede **male** (`male`, per compagnia). Le pose nuove non
+  cambiano un fotogramma degli episodi girati (le impronte di ep01/ep02 si confrontano
+  con `main`). Un comprimario senza scheda disegnata si fa dalla sua scheda di
+  `saga/bible/comprimari/` e si segnala.
 
 ## 3. Il palco (`cartoni/scene/`) e i luoghi (`cartoni/luoghi/`)
 
@@ -168,22 +188,44 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   **allineati al mondo** (passi fissi o a potenze di due): niente sfarfallii.
 - Meteo e luce sono parametri (`Meteo`, `LUCI`), interpolabili nel tempo
   (`mescolaLuce`): il vento che gira a ep01 p.13 è `versoVento` da +1 a −1.
-- **I luoghi fatti**: `soglia.ts` (ep01: la Soglia di Spondalta) e `rivalba.ts` (ep02:
-  `RIVALBA`, la riva sul Lago del Vespro — il molo basso, le barche a secco, le reti
-  stese, il masso del Custode, la tana di canne, il ciglio col bosco d'autunno; i
-  villaggi sull'acqua nei lontani — e `APPRODO`, la lingua di sassi). Dove stanno le
-  cose che la prosa nomina è una costante esportata (`RIVA`), non un numero nel copione.
+- **I luoghi fatti**: `soglia.ts` (ep01: la Soglia di Spondalta) e `rivalba.ts`, il
+  Lago del Vespro: `ORLO` (ep02: l'orlo di Rivalba, la riva dei villaggi — il molo basso,
+  le barche a secco, le reti stese, il masso del Custode, la tana di canne, il ciglio col
+  bosco d'autunno), `APPRODO` (ep02: la lingua di sassi), `RIVALBA` (ep03: il cuore del
+  regno sull'acqua — le passerelle su pali, i sette **Massi del Consiglio** col più alto
+  in mezzo, il molo basso con la barca di Brénta sotto il telo, il lavatoio delle reti,
+  l'orlo dove il lago gira, la tana degli Ospiti, il sentiero che sale dietro; la città
+  sull'acqua e il colle delle Coppelle nei lontani) e `COPPELLE` (ep03: il colle, le
+  pietre larghe coi cerchi di conche, il lago di notte laggiù coi lumi di Rivalba). Dove
+  stanno le cose che la prosa nomina è una costante esportata (`RIVA`, `CUORE`,
+  `PIETRE_COPPELLE`) e ci sono le funzioni per starci sopra (`sulMassoDelConsiglio`,
+  `sullaPasserella`), non numeri nel copione.
+- **Davanti a chi è in scena**: un luogo può avere delle cose `davanti` (`creaLuogo`:
+  disegnate dopo gli attori). Rivalba ci mette la barca ormeggiata contro il molo: chi
+  cammina sul molo le passa dietro. Col `telo` dell'inquadratura (`colpo`, `respiro`) il
+  carico sotto la tela si muove: un bozzo che spunta (il «tec», p.4), il mucchio che sale
+  e scende (qualcuno che russa, p.12) — senza mostrare chi c'è sotto.
+- **La luna** (`luna` dell'inquadratura: dove sta a schermo e quanto è grande): il disco
+  e il suo alone (più bassa, più calda), e sull'acqua la scia; con `riflesso` (l'altezza a
+  schermo del disco rimandato) anche la luna specchiata, sull'acqua lontana o su quella
+  vicina, spezzata dalle onde — «vera due volte» (ep03 p.11). Si mette dove l'acqua è
+  aperta: dietro le case e i colli non si vede.
 - **Il lago** (`scene/lago.ts`): `galleggia` (il dondolio, seminato), `barca` (la
   fiancata, le reti a poppa, gli scalmi; `aBordo` taglia chi è dentro sotto l'orlo),
   `remo` (vogato in piedi guardando avanti, `spinge`), `cerchiAcqua`, `molo`, `palo`,
   `palafitta`, `retiStese`, `barcaASecco`, `tanaDiCanne` (fondo e fronte: chi dorme
-  sta in mezzo) e **`riflesso`**: il disegno specchiato sotto la linea dell'acqua,
+  sta in mezzo), `massoDelConsiglio` (levigato in cima, bagnato al piede), `gorgo`
+  (l'acqua che gira) e **`riflesso`**: il disegno specchiato sotto la linea dell'acqua,
   mosso dalle onde, e se serve **sfumato ai bordi** (ep02 p.7: «come una cosa che
   l'acqua non ha ancora deciso»).
 - **Gli inserti** (`scene/inserti.ts`): la pietra coi segni; la corda di Toraki con la
   zampa di Zara che legge i nodi, su un `fondo` (`pietra` di ep01, con le due conche;
   `legno` della barca; `foglie` dell'involto), coi nodi `nuovi` che le si aggiungono (il
   nodo da pescatori di Brénta, ep02 p.13) e le zampe palmate di Brénta (`zampeLontra`).
+  La pietra ha anche le conche `a cerchi` (le Coppelle, ep03) e di notte, piene, la
+  `luna` in ognuna («piene di luna», p.13): con la zampa di Zara che si posa senza un
+  suono (p.15). Negli oggetti (`scene/oggetti.ts`) la pietra coppellata vista di lato
+  (`pietraCoppellata`) e gli alberi d'autunno (`alberoDAutunno`).
 
 ## 4. Le voci (`motore/parola.ts`, `motore/voce.ts`, `cast/voci.ts`, `audio/`)
 
@@ -218,8 +260,9 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   riprese con una voce diversa da quella del ruolo, e marca `provino` tutto quello che è
   registrato prima della scelta. Scelta del 26/9/2026: la narratrice è **Paola, da
   bambina** (`paola-bambina`); i personaggi sono ancora provvisori: Rocco `nicola-grande`,
-  Zara `sara-ragazza`, Cècca `sara-gazza`, il fratello `riccardo-ricordo`, e da ep02
-  Brénta `dora-barcaiola` e il Custode `george-custode` (con i loro provini).
+  Zara `sara-ragazza`, Cècca `sara-gazza`, il fratello `riccardo-ricordo`, da ep02
+  Brénta `dora-barcaiola` e il Custode `george-custode`, da ep03 Cervara
+  `siwis-cervara` (Sara e Siwis; in prova anche `emma-cervara`, più bassa e composta).
 - **Scegliere** (cancello di Ray): `npx tsx cartoni/render/narra.ts --provini narratrice`
   fa leggere la stessa pagina a tutte le candidate; `--provini personaggi` fa dire a
   ogni personaggio le sue battute con ognuna delle sue voci in prova. Scelta fatta:
@@ -249,11 +292,15 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   riconoscitore sbaglia anche lui (le riprese cortissime, le parole che si fondono:
   «tocca a te» → «toccatti»): dice dove ascoltare, il verdetto è di chi ascolta. Le
   parole che una voce sbaglia vanno nel dizionario `pronuncia` di `voce.json` (es.
-  `giovane` → `giòvane`): vale solo per le voci, le didascalie restano quelle della prosa.
+  `giovane` → `giòvane`; ep03: `tec` → `tecc`, e `ancora pioggia` → `ancora, pióggia`,
+  perché «pioggia» detta da Rocco si sentiva «più oggi»): vale solo per le voci, le
+  didascalie restano quelle della prosa. Una chiave può essere più di una parola (un
+  respiro prima di una parola aiuta più di un accento).
   Ep01 (26/9/2026): Rocco 100% delle parole, Zara 94%, la narratrice 73% — e Paola
   adulta, senza tono, fa lo stesso (75%): è il modello, non il tono; il riconoscitore
   ne perde soprattutto le R («pietra» → «pietta»). Con meno `variazione` (0,3) sale
-  intorno all'80%. Ep02: vedi il consuntivo della sua PR.
+  intorno all'80%. Ep02: la narratrice 75%; ep03: 76%, Cervara 94%, Zara 100%, Rocco 90%
+  (il riconoscitore non capisce un «Ecco» da solo, lo scrive «Rexon»: si ascolta).
 - **Registrare**: `npx tsx cartoni/render/narra.ts --episodio epNN` registra la
   narratrice (`narrazione.json`) e le battute di ogni personaggio (`battute.json`) in
   `episodi/epNN/voce/`; `--chi zara,rocco` solo alcune voci, `--solo s05,s06` solo
@@ -285,9 +332,13 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
 - **I temi della serie** (`audio/temi.ts`): come le voci, anche i temi sono di tutta
   la serie. Chi c'è in più episodi ha il suo tema e lo tiene — Zara, i passi di Rocco,
   l'amicizia (chiude gli episodi), il mondo che si apre (da ep01); il Lago del Vespro,
-  il riflesso (il tema del lago capovolto), Brénta, la corda di Toraki (da ep02). La
-  partitura di un episodio li importa da lì; un tema di una sola scena resta nella
-  sua partitura. Un tema nuovo che tornerà si mette in `temi.ts` subito.
+  il riflesso (il tema del lago capovolto), Brénta, la corda di Toraki (da ep02);
+  Cervara (da ep03): il tema di Zara capovolto (specchio diatonico attorno al Re) e lento
+  il doppio — le stesse note rovesciate e calme (un test lo tiene così). La partitura di
+  un episodio li importa da lì; un tema di una sola scena resta nella sua partitura. Un
+  tema nuovo che tornerà si mette in `temi.ts` subito. Una sezione può avere un
+  **`controcanto`**: una seconda melodia, dall'altra parte dello stereo (ep03, il finale:
+  Zara e Cervara insieme, i due riflessi che l'acqua tiene insieme).
 - **Il silenzio è musica.** Dove la prosa fa tacere (ep02 p.10: «Il silenzio salì
   dall'acqua tutto insieme») nessuna sezione copre l'inquadratura; sotto un brano
   nemmeno (il brano è la musica).
@@ -305,7 +356,13 @@ così i piedi in appoggio restano fermi nel mondo. `CICLO` è misurato sui pupaz
   Il `vol` del brano lo tiene appena sotto la narratrice (ep02: 0,6): è una ninna-nanna
   pensata nel sonno, non un numero musicale.
 - **Effetti**: rumore seminato e filtrato. Niente suoni "magici" (campanelle sulla
-  pietra, arpeggi scintillanti sui segni): è la stessa regola anti-New-Age.
+  pietra, arpeggi scintillanti sui segni): è la stessa regola anti-New-Age. Il catalogo
+  cresce (ep03): `tec` (un colpetto di becco su legno; con `durata`, tanti e fitti),
+  `russare` (lungo e pari: il ronfo e il soffio), `sasso` (una zampa che si posa su una
+  pietra e *suona*), `soffio` (l'aria di chi passa leggero), `asse` (un'asse che canta).
+  Un nome che il motore non conosce non suona: il test lo vieta. E nell'ambiente, di
+  notte, i `grilli` (seminati a parte: dove non ci sono, l'aria resta quella di prima,
+  campione per campione).
 - **Missaggio**: musica con riverbero, effetti, ambiente, voci; quando si parla la
   musica cala (~8 dB sotto la narratrice, ~5 sotto il grammelot), un poco anche effetti
   e ambiente; picco normalizzato e saturazione morbida; il render porta tutto a −18 LUFS.

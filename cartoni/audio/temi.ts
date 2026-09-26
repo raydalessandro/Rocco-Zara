@@ -63,3 +63,15 @@ export const CORDA: Nota[] = [
   [16, 2, 66], [18, 1, 69], [19, 1, 71], [20, 2, 74], [22, 1, 76], [23, 1, 78],
   [24, 3, 76], [27, 1, 73], [28, 4, 74],
 ];
+
+/**
+ * Cervara, lo specchio di Zara: il tema di Zara capovolto (specchio diatonico
+ * attorno al Re, come il riflesso) e lento il doppio — le stesse note, rovesciate
+ * e calme: quel che in Zara scatta, in lei si posa. Da ep03.
+ */
+export const CERVARA: Nota[] = [
+  [0, 1, 79], [1, 1, 78], [2, 1, 74], [3, 1, 73], [4, 2, 71], [6, 1, 73], [7, 1, 74], [8, 2, 78],
+  [10, 2, 74], [12, 1, 78], [13, 1, 79], [14, 2, 78],
+  [16, 1, 79], [17, 1, 78], [18, 1, 74], [19, 1, 73], [20, 2, 71], [22, 1, 67], [23, 1, 71],
+  [24, 3, 73], [27, 1, 74], [28, 4, 74],
+];

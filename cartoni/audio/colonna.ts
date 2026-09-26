@@ -58,7 +58,7 @@ export function posto(parlato: readonly Parlato[], n: number): Float32Array {
 /** L'aria a ogni istante: l'ambiente dell'inquadratura, sfumato sui cambi. */
 function ariaDi(ep: Episodio): (t: number) => Aria {
   const as = ambienti(ep);
-  const norma = (a: (typeof as)[number]["a"]): Aria => ({ vento: a.vento ?? 0.3, pioggia: a.pioggia ?? 0, lago: a.lago ?? 0 });
+  const norma = (a: (typeof as)[number]["a"]): Aria => ({ vento: a.vento ?? 0.3, pioggia: a.pioggia ?? 0, lago: a.lago ?? 0, grilli: a.grilli ?? 0 });
   return (t: number) => {
     let i = as.findIndex((x) => t >= x.inizio && t < x.fine);
     if (i < 0) i = as.length - 1;
@@ -70,6 +70,7 @@ function ariaDi(ep: Episodio): (t: number) => Aria {
       vento: prec.vento + (cur.vento - prec.vento) * k,
       pioggia: prec.pioggia + (cur.pioggia - prec.pioggia) * k,
       lago: prec.lago + (cur.lago - prec.lago) * k,
+      grilli: prec.grilli! + (cur.grilli! - prec.grilli!) * k,
     };
   };
 }
