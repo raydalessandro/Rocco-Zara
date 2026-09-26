@@ -13,8 +13,25 @@ Due cose separate, che viaggiano in due pacchetti:
 - **gli episodi** — `episodi/<id>/`: il copione animato, la partitura, e (se c'è)
   la narrazione registrata. Ognuno si aggiunge quando c'è, e i test lo trovano da soli.
 
-Primo episodio: **ep01 — Due mondi** (`episodi/ep01/`), animatica pilota di ~3′50″
-dalle 19 pagine della sua prosa (`saga/prosa/ep01.md`).
+Primo episodio fatto: **ep01 — Due mondi** (`episodi/ep01/`): 26 inquadrature dalle
+19 pagine della sua prosa (`saga/prosa/ep01.md`), 4′10″ con le voci.
+
+## La serie
+
+Tutta la stagione a cartoni, da guardare di fila come un film lungo fatto di episodi:
+**24 episodi di circa 5 minuti** (uno per episodio di prosa), montati a quattro a quattro
+in **6 puntate di circa 20 minuti**, una per volume (i Laghi del Vespro, la Conca
+Ruggente, il Gran Ducato, la Piana dei Savi, la Selva di Mezzo, le Terre del Leone di
+Pietra). Le puntate si ricavano dal grafo della saga (`motore/serie.ts`). Si fa un
+episodio alla volta, sempre con la stessa ricetta (`docs/ANIMATORE.md`, «La ricetta di un
+episodio»), e intanto il catalogo cresce: ogni luogo, pupazzo e voce nuovi entrano nel
+motore e servono agli episodi dopo.
+
+```bash
+npx tsx cartoni/render/monta.ts --elenco        # a che punto è la serie
+npx tsx cartoni/render/monta.ts --puntata 1     # i 4 episodi girati del volume 1, in fila → cartoni/out/puntata1_narrato.mp4
+npx tsx cartoni/render/monta.ts --stagione      # tutte le puntate di fila: il film lungo
+```
 
 ## Come si gira
 
@@ -38,6 +55,8 @@ l'episodio intero gira in 8-10 minuti.
 
 ```bash
 npx tsx cartoni/render/nuovo.ts --episodio ep02     # scheletro: un'inquadratura per pagina, le frasi pronte da citare
+npx tsx cartoni/render/narra.ts --episodio ep02      # registra le voci (narratrice e personaggi)
+python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscitore vocale ascolta le riprese
 ```
 
 ## Le voci
@@ -73,7 +92,8 @@ cartoni/
   motore/      il tempo (easing, tracce), il caso SEMINATO, la penna SVG, la luce,
                la camera a parallasse, il montaggio (stacchi, dissolvenze, nero),
                le didascalie (Fraunces, a capo bilanciato), la parola (chi parla,
-               sillabe italiane), la voce (piano delle battute, bocche, tempi)
+               sillabe italiane), la voce (piano delle battute, bocche, tempi),
+               la serie (le puntate, dal grafo della saga)
   scene/       il palco: il kit di pennelli (cielo, temporale, monti, terreno, erba,
                canneto, pioggia), gli oggetti (rocce, lastre, rami), il meteo, le luci,
                gli inserti in macro, la regia (sul palco, passi, scosse) e il
@@ -83,10 +103,12 @@ cartoni/
   cast/        i pupazzi (Rocco, Zara, Cècca, fauna minore) e le loro voci
   audio/       strumenti di sintesi, effetti, il suonatore di partiture, il grammelot,
                la narratrice, il missaggio → WAV
-  voce/        voce.json: la voce narrante della saga (una) e le candidate
+  voce/        voce.json: il cast delle voci (la narratrice e una voce per personaggio),
+               le candidate, la pronuncia
   player/      il cartone per il browser (CARTONE.svg(t)), con le voci
-  render/      gira.mjs (Chrome headless → ffmpeg), suona.ts (WAV), narra.ts (riprese
-               della narratrice e provini), nuovo.ts (scheletro di un episodio)
+  render/      gira.mjs (Chrome headless → ffmpeg), suona.ts (WAV), narra.ts (registra
+               le voci e fa i provini) con leggi_voce.py, ascolta.py (si capisce?),
+               nuovo.ts (scheletro di un episodio), monta.ts (le puntate, la stagione)
   episodi/     <id>/copione.ts · partitura.ts · voce/ (riprese) — il pacchetto a parte
 ```
 
@@ -105,19 +127,22 @@ cartoni/
 4. **Il caso è seminato.** `Math.random` e gli orologi sono banditi (test). Nei cicli
    che scartano ciò che è fuori campo, ogni elemento ha il **suo** generatore
    (`elemento(seme, i)`): altrimenti le cose saltano quando la camera si muove.
-   L'unica cosa non deterministica — la voce sintetica della narratrice — sta fuori,
-   nelle riprese registrate.
+   L'unica cosa non deterministica — le voci sintetiche (Piper non ridice mai una
+   frase identica) — sta fuori, nelle riprese registrate, che si tengono.
 5. **Anti-New-Age.** La pietra è *tiepida*, non magica: niente bagliori (test), al
    massimo un filo di vapore nell'aria fredda dell'alba. Niente suoni magici.
 6. **Lessico.** Nessun nome reale né a schermo né nel codice (stessa mappa del linter).
 7. **Grammatica visiva** (`saga/bible/STILE_VISIVO.md` §2-§3, vincolante): varietà
    focale drone↔macro, POV basso e veloce di Zara, contrasto di scala dal basso,
    lo scambio tra i due mostrato (chi guida, chi protegge).
-8. **Una voce narrante.** Scelta una volta, per sempre (test su `voce/voce.json`).
+8. **Una voce per ruolo.** La narratrice e ogni personaggio: scelti da Ray una volta,
+   per sempre; mai due ruoli con la stessa voce (test su `voce/voce.json`).
+9. **La serie.** Ogni episodio sta in una puntata (dal grafo), col titolo della sua
+   prosa, e con le voci dura tra 3′ e 7′ (si mira a 5′).
 
 ## Il cancello
 
 Questa corsia **non** sostituisce le illustrazioni del libro (quelle restano il
 cancello immagini: Manus + scelta umana). È un terzo mezzo — l'animatica — e il suo
-cancello è **Ray che guarda e ascolta**: il foglio-provini, il video, e la voce
-narrante (i provini) prima di qualsiasi pubblicazione. Dettaglio: `docs/ANIMATORE.md`.
+cancello è **Ray che guarda e ascolta**: il foglio-provini, il video, e le voci (i
+provini) prima di qualsiasi pubblicazione. Dettaglio: `docs/ANIMATORE.md`.

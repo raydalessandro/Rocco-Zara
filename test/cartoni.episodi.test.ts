@@ -11,6 +11,8 @@
 //     e ogni voce sta dentro la sua didascalia;
 //  5. se ci sono le voci registrate (narratrice, personaggi), ogni pezzo ha la
 //     sua ripresa, col testo giusto, e la bocca dei personaggi le sta dietro.
+//  6. sta nella serie (la sua puntata, dal grafo della saga), col titolo della
+//     sua prosa, e con le voci dura intorno ai 5 minuti.
 
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
@@ -19,6 +21,7 @@ import { VOCI } from "../cartoni/cast/voci";
 import { aCapo } from "../cartoni/motore/didascalie";
 import { inSvg } from "../cartoni/motore/fotogramma";
 import { type Episodio, durata, fotogramma, scaletta } from "../cartoni/motore/montaggio";
+import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
 import { type Battute, type Narrazione, daNarrare, daRecitare } from "../cartoni/motore/voce";
 import { conLeVoci } from "../cartoni/player/cartone";
 
@@ -36,6 +39,9 @@ const EPISODI: { id: string; ep: Episodio; musica: unknown; narr: Narrazione | n
     bat: existsSync(join(DIR, id, "voce/battute.json")) ? (JSON.parse(readFileSync(join(DIR, id, "voce/battute.json"), "utf8")) as Battute) : null,
   })),
 );
+
+/** La serie: gli episodi a quattro a quattro nelle puntate (motore/serie.ts). */
+const SERIE = puntate(JSON.parse(leggi("saga/trama/saga_graph.json")), titoliVolumi(leggi("saga/trama/volumi/README.md")));
 
 /** Normalizza come si legge a schermo: via il corsivo markdown, spazi semplici. */
 const norma = (s: string) => s.replace(/\*/g, "").replace(/\s+/g, " ").trim();
@@ -161,6 +167,15 @@ for (const { id, ep, narr, bat } of EPISODI) {
         expect(v.tg + v.durata, `${v.q}: ${v.testo}`).toBeLessThanOrEqual(p.inizio + d.a);
       }
       for (let i = 1; i < epV.voci.length; i++) expect(epV.voci[i].tg).toBeGreaterThanOrEqual(epV.voci[i - 1].tg + epV.voci[i - 1].durata - 1e-9);
+    });
+
+    it("sta nella serie, col titolo della sua prosa, e con le voci dura intorno ai 5′ (tra 3′ e 7′: quattro fanno una puntata di ~20′)", () => {
+      expect(puntataDi(SERIE, id), `${id}: non è nella serie (saga/trama/saga_graph.json)`).toBeDefined();
+      expect(ep.prosa).toBe(`saga/prosa/${id}.md`);
+      expect(ep.titolo).toBe(titoloDallaProsa(leggi(ep.prosa)));
+      const d = durata(epV);
+      expect(d, `${id}: ${Math.floor(d / 60)}′${Math.round(d % 60)}″`).toBeGreaterThanOrEqual(DURATA_EPISODIO.min);
+      expect(d, `${id}: ${Math.floor(d / 60)}′${Math.round(d % 60)}″`).toBeLessThanOrEqual(DURATA_EPISODIO.max);
     });
 
     if (bat) {

@@ -15,6 +15,7 @@
     "cartone": "node cartoni/render/gira.mjs",
     "cartone:voce": "tsx cartoni/render/narra.ts",
     "cartone:nuovo": "tsx cartoni/render/nuovo.ts",
+    "cartone:monta": "tsx cartoni/render/monta.ts",
     "test:watch": "vitest",
     "test:engine": "vitest run test/engine.parity.test.ts",
     "test:reference": "vitest run test/reference.test.ts",
