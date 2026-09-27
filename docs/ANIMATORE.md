@@ -434,7 +434,9 @@ chi le sta davanti, e al suo turno va all'orlo di buon passo, poi salta (`inCoda
   da ep04 `fiato` (il fischio della marmotta senza fischio), `crollo` (la zolla che cede
   e cade in acqua), `strillo` (qualcuno di piccolo), `schizzo`, `guado` (un passo grande
   nell'acqua, col `ritmo`), `scheggia` (il dente che stacca il legno), `stringe` (la corda
-  che si stringe), `coperchio` (la corteccia che si apre). Un nome che il motore non
+  che si stringe), `coperchio` (la corteccia che si apre), `rane` (il coro che riparte
+  tutto insieme, in un istante: dove l'ambiente, che sale in dissolvenza, non basta a
+  dire «nell'attimo esatto»). Un nome che il motore non
   conosce non suona: il test lo vieta. E nell'ambiente, di notte, i `grilli`; da ep04 il
   coro delle **rane** (dieci, ognuna con la sua voce e il suo passo; chi canta già a
   mezza voce e chi solo a piena, e quando il coro riprende dopo il silenzio ripartono

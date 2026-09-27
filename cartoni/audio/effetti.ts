@@ -468,6 +468,33 @@ export function effetto(bus: Bus, nome: string, t: number, vol = 1, durata?: num
       soffio(bus, t + 0.05, 0.3, vol * 0.3, 1800, 1.2, seme, (u) => Math.sin(Math.PI * u), 0);
       break;
     }
+    case "rane": {
+      // il coro delle rane che riparte TUTTO INSIEME (ep04, p.18: «nell'attimo esatto in cui
+      // il nodo chiuse… tutto insieme, a piena voce»): dieci rane, ognuna col suo «cra» nel
+      // primo istante, poi a serie per `durata`; dopo, il coro lo tiene l'ambiente (`rane`).
+      // Lo stesso canto dell'ambiente: un treno di colpi fitti, ognuna con la sua voce e il suo posto
+      const d = durata ?? 1.4;
+      const durColpo = idx(0.012);
+      for (let c = 0; c < 10; c++) {
+        const fc = r.tra(520, 1000);
+        const pr = r.tra(38, 68);
+        const colpi = 6 + Math.floor(r() * 8);
+        const pan = r.tra(-0.8, 0.8);
+        const v = vol * r.tra(0.03, 0.05);
+        for (let t0 = r.tra(0, 0.04); t0 < d; t0 += r.tra(0.26, 0.4)) {
+          for (let k = 0; k < colpi; k++) {
+            const i0 = idx(t + t0 + k / pr);
+            const ek = Math.sin((Math.PI * (k + 0.5)) / colpi);
+            let fase = 0;
+            for (let i = 0; i < durColpo; i++) {
+              fase += (2 * Math.PI * fc) / SR;
+              bus.add(i0 + i, (Math.sin(fase) + 0.45 * Math.sin(2 * fase) + 0.2 * Math.sin(3 * fase)) * Math.exp(-(i / SR) * 260) * ek * v, pan);
+            }
+          }
+        }
+      }
+      break;
+    }
     default:
       break;
   }
