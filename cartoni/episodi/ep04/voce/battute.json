@@ -1,0 +1,172 @@
+{
+ "voci": {
+  "gente": {
+   "voce": "coro-rive",
+   "stato": "provino",
+   "impronta": "4547036c"
+  },
+  "cervara": {
+   "voce": "siwis-cervara",
+   "stato": "provino",
+   "impronta": "d1dbd3fd"
+  },
+  "zara": {
+   "voce": "sara-ragazza",
+   "stato": "provino",
+   "impronta": "502042fd"
+  },
+  "rocco": {
+   "voce": "nicola-grande",
+   "stato": "provino",
+   "impronta": "4dc6fc0c"
+  },
+  "custode": {
+   "voce": "george-custode",
+   "stato": "provino",
+   "impronta": "b47f9c39"
+  },
+  "brenta": {
+   "voce": "dora-barcaiola",
+   "stato": "provino",
+   "impronta": "2097429e"
+  }
+ },
+ "clip": {
+  "s02/0/0": {
+   "chi": "gente",
+   "voce": "coro-rive",
+   "testo": "L'acqua! L'acqua alle tane!",
+   "durata": 1.757,
+   "file": "s02-0-0.ogg",
+   "bocca": "16788876567888878851588888824777777665422200"
+  },
+  "s16/0/0": {
+   "chi": "gente",
+   "voce": "coro-rive",
+   "testo": "Serve una diga,",
+   "durata": 1.212,
+   "file": "s16-0-0.ogg",
+   "bocca": "0347888767888887677775776653100"
+  },
+  "s16/0/2": {
+   "chi": "gente",
+   "voce": "coro-rive",
+   "testo": "Non c'è.",
+   "durata": 0.849,
+   "file": "s16-0-2.ogg",
+   "bocca": "1588888665778776541000"
+  },
+  "s25/0/0": {
+   "chi": "gente",
+   "voce": "coro-rive",
+   "testo": "TIENE!",
+   "durata": 0.712,
+   "file": "s25-0-0.ogg",
+   "bocca": "026888888887664410"
+  },
+  "s12/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Di zampa in zampa,",
+   "durata": 1.398,
+   "file": "s12-0-0.ogg",
+   "bocca": "35886458888618888744788787207765420"
+  },
+  "s12/0/2": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Di masso in masso. Si fa così.",
+   "durata": 2.068,
+   "file": "s12-0-2.ogg",
+   "bocca": "3588888864248888888863211776300357208860278854555310"
+  },
+  "s34/0/0": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Il peso prima,",
+   "durata": 1.193,
+   "file": "s34-0-0.ogg",
+   "bocca": "488860078876883017788888876520"
+  },
+  "s34/0/2": {
+   "chi": "cervara",
+   "voce": "siwis-cervara",
+   "testo": "Tu lo porti meglio. Vai.",
+   "durata": 1.662,
+   "file": "s34-0-2.ogg",
+   "bocca": "258888107884036888777755765133688876543300"
+  },
+  "s14/0/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Il peso prima,",
+   "durata": 1.199,
+   "file": "s14-0-0.ogg",
+   "bocca": "078871058875882167788887765410"
+  },
+  "s14/0/2": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "Poi la zampa. E il masso non ti dice niente.",
+   "durata": 2.571,
+   "file": "s14-0-2.ogg",
+   "bocca": "17888788527888805870588878888533588787057458706567877777600343100"
+  },
+  "s20/1/0": {
+   "chi": "zara",
+   "voce": "sara-ragazza",
+   "testo": "E si farà?",
+   "durata": 0.92,
+   "file": "s20-1-0.ogg",
+   "bocca": "388852388307877777655300"
+  },
+  "s18/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Reggo io,",
+   "durata": 0.919,
+   "file": "s18-0-0.ogg",
+   "bocca": "04668866688888887763000"
+  },
+  "s38/0/0": {
+   "chi": "rocco",
+   "voce": "nicola-grande",
+   "testo": "Ho freddo alle ginocchia,",
+   "durata": 1.833,
+   "file": "s38-0-0.ogg",
+   "bocca": "0785338788568888788656678888874001267655553100"
+  },
+  "s20/0/0": {
+   "chi": "custode",
+   "voce": "george-custode",
+   "testo": "Il rito aspetta.",
+   "durata": 1.879,
+   "file": "s20-0-0.ogg",
+   "bocca": "07888877887775368877775441048777620005766554420"
+  },
+  "s20/2/0": {
+   "chi": "custode",
+   "voce": "george-custode",
+   "testo": "Si farà. Dopo.",
+   "durata": 1.808,
+   "file": "s20-2-0.ogg",
+   "bocca": "0565888512887787777777776888888610777766654200"
+  },
+  "s43/0/0": {
+   "chi": "custode",
+   "voce": "george-custode",
+   "testo": "Il rito non aspetta due volte,",
+   "durata": 2.973,
+   "file": "s43-0-0.ogg",
+   "bocca": "088887778887424887410788887766520687400058776658888787668877766640356544200"
+  },
+  "s44/0/1": {
+   "chi": "brenta",
+   "voce": "dora-barcaiola",
+   "testo": "Trent'anni di lago, dentro questo legno—",
+   "durata": 2.516,
+   "file": "s44-0-1.ogg",
+   "bocca": "057887068878885466778888534765001287762365057642576676666543310"
+  }
+ }
+}
