@@ -49,6 +49,8 @@ export interface PosaCervara {
   /** Fusione con un'altra posa (per i passaggi: seduta → in piedi, «alzandosi»). */
   verso?: { altra: PosaCervara; k: number };
   ombra?: boolean;
+  /** Bagnata (0..1): la notte della piena (ep04) — il manto più scuro, e la pioggia che ci luccica sopra. */
+  bagnata?: number;
 }
 
 // ------------------------------------------------------------- scheletro --
@@ -194,16 +196,19 @@ export function cervara(posa: PosaCervara, ctx: CtxPupazzo): string {
     sk.collo = sk.spina[4];
   }
 
+  const bagnata = clamp(posa.bagnata ?? 0);
+  const mantoBase = mescola(CERVARA_ANCORE.manto, "#6b5a44", bagnata * 0.38);
+  const cremaBase = mescola("#ede5d3", "#a39a88", bagnata * 0.35);
   const c: Tav = {
-    manto: inLuce(CERVARA_ANCORE.manto, luce),
-    mantoAlto: inLuce(schiarisci(CERVARA_ANCORE.manto, 0.12), luce),
-    mantoOmbra: inOmbra(CERVARA_ANCORE.manto, luce),
-    crema: inLuce("#ede5d3", luce),
-    cremaOmbra: inOmbra("#ede5d3", luce),
-    macchia: inLuce(scurisci(CERVARA_ANCORE.manto, 0.48), luce),
+    manto: inLuce(mantoBase, luce),
+    mantoAlto: inLuce(schiarisci(mantoBase, 0.12), luce),
+    mantoOmbra: inOmbra(mantoBase, luce),
+    crema: inLuce(cremaBase, luce),
+    cremaOmbra: inOmbra(cremaBase, luce),
+    macchia: inLuce(scurisci(mantoBase, 0.48), luce),
     scuro: inLuce(CERVARA_ANCORE.scuro, luce),
   };
-  const lontanaZampa = inOmbra(scurisci(CERVARA_ANCORE.manto, 0.12), luce);
+  const lontanaZampa = inOmbra(scurisci(mantoBase, 0.12), luce);
   const fianco = verso === 1 ? "destro" : "sinistro";
 
   const contorno = corpoDaSpina(sk.spina, sk.dorso, sk.ventre);
@@ -322,6 +327,8 @@ export function cervara(posa: PosaCervara, ctx: CtxPupazzo): string {
 
   const testaG = g({ transform: `translate(${n(perno[0])} ${n(perno[1])})rotate(${n(ang)})scale(${SCALA_TESTA})` }, testaCervara(posa, ctx, c));
 
+  // bagnata: il pelo appiattito dall'acqua, e la pioggia che ci luccica sopra lungo il dorso
+  if (bagnata > 0) corpo += path(curva(dorsoLinea.map((p) => add(p, [0, 6]))), { stroke: schiarisci(luce.bordo, 0.3), "stroke-width": 3, fill: "none", "stroke-linecap": "round", opacity: 0.3 * bagnata });
   const seduta = (posa.verso && posa.verso.k > 0.5 ? posa.verso.altra.andatura : posa.andatura) === "seduta";
   // con la zampa ai ciuffi, la zampa vicina passa davanti alla testa
   const davanti = k > 0.05 ? vicinaDavanti : "";

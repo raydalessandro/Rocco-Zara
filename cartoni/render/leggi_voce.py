@@ -30,6 +30,14 @@ insieme altezza e formanti, e il passo resta quello di `lentezza`, senza
 stirare il suono. (Piper non allunga del tutto in proporzione: col tono la
 lentezza rende un po' meno, e si regola a orecchio — docs/ANIMATORE.md §5.)
 
+`coro` (solo kokoro): una voce fatta di più voci che dicono le stesse parole insieme,
+un poco sfasate — la Gente delle Rive (ep04: «non era una voce sola»). È una lista di
+voci in più, ognuna col suo `modello` (anche un miscuglio), il suo `tono`, la sua
+`lentezza` (se no quella della voce), un `ritardo` (s) e un `vol`: si leggono tutte, si
+riportano alla stessa frequenza, si sommano alla voce principale e si normalizzano.
+Kokoro legge ogni voce col suo passo: il coro non è mai perfettamente all'unisono,
+come una folla.
+
 Se i modelli non ci sono nella cartella li scarica: Piper da HuggingFace
 (rhasspy/piper-voices), Kokoro dalle release di kokoro-onnx su GitHub.
 Serve: pip install piper-tts (per piper), pip install kokoro-onnx (per kokoro).
@@ -128,10 +136,53 @@ class Kokoro:
             tot = v if tot is None else tot + v
         return tot
 
-    def leggi(self, testo: str, lentezza: float) -> np.ndarray:
-        a, sr = self.k.create(testo, voice=self.stile(), speed=1.0 / lentezza, lang="it")
+    def leggi(self, testo: str, lentezza: float, voce: str | None = None) -> np.ndarray:
+        stile = self.stile() if voce is None else Kokoro.miscuglio(self.k, voce)
+        a, sr = self.k.create(testo, voice=stile, speed=1.0 / lentezza, lang="it")
         self.sr = sr
         return np.asarray(a, dtype=np.float32)
+
+    @staticmethod
+    def miscuglio(k, voce: str):
+        if "+" not in voce and "*" not in voce:
+            return voce
+        tot = None
+        for parte in voce.split("+"):
+            nome, _, peso = parte.strip().partition("*")
+            v = k.get_voice_style(nome.strip()) * float(peso or 1)
+            tot = v if tot is None else tot + v
+        return tot
+
+
+def ricampiona(a: np.ndarray, sr_da: float, sr_a: int) -> np.ndarray:
+    """Porta un parlato da una frequenza di campionamento a un'altra (interpolazione lineare)."""
+    if len(a) == 0 or abs(sr_da - sr_a) < 1e-6:
+        return a
+    n = int(round(len(a) * sr_a / sr_da))
+    x = np.arange(n) * (sr_da / sr_a)
+    return np.interp(x, np.arange(len(a)), a).astype(np.float32)
+
+
+def coro(motore, lavoro: dict, testo: str, lentezza: float, k: float) -> tuple[np.ndarray, int]:
+    """La voce principale più le voci del coro, sfasate e sommate, alla frequenza di Kokoro."""
+    sr = 24000
+    voci = [{"modello": None, "tono": float(lavoro.get("tono", 0)), "lentezza": lentezza / k, "ritardo": 0.0, "vol": 1.0}] + list(lavoro["coro"])
+    pezzi = []
+    for v in voci:
+        kv = 2 ** (float(v.get("tono", 0)) / 12)
+        lv = float(v.get("lentezza") or lavoro["lentezza"])
+        a = motore.leggi(testo, lv * kv, v.get("modello"))
+        a = ricampiona(rifila(np.clip(a, -1, 1), motore.sr), motore.sr * kv, sr)
+        pad = int(round(float(v.get("ritardo", 0)) * sr))
+        pezzi.append(np.concatenate([np.zeros(pad, dtype=np.float32), a * float(v.get("vol", 1))]))
+    n = max(len(p) for p in pezzi)
+    somma = np.zeros(n, dtype=np.float32)
+    for p in pezzi:
+        somma[: len(p)] += p
+    picco = float(np.max(np.abs(somma))) if n else 0.0
+    if picco > 0:
+        somma = somma * (0.9 / picco)
+    return somma, sr
 
 
 def main() -> None:
@@ -140,9 +191,13 @@ def main() -> None:
     motore = (Kokoro if lavoro.get("motore") == "kokoro" else Piper)(lavoro, cartella)
     k = 2 ** (float(lavoro.get("tono", 0)) / 12)
     for p in lavoro["pezzi"]:
-        a = motore.leggi(p["testo"], p.get("lentezza", lavoro["lentezza"]) * k)
-        a = rifila(np.clip(a, -1, 1), motore.sr)
-        sr_out = int(round(motore.sr * k))
+        if lavoro.get("coro"):
+            a, sr_out = coro(motore, lavoro, p["testo"], p.get("lentezza", lavoro["lentezza"]) * k, k)
+            a = rifila(a, sr_out)
+        else:
+            a = motore.leggi(p["testo"], p.get("lentezza", lavoro["lentezza"]) * k)
+            a = rifila(np.clip(a, -1, 1), motore.sr)
+            sr_out = int(round(motore.sr * k))
         with wave.open(p["file"], "wb") as w:
             w.setnchannels(1)
             w.setsampwidth(2)

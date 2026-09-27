@@ -297,22 +297,47 @@ export interface OpzPalafitta {
   lume?: number;
 }
 
-/** Una casa su palafitte, col tetto di paglia spiovente (la riva di Rivalba). Origine: sull'acqua, al centro. */
-export function palafitta(luce: Luce, defs: Defs, seme: string, o: OpzPalafitta = {}): string {
+/**
+ * La pianta di una palafitta: le misure, i pali, la porta e la finestra, pescati dal
+ * suo seme SEMPRE nello stesso ordine (così chi deve sapere dov'è la finestra — il
+ * lume riflesso nella piena, ep04 — la trova dove la disegna `palafitta`).
+ * Restituisce anche il generatore, pronto per il tetto.
+ */
+function piantaPalafitta(seme: string, o: OpzPalafitta) {
   const r = caso(`palafitta/${seme}`);
   const w = o.w ?? r.tra(260, 380);
   const hp = o.piano ?? r.tra(70, 110);
   const hw = o.pareti ?? r.tra(120, 160);
+  const nPali = Math.round(w / 55);
+  const pali: { x: number; piede: number }[] = [];
+  for (let i = 0; i <= nPali; i++) {
+    const x = -w / 2 + 10 + (i * (w - 20)) / nPali + r.segno(4);
+    pali.push({ x, piede: r.segno(3) });
+  }
+  const pw = w * 0.8;
+  const top = -hp - 12 - hw;
+  const px = r.tra(-pw * 0.25, pw * 0.1);
+  const fx = px + (r.moneta(0.5) ? 70 : -70);
+  return { r, w, hp, hw, pali, pw, top, px, fx };
+}
+
+/** Dov'è la finestra di una palafitta (il centro, coordinate della casa: l'acqua a y=0). */
+export function finestraDellaPalafitta(seme: string, o: OpzPalafitta = {}): P {
+  const k = piantaPalafitta(seme, o);
+  return [k.fx, k.top + k.hw * 0.3 + 12];
+}
+
+/** Una casa su palafitte, col tetto di paglia spiovente (la riva di Rivalba). Origine: sull'acqua, al centro. */
+export function palafitta(luce: Luce, defs: Defs, seme: string, o: OpzPalafitta = {}): string {
+  const { r, w, hp, hw, pali: piantati, pw, top, px, fx } = piantaPalafitta(seme, o);
   const legno = inLuce(LEGNO.medio, luce);
   const legnoC = inLuce(LEGNO.chiaro, luce);
   const legnoS = inLuce(LEGNO.scuro, luce);
   let s = "";
   // i pali
-  const nPali = Math.round(w / 55);
   let pali = "";
-  for (let i = 0; i <= nPali; i++) {
-    const x = -w / 2 + 10 + (i * (w - 20)) / nPali + r.segno(4);
-    pali += `M${n(x - 6)} ${n(-hp)}L${n(x - 7 + r.segno(3))} 6L${n(x + 7)} 6L${n(x + 6)} ${n(-hp)}Z`;
+  for (const { x, piede } of piantati) {
+    pali += `M${n(x - 6)} ${n(-hp)}L${n(x - 7 + piede)} 6L${n(x + 7)} 6L${n(x + 6)} ${n(-hp)}Z`;
     s += increspatura(luce, x, 12);
   }
   s = path(pali, { fill: legnoS }) + s;
@@ -320,8 +345,6 @@ export function palafitta(luce: Luce, defs: Defs, seme: string, o: OpzPalafitta 
   s += path(`M${n(-w / 2 - 30)} ${n(-hp - 12)}h${n(w + 60)}v14h${n(-w - 60)}Z`, { fill: legno });
   s += path(`M${n(-w / 2 - 30)} ${n(-hp - 12)}h${n(w + 60)}`, { stroke: legnoC, "stroke-width": 3 });
   // le pareti di assi verticali
-  const pw = w * 0.8;
-  const top = -hp - 12 - hw;
   const url = defs.lineare(`palafitta-${seme}-pareti`, [0, top], [0, -hp - 12], [
     [0, scurisci(legno, 0.25)],
     [1, legno],
@@ -331,9 +354,7 @@ export function palafitta(luce: Luce, defs: Defs, seme: string, o: OpzPalafitta 
   for (let x = -pw / 2 + 18; x < pw / 2; x += 18) assi += `M${n(x)} ${n(top + 4)}V${n(-hp - 14)}`;
   s += path(assi, { stroke: legnoS, "stroke-width": 1.4, opacity: 0.55 });
   // la porta e una finestrella
-  const px = r.tra(-pw * 0.25, pw * 0.1);
   s += path(`M${n(px - 22)} ${n(-hp - 12)}V${n(top + hw * 0.32)}Q${n(px)} ${n(top + hw * 0.22)} ${n(px + 22)} ${n(top + hw * 0.32)}V${n(-hp - 12)}Z`, { fill: inOmbra(LEGNO.bagnato, luce) });
-  const fx = px + (r.moneta(0.5) ? 70 : -70);
   const lume = clamp(o.lume ?? 0);
   s += path(`M${n(fx - 14)} ${n(top + hw * 0.3)}h28v24h-28Z`, { fill: lume > 0 ? mescola(inOmbra(LEGNO.bagnato, luce), "#f2b35a", lume) : inOmbra(LEGNO.bagnato, luce) });
   // il tetto di paglia: spiovente, sporge, con le ciocche
@@ -551,6 +572,40 @@ export function tanaDiCanne(luce: Luce, defs: Defs, w = 360, h = 230): { fondo: 
       { stroke: cannaS, "stroke-width": 2, "stroke-linecap": "round", opacity: 0.8 },
     );
   return { fondo, fronte };
+}
+
+// ------------------------------------------------------ la custodia del pegno --
+/**
+ * La custodia del pegno (ep04, p.17): una scatola tonda di legno scavato, lisciata
+ * dalle zampe, coi cerchi di conche incisi sul fianco e una cordicella; il coperchio
+ * di corteccia, legato dietro. `aperta` (0..1) lo alza: dentro, il vuoto. Origine: a
+ * terra, al centro; alta ~46.
+ */
+export function custodiaDelPegno(luce: Luce, defs: Defs, id: string, aperta = 0): string {
+  const legno = inLuce("#6e5238", luce);
+  const legnoS = inOmbra("#4a3524", luce);
+  const legnoC = inLuce("#9a7a55", luce);
+  const url = defs.lineare(`${id}-custodia`, [-32, 0], [32, 0], [
+    [0, legnoS],
+    [0.35, legno],
+    [0.6, legnoC],
+    [1, legnoS],
+  ]);
+  let s = path(ellisseD([2, 1], 38, 5), { fill: "#1a1610", opacity: 0.3 });
+  // il fianco: un cilindro basso, visto un poco dall'alto
+  s += path("M-30 -40L-30 -4Q0 6 30 -4L30 -40Z", { fill: url });
+  // i cerchi incisi: una fila di conche piccole, come quelle delle pietre
+  let conche = "";
+  for (let i = 0; i < 5; i++) conche += ellisseD([-20 + i * 10, -22 + (i % 2) * 6], 2.6, 2.2);
+  s += path(conche, { fill: legnoS, opacity: 0.8 });
+  s += path("M-30 -12Q0 -3 30 -12", { stroke: inLuce("#b49a6a", luce), "stroke-width": 2.2, fill: "none" });
+  // l'interno (quando si apre: il vuoto)
+  s += path(ellisseD([0, -40], 30, 7), { fill: aperta > 0.05 ? inLuce("#140f0a", luce) : legnoC });
+  s += path(ellisseD([0, -40], 30, 7), { fill: "none", stroke: legnoS, "stroke-width": 1.6 });
+  // il coperchio di corteccia: gira attorno al bordo dietro (a sinistra)
+  const a = -110 * clamp(aperta);
+  s += g({ transform: `rotate(${n(a)} -30 -41)` }, path("M-32 -44Q0 -52 32 -44L32 -39Q0 -32 -32 -39Z", { fill: inLuce("#7d6a50", luce) }) + path("M-26 -45Q0 -50 26 -45", { stroke: inLuce("#a8946e", luce), "stroke-width": 1.2, fill: "none" }));
+  return s;
 }
 
 // ---------------------------------------------------------------- riflesso --

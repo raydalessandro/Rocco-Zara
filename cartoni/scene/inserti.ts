@@ -356,6 +356,158 @@ function fogliDellInvolto(o: OpzCorda): string {
 }
 
 /**
+ * Il fondo dell'inserto alle Coppelle (ep04, p.18): la pietra larga, e le conche a
+ * cerchi — due giri che passano sopra e sotto la corda — piene della pioggia della
+ * notte, col cielo dell'alba dentro.
+ */
+function pietraDelleConche(o: OpzCorda): string {
+  const { luce, defs } = o;
+  const gp = defs.radiale("corda-coppelle", [900, 420], 1500, [
+    [0, inLuce("#b7ab94", luce)],
+    [0.6, inLuce("#998e7a", luce)],
+    [1, inOmbra("#6c6457", luce)],
+  ]);
+  let s = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${gp}"/>`;
+  const rg = caso("coppelle/grana");
+  let grana = "";
+  let lic = "";
+  for (let i = 0; i < 360; i++) grana += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(1.5, 5), rg.tra(1, 3));
+  for (let i = 0; i < 9; i++) lic += ellisseD([rg.tra(0, W), rg.tra(0, H)], rg.tra(30, 90), rg.tra(16, 40));
+  s += path(lic, { fill: inLuce("#c2b27c", luce), opacity: 0.18 });
+  s += path(grana, { fill: inOmbra("#5b5448", luce), opacity: 0.26 });
+  const cielo = inLuce("#c9d3dc", luce);
+  const giri: [number, number, number][] = [];
+  for (let i = 0; i < 12; i++) giri.push([980 + 470 * Math.cos((i * Math.PI) / 6 + 0.2), 560 + 400 * Math.sin((i * Math.PI) / 6 + 0.2), 40]);
+  for (let i = 0; i < 16; i++) giri.push([980 + 700 * Math.cos((i * Math.PI) / 8), 560 + 560 * Math.sin((i * Math.PI) / 8), 34]);
+  for (const [cx, cy, rr] of giri) {
+    if (cy > 420 && cy < 760) continue; // dove passa la corda la pietra è liscia
+    const ry = rr * 0.8;
+    s += path(ellisseD([cx, cy], rr, ry), { fill: inLuce("#8d826e", luce) });
+    const clipC = defs.clip(`coppelle-conca-${Math.round(cx)}-${Math.round(cy)}`, ellisseD([cx, cy], rr, ry));
+    s += g({ "clip-path": clipC }, path(ellisseD([cx + rr * 0.3, cy + ry * 0.32], rr * 1.02, ry * 1.02), { fill: inLuce("#a79b84", luce) }) + path(ellisseD([cx - rr * 0.55, cy - ry * 0.55], rr * 0.9, ry * 0.7), { fill: inOmbra("#5d564b", luce), opacity: 0.75 }));
+    // piena della pioggia della notte: il cielo dell'alba, e un filo di luce
+    s += path(ellisseD([cx + 1, cy + 2], rr * 0.84, ry * 0.8), { fill: cielo, opacity: 0.9 });
+    s += path(`M${n(cx - rr * 0.4)} ${n(cy - ry * 0.25)}q${n(rr * 0.3)} -5 ${n(rr * 0.55)} 2`, { stroke: "#ffffff", "stroke-width": 2.6, fill: "none", opacity: 0.55, "stroke-linecap": "round" });
+  }
+  return s;
+}
+
+/**
+ * Un nodo fatto nella corda stessa, come quelli di Toraki (ep04): fino a metà è
+ * l'anello che si alza e gira attorno al pegno, poi il nodo che si stringe; il pegno
+ * (la scaglia di remo di Brénta) resta preso dentro, di traverso.
+ */
+function nodoDiCorda(p: P, k: number, pegno: "remo" | undefined, luce: Luce, fibra: string, fibraC: string, fibraS: string): string {
+  let s = "";
+  // il pegno: la scaglia chiara di remo, posata sulla pietra, che il nodo prende
+  if (pegno === "remo") {
+    // legno fresco: dentro un remo vecchio il legno è chiaro, e il filo si vede
+    const legno = inLuce("#e4cf9f", luce);
+    s += path(ellisseD(add(p, [10, 22]), 80, 13), { fill: "#1a1610", opacity: 0.22 });
+    s += g({ transform: `translate(${n(p[0])} ${n(p[1] - 4)})rotate(-18)` }, path("M-84 -7L74 -16L86 -4L-76 9Z", { fill: legno, stroke: inOmbra("#7a5a36", luce), "stroke-width": 2.4 }) + path("M-70 -2L70 -9M-58 4L48 -1", { stroke: inOmbra("#9a7a52", luce), "stroke-width": 1.6, opacity: 0.6 }));
+  }
+  if (k < 0.55) {
+    // l'anello: la corda si alza e gira
+    const h = 70 * (k / 0.55);
+    const anello = `M${n(p[0] - 46)} ${n(p[1])}C${n(p[0] - 46)} ${n(p[1] - h * 1.4)} ${n(p[0] + 40)} ${n(p[1] - h * 1.4)} ${n(p[0] + 30)} ${n(p[1] + 4)}`;
+    s += path(anello, { stroke: fibraS, "stroke-width": 22, fill: "none", "stroke-linecap": "round" });
+    s += path(anello, { stroke: fibra, "stroke-width": 16, fill: "none", "stroke-linecap": "round" });
+    s += path(anello, { stroke: fibraC, "stroke-width": 5, fill: "none", "stroke-linecap": "round", opacity: 0.5, transform: "translate(-2 -3)" });
+    return s;
+  }
+  // il nodo che si stringe: più piccolo e più duro man mano
+  const st = (k - 0.55) / 0.45;
+  const rr = 58 - 18 * st;
+  s += path(ellisseD(add(p, [6, 12]), rr + 4, rr * 0.7), { fill: "#1a1610", opacity: 0.25 });
+  s += path(ellisseD(p, rr, rr * 0.82), { fill: fibraS });
+  s += path(ellisseD(add(p, [-3, -5]), rr * 0.82, rr * 0.64), { fill: fibra });
+  s += path(`M${n(p[0] - rr * 0.7)} ${n(p[1] - 6)}Q${n(p[0])} ${n(p[1] - rr * 0.9)} ${n(p[0] + rr * 0.7)} ${n(p[1] - 2)}M${n(p[0] - rr * 0.6)} ${n(p[1] + 10)}Q${n(p[0])} ${n(p[1] - rr * 0.3)} ${n(p[0] + rr * 0.6)} ${n(p[1] + 12)}`, { stroke: fibraS, "stroke-width": 4, fill: "none", opacity: 0.8 });
+  s += path(`M${n(p[0] - rr * 0.5)} ${n(p[1] - rr * 0.4)}q${n(rr * 0.4)} -8 ${n(rr * 0.8)} -2`, { stroke: fibraC, "stroke-width": 3, fill: "none", opacity: 0.7 });
+  // le due punte della scaglia che escono dal nodo
+  if (pegno === "remo") {
+    const legno = inLuce("#e4cf9f", luce);
+    const filo = { stroke: inOmbra("#7a5a36", luce), "stroke-width": 2.4 };
+    s += g({ transform: `translate(${n(p[0])} ${n(p[1] - 4)})rotate(-18)` }, path(`M${n(rr * 0.7)} -10L74 -16L86 -4L${n(rr * 0.7)} 1Z`, { fill: legno, ...filo }) + path(`M-84 -7L${n(-rr * 0.7)} -8L${n(-rr * 0.7)} 4L-76 9Z`, { fill: legno, ...filo }));
+  }
+  return s;
+}
+
+/**
+ * L'inserto del nodino vecchio (ep04, p.18: «sul bordo della pietra un nodino vecchio,
+ * piccolo, consumato»): l'orlo della pietra delle conche, una fessura, e dentro un
+ * nodo piccolo di corda grigia, sfilacciata — fatto come quelli di Toraki. La zampa
+ * di Zara ci arriva e lo trova (0..1), prima degli occhi.
+ */
+export function insertoNodino(o: { t: number; luce: Luce; defs: Defs; zampa: number; spinta: number }): Livello[] {
+  const { luce, defs, t } = o;
+  const sc = 1 + 0.05 * ease.dentroFuori(o.spinta);
+  const cam = `translate(${W / 2} ${H / 2})scale(${Math.round(sc * 1000) / 1000})translate(${-W / 2} ${-H / 2})`;
+  // sotto, l'erba bagnata; sopra, la pietra, con l'orlo che scende di sbieco
+  let fondo = `<rect x="-50" y="-50" width="${W + 100}" height="${H + 100}" fill="${inLuce("#6f7a44", luce)}"/>`;
+  fondo += erbaMacro(t, luce, 0, "macro/erba-nodino");
+  const orlo: P[] = [
+    [-60, -60],
+    [W + 60, -60],
+    [W + 60, 470],
+    [1500, 560],
+    [1080, 640],
+    [700, 760],
+    [360, 830],
+    [-60, 900],
+  ];
+  const dPietra = curva(orlo, true, 0.6);
+  const gp = defs.radiale("nodino-pietra", [1100, 200], 1300, [
+    [0, inLuce("#b7ab94", luce)],
+    [0.7, inLuce("#978b77", luce)],
+    [1, inOmbra("#6c6457", luce)],
+  ]);
+  let pietra = path(dPietra, { fill: gp });
+  const clip = defs.clip("nodino-clip", dPietra);
+  const rg = caso("nodino/grana");
+  let grana = "";
+  let lic = "";
+  for (let i = 0; i < 300; i++) grana += ellisseD([rg.tra(0, W), rg.tra(0, 900)], rg.tra(1.5, 5), rg.tra(1, 3));
+  for (let i = 0; i < 12; i++) lic += ellisseD([rg.tra(0, W), rg.tra(0, 820)], rg.tra(30, 90), rg.tra(16, 40));
+  let dentro = path(lic, { fill: inLuce("#c2b27c", luce), opacity: 0.2 }) + path(grana, { fill: inOmbra("#5b5448", luce), opacity: 0.26 });
+  // l'orlo: una fascia più scura dove la pietra gira verso il basso
+  dentro += path(`M-60 870L360 800L700 730L1080 610L1500 530L${W + 60} 440`, { stroke: inOmbra("#5d564b", luce), "stroke-width": 60, fill: "none", opacity: 0.45 });
+  // due conche in alto, piene
+  for (const [cx, cy, rr] of [[1320, 160, 56], [1620, 250, 48]] as const) {
+    dentro += path(ellisseD([cx, cy], rr, rr * 0.8), { fill: inLuce("#8d826e", luce) }) + path(ellisseD([cx + 1, cy + 2], rr * 0.84, rr * 0.66), { fill: inLuce("#c9d3dc", luce), opacity: 0.9 });
+  }
+  // la fessura sull'orlo, e il nodino dentro
+  dentro += path("M860 700Q900 660 930 640Q960 626 990 600", { stroke: inOmbra("#3f3a33", luce), "stroke-width": 7, fill: "none", "stroke-linecap": "round" });
+  pietra += g({ "clip-path": clip }, dentro);
+  pietra += path(dPietra, { fill: "#1d1a14", opacity: 0.3, transform: "translate(10 18)" });
+  // il nodino: una corda grigia sottile, due giri stretti attorno a un dente della pietra, i capi sfilacciati
+  const grigio = inLuce("#8f887a", luce);
+  const grigioS = inOmbra("#5f5a50", luce);
+  const nc: P = [930, 650];
+  let nodo = "";
+  nodo += path(`M${n(nc[0] - 70)} ${n(nc[1] + 22)}Q${n(nc[0] - 30)} ${n(nc[1] + 6)} ${n(nc[0] - 18)} ${n(nc[1] + 2)}M${n(nc[0] + 18)} ${n(nc[1] - 6)}Q${n(nc[0] + 44)} ${n(nc[1] - 22)} ${n(nc[0] + 78)} ${n(nc[1] - 30)}`, { stroke: grigioS, "stroke-width": 9, fill: "none", "stroke-linecap": "round" });
+  nodo += path(ellisseD(nc, 26, 20), { fill: grigioS });
+  nodo += path(ellisseD(add(nc, [-2, -3]), 21, 15), { fill: grigio });
+  nodo += path(`M${n(nc[0] - 18)} ${n(nc[1] - 4)}Q${n(nc[0])} ${n(nc[1] - 22)} ${n(nc[0] + 18)} ${n(nc[1] - 2)}M${n(nc[0] - 16)} ${n(nc[1] + 6)}Q${n(nc[0])} ${n(nc[1] - 8)} ${n(nc[0] + 16)} ${n(nc[1] + 8)}`, { stroke: grigioS, "stroke-width": 2.6, fill: "none", opacity: 0.85 });
+  // i capi sfilacciati, e un poco di lichene: è lì da tanto
+  nodo += path(`M${n(nc[0] - 70)} ${n(nc[1] + 22)}l-10 6M${n(nc[0] - 70)} ${n(nc[1] + 22)}l-12 -2M${n(nc[0] + 78)} ${n(nc[1] - 30)}l12 -6M${n(nc[0] + 78)} ${n(nc[1] - 30)}l10 4`, { stroke: grigio, "stroke-width": 2, "stroke-linecap": "round", opacity: 0.8 });
+  nodo += path(ellisseD(add(nc, [8, -8]), 5, 3) + ellisseD(add(nc, [-12, 4]), 4, 2.4), { fill: inLuce("#b8ac74", luce), opacity: 0.7 });
+  // la zampa di Zara: arriva dall'alto e posa le dita sul nodino
+  const z = clamp(o.zampa);
+  let zampa = "";
+  if (z > 0) {
+    const e = ease.fuoriCubo(z);
+    const c: P = [lerp(700, 840, e), lerp(-260, 470, e)];
+    zampa = g({ transform: `translate(${n(c[0])} ${n(c[1])})scale(1.15)translate(${n(-c[0])} ${n(-c[1])})` }, zampaDallAlto(c, luce, defs));
+  }
+  // (a scala 1,5: piccolo per la pietra, ma lo si deve vedere — la zampa lo trova)
+  const nodoGrande = g({ transform: `translate(${nc[0]} ${nc[1]})scale(1.5)translate(${-nc[0]} ${-nc[1]})` }, nodo);
+  return [
+    { id: "fondo", contenuto: g({ transform: cam }, fondo + pietra + nodoGrande), schermo: true },
+    { id: "zampa", contenuto: g({ transform: cam }, zampa), schermo: true },
+  ];
+}
+
+/**
  * Una zampa di lontra vista dall'alto, sulla corda: l'avambraccio corto e
  * robusto che arriva da `spalla`, il pelo bagnato (Brénta non finisce mai
  * d'asciugare: qualche goccia), la mano palmata con cinque dita e le unghie chiare.
@@ -431,11 +583,21 @@ export interface OpzCorda {
   /**
    * Su cosa sta la corda: la pietra dei segni (ep01, con le due conche: «si
    * somigliano»), il legno della barca (ep02, p.11: «La posò sul legno, tra
-   * loro») o le foglie dell'involto (ep02, p.16).
+   * loro»), le foglie dell'involto (ep02, p.16) o la pietra delle Coppelle, coi
+   * cerchi di conche piene di pioggia (ep04, p.18: «sulla pietra delle conche»).
    */
-  fondo?: "pietra" | "legno" | "foglie";
-  /** I nodi nuovi, dopo quelli di Toraki: dove (0..1 lungo la corda) e quanto sono fatti (0..1). */
-  nuovi?: readonly { u: number; fatto: number }[];
+  fondo?: "pietra" | "legno" | "foglie" | "coppelle";
+  /**
+   * I nodi nuovi, dopo quelli di Toraki: dove (0..1 lungo la corda) e quanto sono fatti
+   * (0..1). Di spago da rete (il nodo di Brénta, ep02) o, `corda`, fatti nella corda
+   * stessa come quelli di Toraki, stretti attorno a un pegno (ep04: la scaglia di remo).
+   */
+  nuovi?: readonly { u: number; fatto: number; tipo?: "rete" | "corda"; pegno?: "remo" }[];
+  /**
+   * Le due zampe di Zara che annodano (ep04, p.18: «Le zampe ferme»): dove (0..1 lungo
+   * la corda), quanto lavorano (0..1) e lo strattone finale che stringe (0..1).
+   */
+  zampeZara?: { u: number; lavora: number; stringe: number };
   /**
    * Le zampe palmate di Brénta sulla corda: dove (0..1 lungo la corda), lo
    * strappo secco al nodo a metà (0..1), e quanto lavorano (0..1: annodano).
@@ -462,6 +624,7 @@ export function insertoCorda(o: OpzCorda): Livello[] {
   let fondo = "";
   if (suCosa === "legno") fondo = tavoleDellaBarca(o);
   else if (suCosa === "foglie") fondo = fogliDellInvolto(o);
+  else if (suCosa === "coppelle") fondo = pietraDelleConche(o);
   else {
     const gp = defs.radiale("corda-pietra", [760, 360], 1500, [
       [0, inLuce("#bcae93", luce)],
@@ -557,10 +720,14 @@ export function insertoCorda(o: OpzCorda): Livello[] {
   }
 
   // i nodi nuovi: un nodo da rete, di spago verde di lago, accanto a quello di Toraki
-  // (grosso come i suoi: si deve vedere che adesso sono due)
+  // (grosso come i suoi: si deve vedere che adesso sono due); o un nodo di corda col suo pegno
   for (const nv of o.nuovi ?? []) {
     const k = clamp(nv.fatto);
     if (k <= 0 || nv.u > fine) continue;
+    if (nv.tipo === "corda") {
+      nodi += nodoDiCorda(add(puntoCorda(nv.u), scossa(nv.u)), k, nv.pegno, luce, fibra, fibraC, fibraS);
+      continue;
+    }
     const p = add(puntoCorda(nv.u), scossa(nv.u));
     const spago = inLuce("#6f8f86", luce);
     const spagoC = inLuce("#9db8ae", luce);
@@ -607,6 +774,19 @@ export function insertoCorda(o: OpzCorda): Livello[] {
       const muove: P = [Math.sin(o.t * 7.3 + i * 2) * 10 * lavora, Math.cos(o.t * 6.1 + i) * 8 * lavora];
       const c = add(add(add(puntoCorda(u), scossa(u)), [0, -24]), muove);
       zampeLontra += zampaDiLontra(c, add(c, [640 - i * 70, -560 + i * 50]), luce, defs, `lontra${i}`);
+    }
+  }
+  // le due zampe di Zara che annodano: da sinistra e da destra, lavorano, poi tirano e stringono
+  if (o.zampeZara) {
+    const { u, lavora, stringe } = o.zampeZara;
+    const p = puntoCorda(u);
+    const una = zampaDallAlto([0, 0], luce, defs);
+    const apri = 80 * ease.dentroFuori(clamp(stringe));
+    for (const lato of [-1, 1] as const) {
+      const muove: P = [Math.sin(o.t * 6.7 + lato) * 14 * lavora, Math.cos(o.t * 5.9 + lato * 2) * 10 * lavora];
+      // le zampe tengono i due capi, larghe: in mezzo, il nodo che si fa
+      const c = add(add(p, [lato * (165 + apri), -80]), muove);
+      zampeLontra += g({ transform: `translate(${n(c[0])} ${n(c[1])})rotate(${n(lato * 14)})scale(${lato * 0.78} 0.78)` }, una);
     }
   }
   // la zampa che legge i nodi, uno per uno (e poi arriva al liscio)

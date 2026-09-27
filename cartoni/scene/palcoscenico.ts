@@ -14,7 +14,7 @@ import { type PosaZara, zara } from "../cast/zara";
 import type { Luce } from "../motore/colore";
 import type { Camera, Livello } from "../motore/fotogramma";
 import type { Defs } from "../motore/svg";
-import type { Luogo } from "./luogo";
+import type { Luogo, Piena } from "./luogo";
 import { METEO_SERENO, type Meteo } from "./meteo";
 import { palco } from "./palco";
 import { canneto } from "./pittura";
@@ -56,6 +56,8 @@ export interface OpzScena {
   mandrie?: boolean;
   /** Sotto il telo della barca ormeggiata (dove il luogo ne ha una): un colpetto, un respiro. */
   telo?: { colpo?: number; respiro?: number };
+  /** La piena (ep04): l'acqua vicina più alta, davanti a tutti (e la schiuma del luogo). */
+  piena?: Piena;
 }
 
 export interface Palcoscenico {
@@ -96,6 +98,7 @@ export function palcoscenico(luogo: Luogo): Palcoscenico {
         soleA: o.soleA,
         luna: o.luna,
         telo: o.telo,
+        piena: o.piena,
         mandrie: o.mandrie ?? true,
       }),
     sulPalco: (x, disegno, o) => sulPalco(luogo, x, disegno, o),

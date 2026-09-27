@@ -23,6 +23,11 @@ Episodi fatti:
   (`saga/prosa/ep03.md`), 6′35″ con le voci — Rivalba sull'acqua coi Massi del
   Consiglio, Cervara la lince giovane (lo specchio di Zara), il camoscio dell'Altura,
   la notte alle Coppelle, i due riflessi.
+- **ep04 — Il primo nodo** (`episodi/ep04/`): 52 inquadrature dalle 19 pagine
+  (`saga/prosa/ep04.md`), 6′34″ con le voci — la piena la sera del rito, il varco alle
+  rive basse e Rocco che ci si mette di traverso, le staffette sui massi, Cervara che fa
+  un passo di lato, il coro delle rane che tace e riprende quando il nodo chiude, il
+  nodino vecchio sulla pietra. Chiude la prima puntata (i Laghi del Vespro).
 
 ## La serie
 
@@ -72,7 +77,8 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
 - **Ogni personaggio ha la sua voce**, e poi la tiene: Rocco una voce d'uomo, Zara di
   ragazza, Cècca piccola e svelta, il fratello di Zara lontana, da ricordo; Brénta una
   donna calda e concreta, il Custode un vecchio pacato, Cervara giovane come Zara ma
-  piana, certa. Il cast cresce anche mescolando
+  piana, certa; la Gente delle Rive — «non era una voce sola» — un coro: più voci che
+  dicono le stesse parole un poco sfasate (`coro` in `voce.json`). Il cast cresce anche mescolando
   le voci di Kokoro (`"if_sara*0.4+pf_dora*0.6"`): l'italiano lo legge comunque, la
   voce cambia. Dicono le
   battute vere (le «» della prosa, `chi: "zara"` nel copione), registrate una volta
@@ -98,7 +104,10 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
 - **La musica torna.** I temi di chi c'è in più episodi (Zara, i passi di Rocco,
   l'amicizia, il lago, Brénta, la corda di Toraki, Cervara — il tema di Zara capovolto
   e lento il doppio) stanno in `audio/temi.ts`: ogni partitura li prende da lì, così un
-  tema resta quello da un episodio all'altro.
+  tema resta quello da un episodio all'altro (anche in minore, o lento il doppio: ep04).
+- **L'ambiente ha le sue voci**: il vento, il lago, la pioggia, i grilli di notte (ep03),
+  il coro delle rane e l'acqua che corre nella piena (ep04). Dove un copione non le
+  chiede, l'ambiente resta quello di prima campione per campione (test).
 - **Le voci si capiscono.** Più una voce è spinta verso l'acuto, meno si capisce: il
   cast è stato scelto controllando ogni battuta con un riconoscitore vocale; le parole
   che una voce sintetica sbaglia si correggono nel dizionario `pronuncia` di `voce.json`
@@ -119,17 +128,21 @@ cartoni/
   scene/       il palco: il kit di pennelli (cielo, temporale, monti, terreno, erba,
                canneto, pioggia), gli oggetti (rocce, lastre, rami, alberi d'autunno),
                il lago (barche e remi, il dondolio, cerchi d'acqua, moli, palafitte,
-               reti, la tana di canne, i Massi del Consiglio, il gorgo, i riflessi), la
-               luna vera due volte, il meteo, le luci, gli inserti in
-               macro, la regia (sul palco, passi, scosse) e il palcoscenico (un luogo
+               reti, la tana di canne, i Massi del Consiglio, il gorgo, i riflessi, la
+               custodia del pegno), la piena (l'acqua alta davanti a tutto, dove il suolo
+               le sta sotto), la luna vera due volte, il meteo, le luci, gli inserti in
+               macro (la corda coi nodi, il nodo che si fa, il nodino vecchio), la regia
+               (sul palco, passi, di sasso in sasso, scosse) e il palcoscenico (un luogo
                pronto per il copione)
   luoghi/      i luoghi del mondo: profilo, tavolozza, lontani, oggetti (soglia.ts:
                la Soglia di Spondalta; rivalba.ts: il Lago del Vespro — l'orlo di
                Rivalba coi villaggi, l'approdo dove le rive si stringono, Rivalba
-               sull'acqua coi Massi del Consiglio, le Coppelle sul colle)
+               sull'acqua coi Massi del Consiglio, le Coppelle sul colle, le rive basse
+               con le tane e il varco, l'Altura della marmotta)
   cast/        i pupazzi (Rocco, Zara, Cècca, la gente dei laghi — Brénta la lontra,
-               le linci, il Custode-testuggine, la folaga —, Cervara, fauna minore
-               col camoscio) e le voci
+               le lontre che nuotano, le linci che portano i piccoli, il Custode-
+               testuggine e Rèmolo dal guscio liscio, le rane, la folaga —, Cervara,
+               fauna minore col camoscio e la marmotta) e le voci
   audio/       strumenti di sintesi, effetti, il suonatore di partiture, i temi della
                serie, il grammelot, la narratrice, i brani, il missaggio → WAV
   voce/        voce.json: il cast delle voci (la narratrice e una voce per personaggio),

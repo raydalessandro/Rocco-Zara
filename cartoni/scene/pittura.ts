@@ -589,6 +589,99 @@ export function primoPiano(o: OpzPalco, p: number): string {
   return path(d, { fill: col, opacity: 0.95 }) + path(dc, { fill: colC, opacity: 0.8 });
 }
 
+// --------------------------------------------------------------- piena --
+/**
+ * La piena (ep04): l'acqua vicina salita sopra il suo livello, DAVANTI a tutto il
+ * piano dei personaggi — copre le zampe di chi ci sta dentro, i pali, il piede dei
+ * massi, le passerelle sommerse. È torbida (la pioggia di tutto il cielo, la terra
+ * delle rive), la corrente le scorre sopra a strisce, la pioggia la punteggia; dove
+ * la riva sale più della piena, l'acqua finisce sulla riva. Niente bagliori: è
+ * acqua sporca, di notte. Le strisce e i cerchi stanno fermi nel mondo (una piastrella
+ * che si ripete), così la camera ci passa sopra senza farli scivolare.
+ */
+export function piena(o: OpzPalco): string {
+  const P = o.piena;
+  const A = o.luogo.acqua;
+  if (!P || !A) return "";
+  const h = P.laguna ?? P.livello;
+  if (h <= 0.5) return "";
+  const { luce, t, meteo, defs, luogo } = o;
+  const C = luogo.colori;
+  const yF = A.quota - h;
+  const v = vista(o.cam, 1, 0.25);
+  const x0 = v.x0 - 60;
+  const x1 = v.x1 + 60;
+  const passo = 12 * Math.pow(2, Math.max(0, Math.ceil(Math.log2((x1 - x0) / 220 / 12))));
+  const fondo = Math.max(v.y1 + 200, A.quota + 400);
+  const onda = (x: number) => Math.sin(x * 0.021 - t * 1.9) * 1.8 + Math.sin(x * 0.047 + t * 1.2) * 1.1;
+  const sopra: P[] = [];
+  const sotto: P[] = [];
+  for (let x = Math.floor(x0 / passo) * passo; x <= x1 + passo; x += passo) {
+    const y = yF + onda(x);
+    sopra.push([x, y]);
+    // sul lago va giù fino in fondo; sulla riva finisce dove il suolo sale sopra la piena
+    sotto.push([x, x < A.riva ? fondo : Math.max(y, luogo.quota(x) + 3)]);
+  }
+  const torbida = mescola(C.lago, "#6b5a40", 0.32);
+  const url = defs.lineare("piena", [0, yF - 4], [0, yF + 520], [
+    [0, inLuce(mescola(C.lagoChiaro, "#8f7d5c", 0.4), luce)],
+    [0.06, inLuce(torbida, luce)],
+    [1, inOmbra(scurisci(torbida, 0.3), luce)],
+  ]);
+  let s = path(`M${sopra.map(pt).join("L")}L${sotto.reverse().map(pt).join("L")}Z`, { fill: url, opacity: 0.96 });
+  // il pelo dell'acqua: una linea più chiara, rotta dalle onde
+  s += path(`M${sopra.map(pt).join("L")}`, { stroke: inLuce(mescola(C.lagoChiaro, "#d8d2c0", 0.3), luce), "stroke-width": 2.4, fill: "none", opacity: 0.55 });
+  const TILE = 2400;
+  const tessere = (base: number, dx: number): number[] => {
+    const b = (((base + dx) % TILE) + TILE) % TILE;
+    const out: number[] = [];
+    for (let k = Math.floor((x0 - b) / TILE); b + k * TILE < x1; k++) out.push(b + k * TILE);
+    return out;
+  };
+  // la corrente: strisce che scorrono, lunghe al pelo e corte in fondo
+  const c = P.corrente ?? 0;
+  if (Math.abs(c) > 0.02) {
+    const semeC = fnv1a32("piena/corrente");
+    let d = "";
+    for (let i = 0; i < 70; i++) {
+      const r = elemento(semeC, i);
+      const base = r.tra(0, TILE);
+      const k = r();
+      const prof = 3 + k * k * 170;
+      const lung = (30 + (1 - k) * 110) * r.tra(0.5, 1.2);
+      const vel = r.tra(60, 170) * c;
+      for (const x of tessere(base, vel * t)) {
+        const y = yF + prof + onda(x) * (1 - k);
+        if (y > v.y1 + 20) continue;
+        d += `M${n(x)} ${n(y)}h${n(lung * Math.sign(c))}`;
+      }
+    }
+    s += path(d, { stroke: inLuce(mescola(C.lagoChiaro, "#cfc6ae", 0.25), luce), "stroke-width": 2.2, fill: "none", opacity: 0.32 * Math.min(1, Math.abs(c) * 1.4), "stroke-linecap": "round" });
+  }
+  // la pioggia sulla piena: cerchi che si aprono e spariscono
+  if (meteo.pioggia > 0.05) {
+    const semeP = fnv1a32("piena/gocce");
+    // tre età: il cerchio appena aperto si vede di più
+    const d = ["", "", ""];
+    const quanti = Math.round(60 * meteo.pioggia);
+    for (let i = 0; i < quanti; i++) {
+      const r = elemento(semeP, i);
+      const periodo = r.tra(0.55, 1.1);
+      const u = (t + r.tra(0, periodo)) / periodo;
+      const giro = Math.floor(u);
+      const e = u - giro;
+      // ogni goccia cade in un posto nuovo: il posto dipende dal giro
+      const q = elemento(semeP, 100000 + i * 997 + giro);
+      const base = q.tra(0, TILE);
+      const prof = q.tra(3, 90);
+      const rr = 3 + e * 16 * (1 - prof / 140);
+      for (const x of tessere(base, 0)) d[Math.min(2, Math.floor(e * 3))] += ellisseD([x, yF + prof + onda(x)], rr, rr * 0.22);
+    }
+    d.forEach((dd, k) => (s += path(dd, { stroke: inLuce("#d9dccf", luce), "stroke-width": 1.4, fill: "none", opacity: (0.5 - k * 0.15) * meteo.pioggia })));
+  }
+  return s;
+}
+
 // ------------------------------------------------------------- pioggia --
 export function pioggia(o: OpzPalco): string {
   const { meteo, t, cam } = o;

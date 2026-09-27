@@ -119,7 +119,7 @@ const BRENTA: ProfiloVoce = {
   pan: 0.14,
 };
 
-/** Il Custode di ep02 (p.4): una testuggine, vecchia e lenta; parla dopo un respiro. */
+/** Il Custode (ep02 p.4; ep04: Rèmolo, il Custode anziano): una testuggine, vecchia e lenta; parla dopo un respiro. */
 const CUSTODE: ProfiloVoce = {
   id: "custode",
   nome: "il Custode",
@@ -158,6 +158,28 @@ const CERVARA: ProfiloVoce = {
   pan: 0.1,
 };
 
+/**
+ * La Gente delle Rive (ep04: «non era una voce sola»; «disse la Gente delle Rive»;
+ * «gridò qualcuno»): la gente d'acqua e di barca che parla insieme — un coro piccolo
+ * (la sua voce registrata è di più voci), proverbiale e concreto. Nel grammelot, una
+ * voce media, larga, che sta in mezzo.
+ */
+const GENTE: ProfiloVoce = {
+  id: "gente",
+  nome: "la Gente delle Rive",
+  f0: 175,
+  estensione: 5,
+  ritmo: 4.4,
+  formanti: 1.0,
+  soffio: 0.4,
+  grana: 0.45,
+  alfabeto: { nessuno: "", labiale: "mb", nasale: "n", occlusiva: "tk", fricativa: "sv", liquida: "l", vibrante: "r" },
+  pause: { virgola: 0.2, punto: 0.35 },
+  finale: 1.2,
+  vol: 0.95,
+  pan: 0,
+};
+
 /** Il cast delle voci: `chi` nelle didascalie è una di queste chiavi (o "narratrice"). */
 export const VOCI: Readonly<Record<string, ProfiloVoce>> = {
   rocco: ROCCO,
@@ -167,4 +189,5 @@ export const VOCI: Readonly<Record<string, ProfiloVoce>> = {
   brenta: BRENTA,
   custode: CUSTODE,
   cervara: CERVARA,
+  gente: GENTE,
 };

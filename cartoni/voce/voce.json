@@ -77,6 +77,16 @@
         "emma-cervara"
       ],
       "come": "Cervara, la lince giovane, il vanto delle rive: femmina, giovane come Zara ma calma, certa, piana — la voce di chi non deve dimostrare (saga/bible/comprimari/specchio-di-zara.md, «Voce»)"
+    },
+    "gente": {
+      "stato": "da-scegliere",
+      "voce": null,
+      "provvisoria": "coro-rive",
+      "provini": [
+        "coro-rive",
+        "voce-rive"
+      ],
+      "come": "la Gente delle Rive: lontre, aironi, rane, gente d'acqua e di barca che parla insieme — «non era una voce sola» (ep04, p.1); concreta, proverbiale (saga/cartografia/regni/laghi_occidente/societa.md; saga/bible/comprimari/traghettatrice-delle-rive.md, «Voce», registro di gruppo)"
     }
   },
   "candidate": {
@@ -216,6 +226,42 @@
       "lentezza": 1.3,
       "tono": -3,
       "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci im_nicola e bm_fable sono del modello)"
+    },
+    "coro-rive": {
+      "descrizione": "un coro di quattro voci (Kokoro) che dicono le stesse parole un poco sfasate: una voce di mezzo (Nicola e Dora), una di donna più chiara, una di ragazzo più acuta, una più grave — la Gente delle Rive, «non era una voce sola»",
+      "motore": "kokoro",
+      "modello": "im_nicola*0.5+pf_dora*0.5",
+      "lentezza": 1.0,
+      "tono": -1,
+      "coro": [
+        {
+          "modello": "if_sara*0.7+ef_dora*0.3",
+          "tono": 1,
+          "ritardo": 0.06,
+          "vol": 0.8
+        },
+        {
+          "modello": "im_nicola*0.6+em_alex*0.4",
+          "tono": 3,
+          "ritardo": 0.11,
+          "vol": 0.65
+        },
+        {
+          "modello": "pm_alex*0.6+im_nicola*0.4",
+          "tono": -3,
+          "ritardo": 0.03,
+          "vol": 0.7
+        }
+      ],
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci del miscuglio sono del modello)"
+    },
+    "voce-rive": {
+      "descrizione": "una voce sola (Kokoro, 50% Nicola e 50% Dora), un semitono più grave: la Gente delle Rive detta da uno per tutti",
+      "motore": "kokoro",
+      "modello": "im_nicola*0.5+pf_dora*0.5",
+      "lentezza": 1.0,
+      "tono": -1,
+      "licenza": "Apache 2.0 (Kokoro-82M, hexgrad; le voci del miscuglio sono del modello)"
     }
   },
   "pronuncia": {
