@@ -1416,6 +1416,8 @@ const s46: Inquadratura = {
   pagina: 18,
   durata: 6.6,
   didascalie: [{ da: 0.6, a: 6.2, pagina: 18, testo: "E nell'attimo esatto in cui il nodo chiuse, dalle rive sotto, il coro delle rane riprese —" }],
+  // tutte insieme sullo stacco (l'ambiente, che sale in dissolvenza, arriva un attimo dopo)
+  suoni: [{ t: 0, nome: "rane", vol: 1.1, durata: 1.6 }],
   ambiente: { vento: 0.1, lago: 0.3, rane: 1 },
   disegna(t, defs, v) {
     const L = mescolaLuce(ALBA, MATTINO, 0.5);
