@@ -83,6 +83,28 @@ export interface Luogo extends DatiLuogo {
    * contro il molo su cui si cammina): dove un luogo non ne ha, niente.
    */
   davanti?(o: OpzPalco, inVista: (x: number, margine?: number) => boolean): string;
+  /**
+   * Nella piena (ep04): quel che il luogo mette SOPRA l'acqua alta — la schiuma
+   * attorno ai massi e ai pali, l'acqua che si rompe contro chi le sta davanti.
+   * Si disegna dopo la piena, solo quando c'è.
+   */
+  sullaPiena?(o: OpzPalco, inVista: (x: number, margine?: number) => boolean): string;
+}
+
+/**
+ * La piena (ep04, «la piena di fine stagione»): di quanto l'acqua vicina è salita
+ * sopra il suo livello. `laguna`, dove il luogo ha un'acqua chiusa davanti a una riva
+ * (le rive basse), è quella che sale dalle tane; `livello` quella del lago aperto,
+ * dietro. La `corrente` (−1..1) dice da che parte scorre l'acqua alta e quanto forte;
+ * `varco` (0..1) se il varco delle rive basse è aperto (0) o chiuso da qualcuno (1);
+ * `crollo` (0..1) una tana che cede un angolo.
+ */
+export interface Piena {
+  livello: number;
+  laguna?: number;
+  corrente?: number;
+  varco?: number;
+  crollo?: number;
 }
 
 /** Le opzioni di un palco a un tempo t: chi lo guarda, con che luce e che tempo. */
@@ -121,6 +143,8 @@ export interface OpzPalco {
   coppellePiene?: boolean;
   /** Sotto il telo della barca ormeggiata (ep03): un colpetto da dentro (0..1), un respiro (−1..1). */
   telo?: { colpo?: number; respiro?: number };
+  /** La piena (ep04): l'acqua vicina più alta, davanti a tutto il piano dei personaggi. */
+  piena?: Piena;
 }
 
 /** Quota da un profilo: Hermite con tangenti alla Catmull-Rom (x non uniformi). */
@@ -145,7 +169,7 @@ export function quotaDaProfilo(P: readonly P[], x: number): number {
 /** Costruisce un luogo dai suoi dati e dalle sue due funzioni di pittura. */
 export function creaLuogo(
   dati: DatiLuogo,
-  pittura: Pick<Luogo, "lontanissimo" | "lontano" | "oggetti" | "davanti">,
+  pittura: Pick<Luogo, "lontanissimo" | "lontano" | "oggetti" | "davanti" | "sullaPiena">,
 ): Luogo {
   const quota = (x: number) => quotaDaProfilo(dati.profilo, x);
   return {

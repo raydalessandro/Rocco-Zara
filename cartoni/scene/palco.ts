@@ -7,13 +7,14 @@
 //   cielo (a schermo) → i lontanissimi del luogo (monti…) → il temporale →
 //   i lontani del luogo (acqua, pianure, boschi…) → [extra dietro] →
 //   il suolo (terreno + cespugli + canneto + oggetti) → [extra] → gli attori →
-//   l'erba del crinale → [attori davanti] → [primo piano] → la pioggia.
+//   l'erba del crinale → [attori davanti] → [la piena, e quel che le sta sopra] →
+//   [primo piano] → la pioggia.
 //
 // Tutto è funzione di (luogo, camera, t, luce, meteo): niente stato.
 
 import { type Livello, vista } from "../motore/fotogramma";
 import type { OpzPalco } from "./luogo";
-import { bancoTemporale, canneto, cespugli, cielo, pioggia, primoPiano, terreno } from "./pittura";
+import { bancoTemporale, canneto, cespugli, cielo, piena, pioggia, primoPiano, terreno } from "./pittura";
 
 /** Tutti i livelli del palco, dal cielo al primo piano. */
 export function palco(o: OpzPalco): Livello[] {
@@ -35,6 +36,8 @@ export function palco(o: OpzPalco): Livello[] {
     { id: "fronda", contenuto: fronda, p: 1 },
     { id: "davanti", contenuto: (luogo.davanti?.(o, inVista) ?? "") + (o.attoriDavanti ?? ""), p: 1 },
   ];
+  // la piena (ep04): l'acqua alta davanti al piano dei personaggi, e la schiuma del luogo
+  if (o.piena) liv.push({ id: "piena", contenuto: piena(o) + (luogo.sullaPiena?.(o, inVista) ?? ""), p: 1 });
   if (o.primoPiano) liv.push({ id: "primo", contenuto: primoPiano(o, 1.7), p: 1.7 });
   liv.push({ id: "pioggia", contenuto: pioggia(o), schermo: true });
   return liv;

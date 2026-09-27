@@ -84,6 +84,45 @@ export function parla(t: number, a: number, b: number, ritmo = 7): number {
   return clamp(k) * (0.35 + 0.65 * Math.abs(Math.sin(t * ritmo + Math.sin(t * 13) * 0.6)));
 }
 
+// ------------------------------------------------------ di sasso in sasso --
+/** Dove sta chi va di sasso in sasso a un istante (ep03, i Massi; ep04, le staffette). */
+export interface Salto {
+  p: P;
+  /** l'ultimo appoggio toccato */
+  i: number;
+  /** dentro il salto (0..1), o 1 se sta fermo sull'appoggio */
+  u: number;
+  inAria: boolean;
+  /** quanto è passato dall'ultimo appoggio (s), per chi deve raccogliersi e ripartire */
+  appoggio: number;
+}
+
+/**
+ * Chi va di sasso in sasso: parte da `punti[0]` a t0; ogni salto dura `aria`, ogni
+ * appoggio `sosta`; `alto` è quanto sale l'arco del salto (ep03, «Di sasso in sasso»).
+ */
+export function diSassoInSasso(punti: readonly P[], t: number, t0: number, aria: number, sosta: number, alto: number): Salto {
+  const passo = aria + sosta;
+  const k = t - t0;
+  if (k <= 0) return { p: punti[0], i: 0, u: 0, inAria: false, appoggio: 0 };
+  const i = Math.floor(k / passo);
+  if (i >= punti.length - 1) return { p: punti[punti.length - 1], i: punti.length - 1, u: 1, inAria: false, appoggio: k - (punti.length - 1) * passo + sosta };
+  const dentro = k - i * passo;
+  if (dentro < aria) {
+    const u = dentro / aria;
+    const a = punti[i];
+    const b = punti[i + 1];
+    return { p: [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u - alto * 4 * u * (1 - u)], i, u, inAria: true, appoggio: 0 };
+  }
+  return { p: punti[i + 1], i: i + 1, u: 1, inAria: false, appoggio: dentro - aria };
+}
+
+/** Gli istanti in cui chi va di sasso in sasso tocca ogni appoggio dopo il primo (per i suoni). */
+export const tocchi = (quanti: number, t0: number, aria: number, sosta: number): number[] => Array.from({ length: quanti - 1 }, (_, i) => t0 + i * (aria + sosta) + aria);
+
+/** Il galoppo di Zara su un salto: il volo va da 0.78 a 1.18 del ciclo, l'appoggio da 0.18 a 0.78. */
+export const faseGaloppo = (s: Salto, sosta: number): number => (s.inAria ? s.i + 0.78 + 0.4 * s.u : s.i + 0.18 + 0.6 * clamp(s.appoggio / sosta));
+
 /** La corda di Toraki posata a terra (piccola, nei campi larghi). */
 export function cordaATerra(suolo: Suolo, x0: number, x1: number, luce: Luce, defs: Defs, dy = -4): string {
   void defs;

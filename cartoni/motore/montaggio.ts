@@ -38,6 +38,10 @@ export interface Ambiente {
   notte?: number;
   /** i grilli della notte (0..1) */
   grilli?: number;
+  /** il coro delle rane (0..1: a mezza voce, a piena voce; ep04) */
+  rane?: number;
+  /** l'acqua che corre forte (0..1: la piena che passa nel varco; ep04) */
+  corrente?: number;
 }
 
 export interface Disegno {

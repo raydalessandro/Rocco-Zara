@@ -248,13 +248,14 @@ export interface Narrazione {
 
 /**
  * L'impronta di una voce: le impostazioni che la fanno quella che è (motore,
- * modello, lentezza, variazione, cadenza, tono), in otto cifre. Ogni registro
- * di riprese la porta: se in voce.json una voce cambia, il test elenca gli
- * episodi registrati con quella vecchia — così la stessa voce suona uguale in
- * tutti gli episodi.
+ * modello, lentezza, variazione, cadenza, tono, e le voci del coro se è un coro),
+ * in otto cifre. Ogni registro di riprese la porta: se in voce.json una voce
+ * cambia, il test elenca gli episodi registrati con quella vecchia — così la
+ * stessa voce suona uguale in tutti gli episodi.
  */
-export function impronta(c: { motore?: string; modello?: string; lentezza?: number; variazione?: number; cadenza?: number; tono?: number }): string {
-  const chiave = JSON.stringify([c.motore ?? "piper", c.modello ?? "", c.lentezza ?? 1, c.variazione ?? null, c.cadenza ?? null, c.tono ?? 0]);
+export function impronta(c: { motore?: string; modello?: string; lentezza?: number; variazione?: number; cadenza?: number; tono?: number; coro?: readonly unknown[] }): string {
+  const base = [c.motore ?? "piper", c.modello ?? "", c.lentezza ?? 1, c.variazione ?? null, c.cadenza ?? null, c.tono ?? 0];
+  const chiave = JSON.stringify(c.coro ? [...base, c.coro] : base);
   let h = 0x811c9dc5;
   for (let i = 0; i < chiave.length; i++) {
     h ^= chiave.charCodeAt(i);

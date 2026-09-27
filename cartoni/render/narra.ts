@@ -49,6 +49,8 @@ interface Candidata {
   cadenza?: number;
   /** semitoni: più acuta e più piccola (positivo) o più grave e più grande (negativo) */
   tono?: number;
+  /** (kokoro) le voci in più di un coro: dicono le stesse parole, un poco sfasate (ep04, la Gente delle Rive) */
+  coro?: { modello: string; tono?: number; lentezza?: number; ritardo?: number; vol?: number }[];
   licenza: string;
 }
 interface Ruolo {
@@ -99,7 +101,7 @@ function leggi(c: Candidata, pezzi: { testo: string; file: string; lentezza?: nu
   const lavoro = join(tmp, "lavoro.json");
   writeFileSync(
     lavoro,
-    JSON.stringify({ motore: c.motore, modello: c.modello, modelli, lentezza: c.lentezza, variazione: c.variazione ?? 0.6, cadenza: c.cadenza ?? 0.7, tono: c.tono ?? 0, pezzi }),
+    JSON.stringify({ motore: c.motore, modello: c.modello, modelli, lentezza: c.lentezza, variazione: c.variazione ?? 0.6, cadenza: c.cadenza ?? 0.7, tono: c.tono ?? 0, ...(c.coro ? { coro: c.coro } : {}), pezzi }),
   );
   const out = execFileSync(arg("python", "python3")!, [join(RADICE, "cartoni/render/leggi_voce.py"), lavoro], {
     encoding: "utf8",

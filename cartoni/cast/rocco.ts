@@ -55,6 +55,11 @@ export interface PosaRocco {
    * avanti, quelle dietro raccolte sotto la groppa (ep03, p.8: «venne a sedersi vicino»).
    */
   aTerra?: number;
+  /**
+   * Il fango (0..1): la notte nel varco (ep04, p.16: «c'era entrato rinoceronte ed era
+   * diventato riva»): le zampe e la pancia coperte di terra bagnata, che cola.
+   */
+  fango?: number;
   /** Sfasamento del battito di ciglia (per non sbattere in sincrono). */
   semeCiglia?: number;
   /** Disegna l'ombra portata. */
@@ -184,14 +189,25 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   };
 
   let lontane = "";
-  lontane += zampa(ancaL, fPL.x, fPL.y, L1_POST, L2_POST, -1, [48, 30, 28], lontanaZampa, "pl");
-  lontane += zampa(spallaL, fAL.x, fAL.y, L1_ANT, L2_ANT, 1, [40, 29, 28], lontanaZampa, "al");
+  const lontanaF = (posa.fango ?? 0) > 0 ? mescola(lontanaZampa, inOmbra("#5a4630", luce), 0.7 * clamp(posa.fango ?? 0)) : lontanaZampa;
+  lontane += zampa(ancaL, fPL.x, fPL.y, L1_POST, L2_POST, -1, [48, 30, 28], lontanaF, "pl");
+  lontane += zampa(spallaL, fAL.x, fAL.y, L1_ANT, L2_ANT, 1, [40, 29, 28], lontanaF, "al");
 
-  const zV = defs.lineare(`${id}-zampa`, [0, -170], [0, 0], [
-    [0, pelle],
-    [0.55, mescola(pelle, pelleBassa, 0.5)],
-    [1, pelleOmbra],
-  ]);
+  const fango = clamp(posa.fango ?? 0);
+  const terra = inOmbra("#5a4630", luce);
+  const zV =
+    fango > 0
+      ? defs.lineare(`${id}-zampa`, [0, -170], [0, 0], [
+          [0, pelle],
+          [0.4 - 0.25 * fango, mescola(pelle, pelleBassa, 0.5)],
+          [0.55 - 0.2 * fango, mescola(mescola(pelle, pelleBassa, 0.5), terra, 0.85 * fango)],
+          [1, mescola(pelleOmbra, terra, fango)],
+        ])
+      : defs.lineare(`${id}-zampa`, [0, -170], [0, 0], [
+          [0, pelle],
+          [0.55, mescola(pelle, pelleBassa, 0.5)],
+          [1, pelleOmbra],
+        ]);
   let vicine = "";
   vicine += zampa(ancaV, fPV.x, fPV.y, L1_POST, L2_POST, -1, [54, 32, 30], zV, "pv");
   vicine += zampa(spallaV, fAV.x, fAV.y, L1_ANT, L2_ANT, 1, [46, 31, 30], zV, "av");
@@ -250,6 +266,17 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
       "stroke-linecap": "round",
       opacity: 0.35 * bagnato,
     });
+  }
+  // il fango sulla pancia: una fascia di terra bagnata dal ventre in giù, e le colature
+  if (fango > 0) {
+    dentro += path(ellisseD([-10, -40 + giuC], 230, 46 + 20 * fango), { fill: terra, opacity: 0.8 * fango });
+    let cola = "";
+    const rf = caso("rocco/fango");
+    for (let i = 0; i < 9; i++) {
+      const x = rf.tra(-170, 130);
+      cola += `M${n(x)} ${n(-86 + giuC - rf.tra(0, 12))}q${n(rf.segno(3))} ${n(12)} 0 ${n(rf.tra(14, 30) * fango)}`;
+    }
+    dentro += path(cola, { stroke: terra, "stroke-width": 5, fill: "none", "stroke-linecap": "round", opacity: 0.8 * fango });
   }
   corpo += g({ "clip-path": clipCorpo }, dentro);
 

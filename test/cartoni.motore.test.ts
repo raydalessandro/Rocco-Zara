@@ -14,7 +14,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { CECCA_ANCORE, martinPescatore } from "../cartoni/cast/fauna";
 import { CERVARA_ANCORE } from "../cartoni/cast/cervara";
-import { BRENTA_ANCORE } from "../cartoni/cast/laghi";
+import { BRENTA_ANCORE, REMOLO_ANCORE, lince, lontra, lontraCheNuota, rana, scagliaDiRemo, testuggine } from "../cartoni/cast/laghi";
 import { ROCCO_ANCORE } from "../cartoni/cast/rocco";
 import { VOCI } from "../cartoni/cast/voci";
 import { ZARA_ANCORE } from "../cartoni/cast/zara";
@@ -33,9 +33,10 @@ import { ease, traccia } from "../cartoni/motore/tempo";
 import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, impronta, pianifica } from "../cartoni/motore/voce";
 import { type Brani, postiDeiBrani, versiCantati } from "../cartoni/audio/brani";
 import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
-import { FINE_NODI, insertoCorda, insertoPietra } from "../cartoni/scene/inserti";
-import { galleggia, riflesso } from "../cartoni/scene/lago";
-import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, sulMassoDelConsiglio, sullaPasserella } from "../cartoni/luoghi/rivalba";
+import { FINE_NODI, insertoCorda, insertoNodino, insertoPietra } from "../cartoni/scene/inserti";
+import { custodiaDelPegno, galleggia, riflesso } from "../cartoni/scene/lago";
+import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, RIVE, RIVE_BASSE, nelVarco, sulMassoDelConsiglio, sullaPasserella } from "../cartoni/luoghi/rivalba";
+import type { Piena } from "../cartoni/scene/luogo";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
@@ -134,6 +135,23 @@ describe("cartoni — determinismo", () => {
     };
     expect(suona(0).equals(suona())).toBe(true);
     expect(suona(0.8).equals(suona())).toBe(false);
+  });
+
+  it("le rane e l'acqua che corre (ep04): dove non ci sono, l'ambiente resta quello di prima campione per campione; dove ci sono, si sentono; e quando il coro riprende, prima era silenzio", () => {
+    const suona = (aria: (t: number) => Record<string, number>) => {
+      const b = new Bus(3);
+      ambiente(b, (t) => ({ vento: 0.1, pioggia: 0.2, lago: 0.2, ...aria(t) }));
+      return b.l;
+    };
+    const uguali = (a: Float32Array, b: Float32Array, da = 0, a1 = a.length) => Buffer.from(a.buffer, da * 4, (a1 - da) * 4).equals(Buffer.from(b.buffer, da * 4, (a1 - da) * 4));
+    const base = suona(() => ({}));
+    expect(uguali(suona(() => ({ rane: 0, corrente: 0 })), base)).toBe(true);
+    expect(uguali(suona(() => ({ rane: 1 })), base)).toBe(false);
+    expect(uguali(suona(() => ({ corrente: 0.8 })), base)).toBe(false);
+    // il coro riprende a 1,5 s: prima, niente rane; dopo, il coro
+    const riprende = suona((t) => ({ rane: t < 1.5 ? 0 : 1 }));
+    expect(uguali(riprende, base, 0, Math.floor(1.5 * SR))).toBe(true);
+    expect(uguali(riprende, base, Math.floor(1.6 * SR))).toBe(false);
   });
 
   it("la colonna sonora è deterministica (strumenti, effetti, grammelot)", () => {
@@ -279,6 +297,71 @@ describe("cartoni — il lago (ep02): la riva, le barche, i riflessi, la corda s
     expect(senza).toBe(testo({ fondo: "legno" }));
     expect(con.length).toBeGreaterThan(senza.length);
     expect(testo({ fondo: "legno", zampeLontra: { u: FINE_NODI + 0.1, strappo: 0.4, lavora: 1 } })).not.toMatch(/NaN|undefined|Infinity/);
+  });
+
+  it("la piena (ep04): l'acqua alta sta davanti a tutto, col pelo dove dice il livello, ma solo dove il suolo è sotto il pelo; senza piena non c'è", () => {
+    const V = palcoscenico(RIVALBA);
+    const cam = { x: CUORE.riva, y: 800, zoom: 0.5 };
+    const livelli = (piena?: Piena) => V.scena(1, new Defs(""), { cam, luce: LUCI.notte, piena });
+    expect(livelli().some((l) => l.id === "piena")).toBe(false);
+    const P: Piena = { livello: 40, corrente: 0.4 };
+    const liv = livelli(P).find((l) => l.id === "piena");
+    expect(liv).toBeDefined();
+    expect(liv!.contenuto).not.toMatch(/NaN|undefined|Infinity/);
+    const d = liv!.contenuto.match(/ d="M([^"]+)Z"/)![1];
+    const pts = d.split("L").map((c) => c.trim().split(/[ ,]+/).map(Number));
+    const sopra = pts.slice(0, pts.length / 2);
+    const sotto = pts.slice(pts.length / 2).reverse();
+    const yF = LAGO_VESPRO.quota - P.livello;
+    let asciutto = 0;
+    sopra.forEach(([x, y], i) => {
+      expect(Math.abs(y - yF), `il pelo della piena a x=${x}`).toBeLessThan(4);
+      if (x >= CUORE.riva && RIVALBA.quota(x) + 3 < y) {
+        asciutto++;
+        expect(sotto[i][1], `x=${x}: sull'asciutto la piena non c'è`).toBeCloseTo(y, 1);
+      } else expect(sotto[i][1], `x=${x}: sotto il pelo, l'acqua`).toBeGreaterThan(y);
+    });
+    expect(asciutto, "la camera guarda anche la riva asciutta").toBeGreaterThan(3);
+  });
+
+  it("le rive basse (ep04): le tane stanno nell'argine sopra il pelo dell'acqua, fuori dal varco; il varco è una bocca nell'argine, col fondo tra la cima e l'acqua", () => {
+    const q = LAGO_VESPRO.quota;
+    for (let x = -3000; x < 3000; x += 7) expect(Math.abs(RIVE_BASSE.quota(x + 1) - RIVE_BASSE.quota(x)), `x=${x}`).toBeLessThan(3);
+    const fondo = nelVarco()[1];
+    const cima = RIVE_BASSE.quota(RIVE.varco + RIVE.mezzoVarco + 300);
+    expect(cima, "la cima dell'argine sta più su del fondo del varco").toBeLessThan(fondo - 40);
+    expect(fondo, "il fondo del varco sta sopra l'acqua di sempre: ci passa la piena, non la calma").toBeLessThan(q);
+    expect(Math.abs(q - fondo - RIVE.sogliaVarco)).toBeLessThan(2);
+    for (const [x, w] of RIVE.tane) {
+      expect(Math.abs(x - RIVE.varco), `la tana a x=${x} sta fuori dal varco`).toBeGreaterThan(RIVE.mezzoVarco + w / 2);
+      expect(RIVE_BASSE.quota(x), `sopra la tana a x=${x} c'è l'argine`).toBeLessThan(q - RIVE.sogliaTane - 30);
+    }
+    expect(RIVE.tane[RIVE.crolla], "la tana che cede è una delle tane").toBeDefined();
+  });
+
+  it("i pupazzi e gli attrezzi di ep04 (la lince che porta, la rana, Rèmolo, la lontra che nuota o morde il remo, la custodia, gli inserti del nodo) sono ben disegnati e sempre uguali", () => {
+    const disegni = (t: number) => {
+      const defs = new Defs("");
+      const ctx = (id: string) => ({ luce: LUCI.notte, defs, id });
+      return [
+        lince({ t, modo: "in piedi", seme: "a", porta: "cucciolo", fase: t, ampiezza: 1, bagnata: 1, trema: 0.5 }, ctx("l1")),
+        lince({ t, modo: "in piedi", seme: "b", porta: "cesta", volo: 0.7 }, ctx("l2")),
+        rana({ t, canta: 1, seme: "r" }, ctx("r")),
+        testuggine({ t, collo: 0.8, liscio: true, respiro: 0.6, cenno: 0.5, fase: t * 0.3, bocca: 0.4 }, ctx("t")),
+        lontraCheNuota({ t, seme: "n", travolta: 0.7, bocca: 0.5 }, ctx("n")),
+        lontra({ t, zampe: "asta", morde: 0.8, scheggia: 1 }, ctx("b")),
+        lontra({ t, zampe: "ferme", seme: "gente", bocca: 0.5 }, ctx("g")),
+        custodiaDelPegno(LUCI.alba, defs, "c", Math.min(1, t / 3)),
+        scagliaDiRemo(LUCI.alba, [0, 0], -10),
+        ...insertoNodino({ t, luce: LUCI.alba, defs, zampa: Math.min(1, t / 2), spinta: 0.5 }).map((l) => l.contenuto),
+        ...insertoCorda({ t, luce: LUCI.alba, defs, srotolata: 1, lettura: -1, spinta: 0.2, fondo: "coppelle", nuovi: [{ u: 0.68, fatto: Math.min(1, t / 3), tipo: "corda", pegno: "remo" }], zampeZara: { u: 0.68, lavora: 1, stringe: Math.min(1, t / 3) } }).map((l) => l.contenuto),
+      ].join("") + defs.markup();
+    };
+    for (const t of [0, 1.3, 2.7, 7.9]) {
+      const d = disegni(t);
+      expect(d).not.toMatch(/NaN|undefined|Infinity/);
+      expect(disegni(t)).toBe(d);
+    }
   });
 
   it("il martin pescatore posato (anche offeso e bagnato) è ben disegnato e sempre uguale", () => {
@@ -603,6 +686,11 @@ describe("cartoni — i brani della saga (cartoni/brani/): canzoni registrate, c
     expect(impronta({ ...c, descrizione: "altro" } as typeof c)).toBe(impronta(c));
     for (const k of ["lentezza", "variazione", "cadenza", "tono"] as const) expect(impronta({ ...c, [k]: c[k] + 0.01 }), k).not.toBe(impronta(c));
     expect(impronta({ ...c, modello: "it_IT-serena-high" })).not.toBe(impronta(c));
+    // il coro (ep04) entra nell'impronta solo se c'è: le voci di prima restano quelle
+    expect(impronta({ ...c, coro: undefined })).toBe(impronta(c));
+    const coro = [{ modello: "if_sara", tono: 1, ritardo: 0.06, vol: 0.8 }];
+    expect(impronta({ ...c, coro })).not.toBe(impronta(c));
+    expect(impronta({ ...c, coro: [{ ...coro[0], ritardo: 0.07 }] })).not.toBe(impronta({ ...c, coro }));
   });
 });
 
@@ -666,6 +754,7 @@ describe("cartoni — i colori dei pupazzi vengono dalle schede", () => {
   it("Cècca = saga/bible/comprimari/cecca.md", () => expect(del(CECCA_ANCORE)).toEqual(ancore("saga/bible/comprimari/cecca.md")));
   it("Brénta = saga/bible/comprimari/traghettatrice-delle-rive.md", () => expect(del(BRENTA_ANCORE)).toEqual(ancore("saga/bible/comprimari/traghettatrice-delle-rive.md")));
   it("Cervara = saga/bible/comprimari/specchio-di-zara.md", () => expect(del(CERVARA_ANCORE)).toEqual(ancore("saga/bible/comprimari/specchio-di-zara.md")));
+  it("Rèmolo, il Custode anziano = saga/bible/comprimari/custode-anziano.md", () => expect(del(REMOLO_ANCORE)).toEqual(ancore("saga/bible/comprimari/custode-anziano.md")));
 });
 
 describe("cartoni — lessico delle Terre Annodate nel codice", () => {

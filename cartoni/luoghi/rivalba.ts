@@ -8,7 +8,7 @@
 // verso il freddo»).
 //
 // Rivalba è la capitale del regno (saga/cartografia: il «centro» degli episodi
-// ep02-ep04, all'orlo e al cuore). Quattro luoghi con la stessa acqua e la stessa
+// ep02-ep04, all'orlo e al cuore). I luoghi con la stessa acqua e la stessa
 // tavolozza:
 //  - ORLO (ep02): la riva dei villaggi dove si arriva dal bosco (la ghiaia, le
 //    barche a secco, le reti, il masso del Custode, la tana degli Ospiti, il
@@ -18,15 +18,21 @@
 //    in mezzo i Massi del Consiglio; il molo basso con la barca di Brénta; la riva
 //    e il sentiero che sale dietro;
 //  - COPPELLE (ep03, ep04): sul colle dietro Rivalba, le pietre vecchie col
-//    cerchio di conche «contro il cielo».
+//    cerchio di conche «contro il cielo»;
+//  - RIVE_BASSE (ep04): l'argine delle tane della Gente delle Rive, col varco, e
+//    davanti la laguna — dove la piena passa «dritta alle tane»;
+//  - ALTURA (ep04): il dosso sopra i laghi dove la marmotta fa la vedetta.
+// La piena (ep04) non è un luogo: è l'acqua di questi luoghi più alta (`piena`
+// dell'inquadratura), davanti a chi ci sta dentro.
 // Le palafitte lontane stanno su un livello di mezzo (p=0.7); moli, passerelle,
 // massi e barche ormeggiate sul piano dei personaggi.
 
-import { type Luce, inLuce, lontano, mescola, scurisci } from "../motore/colore";
-import { elemento, fnv1a32, frattale1 } from "../motore/caso";
+import { type Luce, inLuce, inOmbra, lontano, mescola, scurisci } from "../motore/colore";
+import { caso, elemento, fnv1a32, frattale1 } from "../motore/caso";
 import { type Livello, vista } from "../motore/fotogramma";
-import { type P, ellisseD, n, path, pt } from "../motore/svg";
-import { barca, barcaASecco, galleggia, gorgo, massoDelConsiglio, molo, palafitta, passerella, retiStese, tanaDiCanne } from "../scene/lago";
+import { type P, curva, ellisseD, n, path, pt } from "../motore/svg";
+import { clamp, palpebra } from "../motore/tempo";
+import { barca, barcaASecco, finestraDellaPalafitta, galleggia, gorgo, massoDelConsiglio, molo, palafitta, passerella, retiStese, tanaDiCanne } from "../scene/lago";
 import { type Colori, type OpzPalco, creaLuogo } from "../scene/luogo";
 import { piegaErba } from "../scene/meteo";
 import { alberoDAutunno, pietraCoppellata, roccia } from "../scene/oggetti";
@@ -525,12 +531,88 @@ export const RIVALBA = creaLuogo(
     // carico sotto il telo. Chi cammina sul molo le passa dietro
     davanti: (o, inVista) => {
       if (!inVista(CUORE.barca, 600)) return "";
-      const gal = galleggia(o.t, "ormeggio", 0.5);
+      // nella piena (ep04) la barca sale con l'acqua, e la corrente la strattona
+      const gal = galleggia(o.t, "ormeggio", o.piena ? 1.4 : 0.5);
       const sc = barca(o.luce, o.defs, "ormeggio", { lunghezza: CUORE.lunghezzaBarca, carico: 0.6, telo: true, sottoIlTelo: o.telo, acqua: { lago: C.lago, chiaro: C.lagoChiaro } });
-      return `<g transform="translate(${CUORE.barca} ${n(LAGO_VESPRO.quota + gal.dy)})rotate(${n(gal.ang)})">${sc.dietro}${sc.davanti}</g>`;
+      return `<g transform="translate(${CUORE.barca} ${n(LAGO_VESPRO.quota - (o.piena?.livello ?? 0) + gal.dy)})rotate(${n(gal.ang)})">${sc.dietro}${sc.davanti}</g>`;
     },
+    // nella piena: la schiuma attorno ai massi, ai pali delle case, sotto le passerelle
+    sullaPiena: (o, inVista) => schiumaDiRivalba(o, inVista),
   },
 );
+
+/**
+ * La schiuma della piena a Rivalba (ep04): dove l'acqua alta incontra i massi, i pali
+ * delle case, le passerelle «a filo», la barca ormeggiata — un collare chiaro e rotto
+ * che si muove, e a valle una coda nel verso della corrente.
+ */
+function schiumaDiRivalba(o: OpzPalco, inVista: (x: number, m?: number) => boolean): string {
+  const P = o.piena;
+  if (!P) return "";
+  const { luce, t } = o;
+  const yF = LAGO_VESPRO.quota - P.livello;
+  const c = P.corrente ?? 0;
+  const seme = fnv1a32("rivalba/schiuma");
+  let d = "";
+  let code = "";
+  // un collare di schiuma tra x0 e x1: tante bolle piatte che tremano, e la coda a valle
+  const collare = (chiave: number, x0: number, x1: number, fitto = 1) => {
+    const quante = Math.max(3, Math.round(((x1 - x0) / 14) * fitto));
+    for (let i = 0; i < quante; i++) {
+      const r = elemento(seme, chiave * 1000 + i);
+      const x = x0 + ((i + r.tra(-0.3, 0.3)) / quante) * (x1 - x0) + Math.sin(t * r.tra(1.5, 3) + i) * 3;
+      d += ellisseD([x, yF + r.tra(-2, 3)], r.tra(5, 12), r.tra(1.6, 3.2));
+    }
+    if (Math.abs(c) > 0.05) {
+      const da = c > 0 ? x1 : x0;
+      for (let j = 0; j < 4; j++) {
+        const r = elemento(seme, chiave * 1000 + 500 + j);
+        const lung = r.tra(40, 120) * Math.abs(c);
+        const y = yF + r.tra(2, 12);
+        const scorre = ((t * r.tra(30, 60)) % 40) * Math.sign(c);
+        code += `M${n(da + scorre)} ${n(y)}q${n(Math.sign(c) * lung * 0.5)} ${n(r.segno(4))} ${n(Math.sign(c) * lung)} ${n(r.segno(3))}`;
+      }
+    }
+  };
+  CUORE.massi.forEach(([x, w, h], i) => {
+    if (h > P.livello - 4 && inVista(x, w)) collare(i + 1, x - w / 2 - 18, x + w / 2 + 20);
+  });
+  // le passerelle e il molo: se l'acqua arriva a filo delle tavole, la schiuma ci corre sotto
+  const sotto = (chiave: number, a: number, b: number, altura: number) => {
+    if (Math.abs(altura - P.livello) < 16 && inVista((a + b) / 2, (b - a) / 2 + 100)) collare(chiave, a, b, 0.35);
+  };
+  CUORE.passerelle.forEach(([a, b], i) => sotto(20 + i, a, b, CUORE.alturaPasserella));
+  sotto(30, CUORE.molo[0], CUORE.molo[1], CUORE.alturaMolo);
+  // i pali delle case
+  CASE_CUORE.forEach(([x, , w], i) => {
+    if (!inVista(x, w)) return;
+    const quanti = Math.round(w / 55);
+    for (let k = 0; k <= quanti; k++) {
+      const px = x - w / 2 + 10 + (k * (w - 20)) / quanti;
+      collare(40 + i * 10 + k, px - 12, px + 12, 1.4);
+    }
+  });
+  // la barca ormeggiata, lungo la linea dell'acqua
+  if (inVista(CUORE.barca, 600)) collare(60, CUORE.barca - CUORE.lunghezzaBarca / 2, CUORE.barca + CUORE.lunghezzaBarca / 2, 0.5);
+  // di notte, i lumi delle case rimandati dall'acqua alta: una colonna di tratti caldi che trema
+  let lumi = "";
+  if (o.meteo.notte > 0.05) {
+    for (const [x, sm, w, lume] of CASE_CUORE) {
+      if (lume <= 0 || !inVista(x, w)) continue;
+      const cx = x + finestraDellaPalafitta(sm, { w, piano: 96 })[0];
+      for (let k = 0; k < 10; k++) {
+        const larga = (15 - k) * (0.55 + 0.45 * Math.sin(t * 3.1 + k * 1.7)) * lume;
+        lumi += `M${n(cx - larga + Math.sin(t * 2.3 + k) * 3)} ${n(yF + 6 + k * 8)}h${n(2 * larga)}`;
+      }
+    }
+  }
+  const col = inLuce("#e6e1d2", luce);
+  return (
+    path(lumi, { stroke: "#f2b35a", "stroke-width": 3, fill: "none", opacity: 0.4 * o.meteo.notte, "stroke-linecap": "round" }) +
+    path(code, { stroke: col, "stroke-width": 2, fill: "none", opacity: 0.4, "stroke-linecap": "round" }) +
+    path(d, { fill: col, opacity: 0.55 })
+  );
+}
 
 /** Dove si posa chi sta sul masso i del Consiglio, a dx dal centro (coordinate del palco). */
 export function sulMassoDelConsiglio(i: number, dx = 0): P {
@@ -612,6 +694,433 @@ export const COPPELLE = creaLuogo(
     },
   },
 );
+
+// ------------------------------------------------------------- RIVE BASSE --
+/**
+ * Le rive basse (ep04): l'argine di terra, di sassi e di canne dove la Gente delle
+ * Rive ha le tane — le bocche sul pelo dell'acqua, «tane basse» — e davanti la laguna
+ * chiusa. Lo guardiamo dalla laguna: l'argine attraversa il quadro, dietro c'è il lago
+ * e il colle delle Coppelle. In mezzo il VARCO (p.3): una sella nell'argine dove, con
+ * la piena, il lago passa e cade nella laguna, «dritto alle tane»; chi ci si mette di
+ * traverso lo chiude (p.10).
+ */
+export const RIVE = {
+  /** il varco: il centro, la metà della larghezza, e quanto sta la sua soglia sopra l'acqua */
+  varco: 0,
+  mezzoVarco: 250,
+  sogliaVarco: 24,
+  /** quanto sta l'argine sopra l'acqua */
+  argine: 104,
+  /** le tane nell'argine: [x, larghezza della bocca]; le bocche stanno a filo dell'acqua */
+  tane: [
+    [-1640, 70],
+    [-1180, 84],
+    [-760, 64],
+    [560, 80],
+    [940, 66],
+    [1420, 76],
+  ] as readonly (readonly [number, number])[],
+  /** la tana che cede un angolo (p.4) */
+  crolla: 3,
+  /** quanto sta la bocca di una tana sopra l'acqua */
+  sogliaTane: 6,
+} as const;
+
+const C_RIVE: Colori = {
+  ...C,
+  erba: "#6e604a",
+  erbaScura: "#4a4234",
+  erbaChiara: "#8c7d62",
+  erbaAperto: "#655a46",
+  erbaApertoScura: "#463e30",
+  terra: "#5f5442",
+};
+
+/** La quota dell'argine visto dalla laguna: in cima a 796, giù nella sella del varco fino alla soglia. */
+const PROFILO_RIVE: readonly P[] = [
+  [-30000, 800],
+  [-3000, 792],
+  [-2000, 800],
+  [-1200, 790],
+  [-600, 796],
+  [-430, 800],
+  [-330, 836],
+  [-262, 868],
+  [-190, 876],
+  [0, 877],
+  [190, 876],
+  [262, 868],
+  [330, 836],
+  [430, 800],
+  [900, 794],
+  [1600, 798],
+  [2400, 790],
+  [30000, 796],
+];
+
+/** Un ciuffo di canne sull'argine (i pennacchi piegati dal vento). */
+function canneSullArgine(o: OpzPalco, x: number, seme: number, quante: number): string {
+  const { luce, t, meteo, luogo } = o;
+  let steli = "";
+  let pennacchi = "";
+  for (let i = 0; i < quante; i++) {
+    const r = elemento(seme, i);
+    const xx = x + r.segno(40);
+    const h = r.tra(90, 200);
+    const y = luogo.quota(xx) + r.tra(0, 8);
+    const lean = piegaErba(xx * 1.5, t, meteo) * 0.35 + r.segno(0.08);
+    const tip: P = [xx + lean * h, y - h];
+    steli += `M${n(xx)} ${n(y)}Q${n(xx + lean * h * 0.4)} ${n(y - h * 0.6)} ${pt(tip)}`;
+    pennacchi += ellisseD([tip[0] + lean * 6, tip[1] + 8], 4, 13);
+  }
+  return path(steli, { stroke: inLuce(C.cannaScura, luce), "stroke-width": 3, fill: "none", "stroke-linecap": "round" }) + path(pennacchi, { fill: inLuce(C.canna, luce), opacity: 0.9 });
+}
+
+/** La bocca di una tana nell'argine: un arco scuro sul pelo dell'acqua, l'orlo di fango, qualche stecco. */
+function boccaDiTana(o: OpzPalco, i: number, crollo: number): string {
+  const { luce, t } = o;
+  const [x, w] = RIVE.tane[i];
+  const yb = LAGO_VESPRO.quota - RIVE.sogliaTane;
+  const h = w * 0.62;
+  const r = caso(`tana/${i}`);
+  const fango = inLuce(mescola(C_RIVE.terra, "#9a8a6a", 0.25), luce);
+  const buio = inLuce("#17130e", luce);
+  let s = "";
+  // la cicatrice dell'angolo crollato (p.4): la terra viva, più scura, e la bocca che si allarga
+  const allarga = crollo > 0.3 ? w * 0.35 * clamp((crollo - 0.3) / 0.4) : 0;
+  s += path(ellisseD([x + allarga * 0.3, yb + 3], w * 0.75 + allarga, 7), { fill: fango, opacity: 0.8 });
+  const arco = `M${n(x - w / 2)} ${n(yb)}C${n(x - w / 2)} ${n(yb - h * 0.9)} ${n(x - w * 0.25)} ${n(yb - h)} ${n(x)} ${n(yb - h)}C${n(x + w * 0.25 + allarga)} ${n(yb - h)} ${n(x + w / 2 + allarga)} ${n(yb - h * 0.9 + allarga * 0.3)} ${n(x + w / 2 + allarga)} ${n(yb)}Z`;
+  s += path(arco, { fill: fango, transform: `translate(0 -4)scale(1)`, opacity: 0.9 });
+  s += path(arco, { fill: buio });
+  // gli stecchi e le canne intrecciate sopra la bocca (la tana è fatta, non scavata a caso)
+  let stecchi = "";
+  for (let k = 0; k < 7; k++) {
+    const a = r.tra(0.1, 0.9) * Math.PI;
+    const px = x - Math.cos(a) * (w / 2 + 6);
+    const py = yb - Math.sin(a) * (h + 6);
+    stecchi += `M${n(px)} ${n(py)}l${n(r.segno(18))} ${n(-r.tra(4, 14))}`;
+  }
+  s += path(stecchi, { stroke: inLuce(C.cannaScura, luce), "stroke-width": 2.4, "stroke-linecap": "round", opacity: 0.85 });
+  // due occhi piccoli, dentro, in qualche tana (i piccoli che aspettano)
+  if ((i === 1 || i === 4) && crollo === 0) {
+    const ch = palpebra(t, 3.3 + i * 0.4, i * 0.37);
+    const oy = yb - h * 0.42;
+    s += path(ellisseD([x - 7, oy], 2.6, 2.4 * (1 - ch)) + ellisseD([x + 7, oy], 2.6, 2.4 * (1 - ch)), { fill: "#d8d3c2", opacity: 0.85 });
+  }
+  return s;
+}
+
+/**
+ * L'argine rimandato dalla laguna: sotto il pelo dell'acqua una fascia scura che sfuma
+ * (la terra capovolta, mossa), e il fango bagnato che luccica appena sulla linea dell'acqua.
+ */
+function argineNellaLaguna(o: OpzPalco): string {
+  const { luce, defs, t } = o;
+  const q = LAGO_VESPRO.quota;
+  const v = vista(o.cam, 1, 0.25);
+  const url = defs.lineare("rive-riflesso", [0, q], [0, q + 150], [
+    [0, inOmbra(C_RIVE.terra, luce), 0.75],
+    [0.5, inOmbra(C_RIVE.terra, luce), 0.3],
+    [1, inOmbra(C_RIVE.terra, luce), 0],
+  ]);
+  let s = path(`M${n(v.x0 - 50)} ${q}H${n(v.x1 + 50)}V${q + 150}H${n(v.x0 - 50)}Z`, { fill: url });
+  // la sella del varco, rimandata anche lei: lì il riflesso è più corto
+  s += path(`M-420 ${q}Q0 ${q + 36} 420 ${q}Z`, { fill: inLuce(C.lago, luce), opacity: 0.45 });
+  // le increspature che rompono il riflesso
+  let d = "";
+  const seme = fnv1a32("rive/increspature");
+  for (let i = 0; i < 90; i++) {
+    const r = elemento(seme, i);
+    const x = r.tra(-3200, 3200);
+    const y = q + 4 + r() ** 1.5 * 140;
+    if (x < v.x0 - 60 || x > v.x1 + 60) continue;
+    d += `M${n(x + Math.sin(t * 0.8 + i) * 6)} ${n(y)}h${n(r.tra(20, 80))}`;
+  }
+  s += path(d, { stroke: inLuce(C.lagoChiaro, luce), "stroke-width": 2, opacity: 0.35, "stroke-linecap": "round" });
+  // il fango bagnato sulla linea dell'acqua
+  s += path(`M${n(v.x0 - 50)} ${q - 3}H${n(v.x1 + 50)}`, { stroke: inLuce("#8f846c", luce), "stroke-width": 3, opacity: 0.5 });
+  return s;
+}
+
+/** Il pezzo d'argine sopra la tana che cede (p.4): stacca, scivola e va giù nella laguna. */
+function angoloCheCede(o: OpzPalco, crollo: number): string {
+  if (crollo <= 0) return "";
+  const { luce, defs } = o;
+  const [x, w] = RIVE.tane[RIVE.crolla];
+  const yb = LAGO_VESPRO.quota - RIVE.sogliaTane;
+  const h = w * 0.62;
+  const pezzo: P[] = [
+    [x + 4, yb - h - 4],
+    [x + w * 0.55, yb - h - 30],
+    [x + w * 1.05, yb - h * 0.55],
+    [x + w * 0.62, yb - 6],
+    [x + w * 0.42, yb - h * 0.5],
+  ];
+  // la terra viva dove c'era il pezzo
+  let s = path(curva(pezzo, true), { fill: inLuce("#3a3024", luce), opacity: 0.9 });
+  const k = clamp(crollo);
+  const cx = x + w * 0.6;
+  const cy = yb - h * 0.6;
+  const url = defs.lineare("rive-pezzo", [0, yb - h - 30], [0, yb], [
+    [0, inLuce(C_RIVE.erbaChiara, luce)],
+    [1, inOmbra(C_RIVE.terra, luce)],
+  ]);
+  s += `<g transform="translate(${n(18 * k)} ${n(90 * k * k)})rotate(${n(28 * k)} ${n(cx)} ${n(cy)})">${path(curva(pezzo, true), { fill: url })}${path(`M${n(x + 10)} ${n(yb - h - 6)}l14 -12M${n(x + w * 0.5)} ${n(yb - h - 26)}l8 -16`, { stroke: inLuce(C.cannaScura, luce), "stroke-width": 2.4, "stroke-linecap": "round" })}</g>`;
+  return s;
+}
+
+/**
+ * Il lago dietro l'argine, nella sella del varco, e — finché il varco è aperto — l'acqua
+ * che scavalca la soglia e cade nella laguna: una lingua liscia in cima, rotta in basso.
+ */
+function acquaNelVarco(o: OpzPalco): string {
+  const P = o.piena;
+  if (!P) return "";
+  const { luce, t, luogo, defs } = o;
+  const q = LAGO_VESPRO.quota;
+  const yLago = q - P.livello;
+  const ySoglia = q - RIVE.sogliaVarco;
+  const yLaguna = q - (P.laguna ?? 0);
+  const aperto = 1 - clamp(P.varco ?? 0);
+  const torbida = inLuce(mescola(C.lago, "#6b5a40", 0.3), luce);
+  const chiara = inLuce(mescola(C.lagoChiaro, "#8f7d5c", 0.35), luce);
+  let s = "";
+  if (yLago < ySoglia) {
+    // il lago dietro, alto: riempie la sella fino al suo livello
+    const sopra: P[] = [];
+    const sotto: P[] = [];
+    for (let x = -460; x <= 460; x += 10) {
+      const y = yLago + Math.sin(x * 0.03 + t * 3) * 1.6;
+      sopra.push([x, y]);
+      sotto.push([x, Math.max(y, luogo.quota(x) + 2)]);
+    }
+    s += path(`M${sopra.map(pt).join("L")}L${sotto.reverse().map(pt).join("L")}Z`, { fill: torbida });
+    // la corrente che va verso il varco, dai due lati
+    let d = "";
+    const semeV = fnv1a32("varco/corrente");
+    for (let i = 0; i < 16; i++) {
+      const r = elemento(semeV, i);
+      const lato = i % 2 ? 1 : -1;
+      const k = ((t * r.tra(0.5, 0.9) + r()) % 1);
+      const x = lato * (440 - k * 400);
+      const y = yLago + r.tra(3, Math.max(4, ySoglia - yLago - 2));
+      d += `M${n(x)} ${n(y)}h${n(-lato * r.tra(14, 40))}`;
+    }
+    s += path(d, { stroke: chiara, "stroke-width": 2, opacity: 0.5, "stroke-linecap": "round" });
+  }
+  // la lingua che cade nella laguna (finché nessuno la chiude)
+  if (aperto > 0.02 && yLago < yLaguna - 2) {
+    const top = Math.min(yLago, ySoglia);
+    const giu = yLaguna + 6;
+    const L = RIVE.mezzoVarco - 16;
+    const url = defs.lineare("varco-lingua", [0, top], [0, giu], [
+      [0, chiara],
+      [0.5, torbida],
+      [1, inLuce("#d9d4c4", luce)],
+    ]);
+    const lingua = `M${n(-L)} ${n(top)}Q0 ${n(top - 3)} ${n(L)} ${n(top)}L${n(L + 12)} ${n(giu)}L${n(-L - 12)} ${n(giu)}Z`;
+    s += path(lingua, { fill: url, opacity: 0.92 * aperto });
+    // le righe che cadono
+    let righe = "";
+    const semeL = fnv1a32("varco/lingua");
+    const H = Math.max(6, giu - top);
+    for (let i = 0; i < 36; i++) {
+      const r = elemento(semeL, i);
+      const x = r.tra(-L, L);
+      const y = top + ((t * r.tra(60, 120) + r.tra(0, H)) % H);
+      righe += `M${n(x)} ${n(y)}l${n(x * 0.02)} ${n(r.tra(6, 16))}`;
+    }
+    s += path(righe, { stroke: inLuce("#e4e0d2", luce), "stroke-width": 2.2, opacity: 0.6 * aperto, "stroke-linecap": "round" });
+    // l'orlo dove l'acqua scavalca la soglia: una riga di schiuma che trema
+    let orlo = "";
+    for (let x = -L; x <= L; x += 14) orlo += ellisseD([x + Math.sin(t * 5 + x) * 3, top + 2 + Math.sin(t * 7 + x * 0.3) * 1.5], 9, 3.2);
+    s += path(orlo, { fill: inLuce("#ece8da", luce), opacity: 0.75 * aperto });
+  }
+  return s;
+}
+
+/** Sopra la piena, alle rive basse: la schiuma dove cade la lingua, alle bocche delle tane, il tonfo del pezzo crollato; e se il varco è chiuso, l'acqua che cerca sopra e sotto chi lo chiude. */
+function sullaPienaDelleRive(o: OpzPalco, inVista: (x: number, m?: number) => boolean): string {
+  const P = o.piena;
+  if (!P) return "";
+  const { luce, t } = o;
+  const q = LAGO_VESPRO.quota;
+  const yLago = q - P.livello;
+  const ySoglia = q - RIVE.sogliaVarco;
+  const yLaguna = q - (P.laguna ?? 0);
+  const chiuso = clamp(P.varco ?? 0);
+  const col = inLuce("#e6e1d2", luce);
+  const seme = fnv1a32("rive/schiuma");
+  let bolle = "";
+  let righe = "";
+  let gocce = "";
+  let velo = "";
+  let forzaVelo = 0;
+  // dove la lingua cade: la schiuma che si allarga
+  if (1 - chiuso > 0.02 && yLago < yLaguna - 2 && inVista(0, 400)) {
+    for (let i = 0; i < 40; i++) {
+      const r = elemento(seme, i);
+      const k = (t * r.tra(0.2, 0.45) + r()) % 1;
+      const x = r.segno(1) * (RIVE.mezzoVarco - 20) * r() + Math.sign(r.segno(1)) * k * 160;
+      bolle += ellisseD([x, yLaguna + 2 + k * 18], (6 + 10 * (1 - k)) * (1 - chiuso), 2.4 * (1 - k * 0.5));
+    }
+  }
+  // chi chiude il varco: l'acqua che passa tra le zampe (sotto), e che scavalca la schiena (sopra)
+  if (chiuso > 0.02 && yLago < ySoglia + 2 && inVista(0, 400)) {
+    const forza = clamp((ySoglia - yLago) / 50);
+    for (const [x0, w] of [[-150, 26], [-40, 18], [70, 22], [170, 16]] as const) {
+      const r = elemento(seme, 900 + x0);
+      const vibra = Math.sin(t * 17 + x0) * 2;
+      righe += `M${n(x0 - w / 2 + vibra)} ${n(ySoglia - 4)}Q${n(x0 + vibra)} ${n(ySoglia + 10)} ${n(x0 + w / 2 + r.segno(3))} ${n(yLaguna + 3)}`;
+      bolle += ellisseD([x0, yLaguna + 3], w * 0.8 * chiuso, 3);
+    }
+    // gli spruzzi sopra la schiena: a colpi, più fitti quando il lago è più alto
+    const colpi = Math.round(4 + 6 * forza);
+    for (let k = 0; k < colpi; k++) {
+      const r = elemento(seme, 2000 + k);
+      const periodo = r.tra(1.4, 2.6) * (1.2 - forza * 0.5);
+      const u = ((t + r.tra(0, periodo)) % periodo) / periodo;
+      if (u > 0.45) continue;
+      const e = u / 0.45;
+      const x0 = r.tra(-200, 200);
+      const y0 = ySoglia - r.tra(220, 250);
+      for (let j = 0; j < 7; j++) {
+        const rj = elemento(seme, 3000 + k * 10 + j);
+        const x = x0 + rj.segno(60) * e;
+        const y = y0 - rj.tra(60, 160) * (0.6 + forza) * e + 380 * e * e;
+        gocce += ellisseD([x, y], rj.tra(3, 7) * chiuso, rj.tra(3, 8) * chiuso);
+      }
+    }
+    // la nebbia d'acqua attorno alle zampe: più fitta quando il lago spinge di più
+    for (let k = 0; k < 6; k++) {
+      const r = elemento(seme, 2600 + k);
+      velo += ellisseD([r.tra(-230, 230) + Math.sin(t * 0.9 + k) * 20, ySoglia - r.tra(10, 70)], r.tra(60, 120), r.tra(18, 36));
+    }
+    forzaVelo = (0.1 + 0.18 * forza) * chiuso;
+  }
+  // alle bocche delle tane, se l'acqua ci arriva
+  RIVE.tane.forEach(([x, w], i) => {
+    if (!inVista(x, w)) return;
+    if (yLaguna < q - RIVE.sogliaTane + 4) {
+      for (let k = 0; k < 5; k++) {
+        const r = elemento(seme, 4000 + i * 10 + k);
+        bolle += ellisseD([x + r.segno(w * 0.5) + Math.sin(t * 2 + k) * 3, yLaguna + r.tra(0, 3)], r.tra(5, 10), r.tra(1.5, 2.8));
+      }
+    }
+  });
+  // il tonfo del pezzo crollato (p.4)
+  const cr = P.crollo ?? 0;
+  if (cr > 0.45 && cr < 0.95) {
+    const [x, w] = RIVE.tane[RIVE.crolla];
+    const e = (cr - 0.45) / 0.5;
+    for (let j = 0; j < 12; j++) {
+      const r = elemento(seme, 5000 + j);
+      gocce += ellisseD([x + w * 0.7 + r.segno(90) * e, yLaguna - r.tra(80, 200) * e + 300 * e * e], r.tra(2, 4), r.tra(2, 5));
+    }
+    bolle += ellisseD([x + w * 0.7, yLaguna + 2], 30 + 60 * e, 4);
+  }
+  return (
+    (velo ? path(velo, { fill: col, opacity: forzaVelo }) : "") +
+    path(righe, { stroke: col, "stroke-width": 3, fill: "none", opacity: 0.7, "stroke-linecap": "round" }) +
+    path(bolle, { fill: col, opacity: 0.6 }) +
+    path(gocce, { fill: col, opacity: 0.75 })
+  );
+}
+
+/** Le rive basse, sotto Rivalba (ep04): l'argine delle tane, il varco, la laguna davanti. */
+export const RIVE_BASSE = creaLuogo(
+  {
+    id: "rive-basse",
+    nome: "le rive basse della Gente delle Rive, sotto Rivalba",
+    profilo: PROFILO_RIVE,
+    // la laguna sta davanti a tutto l'argine: l'acqua c'è dappertutto, sotto il suo piede
+    acqua: { quota: LAGO_VESPRO.quota, riva: 30000 },
+    colori: C_RIVE,
+    suolo: { da: -2000, a: 2000 },
+    erba: { confine: 0, sinistra: [4, 10], destra: [4, 10] },
+    cespugli: { quanti: 0, sinistraProb: 0.5, sinistra: [-2000, -1000], destra: [1000, 2000], sotto: [40, 120] },
+  },
+  {
+    lontanissimo: (o): Livello[] => [
+      { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
+      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+    ],
+    lontano: (o): Livello[] => [
+      { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "colle", contenuto: colleDelleCoppelle(o, 0.36), p: 0.36 },
+    ],
+    oggetti: (o, inVista) => {
+      const { luce, defs, luogo } = o;
+      let s = argineNellaLaguna(o) + acquaNelVarco(o);
+      // i sassi che fanno l'argine, grossi ai due lati del varco
+      for (const [x, w, h] of [[-330, 70, 54], [-420, 90, 46], [320, 76, 58], [430, 84, 44], [-1900, 60, 30], [1900, 64, 34], [-980, 40, 22], [1180, 44, 24]] as const) {
+        if (inVista(x, w + 40)) s += roccia(luogo, `argine${x}`, x, w, h, luce, defs, 0.35);
+      }
+      // le tane
+      RIVE.tane.forEach(([x, w], i) => {
+        if (inVista(x, w + 60)) s += boccaDiTana(o, i, i === RIVE.crolla ? o.piena?.crollo ?? 0 : 0);
+      });
+      s += angoloCheCede(o, o.piena?.crollo ?? 0);
+      // le canne in cima all'argine (non nel varco)
+      const semeC = fnv1a32("rive/canne");
+      for (let i = 0; i < 26; i++) {
+        const r = elemento(semeC, i);
+        const x = r.tra(-3000, 3000);
+        if (Math.abs(x) < 470 || !inVista(x, 260)) continue;
+        s += canneSullArgine(o, x, fnv1a32(`rive/ciuffo${i}`), r.intero(5, 9));
+      }
+      return s;
+    },
+    sullaPiena: (o, inVista) => sullaPienaDelleRive(o, inVista),
+  },
+);
+
+/** Dove sta chi chiude il varco: in mezzo, sulla soglia (coordinate del palco). */
+export const nelVarco = (): P => [RIVE.varco, LAGO_VESPRO.quota - RIVE.sogliaVarco + 1];
+
+// ------------------------------------------------------------------ ALTURA --
+/** Il sasso della vedetta, sull'Altura. */
+const VEDETTA_X = 0;
+
+/** L'Altura (ep04): il dosso sopra i laghi dove la marmotta fa la vedetta, e laggiù il lago. */
+export const ALTURA = creaLuogo(
+  {
+    id: "altura",
+    nome: "l'Altura, sopra i Laghi del Vespro",
+    profilo: [
+      [-30000, 760],
+      [-1600, 700],
+      [-700, 650],
+      [-240, 606],
+      [0, 596],
+      [300, 612],
+      [900, 668],
+      [30000, 740],
+    ],
+    colori: { ...C, erba: "#9d9876", erbaScura: "#6f6b52", erbaChiara: "#c3bd98", erbaAperto: "#8f8a64", erbaApertoScura: "#66623f", roccia: "#8e8a82", rocciaScura: "#55524d" },
+    suolo: { da: -1500, a: 1500 },
+    erba: { confine: 99999, sinistra: [8, 18], destra: [8, 18] },
+    cespugli: { quanti: 8, sinistraProb: 0.5, sinistra: [-2400, -900], destra: [900, 2400], sotto: [40, 160] },
+  },
+  {
+    lontanissimo: (o): Livello[] => [
+      { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
+      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
+    ],
+    lontano: (o): Livello[] => [{ id: "lago", contenuto: lagoDalColle(o, 0.14), p: 0.14 }],
+    oggetti: (o, inVista) => {
+      const { luce, defs, luogo } = o;
+      let s = "";
+      for (const [x, w, h, seme] of [[VEDETTA_X, 96, 130, "vedetta"], [-420, 70, 40, "altura1"], [360, 90, 46, "altura2"], [-900, 60, 30, "altura3"]] as const) {
+        if (inVista(x, w + 40)) s += roccia(luogo, seme, x, w, h, luce, defs, 0.2);
+      }
+      return s;
+    },
+  },
+);
+
+/** Dove sta la marmotta (i piedi), sul sasso della vedetta. */
+export const VEDETTA = (): P => [VEDETTA_X + 6, ALTURA.quota(VEDETTA_X) + 130 * 0.2 - 130 + 6];
 
 /** Per chi disegna la luce del luogo (le inquadrature scelgono tra le LUCI del kit). */
 export type { Luce };
