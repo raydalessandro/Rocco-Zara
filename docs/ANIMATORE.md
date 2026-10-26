@@ -132,6 +132,42 @@ Quello che la prosa **dice** non si contraddice: se la regia ha bisogno di uno s
 (es. il canneto «verso sud», che ha costretto ad allungare il canneto fino al piede
 della collina), lo si **segnala** nel consuntivo.
 
+### L'adattamento: il secondo cancello
+
+> Ray, 25/10/2026: il cartone può citare, oltre alla prosa alla lettera, frasi
+> **riscritte per il cartone**, se stanno in un file di adattamento per episodio
+> approvato da lui. La prosa del libro non si tocca.
+
+**Il file**: `cartoni/episodi/<id>/adattamento.md` (il parser è `motore/adattamento.ts`).
+In testa `stato: proposta | approvato` e, quando è approvato, `approvato: Ray · AAAA-MM-GG`;
+poi, per pagina, le riscritture:
+
+```
+## Pagina 4
+### s07                      ← l'inquadratura (informativa: può ripetersi)
+- prosa: «Nell'involto di foglie, legato stretto, Zara portava la corda di Toraki.»
+- cartone: «Nell'involto di foglie Zara portava la corda di Toraki, suo fratello.»
+- perché: chi ascolta deve sapere subito chi è Toraki.
+```
+
+**Il criterio** (per tutti gli episodi): la voce non ripete quello che l'immagine già
+dice; un periodo per respiro; i *battiti* (le battute, il patto, la chiusura) restano
+alla lettera; niente fatti nuovi, niente battute nuove, niente morali (CARTA_VOCE §3);
+il passato remoto della favola resta; i nomi si ripetono un poco più spesso, perché chi
+ascolta non torna indietro a rileggere. Nel file stanno **solo le riscritture**: le frasi
+citate alla lettera stanno nel copione come sempre.
+
+**Il flusso**: l'orchestratrice (o l'animatore) scrive la proposta → Ray la legge e, se
+va, mette `stato: approvato` con la riga `approvato:` → la CI diventa verde → merge. Il
+test (`test/cartoni.episodi.test.ts`) tiene il cancello: una didascalia è una citazione
+della prosa **oppure** una frase `cartone` dell'adattamento della stessa pagina, e in
+questo caso l'adattamento dev'essere `approvato` (se è `proposta` il test lo dice, con
+le frasi citate). L'adattamento stesso resta ancorato alla prosa (ogni `prosa` alla
+lettera nella sua pagina, con un `perché`) e non porta nomi reali. Una frase `cartone`
+nel copione è una didascalia come le altre: `chi` sulle «», ≤ 22 caratteri/s, al più
+tre righe. Quando un copione passa a citare l'adattamento, le riprese della narratrice
+da rifare le dice il test delle riprese (`narra.ts --solo sNN,…`).
+
 ### Ingombri (per non far pestare i pupazzi)
 
 A scala 1: Rocco va da −178 (coda) a +313 (muso) attorno al centro; Zara da −160
@@ -472,6 +508,12 @@ chi le sta davanti, e al suo turno va all'orlo di buon passo, poi salta (`inCoda
 - **La prosa cambia** → il test delle citazioni diventa rosso: si aggiorna la
   didascalia (o si toglie), non si "aggiusta" il test. Se c'è la narrazione, il test
   delle riprese dice quali pezzi rifare (`narra.ts --solo`).
+- **Una frase della prosa, letta ad alta voce, non regge** (troppo lunga, un «lei» che
+  all'orecchio non si sa chi è) → non si riscrive nel copione: la riscrittura va in
+  `episodi/<id>/adattamento.md` (§1, «L'adattamento»), e il copione la cita solo quando
+  Ray l'ha approvata. Finché è `proposta`, l'unico test rosso ammesso è quello che lo
+  dice; se la prosa cambia sotto, anche l'adattamento diventa rosso (la sua `prosa` non
+  è più alla lettera) e si aggiorna, mai a mano nel copione.
 - **La scheda cambia colore** → il test delle ancore è rosso: si aggiorna la costante
   del pupazzo (che è una copia dichiarata, non una seconda fonte).
 - **Una voce a schermo non c'è in prosa** (serve una battuta nuova) → non la si

@@ -157,10 +157,13 @@ cartoni/
 
 ## Le regole (blindate da `test/cartoni.motore.test.ts` e `test/cartoni.episodi.test.ts`)
 
-1. **Le didascalie sono citazioni.** Ogni parola a schermo viene *alla lettera* dalla
-   pagina di prosa dichiarata. Il cartone mette in scena la prosa, non la riscrive
-   (la prosa è cancello umano). Nessuna battuta nuova, nemmeno in grammelot: il
-   grammelot *suona* una battuta che la prosa ha già.
+1. **Le didascalie sono citazioni — della prosa, o dell'adattamento approvato da Ray.**
+   Ogni parola a schermo viene *alla lettera* dalla pagina di prosa dichiarata, oppure
+   è una frase «cartone» di `episodi/<id>/adattamento.md` (le riscritture per la voce,
+   accanto alla frase della prosa da cui vengono, col perché: il secondo cancello
+   umano, vale solo con `stato: approvato`). Il cartone mette in scena la prosa, non
+   la riscrive da solo (la prosa è cancello umano). Nessuna battuta nuova, nemmeno in
+   grammelot: il grammelot *suona* una battuta che la prosa ha già.
 2. **I colori vengono dalle schede.** Le «ancore colore» di `saga/bible/*.md` sono la
    fonte; i pupazzi le leggono (test: se la scheda cambia, il test lo dice).
 3. **Morfologia di reference = vincolo.** Il corno storto di Rocco (virgola, mai uncino),
