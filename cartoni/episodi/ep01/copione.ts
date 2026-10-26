@@ -801,9 +801,9 @@ const s21: Inquadratura = {
     const L = mescolaLuce(LUCI.alba, LUCI.giorno, 0.3);
     const perch = posatoioGazza();
     let att = "";
-    // i due in riva, sotto il ramo: Zara all'acqua, Rocco più su sul pendio, tutti e due a guardarla
-    att += Z(-2420, { t, andatura: "seduta", involto: true, testa: -16, sguardo: 0.9, orecchie: 0.8 }, 1, L, defs);
-    att += R(-1870, { t, andatura: "fermo", testa: 2, giro: 0.1, orecchie: 0.8 }, -1, L, defs);
+    // i due ai lati dell'albero secco: Zara giù all'acqua, Rocco su, sull'orlo del pendio; il ramo tra loro
+    att += Z(-2440, { t, andatura: "seduta", involto: true, testa: -16, sguardo: 0.9, orecchie: 0.8 }, 1, L, defs);
+    att += R(-1600, { t, andatura: "fermo", testa: 10, giro: 0.1, orecchie: 0.8 }, -1, L, defs);
     if (t < 12.3) {
       // lo sguardo della gazza: su Zara (giù, a sinistra), su Rocco (su), sull'involto (giù, a lungo), poi ancora loro
       const guarda = traccia([[0, 6], [3.6, 6], [4.4, 26, ease.dentroFuori], [5.0, 26], [5.5, -4, ease.dentroFuori], [6.0, -4], [6.6, 30, ease.dentroFuori], [7.6, 30], [8.2, 8, ease.dentroFuori]])(t);
@@ -816,7 +816,7 @@ const s21: Inquadratura = {
     // sulla gazza; poi il campo coi due sotto; poi di nuovo lei e il lago che luccica
     const k1 = ease.dentroFuori(rampa(t, 3.0, 7.0));
     const k2 = ease.dentroFuori(rampa(t, 7.6, 11.0));
-    const cam = camTra(camTra({ x: -2330, y: 760, zoom: 1.9 }, { x: -2150, y: 760, zoom: 1.05 }, k1), { x: -2230, y: 740, zoom: 1.6 }, k2);
+    const cam = camTra(camTra({ x: -2330, y: 760, zoom: 1.9 }, { x: -2030, y: 680, zoom: 0.86 }, k1), { x: -2360, y: 760, zoom: 1.6 }, k2);
     const meteo: Partial<Meteo> = { lavato: 0.5, luccichii: rampa(t, 8.2, 10.4), sole: 0.2, nebbia: 0.5 };
     return { cam, livelli: scena(t, defs, { mondo: v.t, cam, luce: L, attori: att, meteo }) };
   },
