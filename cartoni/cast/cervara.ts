@@ -15,8 +15,9 @@
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
 import { caso } from "../motore/caso";
 import { type Defs, type P, DEG, add, cerchioD, curva, ellisseD, g, mix, n, path, pt, rot, tr, tubo } from "../motore/svg";
-import { clamp, lerp, onda, palpebra } from "../motore/tempo";
-import { corpoDaSpina, ik2, piedeNelPasso } from "./anatomia";
+import { clamp, lerp, onda } from "../motore/tempo";
+import { battito, codaDaSola, orecchioCheGira, pesoSulleZampe, respiro, saccade, semeVita } from "../motore/vita";
+import { beccheggia, beccheggio, catenaInseguitrice, corpoDaSpina, ik2, molleggio, piedeNelPasso } from "./anatomia";
 import type { CtxPupazzo } from "./rocco";
 
 /** Ancore colore dalla scheda: manto, il nero dei ciuffi, gli occhi. */
@@ -51,6 +52,10 @@ export interface PosaCervara {
   ombra?: boolean;
   /** Bagnata (0..1): la notte della piena (ep04) — il manto più scuro, e la pioggia che ci luccica sopra. */
   bagnata?: number;
+  /** Carica (0..1): si raccoglie prima di uno scatto — zampe piegate, dorso basso, orecchie indietro. */
+  carica?: number;
+  /** Il seme della sua vita da ferma (ciglia, sguardo, orecchie, peso); senza, l'id dell'istanza. */
+  semeCiglia?: number;
 }
 
 // ------------------------------------------------------------- scheletro --
@@ -69,11 +74,11 @@ interface Scheletro {
 const LUNG_CODA = 5;
 const SCALA_TESTA = 1.12;
 
-function scheletroBase(posa: PosaCervara): Scheletro {
+function scheletroBase(posa: PosaCervara, seme: number): Scheletro {
   const t = posa.t;
   const f = posa.fase ?? 0;
   const amp = clamp(posa.ampiezza ?? 1);
-  const resp = onda(t, 2.8) * 1.2;
+  const resp = respiro(t, 2.8, seme) * 1.2;
   let spina: P[] = [
     [-78, -108],
     [-58, -104],
@@ -96,15 +101,19 @@ function scheletroBase(posa: PosaCervara): Scheletro {
     [-14, -34],
   ];
   let testa = (posa.testa ?? 0) - 8; // la testa alta, senza sforzo (non si gonfia: sta)
-  // la coda corta: esce dalla groppa e sale appena, la punta nera
-  let coda = [150, 164, 178, 192, 204].map((a, i) => a + onda(t, 3.3, i * 0.3) * (2 + i));
+  // la coda corta: esce dalla groppa e sale appena, la punta nera; il suo pendolo è una
+  // catena (la punta dopo la base), e a tratti un colpo da sola
+  const pendolo = catenaInseguitrice((tt) => onda(tt, 3.3) * 2.5 + codaDaSola(tt, seme) * 8, LUNG_CODA, t, 0.1, 1.2);
+  let coda = [150, 164, 178, 192, 204].map((a, i) => a + pendolo[i] * (0.4 + 0.6 * (i / (LUNG_CODA - 1))));
+  const peso = posa.andatura === "fermo" ? pesoSulleZampe(t, seme) * 2.5 : 0;
 
   switch (posa.andatura) {
     case "passo": {
-      // il passo di chi sa dove mette i piedi: pochi su e giù, piedi posati
+      // il passo di chi sa dove mette i piedi: pochi su e giù, piedi posati — ma col
+      // peso: il bacino molleggia (±2), il tronco beccheggia di 2°, la testa segue dopo
       const falcata = 54 * amp;
-      const bob = -2 * Math.cos(f * Math.PI * 4) * amp;
-      spina = spina.map(([x, y]) => [x, y + bob] as P);
+      const bob = molleggio(f, 4, 0.9) * amp;
+      spina = beccheggia(spina.map(([x, y]) => [x, y + bob] as P), beccheggio(f, 2) * amp);
       const pAV = piedeNelPasso(f + 0.25, falcata, 14);
       const pAL = piedeNelPasso(f + 0.75, falcata, 14);
       const pPV = piedeNelPasso(f, falcata, 16);
@@ -116,8 +125,12 @@ function scheletroBase(posa: PosaCervara): Scheletro {
         [-70 + pPL.dx, pPL.dy],
       ];
       volo = [pAV.volo, pAL.volo, pPV.volo, pPL.volo];
-      testa += Math.sin(f * Math.PI * 4 + 0.8) * 1.4 * amp;
-      coda = coda.map((a, i) => a + Math.sin(f * Math.PI * 2 + i * 0.5) * 4 * amp);
+      testa += (beccheggio(f - 0.125, 2) * 0.8 + Math.sin(f * Math.PI * 4 + 0.8) * 1.0) * amp;
+      spina[4] = [spina[4][0], spina[4][1] + (molleggio(f - 0.125, 4, 0.9) - bob) * 0.6 * amp];
+      {
+        const cat = catenaInseguitrice((ff) => Math.sin(ff * Math.PI * 2) * 4 * amp, LUNG_CODA, f, 0.04, 1);
+        coda = coda.map((a, i) => a + cat[i]);
+      }
       break;
     }
     case "seduta": {
@@ -149,18 +162,29 @@ function scheletroBase(posa: PosaCervara): Scheletro {
     default:
       break;
   }
+  // la carica: si raccoglie — il corpo scende sulle zampe ferme, i posteriori sotto, la testa avanti
+  const carica = clamp(posa.carica ?? 0);
+  if (carica > 0 && posa.andatura !== "seduta") {
+    spina = spina.map(([x, y], i) => [x - 4 * carica, y + (i === 4 ? 22 : 18) * carica] as P);
+    piedi = [piedi[0], piedi[1], add(piedi[2], [10 * carica, 0]), add(piedi[3], [10 * carica, 0])];
+    metatarso = [add(metatarso[0], [-7 * carica, 5 * carica]), add(metatarso[1], [-7 * carica, 5 * carica])];
+    testa += 5 * carica;
+  }
+  if (peso) spina = spina.map(([x, y]) => [x + peso, y] as P);
   return { spina, dorso, ventre, piedi, volo, testa, collo: spina[4], coda, metatarso };
 }
 
 const lerpP = (a: P, b: P, k: number): P => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
 
-function scheletro(posa: PosaCervara): Scheletro {
-  const a = scheletroBase(posa);
+function scheletro(posa: PosaCervara, seme: number): Scheletro {
+  const a = scheletroBase(posa, seme);
   if (!posa.verso || posa.verso.k <= 0) return a;
-  const b = scheletroBase(posa.verso.altra);
+  const b = scheletroBase(posa.verso.altra, seme);
   const k = clamp(posa.verso.k);
+  // tra fermo e passo un filo di cedimento a metà fusione (anticipazione o assestamento)
+  const cede = (posa.andatura === "passo") !== (posa.verso.altra.andatura === "passo") ? Math.sin(Math.PI * k) * 5 : 0;
   return {
-    spina: a.spina.map((p, i) => lerpP(p, b.spina[i], k)),
+    spina: a.spina.map((p, i) => lerpP(p, b.spina[i], k)).map(([x, y], i) => [x, y + cede * (i === 4 ? 0.7 : 1)] as P),
     dorso: a.dorso.map((d, i) => lerp(d, b.dorso[i], k)),
     ventre: a.ventre.map((d, i) => lerp(d, b.ventre[i], k)),
     piedi: a.piedi.map((p, i) => lerpP(p, b.piedi[i], k)) as [P, P, P, P],
@@ -186,7 +210,8 @@ interface Tav {
 export function cervara(posa: PosaCervara, ctx: CtxPupazzo): string {
   const { defs, luce, id } = ctx;
   const verso = ctx.verso ?? 1;
-  const sk = scheletro(posa);
+  const seme = semeVita(posa.semeCiglia, id);
+  const sk = scheletro(posa, seme);
   const k = clamp(posa.zampaAlCiuffo ?? 0);
   // il colpetto ai ciuffi, come lo fanno i gatti: la zampa sale e la testa le scende
   // incontro, piegata; la zampa passa sull'orecchio dalla base in su
@@ -325,7 +350,7 @@ export function cervara(posa: PosaCervara, ctx: CtxPupazzo): string {
   const bordo = luce.forzaBordo > 0.02 ? path(curva(dorsoLinea), { stroke: luce.bordo, "stroke-width": 3.2, fill: "none", "stroke-linecap": "round", opacity: clamp(luce.forzaBordo) * 0.8 }) : "";
   const ombraP = posa.ombra !== false ? ombraSotto(defs, id, luce, verso) : "";
 
-  const testaG = g({ transform: `translate(${n(perno[0])} ${n(perno[1])})rotate(${n(ang)})scale(${SCALA_TESTA})` }, testaCervara(posa, ctx, c));
+  const testaG = g({ transform: `translate(${n(perno[0])} ${n(perno[1])})rotate(${n(ang)})scale(${SCALA_TESTA})` }, testaCervara(posa, ctx, c, seme));
 
   // bagnata: il pelo appiattito dall'acqua, e la pioggia che ci luccica sopra lungo il dorso
   if (bagnata > 0) corpo += path(curva(dorsoLinea.map((p) => add(p, [0, 6]))), { stroke: schiarisci(luce.bordo, 0.3), "stroke-width": 3, fill: "none", "stroke-linecap": "round", opacity: 0.3 * bagnata });
@@ -367,12 +392,12 @@ function ombraSotto(defs: Defs, id: string, luce: Luce, verso: number): string {
 }
 
 // ------------------------------------------------------------------ testa --
-function testaCervara(posa: PosaCervara, ctx: CtxPupazzo, c: Tav): string {
+function testaCervara(posa: PosaCervara, ctx: CtxPupazzo, c: Tav, seme: number): string {
   const { defs, id, luce } = ctx;
   const t = posa.t;
   let s = "";
   // l'orecchio lontano, dietro
-  s += orecchio([0, -36], posa, c, true);
+  s += orecchio([0, -36], posa, c, true, seme);
   // la testa: cranio tondo, muso corto, fronte larga
   const sagoma: P[] = [
     [-18, -20],
@@ -425,24 +450,25 @@ function testaCervara(posa: PosaCervara, ctx: CtxPupazzo, c: Tav): string {
   // le vibrisse
   s += path("M47 2q15 -5 28 -4M47 5q15 1 28 5M45 8q11 5 22 10", { stroke: schiarisci(c.crema, 0.3), "stroke-width": 1, fill: "none", opacity: 0.75 });
   // l'occhio: nocciola-oro, calmo (la palpebra a riposo scende un poco)
-  s += occhio(posa, ctx, c);
+  s += occhio(posa, ctx, c, seme);
   // LE BASETTE: ampie, a punte, incorniciano il muso (chiare, con le righe scure)
   s += path("M6 14l-12 22l8 -4l-4 14l9 -9l1 12l6 -12l5 8l1 -14l6 4l-4 -14Z", { fill: c.crema });
   s += path("M-2 20l-4 12M6 22l-1 12M13 20l3 9", { stroke: c.scuro, "stroke-width": 1.6, fill: "none", opacity: 0.55, "stroke-linecap": "round" });
   // l'orecchio vicino, coi ciuffi
-  s += orecchio([10, -40], posa, c, false);
+  s += orecchio([10, -40], posa, c, false, seme);
   void t;
   return s;
 }
 
-function occhio(posa: PosaCervara, ctx: CtxPupazzo, c: Tav): string {
+function occhio(posa: PosaCervara, ctx: CtxPupazzo, c: Tav, seme: number): string {
   const { defs, id, luce } = ctx;
   const t = posa.t;
   const calma = 0.24;
-  const chiuso = clamp(Math.max(posa.occhi ?? calma, palpebra(t, 3.9, 0.35)));
+  // le ciglia a tempi loro; lo sguardo calmo si sposta di rado, e poco (è lei: non cerca)
+  const chiuso = clamp(Math.max(posa.occhi ?? calma, battito(t, seme)));
   const cx = 31;
   const cy = -17;
-  const sg = clamp(posa.sguardo ?? 0.3, -1, 1);
+  const sg = clamp((posa.sguardo ?? 0.3) + saccade(t, seme) * 0.6, -1, 1);
   const forma = `M${n(cx - 10)} ${n(cy + 2)}Q${n(cx - 2)} ${n(cy - 8)} ${n(cx + 10)} ${n(cy - 2)}Q${n(cx + 2)} ${n(cy + 6)} ${n(cx - 10)} ${n(cy + 2)}Z`;
   const oro = inLuce(CERVARA_ANCORE.occhi, luce);
   const iride = defs.radiale(`${id}-iride`, [cx + sg * 2, cy - 1], 8, [
@@ -462,11 +488,13 @@ function occhio(posa: PosaCervara, ctx: CtxPupazzo, c: Tav): string {
  * L'orecchio della lince: alto e a punta, il dorso nero, e in cima IL CIUFFO —
  * nero, lungo, dritto come un pennello nuovo; con `ciuffi` la punta si piega di lato.
  */
-function orecchio(base: P, posa: PosaCervara, c: Tav, lontano: boolean): string {
+function orecchio(base: P, posa: PosaCervara, c: Tav, lontano: boolean, seme: number): string {
   const t = posa.t;
-  const tens = posa.orecchie ?? 0.4;
-  const guizzo = Math.max(0, Math.sin(t * 1.4 + (lontano ? 1.1 : 0))) ** 16 * 10;
-  const ang = -4 - tens * 12 + guizzo - (lontano ? 12 : 0);
+  const tens = (posa.orecchie ?? 0.4) - 1.2 * clamp(posa.carica ?? 0);
+  // ogni tanto un orecchio gira verso un suono; nel passo seguono la testa in ritardo
+  const guizzo = orecchioCheGira(t, seme, lontano ? 1 : 0) * 10;
+  const segue = posa.andatura === "passo" ? -Math.sin(((posa.fase ?? 0) - 0.2) * Math.PI * 4 + 0.9) * 2 * clamp(posa.ampiezza ?? 1) : 0;
+  const ang = -4 - tens * 12 + guizzo + segue - (lontano ? 12 : 0);
   const sag: P[] = [
     [-10, 2],
     [-9, -14],
