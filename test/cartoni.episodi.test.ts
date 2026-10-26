@@ -4,7 +4,11 @@
 // arriva prima, gli episodi dopo, e ognuno porta i suoi cancelli.
 //  1. le didascalie sono CITAZIONI: ognuna compare alla lettera nella pagina di
 //     prosa che dichiara (la prosa è un cancello umano: il cartone la mette in
-//     scena, non la riscrive), e si fanno in tempo a leggere;
+//     scena, non la riscrive) — oppure è una frase «cartone» dell'adattamento
+//     dell'episodio (cartoni/episodi/<id>/adattamento.md, il secondo cancello:
+//     vale solo se Ray l'ha approvato) — e si fanno in tempo a leggere;
+//     l'adattamento, a sua volta, resta ancorato alla prosa (ogni `prosa` è alla
+//     lettera nella sua pagina) e non porta nomi reali;
 //  2. chi parla è nel cast delle voci (o è la narratrice);
 //  3. il lessico: niente nomi reali nelle parole a schermo;
 //  4. il montaggio, con le voci, sta in piedi (in fila, niente buchi, SVG sano),
@@ -21,6 +25,7 @@ import { join } from "node:path";
 import { effetto } from "../cartoni/audio/effetti";
 import { Bus } from "../cartoni/audio/sintesi";
 import { VOCI } from "../cartoni/cast/voci";
+import { type Adattamento, fonteDidascalia, fontiDelCopione, leggiAdattamento } from "../cartoni/motore/adattamento";
 import { aCapo } from "../cartoni/motore/didascalie";
 import { inSvg } from "../cartoni/motore/fotogramma";
 import { type Episodio, durata, fotogramma, scaletta } from "../cartoni/motore/montaggio";
@@ -33,11 +38,12 @@ const leggi = (p: string) => readFileSync(join(ROOT, p), "utf8");
 const DIR = join(ROOT, "cartoni/episodi");
 
 const ID = existsSync(DIR) ? readdirSync(DIR).filter((d) => existsSync(join(DIR, d, "copione.ts"))).sort() : [];
-const EPISODI: { id: string; ep: Episodio; musica: unknown; narr: Narrazione | null; bat: Battute | null }[] = await Promise.all(
+const EPISODI: { id: string; ep: Episodio; musica: unknown; narr: Narrazione | null; bat: Battute | null; adatt: Adattamento | null }[] = await Promise.all(
   ID.map(async (id) => ({
     id,
     ep: (await import(join(DIR, id, "copione.ts"))).default as Episodio,
     musica: existsSync(join(DIR, id, "partitura.ts")) ? (await import(join(DIR, id, "partitura.ts"))).default : undefined,
+    adatt: existsSync(join(DIR, id, "adattamento.md")) ? leggiAdattamento(readFileSync(join(DIR, id, "adattamento.md"), "utf8")) : null,
     narr: existsSync(join(DIR, id, "voce/narrazione.json")) ? (JSON.parse(readFileSync(join(DIR, id, "voce/narrazione.json"), "utf8")) as Narrazione) : null,
     bat: existsSync(join(DIR, id, "voce/battute.json")) ? (JSON.parse(readFileSync(join(DIR, id, "voce/battute.json"), "utf8")) as Battute) : null,
   })),
@@ -73,8 +79,62 @@ describe("cartoni — gli episodi presenti", () => {
   });
 });
 
-for (const { id, ep, narr, bat } of EPISODI) {
-  describe(`cartoni — ${id}: le didascalie sono citazioni della prosa`, () => {
+describe("cartoni — l'adattamento (il secondo cancello): il parser", () => {
+  const ESEMPIO = `# epXX — prova · l'adattamento per il cartone
+
+stato: approvato
+approvato: Ray · 2026-10-25
+
+## Pagina 1
+
+### s01
+- prosa: «di quelle che stanno dove un mondo finisce»
+- cartone: «Stava dove un mondo finisce.»
+- perché: detto in chiaro.
+
+### s01
+- prosa: «*Vero due volte*»
+- cartone: «Vero due volte.»
+- perché: via il corsivo.
+
+## Pagina 3
+
+### s06
+- prosa: «la punta della coda»
+- cartone: «La punta della coda.»
+- perché: maiuscola.
+`;
+  it("legge stato, approvazione e le entrate (pagina, inquadratura, prosa, cartone, perché); gli id possono ripetersi", () => {
+    const a = leggiAdattamento(ESEMPIO);
+    expect(a.stato).toBe("approvato");
+    expect(a.approvato).toBe("Ray · 2026-10-25");
+    expect(a.voci).toEqual([
+      { pagina: 1, inquadratura: "s01", prosa: "di quelle che stanno dove un mondo finisce", cartone: "Stava dove un mondo finisce.", perche: "detto in chiaro." },
+      { pagina: 1, inquadratura: "s01", prosa: "Vero due volte", cartone: "Vero due volte.", perche: "via il corsivo." },
+      { pagina: 3, inquadratura: "s06", prosa: "la punta della coda", cartone: "La punta della coda.", perche: "maiuscola." },
+    ]);
+    expect(leggiAdattamento("stato: proposta\n").stato).toBe("proposta");
+  });
+
+  it("un file senza stato, approvato senza firma, o un'entrata a metà, non passano", () => {
+    expect(() => leggiAdattamento("## Pagina 1\n")).toThrow(/stato/);
+    expect(() => leggiAdattamento("stato: approvato\n## Pagina 1\n")).toThrow(/approvato: Ray/);
+    expect(() => leggiAdattamento("stato: proposta\n## Pagina 1\n### s01\n- prosa: «a»\n")).toThrow(/cartone/);
+  });
+
+  it("dice da dove viene una didascalia: dalla prosa (vince sempre), dall'adattamento (alla lettera, stessa pagina), o da nessuna", () => {
+    const a = leggiAdattamento(ESEMPIO);
+    const pp = new Map([[1, "La Soglia, di quelle che stanno dove un mondo finisce. Vero due volte"], [3, "la punta della coda"]]);
+    expect(fonteDidascalia("Vero due volte", 1, pp, a)).toBe("prosa");
+    expect(fonteDidascalia("Stava dove un mondo finisce.", 1, pp, a)).toBe("adattamento");
+    expect(fonteDidascalia("Stava dove un mondo finisce.", 3, pp, a)).toBe("nessuna");
+    expect(fonteDidascalia("Stava dove un mondo finisce.", 1, pp, null)).toBe("nessuna");
+    expect(fonteDidascalia("Stava dove un mondo *finisce*.", 1, pp, a)).toBe("adattamento");
+  });
+});
+
+for (const { id, ep, narr, bat, adatt } of EPISODI) {
+  describe(`cartoni — ${id}: le didascalie sono citazioni della prosa (o dell'adattamento approvato)`, () => {
     const pp = pagine(ep.prosa);
 
     it("la prosa di riferimento esiste ed è a pagine; ogni inquadratura dichiara una pagina che esiste", () => {
@@ -82,16 +142,36 @@ for (const { id, ep, narr, bat } of EPISODI) {
       for (const q of ep.inquadrature) expect(pp.has(q.pagina), `${q.id} → pagina ${q.pagina}`).toBe(true);
     });
 
-    it("ogni didascalia compare ALLA LETTERA nella pagina dichiarata", () => {
-      const mancanti: string[] = [];
-      for (const q of ep.inquadrature) {
-        for (const d of q.didascalie ?? []) {
-          const pagina = pp.get(d.pagina) ?? "";
-          if (!pagina.includes(norma(d.testo))) mancanti.push(`${q.id} p.${d.pagina}: «${d.testo}»`);
-        }
-      }
+    it("ogni didascalia compare ALLA LETTERA nella pagina dichiarata della prosa, oppure è una frase «cartone» dell'adattamento della stessa pagina", () => {
+      const fonti = fontiDelCopione(ep, pp, adatt);
+      const mancanti = fonti.filter((f) => f.fonte === "nessuna").map((f) => `${f.q} p.${f.pagina}: «${f.testo}»`);
       expect(mancanti, mancanti.join("\n")).toEqual([]);
     });
+
+    it("se cita l'adattamento, l'adattamento è approvato da Ray (il secondo cancello)", () => {
+      const citate = fontiDelCopione(ep, pp, adatt).filter((f) => f.fonte === "adattamento");
+      if (!citate.length) return;
+      expect(
+        adatt!.stato,
+        `${id} cita ${citate.length} frasi dell'adattamento, che è ancora \`proposta\`: approvarlo in cartoni/episodi/${id}/adattamento.md (stato: approvato, approvato: Ray · data) o togliere le citazioni:\n` +
+          citate.map((f) => `  ${f.q} p.${f.pagina}: «${f.testo}»`).join("\n"),
+      ).toBe("approvato");
+    });
+
+    if (adatt) {
+      it("l'adattamento resta ancorato alla prosa: ogni entrata ha la sua «prosa» ALLA LETTERA nella pagina dichiarata, e dice che cosa cambia", () => {
+        const mancanti = adatt.voci.filter((v) => !(pp.get(v.pagina) ?? "").includes(v.prosa)).map((v) => `${v.inquadratura} p.${v.pagina}: «${v.prosa}»`);
+        expect(mancanti, mancanti.join("\n")).toEqual([]);
+        for (const v of adatt.voci) {
+          expect(v.cartone, `${v.inquadratura} p.${v.pagina}`).not.toBe("");
+          expect(v.perche, `${v.inquadratura} p.${v.pagina}: manca il perché`).not.toBe("");
+        }
+      });
+
+      it("le frasi «cartone» dell'adattamento non contengono nomi reali (lessico, come le didascalie)", () => {
+        expect(adatt.voci.map((v) => v.cartone).filter((t) => PATTERN.test(t))).toEqual([]);
+      });
+    }
 
     it("le didascalie di un'inquadratura stanno dentro la sua durata e non si accavallano", () => {
       for (const q of ep.inquadrature) {
