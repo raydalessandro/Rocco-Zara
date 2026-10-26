@@ -1,19 +1,29 @@
 // cartoni/scene/pittura.ts — il kit di pennelli del palco.
 //
 // Tutto ciò che è uguale in ogni luogo: il cielo e le nuvole, il banco del
-// temporale, le creste dei monti, il terreno dal profilo (con le pennellate
-// e l'acqua al piede), l'erba del crinale e del prato, i cespugli, il canneto,
-// l'erba di primo piano, la pioggia. Un luogo sceglie i parametri e compone.
+// temporale, le creste dei monti e le colline a strati, il terreno dal profilo
+// (con il lato in luce e quello in ombra, le pennellate, l'acqua al piede),
+// l'erba del crinale e del prato, i cespugli, il canneto, le ombre portate,
+// il primo piano sfocato, il pulviscolo, la pioggia. Un luogo sceglie i
+// parametri e compone.
 //
 // Due regole che valgono per ogni pennello (vedi docs/ANIMATORE.md §3):
 //  - nei cicli con scarto fuori campo ogni elemento ha il SUO generatore
 //    (`elemento(seme, i)`) e pesca tutto PRIMA di decidere se è in vista;
 //  - i campionamenti sono allineati al mondo: niente sfarfallii con la camera.
+//
+// E una di pittura (STILE_VISIVO §1-§3, «mai cartoon-flat»): il palco ha tre
+// cose che un fondale piatto non ha — la PROFONDITÀ (strati a parallasse,
+// affogati nella foschia man mano che si allontanano, il primo piano sfocato),
+// la LUCE (un lato in luce e uno in ombra, le ombre portate di tutto dal lato
+// opposto al sole, lunghe quando il sole è basso) e la MATERIA (le pennellate,
+// le chiazze, i fiori, la terra nuda). Niente bagliori: la luce si vede da
+// quello che illumina.
 
-import { inLuce, inOmbra, lontano, mescola, scurisci } from "../motore/colore";
+import { type Luce, inLuce, inOmbra, lontano, mescola, schiarisci, scurisci } from "../motore/colore";
 import { caso, elemento, fnv1a32, frattale1 } from "../motore/caso";
-import { ALTEZZA, LARGHEZZA, op, vista } from "../motore/fotogramma";
-import { type P, ellisseD, g, n, path, pt } from "../motore/svg";
+import { ALTEZZA, LARGHEZZA, aSchermo, op, vista } from "../motore/fotogramma";
+import { type Defs, type P, ellisseD, g, n, path, pt } from "../motore/svg";
 import { clamp, smooth } from "../motore/tempo";
 import type { OpzPalco } from "./luogo";
 import { piegaErba } from "./meteo";
@@ -126,42 +136,92 @@ export function lunaRiflessa(o: OpzPalco, p: number, sullAcqua: (x: number, y: n
   return path(d, { stroke: mescola("#f4f1e4", "#f3dcb0", bassa * 0.6), "stroke-width": n(((r * 1.6) / N) * 0.85), opacity: 0.8 * o.meteo.notte, "stroke-linecap": "round" });
 }
 
+/** I due livelli di nuvole: uno lontano (piccole, piatte, p≈0,04) e uno vicino (grandi, p≈0,09). */
+const STRATI_NUVOLE = [
+  { nome: "lontane", p: 0.04, quante: 46, w: [120, 260] as const, y: [-500, -250] as const, deriva: 1.4, cirri: 0.5 },
+  { nome: "vicine", p: 0.09, quante: 34, w: [260, 620] as const, y: [-560, -150] as const, deriva: 2.6, cirri: 0.15 },
+] as const;
+
+/** L'ascissa del mondo coperta dalle nuvole (si ripete oltre, a piastrella). */
+const MONDO_NUVOLE = 18000;
+
+/**
+ * Le nuvole stanno nel MONDO, non sullo schermo: ogni nuvola ha il suo posto
+ * (x, y, forma) pescato dal suo seme su tutta l'ascissa del mondo, e il cielo
+ * la proietta a schermo con la parallasse del suo strato. Così inquadrature con
+ * camere diverse vedono cieli diversi, le panoramiche le vedono scorrere, e due
+ * inquadrature sullo stesso punto vedono lo stesso cielo. Derivano col tempo,
+ * nel verso del vento e tanto più quanto più tira. La forma: lobi irregolari
+ * sopra, il fondo più piatto, e qualche cirro a pennellate; di giorno l'ombra
+ * sotto è fredda, al tramonto e all'alba il fondo prende il colore della luce
+ * bassa (sottoilluminato), di notte sono veli scuri.
+ * Si disegnano dentro `cielo()` (livello a schermo): la proiezione la fa `aSchermo`.
+ */
 function nuvole(o: OpzPalco, velato: number): string {
-  const { t, meteo, defs } = o;
-  const r = caso("cielo/nuvole");
-  const luceN = mescola(mescola("#fffaf0", "#b9bab0", meteo.temporale), "#3a4458", meteo.notte);
-  const ombraN = mescola(mescola("#e4d3bb", "#7a7c72", meteo.temporale), "#222a3a", meteo.notte);
-  const grad = defs.lineare("nube", [0, 0], [0, 1], [
-    [0, mescola(luceN, "#ffffff", 0.3 * (1 - meteo.notte))],
-    [0.55, luceN],
-    [1, ombraN],
-  ], "objectBoundingBox");
-  let s = "";
+  const { t, meteo, defs, luce } = o;
+  const bassa = clamp(luce.forzaBordo); // quanto la luce è radente (tramonto, alba)
+  const luceN = mescola(mescola(mescola("#fffaf0", luce.bordo, bassa * 0.35), "#b9bab0", meteo.temporale), "#3a4458", meteo.notte);
+  const ombraFredda = mescola("#d9d6d2", "#b9c2d6", 0.5);
+  const ombraN = mescola(mescola(mescola(ombraFredda, luce.bordo, bassa * 0.8), "#7a7c72", meteo.temporale), "#222a3a", meteo.notte);
   const visibili = (1 - velato * 0.6) * (1 - meteo.temporale * 0.6);
-  for (let i = 0; i < 7; i++) {
-    const base = r.tra(-300, LARGHEZZA + 300);
-    const x = ((base + t * r.tra(3, 7) - o.cam.x * 0.02 + 6000) % (LARGHEZZA + 700)) - 350;
-    const y = r.tra(70, 380) - o.cam.y * 0.02;
-    const w = r.tra(220, 520);
-    const h = w * r.tra(0.12, 0.2);
-    const pezzi: string[] = [];
-    const k = r.intero(4, 7);
-    for (let j = 0; j < k; j++) {
-      const u = j / (k - 1);
-      const cx = x + (u - 0.5) * w * 1.1;
-      const cy = y - Math.sin(u * Math.PI) * h * r.tra(0.4, 0.9);
-      pezzi.push(ellisseD([cx, cy], (w / k) * r.tra(0.9, 1.5), h * r.tra(0.55, 0.9)));
+  if (visibili < 0.02) return "";
+  const vento = (meteo.versoVento || 1) * (0.5 + meteo.vento) * 6;
+  let s = "";
+  for (const S of STRATI_NUVOLE) {
+    const grad = defs.lineare(`nube-${S.nome}`, [0, 0], [0, 1], [
+      [0, mescola(luceN, "#ffffff", 0.3 * (1 - meteo.notte))],
+      [0.5, luceN],
+      [1, ombraN],
+    ], "objectBoundingBox");
+    const seme = fnv1a32(`cielo/nuvole/${S.nome}`);
+    const z = Math.pow(Math.max(0.01, o.cam.zoom), S.p);
+    const deriva = t * S.deriva * vento;
+    let corpi = "";
+    let fondi = "";
+    let cirri = "";
+    let ombre = "";
+    for (let i = 0; i < S.quante; i++) {
+      const r = elemento(seme, i);
+      // ogni nuvola pesca TUTTO prima dello scarto (regola del kit)
+      const x0 = r.tra(-MONDO_NUVOLE / 2, MONDO_NUVOLE / 2);
+      const y = r.tra(S.y[0], S.y[1]);
+      const w = r.tra(S.w[0], S.w[1]);
+      const h = w * r.tra(0.13, 0.22);
+      const cirro = r.moneta(S.cirri);
+      const k = r.intero(5, 9);
+      const lobi: [number, number, number, number][] = [];
+      for (let j = 0; j < k; j++) lobi.push([r.tra(-0.5, 0.5), r.tra(0.3, 0.9), r.tra(0.7, 1.4), r.tra(0.4, 0.75)]);
+      const pennellate: [number, number, number][] = [];
+      for (let j = 0; j < 3; j++) pennellate.push([r.segno(0.4), r.tra(0, 0.4), r.tra(0.3, 0.7)]);
+      const alzata = r.tra(0, 1);
+      // la deriva è a piastrella sul mondo: la nuvola che esce a destra rientra a sinistra
+      const xm = ((((x0 + deriva) % MONDO_NUVOLE) + MONDO_NUVOLE * 1.5) % MONDO_NUVOLE) - MONDO_NUVOLE / 2;
+      const [sx, sy] = aSchermo(o.cam, S.p, xm, y);
+      const ws = w * z;
+      const hs = h * z;
+      if (sx < -ws - 60 || sx > LARGHEZZA + ws + 60 || sy < -hs * 2 || sy > ALTEZZA * 0.7) continue;
+      if (cirro) {
+        // un cirro: tre pennellate lunghe e sottili, spettinate
+        for (let j = 0; j < 3; j++) {
+          const yy = sy + j * hs * 0.5 - hs * 0.5;
+          cirri += `M${n(sx - ws * (0.5 + j * 0.1))} ${n(yy)}q${n(ws * 0.5)} ${n(-hs * 0.3)} ${n(ws * (1 + j * 0.15))} ${n(-hs * 0.1 * j)}`;
+        }
+        continue;
+      }
+      for (const [u, su, rx, ry] of lobi) {
+        const cx = sx + u * ws * 1.1;
+        const cy = sy - Math.sin((u + 0.5) * Math.PI) * hs * su * (0.5 + alzata * 0.4);
+        corpi += ellisseD([cx, cy], (ws / k) * rx, hs * ry);
+      }
+      // il fondo piatto: una striscia bassa e larga che chiude la nuvola
+      fondi += ellisseD([sx, sy + hs * 0.12], ws * 0.64, hs * 0.34);
+      // le velature sotto il fondo (l'ombra che la luce bassa colora)
+      for (const [dx, dy, l] of pennellate) ombre += `M${n(sx + dx * ws - ws * l * 0.5)} ${n(sy + hs * (0.2 + dy))}h${n(ws * l)}`;
     }
-    pezzi.push(ellisseD([x, y + h * 0.2], w * 0.62, h * 0.42));
-    s += path(pezzi.join(""), { fill: grad, opacity: n(0.5 * visibili) });
-    // velature: pennellate orizzontali lungo il fondo della nube
-    let pen = "";
-    for (let j = 0; j < 4; j++) {
-      const yy = y + h * r.tra(0, 0.5);
-      const xx = x + r.segno(w * 0.4);
-      pen += `M${n(xx - w * 0.3)} ${n(yy)}h${n(w * r.tra(0.3, 0.6))}`;
-    }
-    s += path(pen, { stroke: ombraN, "stroke-width": 6, opacity: n(0.18 * visibili), "stroke-linecap": "round" });
+    const opac = (S.p < 0.06 ? 0.42 : 0.55) * visibili;
+    s += path(corpi + fondi, { fill: grad, opacity: n(opac) });
+    s += path(ombre, { stroke: ombraN, "stroke-width": n(5 / Math.max(0.6, z)), opacity: n(0.22 * visibili), "stroke-linecap": "round" });
+    s += path(cirri, { stroke: luceN, "stroke-width": n(5 * z), fill: "none", opacity: n(0.3 * visibili), "stroke-linecap": "round" });
   }
   return s;
 }
