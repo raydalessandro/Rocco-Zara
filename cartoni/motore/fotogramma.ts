@@ -21,6 +21,16 @@ export interface Camera {
   /** Tremolio già calcolato (px di schermo). */
   scossaX?: number;
   scossaY?: number;
+  /**
+   * Del tutto ferma: niente micro-vita (motore/vita.ts → `vitaCamera`, applicata dal
+   * montaggio a ogni inquadratura). Per le inquadrature che vogliono l'immobilità.
+   */
+  fissa?: boolean;
+  /**
+   * La micro-vita per i livelli a schermo (gli inserti in macro, dove tutto è a schermo
+   * e la camera del palco non conta): la mette il montaggio, non le inquadrature.
+   */
+  vitaSchermo?: { dx: number; dy: number; z: number };
 }
 
 /**
@@ -74,6 +84,12 @@ const r4 = (x: number) => {
 /** Opacità a tre decimali, mai negativa. */
 export const op = (x: number): string => String(Math.max(0, Math.round(x * 1000) / 1000));
 
+/** La matrice della micro-vita per un livello a schermo: una deriva e un respiro di zoom attorno al centro. */
+export function matriceSchermo(v: { dx: number; dy: number; z: number }): string {
+  const z = r4(v.z);
+  return `matrix(${z} 0 0 ${z} ${n(LARGHEZZA / 2 - (LARGHEZZA / 2) * v.z + v.dx)} ${n(ALTEZZA / 2 - (ALTEZZA / 2) * v.z + v.dy)})`;
+}
+
 /** Da coordinate di un livello (parallasse p) a coordinate schermo. */
 export function aSchermo(cam: Camera, p: number, x: number, y: number): [number, number] {
   const z = Math.pow(Math.max(0.01, cam.zoom), p);
@@ -105,7 +121,7 @@ export function componiPiano(id: string, livelli: Livello[], cam: Camera, opacit
       .filter((l) => l.contenuto)
       .map((l) => ({
         id: `${id}-${l.id}`,
-        trasf: l.schermo ? "" : matriceLivello(cam, l.p ?? 1),
+        trasf: l.schermo ? (cam.vitaSchermo ? matriceSchermo(cam.vitaSchermo) : "") : matriceLivello(cam, l.p ?? 1),
         contenuto: l.contenuto,
         opacita: l.opacita,
         filtro: l.filtro,

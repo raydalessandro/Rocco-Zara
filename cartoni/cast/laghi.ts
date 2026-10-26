@@ -20,7 +20,7 @@
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
 import { caso } from "../motore/caso";
 import { type P, add, cerchioD, curva, ellisseD, g, n, path, pt, tubo } from "../motore/svg";
-import { ik2, piedeNelPasso } from "./anatomia";
+import { beccheggio, ik2, molleggio, piedeNelPasso } from "./anatomia";
 import { clamp, onda, palpebra } from "../motore/tempo";
 import type { CtxFauna } from "./fauna";
 
@@ -298,10 +298,14 @@ export function lince(posa: PosaLince, ctx: CtxFauna): string {
     // in piedi che va (ep04): il passo laterale, o il salto — le zampe raccolte sotto, poi distese
     const vo = clamp(posa.volo ?? 0);
     const amp = clamp(posa.ampiezza ?? 1) * (1 - vo);
-    const bob = -2.4 * Math.cos((posa.fase ?? 0) * Math.PI * 4) * amp;
+    // il peso nel passo: il bacino molleggia (±2,2) e il tronco beccheggia di 1,8°
+    // (in volo: si distende, la testa avanti)
+    const bob = molleggio(posa.fase ?? 0, 4.4, 0.9) * amp;
+    const becc = ((beccheggio(posa.fase ?? 0, 1.8) * amp - 2.5 * vo) * Math.PI) / 180;
+    const sul = (x: number) => bob + becc * (x + 20); // y in più lungo il tronco (centro ≈ −20)
     const gambaIK = (k: number, rr: number, col: string) => {
       const [anca, riposo, l1, l2, piega, off] = ZAMPE_LINCE[k];
-      const radice = add(anca, [0, bob]);
+      const radice = add(anca, [0, sul(anca[0])]);
       const p = piedeNelPasso((posa.fase ?? 0) + off, 46 * amp, 14 * amp);
       const avanti = piega === 1 ? 1 : -1;
       const piede: P = [riposo[0] + p.dx + avanti * 52 * vo, riposo[1] + p.dy - 16 * vo];
@@ -309,11 +313,13 @@ export function lince(posa: PosaLince, ctx: CtxFauna): string {
       return path(tubo([radice, ginocchio, fine], [rr, rr * 0.85, rr * 0.75]), { fill: col }) + path(ellisseD(add(fine, [5, -2]), rr * 1.3, rr * 0.55), { fill: col });
     };
     s += gambaIK(0, 10, mantoS) + gambaIK(1, 11, mantoS);
-    s += path(curva([[-102, -104 + bob], [-120, -112 + bob], [-128, -104 + bob]]), { stroke: manto, "stroke-width": 13, fill: "none", "stroke-linecap": "round" }) + path(ellisseD([-130, -103 + bob], 7, 6), { fill: nero });
-    s += path(curva([[-106, -96 + bob], [-98, -118 - resp + bob], [-50, -126 - resp + bob], [20, -128 + bob], [58, -118 + bob], [72, -96 + bob], [62, -74 + bob], [10, -70 + bob], [-50, -70 + bob], [-96, -78 + bob]], true), { fill: url });
-    s += path(curva([[-60, -74 + bob], [0, -72 + bob], [50, -80 + bob], [60, -92 + bob], [30, -80 + bob]], true), { fill: ventre, opacity: 0.85 });
+    const tr = (pts: readonly (readonly [number, number])[]): P[] => pts.map(([x, y]) => [x, y + sul(x)] as P);
+    s += path(curva(tr([[-102, -104], [-120, -112], [-128, -104]])), { stroke: manto, "stroke-width": 13, fill: "none", "stroke-linecap": "round" }) + path(ellisseD([-130, -103 + sul(-130)], 7, 6), { fill: nero });
+    s += path(curva(tr([[-106, -96], [-98, -118 - resp], [-50, -126 - resp], [20, -128], [58, -118], [72, -96], [62, -74], [10, -70], [-50, -70], [-96, -78]]), true), { fill: url });
+    s += path(curva(tr([[-60, -74], [0, -72], [50, -80], [60, -92], [30, -80]]), true), { fill: ventre, opacity: 0.85 });
     s += gambaIK(2, 11, manto) + gambaIK(3, 12, manto);
-    collo = [64, -122 + bob];
+    // la testa segue il tronco un quarto di ciclo dopo
+    collo = [64, -122 + sul(64) + (molleggio((posa.fase ?? 0) - 0.125, 4.4, 0.9) - bob) * 0.5 * amp];
   } else {
     // in piedi: tronco compatto, zampe forti e piedi grandi («da neve»)
     const gamba = (a: P, b: P, c: P, rr: number, col: string) => path(tubo([a, b, c], [rr, rr * 0.85, rr * 0.75]), { fill: col }) + path(ellisseD(add(c, [5, -2]), rr * 1.3, rr * 0.55), { fill: col });

@@ -17,9 +17,11 @@
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
 import { caso } from "../motore/caso";
 import { type Defs, type P, DEG, add, cerchioD, curva, ellisseD, g, mix, mul, n, norm, path, perp, pt, rot, sub, tr, tubo } from "../motore/svg";
-import { clamp, lerp, onda, palpebra } from "../motore/tempo";
+import { clamp, lerp, onda } from "../motore/tempo";
+import { battito, codaDaSola, orecchioCheGira, pesoSulleZampe, respiro, saccade, semeVita } from "../motore/vita";
+import { scia } from "../scene/regia";
+import { beccheggia, beccheggio, catenaInseguitrice, corpoDaSpina, ik2, molleggio, piedeNelPasso } from "./anatomia";
 import { ombraPortata } from "../scene/pittura";
-import { corpoDaSpina, ik2, piedeNelPasso } from "./anatomia";
 import type { CtxPupazzo } from "./rocco";
 
 /** Ancore colore dalla scheda (blindate da test/cartoni.motore.test.ts). */
@@ -56,6 +58,13 @@ export interface PosaZara {
   codaAvvolta?: number;
   /** Seduta male (0..1): la schiena che cede, la testa giù (ep03, p.13: «Male anche lei, per compagnia»). */
   male?: number;
+  /**
+   * Carica (0..1): l'anticipazione prima di uno scatto o di un salto — le zampe si
+   * piegano, il dorso si abbassa, le orecchie vanno indietro (`anticipo` in scene/regia.ts).
+   */
+  carica?: number;
+  /** Le scie di velocità nella corsa (default sì, sopra una soglia di ampiezza). */
+  scie?: boolean;
 }
 
 // ------------------------------------------------------------- scheletro --
@@ -77,11 +86,11 @@ interface Scheletro {
 
 const LUNG_CODA = 11;
 
-function scheletroBase(posa: PosaZara): Scheletro {
+function scheletroBase(posa: PosaZara, seme: number): Scheletro {
   const t = posa.t;
   const f = posa.fase ?? 0;
   const amp = clamp(posa.ampiezza ?? 1);
-  const respiro = onda(t, 2.6) * 1.4;
+  const respiro = respiroZ(t, seme) * 1.4;
   const gonfia = clamp(posa.gonfia ?? 0);
   let spina: P[] = [
     [-100, -122],
@@ -105,18 +114,25 @@ function scheletroBase(posa: PosaZara): Scheletro {
   ];
   let testa = posa.testa ?? 0;
   const codaBase: number[] = [];
-  // coda a riposo: scende dalla groppa e risale in una J morbida
+  // coda a riposo: scende dalla groppa e risale in una J morbida; il suo pendolo è una
+  // catena inseguitrice (la punta arriva dopo la base), e a tratti la punta frusta da sola
+  // (più spesso se è tesa: gonfia, orecchie dritte)
+  const tesa = clamp(gonfia + Math.max(0, (posa.orecchie ?? 0.3) - 0.6) * 1.5);
+  const pendolo = catenaInseguitrice((tt) => onda(tt, 3.1) * 7 + codaDaSola(tt, seme, tesa) * 16, LUNG_CODA, t, 0.1, 1.2);
   for (let i = 0; i < LUNG_CODA; i++) {
     const k = i / (LUNG_CODA - 1);
-    codaBase.push(112 - 150 * k * k + onda(t, 3.1, k * 0.35) * (5 + 14 * k));
+    codaBase.push(112 - 150 * k * k + pendolo[i] * (0.25 + 0.75 * k));
   }
   let coda = codaBase;
+  // da ferma il peso passa da una zampa all'altra ogni tanto (il bacino si sposta di poco)
+  const peso = posa.andatura === "fermo" ? pesoSulleZampe(t, seme) * 3 : 0;
 
   switch (posa.andatura) {
     case "passo": {
       const falcata = 60 * amp;
-      const bob = -3 * Math.cos(f * Math.PI * 4) * amp;
-      spina = spina.map(([x, y]) => [x, y + bob] as P);
+      // elastica: il bacino molleggia (±2,5) in un'onda, il tronco beccheggia di 2,5°
+      const bob = molleggio(f, 5, 1) * amp;
+      spina = beccheggia(spina.map(([x, y]) => [x, y + bob] as P), beccheggio(f, 2.5) * amp);
       const pAV = piedeNelPasso(f + 0.25, falcata, 16);
       const pAL = piedeNelPasso(f + 0.75, falcata, 16);
       const pPV = piedeNelPasso(f, falcata, 18);
@@ -128,8 +144,13 @@ function scheletroBase(posa: PosaZara): Scheletro {
         [-86 + pPL.dx, pPL.dy],
       ];
       volo = [pAV.volo, pAL.volo, pPV.volo, pPL.volo];
-      testa += Math.sin(f * Math.PI * 4 + 0.8) * 2.2 * amp;
-      coda = codaBase.map((a, i) => a - 8 * (i / LUNG_CODA) * amp + Math.sin(f * Math.PI * 2 + i * 0.4) * 5 * amp);
+      // la testa insegue il tronco un quarto di ciclo dopo (il collo porta il molleggio in ritardo)
+      testa += (beccheggio(f - 0.125, 2.5) * 0.9 + Math.sin(f * Math.PI * 4 + 0.8) * 1.4) * amp;
+      spina[4] = [spina[4][0], spina[4][1] + (molleggio(f - 0.125, 5, 1) - bob) * 0.6 * amp];
+      {
+        const cat = catenaInseguitrice((ff) => Math.sin(ff * Math.PI * 2) * 5 * amp, LUNG_CODA, f, 0.035, 1.1);
+        coda = codaBase.map((a, i) => a - 8 * (i / LUNG_CODA) * amp + cat[i]);
+      }
       break;
     }
     case "corsa": {
@@ -159,31 +180,41 @@ function scheletroBase(posa: PosaZara): Scheletro {
       const r2 = racc * amp;
       // fase di volo: dallo stacco dei posteriori (0.78) all'atterraggio degli anteriori (0.18)
       const fv = (f - 0.78 + 2) % 1;
-      const alt = fv < 0.4 ? -Math.sin((fv / 0.4) * Math.PI) * 18 * amp : 0;
-      const accorcia = 22 * r2;
+      const volo1 = fv < 0.4 ? Math.sin((fv / 0.4) * Math.PI) : 0; // 1 a metà volo
+      const alt = -volo1 * 18 * amp;
+      // in aria si ALLUNGA (la spina si distende e si tira, il dorso si spiana), all'appoggio
+      // si RACCOGLIE (si accorcia, il dorso si inarca): squash & stretch, leggero
+      const accorcia = 26 * r2;
+      const allunga = 1 + 0.07 * volo1 * amp;
       spina = [
-        [-100 + accorcia * 0.6, -118 + alt + 6 * r2],
+        [-100 + accorcia * 0.6, -118 + alt + 7 * r2],
         [-74 + accorcia * 0.6, -110 + alt + 4 * r2],
-        [-14 + accorcia * 0.1, -112 + alt - 14 * r2],
+        [-14 + accorcia * 0.1, -112 + alt - 15 * r2 + 3 * volo1 * amp],
         [44 - accorcia * 0.4, -110 + alt - 2 * r2],
         [80 - accorcia * 0.4, -122 + alt + 4 * (1 - r2)],
-      ];
+      ].map(([x, y]) => [x * allunga, y] as P);
+      spina = beccheggia(spina, (-2.5 * volo1 + 1.5 * r2) * amp);
+      dorso = dorso.map((d, i) => d * (1 - 0.06 * volo1 * amp) + (i === 2 ? 2 * r2 : 0));
       piedi = [
-        [60 - accorcia * 0.4 + aV.p[0], aV.p[1]],
-        [50 - accorcia * 0.4 + aL.p[0], aL.p[1]],
-        [-74 + accorcia * 0.6 + pV.p[0], pV.p[1]],
-        [-84 + accorcia * 0.6 + pL.p[0], pL.p[1]],
+        [60 - accorcia * 0.4 + aV.p[0] + 6 * volo1 * amp, aV.p[1]],
+        [50 - accorcia * 0.4 + aL.p[0] + 6 * volo1 * amp, aL.p[1]],
+        [-74 + accorcia * 0.6 + pV.p[0] - 6 * volo1 * amp, pV.p[1]],
+        [-84 + accorcia * 0.6 + pL.p[0] - 6 * volo1 * amp, pL.p[1]],
       ];
       volo = [aV.v, aL.v, pV.v, pL.v];
       metatarso = [
         [-15 - pV.v * 14, -34 + pV.v * 10],
         [-15 - pL.v * 14, -34 + pL.v * 10],
       ];
-      testa += -alt * 0.15 - 4;
-      coda = codaBase.map((_, i) => {
-        const k = i / (LUNG_CODA - 1);
-        return 172 - 14 * k + Math.sin(f * Math.PI * 2 - k * 2.2) * (8 + 14 * k) * amp;
-      });
+      testa += -alt * 0.15 - 4 - 2 * volo1 * amp;
+      {
+        // la coda insegue il balzo: la base segue la groppa, la punta arriva dopo e va oltre
+        const cat = catenaInseguitrice((ff) => Math.sin(ff * Math.PI * 2) * 9 * amp, LUNG_CODA, f, 0.045, 1.4);
+        coda = codaBase.map((_, i) => {
+          const k = i / (LUNG_CODA - 1);
+          return 172 - 14 * k + cat[i] * (0.4 + 0.6 * k);
+        });
+      }
       break;
     }
     case "seduta": {
@@ -254,19 +285,38 @@ function scheletroBase(posa: PosaZara): Scheletro {
     ventre = ventre.map((d, i) => d + (i === 3 ? 5 * gonfia : 0));
     testa -= 14 * gonfia;
   }
+  // la carica: si raccoglie prima dello scatto — le zampe si piegano (il corpo scende
+  // sulle zampe ferme), i posteriori vengono sotto, la testa avanti e bassa
+  const carica = clamp(posa.carica ?? 0);
+  if (carica > 0 && posa.andatura !== "seduta") {
+    spina = spina.map(([x, y], i) => [x - 4 * carica, y + (i === 4 ? 24 : 20) * carica] as P);
+    piedi = [piedi[0], piedi[1], add(piedi[2], [12 * carica, 0]), add(piedi[3], [12 * carica, 0])];
+    metatarso = [add(metatarso[0], [-8 * carica, 6 * carica]), add(metatarso[1], [-8 * carica, 6 * carica])];
+    testa += 6 * carica;
+  }
+  if (peso) spina = spina.map(([x, y]) => [x + peso, y] as P);
   const collo = spina[4];
   return { spina, dorso, ventre, piedi, volo, testa, collo, coda, gonfia, metatarso };
 }
 
+/** Il respiro di Zara: un poco irregolare, seminato per istanza. */
+const respiroZ = (t: number, seme: number) => respiro(t, 2.6, seme);
+
 const lerpP = (a: P, b: P, k: number): P => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
 
-function scheletro(posa: PosaZara): Scheletro {
-  const a = scheletroBase(posa);
+const corre = (a: AndaturaZara) => a === "corsa" || a === "passo";
+
+function scheletro(posa: PosaZara, seme: number): Scheletro {
+  const a = scheletroBase(posa, seme);
   if (!posa.verso || posa.verso.k <= 0) return a;
-  const b = scheletroBase(posa.verso.altra);
+  const b = scheletroBase(posa.verso.altra, seme);
   const k = clamp(posa.verso.k);
+  // il passaggio tra fermo e corsa (o passo) porta da sé un filo di anticipazione o di
+  // assestamento: a metà della fusione il corpo cede sulle zampe e torna (una raccolta
+  // prima di partire, un cedimento all'arrivo) — senza che il copione lo chieda
+  const cede = corre(posa.andatura) !== corre(posa.verso.altra.andatura) ? Math.sin(Math.PI * k) * 6 : 0;
   return {
-    spina: a.spina.map((p, i) => lerpP(p, b.spina[i], k)),
+    spina: a.spina.map((p, i) => lerpP(p, b.spina[i], k)).map(([x, y], i) => [x, y + cede * (i === 4 ? 0.7 : 1)] as P),
     dorso: a.dorso.map((d, i) => lerp(d, b.dorso[i], k)),
     ventre: a.ventre.map((d, i) => lerp(d, b.ventre[i], k)),
     piedi: a.piedi.map((p, i) => lerpP(p, b.piedi[i], k)) as [P, P, P, P],
@@ -286,7 +336,8 @@ const SCALA_TESTA = 1.26;
 export function zara(posa: PosaZara, ctx: CtxPupazzo): string {
   const { defs, luce, id } = ctx;
   const verso = ctx.verso ?? 1;
-  const sk = scheletro(posa);
+  const seme = semeVita(posa.semeCiglia, id);
+  const sk = scheletro(posa, seme);
   const bagnata = clamp(posa.bagnata ?? 0);
 
   const mantoBase = mescola(ZARA_ANCORE.manto, "#6b4a2c", bagnata * 0.35);
@@ -410,10 +461,17 @@ export function zara(posa: PosaZara, ctx: CtxPupazzo): string {
 
   const ombraP = posa.ombra !== false ? ombraSotto(defs, id, luce, verso) : "";
 
-  const testaG = testaZara(sk, posa, ctx, { manto, mantoAlto, mantoOmbra, crema, cremaOmbra, striscia });
+  const testaG = testaZara(sk, posa, ctx, { manto, mantoAlto, mantoOmbra, crema, cremaOmbra, striscia }, seme);
+
+  // le scie di velocità: nella corsa forte, pochi tratti dietro le zampe e lungo il dorso
+  const forzaScia = posa.andatura === "corsa" && posa.scie !== false ? clamp(((posa.ampiezza ?? 1) - 0.5) / 0.4) * (posa.verso ? 1 - clamp(posa.verso.k) : 1) : 0;
+  const scie =
+    forzaScia > 0.05
+      ? scia([sk.piedi[2], sk.piedi[3], add(sk.spina[0], [0, -8]), add(sk.spina[2], [0, -30]), add(sk.spina[1], [0, 30])], forzaScia, `${id}/scia`, mescola(mantoAlto, crema, 0.5), posa.fase ?? 0)
+      : "";
 
   const seduta = posa.andatura === "seduta";
-  return ombraP + lontane + (seduta ? "" : codaG) + corpo + vicine + inv + bordo + testaG + (seduta ? codaG : "");
+  return scie + ombraP + lontane + (seduta ? "" : codaG) + corpo + vicine + inv + bordo + testaG + (seduta ? codaG : "");
 }
 
 /** La zampa del gatto: tonda, con le dita; in volo si piega. */
@@ -603,7 +661,7 @@ interface TavZ {
   striscia: string;
 }
 
-function testaZara(sk: Scheletro, posa: PosaZara, ctx: CtxPupazzo, c: TavZ): string {
+function testaZara(sk: Scheletro, posa: PosaZara, ctx: CtxPupazzo, c: TavZ, seme: number): string {
   const { defs, luce, id } = ctx;
   const t = posa.t;
   const ang = sk.testa + onda(t, 4.7) * 0.8;
@@ -611,7 +669,7 @@ function testaZara(sk: Scheletro, posa: PosaZara, ctx: CtxPupazzo, c: TavZ): str
   let s = "";
 
   // orecchio lontano (appena dietro la nuca)
-  s += orecchioZara([-2, -38], posa, c, true);
+  s += orecchioZara([-2, -38], posa, c, true, seme);
 
   // testa da cucciola: cranio tondo, muso corto e largo
   const sagoma: P[] = [
@@ -673,21 +731,22 @@ function testaZara(sk: Scheletro, posa: PosaZara, ctx: CtxPupazzo, c: TavZ): str
   // vibrisse
   s += path("M50 3q16 -5 30 -4M50 6q16 1 30 5M48 9q12 5 24 11", { stroke: schiarisci(c.crema, 0.3), "stroke-width": 1, fill: "none", opacity: 0.75 });
   // occhio verde che brilla
-  s += occhioZara(posa, ctx, c);
+  s += occhioZara(posa, ctx, c, seme);
   // gorgiera della guancia
   s += path("M-10 14l-10 5l7 0l-8 8l9 -3l-4 8l10 -7l1 6l5 -8Z", { fill: c.crema });
   // orecchio vicino con l'ocello bianco sul retro
-  s += orecchioZara([4, -40], posa, c, false);
+  s += orecchioZara([4, -40], posa, c, false, seme);
   return g({ transform: `translate(${n(perno[0])} ${n(perno[1])})rotate(${n(ang)})scale(${SCALA_TESTA})` }, s);
 }
 
-function occhioZara(posa: PosaZara, ctx: CtxPupazzo, c: TavZ): string {
+function occhioZara(posa: PosaZara, ctx: CtxPupazzo, c: TavZ, seme: number): string {
   const { defs, id, luce } = ctx;
   const t = posa.t;
-  const chiuso = clamp(Math.max(posa.occhi ?? 0, palpebra(t, 3.3, posa.semeCiglia ?? 0.55)));
+  // le ciglia battono a tempi loro (a volte due volte); lo sguardo si sposta a scatti rari e torna
+  const chiuso = clamp(Math.max(posa.occhi ?? 0, battito(t, seme)));
   const cx = 34;
   const cy = -18;
-  const sg = clamp(posa.sguardo ?? 0.4, -1, 1);
+  const sg = clamp((posa.sguardo ?? 0.4) + saccade(t, seme), -1, 1);
   // mandorla allungata, grande
   const occhio = `M${n(cx - 11)} ${n(cy + 2)}Q${n(cx - 3)} ${n(cy - 9)} ${n(cx + 11)} ${n(cy - 2)}Q${n(cx + 3)} ${n(cy + 7)} ${n(cx - 11)} ${n(cy + 2)}Z`;
   // il verde BRILLA: non si spegne con la luce (tiene parte della sua luce)
@@ -709,11 +768,16 @@ function occhioZara(posa: PosaZara, ctx: CtxPupazzo, c: TavZ): string {
   return s;
 }
 
-function orecchioZara(base: P, posa: PosaZara, c: TavZ, lontano: boolean): string {
+function orecchioZara(base: P, posa: PosaZara, c: TavZ, lontano: boolean, seme: number): string {
   const t = posa.t;
-  const tens = posa.orecchie ?? 0.3;
-  const guizzo = Math.max(0, Math.sin(t * 1.7 + (lontano ? 1.4 : 0))) ** 14 * 14;
-  const ang = -6 - tens * 14 + guizzo - (lontano ? 14 : 0);
+  // la carica le porta indietro; ogni tanto un orecchio gira da solo verso un suono;
+  // nel passo e nella corsa seguono la testa con un filo di ritardo (follow-through)
+  const tens = (posa.orecchie ?? 0.3) - 1.2 * clamp(posa.carica ?? 0);
+  const guizzo = orecchioCheGira(t, seme, lontano ? 1 : 0) * 14;
+  const f = posa.fase ?? 0;
+  const amp = clamp(posa.ampiezza ?? 1);
+  const segue = posa.andatura === "passo" ? -Math.sin((f - 0.2) * Math.PI * 4 + 0.9) * 2.5 * amp : posa.andatura === "corsa" ? Math.sin((f - 0.12) * Math.PI * 2 - 1.2) * 5 * amp : 0;
+  const ang = -6 - tens * 14 + guizzo + segue - (lontano ? 14 : 0);
   // orecchio tondo: fuori arancio, bordo posteriore scuro con l'ocello bianco
   const sag: P[] = [
     [-11, 2],

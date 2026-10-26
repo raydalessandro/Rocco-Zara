@@ -4,6 +4,7 @@
 // luce: il vento che gira a ep01 p.13 è `versoVento` da +1 a −1 in tre secondi.
 
 import { frattale1 } from "../motore/caso";
+import type { Passaggio } from "./luogo";
 
 export interface Meteo {
   /** Vento: forza 0..1. */
@@ -41,12 +42,36 @@ export const METEO_SERENO: Meteo = {
   luccichii: 0,
 };
 
-/** L'erba piega: base del vento + raffiche che viaggiano (il pelo che respira). */
-export function piegaErba(x: number, t: number, m: Meteo): number {
+/**
+ * L'erba piega: base del vento + raffiche che viaggiano (il pelo che respira); e se
+ * qualcuno sta passando (`passaggi`), attorno a lui una piega in più: le lame davanti
+ * si aprono via da lui, quelle dietro restano piegate un tratto (dove è appena passato)
+ * e tornano su piano, più lontano.
+ */
+export function piegaErba(x: number, t: number, m: Meteo, passaggi?: readonly Passaggio[]): number {
   const v = m.versoVento;
   // le raffiche viaggiano nel verso del vento
   const onde = frattale1(x * 0.0022 - v * t * 0.55, 3, 7) * 0.5 + 0.5; // 0..1
   const respiro = Math.sin(x * 0.004 - v * t * 1.3) * 0.5 + 0.5;
   const base = 0.1 + m.vento * 0.35;
-  return v * (base + m.vento * (0.35 * onde + 0.25 * respiro)) + Math.sin(t * 2.1 + x * 0.05) * 0.03;
+  let piega = v * (base + m.vento * (0.35 * onde + 0.25 * respiro)) + Math.sin(t * 2.1 + x * 0.05) * 0.03;
+  return piega + pieghePassaggi(x, passaggi);
+}
+
+/** La somma delle pieghe dei passaggi in x (per chi campiona l'erba a modo suo). */
+export function pieghePassaggi(x: number, passaggi?: readonly Passaggio[]): number {
+  let piega = 0;
+  if (passaggi) for (const p of passaggi) piega += pieghaDiPassaggio(x, p);
+  return piega;
+}
+
+/** La piega locale di un passaggio in x: via da lui davanti, strascico dietro. */
+export function pieghaDiPassaggio(x: number, p: Passaggio): number {
+  const d = (x - p.x) * p.verso; // > 0 davanti a lui, < 0 dietro
+  const r = Math.max(1, p.raggio);
+  if (d > r * 1.6 || d < -r * 3.2) return 0;
+  const lato = d >= 0 ? 1 : -1;
+  // davanti: una campana stretta; dietro: lo strascico, più lungo e più basso
+  const k = d >= 0 ? Math.exp(-((d / (r * 0.7)) ** 2)) : Math.exp(-((d / (r * 1.5)) ** 2)) * 0.75;
+  return lato * p.verso * p.forza * 0.8 * k;
 }

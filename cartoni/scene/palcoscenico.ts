@@ -14,11 +14,12 @@ import { type PosaZara, zara } from "../cast/zara";
 import type { Luce } from "../motore/colore";
 import type { Camera, Livello } from "../motore/fotogramma";
 import type { Defs } from "../motore/svg";
-import type { Luogo, Piena } from "./luogo";
+import type { Livello as Liv } from "../motore/fotogramma";
+import type { Luogo, Passaggio, Piena } from "./luogo";
 import { METEO_SERENO, type Meteo } from "./meteo";
 import { palco } from "./palco";
 import { canneto } from "./pittura";
-import { type OpzSulPalco, sulPalco } from "./regia";
+import { type OpzSulPalco, steliStirati, sulPalco } from "./regia";
 
 /** Quel che un'inquadratura chiede al palco. */
 export interface OpzScena {
@@ -58,6 +59,13 @@ export interface OpzScena {
   telo?: { colpo?: number; respiro?: number };
   /** La piena (ep04): l'acqua vicina più alta, davanti a tutti (e la schiuma del luogo). */
   piena?: Piena;
+  /**
+   * Chi sta passando (l'erba si apre al passaggio). `R()` e `Z()` li registrano da soli
+   * per questo fotogramma; qui si aggiungono quelli di chi è messo in scena a mano.
+   */
+  passaggi?: readonly Passaggio[];
+  /** Nel POV di una corsa: gli steli di primo piano stirati (0..1). Da solo quando Zara corre e la camera è vicina. */
+  stirati?: number;
 }
 
 export interface Palcoscenico {
@@ -76,11 +84,31 @@ export interface Palcoscenico {
 }
 
 export function palcoscenico(luogo: Luogo): Palcoscenico {
+  // I passaggi di questo fotogramma: R() e Z() si registrano qui quando vengono
+  // disegnati (sempre prima di `scena`, che li consuma e svuota la lista). Niente
+  // stato tra un fotogramma e l'altro: stesso tempo, stessi passaggi.
+  let pendenti: (Passaggio & { corsa: number })[] = [];
+  const registra = (x: number, raggio: number, forza: number, verso: 1 | -1, corsa: number) => {
+    pendenti.push({ x, raggio, forza, verso, corsa });
+    if (pendenti.length > 16) pendenti = pendenti.slice(-16);
+  };
   return {
     luogo,
     quota: luogo.quota,
-    scena: (t, defs, o) =>
-      palco({
+    scena: (t, defs, o) => {
+      if (defs.sonda) {
+        // il montaggio vuole solo la camera: niente pittura (i passaggi di questa chiamata si buttano)
+        pendenti = [];
+        return [];
+      }
+      const passaggi = [...pendenti, ...(o.passaggi ?? [])];
+      // il POV della corsa: la camera vicina che insegue chi corre forte
+      const corsa = pendenti.reduce((m, p) => Math.max(m, p.corsa), 0);
+      const stirati = o.stirati ?? (o.cam.zoom >= 1.3 && corsa > 0 ? corsa : 0);
+      const chi = pendenti.find((p) => p.corsa === corsa);
+      pendenti = [];
+      const extra: Liv[] = [...(o.extra ?? [])];
+      const liv = palco({
         luogo,
         cam: o.cam,
         t: o.mondo ?? t,
@@ -90,7 +118,7 @@ export function palcoscenico(luogo: Luogo): Palcoscenico {
         attori: o.attori,
         attoriDavanti: o.davanti,
         primoPiano: o.primo,
-        extra: o.extra,
+        extra,
         extraDietro: o.extraDietro,
         vaporePietra: o.vapore,
         coppellePiene: o.coppelle,
@@ -100,10 +128,29 @@ export function palcoscenico(luogo: Luogo): Palcoscenico {
         telo: o.telo,
         piena: o.piena,
         mandrie: o.mandrie ?? true,
-      }),
+        passaggi,
+      });
+      if (stirati > 0.05 && chi) {
+        const steli = steliStirati(chi.x, chi.verso, stirati, luogo.quota, o.luce);
+        if (steli) liv.splice(liv.length - 1, 0, { id: "stirati", contenuto: steli, p: 1.7 });
+      }
+      return liv;
+    },
     sulPalco: (x, disegno, o) => sulPalco(luogo, x, disegno, o),
-    R: (x, posa, verso, luce, defs, id = "rocco", scala = 1) => sulPalco(luogo, x, rocco(posa, { defs, luce, id, verso }), { verso, scala }),
-    Z: (x, posa, verso, luce, defs, id = "zara", scala = 1) => sulPalco(luogo, x, zara(posa, { defs, luce, id, verso }), { verso, scala }),
+    R: (x, posa, verso, luce, defs, id = "rocco", scala = 1) => {
+      const amp = posa.andatura === "passo" ? clamp01(posa.ampiezza ?? 1) : 0;
+      registra(x, 250 * scala, 0.4 + 0.5 * amp, verso, 0);
+      return sulPalco(luogo, x, rocco(posa, { defs, luce, id, verso }), { verso, scala });
+    },
+    Z: (x, posa, verso, luce, defs, id = "zara", scala = 1) => {
+      const muove = posa.andatura === "passo" || posa.andatura === "corsa";
+      const amp = muove ? clamp01(posa.ampiezza ?? 1) : 0;
+      const corsa = posa.andatura === "corsa" ? clamp01(((posa.ampiezza ?? 1) - 0.5) / 0.4) : 0;
+      registra(x, 150 * scala, 0.3 + 0.45 * amp, verso, corsa);
+      return sulPalco(luogo, x, zara(posa, { defs, luce, id, verso }), { verso, scala });
+    },
     canneDavanti: (t, luce, defs, cam, x0, x1) => canneto({ luogo, cam, t, luce, meteo: METEO_SERENO, defs }, { x0, x1 }, true),
   };
 }
+
+const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);

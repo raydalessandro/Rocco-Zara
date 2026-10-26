@@ -164,6 +164,62 @@ chi le sta davanti, e al suo turno va all'orlo di buon passo, poi salta (`inCoda
 `portatrice` nel copione di ep04); arrivata in fondo non si ferma sull'ultimo appoggio
 (si ammucchierebbero): prosegue al passo.
 
+### Il peso nel passo, l'anticipazione, la vita da fermi (il motore lo fa da sé)
+
+Il corpo non è rigido: il molleggio è del **bacino**, mai dei piedi a terra
+(`molleggio` in `cast/anatomia.ts`: due appoggi per ciclo; Rocco sprofonda di colpo
+sull'appoggio e si solleva nella spinta — alto 7, durezza 0,55, «a sasso»; Zara è
+elastica — alto 5, durezza 1; Cervara 4/0,9; le linci 4,4/0,9), il **tronco beccheggia**
+in fase col ciclo (`beccheggio`: Rocco 1,6°, Zara 2,5°, Cervara 2°), la **testa segue un
+quarto di ciclo dopo** (il collo porta il molleggio in ritardo di 0,125 di ciclo, e la
+testa il beccheggio), **coda e orecchie fanno follow-through** (`catenaInseguitrice`: ogni
+segmento insegue il precedente con un ritardo e una sovraelongazione crescenti verso la
+punta — la coda di Zara è 11 segmenti con 0,035 ciclo di ritardo l'uno nel passo, 0,1 s
+da ferma; le orecchie seguono la testa con 0,2 di ciclo). Nel galoppo di Zara il corpo si
+**allunga in aria** (+7 %, il dorso si spiana) e si **raccoglie all'appoggio** (si accorcia
+di 26, il dorso si inarca): squash & stretch, leggero, naturalistico.
+
+**Anticipazione e assestamento** (`anticipo`, `assesto`, `molla` in `motore/tempo.ts`,
+riesportati da `scene/regia.ts`; puri, 0..1): prima di uno scatto ci si raccoglie —
+la posa `carica` (0..1) di Zara e Cervara piega le zampe, abbassa il dorso, porta le
+orecchie indietro: `carica: anticipo(t, t0, 0.5)`; all'arrivo si cede e si torna:
+`assesto(t, t1, 0.8)` (una molla smorzata). E **di default**, dove la posa fonde fermo e
+corsa/passo con `verso`, il motore mette da sé un cedimento di 6 unità a metà fusione
+(una raccolta prima di partire, un assestamento all'arrivo): gli episodi girati ne
+beneficiano senza copione.
+
+**La vita da fermi** (`motore/vita.ts`, seminata per istanza con `semeCiglia` o l'id:
+due pupazzi non vanno mai in sincrono): lo sguardo che si sposta a scatti rari e torna
+(`saccade`, ogni 4–9 s, ±0,25–0,6 di pupilla), le ciglia che battono a tempi loro e a
+volte due volte (`battito`, ogni 2,5–6 s), un'orecchia che gira verso un suono
+(`orecchioCheGira`, ogni 3–8 s), il peso che passa da una zampa all'altra ogni 6–10 s
+(`pesoSulleZampe`: il bacino di 3 unità, la zampa si piega da sé con l'IK), la coda che
+si muove da sola a tratti (`codaDaSola`; Zara: la punta frusta più spesso se è tesa),
+il respiro un poco irregolare (`respiro`), e in Rocco le narici che si aprono col fiato.
+Sono piccoli: il canone è lento, non nervoso.
+
+**Il mondo reagisce.** `R()` e `Z()` del palcoscenico registrano da soli il loro
+**passaggio** (`OpzPalco.passaggi`: x, raggio, forza, verso) e `piegaErba`
+(`scene/meteo.ts`) apre l'erba e il canneto attorno: le lame davanti si piegano via, dietro
+resta uno strascico più lungo che torna su (`pieghaDiPassaggio`); chi è messo in scena a
+mano (Cervara, le linci) si registra con `passaggi` di `OpzScena` (`passaggio(x, raggio,
+forza, verso)` in `regia.ts`). Sotto i passi di Rocco la **polvere** (`polvere` in
+`regia.ts`: a ogni appoggio uno sbuffo basso che si allarga e sbiadisce lungo l'appoggio,
+seminato per piede e per passo; nulla con pioggia o fango, `polvere: false` sull'acqua).
+Nella corsa forte di Zara (ampiezza > 0,5) le **scie** (`scia`: pochi tratti dietro le
+zampe e lungo il dorso; `scie: false` per toglierle) e, quando la camera la insegue da
+vicino (zoom ≥ 1,3), gli **steli stirati** di primo piano (`steliStirati`, p = 1,7; o
+`stirati` di `OpzScena`).
+
+**La camera non è mai del tutto ferma** (`cameraViva` in `motore/montaggio.ts`, su
+`vitaCamera` di `motore/vita.ts`): una deriva di ±4–6 px su due cicli incommensurabili
+di 7–11 s seminati dall'id dell'inquadratura, e un respiro di zoom dello 0,3–0,5 %, sul
+tempo **vero** (con le voci la storia rallenta, la camera respira lo stesso). Si spegne
+da sola quando la camera già corre (si misura su un fotogramma prima: a 30 px/s è a metà,
+in un carrello sparisce) e con `cam.fissa: true`. Negli inserti in macro (tutti i livelli a
+schermo) la vita va sui livelli a schermo. Costa una seconda chiamata a `disegna` con una
+`Defs` sonda: il palcoscenico si risparmia la pittura.
+
 ## 2. I pupazzi (`cartoni/cast/`)
 
 - **Fonte:** la «Morfologia di reference» della scheda (`saga/bible/…`). Le ancore
@@ -205,6 +261,11 @@ chi le sta davanti, e al suo turno va all'orlo di buon passo, poi salta (`inCoda
   cambiano un fotogramma degli episodi girati (le impronte di ep01–ep03 si confrontano
   con `main`). Un comprimario senza scheda disegnata si fa dalla sua scheda di
   `saga/bible/comprimari/` e si segnala.
+- **Come si muovono** (tranche «pupazzi e camera vivi»): il peso nel passo, il
+  follow-through di coda e orecchie, la posa `carica` (Zara, Cervara), la vita da fermi
+  seminata (`semeCiglia`), le scie (`scie`) e la polvere (`polvere`) sono del motore e
+  valgono per tutti gli episodi, senza toccare i copioni: §1, «Il peso nel passo». Gli
+  ingombri non crescono (Rocco +7 in altezza nel passo, Zara +2 in larghezza: entro il 2 %).
 
 ## 3. Il palco (`cartoni/scene/`) e i luoghi (`cartoni/luoghi/`)
 

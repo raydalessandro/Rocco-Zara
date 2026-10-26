@@ -12,6 +12,7 @@ import { Defs } from "./svg";
 import { type Camera, type Fotogramma, type Livello, type Piano, componiPiano } from "./fotogramma";
 import { clamp, smooth } from "./tempo";
 import { strato, type Didascalia, type Titolo } from "./didascalie";
+import { vitaCamera } from "./vita";
 
 /** Come si entra in un'inquadratura. */
 export type Entrata =
@@ -144,7 +145,42 @@ export function postoA(sc: Posto[], t: number): Posto {
 function piano(p: Posto, tLoc: number, opacita: number): { piano: Piano; defs: string; velo?: Disegno["velo"] } {
   const defs = new Defs(`${p.q.id}-`);
   const d = p.q.disegna(tLoc, defs, MUTA(tLoc));
-  return { piano: componiPiano(p.q.id, d.livelli, d.cam, opacita), defs: defs.markup(), velo: d.velo };
+  return { piano: componiPiano(p.q.id, d.livelli, cameraViva(p.q, d, tLoc), opacita), defs: defs.markup(), velo: d.velo };
+}
+
+/** Un fotogramma, per misurare quanto corre la camera. */
+const PASSO_CAMERA = 1 / 24;
+
+/**
+ * La camera non è mai del tutto ferma (motore/vita.ts): una deriva lentissima e un
+ * respiro di zoom, seminati dall'id dell'inquadratura, sul tempo VERO (qui `tLoc`: con
+ * le voci la storia può rallentare, la camera respira lo stesso). Si spegne da sola
+ * quando la camera già corre (si misura su un fotogramma prima), e con `cam.fissa`.
+ * Negli inserti in macro (tutti i livelli a schermo) la vita va sui livelli a schermo.
+ */
+export function cameraViva(q: Inquadratura, d: Disegno, tLoc: number): Camera {
+  const cam = d.cam;
+  if (cam.fissa) return cam;
+  const tutteASchermo = d.livelli.length > 0 && d.livelli.every((l) => l.schermo);
+  const v = tutteASchermo ? 0 : velocitaCamera(q, cam, tLoc);
+  const vita = vitaCamera(q.id, tLoc, v);
+  if (tutteASchermo) return { ...cam, vitaSchermo: vita };
+  return { ...cam, x: cam.x + vita.dx / cam.zoom, y: cam.y + vita.dy / cam.zoom, zoom: cam.zoom * vita.z };
+}
+
+/**
+ * Quanto corre la camera (px di schermo al secondo): la differenza con un fotogramma
+ * prima. La seconda chiamata a `disegna` passa una Defs «sonda»: il palcoscenico si
+ * risparmia la pittura e restituisce solo la camera.
+ */
+export function velocitaCamera(q: Inquadratura, cam: Camera, tLoc: number): number {
+  const t2 = tLoc >= PASSO_CAMERA ? tLoc - PASSO_CAMERA : tLoc + PASSO_CAMERA;
+  const c2 = q.disegna(t2, new Defs("v-", true), MUTA(t2)).cam;
+  const dx = (cam.x - c2.x) * cam.zoom;
+  const dy = (cam.y - c2.y) * cam.zoom;
+  const dz = Math.abs(Math.log(cam.zoom / Math.max(1e-6, c2.zoom))) * 540;
+  const dr = Math.abs((cam.rot ?? 0) - (c2.rot ?? 0)) * 9;
+  return (Math.hypot(dx, dy) + dz + dr) / PASSO_CAMERA;
 }
 
 /** Il fotogramma dell'episodio al tempo t (secondi). */
