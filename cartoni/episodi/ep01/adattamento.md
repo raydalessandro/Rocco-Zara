@@ -1,6 +1,7 @@
 # ep01 — Due mondi · l'adattamento per il cartone
 
-stato: proposta
+stato: approvato
+approvato: Ray · 2026-10-26
 <!-- quando Ray approva: `stato: approvato` e la riga `approvato: Ray · AAAA-MM-GG` -->
 
 > **Cosa fa questo file.** Il cartone cita la prosa alla lettera (regola 1 di
