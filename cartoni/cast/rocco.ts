@@ -414,7 +414,7 @@ function testaRocco(posa: PosaRocco, ctx: CtxPupazzo, collo: P, c: Tavolozza, se
   const giro = clamp(posa.giro ?? 0);
   const cammina = posa.andatura === "passo";
   // nel passo la testa insegue il beccheggio del tronco (un quarto di ciclo dopo), più un cenno suo
-  const cenno = cammina ? Math.sin((posa.fase ?? 0) * Math.PI * 4 + 0.6) * 1.6 * clamp(posa.ampiezza ?? 1) + inseguendo * 1.3 : 0;
+  const cenno = cammina ? inseguendo * 2.2 : 0;
   const angolo = (posa.testa ?? 0) + piantato * 16 + giro * 10 + cenno + onda(t, 5.1) * 0.8;
   const perno: P = add(collo, [16, -4]);
   // giro: la testa si accorcia (scorcio) e il corno scivola dietro al profilo
