@@ -170,6 +170,16 @@ export function tr(x = 0, y = 0, gradi = 0, sx = 1, sy = sx): string {
  * Il registro delle definizioni di un fotogramma (gradienti, clip). Ogni
  * entità ci scrive con un prefisso suo, così gli id sono unici e stabili.
  */
+/**
+ * Offset e opacità degli stop a quattro decimali (non uno, come i numeri del
+ * disegno): un gradiente a molti stop ravvicinati — l'ombra del versante lungo il
+ * profilo — con un decimale solo farebbe gradini, cioè cuciture nette.
+ */
+const fine = (x: number): string => {
+  const r = Math.round(x * 10000) / 10000;
+  return Object.is(r, -0) || r === 0 ? "0" : String(r);
+};
+
 export class Defs {
   private voci = new Map<string, string>();
 
@@ -206,7 +216,7 @@ export class Defs {
     unita: "userSpaceOnUse" | "objectBoundingBox" = "userSpaceOnUse",
   ): string {
     const pid = this.prefisso + id;
-    const s = stop.map(([o, c, op]) => el("stop", { offset: o, "stop-color": c, "stop-opacity": op ?? undefined })).join("");
+    const s = stop.map(([o, c, op]) => el("stop", { offset: fine(o), "stop-color": c, "stop-opacity": op === undefined ? undefined : fine(op) })).join("");
     return this.add(id, el("linearGradient", { id: pid, gradientUnits: unita, x1: da[0], y1: da[1], x2: a[0], y2: a[1] }, s));
   }
 
@@ -219,7 +229,7 @@ export class Defs {
     fuoco?: P,
   ): string {
     const pid = this.prefisso + id;
-    const s = stop.map(([o, col, op]) => el("stop", { offset: o, "stop-color": col, "stop-opacity": op ?? undefined })).join("");
+    const s = stop.map(([o, col, op]) => el("stop", { offset: fine(o), "stop-color": col, "stop-opacity": op === undefined ? undefined : fine(op) })).join("");
     return this.add(id, el("radialGradient", { id: pid, gradientUnits: unita, cx: c[0], cy: c[1], r, fx: fuoco?.[0], fy: fuoco?.[1] }, s));
   }
 
