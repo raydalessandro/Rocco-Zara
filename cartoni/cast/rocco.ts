@@ -15,6 +15,7 @@ import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../mo
 import { caso } from "../motore/caso";
 import { type Defs, type P, DEG, add, cerchioD, curva, ellisseD, g, mix, n, path, pt, rot, tr, tubo } from "../motore/svg";
 import { clamp, onda, palpebra } from "../motore/tempo";
+import { ombraPortata } from "../scene/pittura";
 import { corpoDaSpina, ik2, piedeNelPasso } from "./anatomia";
 
 /** Ancore colore dalla scheda (blindate da test/cartoni.motore.test.ts). */
@@ -353,13 +354,8 @@ function piedeRocco(caviglia: P, py: number): { pianta: string; unghie: string }
 }
 
 function ombraSotto(defs: Defs, id: string, luce: Luce, verso: number): string {
-  const spost = luce.lato * verso * luce.radenza * -60;
-  const url = defs.radiale(`${id}-ombra`, [0.5, 0.5], 0.5, [
-    [0, "#1b1812", 0.55 * luce.forzaOmbra],
-    [0.7, "#1b1812", 0.25 * luce.forzaOmbra],
-    [1, "#1b1812", 0],
-  ], "objectBoundingBox");
-  return path(ellisseD([-20 + spost, -2], 230 + luce.radenza * 90, 26), { fill: url });
+  // l'ombra portata del kit (scene/pittura.ts): dal lato opposto alla luce, lunga col sole basso
+  return g({ transform: `translate(-20 -1)` }, ombraPortata(defs, id, luce, { larghezza: 230, lunghezza: 150, verso: verso as 1 | -1, spessore: 30 }));
 }
 
 // ------------------------------------------------------------------ testa --

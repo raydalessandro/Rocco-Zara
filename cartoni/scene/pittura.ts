@@ -493,6 +493,47 @@ export function boscoLontano(o: OpzPalco, p: number, b: { seme: string; base: nu
   );
 }
 
+// ------------------------------------------------------- ombre portate --
+export interface OpzOmbra {
+  /** mezza larghezza dell'impronta a terra */
+  larghezza: number;
+  /** quanto è alta la cosa che fa ombra: l'ombra si allunga di tanto, col sole basso */
+  lunghezza: number;
+  /** il verso del disegno in cui sta (1, o −1 se è specchiato: la luce è a schermo) */
+  verso?: 1 | -1;
+  /** la pendenza del suolo (dy/dx): l'ombra la segue */
+  pendenza?: number;
+  /** moltiplicatore dell'opacità (default 1) */
+  forza?: number;
+  /** mezza altezza dell'ellisse (default: in proporzione alla larghezza) */
+  spessore?: number;
+}
+
+/**
+ * L'ombra portata di una cosa appoggiata al suolo, nelle sue coordinate (origine
+ * al piede, y=0 il suolo): un'ellisse morbida (gradiente radiale) spostata dal
+ * lato OPPOSTO alla luce e allungata con la radenza, con l'opacità della luce
+ * (`forzaOmbra`: di notte sotto la luna resta un'ombra appena). È quello che
+ * tiene a terra rocce, cespugli, alberi, canne e pupazzi: senza, galleggiano.
+ */
+export function ombraPortata(defs: Defs, id: string, luce: Luce, o: OpzOmbra): string {
+  const verso = o.verso ?? 1;
+  const rad = clamp(luce.radenza);
+  const allunga = o.lunghezza * (0.15 + rad * 0.75);
+  const spost = -luce.lato * verso * allunga * 0.55;
+  const rx = o.larghezza + allunga * 0.5;
+  const ry = o.spessore ?? Math.max(4, o.larghezza * 0.16 + 3);
+  const k = clamp(luce.forzaOmbra) * (o.forza ?? 1);
+  const url = defs.radiale(`${id}-ombra`, [0.5, 0.5], 0.5, [
+    [0, "#1b1812", 0.75 * k],
+    [0.55, "#1b1812", 0.42 * k],
+    [1, "#1b1812", 0],
+  ], "objectBoundingBox");
+  const d = ellisseD([spost, 0], rx, ry);
+  const incl = o.pendenza ? (Math.atan(o.pendenza) * 180) / Math.PI : 0;
+  return path(d, incl ? { fill: url, transform: `rotate(${n(incl)})` } : { fill: url });
+}
+
 // -------------------------------------------------------------- terreno --
 /** Il suolo dal profilo del luogo, le pennellate, l'acqua al piede; più l'erba del crinale. */
 export function terreno(o: OpzPalco): { terra: string; fronda: string } {
@@ -828,7 +869,19 @@ export function canneto(o: OpzPalco, v: { x0: number; x1: number }, davanti = fa
     steli += `M${n(x)} ${n(y)}Q${n(x + lean * h * 0.4)} ${n(y - h * 0.6)} ${pt(tip)}`;
     pennacchi += ellisseD([tip[0] + lean * 6, tip[1] + 8], 4, 14);
   }
+  // ai piedi del canneto, una striscia d'ombra leggera dal lato opposto alla luce
+  let ombra = "";
+  if (!davanti) {
+    const xa = Math.max(a, v.x0 - 40);
+    const xb = Math.min(b, v.x1 + 40);
+    const spost = -luce.lato * (30 + luce.radenza * 90);
+    for (let x = Math.floor(xa / 24) * 24; x <= xb; x += 24) {
+      const y = Math.min(luogo.quota(x), livelloAcqua) + 14;
+      ombra += `M${n(x + spost - 16)} ${n(y)}h${n(32)}`;
+    }
+  }
   return (
+    path(ombra, { stroke: "#1b1812", "stroke-width": 14, opacity: n(0.2 * luce.forzaOmbra), "stroke-linecap": "round" }) +
     path(steli, { stroke: inLuce(C.cannaScura, luce), "stroke-width": 3.2, fill: "none", "stroke-linecap": "round" }) +
     path(pennacchi, { fill: inLuce(C.canna, luce), opacity: 0.9 })
   );

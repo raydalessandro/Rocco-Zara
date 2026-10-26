@@ -18,6 +18,7 @@ import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../mo
 import { caso } from "../motore/caso";
 import { type Defs, type P, DEG, add, cerchioD, curva, ellisseD, g, mix, mul, n, norm, path, perp, pt, rot, sub, tr, tubo } from "../motore/svg";
 import { clamp, lerp, onda, palpebra } from "../motore/tempo";
+import { ombraPortata } from "../scene/pittura";
 import { corpoDaSpina, ik2, piedeNelPasso } from "./anatomia";
 import type { CtxPupazzo } from "./rocco";
 
@@ -445,13 +446,8 @@ function zampettaD(c: P, volo: number, fill: string, dita: string): string {
 }
 
 function ombraSotto(defs: Defs, id: string, luce: Luce, verso: number): string {
-  const spost = luce.lato * verso * luce.radenza * -40;
-  const url = defs.radiale(`${id}-ombra`, [0.5, 0.5], 0.5, [
-    [0, "#1b1812", 0.5 * luce.forzaOmbra],
-    [0.7, "#1b1812", 0.22 * luce.forzaOmbra],
-    [1, "#1b1812", 0],
-  ], "objectBoundingBox");
-  return path(ellisseD([-10 + spost, -1], 130 + luce.radenza * 60, 14), { fill: url });
+  // l'ombra portata del kit (scene/pittura.ts): dal lato opposto alla luce, lunga col sole basso
+  return g({ transform: `translate(-10 -1)` }, ombraPortata(defs, id, luce, { larghezza: 130, lunghezza: 80, verso: verso as 1 | -1, spessore: 17 }));
 }
 
 /**
