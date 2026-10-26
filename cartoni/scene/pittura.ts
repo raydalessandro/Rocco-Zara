@@ -803,44 +803,99 @@ function erbaCrinale(o: OpzPalco, v: Vista): string {
 }
 
 // ------------------------------------------------------------- cespugli --
-/** Cespugli e qualche alberello giovane sui due versanti. */
+/**
+ * Cespugli e alberelli sui due versanti: tre archetipi seminati (tondo, basso e
+ * largo, alberello con tronco e chioma), i lobi stratificati col lato in luce più
+ * chiaro e quello in ombra più scuro (secondo `luce.lato`), qualche foglia a
+ * pennellata sopra, l'ombra portata ai piedi. Tutto oscilla col vento.
+ */
 export function cespugli(o: OpzPalco, v: Vista): string {
   const { luce, defs, t, meteo, luogo } = o;
   const C = luogo.colori;
   const K = luogo.cespugli;
-  const grad = defs.lineare("cespuglio", [0, 0], [0, 1], [
-    [0, inLuce(mescola(C.bosco, C.erbaChiara, 0.3), luce)],
-    [0.6, inLuce(C.bosco, luce)],
-    [1, inOmbra(C.boscoScuro, luce)],
-  ], "objectBoundingBox");
+  const colLuce = inLuce(mescola(C.bosco, C.erbaChiara, 0.35), luce);
+  const colMedio = inLuce(C.bosco, luce);
+  const colOmbra = inOmbra(C.boscoScuro, luce);
+  const colFoglie = inLuce(mescola(C.bosco, C.erbaChiara, 0.55), luce);
+  const tronco = inOmbra("#4a3f33", luce);
+  const troncoLuce = inLuce("#7a6a55", luce);
   const semeCe = fnv1a32("versante/cespugli");
-  let s = "";
+  let ombre = "";
+  let scuri = "";
+  let medi = "";
+  let chiari = "";
+  let foglie = "";
+  let tronchi = "";
+  let tronchiLuce = "";
+  const lato = luce.lato;
   for (let i = 0; i < K.quanti; i++) {
     const r = elemento(semeCe, i);
+    // ogni cespuglio pesca TUTTO prima dello scarto
     const sinistra = r.moneta(K.sinistraProb);
     const x = sinistra ? r.tra(K.sinistra[0], K.sinistra[1]) : r.tra(K.destra[0], K.destra[1]);
     const sotto = r.tra(K.sotto[0], K.sotto[1]);
-    const y = luogo.quota(x) + sotto;
     const w = r.tra(40, 110) * (sinistra ? 1 : 0.6);
-    if (x < v.x0 - w || x > v.x1 + w || y < v.y0 - w || y > v.y1 + w) continue;
-    const pezzi: string[] = [];
-    const k = r.intero(4, 7);
+    const tipo = r.scegli(["tondo", "basso", "basso", "albero"] as const);
+    const k = r.intero(5, 8);
+    const lobi: [number, number, number, number][] = [];
+    for (let j = 0; j < k; j++) lobi.push([r.tra(-0.5, 0.5), r.tra(0, 0.25), r.tra(0.28, 0.46), r.tra(0.26, 0.42)]);
+    const hAlb = r.tra(170, 290);
+    const piega = r.segno(16);
+    const ramo = r.moneta(0.6) ? r.tra(0.3, 0.55) : 0;
+    const chiome: [number, number, number][] = [];
+    for (let j = 0; j < 6; j++) chiome.push([r.segno(1), r.segno(1), r.tra(0.6, 1)]);
+    const fogl: [number, number][] = [];
+    for (let j = 0; j < 5; j++) fogl.push([r.segno(1), r.tra(0, 1)]);
+    const y = luogo.quota(x) + sotto;
+    if (x < v.x0 - w || x > v.x1 + w || y < v.y0 - w - hAlb || y > v.y1 + w) continue;
     const vento = piegaErba(x, t, meteo) * 4;
-    for (let j = 0; j < k; j++) {
-      const u = j / (k - 1);
-      pezzi.push(ellisseD([x + (u - 0.5) * w * 1.3 + vento * u, y - Math.sin(u * Math.PI) * w * 0.5 - r.tra(0, w * 0.2)], w * r.tra(0.3, 0.45), w * r.tra(0.28, 0.4)));
+    const alberello = tipo === "albero" && sinistra;
+    // il centro delle chiome: a terra per i cespugli, in cima al tronco per l'alberello
+    const cx = alberello ? x + piega + vento * 2 : x;
+    const cy = alberello ? y - hAlb : y;
+    const W = alberello ? w * 1.4 : tipo === "basso" ? w * 1.5 : w;
+    const H = alberello ? w * 0.9 : tipo === "basso" ? w * 0.45 : w * 0.9;
+    ombre += `<g transform="translate(${n(x)} ${n(y)})">${ombraPortata(defs, `cespuglio-${i}`, luce, { larghezza: W * 0.7, lunghezza: alberello ? hAlb * 0.8 : H * 1.2, pendenza: luogo.pendenza(x), forza: 0.8 })}</g>`;
+    if (alberello) {
+      tronchi += `M${n(x)} ${n(y)}q${n(-4)} ${n(-hAlb * 0.5)} ${n(piega + vento * 2)} ${n(-hAlb)}`;
+      tronchiLuce += `M${n(x + 3 * lato)} ${n(y - 6)}q${n(-2)} ${n(-hAlb * 0.45)} ${n(piega * 0.9 + vento * 1.8 + 3 * lato)} ${n(-hAlb * 0.9)}`;
+      if (ramo) tronchi += `M${n(x + piega * ramo)} ${n(y - hAlb * ramo)}q${n(-lato * 20)} ${n(-14)} ${n(-lato * 46)} ${n(-30)}`;
+      for (const [dx, dy, rr] of chiome) {
+        const ex = cx + dx * W * 0.55;
+        const ey = cy + dy * H * 0.45;
+        const rx = w * 0.62 * rr;
+        const ry = w * 0.5 * rr;
+        medi += ellisseD([ex, ey], rx, ry);
+        // il lato in luce: una chioma più piccola spostata verso il sole; quello in ombra, dall'altra
+        chiari += ellisseD([ex + lato * rx * 0.3, ey - ry * 0.25], rx * 0.6, ry * 0.55);
+        scuri += ellisseD([ex - lato * rx * 0.3, ey + ry * 0.2], rx * 0.7, ry * 0.6);
+      }
+    } else {
+      for (const [u, su, rx, ry] of lobi) {
+        const ex = cx + u * W * 1.2 + vento * (u + 0.5);
+        const ey = cy - Math.sin((u + 0.5) * Math.PI) * H * 0.55 - su * H;
+        const Rx = W * rx;
+        const Ry = H * ry * 0.9 + 4;
+        scuri += ellisseD([ex, ey + Ry * 0.15], Rx, Ry);
+        medi += ellisseD([ex - lato * Rx * 0.08, ey - Ry * 0.12], Rx * 0.86, Ry * 0.8);
+        chiari += ellisseD([ex + lato * Rx * 0.3, ey - Ry * 0.4], Rx * 0.48, Ry * 0.42);
+      }
     }
-    s += path(pezzi.join(""), { fill: grad });
-    // qualche albero giovane dietro i cespugli più grandi
-    if (sinistra && w > 90 && sotto > 170 && r.moneta(0.4)) {
-      const h = r.tra(180, 280);
-      s += path(`M${n(x)} ${n(y)}q${n(-4)} ${n(-h * 0.5)} ${n(vento * 2)} ${n(-h)}`, { stroke: inOmbra("#4a3f33", luce), "stroke-width": 8, fill: "none", "stroke-linecap": "round" });
-      const ch: string[] = [];
-      for (let j = 0; j < 5; j++) ch.push(ellisseD([x + vento * 2 + r.segno(40), y - h + r.segno(40)], r.tra(40, 60), r.tra(34, 50)));
-      s += path(ch.join(""), { fill: grad });
+    for (const [dx, dy] of fogl) {
+      const fx = cx + dx * W * 0.5 + lato * W * 0.2;
+      const fy = cy - H * 0.5 - dy * H * 0.4;
+      foglie += `M${n(fx)} ${n(fy)}q${n(5)} ${n(-4)} ${n(10)} ${n(-1)}`;
     }
   }
-  return s;
+  return (
+    ombre +
+    path(tronchi, { stroke: tronco, "stroke-width": 8, fill: "none", "stroke-linecap": "round" }) +
+    path(tronchiLuce, { stroke: troncoLuce, "stroke-width": 2.5, fill: "none", "stroke-linecap": "round", opacity: 0.7 }) +
+    path(scuri, { fill: colOmbra }) +
+    path(medi, { fill: colMedio }) +
+    path(chiari, { fill: colLuce, opacity: 0.9 }) +
+    path(foglie, { stroke: colFoglie, "stroke-width": 2.6, fill: "none", "stroke-linecap": "round", opacity: 0.8 })
+  );
 }
 
 // -------------------------------------------------------------- canneto --
