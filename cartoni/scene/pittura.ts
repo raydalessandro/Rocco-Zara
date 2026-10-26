@@ -943,16 +943,33 @@ export function canneto(o: OpzPalco, v: { x0: number; x1: number }, davanti = fa
 }
 
 // ---------------------------------------------------------- primo piano --
-export function primoPiano(o: OpzPalco, p: number): string {
+export type PrimoPiano = boolean | "erba" | "foglie";
+
+/**
+ * Il filtro di sfocatura del primo piano (la profondità di campo: il vicino è
+ * fuori fuoco, il lontano a fuoco — STILE_VISIVO §2). Va SOLO sul livello di
+ * primo piano, mai su tutto il fotogramma: costa quanto l'area che copre.
+ */
+export function filtroSfocatura(defs: Defs, id: string, std: number): string {
+  const pid = defs.idPieno(id);
+  return defs.add(id, `<filter id="${pid}" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="${n(std)}"/></filter>`);
+}
+
+/**
+ * L'erba di primo piano (p>1): steli alti nella parte bassa dello schermo, che
+ * a p>1 scorrono veloci. Con "foglie": rami con foglie larghe e scure che
+ * sfrecciano in primo piano — il POV basso e veloce di Zara (STILE_VISIVO §3).
+ */
+export function primoPiano(o: OpzPalco, p: number, tipo: PrimoPiano = "erba"): string {
   const { luce, t, meteo, luogo } = o;
   const C = luogo.colori;
   const v = vista(o.cam, p, 0.2);
+  if (tipo === "foglie") return foglieInPrimoPiano(o, p, v);
   const col = inOmbra(scurisci(C.erbaScura, 0.25), luce);
   const colC = inLuce(C.erbaChiara, luce);
   const semePP = fnv1a32("primo-piano/erba");
   let d = "";
   let dc = "";
-  // steli alti nella parte bassa dello schermo: a p>1 scorrono veloci
   for (let i = 0; i < 70; i++) {
     const r = elemento(semePP, i);
     const x = r.tra(-9000, 9000);
@@ -969,6 +986,82 @@ export function primoPiano(o: OpzPalco, p: number): string {
     else d += lama;
   }
   return path(d, { fill: col, opacity: 0.95 }) + path(dc, { fill: colC, opacity: 0.8 });
+}
+
+/** Rami con foglie larghe e scure in primo piano, dal basso e dai lati (il sottobosco che sfreccia). */
+function foglieInPrimoPiano(o: OpzPalco, p: number, v: Vista): string {
+  const { luce, t, meteo, luogo } = o;
+  const C = luogo.colori;
+  const scuro = inOmbra(scurisci(C.boscoScuro, 0.35), luce);
+  const medio = inOmbra(C.bosco, luce);
+  const semeF = fnv1a32("primo-piano/foglie");
+  let rami = "";
+  let foglie = "";
+  let foglieM = "";
+  // i rami stanno a destra e a sinistra nel mondo (scorrono in parallasse) ma salgono
+  // dal bordo basso dell'inquadratura: sono quelli che la camera attraversa
+  for (let i = 0; i < 160; i++) {
+    const r = elemento(semeF, i);
+    const x = r.tra(-9000, 9000);
+    const dy = r.tra(0, 120);
+    const lung = r.tra(220, 480);
+    const su = r.tra(0.5, 1.1);
+    const quante = r.intero(5, 9);
+    const fl: [number, number, number][] = [];
+    for (let j = 0; j < quante; j++) fl.push([r.tra(0.15, 1), r.segno(1), r.tra(22, 46)]);
+    const chiaro = r.moneta(0.35);
+    if (x < v.x0 - lung || x > v.x1 + lung) continue;
+    const baseY = v.y1 + 20 - dy;
+    const vento = piegaErba(x / p, t, meteo) * 30;
+    const tip: P = [x + lung * 0.35 + vento, baseY - lung * su];
+    rami += `M${n(x)} ${n(baseY)}Q${n(x + lung * 0.1)} ${n(baseY - lung * su * 0.5)} ${pt(tip)}`;
+    for (const [u, lato, rr] of fl) {
+      const fx = x + (tip[0] - x) * u + lato * rr * 0.5;
+      const fy = baseY + (tip[1] - baseY) * u;
+      // una foglia larga: due archi che si chiudono in punta
+      const tx = lato * rr * 1.5;
+      const ty = -rr * 1.1;
+      const px = -ty * 0.45;
+      const py = tx * 0.45;
+      const d = `M${n(fx)} ${n(fy)}q${n(tx / 2 + px)} ${n(ty / 2 + py)} ${n(tx)} ${n(ty)}q${n(-tx / 2 - px)} ${n(-ty / 2 - py)} ${n(-tx)} ${n(-ty)}Z`;
+      if (chiaro) foglieM += d;
+      else foglie += d;
+    }
+  }
+  return (
+    path(rami, { stroke: scuro, "stroke-width": 7, fill: "none", "stroke-linecap": "round" }) +
+    path(foglie, { fill: scuro, opacity: 0.96 }) +
+    path(foglieM, { fill: medio, opacity: 0.92 })
+  );
+}
+
+// ------------------------------------------------------------------ aria --
+/**
+ * Il pulviscolo nella luce calda: pochi puntini lenti, seminati nel mondo (p=1),
+ * solo di giorno e al tramonto quando la luce è radente. Niente raggi, niente
+ * aloni, niente scintille: è polvere che galleggia, si vede appena.
+ */
+export function pulviscolo(o: OpzPalco): string {
+  const { luce, meteo, t, luogo } = o;
+  const k = clamp(luce.forzaBordo) * (1 - meteo.notte) * (1 - meteo.temporale) * (1 - meteo.pioggia);
+  if (k < 0.1 || o.cam.zoom < 0.8) return "";
+  const v = vista(o.cam, 1, 0.1);
+  const seme = fnv1a32("aria/pulviscolo");
+  let d = "";
+  for (let i = 0; i < 60; i++) {
+    const r = elemento(seme, i);
+    const x0 = r.tra(-6000, 6000);
+    const sopra = r.tra(40, 520);
+    const vel = r.tra(4, 11);
+    const fase = r.tra(0, 7);
+    const rr = r.tra(1.4, 2.6);
+    const x = x0 + Math.sin(t * 0.3 + fase) * 14;
+    if (x < v.x0 || x > v.x1) continue;
+    const y = luogo.quota(x0) - sopra + Math.sin(t * 0.21 + fase * 1.7) * 18 - ((t * vel) % 90);
+    if (y < v.y0 || y > v.y1) continue;
+    d += ellisseD([x, y], rr, rr);
+  }
+  return path(d, { fill: luce.bordo, opacity: n(0.35 * k) });
 }
 
 // --------------------------------------------------------------- piena --
