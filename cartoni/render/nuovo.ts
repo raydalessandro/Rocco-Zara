@@ -71,6 +71,8 @@ function main(): void {
 // pronte da citare nei commenti. Da qui si fa regia (docs/ANIMATORE.md §1):
 // si scelgono le didascalie (ALLA LETTERA: test/cartoni.episodi.test.ts), si
 // mette chi parla (\`chi\`), si spezzano le pagine, si muovono camera e attori.
+// Una frase che per la voce va riscritta NON si cambia qui: va in
+// cartoni/episodi/${id}/adattamento.md (il secondo cancello, approvato da Ray).
 
 import { type PosaRocco } from "../../cast/rocco";
 import { type PosaZara } from "../../cast/zara";

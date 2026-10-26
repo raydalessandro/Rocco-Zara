@@ -5,11 +5,12 @@
 // segue), progressioni di accordi, e tre temi della serie (cartoni/audio/temi.ts):
 //  - il tema di Zara: veloce, pentatonico, a scatti (corre, «faceva tutto di corsa»);
 //  - i passi di Rocco: un basso lento e pesante, gentile;
-//  - il tema dell'amicizia: caldo, discendente, che torna nel finale.
+//  - il tema dell'amicizia: caldo, discendente, che torna nel finale;
+//  - (v2) la corda di Toraki, la sera del «Mio fratello—» (p.12).
 // Tonalità di casa: Re maggiore; il temporale in re minore; il riparo di nuovo in Re.
 
 import { type Nota, type Sezione, suona } from "../../audio/partitura";
-import { AMICIZIA, APERTO, PASSI_ROCCO, ZARA } from "../../audio/temi";
+import { AMICIZIA, APERTO, CORDA, PASSI_ROCCO, ZARA } from "../../audio/temi";
 
 const SPIA: Nota[] = [[0, 0.5, 76], [0.5, 0.5, 75], [1, 0.5, 76], [2, 0.5, 79], [2.5, 0.5, 78], [3, 0.5, 76], [4, 0.5, 71], [4.5, 0.5, 72], [5, 0.5, 71], [6, 1, 76]];
 const RIPARO: Nota[] = [[0, 4, 69], [4, 2, 71], [6, 2, 69], [8, 6, 66]];
@@ -24,7 +25,11 @@ const SEZIONI: Sezione[] = [
   { da: "s11", a: "s11", bpm: 76, accordi: ["Bsus", "Bm", "G", "Bsus"], bpa: 4, timpani: "cuore", vel: 0.75 },
   // s12: il CRACK — la musica tace (è la battuta comica)
   { da: "s13", a: "s14", bpm: 72, accordi: ["Dmaj9", "G", "D", "A", "D"], bpa: 4, arpa: "rado", melodia: AMICIZIA.slice(0, 8), attacco: 20, vel: 0.8, ritardo: 1.2 },
-  { da: "s15", a: "s15", bpm: 92, accordi: ["D", "Bm", "G", "A"], bpa: 4, arpa: "rado", melodia: AMICIZIA.slice(0, 14), attacco: 1, basso: PASSI_ROCCO },
+  // s15a: Rocco entra nel canneto — solo i suoi passi nel basso, poi il crollo (la musica non commenta)
+  { da: "s15a", a: "s15a", bpm: 84, accordi: ["D", "Bm"], bpa: 4, basso: PASSI_ROCCO, vel: 0.55 },
+  { da: "s15b", a: "s15b", bpm: 92, accordi: ["D", "Bm", "G", "A"], bpa: 4, arpa: "rado", melodia: AMICIZIA.slice(0, 14), attacco: 1, basso: PASSI_ROCCO, ritardo: 4.2 },
+  // s15c: la sera del «Mio fratello—»: la corda di Toraki, piano, e il flauto che non finisce la frase
+  { da: "s15c", a: "s15c", bpm: 58, accordi: ["D", "G", "Bm", "G"], bpa: 4, arpa: "rado", melodia: CORDA.slice(0, 9), attacco: 2, vel: 0.6, ritardo: 1.4 },
   { da: "s16", a: "s17", bpm: 66, accordi: ["Dm", "Bb", "Gm", "A"], bpa: 4, timpani: "rulli", vel: 0.75 },
   { da: "s18", a: "s18", bpm: 60, accordi: ["Dm", "Bb", "A"], bpa: 4, timpani: "rulli", vel: 0.6 },
   { da: "s19", a: "s19", bpm: 60, accordi: ["D", "G", "D"], bpa: 4, melodia: RIPARO, attacco: 1, vel: 0.85, ritardo: 1.2 },
