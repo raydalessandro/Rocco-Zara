@@ -36,12 +36,12 @@ import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } f
 import { FINE_NODI, insertoCorda, insertoNodino, insertoPietra } from "../cartoni/scene/inserti";
 import { custodiaDelPegno, galleggia, riflesso } from "../cartoni/scene/lago";
 import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, RIVE, RIVE_BASSE, nelVarco, sulMassoDelConsiglio, sullaPasserella } from "../cartoni/luoghi/rivalba";
-import type { Piena } from "../cartoni/scene/luogo";
+import type { OpzPalco, Piena } from "../cartoni/scene/luogo";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
 import { METEO_SERENO } from "../cartoni/scene/meteo";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
-import { type OpzPalco, boscoLontano, collineLontane, nuvole, ombraPortata, primoPiano } from "../cartoni/scene/pittura";
+import { boscoLontano, collineLontane, nuvole, ombraPortata, primoPiano } from "../cartoni/scene/pittura";
 
 const ROOT = process.cwd();
 const leggi = (p: string) => readFileSync(join(ROOT, p), "utf8");
