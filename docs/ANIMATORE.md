@@ -33,7 +33,8 @@
   (ognuno apre e chiude sul nero, il volume è lo stesso per tutti), un capitolo per
   episodio; `--stagione` tutte le puntate di fila, il film lungo.
 - **La durata** è un cancello leggero: con le voci un episodio sta tra 3′ e 7′ (test),
-  mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`). Fatti: ep01 4′10″, ep02 6′48″
+  mirando a 5′ (`DURATA_EPISODIO` in `motore/serie.ts`). Fatti: ep01 6′17″ (v2 con
+  l'adattamento: la prima versione, che diceva il 40% della prosa, stava in 4′10″), ep02 6′48″
   (c'è la ninna-nanna intera, un minuto), ep03 6′35″ (la prosa è quasi tutta dialogo:
   le didascalie sono scelte, e il resto lo dicono le immagini), ep04 6′34″ (19 pagine
   fitte: anche qui le didascalie sono scelte). Con ep04 la puntata 1 ha i suoi quattro

@@ -14,8 +14,10 @@ Due cose separate, che viaggiano in due pacchetti:
   la narrazione registrata. Ognuno si aggiunge quando c'è, e i test lo trovano da soli.
 
 Episodi fatti:
-- **ep01 — Due mondi** (`episodi/ep01/`): 26 inquadrature dalle 19 pagine della sua
-  prosa (`saga/prosa/ep01.md`), 4′10″ con le voci.
+- **ep01 — Due mondi** (`episodi/ep01/`): 28 inquadrature dalle 19 pagine della sua
+  prosa (`saga/prosa/ep01.md`), 6′17″ con le voci (v2, 26/10/2026: la voce segue il
+  bambino che ascolta — il copione cita anche l'adattamento approvato da Ray,
+  `episodi/ep01/adattamento.md`, e dice di più della prosa).
 - **ep02 — Il regno senza riflesso** (`episodi/ep02/`): 35 inquadrature dalle 16 pagine
   (`saga/prosa/ep02.md`), 6′48″ con le voci — il Lago del Vespro, Brénta la barcaiola,
   le linci, il Custode, e la ninna-nanna della Prima Tigre cantata.
