@@ -86,6 +86,30 @@ export const ciclo = (t: number, periodo: number, fase = 0): number => {
   return p - Math.floor(p);
 };
 
+/**
+ * La molla smorzata: un cedimento e ritorno dopo un colpo a t0 (0..1, torna a 0 entro
+ * `durata`). È l'assestamento di chi arriva con peso: scende, rimbalza un poco, si ferma.
+ * `giri` dice quante oscillazioni (1,5 = giù, su, un filo giù).
+ */
+export function molla(t: number, t0: number, durata: number, giri = 1.5): number {
+  const u = (t - t0) / durata;
+  if (u <= 0 || u >= 1) return 0;
+  return clamp(Math.exp(-3.2 * u) * Math.abs(Math.sin(Math.PI * giri * u)) * (1 - u * u));
+}
+
+/**
+ * L'anticipazione: prima di partire (o saltare) a t0 ci si raccoglie — sale a 1 in
+ * `durata` e si scarica in fretta subito dopo t0 (0..1, a riposo fuori dalla finestra).
+ */
+export function anticipo(t: number, t0: number, durata: number): number {
+  if (t <= t0 - durata || t >= t0 + durata * 0.35) return 0;
+  if (t <= t0) return smooth(inv(t0 - durata, t0, t));
+  return 1 - smooth(inv(t0, t0 + durata * 0.35, t));
+}
+
+/** L'assestamento all'arrivo a t1: un cedimento e ritorno (la molla). */
+export const assesto = (t: number, t1: number, durata: number): number => molla(t, t1, durata);
+
 /** Battito di ciglia deterministico: 1 = occhio chiuso. */
 export function palpebra(t: number, periodo = 3.7, fase = 0): number {
   const p = ciclo(t, periodo, fase);
