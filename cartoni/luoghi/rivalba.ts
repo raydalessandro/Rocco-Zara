@@ -36,7 +36,7 @@ import { barca, barcaASecco, finestraDellaPalafitta, galleggia, gorgo, massoDelC
 import { type Colori, type OpzPalco, creaLuogo } from "../scene/luogo";
 import { piegaErba } from "../scene/meteo";
 import { alberoDAutunno, pietraCoppellata, roccia } from "../scene/oggetti";
-import { type Cresta, dalloSchermo, lunaRiflessa, monti } from "../scene/pittura";
+import { type Cresta, boscoLontano, dalloSchermo, lunaRiflessa, monti } from "../scene/pittura";
 
 // ------------------------------------------------------------ geografia --
 /** L'acqua del lago (la stessa in tutti i luoghi di qui); all'orlo la riva è a x=0. */
@@ -116,7 +116,7 @@ const CRESTE: readonly Cresta[] = [
 ];
 
 /** Un bosco lontano su una collina: chiome scure e d'autunno, velate. */
-function boscoLontano(o: OpzPalco, p: number, seme: string, base: number, alt: number, x0: number, x1: number, velo: number): string {
+function colleBoscoso(o: OpzPalco, p: number, seme: string, base: number, alt: number, x0: number, x1: number, velo: number): string {
   const { luce } = o;
   const v = vista(o.cam, p, 0.3);
   const colle: P[] = [];
@@ -144,6 +144,15 @@ function boscoLontano(o: OpzPalco, p: number, seme: string, base: number, alt: n
   s += path(scure, { fill: lontano(inLuce(C.boscoScuro, luce), luce, velo) });
   aut.forEach((d, i) => (s += path(d, { fill: lontano(inLuce(AUTUNNO[i], luce), luce, velo + 0.05) })));
   return s;
+}
+
+/**
+ * Le sponde lontane del lago (p=0,4): una fascia di bosco in silhouette sull'altra
+ * riva, tra i colli velati e l'acqua, dietro il villaggio e la città. Dà la
+ * profondità in mezzo, dove prima c'era solo il lago piatto fino ai colli.
+ */
+function spondeLontane(o: OpzPalco, p: number): string {
+  return boscoLontano(o, p, { seme: "vespro/sponde", base: 436, alt: 64, col: mescola(C.bosco, C.monteMedio, 0.3), fos: 0.42, x0: -9000, x1: 9000, fitto: 0.8 });
 }
 
 /** Il lago fino all'orizzonte: grigio e oro, i riflessi dei colli, la nebbia del mattino. */
@@ -267,10 +276,11 @@ export const ORLO = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [
       { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "sponde", contenuto: spondeLontane(o, 0.4), p: 0.4 },
       { id: "villaggio", contenuto: villaggio(o, 0.7), p: 0.7 },
     ],
     oggetti: (o, inVista) => {
@@ -318,13 +328,14 @@ export const APPRODO = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [
       { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "sponde", contenuto: spondeLontane(o, 0.4), p: 0.4 },
       // le rive che si stringono: due colli boscosi più vicini, uno per parte
-      { id: "colle-sx", contenuto: boscoLontano(o, 0.3, "approdo/sx", 290, 230, -9000, -600, 0.24), p: 0.3 },
-      { id: "colle-dx", contenuto: boscoLontano(o, 0.34, "approdo/dx", 330, 220, 200, 9000, 0.2), p: 0.34 },
+      { id: "colle-sx", contenuto: colleBoscoso(o, 0.3, "approdo/sx", 290, 230, -9000, -600, 0.24), p: 0.3 },
+      { id: "colle-dx", contenuto: colleBoscoso(o, 0.34, "approdo/dx", 330, 220, 200, 9000, 0.2), p: 0.34 },
     ],
     oggetti: (o, inVista) => {
       const { luce, defs, luogo } = o;
@@ -488,10 +499,11 @@ export const RIVALBA = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [
       { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "sponde", contenuto: spondeLontane(o, 0.4), p: 0.4 },
       { id: "colle", contenuto: colleDelleCoppelle(o, 0.36), p: 0.36 },
       { id: "citta", contenuto: cittaSullAcqua(o, 0.7), p: 0.7 },
     ],
@@ -679,7 +691,7 @@ export const COPPELLE = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [{ id: "lago", contenuto: lagoDalColle(o, 0.14), p: 0.14 }],
     oggetti: (o, inVista) => {
@@ -1043,10 +1055,11 @@ export const RIVE_BASSE = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 20, 170, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [
       { id: "lago", contenuto: lagoAperto(o, 0.14), p: 0.14 },
+      { id: "sponde", contenuto: spondeLontane(o, 0.4), p: 0.4 },
       { id: "colle", contenuto: colleDelleCoppelle(o, 0.36), p: 0.36 },
     ],
     oggetti: (o, inVista) => {
@@ -1105,7 +1118,7 @@ export const ALTURA = creaLuogo(
   {
     lontanissimo: (o): Livello[] => [
       { id: "monti", contenuto: monti(o, 0.06, CRESTE), p: 0.06 },
-      { id: "colli", contenuto: boscoLontano(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
+      { id: "colli", contenuto: colleBoscoso(o, 0.1, "vespro/colli", ORIZZONTE + 30, 150, -9000, 9000, 0.34), p: 0.1 },
     ],
     lontano: (o): Livello[] => [{ id: "lago", contenuto: lagoDalColle(o, 0.14), p: 0.14 }],
     oggetti: (o, inVista) => {

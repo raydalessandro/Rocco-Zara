@@ -351,6 +351,148 @@ export function monti(o: OpzPalco, p: number, creste: readonly Cresta[]): string
   return s;
 }
 
+// ------------------------------------------------------------- colline --
+export interface Collina {
+  seme: string;
+  /** la linea di base e l'altezza massima dei crinali */
+  base: number;
+  alt: number;
+  col: string;
+  /** quanto è affogata nella foschia (0..1) */
+  fos: number;
+  x0: number;
+  x1: number;
+  /** alberi e cespugli in silhouette sul crinale (0 = nessuno, 1 = fitti); default 0,5 */
+  alberi?: number;
+  /** il velo di foschia bassa ai piedi (default: sì) */
+  velo?: boolean;
+}
+
+/** Il crinale di una collina all'ascissa x (dolce: due ottave, non i monti). */
+function crinale(c: Collina, x: number): number {
+  return c.base - (frattale1(x * 0.0009, 2, fnv1a32(c.seme) % 97) * 0.5 + 0.5) * c.alt;
+}
+
+/**
+ * Colline lontane a strati (la prospettiva aerea): crinali morbidi, una linea di
+ * alberi e cespugli in silhouette sul crinale, tutto affogato nella foschia
+ * secondo `fos` e la nebbia; ai piedi un velo chiaro a bassa opacità, più forte
+ * quando l'aria è calda e ferma (pomeriggio) o lavata (alba). Un luogo ne mette
+ * due o tre tra i monti e il suolo (p≈0,45 / 0,6 / 0,75) e la profondità arriva.
+ */
+export function collineLontane(o: OpzPalco, p: number, colline: readonly Collina[]): string {
+  const { luce, meteo, defs } = o;
+  const v = vista(o.cam, p, 0.3);
+  const z = Math.pow(Math.max(0.01, o.cam.zoom), p);
+  let s = "";
+  for (const c of colline) {
+    const x0 = Math.max(c.x0, v.x0 - 200);
+    const x1 = Math.min(c.x1, v.x1 + 200);
+    if (x1 <= x0) continue;
+    const fos = clamp(c.fos + meteo.nebbia * 0.25);
+    const pts: P[] = [];
+    const passo = 40;
+    for (let x = Math.floor(x0 / passo) * passo; x <= x1 + passo; x += passo) pts.push([x, crinale(c, x)]);
+    // il piede: la collina finisce alla sua base e sfuma nell'aria (sotto c'è l'acqua o la
+    // pianura del livello più lontano, che deve restare visibile dall'alto)
+    const fondo = c.base + c.alt * 0.6;
+    const d = `M${pt([pts[0][0], fondo])}L${pts.map(pt).join("L")}L${pt([pts[pts.length - 1][0], fondo])}Z`;
+    const col = lontano(inLuce(c.col, luce), luce, fos);
+    const sfuma = defs.lineare(`colle-${c.seme}`, [0, c.base - c.alt * 0.1], [0, fondo], [
+      [0, col, 1],
+      [0.4, col, 0.9],
+      [1, col, 0],
+    ]);
+    s += path(d, { fill: sfuma });
+    // il versante in ombra: dove il crinale volta le spalle al sole, una banda appena più scura
+    let ombra = "";
+    for (let i = 1; i < pts.length; i++) {
+      const pend = (pts[i][1] - pts[i - 1][1]) / passo; // >0 scende verso destra
+      const controluce = -pend * luce.lato; // il versante guarda via dal sole
+      const prof = Math.min(c.alt * 0.5, 40 + controluce * 300);
+      if (controluce > 0.04) ombra += `M${pt(pts[i - 1])}L${pt(pts[i])}L${n(pts[i][0])} ${n(pts[i][1] + prof)}L${n(pts[i - 1][0])} ${n(pts[i - 1][1] + prof)}Z`;
+    }
+    s += path(ombra, { fill: lontano(inOmbra(c.col, luce), luce, fos), opacity: 0.45 });
+    // gli alberi del crinale: puntini e lobi in silhouette, seminati nel mondo
+    const fitto = c.alberi ?? 0.5;
+    if (fitto > 0.02) {
+      const semeA = fnv1a32(`${c.seme}/alberi`);
+      const quanti = Math.round(((c.x1 - c.x0) / 26) * fitto);
+      let chiome = "";
+      let fusti = "";
+      for (let i = 0; i < quanti; i++) {
+        const r = elemento(semeA, i);
+        const x = r.tra(c.x0, c.x1);
+        const sotto = Math.pow(r(), 1.8) * c.alt * 0.4;
+        const rr = r.tra(5, 12) * (0.7 + 0.3 * (1 - sotto / c.alt));
+        const alto = r.moneta(0.3);
+        const gruppo = r.intero(1, 3);
+        if (x < v.x0 - 40 || x > v.x1 + 40) continue;
+        const y = crinale(c, x) + sotto + 2;
+        for (let j = 0; j < gruppo; j++) {
+          const xx = x + j * rr * 1.3;
+          chiome += ellisseD([xx, y - rr * (alto ? 1.6 : 0.8)], rr * (alto ? 0.55 : 1), rr * (alto ? 1.5 : 0.85));
+          if (alto) fusti += `M${n(xx)} ${n(y)}v${n(-rr * 1.2)}`;
+        }
+      }
+      const colA = lontano(inOmbra(scurisci(c.col, 0.3), luce), luce, fos * 0.9);
+      s += path(chiome, { fill: colA, opacity: 0.85 });
+      s += path(fusti, { stroke: colA, "stroke-width": n(1.6 / z), opacity: 0.7 });
+    }
+    // il velo ai piedi: foschia bassa nell'aria calda e in quella lavata
+    if (c.velo !== false) {
+      const forza = (0.2 + 0.3 * clamp(1 - meteo.sole * 1.2) + 0.4 * meteo.lavato + 0.5 * meteo.nebbia) * (1 - meteo.notte * 0.7) * (1 - meteo.temporale * 0.6);
+      if (forza > 0.03) {
+        const velo = defs.lineare(`velo-${c.seme}`, [0, c.base - c.alt * 0.45], [0, c.base + c.alt * 0.2], [
+          [0, luce.foschia, 0],
+          [0.7, luce.foschia, 0.5 * forza],
+          [1, luce.foschia, 0.6 * forza],
+        ]);
+        s += path(`M${n(x0 - 100)} ${n(c.base - c.alt * 0.45)}H${n(x1 + 100)}V${n(c.base + c.alt * 0.2)}H${n(x0 - 100)}Z`, { fill: velo });
+      }
+    }
+  }
+  return s;
+}
+
+/**
+ * Un bosco lontano in silhouette: una fascia di chiome tonde (e qualche cima a
+ * punta) lungo una linea di base che ondeggia, velata dalla foschia. Senza il
+ * «sotto» delle colline: è l'orlo di un bosco visto da lontano, non un colle.
+ */
+export function boscoLontano(o: OpzPalco, p: number, b: { seme: string; base: number; alt: number; col: string; fos: number; x0: number; x1: number; fitto?: number }): string {
+  const { luce, meteo } = o;
+  const v = vista(o.cam, p, 0.3);
+  const x0 = Math.max(b.x0, v.x0 - 100);
+  const x1 = Math.min(b.x1, v.x1 + 100);
+  if (x1 <= x0) return "";
+  const fos = clamp(b.fos + meteo.nebbia * 0.2);
+  const cima = (x: number) => b.base - (frattale1(x * 0.004, 2, fnv1a32(b.seme) % 89) * 0.5 + 0.5) * b.alt;
+  const semeB = fnv1a32(`${b.seme}/chiome`);
+  const quante = Math.round(((b.x1 - b.x0) / 18) * (b.fitto ?? 1));
+  let dietro = "";
+  let davanti = "";
+  for (let i = 0; i < quante; i++) {
+    const r = elemento(semeB, i);
+    const x = r.tra(b.x0, b.x1);
+    const rr = r.tra(8, 20);
+    const punta = r.moneta(0.2);
+    const sotto = r.tra(0, b.alt * 0.4);
+    const avanti = r.moneta(0.5);
+    if (x < v.x0 - 40 || x > v.x1 + 40) continue;
+    const y = cima(x) + sotto;
+    const d = punta ? `M${n(x - rr * 0.6)} ${n(y + rr)}L${n(x)} ${n(y - rr * 1.8)}L${n(x + rr * 0.6)} ${n(y + rr)}Z` : ellisseD([x, y], rr, rr * 1.1);
+    if (avanti) davanti += d;
+    else dietro += d;
+  }
+  const base = `M${n(x0)} 1600L${n(x0)} ${n(b.base)}H${n(x1)}V1600Z`;
+  return (
+    path(base, { fill: lontano(inLuce(b.col, luce), luce, fos) }) +
+    path(dietro, { fill: lontano(inLuce(b.col, luce), luce, fos) }) +
+    path(davanti, { fill: lontano(inOmbra(scurisci(b.col, 0.25), luce), luce, fos * 0.9) })
+  );
+}
+
 // -------------------------------------------------------------- terreno --
 /** Il suolo dal profilo del luogo, le pennellate, l'acqua al piede; più l'erba del crinale. */
 export function terreno(o: OpzPalco): { terra: string; fronda: string } {
