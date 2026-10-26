@@ -125,8 +125,11 @@ cartoni/
                le didascalie (Fraunces, a capo bilanciato), la parola (chi parla,
                sillabe italiane), la voce (piano delle battute, bocche, tempi),
                la serie (le puntate, dal grafo della saga)
-  scene/       il palco: il kit di pennelli (cielo, temporale, monti, terreno, erba,
-               canneto, pioggia), gli oggetti (rocce, lastre, rami, alberi d'autunno),
+  scene/       il palco: il kit di pennelli (cielo e nuvole nel mondo, temporale,
+               monti, colline a strati e boschi nella foschia, terreno col lato in
+               luce e in ombra, erba, cespugli, canneto, ombre portate, primo piano
+               sfocato, pulviscolo, pioggia), gli oggetti (rocce, lastre, rami,
+               alberi d'autunno),
                il lago (barche e remi, il dondolio, cerchi d'acqua, moli, palafitte,
                reti, la tana di canne, i Massi del Consiglio, il gorgo, i riflessi, la
                custodia del pegno), la piena (l'acqua alta davanti a tutto, dove il suolo
