@@ -36,10 +36,12 @@ import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } f
 import { FINE_NODI, insertoCorda, insertoNodino, insertoPietra } from "../cartoni/scene/inserti";
 import { custodiaDelPegno, galleggia, riflesso } from "../cartoni/scene/lago";
 import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, RIVE, RIVE_BASSE, nelVarco, sulMassoDelConsiglio, sullaPasserella } from "../cartoni/luoghi/rivalba";
-import type { Piena } from "../cartoni/scene/luogo";
+import type { OpzPalco, Piena } from "../cartoni/scene/luogo";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
+import { METEO_SERENO } from "../cartoni/scene/meteo";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
+import { boscoLontano, collineLontane, nuvole, ombraPortata, primoPiano } from "../cartoni/scene/pittura";
 
 const ROOT = process.cwd();
 const leggi = (p: string) => readFileSync(join(ROOT, p), "utf8");
@@ -371,6 +373,87 @@ describe("cartoni — il lago (ep02): la riva, le barche, i riflessi, la corda s
       expect(d).not.toMatch(/NaN|undefined|Infinity/);
       expect(martinPescatore({ t, modo: "posato", offeso: 1, bagnato: 1 }, ctx)).toBe(d);
     }
+  });
+});
+
+describe("cartoni — il palco vivo: nuvole nel mondo, profondità, ombre portate, primo piano sfocato", () => {
+  const opz = (cam: { x: number; y: number; zoom: number }, t = 1, luce = LUCI.giorno): OpzPalco => ({ luogo: SOGLIA, cam, t, luce, meteo: METEO_SERENO, defs: new Defs("") });
+
+  it("le nuvole stanno nel mondo: due camere vedono cieli diversi, la stessa camera lo stesso; col tempo derivano senza sparire", () => {
+    const a = nuvole(opz({ x: 0, y: -150, zoom: 1.2 }), 0);
+    const b = nuvole(opz({ x: 2600, y: -150, zoom: 1.2 }), 0);
+    expect(a.length).toBeGreaterThan(200);
+    expect(b.length).toBeGreaterThan(200);
+    expect(a).not.toBe(b);
+    expect(nuvole(opz({ x: 0, y: -150, zoom: 1.2 }), 0)).toBe(a);
+    const dopo = nuvole(opz({ x: 0, y: -150, zoom: 1.2 }, 40), 0);
+    expect(dopo.length).toBeGreaterThan(200);
+    expect(dopo).not.toBe(a);
+  });
+
+  it("l'ombra portata sta dal lato opposto alla luce e si allunga con la radenza; di notte è appena un velo", () => {
+    const centro = (luce: typeof LUCI.giorno, verso: 1 | -1 = 1) => {
+      const d = ombraPortata(new Defs(""), "x", luce, { larghezza: 50, lunghezza: 100, verso }).match(/ d="M(-?[\d.]+) (-?[\d.]+)a(-?[\d.]+) /)!;
+      const rx = Number(d[3]);
+      return { cx: Number(d[1]) + rx, rx };
+    };
+    expect(centro({ ...LUCI.giorno, lato: 1 }).cx).toBeLessThan(0);
+    expect(centro({ ...LUCI.giorno, lato: -1 }).cx).toBeGreaterThan(0);
+    // un disegno specchiato (verso −1): l'ombra resta dal lato giusto a schermo
+    expect(centro({ ...LUCI.giorno, lato: 1 }, -1).cx).toBeGreaterThan(0);
+    expect(centro({ ...LUCI.giorno, radenza: 0.9 }).rx).toBeGreaterThan(centro({ ...LUCI.giorno, radenza: 0.1 }).rx);
+    expect(Math.abs(centro({ ...LUCI.giorno, radenza: 0.9 }).cx)).toBeGreaterThan(Math.abs(centro({ ...LUCI.giorno, radenza: 0.1 }).cx));
+    const op = (luce: typeof LUCI.giorno) => {
+      const defs = new Defs("");
+      ombraPortata(defs, "x", luce, { larghezza: 50, lunghezza: 100 });
+      return Number(defs.markup().match(/stop-opacity="([\d.]+)"/)![1]);
+    };
+    expect(op(LUCI.notte)).toBeGreaterThan(0);
+    expect(op(LUCI.notte)).toBeLessThan(op(LUCI.giorno) * 0.5);
+  });
+
+  it("il livello di primo piano ha il filtro di sfocatura, e nessun altro livello lo ha", () => {
+    const V = palcoscenico(SOGLIA);
+    for (const primo of [true, "erba", "foglie"] as const) {
+      const defs = new Defs("");
+      const liv = V.scena(1, defs, { cam: { x: 0, y: -150, zoom: 1.2 }, luce: LUCI.giorno, primo });
+      const pp = liv.find((l) => l.id === "primo")!;
+      expect(pp, String(primo)).toBeDefined();
+      expect(pp.filtro).toMatch(/^url\(#/);
+      expect(pp.contenuto.length).toBeGreaterThan(100);
+      for (const l of liv) if (l.id !== "primo") expect(l.filtro, l.id).toBeUndefined();
+      expect((defs.markup().match(/feGaussianBlur/g) ?? []).length).toBe(1);
+    }
+    const senza = V.scena(1, new Defs(""), { cam: { x: 0, y: -150, zoom: 1.2 }, luce: LUCI.giorno });
+    expect(senza.some((l) => l.id === "primo")).toBe(false);
+    expect(senza.every((l) => !l.filtro)).toBe(true);
+  });
+
+  it("l'ombra del versante lungo il profilo non fa cuciture: stop in ordine, mai due uguali, salti d'opacità piccoli (a ogni zoom)", () => {
+    const V = palcoscenico(SOGLIA);
+    for (const cam of [{ x: -665, y: 238, zoom: 0.23 }, { x: -20, y: -60, zoom: 0.98 }, { x: -34, y: -172, zoom: 1.78 }, { x: 250, y: -110, zoom: 1.2 }]) {
+      const defs = new Defs("");
+      V.scena(1, defs, { cam, luce: LUCI.giorno });
+      const grad = defs.markup().match(/<linearGradient id="suolo-ombra"[^>]*>(.*?)<\/linearGradient>/)![1];
+      const stop = [...grad.matchAll(/offset="([\d.]+)"[^>]*stop-opacity="([\d.]+)"/g)].map((m) => [Number(m[1]), Number(m[2])]);
+      expect(stop.length, `zoom ${cam.zoom}`).toBeGreaterThan(20);
+      for (let i = 1; i < stop.length; i++) {
+        expect(stop[i][0], `zoom ${cam.zoom}: offset ${i}`).toBeGreaterThan(stop[i - 1][0]);
+        expect(Math.abs(stop[i][1] - stop[i - 1][1]), `zoom ${cam.zoom}: salto allo stop ${i}`).toBeLessThan(0.06);
+      }
+    }
+  });
+
+  it("i pennelli nuovi sono deterministici (stesso input → stessa stringa) e senza caso di sistema", () => {
+    const o = opz({ x: -600, y: 200, zoom: 0.5 }, 2.3, LUCI.tramonto);
+    const colline = [{ seme: "prova/colline", base: 500, alt: 150, col: "#4f5f3a", fos: 0.4, x0: -9000, x1: 9000, alberi: 0.8 }];
+    const bosco = { seme: "prova/bosco", base: 430, alt: 60, col: "#4f5f3a", fos: 0.3, x0: -9000, x1: 9000 };
+    const una = () => [collineLontane(o, 0.45, colline), boscoLontano(o, 0.4, bosco), primoPiano(o, 1.9, "foglie"), ombraPortata(o.defs, "p", o.luce, { larghezza: 30, lunghezza: 80, pendenza: 0.2 })].join("|");
+    const d = una();
+    expect(d).toBe(una());
+    expect(d.split("|").every((x) => x.length > 100)).toBe(true);
+    expect(d).not.toMatch(/NaN|undefined|Infinity/);
+    expect(leggi("cartoni/scene/pittura.ts")).not.toMatch(/Math\.random|Date\.now/);
   });
 });
 

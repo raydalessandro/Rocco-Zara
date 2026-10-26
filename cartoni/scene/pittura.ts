@@ -1,19 +1,29 @@
 // cartoni/scene/pittura.ts — il kit di pennelli del palco.
 //
 // Tutto ciò che è uguale in ogni luogo: il cielo e le nuvole, il banco del
-// temporale, le creste dei monti, il terreno dal profilo (con le pennellate
-// e l'acqua al piede), l'erba del crinale e del prato, i cespugli, il canneto,
-// l'erba di primo piano, la pioggia. Un luogo sceglie i parametri e compone.
+// temporale, le creste dei monti e le colline a strati, il terreno dal profilo
+// (con il lato in luce e quello in ombra, le pennellate, l'acqua al piede),
+// l'erba del crinale e del prato, i cespugli, il canneto, le ombre portate,
+// il primo piano sfocato, il pulviscolo, la pioggia. Un luogo sceglie i
+// parametri e compone.
 //
 // Due regole che valgono per ogni pennello (vedi docs/ANIMATORE.md §3):
 //  - nei cicli con scarto fuori campo ogni elemento ha il SUO generatore
 //    (`elemento(seme, i)`) e pesca tutto PRIMA di decidere se è in vista;
 //  - i campionamenti sono allineati al mondo: niente sfarfallii con la camera.
+//
+// E una di pittura (STILE_VISIVO §1-§3, «mai cartoon-flat»): il palco ha tre
+// cose che un fondale piatto non ha — la PROFONDITÀ (strati a parallasse,
+// affogati nella foschia man mano che si allontanano, il primo piano sfocato),
+// la LUCE (un lato in luce e uno in ombra, le ombre portate di tutto dal lato
+// opposto al sole, lunghe quando il sole è basso) e la MATERIA (le pennellate,
+// le chiazze, i fiori, la terra nuda). Niente bagliori: la luce si vede da
+// quello che illumina.
 
-import { inLuce, inOmbra, lontano, mescola, scurisci } from "../motore/colore";
+import { type Luce, inLuce, inOmbra, lontano, mescola, schiarisci, scurisci } from "../motore/colore";
 import { caso, elemento, fnv1a32, frattale1 } from "../motore/caso";
-import { ALTEZZA, LARGHEZZA, op, vista } from "../motore/fotogramma";
-import { type P, ellisseD, g, n, path, pt } from "../motore/svg";
+import { ALTEZZA, LARGHEZZA, aSchermo, op, vista } from "../motore/fotogramma";
+import { type Defs, type P, ellisseD, g, n, path, pt } from "../motore/svg";
 import { clamp, smooth } from "../motore/tempo";
 import type { OpzPalco } from "./luogo";
 import { piegaErba } from "./meteo";
@@ -126,42 +136,92 @@ export function lunaRiflessa(o: OpzPalco, p: number, sullAcqua: (x: number, y: n
   return path(d, { stroke: mescola("#f4f1e4", "#f3dcb0", bassa * 0.6), "stroke-width": n(((r * 1.6) / N) * 0.85), opacity: 0.8 * o.meteo.notte, "stroke-linecap": "round" });
 }
 
-function nuvole(o: OpzPalco, velato: number): string {
-  const { t, meteo, defs } = o;
-  const r = caso("cielo/nuvole");
-  const luceN = mescola(mescola("#fffaf0", "#b9bab0", meteo.temporale), "#3a4458", meteo.notte);
-  const ombraN = mescola(mescola("#e4d3bb", "#7a7c72", meteo.temporale), "#222a3a", meteo.notte);
-  const grad = defs.lineare("nube", [0, 0], [0, 1], [
-    [0, mescola(luceN, "#ffffff", 0.3 * (1 - meteo.notte))],
-    [0.55, luceN],
-    [1, ombraN],
-  ], "objectBoundingBox");
-  let s = "";
+/** I due livelli di nuvole: uno lontano (piccole, piatte, p≈0,04) e uno vicino (grandi, p≈0,09). */
+const STRATI_NUVOLE = [
+  { nome: "lontane", p: 0.04, quante: 46, w: [120, 260] as const, y: [-500, -250] as const, deriva: 1.4, cirri: 0.5 },
+  { nome: "vicine", p: 0.09, quante: 34, w: [260, 620] as const, y: [-560, -150] as const, deriva: 2.6, cirri: 0.15 },
+] as const;
+
+/** L'ascissa del mondo coperta dalle nuvole (si ripete oltre, a piastrella). */
+const MONDO_NUVOLE = 18000;
+
+/**
+ * Le nuvole stanno nel MONDO, non sullo schermo: ogni nuvola ha il suo posto
+ * (x, y, forma) pescato dal suo seme su tutta l'ascissa del mondo, e il cielo
+ * la proietta a schermo con la parallasse del suo strato. Così inquadrature con
+ * camere diverse vedono cieli diversi, le panoramiche le vedono scorrere, e due
+ * inquadrature sullo stesso punto vedono lo stesso cielo. Derivano col tempo,
+ * nel verso del vento e tanto più quanto più tira. La forma: lobi irregolari
+ * sopra, il fondo più piatto, e qualche cirro a pennellate; di giorno l'ombra
+ * sotto è fredda, al tramonto e all'alba il fondo prende il colore della luce
+ * bassa (sottoilluminato), di notte sono veli scuri.
+ * Si disegnano dentro `cielo()` (livello a schermo): la proiezione la fa `aSchermo`.
+ */
+export function nuvole(o: OpzPalco, velato: number): string {
+  const { t, meteo, defs, luce } = o;
+  const bassa = clamp(luce.forzaBordo); // quanto la luce è radente (tramonto, alba)
+  const luceN = mescola(mescola(mescola("#fffaf0", luce.bordo, bassa * 0.35), "#b9bab0", meteo.temporale), "#3a4458", meteo.notte);
+  const ombraFredda = mescola("#d9d6d2", "#b9c2d6", 0.5);
+  const ombraN = mescola(mescola(mescola(ombraFredda, luce.bordo, bassa * 0.8), "#7a7c72", meteo.temporale), "#222a3a", meteo.notte);
   const visibili = (1 - velato * 0.6) * (1 - meteo.temporale * 0.6);
-  for (let i = 0; i < 7; i++) {
-    const base = r.tra(-300, LARGHEZZA + 300);
-    const x = ((base + t * r.tra(3, 7) - o.cam.x * 0.02 + 6000) % (LARGHEZZA + 700)) - 350;
-    const y = r.tra(70, 380) - o.cam.y * 0.02;
-    const w = r.tra(220, 520);
-    const h = w * r.tra(0.12, 0.2);
-    const pezzi: string[] = [];
-    const k = r.intero(4, 7);
-    for (let j = 0; j < k; j++) {
-      const u = j / (k - 1);
-      const cx = x + (u - 0.5) * w * 1.1;
-      const cy = y - Math.sin(u * Math.PI) * h * r.tra(0.4, 0.9);
-      pezzi.push(ellisseD([cx, cy], (w / k) * r.tra(0.9, 1.5), h * r.tra(0.55, 0.9)));
+  if (visibili < 0.02) return "";
+  const vento = (meteo.versoVento || 1) * (0.5 + meteo.vento) * 6;
+  let s = "";
+  for (const S of STRATI_NUVOLE) {
+    const grad = defs.lineare(`nube-${S.nome}`, [0, 0], [0, 1], [
+      [0, mescola(luceN, "#ffffff", 0.3 * (1 - meteo.notte))],
+      [0.5, luceN],
+      [1, ombraN],
+    ], "objectBoundingBox");
+    const seme = fnv1a32(`cielo/nuvole/${S.nome}`);
+    const z = Math.pow(Math.max(0.01, o.cam.zoom), S.p);
+    const deriva = t * S.deriva * vento;
+    let corpi = "";
+    let fondi = "";
+    let cirri = "";
+    let ombre = "";
+    for (let i = 0; i < S.quante; i++) {
+      const r = elemento(seme, i);
+      // ogni nuvola pesca TUTTO prima dello scarto (regola del kit)
+      const x0 = r.tra(-MONDO_NUVOLE / 2, MONDO_NUVOLE / 2);
+      const y = r.tra(S.y[0], S.y[1]);
+      const w = r.tra(S.w[0], S.w[1]);
+      const h = w * r.tra(0.13, 0.22);
+      const cirro = r.moneta(S.cirri);
+      const k = r.intero(5, 9);
+      const lobi: [number, number, number, number][] = [];
+      for (let j = 0; j < k; j++) lobi.push([r.tra(-0.5, 0.5), r.tra(0.3, 0.9), r.tra(0.7, 1.4), r.tra(0.4, 0.75)]);
+      const pennellate: [number, number, number][] = [];
+      for (let j = 0; j < 3; j++) pennellate.push([r.segno(0.4), r.tra(0, 0.4), r.tra(0.3, 0.7)]);
+      const alzata = r.tra(0, 1);
+      // la deriva è a piastrella sul mondo: la nuvola che esce a destra rientra a sinistra
+      const xm = ((((x0 + deriva) % MONDO_NUVOLE) + MONDO_NUVOLE * 1.5) % MONDO_NUVOLE) - MONDO_NUVOLE / 2;
+      const [sx, sy] = aSchermo(o.cam, S.p, xm, y);
+      const ws = w * z;
+      const hs = h * z;
+      if (sx < -ws - 60 || sx > LARGHEZZA + ws + 60 || sy < -hs * 2 || sy > ALTEZZA * 0.7) continue;
+      if (cirro) {
+        // un cirro: tre pennellate lunghe e sottili, spettinate
+        for (let j = 0; j < 3; j++) {
+          const yy = sy + j * hs * 0.5 - hs * 0.5;
+          cirri += `M${n(sx - ws * (0.5 + j * 0.1))} ${n(yy)}q${n(ws * 0.5)} ${n(-hs * 0.3)} ${n(ws * (1 + j * 0.15))} ${n(-hs * 0.1 * j)}`;
+        }
+        continue;
+      }
+      for (const [u, su, rx, ry] of lobi) {
+        const cx = sx + u * ws * 1.1;
+        const cy = sy - Math.sin((u + 0.5) * Math.PI) * hs * su * (0.5 + alzata * 0.4);
+        corpi += ellisseD([cx, cy], (ws / k) * rx, hs * ry);
+      }
+      // il fondo piatto: una striscia bassa e larga che chiude la nuvola
+      fondi += ellisseD([sx, sy + hs * 0.12], ws * 0.64, hs * 0.34);
+      // le velature sotto il fondo (l'ombra che la luce bassa colora)
+      for (const [dx, dy, l] of pennellate) ombre += `M${n(sx + dx * ws - ws * l * 0.5)} ${n(sy + hs * (0.2 + dy))}h${n(ws * l)}`;
     }
-    pezzi.push(ellisseD([x, y + h * 0.2], w * 0.62, h * 0.42));
-    s += path(pezzi.join(""), { fill: grad, opacity: n(0.5 * visibili) });
-    // velature: pennellate orizzontali lungo il fondo della nube
-    let pen = "";
-    for (let j = 0; j < 4; j++) {
-      const yy = y + h * r.tra(0, 0.5);
-      const xx = x + r.segno(w * 0.4);
-      pen += `M${n(xx - w * 0.3)} ${n(yy)}h${n(w * r.tra(0.3, 0.6))}`;
-    }
-    s += path(pen, { stroke: ombraN, "stroke-width": 6, opacity: n(0.18 * visibili), "stroke-linecap": "round" });
+    const opac = (S.p < 0.06 ? 0.42 : 0.55) * visibili;
+    s += path(corpi + fondi, { fill: grad, opacity: n(opac) });
+    s += path(ombre, { stroke: ombraN, "stroke-width": n(5 / Math.max(0.6, z)), opacity: n(0.22 * visibili), "stroke-linecap": "round" });
+    s += path(cirri, { stroke: luceN, "stroke-width": n(5 * z), fill: "none", opacity: n(0.3 * visibili), "stroke-linecap": "round" });
   }
   return s;
 }
@@ -291,6 +351,189 @@ export function monti(o: OpzPalco, p: number, creste: readonly Cresta[]): string
   return s;
 }
 
+// ------------------------------------------------------------- colline --
+export interface Collina {
+  seme: string;
+  /** la linea di base e l'altezza massima dei crinali */
+  base: number;
+  alt: number;
+  col: string;
+  /** quanto è affogata nella foschia (0..1) */
+  fos: number;
+  x0: number;
+  x1: number;
+  /** alberi e cespugli in silhouette sul crinale (0 = nessuno, 1 = fitti); default 0,5 */
+  alberi?: number;
+  /** il velo di foschia bassa ai piedi (default: sì) */
+  velo?: boolean;
+}
+
+/** Il crinale di una collina all'ascissa x (dolce: due ottave, non i monti). */
+function crinale(c: Collina, x: number): number {
+  return c.base - (frattale1(x * 0.0009, 2, fnv1a32(c.seme) % 97) * 0.5 + 0.5) * c.alt;
+}
+
+/**
+ * Colline lontane a strati (la prospettiva aerea): crinali morbidi, una linea di
+ * alberi e cespugli in silhouette sul crinale, tutto affogato nella foschia
+ * secondo `fos` e la nebbia; ai piedi un velo chiaro a bassa opacità, più forte
+ * quando l'aria è calda e ferma (pomeriggio) o lavata (alba). Un luogo ne mette
+ * due o tre tra i monti e il suolo (p≈0,45 / 0,6 / 0,75) e la profondità arriva.
+ */
+export function collineLontane(o: OpzPalco, p: number, colline: readonly Collina[]): string {
+  const { luce, meteo, defs } = o;
+  const v = vista(o.cam, p, 0.3);
+  const z = Math.pow(Math.max(0.01, o.cam.zoom), p);
+  let s = "";
+  for (const c of colline) {
+    const x0 = Math.max(c.x0, v.x0 - 200);
+    const x1 = Math.min(c.x1, v.x1 + 200);
+    if (x1 <= x0) continue;
+    const fos = clamp(c.fos + meteo.nebbia * 0.25);
+    const pts: P[] = [];
+    const passo = 40;
+    for (let x = Math.floor(x0 / passo) * passo; x <= x1 + passo; x += passo) pts.push([x, crinale(c, x)]);
+    // il piede: la collina finisce alla sua base e sfuma nell'aria (sotto c'è l'acqua o la
+    // pianura del livello più lontano, che deve restare visibile dall'alto)
+    const fondo = c.base + c.alt * 0.6;
+    const d = `M${pt([pts[0][0], fondo])}L${pts.map(pt).join("L")}L${pt([pts[pts.length - 1][0], fondo])}Z`;
+    const col = lontano(inLuce(c.col, luce), luce, fos);
+    const sfuma = defs.lineare(`colle-${c.seme}`, [0, c.base - c.alt * 0.1], [0, fondo], [
+      [0, col, 1],
+      [0.4, col, 0.9],
+      [1, col, 0],
+    ]);
+    s += path(d, { fill: sfuma });
+    // il versante in ombra: dove il crinale volta le spalle al sole, una banda appena più scura
+    let ombra = "";
+    for (let i = 1; i < pts.length; i++) {
+      const pend = (pts[i][1] - pts[i - 1][1]) / passo; // >0 scende verso destra
+      const controluce = -pend * luce.lato; // il versante guarda via dal sole
+      const prof = Math.min(c.alt * 0.5, 40 + controluce * 300);
+      if (controluce > 0.04) ombra += `M${pt(pts[i - 1])}L${pt(pts[i])}L${n(pts[i][0])} ${n(pts[i][1] + prof)}L${n(pts[i - 1][0])} ${n(pts[i - 1][1] + prof)}Z`;
+    }
+    s += path(ombra, { fill: lontano(inOmbra(c.col, luce), luce, fos), opacity: 0.45 });
+    // gli alberi del crinale: puntini e lobi in silhouette, seminati nel mondo
+    const fitto = c.alberi ?? 0.5;
+    if (fitto > 0.02) {
+      const semeA = fnv1a32(`${c.seme}/alberi`);
+      const quanti = Math.round(((c.x1 - c.x0) / 26) * fitto);
+      let chiome = "";
+      let fusti = "";
+      for (let i = 0; i < quanti; i++) {
+        const r = elemento(semeA, i);
+        const x = r.tra(c.x0, c.x1);
+        const sotto = Math.pow(r(), 1.8) * c.alt * 0.4;
+        const rr = r.tra(5, 12) * (0.7 + 0.3 * (1 - sotto / c.alt));
+        const alto = r.moneta(0.3);
+        const gruppo = r.intero(1, 3);
+        if (x < v.x0 - 40 || x > v.x1 + 40) continue;
+        const y = crinale(c, x) + sotto + 2;
+        for (let j = 0; j < gruppo; j++) {
+          const xx = x + j * rr * 1.3;
+          chiome += ellisseD([xx, y - rr * (alto ? 1.6 : 0.8)], rr * (alto ? 0.55 : 1), rr * (alto ? 1.5 : 0.85));
+          if (alto) fusti += `M${n(xx)} ${n(y)}v${n(-rr * 1.2)}`;
+        }
+      }
+      const colA = lontano(inOmbra(scurisci(c.col, 0.3), luce), luce, fos * 0.9);
+      s += path(chiome, { fill: colA, opacity: 0.85 });
+      s += path(fusti, { stroke: colA, "stroke-width": n(1.6 / z), opacity: 0.7 });
+    }
+    // il velo ai piedi: foschia bassa nell'aria calda e in quella lavata
+    if (c.velo !== false) {
+      const forza = (0.2 + 0.3 * clamp(1 - meteo.sole * 1.2) + 0.4 * meteo.lavato + 0.5 * meteo.nebbia) * (1 - meteo.notte * 0.7) * (1 - meteo.temporale * 0.6);
+      if (forza > 0.03) {
+        const velo = defs.lineare(`velo-${c.seme}`, [0, c.base - c.alt * 0.45], [0, c.base + c.alt * 0.2], [
+          [0, luce.foschia, 0],
+          [0.7, luce.foschia, 0.5 * forza],
+          [1, luce.foschia, 0.6 * forza],
+        ]);
+        s += path(`M${n(x0 - 100)} ${n(c.base - c.alt * 0.45)}H${n(x1 + 100)}V${n(c.base + c.alt * 0.2)}H${n(x0 - 100)}Z`, { fill: velo });
+      }
+    }
+  }
+  return s;
+}
+
+/**
+ * Un bosco lontano in silhouette: una fascia di chiome tonde (e qualche cima a
+ * punta) lungo una linea di base che ondeggia, velata dalla foschia. Senza il
+ * «sotto» delle colline: è l'orlo di un bosco visto da lontano, non un colle.
+ */
+export function boscoLontano(o: OpzPalco, p: number, b: { seme: string; base: number; alt: number; col: string; fos: number; x0: number; x1: number; fitto?: number }): string {
+  const { luce, meteo } = o;
+  const v = vista(o.cam, p, 0.3);
+  const x0 = Math.max(b.x0, v.x0 - 100);
+  const x1 = Math.min(b.x1, v.x1 + 100);
+  if (x1 <= x0) return "";
+  const fos = clamp(b.fos + meteo.nebbia * 0.2);
+  const cima = (x: number) => b.base - (frattale1(x * 0.004, 2, fnv1a32(b.seme) % 89) * 0.5 + 0.5) * b.alt;
+  const semeB = fnv1a32(`${b.seme}/chiome`);
+  const quante = Math.round(((b.x1 - b.x0) / 18) * (b.fitto ?? 1));
+  let dietro = "";
+  let davanti = "";
+  for (let i = 0; i < quante; i++) {
+    const r = elemento(semeB, i);
+    const x = r.tra(b.x0, b.x1);
+    const rr = r.tra(8, 20);
+    const punta = r.moneta(0.2);
+    const sotto = r.tra(0, b.alt * 0.4);
+    const avanti = r.moneta(0.5);
+    if (x < v.x0 - 40 || x > v.x1 + 40) continue;
+    const y = cima(x) + sotto;
+    const d = punta ? `M${n(x - rr * 0.6)} ${n(y + rr)}L${n(x)} ${n(y - rr * 1.8)}L${n(x + rr * 0.6)} ${n(y + rr)}Z` : ellisseD([x, y], rr, rr * 1.1);
+    if (avanti) davanti += d;
+    else dietro += d;
+  }
+  const base = `M${n(x0)} 1600L${n(x0)} ${n(b.base)}H${n(x1)}V1600Z`;
+  return (
+    path(base, { fill: lontano(inLuce(b.col, luce), luce, fos) }) +
+    path(dietro, { fill: lontano(inLuce(b.col, luce), luce, fos) }) +
+    path(davanti, { fill: lontano(inOmbra(scurisci(b.col, 0.25), luce), luce, fos * 0.9) })
+  );
+}
+
+// ------------------------------------------------------- ombre portate --
+export interface OpzOmbra {
+  /** mezza larghezza dell'impronta a terra */
+  larghezza: number;
+  /** quanto è alta la cosa che fa ombra: l'ombra si allunga di tanto, col sole basso */
+  lunghezza: number;
+  /** il verso del disegno in cui sta (1, o −1 se è specchiato: la luce è a schermo) */
+  verso?: 1 | -1;
+  /** la pendenza del suolo (dy/dx): l'ombra la segue */
+  pendenza?: number;
+  /** moltiplicatore dell'opacità (default 1) */
+  forza?: number;
+  /** mezza altezza dell'ellisse (default: in proporzione alla larghezza) */
+  spessore?: number;
+}
+
+/**
+ * L'ombra portata di una cosa appoggiata al suolo, nelle sue coordinate (origine
+ * al piede, y=0 il suolo): un'ellisse morbida (gradiente radiale) spostata dal
+ * lato OPPOSTO alla luce e allungata con la radenza, con l'opacità della luce
+ * (`forzaOmbra`: di notte sotto la luna resta un'ombra appena). È quello che
+ * tiene a terra rocce, cespugli, alberi, canne e pupazzi: senza, galleggiano.
+ */
+export function ombraPortata(defs: Defs, id: string, luce: Luce, o: OpzOmbra): string {
+  const verso = o.verso ?? 1;
+  const rad = clamp(luce.radenza);
+  const allunga = o.lunghezza * (0.15 + rad * 0.75);
+  const spost = -luce.lato * verso * allunga * 0.55;
+  const rx = o.larghezza + allunga * 0.5;
+  const ry = o.spessore ?? Math.max(4, o.larghezza * 0.16 + 3);
+  const k = clamp(luce.forzaOmbra) * (o.forza ?? 1);
+  const url = defs.radiale(`${id}-ombra`, [0.5, 0.5], 0.5, [
+    [0, "#1b1812", 0.75 * k],
+    [0.55, "#1b1812", 0.42 * k],
+    [1, "#1b1812", 0],
+  ], "objectBoundingBox");
+  const d = ellisseD([spost, 0], rx, ry);
+  const incl = o.pendenza ? (Math.atan(o.pendenza) * 180) / Math.PI : 0;
+  return path(d, incl ? { fill: url, transform: `rotate(${n(incl)})` } : { fill: url });
+}
+
 // -------------------------------------------------------------- terreno --
 /** Il suolo dal profilo del luogo, le pennellate, l'acqua al piede; più l'erba del crinale. */
 export function terreno(o: OpzPalco): { terra: string; fronda: string } {
@@ -324,26 +567,98 @@ export function terreno(o: OpzPalco): { terra: string; fronda: string } {
   let terra = path(dSuolo, { fill: url });
   terra += path(dSuolo, { fill: scuro });
 
-  // pennellate: tratti d'erba e di terra, fissi nel mondo (il gouache)
+  // --- il lato in luce e quello in ombra -------------------------------------
+  // Dalla pendenza locale e da dove sta il sole: il versante che gli volta le
+  // spalle prende l'ombra propria, a bande morbide che seguono il profilo (gli
+  // stessi campioni allineati al mondo del profilo: niente sfarfallii). La forza
+  // è quantizzata in pochi gradini e disegnata a strati cumulativi, così la
+  // transizione resta graduale lungo il pendio.
   const pendenzaLocale = (x: number) => (luogo.quota(x + 30) - luogo.quota(x - 30)) / 60;
+  const forzaO = luce.forzaOmbra * (0.55 + 0.45 * luce.radenza) * (1 - meteo.temporale * 0.5);
+  const ombraA = (x: number) => clamp(-pendenzaLocale(x) * luce.lato * 2.2) * forzaO;
+  // un gradiente orizzontale sul profilo: uno stop ogni due campioni, l'opacità
+  // è quanto quel tratto di versante volta le spalle al sole
+  const tintaOmbra = inOmbra(mescola(C.erbaScura, "#3a3f52", 0.35), luce);
+  const xa = pts[0][0];
+  const xb = pts[pts.length - 1][0];
+  const stop: [number, string, number][] = [];
+  for (let i = 0; i < pts.length; i += 2) stop.push([(pts[i][0] - xa) / (xb - xa), tintaOmbra, Math.round(ombraA(pts[i][0]) * 0.5 * 100) / 100]);
+  const sfumaOmbra = defs.lineare("suolo-ombra", [xa, 0], [xb, 0], stop);
+  terra += path(dSuolo, { fill: sfumaOmbra });
+
+  // --- la materia: chiazze d'erba più chiara e più scura, fisse nel mondo ----
+  const semeCh = fnv1a32("collina/chiazze");
+  let chiare = "";
+  let scure = "";
+  for (let i = 0; i < 140; i++) {
+    const r = elemento(semeCh, i);
+    const x = r.tra(-6000, 6000);
+    const sotto = r.tra(30, 800);
+    const rx = r.tra(120, 420);
+    const ry = r.tra(16, 60);
+    const chiara = r.moneta(0.5);
+    if (x < v.x0 - rx || x > v.x1 + rx) continue;
+    const y = luogo.quota(x) + sotto;
+    if (y < v.y0 - ry || y > v.y1 + ry) continue;
+    (chiara ? (chiare += ellisseD([x, y], rx, ry)) : (scure += ellisseD([x, y], rx, ry)));
+  }
+  terra += path(chiare, { fill: inLuce(C.erbaChiara, luce), opacity: 0.07 });
+  terra += path(scure, { fill: inOmbra(C.erbaScura, luce), opacity: 0.08 });
+
+  // --- pennellate a fasce: seguono il profilo a profondità diverse, più fitte e
+  // lunghe verso la camera (in basso), rade e corte in alto; il tono varia tra
+  // luce e ombra secondo il versante (il gouache)
   const semeP = fnv1a32("collina/pennellate");
+  const FASCE = [40, 110, 200, 320, 470, 650, 860];
   let pen = "";
   let penChiare = "";
-  for (let i = 0; i < 1400; i++) {
-    const r = elemento(semeP, i);
-    const x = r.tra(-6000, 6000);
-    const sotto = r.tra(20, 900);
-    const w = r.tra(18, 60);
-    const scura = r.moneta(0.55);
-    if (x < v.x0 - 60 || x > v.x1 + 60) continue;
-    const y = luogo.quota(x) + sotto;
-    if (y < v.y0 - 50 || y > v.y1 + 50) continue;
-    const incl = pendenzaLocale(x) * w;
-    if (scura) pen += `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
-    else penChiare += `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
-  }
-  terra += path(pen, { stroke: inOmbra(C.erbaScura, luce), "stroke-width": 5, opacity: 0.28, "stroke-linecap": "round" });
+  let penOmbra = "";
+  let ip = 0;
+  FASCE.forEach((sotto, f) => {
+    const quante = 90 + f * 48;
+    const lung = 16 + f * 8;
+    for (let j = 0; j < quante; j++, ip++) {
+      const r = elemento(semeP, ip);
+      const x = r.tra(-6000, 6000);
+      const dy = r.segno(sotto * 0.22 + 8);
+      const w = lung * r.tra(0.7, 1.3);
+      const q = r();
+      if (x < v.x0 - 60 || x > v.x1 + 60) continue;
+      const y = luogo.quota(x) + sotto + dy;
+      if (y < v.y0 - 50 || y > v.y1 + 50) continue;
+      const incl = pendenzaLocale(x) * w;
+      const ombra = ombraA(x) / Math.max(0.01, forzaO);
+      const d = `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
+      if (ombra > 0.35 && q < 0.7) penOmbra += d;
+      else if (q < 0.5) pen += d;
+      else penChiare += d;
+    }
+  });
+  terra += path(pen, { stroke: inOmbra(C.erbaScura, luce), "stroke-width": 5, opacity: 0.26, "stroke-linecap": "round" });
+  terra += path(penOmbra, { stroke: inOmbra(scurisci(C.erbaScura, 0.3), luce), "stroke-width": 5.5, opacity: 0.3, "stroke-linecap": "round" });
   terra += path(penChiare, { stroke: inLuce(C.erbaChiara, luce), "stroke-width": 4, opacity: 0.22, "stroke-linecap": "round" });
+
+  // --- i fiori: puntini radi di tre colori terrosi, solo da vicino -------------
+  const zf = Math.max(0.1, o.cam.zoom);
+  if (zf > 0.55 && meteo.notte < 0.9) {
+    const semeFi = fnv1a32("collina/fiori");
+    const FIORI = ["#e9d27a", "#d9a3a8", "#f2efe0"] as const;
+    const d = ["", "", ""];
+    const densita = clamp((zf - 0.5) * 1.2);
+    for (let k = 0; k < 220; k++) {
+      const r = elemento(semeFi, k);
+      const soglia = r();
+      const x = r.tra(-6000, 6000);
+      const sotto = r.tra(24, 420);
+      const rr = r.tra(2.2, 3.6);
+      const c = r.intero(0, 2);
+      if (soglia > densita || x < v.x0 - 10 || x > v.x1 + 10) continue;
+      const y = luogo.quota(x) + sotto;
+      if (y < v.y0 - 10 || y > v.y1 + 10 || (luogo.acqua && x < luogo.acqua.riva + 60)) continue;
+      d[c] += ellisseD([x, y], rr, rr * 0.8) + ellisseD([x + rr * 1.6, y + rr * 0.9], rr * 0.7, rr * 0.55);
+    }
+    d.forEach((dd, c) => (terra += path(dd, { fill: inLuce(FIORI[c], luce), opacity: 0.8 * (1 - meteo.notte) })));
+  }
 
   // l'acqua al piede (p=1): a sinistra della riva
   const A = luogo.acqua;
@@ -488,44 +803,99 @@ function erbaCrinale(o: OpzPalco, v: Vista): string {
 }
 
 // ------------------------------------------------------------- cespugli --
-/** Cespugli e qualche alberello giovane sui due versanti. */
+/**
+ * Cespugli e alberelli sui due versanti: tre archetipi seminati (tondo, basso e
+ * largo, alberello con tronco e chioma), i lobi stratificati col lato in luce più
+ * chiaro e quello in ombra più scuro (secondo `luce.lato`), qualche foglia a
+ * pennellata sopra, l'ombra portata ai piedi. Tutto oscilla col vento.
+ */
 export function cespugli(o: OpzPalco, v: Vista): string {
   const { luce, defs, t, meteo, luogo } = o;
   const C = luogo.colori;
   const K = luogo.cespugli;
-  const grad = defs.lineare("cespuglio", [0, 0], [0, 1], [
-    [0, inLuce(mescola(C.bosco, C.erbaChiara, 0.3), luce)],
-    [0.6, inLuce(C.bosco, luce)],
-    [1, inOmbra(C.boscoScuro, luce)],
-  ], "objectBoundingBox");
+  const colLuce = inLuce(mescola(C.bosco, C.erbaChiara, 0.35), luce);
+  const colMedio = inLuce(C.bosco, luce);
+  const colOmbra = inOmbra(C.boscoScuro, luce);
+  const colFoglie = inLuce(mescola(C.bosco, C.erbaChiara, 0.55), luce);
+  const tronco = inOmbra("#4a3f33", luce);
+  const troncoLuce = inLuce("#7a6a55", luce);
   const semeCe = fnv1a32("versante/cespugli");
-  let s = "";
+  let ombre = "";
+  let scuri = "";
+  let medi = "";
+  let chiari = "";
+  let foglie = "";
+  let tronchi = "";
+  let tronchiLuce = "";
+  const lato = luce.lato;
   for (let i = 0; i < K.quanti; i++) {
     const r = elemento(semeCe, i);
+    // ogni cespuglio pesca TUTTO prima dello scarto
     const sinistra = r.moneta(K.sinistraProb);
     const x = sinistra ? r.tra(K.sinistra[0], K.sinistra[1]) : r.tra(K.destra[0], K.destra[1]);
     const sotto = r.tra(K.sotto[0], K.sotto[1]);
-    const y = luogo.quota(x) + sotto;
     const w = r.tra(40, 110) * (sinistra ? 1 : 0.6);
-    if (x < v.x0 - w || x > v.x1 + w || y < v.y0 - w || y > v.y1 + w) continue;
-    const pezzi: string[] = [];
-    const k = r.intero(4, 7);
+    const tipo = r.scegli(["tondo", "basso", "basso", "albero"] as const);
+    const k = r.intero(5, 8);
+    const lobi: [number, number, number, number][] = [];
+    for (let j = 0; j < k; j++) lobi.push([r.tra(-0.5, 0.5), r.tra(0, 0.25), r.tra(0.28, 0.46), r.tra(0.26, 0.42)]);
+    const hAlb = r.tra(170, 290);
+    const piega = r.segno(16);
+    const ramo = r.moneta(0.6) ? r.tra(0.3, 0.55) : 0;
+    const chiome: [number, number, number][] = [];
+    for (let j = 0; j < 6; j++) chiome.push([r.segno(1), r.segno(1), r.tra(0.6, 1)]);
+    const fogl: [number, number][] = [];
+    for (let j = 0; j < 5; j++) fogl.push([r.segno(1), r.tra(0, 1)]);
+    const y = luogo.quota(x) + sotto;
+    if (x < v.x0 - w || x > v.x1 + w || y < v.y0 - w - hAlb || y > v.y1 + w) continue;
     const vento = piegaErba(x, t, meteo) * 4;
-    for (let j = 0; j < k; j++) {
-      const u = j / (k - 1);
-      pezzi.push(ellisseD([x + (u - 0.5) * w * 1.3 + vento * u, y - Math.sin(u * Math.PI) * w * 0.5 - r.tra(0, w * 0.2)], w * r.tra(0.3, 0.45), w * r.tra(0.28, 0.4)));
+    const alberello = tipo === "albero" && sinistra;
+    // il centro delle chiome: a terra per i cespugli, in cima al tronco per l'alberello
+    const cx = alberello ? x + piega + vento * 2 : x;
+    const cy = alberello ? y - hAlb : y;
+    const W = alberello ? w * 1.4 : tipo === "basso" ? w * 1.5 : w;
+    const H = alberello ? w * 0.9 : tipo === "basso" ? w * 0.45 : w * 0.9;
+    ombre += `<g transform="translate(${n(x)} ${n(y)})">${ombraPortata(defs, `cespuglio-${i}`, luce, { larghezza: W * 0.7, lunghezza: alberello ? hAlb * 0.8 : H * 1.2, pendenza: luogo.pendenza(x), forza: 0.8 })}</g>`;
+    if (alberello) {
+      tronchi += `M${n(x)} ${n(y)}q${n(-4)} ${n(-hAlb * 0.5)} ${n(piega + vento * 2)} ${n(-hAlb)}`;
+      tronchiLuce += `M${n(x + 3 * lato)} ${n(y - 6)}q${n(-2)} ${n(-hAlb * 0.45)} ${n(piega * 0.9 + vento * 1.8 + 3 * lato)} ${n(-hAlb * 0.9)}`;
+      if (ramo) tronchi += `M${n(x + piega * ramo)} ${n(y - hAlb * ramo)}q${n(-lato * 20)} ${n(-14)} ${n(-lato * 46)} ${n(-30)}`;
+      for (const [dx, dy, rr] of chiome) {
+        const ex = cx + dx * W * 0.55;
+        const ey = cy + dy * H * 0.45;
+        const rx = w * 0.62 * rr;
+        const ry = w * 0.5 * rr;
+        medi += ellisseD([ex, ey], rx, ry);
+        // il lato in luce: una chioma più piccola spostata verso il sole; quello in ombra, dall'altra
+        chiari += ellisseD([ex + lato * rx * 0.3, ey - ry * 0.25], rx * 0.6, ry * 0.55);
+        scuri += ellisseD([ex - lato * rx * 0.3, ey + ry * 0.2], rx * 0.7, ry * 0.6);
+      }
+    } else {
+      for (const [u, su, rx, ry] of lobi) {
+        const ex = cx + u * W * 1.2 + vento * (u + 0.5);
+        const ey = cy - Math.sin((u + 0.5) * Math.PI) * H * 0.55 - su * H;
+        const Rx = W * rx;
+        const Ry = H * ry * 0.9 + 4;
+        scuri += ellisseD([ex, ey + Ry * 0.15], Rx, Ry);
+        medi += ellisseD([ex - lato * Rx * 0.08, ey - Ry * 0.12], Rx * 0.86, Ry * 0.8);
+        chiari += ellisseD([ex + lato * Rx * 0.3, ey - Ry * 0.4], Rx * 0.48, Ry * 0.42);
+      }
     }
-    s += path(pezzi.join(""), { fill: grad });
-    // qualche albero giovane dietro i cespugli più grandi
-    if (sinistra && w > 90 && sotto > 170 && r.moneta(0.4)) {
-      const h = r.tra(180, 280);
-      s += path(`M${n(x)} ${n(y)}q${n(-4)} ${n(-h * 0.5)} ${n(vento * 2)} ${n(-h)}`, { stroke: inOmbra("#4a3f33", luce), "stroke-width": 8, fill: "none", "stroke-linecap": "round" });
-      const ch: string[] = [];
-      for (let j = 0; j < 5; j++) ch.push(ellisseD([x + vento * 2 + r.segno(40), y - h + r.segno(40)], r.tra(40, 60), r.tra(34, 50)));
-      s += path(ch.join(""), { fill: grad });
+    for (const [dx, dy] of fogl) {
+      const fx = cx + dx * W * 0.5 + lato * W * 0.2;
+      const fy = cy - H * 0.5 - dy * H * 0.4;
+      foglie += `M${n(fx)} ${n(fy)}q${n(5)} ${n(-4)} ${n(10)} ${n(-1)}`;
     }
   }
-  return s;
+  return (
+    ombre +
+    path(tronchi, { stroke: tronco, "stroke-width": 8, fill: "none", "stroke-linecap": "round" }) +
+    path(tronchiLuce, { stroke: troncoLuce, "stroke-width": 2.5, fill: "none", "stroke-linecap": "round", opacity: 0.7 }) +
+    path(scuri, { fill: colOmbra }) +
+    path(medi, { fill: colMedio }) +
+    path(chiari, { fill: colLuce, opacity: 0.9 }) +
+    path(foglie, { stroke: colFoglie, "stroke-width": 2.6, fill: "none", "stroke-linecap": "round", opacity: 0.8 })
+  );
 }
 
 // -------------------------------------------------------------- canneto --
@@ -554,23 +924,52 @@ export function canneto(o: OpzPalco, v: { x0: number; x1: number }, davanti = fa
     steli += `M${n(x)} ${n(y)}Q${n(x + lean * h * 0.4)} ${n(y - h * 0.6)} ${pt(tip)}`;
     pennacchi += ellisseD([tip[0] + lean * 6, tip[1] + 8], 4, 14);
   }
+  // ai piedi del canneto, una striscia d'ombra leggera dal lato opposto alla luce
+  let ombra = "";
+  if (!davanti) {
+    const xa = Math.max(a, v.x0 - 40);
+    const xb = Math.min(b, v.x1 + 40);
+    const spost = -luce.lato * (30 + luce.radenza * 90);
+    for (let x = Math.floor(xa / 24) * 24; x <= xb; x += 24) {
+      const y = Math.min(luogo.quota(x), livelloAcqua) + 14;
+      ombra += `M${n(x + spost - 16)} ${n(y)}h${n(32)}`;
+    }
+  }
   return (
+    path(ombra, { stroke: "#1b1812", "stroke-width": 14, opacity: n(0.2 * luce.forzaOmbra), "stroke-linecap": "round" }) +
     path(steli, { stroke: inLuce(C.cannaScura, luce), "stroke-width": 3.2, fill: "none", "stroke-linecap": "round" }) +
     path(pennacchi, { fill: inLuce(C.canna, luce), opacity: 0.9 })
   );
 }
 
 // ---------------------------------------------------------- primo piano --
-export function primoPiano(o: OpzPalco, p: number): string {
+export type PrimoPiano = boolean | "erba" | "foglie";
+
+/**
+ * Il filtro di sfocatura del primo piano (la profondità di campo: il vicino è
+ * fuori fuoco, il lontano a fuoco — STILE_VISIVO §2). Va SOLO sul livello di
+ * primo piano, mai su tutto il fotogramma: costa quanto l'area che copre.
+ */
+export function filtroSfocatura(defs: Defs, id: string, std: number): string {
+  const pid = defs.idPieno(id);
+  return defs.add(id, `<filter id="${pid}" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="${n(std)}"/></filter>`);
+}
+
+/**
+ * L'erba di primo piano (p>1): steli alti nella parte bassa dello schermo, che
+ * a p>1 scorrono veloci. Con "foglie": rami con foglie larghe e scure che
+ * sfrecciano in primo piano — il POV basso e veloce di Zara (STILE_VISIVO §3).
+ */
+export function primoPiano(o: OpzPalco, p: number, tipo: PrimoPiano = "erba"): string {
   const { luce, t, meteo, luogo } = o;
   const C = luogo.colori;
   const v = vista(o.cam, p, 0.2);
+  if (tipo === "foglie") return foglieInPrimoPiano(o, p, v);
   const col = inOmbra(scurisci(C.erbaScura, 0.25), luce);
   const colC = inLuce(C.erbaChiara, luce);
   const semePP = fnv1a32("primo-piano/erba");
   let d = "";
   let dc = "";
-  // steli alti nella parte bassa dello schermo: a p>1 scorrono veloci
   for (let i = 0; i < 70; i++) {
     const r = elemento(semePP, i);
     const x = r.tra(-9000, 9000);
@@ -587,6 +986,82 @@ export function primoPiano(o: OpzPalco, p: number): string {
     else d += lama;
   }
   return path(d, { fill: col, opacity: 0.95 }) + path(dc, { fill: colC, opacity: 0.8 });
+}
+
+/** Rami con foglie larghe e scure in primo piano, dal basso e dai lati (il sottobosco che sfreccia). */
+function foglieInPrimoPiano(o: OpzPalco, p: number, v: Vista): string {
+  const { luce, t, meteo, luogo } = o;
+  const C = luogo.colori;
+  const scuro = inOmbra(scurisci(C.boscoScuro, 0.35), luce);
+  const medio = inOmbra(C.bosco, luce);
+  const semeF = fnv1a32("primo-piano/foglie");
+  let rami = "";
+  let foglie = "";
+  let foglieM = "";
+  // i rami stanno a destra e a sinistra nel mondo (scorrono in parallasse) ma salgono
+  // dal bordo basso dell'inquadratura: sono quelli che la camera attraversa
+  for (let i = 0; i < 160; i++) {
+    const r = elemento(semeF, i);
+    const x = r.tra(-9000, 9000);
+    const dy = r.tra(0, 120);
+    const lung = r.tra(220, 480);
+    const su = r.tra(0.5, 1.1);
+    const quante = r.intero(5, 9);
+    const fl: [number, number, number][] = [];
+    for (let j = 0; j < quante; j++) fl.push([r.tra(0.15, 1), r.segno(1), r.tra(22, 46)]);
+    const chiaro = r.moneta(0.35);
+    if (x < v.x0 - lung || x > v.x1 + lung) continue;
+    const baseY = v.y1 + 20 - dy;
+    const vento = piegaErba(x / p, t, meteo) * 30;
+    const tip: P = [x + lung * 0.35 + vento, baseY - lung * su];
+    rami += `M${n(x)} ${n(baseY)}Q${n(x + lung * 0.1)} ${n(baseY - lung * su * 0.5)} ${pt(tip)}`;
+    for (const [u, lato, rr] of fl) {
+      const fx = x + (tip[0] - x) * u + lato * rr * 0.5;
+      const fy = baseY + (tip[1] - baseY) * u;
+      // una foglia larga: due archi che si chiudono in punta
+      const tx = lato * rr * 1.5;
+      const ty = -rr * 1.1;
+      const px = -ty * 0.45;
+      const py = tx * 0.45;
+      const d = `M${n(fx)} ${n(fy)}q${n(tx / 2 + px)} ${n(ty / 2 + py)} ${n(tx)} ${n(ty)}q${n(-tx / 2 - px)} ${n(-ty / 2 - py)} ${n(-tx)} ${n(-ty)}Z`;
+      if (chiaro) foglieM += d;
+      else foglie += d;
+    }
+  }
+  return (
+    path(rami, { stroke: scuro, "stroke-width": 7, fill: "none", "stroke-linecap": "round" }) +
+    path(foglie, { fill: scuro, opacity: 0.96 }) +
+    path(foglieM, { fill: medio, opacity: 0.92 })
+  );
+}
+
+// ------------------------------------------------------------------ aria --
+/**
+ * Il pulviscolo nella luce calda: pochi puntini lenti, seminati nel mondo (p=1),
+ * solo di giorno e al tramonto quando la luce è radente. Niente raggi, niente
+ * aloni, niente scintille: è polvere che galleggia, si vede appena.
+ */
+export function pulviscolo(o: OpzPalco): string {
+  const { luce, meteo, t, luogo } = o;
+  const k = clamp(luce.forzaBordo) * (1 - meteo.notte) * (1 - meteo.temporale) * (1 - meteo.pioggia);
+  if (k < 0.1 || o.cam.zoom < 0.8) return "";
+  const v = vista(o.cam, 1, 0.1);
+  const seme = fnv1a32("aria/pulviscolo");
+  let d = "";
+  for (let i = 0; i < 60; i++) {
+    const r = elemento(seme, i);
+    const x0 = r.tra(-6000, 6000);
+    const sopra = r.tra(40, 520);
+    const vel = r.tra(4, 11);
+    const fase = r.tra(0, 7);
+    const rr = r.tra(1.4, 2.6);
+    const x = x0 + Math.sin(t * 0.3 + fase) * 14;
+    if (x < v.x0 || x > v.x1) continue;
+    const y = luogo.quota(x0) - sopra + Math.sin(t * 0.21 + fase * 1.7) * 18 - ((t * vel) % 90);
+    if (y < v.y0 || y > v.y1) continue;
+    d += ellisseD([x, y], rr, rr);
+  }
+  return path(d, { fill: luce.bordo, opacity: n(0.35 * k) });
 }
 
 // --------------------------------------------------------------- piena --

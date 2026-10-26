@@ -133,8 +133,11 @@ export interface OpzPalco {
    * `riflesso` (l'altezza a schermo, 0..1), il disco rimandato dall'acqua («vera due volte»).
    */
   luna?: { a: readonly [number, number]; r?: number; riflesso?: number };
-  /** Disegna l'erba di primo piano (p>1). */
-  primoPiano?: boolean;
+  /**
+   * Il primo piano (p>1), sfocato: `true` o "erba" gli steli alti; "foglie" i rami
+   * con le foglie larghe che sfrecciano (il POV basso e veloce di Zara).
+   */
+  primoPiano?: boolean | "erba" | "foglie";
   /** Mostra le mandrie lontane (dove il luogo ne ha). */
   mandrie?: boolean;
   /** Vapore di tepore sulla pietra (alba fredda). */

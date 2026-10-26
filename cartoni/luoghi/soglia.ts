@@ -16,7 +16,7 @@ import { type P, ellisseD, n, path, pt } from "../motore/svg";
 import { type Colori, type OpzPalco, creaLuogo } from "../scene/luogo";
 import { piegaErba } from "../scene/meteo";
 import { alberoSecco, bordoDiRoccia, pietraSegnata, posatoio, ramoSecco as ramo, roccia } from "../scene/oggetti";
-import { type Cresta, monti } from "../scene/pittura";
+import { type Collina, type Cresta, collineLontane, monti } from "../scene/pittura";
 
 // ------------------------------------------------------------ geografia --
 /** Il livello dell'acqua del lago e la riva. */
@@ -68,6 +68,37 @@ const C: Colori = {
 const CRESTE: readonly Cresta[] = [
   { seme: "monti/lontani", base: 250, alt: 520, col: C.monteLontano, fos: 0.5, x0: -3400, x1: -150, neve: true },
   { seme: "monti/medi", base: 290, alt: 380, col: C.monteMedio, fos: 0.3, x0: -3000, x1: -380 },
+];
+
+/**
+ * Gli strati di mezzo (la profondità): a sinistra le colline verdi oltre il lago
+ * (le sponde, col bosco sui crinali), a destra i prati dell'Aperto con le siepi
+ * e i filari lontani — monti e laghi, non savana. Tre profondità (p 0,45 /
+ * 0,6 / 0,75), ognuna col piede dove dall'alto incontra il lago e la pianura
+ * lontani; dal crinale restano dietro la collina, come è giusto.
+ */
+const STRATI: readonly { p: number; colline: readonly Collina[] }[] = [
+  {
+    p: 0.45,
+    colline: [
+      { seme: "soglia/sponde-a", base: 508, alt: 150, col: mescola(C.bosco, C.monteMedio, 0.45), fos: 0.5, x0: -9000, x1: -150, alberi: 0.5 },
+      { seme: "soglia/prati-a", base: 440, alt: 60, col: mescola(C.erbaAperto, C.monteLontano, 0.3), fos: 0.5, x0: 150, x1: 9000, alberi: 0.25 },
+    ],
+  },
+  {
+    p: 0.6,
+    colline: [
+      { seme: "soglia/sponde-b", base: 642, alt: 120, col: mescola(C.bosco, C.monteMedio, 0.2), fos: 0.32, x0: -9000, x1: -400, alberi: 0.8 },
+      { seme: "soglia/prati-b", base: 520, alt: 60, col: mescola(C.erbaAperto, C.erba, 0.4), fos: 0.32, x0: 300, x1: 9000, alberi: 0.45 },
+    ],
+  },
+  {
+    p: 0.75,
+    colline: [
+      { seme: "soglia/sponde-c", base: 800, alt: 90, col: C.bosco, fos: 0.16, x0: -9000, x1: -700, alberi: 1 },
+      { seme: "soglia/prati-c", base: 600, alt: 40, col: mescola(C.erbaAperto, C.erbaApertoScura, 0.3), fos: 0.16, x0: 500, x1: 9000, alberi: 0.6 },
+    ],
+  },
 ];
 
 /** L'Aperto all'orizzonte: una linea bassa, velata, e colline azzurre (non monti). */
@@ -283,6 +314,7 @@ export const SOGLIA = creaLuogo(
       { id: "lago", contenuto: lagoLontano(o, 0.16), p: 0.16 },
       { id: "aperto", contenuto: apertoLontano(o, 0.16), p: 0.16 },
       { id: "riva", contenuto: rivaMedia(o, 0.34), p: 0.34 },
+      ...STRATI.map((st) => ({ id: `strato${st.p}`, contenuto: collineLontane(o, st.p, st.colline), p: st.p })),
     ],
     oggetti: (o, inVista) => {
       const { luce, defs, luogo } = o;

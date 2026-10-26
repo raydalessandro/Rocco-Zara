@@ -35,8 +35,8 @@ export interface OpzScena {
   attori?: string;
   /** Attori davanti all'erba del crinale (es. un velo di canne). */
   davanti?: string;
-  /** L'erba di primo piano (p>1). */
-  primo?: boolean;
+  /** Il primo piano sfocato (p>1): `true`/"erba" gli steli, "foglie" i rami del sottobosco (POV di Zara). */
+  primo?: boolean | "erba" | "foglie";
   extra?: Livello[];
   extraDietro?: Livello[];
   /** Vapore di tepore sulla pietra (0..1). */

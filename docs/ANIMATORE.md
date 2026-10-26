@@ -221,6 +221,29 @@ chi le sta davanti, e al suo turno va all'orlo di buon passo, poi salta (`inCoda
   **allineati al mondo** (passi fissi o a potenze di due): niente sfarfallii.
 - Meteo e luce sono parametri (`Meteo`, `LUCI`), interpolabili nel tempo
   (`mescolaLuce`): il vento che gira a ep01 p.13 è `versoVento` da +1 a −1.
+- **Il palco vivo** (mai cartoon-flat, STILE_VISIVO §1-§3): tre cose che un fondale
+  piatto non ha, tutte nel kit e quindi in ogni episodio senza toccare i copioni.
+  *Profondità*: le **nuvole stanno nel mondo** (`nuvole`: due strati a parallasse,
+  p 0,04 e 0,09, seminati su tutta l'ascissa; camere diverse vedono cieli diversi,
+  le panoramiche le vedono scorrere, lo stesso punto rivede lo stesso cielo; derivano
+  col vento; il fondo prende la luce bassa al tramonto e all'alba); le **colline a
+  strati** (`collineLontane`: crinali morbidi, versante in ombra, alberi in silhouette,
+  il piede che sfuma nell'aria, il velo di foschia bassa) e il **bosco in silhouette**
+  (`boscoLontano`) tra i monti e il suolo — la Soglia ne ha tre (p 0,45 / 0,6 / 0,75),
+  il Lago del Vespro le sponde dietro il villaggio (p 0,4); e il **primo piano
+  sfocato** (`primoPiano: true | "erba" | "foglie"`: gli steli, o i rami con le foglie
+  larghe del POV basso di Zara; il livello porta un `feGaussianBlur` solo suo —
+  `filtroSfocatura` — mai su tutto il fotogramma). *Luce*: il suolo ha un **lato in
+  luce e uno in ombra** (dalla pendenza e da `luce.lato`, un gradiente lungo il
+  profilo, campioni allineati al mondo), le pennellate stanno a fasce che seguono il
+  profilo (più fitte e lunghe verso la camera), e **tutto porta ombra** (`ombraPortata`:
+  ellisse morbida dal lato opposto a `luce.lato`, lunga con `radenza`, con
+  `forzaOmbra`; rocce, pietre, alberi, cespugli, canne e i pupazzi — di notte un velo
+  appena). *Materia*: chiazze d'erba fisse nel mondo, fiori radi da vicino, la terra
+  nuda al piede delle rocce; i cespugli in tre archetipi seminati col lato in luce;
+  il pulviscolo nella luce radente (`pulviscolo`: niente raggi né aloni). Costo: un
+  fotogramma di ep01 è cresciuto di ~1,4× in SVG, ep04 di ~1,1× (misurato sui
+  provini a 960): il dettaglio sta vicino alla camera.
 - **I luoghi fatti**: `soglia.ts` (ep01: la Soglia di Spondalta) e `rivalba.ts`, il
   Lago del Vespro: `ORLO` (ep02: l'orlo di Rivalba, la riva dei villaggi — il molo basso,
   le barche a secco, le reti stese, il masso del Custode, la tana di canne, il ciglio col

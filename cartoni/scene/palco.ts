@@ -8,13 +8,13 @@
 //   i lontani del luogo (acqua, pianure, boschi…) → [extra dietro] →
 //   il suolo (terreno + cespugli + canneto + oggetti) → [extra] → gli attori →
 //   l'erba del crinale → [attori davanti] → [la piena, e quel che le sta sopra] →
-//   [primo piano] → la pioggia.
+//   [l'aria] → [primo piano, sfocato] → la pioggia.
 //
 // Tutto è funzione di (luogo, camera, t, luce, meteo): niente stato.
 
 import { type Livello, vista } from "../motore/fotogramma";
 import type { OpzPalco } from "./luogo";
-import { bancoTemporale, canneto, cespugli, cielo, piena, pioggia, primoPiano, terreno } from "./pittura";
+import { bancoTemporale, canneto, cespugli, cielo, filtroSfocatura, piena, pioggia, primoPiano, pulviscolo, terreno } from "./pittura";
 
 /** Tutti i livelli del palco, dal cielo al primo piano. */
 export function palco(o: OpzPalco): Livello[] {
@@ -38,7 +38,14 @@ export function palco(o: OpzPalco): Livello[] {
   ];
   // la piena (ep04): l'acqua alta davanti al piano dei personaggi, e la schiuma del luogo
   if (o.piena) liv.push({ id: "piena", contenuto: piena(o) + (luogo.sullaPiena?.(o, inVista) ?? ""), p: 1 });
-  if (o.primoPiano) liv.push({ id: "primo", contenuto: primoPiano(o, 1.7), p: 1.7 });
+  // l'aria (il pulviscolo nella luce bassa) sta sul piano dei personaggi, davanti a loro
+  liv.push({ id: "aria", contenuto: pulviscolo(o), p: 1 });
+  // il primo piano, sfocato: la profondità di campo (il filtro solo su questo gruppo piccolo)
+  if (o.primoPiano) {
+    const tipo = o.primoPiano === true ? "erba" : o.primoPiano;
+    const p = tipo === "foglie" ? 1.9 : 1.7;
+    liv.push({ id: "primo", contenuto: primoPiano(o, p, tipo), p, filtro: filtroSfocatura(o.defs, "sfocatura-primo", tipo === "foglie" ? 5 : 3.5) });
+  }
   liv.push({ id: "pioggia", contenuto: pioggia(o), schermo: true });
   return liv;
 }

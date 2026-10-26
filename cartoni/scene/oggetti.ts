@@ -14,6 +14,7 @@ import { caso } from "../motore/caso";
 import { type Defs, type P, curva, ellisseD, g, n, path, pt } from "../motore/svg";
 import { clamp } from "../motore/tempo";
 import type { Luogo, OpzPalco } from "./luogo";
+import { ombraPortata } from "./pittura";
 
 /** Una roccia tonda con licheni e muschio, appoggiata al suolo. */
 export function roccia(luogo: Luogo, seme: string, x: number, w: number, h: number, luce: Luce, defs: Defs, affonda = 0.2): string {
@@ -34,7 +35,10 @@ export function roccia(luogo: Luogo, seme: string, x: number, w: number, h: numb
     [0.6, inLuce(C.roccia, luce)],
     [1, inOmbra(C.rocciaScura, luce)],
   ]);
-  let s = path(d, { fill: url });
+  // la terra nuda attorno al piede, e l'ombra che la roccia porta
+  let s = path(ellisseD([x, y + h * 0.08], w * 1.25, h * 0.26), { fill: inLuce(C.terra, luce), opacity: 0.45 });
+  s += g({ transform: `translate(${n(x)} ${n(y + h * 0.1)})` }, ombraPortata(defs, `roccia-${seme}`, luce, { larghezza: w, lunghezza: h * 1.6, pendenza: luogo.pendenza(x) }));
+  s += path(d, { fill: url });
   const clip = defs.clip(`clip-roccia-${seme}`, d);
   let dentro = "";
   let lic = "";
@@ -76,7 +80,8 @@ export function pietraSegnata(o: OpzPalco, x: number, nome = "segnata"): string 
     [0, inLuce(mescola(C.roccia, "#b9a98a", 0.35), luce)],
     [1, inOmbra(C.rocciaScura, luce)],
   ]);
-  let s = path(d, { fill: url });
+  let s = g({ transform: `translate(${n(x)} ${n(y + 12)})` }, ombraPortata(defs, `pietra-${nome}`, luce, { larghezza: w, lunghezza: 24, forza: 0.7 }));
+  s += path(d, { fill: url });
   // i segni sul piano (visti di taglio: piccole conche, una accanto all'altra)
   let cop = "";
   for (let i = 0; i < 6; i++) {
@@ -127,7 +132,8 @@ export function pietraCoppellata(o: OpzPalco, x: number, seme: string, w = 300, 
     [0, inLuce(C.roccia, luce)],
     [1, inOmbra(C.rocciaScura, luce)],
   ]);
-  let s = path(fianco, { fill: gF });
+  let s = g({ transform: `translate(${n(x)} ${n(y + 4)})` }, ombraPortata(defs, `coppellata-${seme}`, luce, { larghezza: hw, lunghezza: h * 1.4, pendenza: luogo.pendenza(x) }));
+  s += path(fianco, { fill: gF });
   // il piano: un ovale irregolare (la pietra è stata spaccata, non tornita)
   const bordo: P[] = [];
   for (let i = 0; i < 12; i++) {
@@ -215,7 +221,8 @@ export function bordoDiRoccia(o: OpzPalco, x: number, nome = "bordo"): string {
     [0, media],
     [1, scura],
   ]);
-  let s = path(poliMorbido(base), { fill: g1 });
+  let s = g({ transform: `translate(${n(x)} ${n(y + 2)})` }, ombraPortata(defs, `masso-${nome}`, luce, { larghezza: 150, lunghezza: 160, pendenza: luogo.pendenza(x) }));
+  s += path(poliMorbido(base), { fill: g1 });
   // l'incavo sotto la lastra (il riparo): ombra profonda
   s += path(poliMorbido([
     [x - 40, y - 2],
@@ -285,15 +292,16 @@ export function ramoSecco(luogo: Luogo, x: number, luce: Luce, rotto: number): s
 
 /** Un albero secco (un posatoio per gli uccelli). */
 export function alberoSecco(o: OpzPalco, x: number): string {
-  const { luce, luogo } = o;
+  const { luce, luogo, defs } = o;
   const y = luogo.quota(x);
   const col = inLuce("#6e6152", luce);
+  const ombra = g({ transform: `translate(${n(x)} ${n(y)})` }, ombraPortata(defs, "albero-secco", luce, { larghezza: 14, lunghezza: 250, pendenza: luogo.pendenza(x), forza: 0.6 }));
   const d =
     `M${n(x)} ${n(y)}C${n(x - 6)} ${n(y - 90)} ${n(x + 10)} ${n(y - 160)} ${n(x - 4)} ${n(y - 250)}` +
     `M${n(x + 2)} ${n(y - 150)}C${n(x + 40)} ${n(y - 180)} ${n(x + 90)} ${n(y - 190)} ${n(x + 150)} ${n(y - 230)}` +
     `M${n(x - 2)} ${n(y - 200)}C${n(x - 40)} ${n(y - 230)} ${n(x - 70)} ${n(y - 250)} ${n(x - 110)} ${n(y - 300)}` +
     `M${n(x + 80)} ${n(y - 196)}l${n(20)} ${n(-40)}`;
-  return path(d, { stroke: col, "stroke-width": 9, fill: "none", "stroke-linecap": "round" });
+  return ombra + path(d, { stroke: col, "stroke-width": 9, fill: "none", "stroke-linecap": "round" });
 }
 
 /**
@@ -302,7 +310,7 @@ export function alberoSecco(o: OpzPalco, x: number): string {
  * dietro, il colore, la luce in cima). Ogni albero ha il suo seme e il suo tono.
  */
 export function alberoDAutunno(o: OpzPalco, x: number, seme: string, h = 520): string {
-  const { luce, luogo } = o;
+  const { luce, luogo, defs } = o;
   const r = caso("albero/" + seme);
   const y = luogo.quota(x) + 6;
   const toni = ["#8a7a3c", "#a8843a", "#96603a", "#6f7442", "#b3923f"];
@@ -314,7 +322,8 @@ export function alberoDAutunno(o: OpzPalco, x: number, seme: string, h = 520): s
   // il tronco: largo alla base, sottile in alto, un poco storto
   const cima: P = [x + piega, y - h * 0.62];
   const tronco = `M${n(x - 26)} ${n(y)}C${n(x - 20)} ${n(y - h * 0.3)} ${n(cima[0] - 14)} ${n(y - h * 0.45)} ${n(cima[0] - 8)} ${n(cima[1])}L${n(cima[0] + 8)} ${n(cima[1])}C${n(cima[0] + 12)} ${n(y - h * 0.4)} ${n(x + 20)} ${n(y - h * 0.25)} ${n(x + 28)} ${n(y)}Z`;
-  let s = path(tronco, { fill: corteccia });
+  let s = g({ transform: `translate(${n(x)} ${n(y)})` }, ombraPortata(defs, `albero-${seme}`, luce, { larghezza: 40, lunghezza: h * 0.7, pendenza: luogo.pendenza(x), forza: 0.8 }));
+  s += path(tronco, { fill: corteccia });
   s += path(`M${n(x + 8)} ${n(y)}C${n(x + 10)} ${n(y - h * 0.25)} ${n(cima[0] + 4)} ${n(y - h * 0.42)} ${n(cima[0] + 6)} ${n(cima[1])}`, { stroke: cortecciaS, "stroke-width": 10, fill: "none", opacity: 0.6 });
   // i rami
   const rami = `M${n(x + piega * 0.4)} ${n(y - h * 0.4)}Q${n(x + 60)} ${n(y - h * 0.5)} ${n(x + 120 + r.segno(20))} ${n(y - h * 0.62)}M${n(x + piega * 0.6)} ${n(y - h * 0.5)}Q${n(x - 50)} ${n(y - h * 0.58)} ${n(x - 110 + r.segno(20))} ${n(y - h * 0.7)}`;
