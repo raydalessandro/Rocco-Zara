@@ -4,12 +4,17 @@
 // giusta), ricavare la fase del passo dalla strada fatta (così i piedi non
 // scivolano), far tremare la camera quando un ramo esplode.
 
-import { type Luce } from "../motore/colore";
+import { type Luce, inLuce } from "../motore/colore";
 import { type Camera } from "../motore/fotogramma";
-import { rumore1 } from "../motore/caso";
-import { type Defs, type P, g, n, path } from "../motore/svg";
-import { clamp } from "../motore/tempo";
-import type { Luogo } from "./luogo";
+import { elemento, fnv1a32, rumore1 } from "../motore/caso";
+import { type Defs, type P, ellisseD, g, n, path } from "../motore/svg";
+import { anticipo, assesto, clamp, molla } from "../motore/tempo";
+import type { Luogo, Passaggio } from "./luogo";
+
+// L'anticipazione e l'assestamento (motore/tempo.ts) sono attrezzi della regia: prima di
+// uno scatto ci si raccoglie (`anticipo` → la posa `carica` di Zara e Cervara), all'arrivo
+// si cede e si torna (`assesto`, una `molla` smorzata). Qui si riesportano per i copioni.
+export { anticipo, assesto, molla };
 
 /** Quel che serve di un luogo per metterci qualcuno sopra. */
 export type Suolo = Pick<Luogo, "quota" | "pendenza">;
@@ -55,6 +60,83 @@ export function inPunto(p: P, disegno: string, o: { verso?: 1 | -1; scala?: numb
   const sc = o.scala ?? 1;
   return g({ transform: `translate(${n(p[0])} ${n(p[1])})rotate(${n(o.ang ?? 0)})scale(${Math.round(verso * sc * 1000) / 1000} ${Math.round(sc * 1000) / 1000})` }, disegno);
 }
+
+// ------------------------------------------------- il mondo reagisce ai pupazzi --
+/**
+ * La polvere sotto i passi: a ogni appoggio uno sbuffo basso che si allarga e sbiadisce
+ * lungo l'appoggio (il piede in appoggio è fermo nel mondo: lo sbuffo gli sta
+ * attorno). Per ogni piede: la x locale, la fase (col suo sfasamento) e il duty
+ * dell'appoggio. Seminato per piede e per passo: ogni sbuffo è il suo. Fisico: terra
+ * sollevata, niente scintille. Non si chiama sull'acqua né con la pioggia o il fango.
+ */
+export function polvere(piedi: readonly (readonly [number, number, number])[], forza: number, seme: string, luce: Luce): string {
+  if (forza < 0.3) return "";
+  const s = fnv1a32(seme);
+  const col = inLuce("#cbbb9c", luce);
+  let d = "";
+  let op = 0;
+  piedi.forEach(([x, f, duty], j) => {
+    const frac = f - Math.floor(f);
+    if (frac >= duty) return;
+    const u = frac / duty; // 0 all'appoggio → 1 allo stacco
+    const r = elemento(s, Math.floor(f) * 7 + j);
+    const k = (1 - u) ** 0.9 * (0.6 + 0.4 * forza);
+    op = Math.max(op, k);
+    for (let i = 0; i < 3; i++) {
+      const dx = r.tra(-14, 10) - u * r.tra(18, 40);
+      const rx = r.tra(8, 14) + u * r.tra(22, 36);
+      const ry = r.tra(3, 5) + u * r.tra(5, 9);
+      d += ellisseD([x + dx, -2 - u * r.tra(4, 12) - i * 2], rx, ry);
+    }
+  });
+  return d ? path(d, { fill: col, opacity: Math.round(op * 0.34 * 100) / 100 }) : "";
+}
+
+/**
+ * Le scie di velocità: pochi tratti orizzontali semitrasparenti che restano indietro
+ * (verso −x locale: il pupazzo guarda a +x) dietro i punti dati — le zampe, il dorso —
+ * quando si corre forte. `forza` 0..1 scala lunghezza e opacità; seminate per punto.
+ */
+export function scia(punti: readonly P[], forza: number, seme: string, colore: string, fase = 0): string {
+  if (forza <= 0.05) return "";
+  const s = fnv1a32(seme);
+  let d = "";
+  punti.forEach((p, j) => {
+    const r = elemento(s, j);
+    const L = (40 + r.tra(0, 50)) * forza;
+    const dy = r.segno(3) + Math.sin(fase * Math.PI * 2 + j) * 2;
+    d += `M${n(p[0] - 14)} ${n(p[1] + dy)}h${n(-L)}`;
+  });
+  return path(d, { stroke: colore, "stroke-width": 3, "stroke-linecap": "round", fill: "none", opacity: Math.round(0.34 * forza * 100) / 100 });
+}
+
+/**
+ * Nel POV (la camera che insegue da vicino): qualche stelo di primo piano «stirato»
+ * dal moto — strisce lunghe e tenui, fisse nel mondo a parallasse `p`, che la camera
+ * fa sfrecciare. `forza` 0..1; `attorno` è l'ascissa del mondo (p=1) attorno a cui
+ * stanno; `quota` la funzione del suolo.
+ */
+export function steliStirati(attorno: number, verso: 1 | -1, forza: number, quota: (x: number) => number, luce: Luce, p = 1.7): string {
+  if (forza <= 0.05) return "";
+  const s = fnv1a32("pov/steli");
+  const col = inLuce("#6d7a3a", luce);
+  const passo = 140;
+  const i0 = Math.floor((attorno * p - 1400) / passo);
+  const i1 = Math.ceil((attorno * p + 1400) / passo);
+  let d = "";
+  for (let i = i0; i <= i1; i++) {
+    const r = elemento(s, i + 500000);
+    if (r() > 0.55) continue;
+    const x = i * passo + r.tra(0, passo);
+    const y = quota(x / p) * p + r.tra(-60, 140);
+    const L = (120 + r.tra(0, 180)) * forza;
+    d += `M${n(x)} ${n(y)}h${n(-L * verso)}`;
+  }
+  return path(d, { stroke: col, "stroke-width": 7, "stroke-linecap": "round", fill: "none", opacity: Math.round(0.22 * forza * 100) / 100 });
+}
+
+/** Un passaggio registrato sul palco (vedi `OpzPalco.passaggi`): chi è passato di qui piega l'erba. */
+export const passaggio = (x: number, raggio: number, forza: number, verso: 1 | -1): Passaggio => ({ x, raggio, forza, verso });
 
 /** La camera a metà strada tra due inquadrature (lo zoom si mescola in scala logaritmica: il dolly è regolare). */
 export const camTra = (a: Camera, b: Camera, k: number): Camera => ({

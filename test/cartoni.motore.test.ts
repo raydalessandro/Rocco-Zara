@@ -29,7 +29,13 @@ import { aSchermo, inSvg, matriceLivello } from "../cartoni/motore/fotogramma";
 import { type Episodio, durata, fotogramma, postoA, scaletta, suoni } from "../cartoni/motore/montaggio";
 import { segmenta, sillabe, sillabeParola } from "../cartoni/motore/parola";
 import { Defs } from "../cartoni/motore/svg";
-import { ease, traccia } from "../cartoni/motore/tempo";
+import { anticipo, assesto, ease, molla, traccia } from "../cartoni/motore/tempo";
+import { battito, saccade, vitaCamera } from "../cartoni/motore/vita";
+import { beccheggio, catenaInseguitrice, molleggio } from "../cartoni/cast/anatomia";
+import { rocco } from "../cartoni/cast/rocco";
+import { zara } from "../cartoni/cast/zara";
+import { cameraViva, type Inquadratura } from "../cartoni/motore/montaggio";
+import { METEO_SERENO, piegaErba, pieghaDiPassaggio } from "../cartoni/scene/meteo";
 import { type Battute, type Narrazione, boccaBattuta, boccaRipresa, chiaveClip, conVoce, daNarrare, daRecitare, impronta, pianifica } from "../cartoni/motore/voce";
 import { type Brani, postiDeiBrani, versiCantati } from "../cartoni/audio/brani";
 import { DURATA_EPISODIO, puntataDi, puntate, titoliVolumi, titoloDallaProsa } from "../cartoni/motore/serie";
@@ -39,7 +45,6 @@ import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, RIVE, RIVE_
 import type { OpzPalco, Piena } from "../cartoni/scene/luogo";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
-import { METEO_SERENO } from "../cartoni/scene/meteo";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
 import { boscoLontano, collineLontane, nuvole, ombraPortata, primoPiano } from "../cartoni/scene/pittura";
 
@@ -231,6 +236,135 @@ describe("cartoni — attrezzi e luoghi", () => {
 
   it("le didascalie vanno a capo in al più tre righe", () => {
     expect(aCapo("Uno scatto, il luccichio nel becco, e via bassa sopra il canneto, verso sud, senza finire né la frase né il lavoro.").length).toBeLessThanOrEqual(3);
+  });
+});
+
+describe("cartoni — pupazzi e camera vivi (il movimento)", () => {
+  /** La testa di un pupazzo: dove sta e di quanto è girata (l'ultimo gruppo translate/rotate/scale della testa). */
+  const testa = (svg: string, scala: string) => {
+    const m = [...svg.matchAll(new RegExp(`translate\\(([-\\d.]+) ([-\\d.]+)\\)rotate\\(([-\\d.]+)\\)scale\\(${scala}\\)`, "g"))];
+    expect(m.length).toBeGreaterThan(0);
+    const u = m[m.length - 1];
+    return { x: Number(u[1]), y: Number(u[2]), ang: Number(u[3]) };
+  };
+
+  it("nel passo il bacino sale e scende e il tronco beccheggia (a fasi diverse la posa cambia; i piedi in appoggio no)", () => {
+    // il molleggio: due appoggi per ciclo, sotto a 0 e 0,5, sopra a 0,25 e 0,75; la durezza non cambia dove
+    for (const d of [0.55, 1, 1.4]) {
+      expect(molleggio(0, 6, d)).toBeCloseTo(3, 9);
+      expect(molleggio(0.5, 6, d)).toBeCloseTo(3, 9);
+      expect(molleggio(0.25, 6, d)).toBeCloseTo(-3, 9);
+      for (let f = 0; f < 1; f += 0.01) expect(Math.abs(molleggio(f, 6, d))).toBeLessThanOrEqual(3 + 1e-9);
+    }
+    // a sasso: col fondo secco il corpo sta più a lungo in basso
+    expect(molleggio(0.1, 6, 0.55)).toBeLessThan(molleggio(0.1, 6, 1));
+    // il beccheggio cambia segno nel ciclo
+    expect(beccheggio(0.1, 2) * beccheggio(0.35, 2)).toBeLessThan(0);
+    // sui pupazzi: la testa sta ad altezze diverse e gira di gradi diversi a fasi diverse del passo
+    const L = LUCI.giorno;
+    const campione = (chi: "zara" | "rocco", f: number) => {
+      const defs = new Defs("p-");
+      const svg = chi === "zara" ? zara({ t: 1, andatura: "passo", fase: f }, { defs, luce: L, id: "z" }) : rocco({ t: 1, andatura: "passo", fase: f }, { defs, luce: L, id: "r" });
+      return { ...testa(svg, chi === "zara" ? "1.26" : "[\\d.]+ 1.16"), svg };
+    };
+    for (const chi of ["zara", "rocco"] as const) {
+      const fasi = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875];
+      const ys = fasi.map((f) => campione(chi, f).y);
+      expect(Math.max(...ys) - Math.min(...ys)).toBeGreaterThan(2);
+      const angs = fasi.map((f) => campione(chi, f).ang);
+      expect(Math.max(...angs) - Math.min(...angs)).toBeGreaterThan(1.5);
+    }
+  });
+
+  it("la coda insegue: a un cambio brusco la punta arriva dopo la base (e va oltre)", () => {
+    const gradino = (t: number) => (t >= 0 ? 1 : 0);
+    const a = catenaInseguitrice(gradino, 6, 0.05, 0.1); // la base è già partita, la punta no
+    expect(a[0]).toBe(1);
+    expect(a[5]).toBe(0);
+    const b = catenaInseguitrice(gradino, 6, 1, 0.1); // a regime: la punta è andata oltre
+    expect(b[0]).toBe(1);
+    expect(b[5]).toBeGreaterThan(1);
+    // la punta arriva esattamente dopo (n−1)·ritardo
+    expect(catenaInseguitrice(gradino, 6, 0.49, 0.1)[5]).toBe(0);
+    expect(catenaInseguitrice(gradino, 6, 0.51, 0.1)[5]).toBeGreaterThan(0);
+  });
+
+  it("anticipo, assesto e molla sono puri, stanno in 0..1 e tornano a riposo", () => {
+    for (let t = -3; t < 6; t += 0.013) {
+      for (const v of [anticipo(t, 2, 0.6), assesto(t, 2, 0.8), molla(t, 2, 0.8, 2)]) {
+        expect(v).toBeGreaterThanOrEqual(0);
+        expect(v).toBeLessThanOrEqual(1);
+      }
+      expect(anticipo(t, 2, 0.6)).toBe(anticipo(t, 2, 0.6));
+    }
+    expect(anticipo(2, 2, 0.6)).toBeCloseTo(1, 6); // raccolta massima all'istante dello scatto
+    expect(anticipo(1.3, 2, 0.6)).toBe(0);
+    expect(anticipo(2.5, 2, 0.6)).toBe(0);
+    expect(assesto(2.1, 2, 0.8)).toBeGreaterThan(0.2); // cede subito dopo l'arrivo
+    expect(assesto(1.9, 2, 0.8)).toBe(0);
+    expect(assesto(2.9, 2, 0.8)).toBe(0);
+    expect(molla(2.8, 2, 0.8)).toBeCloseTo(0, 9);
+  });
+
+  it("la vita da fermi è seminata: due istanze non battono le ciglia né guardano in sincrono, e ognuna è sempre uguale a se stessa", () => {
+    let uguali = 0;
+    let n = 0;
+    for (let t = 0; t < 60; t += 0.05) {
+      expect(battito(t, 1)).toBe(battito(t, 1));
+      expect(saccade(t, 7)).toBe(saccade(t, 7));
+      if (battito(t, 1) > 0.5 && battito(t, 2) > 0.5) uguali++;
+      if (battito(t, 1) > 0.5) n++;
+    }
+    expect(n).toBeGreaterThan(5);
+    expect(uguali).toBeLessThan(n / 2);
+  });
+
+  it("la micro-vita della camera è deterministica, resta nei limiti, sparisce con `fissa` e scala a zero quando la camera corre", () => {
+    for (let t = 0; t < 40; t += 0.37) {
+      const v = vitaCamera("s14", t);
+      expect(v).toEqual(vitaCamera("s14", t));
+      expect(Math.abs(v.dx)).toBeLessThanOrEqual(6);
+      expect(Math.abs(v.dy)).toBeLessThanOrEqual(6);
+      expect(Math.abs(v.z - 1)).toBeLessThanOrEqual(0.005);
+      const corre = vitaCamera("s14", t, 5000);
+      expect(Math.abs(corre.dx)).toBeLessThan(0.06);
+      expect(Math.abs(corre.z - 1)).toBeLessThan(0.0001);
+    }
+    // due inquadrature non derivano allo stesso modo
+    expect(vitaCamera("s14", 3).dx).not.toBeCloseTo(vitaCamera("s19", 3).dx, 3);
+    // nel montaggio: ferma → la camera deriva un poco; fissa → resta quella; in corsa → quasi niente
+    const ferma: Inquadratura = { id: "f", titolo: "", pagina: 1, durata: 5, disegna: () => ({ cam: { x: 100, y: -50, zoom: 1.5 }, livelli: [{ id: "a", contenuto: "<g/>" }] }) };
+    const fissa: Inquadratura = { ...ferma, id: "g", disegna: () => ({ cam: { x: 100, y: -50, zoom: 1.5, fissa: true }, livelli: [{ id: "a", contenuto: "<g/>" }] }) };
+    const corre: Inquadratura = { ...ferma, id: "h", disegna: (t) => ({ cam: { x: 100 + 400 * t, y: -50, zoom: 1.5 }, livelli: [{ id: "a", contenuto: "<g/>" }] }) };
+    const macro: Inquadratura = { ...ferma, id: "m", disegna: () => ({ cam: { x: 0, y: 0, zoom: 1 }, livelli: [{ id: "a", contenuto: "<g/>", schermo: true }] }) };
+    let mossa = 0;
+    for (const t of [0.5, 1.7, 3.1]) {
+      const c = cameraViva(ferma, ferma.disegna(t, new Defs(), { t, bocca: () => 0 }), t);
+      mossa = Math.max(mossa, Math.abs(c.x - 100) * 1.5, Math.abs(c.y + 50) * 1.5);
+      expect(Math.abs(c.x - 100) * 1.5).toBeLessThanOrEqual(6);
+      expect(cameraViva(fissa, fissa.disegna(t, new Defs(), { t, bocca: () => 0 }), t)).toEqual({ x: 100, y: -50, zoom: 1.5, fissa: true });
+      const k = cameraViva(corre, corre.disegna(t, new Defs(), { t, bocca: () => 0 }), t);
+      expect(Math.abs(k.x - (100 + 400 * t)) * 1.5).toBeLessThan(0.05);
+      const m = cameraViva(macro, macro.disegna(t, new Defs(), { t, bocca: () => 0 }), t);
+      expect(m.vitaSchermo).toBeDefined();
+      expect(m.x).toBe(0);
+    }
+    expect(mossa).toBeGreaterThan(0.5);
+  });
+
+  it("i passaggi piegano l'erba vicina e non quella lontana: via da chi passa davanti, strascico dietro", () => {
+    const p = { x: 1000, raggio: 150, forza: 1, verso: 1 as const };
+    expect(pieghaDiPassaggio(1060, p)).toBeGreaterThan(0.3); // davanti: via da lui (verso +x)
+    expect(pieghaDiPassaggio(940, p)).toBeLessThan(-0.3); // dietro: via da lui (verso −x)
+    expect(pieghaDiPassaggio(3000, p)).toBe(0);
+    expect(pieghaDiPassaggio(-500, p)).toBe(0);
+    // lo strascico dietro è più lungo della campana davanti
+    expect(Math.abs(pieghaDiPassaggio(1000 - 300, p))).toBeGreaterThan(Math.abs(pieghaDiPassaggio(1000 + 300, p)));
+    // nel kit: con o senza passaggi, lontano l'erba è la stessa; vicino no
+    expect(piegaErba(4000, 1, METEO_SERENO, [p])).toBe(piegaErba(4000, 1, METEO_SERENO));
+    expect(piegaErba(1080, 1, METEO_SERENO, [p])).not.toBe(piegaErba(1080, 1, METEO_SERENO));
+    // girato dall'altra parte, davanti è a sinistra
+    expect(pieghaDiPassaggio(940, { ...p, verso: -1 })).toBeLessThan(-0.3);
   });
 });
 

@@ -26,7 +26,7 @@ import { ALTEZZA, LARGHEZZA, aSchermo, op, vista } from "../motore/fotogramma";
 import { type Defs, type P, ellisseD, g, n, path, pt } from "../motore/svg";
 import { clamp, smooth } from "../motore/tempo";
 import type { OpzPalco } from "./luogo";
-import { piegaErba } from "./meteo";
+import { piegaErba, pieghePassaggi } from "./meteo";
 
 export type Vista = { x0: number; x1: number; y0: number; y1: number };
 
@@ -742,7 +742,7 @@ function erbaCrinale(o: OpzPalco, v: Vista): string {
   let medi = "";
   let chiari = "";
   const lama = (x: number, y: number, h: number, l: number) => {
-    const piega = piegaErba(x, t, meteo);
+    const piega = piegaErba(x, t, meteo, o.passaggi); // gancio: l'erba si apre al passaggio (scene/meteo.ts)
     const tip: P = [x + (piega + l) * h, y - h * (1 - Math.abs(piega) * 0.25)];
     const ctrl: P = [x + (piega * 0.3 + l * 0.5) * h, y - h * 0.55];
     const w = Math.max(1.2, h * 0.07);
@@ -919,7 +919,7 @@ export function canneto(o: OpzPalco, v: { x0: number; x1: number }, davanti = fa
     const scarto = r.segno(0.08);
     if (x < v.x0 - 40 || x > v.x1 + 40) continue;
     const y = Math.min(luogo.quota(x), livelloAcqua) + dy + (davanti ? 30 : 0);
-    const lean = piegaErba(x * 1.5, t, meteo) * 0.35 + scarto;
+    const lean = piegaErba(x * 1.5, t, meteo) * 0.35 + scarto + pieghePassaggi(x, o.passaggi) * 0.35; // gancio: il canneto si apre al passaggio (scene/meteo.ts)
     const tip: P = [x + lean * h, y - h];
     steli += `M${n(x)} ${n(y)}Q${n(x + lean * h * 0.4)} ${n(y - h * 0.6)} ${pt(tip)}`;
     pennacchi += ellisseD([tip[0] + lean * 6, tip[1] + 8], 4, 14);

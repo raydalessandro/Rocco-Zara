@@ -183,8 +183,15 @@ const fine = (x: number): string => {
 export class Defs {
   private voci = new Map<string, string>();
 
-  /** `prefisso` separa gli id di due inquadrature disegnate insieme (dissolvenza). */
-  constructor(private readonly prefisso = "") {}
+  /**
+   * `prefisso` separa gli id di due inquadrature disegnate insieme (dissolvenza).
+   * `sonda`: il montaggio sta solo chiedendo la camera (per misurarne la corsa): il
+   * palco può risparmiarsi la pittura (scene/palcoscenico.ts).
+   */
+  constructor(
+    private readonly prefisso = "",
+    readonly sonda = false,
+  ) {}
 
   has(id: string): boolean {
     return this.voci.has(this.prefisso + id);

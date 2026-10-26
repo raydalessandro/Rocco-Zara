@@ -86,3 +86,47 @@ export function piedeNelPasso(fase: number, falcata: number, alzata: number, dut
 
 /** Fasi delle quattro zampe nel passo laterale (PS, AS, PD, AD). */
 export const FASI_PASSO = { postSin: 0, antSin: 0.25, postDes: 0.5, antDes: 0.75 } as const;
+
+// -------------------------------------------------------- il peso nel passo --
+/**
+ * Il molleggio del bacino nel passo: due appoggi per ciclo; il corpo sprofonda
+ * sull'appoggio e si solleva nella spinta. Restituisce lo spostamento in y
+ * (+ = giù) in [−alto/2, +alto/2]. `durezza` < 1 fa il fondo secco e la cima
+ * morbida (la massa che si ferma di colpo sulla zampa, «a sasso»: Rocco);
+ * 1 è un'onda elastica (Zara); > 1 resta su e cede poco.
+ */
+export function molleggio(fase: number, alto: number, durezza = 1, sfasa = 0): number {
+  const s = (fase * 2 + sfasa) - Math.floor(fase * 2 + sfasa); // 0 all'appoggio
+  const c = 0.5 - 0.5 * Math.cos(Math.PI * 2 * s); // 0 all'appoggio, 1 a metà spinta
+  return alto * (0.5 - Math.pow(c, durezza));
+}
+
+/**
+ * Il beccheggio del tronco nel passo: gradi (+ = il davanti scende) in fase col
+ * ciclo — quando i posteriori spingono il davanti si alza un poco. Applicato alla
+ * spina come una rotazione attorno al suo centro (vedi `beccheggia`).
+ */
+export const beccheggio = (fase: number, gradi: number): number => Math.sin(fase * Math.PI * 4 + 0.9) * gradi;
+
+/** Ruota i punti della spina attorno al loro centro di `gradi` (piccoli: y += ang·(x − xc)). */
+export function beccheggia(spina: readonly P[], gradi: number): P[] {
+  if (!gradi) return [...spina];
+  const xc = spina.reduce((s, p) => s + p[0], 0) / spina.length;
+  const a = (gradi * Math.PI) / 180;
+  return spina.map(([x, y]) => [x, y + a * (x - xc)] as P);
+}
+
+/**
+ * La catena inseguitrice (follow-through): n segmenti che seguono un segnale con
+ * ritardo crescente lungo la catena e sovraelongazione verso la punta. Serve a
+ * code e orecchie: la base muove per prima, la punta arriva dopo e va oltre.
+ * `segnale(t)` è puro (fase o tempo); restituisce per ogni segmento il suo valore.
+ */
+export function catenaInseguitrice(segnale: (t: number) => number, n: number, t: number, ritardo: number, guadagno = 0.6): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < n; i++) {
+    const k = n > 1 ? i / (n - 1) : 0;
+    out.push(segnale(t - ritardo * i) * (1 + guadagno * k));
+  }
+  return out;
+}
