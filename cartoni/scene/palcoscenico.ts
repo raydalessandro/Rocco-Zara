@@ -96,6 +96,11 @@ export function palcoscenico(luogo: Luogo): Palcoscenico {
     luogo,
     quota: luogo.quota,
     scena: (t, defs, o) => {
+      if (defs.sonda) {
+        // il montaggio vuole solo la camera: niente pittura (i passaggi di questa chiamata si buttano)
+        pendenti = [];
+        return [];
+      }
       const passaggi = [...pendenti, ...(o.passaggi ?? [])];
       // il POV della corsa: la camera vicina che insegue chi corre forte
       const corsa = pendenti.reduce((m, p) => Math.max(m, p.corsa), 0);
