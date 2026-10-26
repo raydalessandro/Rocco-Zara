@@ -73,7 +73,7 @@ const CRESTE: readonly Cresta[] = [
 /**
  * Gli strati di mezzo (la profondità): a sinistra le colline verdi oltre il lago
  * (le sponde, col bosco sui crinali), a destra i prati dell'Aperto con le siepi
- * e i filari lontani — prealpi e laghi, non savana. Tre profondità (p 0,45 /
+ * e i filari lontani — monti e laghi, non savana. Tre profondità (p 0,45 /
  * 0,6 / 0,75), ognuna col piede dove dall'alto incontra il lago e la pianura
  * lontani; dal crinale restano dietro la collina, come è giusto.
  */
