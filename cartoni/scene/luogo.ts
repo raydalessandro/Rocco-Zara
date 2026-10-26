@@ -107,6 +107,18 @@ export interface Piena {
   crollo?: number;
 }
 
+/**
+ * Chi passa piega l'erba: un passaggio è dove sta un pupazzo adesso (x del palco, p=1),
+ * quanto è largo, quanto pesa (0..1) e da che parte va. Le lame davanti si aprono via da
+ * lui, quelle dietro restano piegate un tratto e tornano (`piegaErba` in scene/meteo.ts).
+ */
+export interface Passaggio {
+  x: number;
+  raggio: number;
+  forza: number;
+  verso: 1 | -1;
+}
+
 /** Le opzioni di un palco a un tempo t: chi lo guarda, con che luce e che tempo. */
 export interface OpzPalco {
   luogo: Luogo;
@@ -145,6 +157,8 @@ export interface OpzPalco {
   telo?: { colpo?: number; respiro?: number };
   /** La piena (ep04): l'acqua vicina più alta, davanti a tutto il piano dei personaggi. */
   piena?: Piena;
+  /** Chi sta passando sul palco adesso (l'erba si apre al passaggio). */
+  passaggi?: readonly Passaggio[];
 }
 
 /** Quota da un profilo: Hermite con tangenti alla Catmull-Rom (x non uniformi). */
