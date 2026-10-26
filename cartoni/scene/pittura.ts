@@ -157,7 +157,7 @@ const MONDO_NUVOLE = 18000;
  * bassa (sottoilluminato), di notte sono veli scuri.
  * Si disegnano dentro `cielo()` (livello a schermo): la proiezione la fa `aSchermo`.
  */
-function nuvole(o: OpzPalco, velato: number): string {
+export function nuvole(o: OpzPalco, velato: number): string {
   const { t, meteo, defs, luce } = o;
   const bassa = clamp(luce.forzaBordo); // quanto la luce è radente (tramonto, alba)
   const luceN = mescola(mescola(mescola("#fffaf0", luce.bordo, bassa * 0.35), "#b9bab0", meteo.temporale), "#3a4458", meteo.notte);
