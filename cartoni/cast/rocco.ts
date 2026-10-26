@@ -14,8 +14,10 @@
 import { type Luce, inLuce, inOmbra, mescola, scurisci, schiarisci } from "../motore/colore";
 import { caso } from "../motore/caso";
 import { type Defs, type P, DEG, add, cerchioD, curva, ellisseD, g, mix, n, path, pt, rot, tr, tubo } from "../motore/svg";
-import { clamp, onda, palpebra } from "../motore/tempo";
-import { corpoDaSpina, ik2, piedeNelPasso } from "./anatomia";
+import { clamp, onda } from "../motore/tempo";
+import { battito, codaDaSola, orecchioCheGira, pesoSulleZampe, respiro, saccade, semeVita } from "../motore/vita";
+import { beccheggia, beccheggio, catenaInseguitrice, corpoDaSpina, ik2, molleggio, piedeNelPasso } from "./anatomia";
+import { polvere } from "../scene/regia";
 
 /** Ancore colore dalla scheda (blindate da test/cartoni.motore.test.ts). */
 export const ROCCO_ANCORE = { pelle: "#8a8378", chiaro: "#a29a8d", occhi: "#5a4632" } as const;
@@ -60,10 +62,14 @@ export interface PosaRocco {
    * diventato riva»): le zampe e la pancia coperte di terra bagnata, che cola.
    */
   fango?: number;
-  /** Sfasamento del battito di ciglia (per non sbattere in sincrono). */
+  /** Sfasamento del battito di ciglia (per non sbattere in sincrono): è anche il seme della sua vita da fermo. */
   semeCiglia?: number;
   /** Disegna l'ombra portata. */
   ombra?: boolean;
+  /** Sguardo: −1 indietro … +1 avanti (la pupilla); le saccadi ci si sommano. */
+  sguardo?: number;
+  /** La polvere sotto i passi (default sì; si spegne da sola con pioggia e fango). */
+  polvere?: boolean;
 }
 
 export interface CtxPupazzo {
@@ -110,7 +116,8 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   const bagnato = clamp(posa.bagnato ?? 0);
   const fase = posa.fase ?? 0;
   const cammina = posa.andatura === "passo";
-  const respiro = onda(t, 3.4) * 2.2;
+  const seme = semeVita(posa.semeCiglia, id);
+  const resp = respiro(t, 3.4, seme) * 2.8;
   const aTerra = clamp(posa.aTerra ?? 0);
   /** quanto scende il corpo (per le cose disegnate sul tronco) */
   const giuC = aTerra * A_TERRA[2];
@@ -127,10 +134,15 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   const lontanaZampa = inOmbra(scurisci(pelleBase, 0.12), luce);
   const lato = (luce.lato * verso) as number; // da che parte (locale) viene la luce
 
-  // --- il passo: bob del corpo, piedi --------------------------------------
+  // --- il passo: il peso nel corpo, i piedi ---------------------------------
+  // Il molleggio è del bacino, non dei piedi (quelli in appoggio restano fermi nel
+  // mondo): poco, ma pesante — sprofonda sull'appoggio di colpo (durezza 0,55: «a
+  // sasso») e si solleva nella spinta; il tronco beccheggia di un grado e mezzo in
+  // fase col ciclo; da fermo il peso passa da una zampa all'altra ogni tanto.
   const amp = clamp(posa.ampiezza ?? 1);
-  const bob = cammina ? -3.2 * Math.cos(fase * Math.PI * 4) * amp : 0;
-  const sp = spina(bob, respiro, piantato, aTerra);
+  const bob = cammina ? molleggio(fase, 7, 0.55) * amp : 0;
+  const peso = cammina || aTerra > 0 ? 0 : pesoSulleZampe(t, seme) * (1 - piantato);
+  const sp = beccheggia(spina(bob, resp, piantato, aTerra), cammina ? beccheggio(fase, 1.6) * amp : 0).map(([x, y]) => [x + peso * 3, y] as P);
   const contorno = corpoDaSpina(sp, DORSO, VENTRE);
   const dPelle = curva(contorno, true);
 
@@ -281,13 +293,18 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
   corpo += g({ "clip-path": clipCorpo }, dentro);
 
   // --- coda ------------------------------------------------------------------
-  const oscCoda = onda(t, 2.2) * 6 + (cammina ? Math.sin(fase * Math.PI * 2) * 6 : 0);
+  // la coda insegue la groppa (follow-through): la base muove per prima, la punta
+  // arriva dopo e va oltre — nel passo dietro al dondolio del bacino, da ferma dietro
+  // al suo pendolo, e ogni tanto un colpo da sola
+  const catPasso = catenaInseguitrice((f) => (cammina ? Math.sin(f * Math.PI * 2) * 5 * amp : 0), 4, fase, 0.09, 1);
+  const catRiposo = catenaInseguitrice((tt) => onda(tt, 2.2) * 3.5 + codaDaSola(tt, seme) * 9, 4, t, 0.14, 1);
+  const osc = (i: number) => catPasso[i] + catRiposo[i];
   const radiceCoda = sp[0];
   const codaPunti: P[] = [
     radiceCoda,
-    add(radiceCoda, [-12 + oscCoda * 0.2, 26]),
-    add(radiceCoda, [-16 + oscCoda * 0.6, 52]),
-    add(radiceCoda, [-14 + oscCoda, 72]),
+    add(radiceCoda, [-12 + osc(1) * 0.3, 26]),
+    add(radiceCoda, [-16 + osc(2) * 0.6, 52]),
+    add(radiceCoda, [-14 + osc(3) * 0.9, 72]),
   ];
   let coda = path(tubo(codaPunti, [9, 6, 4.5, 3.5]), { fill: pelleOmbra });
   const punta = codaPunti[3];
@@ -309,9 +326,26 @@ export function rocco(posa: PosaRocco, ctx: CtxPupazzo): string {
       : "";
 
   // --- testa ---------------------------------------------------------------
-  const testaG = testaRocco(posa, ctx, sp[4], { pelle, pelleAlta, pelleBassa, pelleOmbra, piega, pieghaLuce, pelleBase });
+  // la testa segue il tronco un quarto di ciclo dopo: il collo porta il molleggio in ritardo
+  const ritardo = cammina ? (molleggio(fase - 0.125, 7, 0.55) - bob) * 0.5 * amp : 0;
+  const testaG = testaRocco(posa, ctx, add(sp[4], [0, ritardo]), { pelle, pelleAlta, pelleBassa, pelleOmbra, piega, pieghaLuce, pelleBase }, seme, cammina ? beccheggio(fase - 0.125, 1.6) * amp : 0);
+
+  // la polvere sotto i passi: uno sbuffo basso a ogni appoggio (non sull'acqua, non col fango)
+  const sbuffi =
+    cammina && posa.polvere !== false && aTerra === 0 && bagnato < 0.3 && (posa.fango ?? 0) === 0
+      ? polvere(
+          [
+            [fPV.x + 4, fase, 0.64],
+            [fAV.x + 4, fase + 0.25, 0.64],
+          ],
+          amp,
+          `${id}/polvere`,
+          luce,
+        )
+      : "";
 
   return (
+    sbuffi +
     ombraPortata +
     g({ "data-parte": "lontane" }, lontane) +
     coda +
@@ -373,13 +407,14 @@ interface Tavolozza {
   pelleBase: string;
 }
 
-function testaRocco(posa: PosaRocco, ctx: CtxPupazzo, collo: P, c: Tavolozza): string {
+function testaRocco(posa: PosaRocco, ctx: CtxPupazzo, collo: P, c: Tavolozza, seme: number, inseguendo = 0): string {
   const { defs, luce, id } = ctx;
   const t = posa.t;
   const piantato = clamp(posa.piantato ?? 0);
   const giro = clamp(posa.giro ?? 0);
   const cammina = posa.andatura === "passo";
-  const cenno = cammina ? Math.sin((posa.fase ?? 0) * Math.PI * 4 + 0.6) * 2.5 : 0;
+  // nel passo la testa insegue il beccheggio del tronco (un quarto di ciclo dopo), più un cenno suo
+  const cenno = cammina ? Math.sin((posa.fase ?? 0) * Math.PI * 4 + 0.6) * 1.6 * clamp(posa.ampiezza ?? 1) + inseguendo * 1.3 : 0;
   const angolo = (posa.testa ?? 0) + piantato * 16 + giro * 10 + cenno + onda(t, 5.1) * 0.8;
   const perno: P = add(collo, [16, -4]);
   // giro: la testa si accorcia (scorcio) e il corno scivola dietro al profilo
@@ -419,7 +454,7 @@ function testaRocco(posa: PosaRocco, ctx: CtxPupazzo, collo: P, c: Tavolozza): s
 
   let s = "";
   // orecchio lontano (dietro la testa)
-  s += orecchio([-8, -44], -1, posa, ctx, c, true);
+  s += orecchio([-8, -44], -1, posa, ctx, c, true, seme);
   // corno: prima della testa se girata (scivola dietro al profilo)
   const corno = cornoStorto(defs, id, luce, giro);
   if (giro > 0.5) s += corno;
@@ -460,15 +495,16 @@ function testaRocco(posa: PosaRocco, ctx: CtxPupazzo, collo: P, c: Tavolozza): s
       opacity: 0.8,
     });
   }
-  // narice
-  s += path("M136 16q6 -4 8 3q-4 5 -8 -3Z", { fill: scurisci(c.pelleBase, 0.5), opacity: 0.85 });
+  // narice: si apre un poco col respiro (il fiato grande di un rinoceronte)
+  const fiato = 1 + 0.14 * respiro(t, 3.4, seme);
+  s += g({ transform: `translate(140 16)scale(${Math.round(fiato * 100) / 100})translate(-140 -16)` }, path("M136 16q6 -4 8 3q-4 5 -8 -3Z", { fill: scurisci(c.pelleBase, 0.5), opacity: 0.85 }));
   // corno posteriore: solo un bozzo
   s += path(curva([[62, -44], [70, -58], [82, -58], [88, -44]], false) + "Z", { fill: inLuce(mescola(CORNO, c.pelleBase, 0.35), luce) });
   if (giro <= 0.5) s += corno;
   // occhio
-  s += occhioRocco(posa, ctx, c, giro);
+  s += occhioRocco(posa, ctx, c, giro, seme);
   // orecchio vicino
-  s += orecchio([2, -40], 1, posa, ctx, c, false);
+  s += orecchio([2, -40], 1, posa, ctx, c, false, seme);
 
   return g({ transform: `translate(${n(perno[0])} ${n(perno[1])})rotate(${n(angolo)})scale(${Math.round(sx * 1000) / 1000} ${sy})` }, s);
 }
@@ -511,10 +547,12 @@ function cornoStorto(defs: Defs, id: string, luce: Luce, giro: number): string {
   return s;
 }
 
-function occhioRocco(posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, giro: number): string {
+function occhioRocco(posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, giro: number, seme: number): string {
   const { luce } = ctx;
   const t = posa.t;
-  const chiuso = clamp(Math.max(posa.occhi ?? 0, palpebra(t, 4.3, posa.semeCiglia ?? 0.1)));
+  // le ciglia battono a tempi loro (a volte due volte); lo sguardo si sposta a scatti rari e torna
+  const chiuso = clamp(Math.max(posa.occhi ?? 0, battito(t, seme)));
+  const sg = clamp((posa.sguardo ?? 0) * 0.6 + saccade(t, seme), -1, 1);
   const pena = clamp(posa.pena ?? 0);
   const cx = 60 - giro * 6;
   const cy = -6;
@@ -525,8 +563,8 @@ function occhioRocco(posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, giro: numbe
   s += path(ellisseD([cx, cy], rx + 6, ry + 5), { fill: c.pelleOmbra, opacity: 0.5 });
   // iride calda + pupilla + lucina
   s += path(ellisseD([cx, cy], rx, ry), { fill: inLuce(ROCCO_ANCORE.occhi, luce) });
-  s += path(ellisseD([cx + 1.5, cy], rx * 0.5, ry * 0.6), { fill: "#241a12" });
-  s += path(cerchioD([cx - 2, cy - 2.5], 1.8), { fill: "#fffaf0", opacity: 0.9 });
+  s += path(ellisseD([cx + 1.5 + sg * 2.2, cy], rx * 0.5, ry * 0.6), { fill: "#241a12" });
+  s += path(cerchioD([cx - 2 + sg * 0.8, cy - 2.5], 1.8), { fill: "#fffaf0", opacity: 0.9 });
   // palpebra (scende nel battito)
   if (chiuso > 0.02) {
     const h = ry * 2 * chiuso;
@@ -553,12 +591,14 @@ function occhioRocco(posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, giro: numbe
 }
 
 /** L'orecchio tondo orlato di setole — il radar di Rocco. */
-function orecchio(base: P, lato: 1 | -1, posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, lontano: boolean): string {
+function orecchio(base: P, lato: 1 | -1, posa: PosaRocco, ctx: CtxPupazzo, c: Tavolozza, lontano: boolean, seme: number): string {
   const t = posa.t;
   const tensione = posa.orecchie ?? 0;
-  // guizzi: ogni tanto l'orecchio gira da solo
-  const guizzo = Math.max(0, Math.sin(t * 1.3 + (lontano ? 2 : 0))) ** 12 * 18;
-  const ang = -20 + tensione * 26 - (lontano ? 12 : 0) + guizzo;
+  // ogni tanto un orecchio gira da solo verso un suono (il suo radar), ognuno a tempi suoi;
+  // nel passo seguono la testa con un filo di ritardo (follow-through)
+  const guizzo = orecchioCheGira(t, seme, lontano ? 1 : 0) * 18;
+  const segue = posa.andatura === "passo" ? -Math.sin(((posa.fase ?? 0) - 0.2) * Math.PI * 4 + 0.9) * 2.2 * clamp(posa.ampiezza ?? 1) : 0;
+  const ang = -20 + tensione * 26 - (lontano ? 12 : 0) + guizzo + segue;
   const col = lontano ? c.pelleOmbra : c.pelle;
   const sag: P[] = [
     [-11, 0],
