@@ -526,26 +526,98 @@ export function terreno(o: OpzPalco): { terra: string; fronda: string } {
   let terra = path(dSuolo, { fill: url });
   terra += path(dSuolo, { fill: scuro });
 
-  // pennellate: tratti d'erba e di terra, fissi nel mondo (il gouache)
+  // --- il lato in luce e quello in ombra -------------------------------------
+  // Dalla pendenza locale e da dove sta il sole: il versante che gli volta le
+  // spalle prende l'ombra propria, a bande morbide che seguono il profilo (gli
+  // stessi campioni allineati al mondo del profilo: niente sfarfallii). La forza
+  // è quantizzata in pochi gradini e disegnata a strati cumulativi, così la
+  // transizione resta graduale lungo il pendio.
   const pendenzaLocale = (x: number) => (luogo.quota(x + 30) - luogo.quota(x - 30)) / 60;
+  const forzaO = luce.forzaOmbra * (0.55 + 0.45 * luce.radenza) * (1 - meteo.temporale * 0.5);
+  const ombraA = (x: number) => clamp(-pendenzaLocale(x) * luce.lato * 2.2) * forzaO;
+  // un gradiente orizzontale sul profilo: uno stop ogni due campioni, l'opacità
+  // è quanto quel tratto di versante volta le spalle al sole
+  const tintaOmbra = inOmbra(mescola(C.erbaScura, "#3a3f52", 0.35), luce);
+  const xa = pts[0][0];
+  const xb = pts[pts.length - 1][0];
+  const stop: [number, string, number][] = [];
+  for (let i = 0; i < pts.length; i += 2) stop.push([(pts[i][0] - xa) / (xb - xa), tintaOmbra, Math.round(ombraA(pts[i][0]) * 0.5 * 100) / 100]);
+  const sfumaOmbra = defs.lineare("suolo-ombra", [xa, 0], [xb, 0], stop);
+  terra += path(dSuolo, { fill: sfumaOmbra });
+
+  // --- la materia: chiazze d'erba più chiara e più scura, fisse nel mondo ----
+  const semeCh = fnv1a32("collina/chiazze");
+  let chiare = "";
+  let scure = "";
+  for (let i = 0; i < 140; i++) {
+    const r = elemento(semeCh, i);
+    const x = r.tra(-6000, 6000);
+    const sotto = r.tra(30, 800);
+    const rx = r.tra(120, 420);
+    const ry = r.tra(16, 60);
+    const chiara = r.moneta(0.5);
+    if (x < v.x0 - rx || x > v.x1 + rx) continue;
+    const y = luogo.quota(x) + sotto;
+    if (y < v.y0 - ry || y > v.y1 + ry) continue;
+    (chiara ? (chiare += ellisseD([x, y], rx, ry)) : (scure += ellisseD([x, y], rx, ry)));
+  }
+  terra += path(chiare, { fill: inLuce(C.erbaChiara, luce), opacity: 0.07 });
+  terra += path(scure, { fill: inOmbra(C.erbaScura, luce), opacity: 0.08 });
+
+  // --- pennellate a fasce: seguono il profilo a profondità diverse, più fitte e
+  // lunghe verso la camera (in basso), rade e corte in alto; il tono varia tra
+  // luce e ombra secondo il versante (il gouache)
   const semeP = fnv1a32("collina/pennellate");
+  const FASCE = [40, 110, 200, 320, 470, 650, 860];
   let pen = "";
   let penChiare = "";
-  for (let i = 0; i < 1400; i++) {
-    const r = elemento(semeP, i);
-    const x = r.tra(-6000, 6000);
-    const sotto = r.tra(20, 900);
-    const w = r.tra(18, 60);
-    const scura = r.moneta(0.55);
-    if (x < v.x0 - 60 || x > v.x1 + 60) continue;
-    const y = luogo.quota(x) + sotto;
-    if (y < v.y0 - 50 || y > v.y1 + 50) continue;
-    const incl = pendenzaLocale(x) * w;
-    if (scura) pen += `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
-    else penChiare += `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
-  }
-  terra += path(pen, { stroke: inOmbra(C.erbaScura, luce), "stroke-width": 5, opacity: 0.28, "stroke-linecap": "round" });
+  let penOmbra = "";
+  let ip = 0;
+  FASCE.forEach((sotto, f) => {
+    const quante = 90 + f * 48;
+    const lung = 16 + f * 8;
+    for (let j = 0; j < quante; j++, ip++) {
+      const r = elemento(semeP, ip);
+      const x = r.tra(-6000, 6000);
+      const dy = r.segno(sotto * 0.22 + 8);
+      const w = lung * r.tra(0.7, 1.3);
+      const q = r();
+      if (x < v.x0 - 60 || x > v.x1 + 60) continue;
+      const y = luogo.quota(x) + sotto + dy;
+      if (y < v.y0 - 50 || y > v.y1 + 50) continue;
+      const incl = pendenzaLocale(x) * w;
+      const ombra = ombraA(x) / Math.max(0.01, forzaO);
+      const d = `M${n(x)} ${n(y)}l${n(w)} ${n(incl)}`;
+      if (ombra > 0.35 && q < 0.7) penOmbra += d;
+      else if (q < 0.5) pen += d;
+      else penChiare += d;
+    }
+  });
+  terra += path(pen, { stroke: inOmbra(C.erbaScura, luce), "stroke-width": 5, opacity: 0.26, "stroke-linecap": "round" });
+  terra += path(penOmbra, { stroke: inOmbra(scurisci(C.erbaScura, 0.3), luce), "stroke-width": 5.5, opacity: 0.3, "stroke-linecap": "round" });
   terra += path(penChiare, { stroke: inLuce(C.erbaChiara, luce), "stroke-width": 4, opacity: 0.22, "stroke-linecap": "round" });
+
+  // --- i fiori: puntini radi di tre colori terrosi, solo da vicino -------------
+  const zf = Math.max(0.1, o.cam.zoom);
+  if (zf > 0.55 && meteo.notte < 0.9) {
+    const semeFi = fnv1a32("collina/fiori");
+    const FIORI = ["#e9d27a", "#d9a3a8", "#f2efe0"] as const;
+    const d = ["", "", ""];
+    const densita = clamp((zf - 0.5) * 1.2);
+    for (let k = 0; k < 220; k++) {
+      const r = elemento(semeFi, k);
+      const soglia = r();
+      const x = r.tra(-6000, 6000);
+      const sotto = r.tra(24, 420);
+      const rr = r.tra(2.2, 3.6);
+      const c = r.intero(0, 2);
+      if (soglia > densita || x < v.x0 - 10 || x > v.x1 + 10) continue;
+      const y = luogo.quota(x) + sotto;
+      if (y < v.y0 - 10 || y > v.y1 + 10 || (luogo.acqua && x < luogo.acqua.riva + 60)) continue;
+      d[c] += ellisseD([x, y], rr, rr * 0.8) + ellisseD([x + rr * 1.6, y + rr * 0.9], rr * 0.7, rr * 0.55);
+    }
+    d.forEach((dd, c) => (terra += path(dd, { fill: inLuce(FIORI[c], luce), opacity: 0.8 * (1 - meteo.notte) })));
+  }
 
   // l'acqua al piede (p=1): a sinistra della riva
   const A = luogo.acqua;
