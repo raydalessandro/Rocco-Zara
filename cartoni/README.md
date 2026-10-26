@@ -120,8 +120,10 @@ python3 cartoni/render/ascolta.py --episodio ep02    # si capisce? un riconoscit
 
 ```
 cartoni/
-  motore/      il tempo (easing, tracce), il caso SEMINATO, la penna SVG, la luce,
-               la camera a parallasse, il montaggio (stacchi, dissolvenze, nero),
+  motore/      il tempo (easing, tracce, la molla, l'anticipo), il caso SEMINATO, la
+               penna SVG, la luce, la camera a parallasse, la vita piccola (saccadi,
+               battiti, orecchie, peso, coda; la camera che respira), il montaggio
+               (stacchi, dissolvenze, nero, la camera viva),
                le didascalie (Fraunces, a capo bilanciato), la parola (chi parla,
                sillabe italiane), la voce (piano delle battute, bocche, tempi),
                la serie (le puntate, dal grafo della saga)
@@ -182,6 +184,11 @@ cartoni/
    per sempre; mai due ruoli con la stessa voce (test su `voce/voce.json`).
 9. **La serie.** Ogni episodio sta in una puntata (dal grafo), col titolo della sua
    prosa, e con le voci dura tra 3′ e 7′ (si mira a 5′).
+10. **I pupazzi e la camera sono vivi.** Il peso sta nel bacino e nel tronco (i piedi a
+   terra restano fermi), coda e orecchie inseguono, da fermi si guarda, si batte le ciglia
+   e si cambia zampa a tempi propri (seminati), il mondo reagisce (l'erba si apre, la
+   polvere, le scie) e la camera deriva appena anche da ferma — tutto nel motore, per
+   tutti gli episodi, senza copione (test; `docs/ANIMATORE.md` §1).
 
 ## Il cancello
 
