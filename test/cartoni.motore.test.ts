@@ -45,7 +45,6 @@ import { APPRODO, COPPELLE, CUORE, LAGO_VESPRO, ORLO, RIVA, RIVALBA, RIVE, RIVE_
 import type { OpzPalco, Piena } from "../cartoni/scene/luogo";
 import * as TEMI from "../cartoni/audio/temi";
 import { LUCI } from "../cartoni/scene/luci";
-import { METEO_SERENO } from "../cartoni/scene/meteo";
 import { palcoscenico } from "../cartoni/scene/palcoscenico";
 import { boscoLontano, collineLontane, nuvole, ombraPortata, primoPiano } from "../cartoni/scene/pittura";
 
