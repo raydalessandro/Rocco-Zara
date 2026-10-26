@@ -429,6 +429,21 @@ describe("cartoni — il palco vivo: nuvole nel mondo, profondità, ombre portat
     expect(senza.every((l) => !l.filtro)).toBe(true);
   });
 
+  it("l'ombra del versante lungo il profilo non fa cuciture: stop in ordine, mai due uguali, salti d'opacità piccoli (a ogni zoom)", () => {
+    const V = palcoscenico(SOGLIA);
+    for (const cam of [{ x: -665, y: 238, zoom: 0.23 }, { x: -20, y: -60, zoom: 0.98 }, { x: -34, y: -172, zoom: 1.78 }, { x: 250, y: -110, zoom: 1.2 }]) {
+      const defs = new Defs("");
+      V.scena(1, defs, { cam, luce: LUCI.giorno });
+      const grad = defs.markup().match(/<linearGradient id="suolo-ombra"[^>]*>(.*?)<\/linearGradient>/)![1];
+      const stop = [...grad.matchAll(/offset="([\d.]+)"[^>]*stop-opacity="([\d.]+)"/g)].map((m) => [Number(m[1]), Number(m[2])]);
+      expect(stop.length, `zoom ${cam.zoom}`).toBeGreaterThan(20);
+      for (let i = 1; i < stop.length; i++) {
+        expect(stop[i][0], `zoom ${cam.zoom}: offset ${i}`).toBeGreaterThan(stop[i - 1][0]);
+        expect(Math.abs(stop[i][1] - stop[i - 1][1]), `zoom ${cam.zoom}: salto allo stop ${i}`).toBeLessThan(0.06);
+      }
+    }
+  });
+
   it("i pennelli nuovi sono deterministici (stesso input → stessa stringa) e senza caso di sistema", () => {
     const o = opz({ x: -600, y: 200, zoom: 0.5 }, 2.3, LUCI.tramonto);
     const colline = [{ seme: "prova/colline", base: 500, alt: 150, col: "#4f5f3a", fos: 0.4, x0: -9000, x1: 9000, alberi: 0.8 }];
